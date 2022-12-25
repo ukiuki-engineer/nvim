@@ -49,4 +49,4 @@ augroup im_select
     autocmd CmdlineEnter * :call system('im-select com.apple.keylayout.ABC')
   endif
 augroup END
-
+source plugins.vim

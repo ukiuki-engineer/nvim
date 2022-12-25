@@ -52,5 +52,3 @@ repo = 'editorconfig/editorconfig-vim'
 [[plugins]] # blade
 repo = 'jwalton512/vim-blade'
 
-# [[plugins]] # 
-# repo = 'lukas-reineke/indent-blankline.nvim'
