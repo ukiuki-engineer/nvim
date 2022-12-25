@@ -6,6 +6,8 @@ if &modifiable == 1
   set fenc=utf-8
 endif
 set helplang=ja
+" 編集中のファイルが変更されたら自動で読み直す
+" set autoread
 set cursorline
 set cursorcolumn
 " 行番号を表示
@@ -49,4 +51,5 @@ augroup im_select
     autocmd CmdlineEnter * :call system('im-select com.apple.keylayout.ABC')
   endif
 augroup END
-source plugins.vim
+" ------------------------------------------------------------------------------
+source ~/.config/nvim/plugins.vim

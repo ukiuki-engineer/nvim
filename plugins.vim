@@ -20,12 +20,12 @@ endif
 
 " dein設定---ここから
 set nocompatible
+let g:rc_dir = expand('~/.config/nvim')
 let s:dein_base = '~/.cache/dein/'
 let s:dein_src = '~/.cache/dein/repos/github.com/Shougo/dein.vim'
 execute 'set runtimepath+=' . s:dein_src
 call dein#begin(s:dein_base)
   " プラグインリスト(toml)
-  let g:rc_dir    = '~/.config/nvim'
   let s:toml      = g:rc_dir . '/toml/dein.toml'
   let s:lazy_toml = g:rc_dir . '/toml/dein_lazy.toml'
   " tomlのロード
