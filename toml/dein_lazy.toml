@@ -1,0 +1,7 @@
+[[plugins]] # カラーコードを表示
+repo = 'gorodinskiy/vim-coloresque'
+on_ft = ['css', 'html', 'less', 'sass', 'scss', 'stylus', 'vim']
+
+[[plugins]] # 補完
+repo = 'Shougo/neocomplcache'
+on_i = 1

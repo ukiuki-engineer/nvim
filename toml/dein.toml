@@ -1,0 +1,53 @@
+[[plugins]] # 日本語ドキュメント
+repo = 'vim-jp/vimdoc-ja'
+
+[[plugins]] # カラーテーマ
+repo = 'jacoborus/tender.vim'
+
+[[plugins]] # 
+repo = 'itchyny/lightline.vim'
+
+[[plugins]] # 
+repo = 'vim-airline/vim-airline'
+
+[[plugins]] # ファイラー
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+  nnoremap <C-n> :NERDTreeToggle<CR>
+  if getcwd() != $HOME
+    augroup NERDTreeSetting
+    autocmd!
+    autocmd StdinReadPre * let s:std_in = 1
+    if (argc() == 0 || argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in"))
+        autocmd vimenter * NERDTreeToggle
+    else
+        autocmd vimenter * NERDTreeToggle | wincmd p
+    endif
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
+  endif
+'''
+
+[[plugins]] # 
+repo = 'junegunn/fzf'
+build = './install'
+
+[[plugins]] # 
+repo = 'junegunn/fzf.vim'
+depends = 'junegunn/fzf'
+hook_add = '''
+  nnoremap <C-p> :Files<CR>
+'''
+
+# [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
+# repo = 'ukiuki-engineer/vim9-autoclose'
+
+[[plugins]] # コメントアウト(gccで1行コメントアウト、ビジュアルモード時にgcで選択範囲をコメントアウト)
+repo = 'tpope/vim-commentary'
+hook_add = 'autocmd FileType php setlocal commentstring=//\ %s'
+
+[[plugins]] # editorconfig
+repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]] # blade
+repo = 'jwalton512/vim-blade'
