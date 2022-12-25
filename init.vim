@@ -37,6 +37,17 @@ nnoremap <C-c><C-c> :nohlsearch<CR><Esc>
 inoremap <C-c> <Esc>
 nnoremap <TAB> :bn<Enter>
 nnoremap <S-TAB> :bN<Enter>
+" FIXME: 背景が透明じゃなくなる...
+" if !has('gui_running')
+"   augroup transpancy
+"     autocmd!
+"     autocmd VimEnter,ColorScheme * highlight Normal ctermbg=none
+"     autocmd VimEnter,ColorScheme * highlight LineNr ctermbg=none
+"     autocmd VimEnter,ColorScheme * highlight SignColumn ctermbg=none
+"     autocmd VimEnter,ColorScheme * highlight VertSplit ctermbg=none
+"     autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none
+"   augroup END
+" endif
 " ------------------------------------------------------------------------------
 "
 " IME切り替え設定
