@@ -16,15 +16,15 @@ hook_add = '''
   nnoremap <C-n> :NERDTreeToggle<CR>
   if getcwd() != $HOME
     augroup NERDTreeSetting
-    autocmd!
-    autocmd StdinReadPre * let s:std_in = 1
-    if (argc() == 0 || argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in"))
+      autocmd!
+      autocmd StdinReadPre * let s:std_in = 1
+      if (argc() == 0 || argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in"))
         autocmd vimenter * NERDTreeToggle
-    else
+      else
         autocmd vimenter * NERDTreeToggle | wincmd p
-    endif
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-augroup END
+      endif
+      autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    augroup END
   endif
 '''
 
@@ -51,3 +51,6 @@ repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]] # blade
 repo = 'jwalton512/vim-blade'
+
+# [[plugins]] # 
+# repo = 'lukas-reineke/indent-blankline.nvim'
