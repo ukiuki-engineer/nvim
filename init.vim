@@ -40,7 +40,6 @@ nnoremap <C-c><C-c> :nohlsearch<CR><Esc>
 inoremap <C-c> <Esc>
 nnoremap <TAB> :bn<Enter>
 nnoremap <S-TAB> :bN<Enter>
-" FIXME: 背景が透明じゃなくなる...
 " if !has('gui_running')
 "   augroup transpancy
 "     autocmd!
