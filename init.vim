@@ -5,7 +5,10 @@ if &modifiable == 1
   set enc=utf-8
   set fenc=utf-8
 endif
+" ヘルプを日本語化
 set helplang=ja
+" マウス有効化
+set mouse=a
 " 編集中のファイルが変更されたら自動で読み直す
 " set autoread
 set cursorline
