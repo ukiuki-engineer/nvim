@@ -6,7 +6,7 @@ on_ft = ['css', 'html', 'less', 'sass', 'scss', 'stylus', 'vim']
 repo = 'Shougo/neocomplcache'
 on_i = 1
 
-[[plugins]] # 
+[[plugins]] # ヘルプファイル自動生成
 repo = 'LeafCage/vimhelpgenerator'
 on_cmd = ['VimHelpGenerator', 'VimHelpGeneratorVirtual']
 hook_add = '''
@@ -14,8 +14,8 @@ let g:vimhelpgenerator_defaultlanguage = 'ja'
 let g:vimhelpgenerator_version = ''
 let g:vimhelpgenerator_author = 'Author  : ukiuki-engineer'
 let g:vimhelpgenerator_contents = {
-      \ 'contents': 1, 'introduction': 1, 'usage': 1, 'interface': 1,
-      \ 'variables': 1, 'commands': 1, 'key-mappings': 1, 'functions': 1,
-      \ 'setting': 0, 'todo': 1, 'changelog': 0
-      \}
+  \ 'contents': 1, 'introduction': 1, 'usage': 1, 'interface': 1,
+  \ 'variables': 1, 'commands': 1, 'key-mappings': 1, 'functions': 1,
+  \ 'setting': 0, 'todo': 1, 'changelog': 0
+  \}
 '''

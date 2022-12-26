@@ -5,55 +5,37 @@ if &modifiable == 1
   set enc=utf-8
   set fenc=utf-8
 endif
-" ヘルプを日本語化
-set helplang=ja
-" マウス有効化
-set mouse=a
-" 編集中のファイルが変更されたら自動で読み直す
-" set autoread
-set cursorline
-set cursorcolumn
-" 行番号を表示
-set number
-" タブや改行を表示
-set list
+set helplang=ja        " ヘルプを日本語化
+set mouse=a            " マウス有効化
+" set autoread           " 編集中のファイルが変更されたら自動で読み直す
+set cursorline         " カーソル行を表示
+set cursorcolumn       " カーソル列を表示
+set number             " 行番号を表示
+set list               " タブや改行を表示
 set listchars=tab:»-,trail:-,eol:↓,extends:»,precedes:«,nbsp:%
-" Tab 文字を半角スペースにする
-set expandtab
-" 行頭での Tab 文字の表示幅
-set shiftwidth=2
+set expandtab          " Tab 文字を半角スペースにする
+set shiftwidth=2       " 行頭での Tab 文字の表示幅
+"
 " ファイルタイプ毎のインデント設定
 augroup fileTypeIndent
   autocmd!
   autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
 augroup END
-set clipboard+=unnamed
-" 検索時にファイルの最後まで行ったら最初に戻る (nowrapscan:戻らない)
-set nowrapscan
-" 検索時に大文字小文字を無視 (noignorecase:無視しない)
-set ignorecase
-" 大文字小文字の両方が含まれている場合は大文字小文字を区別
-set smartcase
+set clipboard+=unnamed " ヤンクした文字列をクリップボードにコピー
+set splitright         " 画面を縦分割する際に右に開く
+set nowrapscan         " 検索時にファイルの最後まで行ったら最初にらない
+set ignorecase         " 検索時に大文字小文字を無視
+set smartcase          " 大文字小文字の両方が含まれている場合は大文字小文字を区別
+"
 " キーマッピング
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap <C-c><C-c> :nohlsearch<CR><Esc>
 inoremap <C-c> <Esc>
 nnoremap <TAB> :bn<Enter>
 nnoremap <S-TAB> :bN<Enter>
-" if !has('gui_running')
-"   augroup transpancy
-"     autocmd!
-"     autocmd VimEnter,ColorScheme * highlight Normal ctermbg=none
-"     autocmd VimEnter,ColorScheme * highlight LineNr ctermbg=none
-"     autocmd VimEnter,ColorScheme * highlight SignColumn ctermbg=none
-"     autocmd VimEnter,ColorScheme * highlight VertSplit ctermbg=none
-"     autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none
-"   augroup END
-" endif
-" ------------------------------------------------------------------------------
 "
 " IME切り替え設定
-"
+" im-selectがない場合、インストールすること
 augroup im_select
   autocmd!
   if has('mac')
@@ -65,4 +47,5 @@ augroup im_select
   endif
 augroup END
 " ------------------------------------------------------------------------------
+" プラグイン設定読み込み
 source ~/.config/nvim/plugins.vim

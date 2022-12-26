@@ -4,10 +4,10 @@ repo = 'vim-jp/vimdoc-ja'
 [[plugins]] # カラーテーマ
 repo = 'jacoborus/tender.vim'
 
-[[plugins]] # 
+[[plugins]] # lightline
 repo = 'itchyny/lightline.vim'
 
-[[plugins]] # 
+[[plugins]] # airline
 repo = 'vim-airline/vim-airline'
 
 [[plugins]] # ファイラー
@@ -28,11 +28,11 @@ if getcwd() != $HOME
 endif
 '''
 
-[[plugins]] # 
+[[plugins]] # ファジーファインダー
 repo = 'junegunn/fzf'
 build = './install'
 
-[[plugins]] # 
+[[plugins]] # ファジーファインダー
 repo = 'junegunn/fzf.vim'
 depends = 'junegunn/fzf'
 hook_add = 'nnoremap <C-p> :Files<CR>'
@@ -50,5 +50,5 @@ repo = 'editorconfig/editorconfig-vim'
 [[plugins]] # blade
 repo = 'jwalton512/vim-blade'
 
-[[plugins]]
+[[plugins]] # アイコン類
 repo = 'ryanoasis/vim-devicons'
