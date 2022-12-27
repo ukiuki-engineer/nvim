@@ -19,9 +19,9 @@ if getcwd() != $HOME
     autocmd!
     autocmd StdinReadPre * let s:std_in = 1
     if (argc() == 0 || argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in"))
-      autocmd vimenter * NERDTreeToggle
+      autocmd VimEnter,SessionLoadPost * NERDTreeToggle | wincmd p
     else
-      autocmd vimenter * NERDTreeToggle | wincmd p
+      autocmd VimEnter * NERDTreeToggle | wincmd p
     endif
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
   augroup END
