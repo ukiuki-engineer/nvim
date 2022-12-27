@@ -35,7 +35,11 @@ build = './install'
 [[plugins]] # ファジーファインダー
 repo = 'junegunn/fzf.vim'
 depends = 'junegunn/fzf'
-hook_add = 'nnoremap <C-p> :Files<CR>'
+hook_add = '''
+nnoremap <C-p> :Files<CR>
+nnoremap gb :Buffers<CR>
+nnoremap gl :Lines<CR>
+'''
 
 [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
 repo = 'ukiuki-engineer/vim-autoclose'

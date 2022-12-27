@@ -22,7 +22,8 @@ augroup fileTypeIndent
   autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
 augroup END
 set clipboard+=unnamed " ヤンクした文字列をクリップボードにコピー
-set splitright         " 画面を縦分割する際に右に開く
+set splitright         " 画面を垂直分割する際に右に開く
+set splitbelow         " 画面を水平分割する際に下に開く
 set nowrapscan         " 検索時にファイルの最後まで行ったら最初にらない
 set ignorecase         " 検索時に大文字小文字を無視
 set smartcase          " 大文字小文字の両方が含まれている場合は大文字小文字を区別
