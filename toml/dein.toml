@@ -48,6 +48,16 @@ repo = 'ukiuki-engineer/vim-autoclose'
 repo = 'tpope/vim-commentary'
 hook_add = 'autocmd FileType php setlocal commentstring=//\ %s'
 
+[[plugins]] # インデント可視化
+repo = 'Yggdroot/indentLine'
+if = 'has("conceal")'
+hook_add = '''
+augroup indentLine
+  autocmd!
+  autocmd VimEnter,BufRead,BufWinEnter,BufEnter * IndentLinesEnable
+augroup END
+'''
+
 [[plugins]] # editorconfig
 repo = 'editorconfig/editorconfig-vim'
 
