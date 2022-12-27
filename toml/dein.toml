@@ -56,6 +56,7 @@ augroup indentLine
   autocmd!
   autocmd VimEnter,BufRead,BufWinEnter,BufEnter * IndentLinesEnable
 augroup END
+set list lcs=tab:\|\
 '''
 
 [[plugins]] # editorconfig
