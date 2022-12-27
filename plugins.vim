@@ -57,6 +57,5 @@ if isdirectory($HOME . "/.cache/dein/repos/github.com/jacoborus/tender.vim")
   silent! colorscheme tender
   let g:lightline = { 'colorscheme': 'tender' }
   let g:airline_theme = 'tender'
-  let macvim_skip_colorscheme=1
+  " let macvim_skip_colorscheme=1
 endif
-

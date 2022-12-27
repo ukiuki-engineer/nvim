@@ -15,12 +15,19 @@ set list               " タブや改行を表示
 set listchars=tab:»-,trail:-,eol:↓,extends:»,precedes:«,nbsp:%
 set expandtab          " Tab 文字を半角スペースにする
 set shiftwidth=2       " 行頭での Tab 文字の表示幅
+" FIXME 全角スペース可視化
+augroup Zenkaku
+  autocmd!
+  autocmd Colorscheme * highlight! ZenkakuSpace ctermbg=#FF0000 guibg=#FF0000
+  autocmd VimEnter * match ZenkakuSpace /　/
+augroup END
 "
 " ファイルタイプ毎のインデント設定
 augroup fileTypeIndent
   autocmd!
   autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
 augroup END
+
 set clipboard+=unnamed " ヤンクした文字列をクリップボードにコピー
 set splitright         " 画面を垂直分割する際に右に開く
 set splitbelow         " 画面を水平分割する際に下に開く
@@ -50,3 +57,4 @@ augroup END
 " ------------------------------------------------------------------------------
 " プラグイン設定読み込み
 source ~/.config/nvim/plugins.vim
+
