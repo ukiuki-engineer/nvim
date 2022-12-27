@@ -15,12 +15,6 @@ set list               " タブや改行を表示
 set listchars=tab:»-,trail:-,eol:↓,extends:»,precedes:«,nbsp:%
 set expandtab          " Tab 文字を半角スペースにする
 set shiftwidth=2       " 行頭での Tab 文字の表示幅
-" FIXME 全角スペース可視化
-augroup Zenkaku
-  autocmd!
-  autocmd Colorscheme * highlight! ZenkakuSpace ctermbg=#FF0000 guibg=#FF0000
-  autocmd VimEnter * match ZenkakuSpace /　/
-augroup END
 "
 " ファイルタイプ毎のインデント設定
 augroup fileTypeIndent
