@@ -67,3 +67,32 @@ repo = 'jwalton512/vim-blade'
 
 [[plugins]] # アイコン類
 repo = 'ryanoasis/vim-devicons'
+
+[[plugins]] # lcp
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+hook_add = '''
+let g:coc_global_extensions = [
+  \ 'coc-sql',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ 'coc-vetur',
+  \ 'coc-vimlsp',
+  \ 'coc-docker',
+  \ 'coc-markdownlint',
+  \ 'coc-json',
+  \ 'coc-yaml',
+  \ 'coc-xml',
+  \ 'coc-html',
+  \ 'coc-css',
+  \ 'coc-cssmodules',
+  \ 'coc-spell-checker',
+  \ 'coc-snippets',
+  \ 'coc-phpls',
+  \ 'coc-blade',
+\ ]
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gds :sp<CR><Plug>(coc-definition)
+nnoremap <silent> gdv :vs<CR><Plug>(coc-definition)
+command! -nargs=0 Format :call CocAction('format')
+'''
