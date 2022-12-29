@@ -34,7 +34,7 @@ augroup END
 "
 " IME切り替え設定
 " im-selectがない場合、インストールすること
-augroup imSelect
+augroup IME
   autocmd!
   if has('mac')
     autocmd InsertLeave * :call system('im-select com.apple.keylayout.ABC')
@@ -42,6 +42,14 @@ augroup imSelect
     autocmd BufRead * :call system('im-select com.apple.keylayout.ABC')
     autocmd CmdlineLeave * :call system('im-select com.apple.keylayout.ABC')
     autocmd CmdlineEnter * :call system('im-select com.apple.keylayout.ABC')
+  endif
+  if exepath('/mnt/d/app/zenhan/bin64/zenhan.exe') != ""
+    let s:toHankaku = '/mnt/d/app/zenhan/bin64/zenhan.exe 0'
+    autocmd InsertLeave * :call system(s:toHankaku)
+    autocmd InsertEnter * :call system(s:toHankaku)
+    autocmd BufRead * :call system(s:toHankaku)
+    autocmd CmdlineLeave * :call system(s:toHankaku)
+    autocmd CmdlineEnter * :call system(s:toHankaku)
   endif
 augroup END
 "
