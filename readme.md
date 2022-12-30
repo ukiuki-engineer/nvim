@@ -26,11 +26,11 @@ nnoremap <C-p> :Files<space>
 nnoremap gb :Buffers<CR>
 nnoremap <C-/> <Plug>(caw:i:toggle)                                          " コメントアウト(Ctrl + /)
 vnoremap <C-/> <Plug>(caw:i:toggle)                                          " コメントアウト(Ctrl + /)
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-nnoremap <silent> <space>d <Plug>(coc-definition)                            " 定義ジャンプ(space d)
-nnoremap <silent> <space>ds :sp<CR><Plug>(coc-definition)                    " 定義ジャンプした時に水平分割(space ds)
-nnoremap <silent> <space>dv :vs<CR><Plug>(coc-definition)                    " 定義ジャンプした時に垂直分割(space dv)
-nnoremap <silent> <space>h :<C-u>call CocAction('doHover')<cr>               " 関数とかのドキュメントを表示する
+inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+nnoremap <space>d <Plug>(coc-definition)                            " 定義ジャンプ(space d)
+nnoremap <space>ds :sp<CR><Plug>(coc-definition)                    " 定義ジャンプした時に水平分割(space ds)
+nnoremap <space>dv :vs<CR><Plug>(coc-definition)                    " 定義ジャンプした時に垂直分割(space dv)
+nnoremap <space>h :<C-u>call CocAction('doHover')<cr>               " 関数とかのドキュメントを表示する
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap <C-c><C-c> :nohlsearch<CR><Esc>
 inoremap <C-c> <Esc>

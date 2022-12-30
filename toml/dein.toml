@@ -100,10 +100,10 @@ let g:coc_global_extensions = [
   \ 'coc-blade',
   \ 'coc-spell-checker',
 \ ]
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-nnoremap <silent> <space>d <Plug>(coc-definition)
-nnoremap <silent> <space>ds :sp<CR><Plug>(coc-definition)
-nnoremap <silent> <space>dv :vs<CR><Plug>(coc-definition)
-nnoremap <silent> <space>h :<C-u>call CocAction('doHover')<cr>
+inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+nnoremap <space>d <Plug>(coc-definition)
+nnoremap <space>ds :sp<CR><Plug>(coc-definition)
+nnoremap <space>dv :vs<CR><Plug>(coc-definition)
+nnoremap <space>h :<C-u>call CocAction('doHover')<cr>
 command! -nargs=0 Format :call CocAction('format')
 '''
