@@ -28,7 +28,7 @@ augroup fileTypeIndent
 augroup END
 " :terminalを常にインサートモードで開く
 augroup terminal
-  au!
+  autocmd!
   autocmd TermOpen * startinsert
 augroup END
 "
