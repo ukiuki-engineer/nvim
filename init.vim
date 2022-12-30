@@ -37,19 +37,11 @@ augroup IME
   autocmd!
   if has('mac') && exepath('im-select') != ""
     " macの場合im-selectをインストールしてPATHを通しておく
-    autocmd InsertLeave * :call system('im-select com.apple.keylayout.ABC')
-    autocmd InsertEnter * :call system('im-select com.apple.keylayout.ABC')
-    autocmd BufRead * :call system('im-select com.apple.keylayout.ABC')
-    autocmd CmdlineLeave * :call system('im-select com.apple.keylayout.ABC')
-    autocmd CmdlineEnter * :call system('im-select com.apple.keylayout.ABC')
+    autocmd InsertLeave,InsertEnter,BufRead,CmdlineLeave,CmdlineEnter * :call system('im-select com.apple.keylayout.ABC')
   endif
   if !has('mac') && exepath('zenhan.exe') != ""
     " windows(WSL)の場合、zenhanをインストールしてPATHを通しておく
-    autocmd InsertLeave * :call system('zenhan.exe 0')
-    autocmd InsertEnter * :call system('zenhan.exe 0')
-    autocmd BufRead * :call system('zenhan.exe 0')
-    autocmd CmdlineLeave * :call system('zenhan.exe 0')
-    autocmd CmdlineEnter * :call system('zenhan.exe 0')
+    autocmd InsertLeave,InsertEnter,BufRead,CmdlineLeave,CmdlineEnter * :call system('zenhan.exe 0')
   endif
 augroup END
 "
