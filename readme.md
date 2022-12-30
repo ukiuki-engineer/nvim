@@ -41,3 +41,6 @@ tnoremap <Esc> <C-\><C-n>                                                    " �
 
 ## プラグイン管理
 dein.vimを使用。
+
+## Fonts
+Cica
