@@ -50,9 +50,12 @@ repo = 'mhinz/vim-grepper'
 [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
 repo = 'ukiuki-engineer/vim-autoclose'
 
-[[plugins]] # コメントアウト(gccで1行コメントアウト、ビジュアルモード時にgcで選択範囲をコメントアウト)
-repo = 'tpope/vim-commentary'
-hook_add = 'autocmd FileType php setlocal commentstring=//\ %s'
+[[plugins]] # コメントアウト
+repo = 'tyru/caw.vim.git'
+hook_add = '''
+nnoremap <C-/> <Plug>(caw:i:toggle)
+vnoremap <C-/> <Plug>(caw:i:toggle)
+'''
 
 [[plugins]] # インデント可視化
 repo = 'Yggdroot/indentLine'
@@ -92,10 +95,10 @@ let g:coc_global_extensions = [
   \ 'coc-html',
   \ 'coc-css',
   \ 'coc-cssmodules',
-  \ 'coc-spell-checker',
   \ 'coc-snippets',
   \ 'coc-phpls',
   \ 'coc-blade',
+  \ 'coc-spell-checker',
 \ ]
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 nnoremap <silent> <space>d <Plug>(coc-definition)

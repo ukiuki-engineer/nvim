@@ -31,7 +31,6 @@ augroup terminal
   autocmd!
   autocmd TermOpen * startinsert
 augroup END
-"
 " IME切り替え設定
 augroup IME
   autocmd!
