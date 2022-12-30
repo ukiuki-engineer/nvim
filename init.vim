@@ -33,10 +33,10 @@ augroup terminal
 augroup END
 "
 " IME切り替え設定
-" im-selectがない場合、インストールすること
 augroup IME
   autocmd!
   if has('mac') && exepath('im-select') != ""
+    " macの場合im-selectをインストールしてPATHを通しておく
     autocmd InsertLeave * :call system('im-select com.apple.keylayout.ABC')
     autocmd InsertEnter * :call system('im-select com.apple.keylayout.ABC')
     autocmd BufRead * :call system('im-select com.apple.keylayout.ABC')
@@ -44,7 +44,7 @@ augroup IME
     autocmd CmdlineEnter * :call system('im-select com.apple.keylayout.ABC')
   endif
   if !has('mac') && exepath('zenhan.exe') != ""
-    " 事前にzenhan.exeのPATHを通しておく
+    " windows(WSL)の場合、zenhanをインストールしてPATHを通しておく
     autocmd InsertLeave * :call system('zenhan.exe 0')
     autocmd InsertEnter * :call system('zenhan.exe 0')
     autocmd BufRead * :call system('zenhan.exe 0')
