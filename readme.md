@@ -25,7 +25,7 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-p> :Files<space>
 nnoremap gb :Buffers<CR>
 nnoremap <C-/> <Plug>(caw:i:toggle)                                          " コメントアウト(Ctrl + /)
-vnoremap <C-/> <Plug>(caw:i:toggle)
+vnoremap <C-/> <Plug>(caw:i:toggle)                                          " コメントアウト(Ctrl + /)
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 nnoremap <silent> <space>d <Plug>(coc-definition)                            " 定義ジャンプ(space d)
 nnoremap <silent> <space>ds :sp<CR><Plug>(coc-definition)                    " 定義ジャンプした時に水平分割(space ds)
@@ -43,4 +43,4 @@ tnoremap <Esc> <C-\><C-n>                                                    " �
 dein.vimを使用。
 
 ## Fonts
-[Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)
+[Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)を使用。

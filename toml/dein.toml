@@ -77,7 +77,7 @@ repo = 'jwalton512/vim-blade'
 [[plugins]] # アイコン類
 repo = 'ryanoasis/vim-devicons'
 
-[[plugins]] # lcp
+[[plugins]] # lsp
 repo = 'neoclide/coc.nvim'
 rev = 'release'
 hook_add = '''
