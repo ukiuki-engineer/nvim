@@ -43,4 +43,4 @@ tnoremap <Esc> <C-\><C-n>                                                    " �
 dein.vimを使用。
 
 ## Fonts
-Cica
+[Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)
