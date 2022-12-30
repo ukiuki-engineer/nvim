@@ -36,10 +36,16 @@ build = './install'
 repo = 'junegunn/fzf.vim'
 depends = 'junegunn/fzf'
 hook_add = '''
-nnoremap <C-p> :Files<CR>
+" パス指定したい場合はパスを指定してEnter
+" そのまま検索したい場合はそのままEnter
+nnoremap <C-p> :Files<space>
 nnoremap gb :Buffers<CR>
-nnoremap gl :Lines<CR>
+" nnoremap gl :Lines<CR>
 '''
+
+# FIXME fzfのRgの設定を整えるまではとりあえずGrepperで
+[[plugins]] # Grepper
+repo = 'mhinz/vim-grepper'
 
 [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
 repo = 'ukiuki-engineer/vim-autoclose'
@@ -91,8 +97,10 @@ let g:coc_global_extensions = [
   \ 'coc-phpls',
   \ 'coc-blade',
 \ ]
-nnoremap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> gds :sp<CR><Plug>(coc-definition)
-nnoremap <silent> gdv :vs<CR><Plug>(coc-definition)
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+nnoremap <silent> <space>d <Plug>(coc-definition)
+nnoremap <silent> <space>ds :sp<CR><Plug>(coc-definition)
+nnoremap <silent> <space>dv :vs<CR><Plug>(coc-definition)
+nnoremap <silent> <space>h :<C-u>call CocAction('doHover')<cr>
 command! -nargs=0 Format :call CocAction('format')
 '''
