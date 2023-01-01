@@ -65,14 +65,11 @@ augroup indentLine
   autocmd!
   autocmd VimEnter,BufRead,BufWinEnter,BufEnter * IndentLinesEnable
 augroup END
-set list lcs=tab:\|\
+" set list lcs=tab:\|\
 '''
 
 [[plugins]] # editorconfig
 repo = 'editorconfig/editorconfig-vim'
-
-[[plugins]] # blade
-repo = 'jwalton512/vim-blade'
 
 [[plugins]] # アイコン類
 repo = 'ryanoasis/vim-devicons'

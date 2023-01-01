@@ -1,3 +1,7 @@
+[[plugins]] # blade
+repo = 'jwalton512/vim-blade'
+on_if = 'expand("%") =~ "blade\.php"'
+
 [[plugins]] # カラーコードを表示
 repo = 'gorodinskiy/vim-coloresque'
 on_ft = ['css', 'html', 'less', 'sass', 'scss', 'stylus', 'vim']
