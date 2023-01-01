@@ -22,6 +22,9 @@ set splitbelow         " 画面を水平分割する際に下に開く
 set nowrapscan         " 検索時にファイルの最後まで行っても最初に戻らない
 set ignorecase         " 検索時に大文字小文字を無視
 set smartcase          " 大文字小文字の両方が含まれている場合は大文字小文字を区別
+" カラースキーム
+colorscheme molokai
+" colorscheme tender
 " ファイルタイプ毎のインデント設定
 augroup fileTypeIndent
   autocmd!

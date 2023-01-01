@@ -47,15 +47,4 @@ endif
 " dein設定---ここまで
 " ------------------------------------------------------------------------------
 " tomlに書けなかった各プラグインの設定をここに書く
-" 
-if isdirectory($HOME . "/.cache/dein/repos/github.com/jacoborus/tender.vim")
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-  " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  syntax enable
-  silent! colorscheme tender
-  let g:lightline = { 'colorscheme': 'tender' }
-  let g:airline_theme = 'tender'
-  " let macvim_skip_colorscheme=1
-endif
+"

@@ -1,8 +1,20 @@
 [[plugins]] # 日本語ドキュメント
 repo = 'vim-jp/vimdoc-ja'
 
-[[plugins]] # カラーテーマ
-repo = 'jacoborus/tender.vim'
+# [[plugins]] # カラーテーマ-tender-
+# repo = 'jacoborus/tender.vim'
+# hook_add = '''
+# if isdirectory($HOME . "/.cache/dein/repos/github.com/jacoborus/tender.vim")
+#   if (has("termguicolors"))
+#     set termguicolors
+#   endif
+#   " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+#   syntax enable
+#   let g:lightline = { 'colorscheme': 'tender' }
+#   let g:airline_theme = 'tender'
+#   " let macvim_skip_colorscheme=1
+# endif
+# '''
 
 [[plugins]] # lightline
 repo = 'itchyny/lightline.vim'
