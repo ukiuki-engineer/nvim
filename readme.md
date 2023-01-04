@@ -44,3 +44,9 @@ dein.vimを使用。
 
 ## Fonts
 [Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)を使用。
+
+## FIXME
+- sessionがよくバグるので治したい  
+```:mksession!```でsessionを保存し、後で読み込むと、色々エラーが出る  
+その関係かわからないけど、<C-/>でのコメントアウトが効かなくなったりする  
+あとnerdtreeのアイコン類がおかしくなったりとか
