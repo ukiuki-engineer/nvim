@@ -26,6 +26,7 @@ repo = 'vim-airline/vim-airline'
 repo = 'scrooloose/nerdtree'
 hook_add = '''
 nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-w>t :NERDTreeFind<CR>
 if getcwd() != $HOME
   augroup NERDTreeSetting
     autocmd!
@@ -130,6 +131,6 @@ inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 nnoremap <space>d <Plug>(coc-definition)
 nnoremap <space>ds :sp<CR><Plug>(coc-definition)
 nnoremap <space>dv :vs<CR><Plug>(coc-definition)
-nnoremap <space>h :<C-u>call CocAction('doHover')<cr>
+nnoremap <space>h :<C-u>call CocAction('doHover')<CR>
 command! -nargs=0 Format :call CocAction('format')
 '''
