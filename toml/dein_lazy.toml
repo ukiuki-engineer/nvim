@@ -20,6 +20,10 @@ let g:vimhelpgenerator_contents = {
   \}
 '''
 
-[[plugins]]
+[[plugins]] # vimの起動速度を測定
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['Startup Time']
+
+[[plugins]] # markdownでtable作成
+repo = 'mattn/vim-maketable'
+on_ft = 'markdown'

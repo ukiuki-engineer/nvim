@@ -119,6 +119,7 @@ repo = 'neoclide/coc.nvim'
 rev = 'release'
 hook_add = '''
 let g:coc_global_extensions = [
+  \ 'coc-word',
   \ 'coc-sql',
   \ 'coc-tsserver',
   \ 'coc-eslint',
@@ -136,6 +137,7 @@ let g:coc_global_extensions = [
   \ 'coc-phpls',
   \ 'coc-blade',
   \ 'coc-spell-checker',
+  \ 'coc-solargraph'
 \ ]
 inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 nnoremap <space>d <Plug>(coc-definition)

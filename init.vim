@@ -22,9 +22,7 @@ set splitbelow            " 画面を水平分割する際に下に開く
 set nowrapscan            " 検索時にファイルの最後まで行っても最初に戻らない
 set ignorecase            " 検索時に大文字小文字を無視
 set smartcase             " 大文字小文字の両方が含まれている場合は大文字小文字を区別
-" カラースキーム
-colorscheme molokai
-" colorscheme tender
+colorscheme molokai       " カラースキーム
 " ファイルタイプ、拡張子毎のインデント設定
 augroup FileTypeIndent
   autocmd!
@@ -37,7 +35,7 @@ augroup Terminal
   autocmd TermOpen * startinsert
 augroup END
 " IME切り替え設定
-augroup IME
+augroup Ime
   autocmd!
   if has('mac') && exepath('im-select') != ""
     " macの場合im-selectをインストールしてPATHを通しておく
