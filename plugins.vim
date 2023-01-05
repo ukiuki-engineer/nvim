@@ -33,15 +33,11 @@ call dein#begin(s:dein_base)
   call dein#load_toml(s:lazy_toml, {'lazy':1})
 call dein#end()
 
-if has('filetype')
-  filetype indent plugin on
-endif
-
-if has('syntax')
-  syntax on
-endif
-
+" 不足プラグインの自動インストール
 if dein#check_install()
   call dein#install()
 endif
 " dein設定---ここまで
+
+filetype plugin indent on " ファイル形式別プラグインの有効化
+syntax enable             " シンタックスハイライトの有効化

@@ -19,3 +19,7 @@ let g:vimhelpgenerator_contents = {
   \ 'setting': 0, 'todo': 1, 'changelog': 0
   \}
 '''
+
+[[plugins]]
+repo = 'dstein64/vim-startuptime'
+on_cmd = ['Startup Time']

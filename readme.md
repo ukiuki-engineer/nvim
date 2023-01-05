@@ -12,25 +12,26 @@
 │   └── dein_lazy.toml
 ├── coc-settings.json " cocの設定
 ├── colors
-│   └── tender.vim
+│   └── tender.vim
 └── pack
-    └── plugins
-        └── start     " プラグインを作る時にここにシンボリックリンクを貼ってテストしたり
+    └── plugins
+        └── start     " プラグインを作る時にここにシンボリックリンクを貼ってテストしたり
 ```
 
 ## キーマップ
 各ファイルで定義しているので、ここにメモとしてまとめておく。
 ```vim
-nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>                                           " NERDTreeを開く
+nnoremap <C-w>t :NERDTreeFind<CR>                                            " NERDTreeを開き、現在開いているファイルの場所にジャンプ(Ctrl+w t)
 nnoremap <C-p> :Files<space>
 nnoremap gb :Buffers<CR>
-nnoremap <C-/> <Plug>(caw:i:toggle)                                          " コメントアウト(Ctrl + /)
-vnoremap <C-/> <Plug>(caw:i:toggle)                                          " コメントアウト(Ctrl + /)
+nnoremap <C-/> <Plug>(caw:i:toggle)                                          " コメントアウト(Ctrl+/)
+vnoremap <C-/> <Plug>(caw:i:toggle)                                          " コメントアウト(Ctrl+/)
 inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-nnoremap <space>d <Plug>(coc-definition)                            " 定義ジャンプ(space d)
-nnoremap <space>ds :sp<CR><Plug>(coc-definition)                    " 定義ジャンプした時に水平分割(space ds)
-nnoremap <space>dv :vs<CR><Plug>(coc-definition)                    " 定義ジャンプした時に垂直分割(space dv)
-nnoremap <space>h :<C-u>call CocAction('doHover')<cr>               " 関数とかのドキュメントを表示する
+nnoremap <space>d <Plug>(coc-definition)                                     " 定義ジャンプ(space d)
+nnoremap <space>ds :sp<CR><Plug>(coc-definition)                             " 定義ジャンプした時に水平分割(space ds)
+nnoremap <space>dv :vs<CR><Plug>(coc-definition)                             " 定義ジャンプした時に垂直分割(space dv)
+nnoremap <space>h :<C-u>call CocAction('doHover')<CR>                        " 関数とかのドキュメントを表示する
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap <C-c><C-c> :nohlsearch<CR><Esc>
 inoremap <C-c> <Esc>
@@ -49,4 +50,13 @@ dein.vimを使用。
 - sessionがよくバグるので治したい  
 ```:mksession!```でsessionを保存し、後で読み込むと、色々エラーが出る  
 その関係かわからないけど、<C-/>でのコメントアウトが効かなくなったりする  
-あとnerdtreeのアイコン類がおかしくなったりとか
+あとnerdtreeのアイコン類がおかしくなったりとか  
+→とりあえず、:silent! source Session.vimとるすとなんとかなる
+
+- lspの一部のエラー表示が出ないように設定で変更できないか  
+例えば以下のような場合
+  - laravelで```use DB```としても、DBを使ってる箇所で```undefined```と表示される  
+  →多分、DBをフルパスで書かないと怒られるようになってる
+  - markdwonで、```#```を使わずに```##```から始めると警告が出る  
+  →```#```はでかくなりすぎて自分はあまり好きじゃないから使わない...
+  - コメントの中はundefinedをcheckしない

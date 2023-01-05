@@ -1,6 +1,11 @@
 [[plugins]] # 日本語ドキュメント
 repo = 'vim-jp/vimdoc-ja'
 
+# luaのドキュメント
+# :h nvim-lua-guide.txt
+[[plugins]]
+repo = 'MDeiml/tree-sitter-markdown'
+
 # [[plugins]] # カラーテーマ-tender-
 # repo = 'jacoborus/tender.vim'
 # hook_add = '''
@@ -16,16 +21,21 @@ repo = 'vim-jp/vimdoc-ja'
 # endif
 # '''
 
-[[plugins]] # lightline
-repo = 'itchyny/lightline.vim'
+# [[plugins]] # lightline
+# repo = 'itchyny/lightline.vim'
 
 [[plugins]] # airline
 repo = 'vim-airline/vim-airline'
+hook_add = '''
+" let g:airline_powerline_fonts = 1
+'''
 
 [[plugins]] # ファイラー
 repo = 'scrooloose/nerdtree'
 hook_add = '''
+let g:NERDTreeShowHidden = 1 " 隠しファイルを表示
 nnoremap <C-n> :NERDTreeToggle<CR>
+" FIXME 無名バッファの時(bufname() == "")は下のmapをしないようにする
 nnoremap <C-w>t :NERDTreeFind<CR>
 if getcwd() != $HOME
   augroup NERDTreeSetting
