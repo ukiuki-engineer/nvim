@@ -43,6 +43,15 @@ tnoremap <Esc> <C-\><C-n>                                                    " �
 ## プラグイン管理
 dein.vimを使用。
 
+## インストールする必要がある外部ツール
+本当はもっとある気がするけど重だものだけでもメモしておく。
+- ripgrep  
+→fzfのRgを使用するのに必要
+- bat  
+→fzfのプレビューウィンドウをsyntax highlightするのに必要
+- node, npm
+→coc.nvimを使用するのに必要
+
 ## Fonts
 [Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)を使用。
 

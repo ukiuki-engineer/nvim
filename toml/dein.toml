@@ -63,12 +63,13 @@ hook_add = '''
 " そのまま検索したい場合はそのままEnter
 nnoremap <C-p> :Files<space>
 nnoremap gb :Buffers<CR>
-" nnoremap gl :Lines<CR>
+nnoremap gl :Lines<CR>
+" Rgはそのまま:Rgで
+" memo: batをインストーするとプレビューウィンドウがハイライトされる
 '''
 
-# FIXME fzfのRgの設定を整えるまではとりあえずGrepperで
-[[plugins]] # Grepper
-repo = 'mhinz/vim-grepper'
+# [[plugins]] # Grepper
+# repo = 'mhinz/vim-grepper'
 
 [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
 repo = 'ukiuki-engineer/vim-autoclose'
