@@ -28,24 +28,6 @@ hook_add = '''
 repo = 'ryanoasis/vim-devicons'
 on_event = ['VimEnter']
 
-[[plugins]] # ファジーファインダー
-repo = 'junegunn/fzf'
-on_event = ['BufRead']
-build = './install'
-
-[[plugins]] # ファジーファインダー
-repo = 'junegunn/fzf.vim'
-on_cmd = ['Files', 'Buffers', 'Lines', 'Rg']
-depends = 'junegunn/fzf'
-hook_add = '''
-" パス指定したい場合はパスを指定してEnter
-" そのまま検索したい場合はそのままEnter
-nnoremap <C-p> :Files<CR>
-nnoremap gb :Buffers<CR>
-nnoremap gl :Lines<CR>
-" Rgはそのまま:Rgで
-" memo: batをインストーするとプレビューウィンドウがハイライトされる
-'''
 
 [[plugins]] # editorconfig
 repo = 'editorconfig/editorconfig-vim'
@@ -114,47 +96,9 @@ let g:vimhelpgenerator_contents = {
   \}
 '''
 
-[[plugins]] # vimの起動速度を測定
-repo = 'dstein64/vim-startuptime'
-on_cmd = ['StartupTime']
-
 [[plugins]] # markdownでtable作成
 repo = 'mattn/vim-maketable'
 on_ft = 'markdown'
-
-[[plugins]] # lsp
-repo = 'neoclide/coc.nvim'
-on_event = ['BufRead']
-rev = 'release'
-hook_add = '''
-let g:coc_global_extensions = [
-  \ 'coc-word',
-  \ 'coc-sql',
-  \ 'coc-tsserver',
-  \ 'coc-eslint',
-  \ 'coc-vetur',
-  \ 'coc-vimlsp',
-  \ 'coc-docker',
-  \ 'coc-markdownlint',
-  \ 'coc-json',
-  \ 'coc-yaml',
-  \ 'coc-xml',
-  \ 'coc-html',
-  \ 'coc-css',
-  \ 'coc-cssmodules',
-  \ 'coc-snippets',
-  \ 'coc-phpls',
-  \ 'coc-blade',
-  \ 'coc-spell-checker',
-  \ 'coc-solargraph'
-\ ]
-inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-nnoremap <space>d <Plug>(coc-definition)
-nnoremap <space>ds :sp<CR><Plug>(coc-definition)
-nnoremap <space>dv :vs<CR><Plug>(coc-definition)
-nnoremap <space>h :<C-u>call CocAction('doHover')<CR>
-command! -nargs=0 Format :call CocAction('format')
-'''
 
 [[plugins]] # ファイラー
 repo = 'scrooloose/nerdtree'
@@ -191,4 +135,60 @@ if getcwd() != $HOME
     autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
   augroup END
 endif
+'''
+[[plugins]] # ファジーファインダー
+repo = 'junegunn/fzf'
+on_event = ['BufRead']
+build = './install'
+
+[[plugins]] # ファジーファインダー
+repo = 'junegunn/fzf.vim'
+on_cmd = ['Files', 'Buffers', 'Lines', 'Rg']
+depends = 'junegunn/fzf'
+hook_add = '''
+" パス指定したい場合はパスを指定してEnter
+" そのまま検索したい場合はそのままEnter
+nnoremap <C-p> :Files<CR>
+nnoremap gb :Buffers<CR>
+nnoremap gl :Lines<CR>
+" Rgはそのまま:Rgで
+" memo: batをインストーするとプレビューウィンドウがハイライトされる
+'''
+
+[[plugins]] # vimの起動速度を測定
+repo = 'dstein64/vim-startuptime'
+on_cmd = ['StartupTime']
+
+[[plugins]] # lsp
+repo = 'neoclide/coc.nvim'
+on_event = ['BufRead']
+rev = 'release'
+hook_add = '''
+let g:coc_global_extensions = [
+  \ 'coc-word',
+  \ 'coc-sql',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ 'coc-vetur',
+  \ 'coc-vimlsp',
+  \ 'coc-docker',
+  \ 'coc-markdownlint',
+  \ 'coc-json',
+  \ 'coc-yaml',
+  \ 'coc-xml',
+  \ 'coc-html',
+  \ 'coc-css',
+  \ 'coc-cssmodules',
+  \ 'coc-snippets',
+  \ 'coc-phpls',
+  \ 'coc-blade',
+  \ 'coc-spell-checker',
+  \ 'coc-solargraph'
+\ ]
+inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+nnoremap <space>d <Plug>(coc-definition)
+nnoremap <space>ds :sp<CR><Plug>(coc-definition)
+nnoremap <space>dv :vs<CR><Plug>(coc-definition)
+nnoremap <space>h :<C-u>call CocAction('doHover')<CR>
+command! -nargs=0 Format :call CocAction('format')
 '''
