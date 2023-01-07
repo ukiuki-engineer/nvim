@@ -1,10 +1,104 @@
+# [[plugins]] # カラーテーマ-tender-
+# repo = 'jacoborus/tender.vim'
+# hook_add = '''
+# if isdirectory($HOME . "/.cache/dein/repos/github.com/jacoborus/tender.vim")
+#   if (has("termguicolors"))
+#     set termguicolors
+#   endif
+#   " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+#   syntax enable
+#   let g:lightline = { 'colorscheme': 'tender' }
+#   let g:airline_theme = 'tender'
+#   " let macvim_skip_colorscheme=1
+# endif
+# '''
+
+# [[plugins]] # lightline
+# repo = 'itchyny/lightline.vim'
+# on_event = ['BufRead']
+
+[[plugins]] # airline
+repo = 'vim-airline/vim-airline'
+on_event = ['BufRead']
+hook_add = '''
+" let g:airline_powerline_fonts = 1
+'''
+
+[[plugins]] # アイコン類
+repo = 'ryanoasis/vim-devicons'
+on_event = ['VimEnter']
+
+[[plugins]] # ファジーファインダー
+repo = 'junegunn/fzf'
+on_event = ['BufRead']
+build = './install'
+
+[[plugins]] # ファジーファインダー
+repo = 'junegunn/fzf.vim'
+on_cmd = ['Files', 'Buffers', 'Lines', 'Rg']
+depends = 'junegunn/fzf'
+hook_add = '''
+" パス指定したい場合はパスを指定してEnter
+" そのまま検索したい場合はそのままEnter
+nnoremap <C-p> :Files<CR>
+nnoremap gb :Buffers<CR>
+nnoremap gl :Lines<CR>
+" Rgはそのまま:Rgで
+" memo: batをインストーするとプレビューウィンドウがハイライトされる
+'''
+
+[[plugins]] # editorconfig
+repo = 'editorconfig/editorconfig-vim'
+on_event = ['BufRead']
+
+[[plugins]] # インデント可視化
+repo = 'lukas-reineke/indent-blankline.nvim'
+on_event = ['BufRead']
+lua_source = '''
+-- vim.opt.termguicolors = true
+-- vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
+-- vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
+--
+-- vim.opt.list = true
+-- -- vim.opt.listchars:append "space:⋅"
+-- vim.opt.listchars:append "eol:↴"
+--
+-- require("indent_blankline").setup {
+  -- space_char_blankline = " ",
+  -- char_highlight_list = {
+    -- "IndentBlanklineIndent1",
+    -- "IndentBlanklineIndent2",
+    -- "IndentBlanklineIndent3",
+    -- "IndentBlanklineIndent4",
+    -- "IndentBlanklineIndent5",
+    -- "IndentBlanklineIndent6",
+  -- },
+-- }
+'''
+
+[[plugins]] # コメントアウト
+repo = 'tyru/caw.vim.git'
+on_event = ['BufRead']
+hook_add = '''
+nnoremap <C-/> <Plug>(caw:hatpos:toggle)
+vnoremap <C-/> <Plug>(caw:hatpos:toggle)
+'''
+
+[[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
+repo = 'ukiuki-engineer/vim-autoclose'
+on_event = ['BufRead']
+
 [[plugins]] # blade
 repo = 'jwalton512/vim-blade'
 on_if = 'expand("%") =~ "blade\.php"'
 
 [[plugins]] # カラーコードを表示
 repo = 'gorodinskiy/vim-coloresque'
-on_ft = ['css', 'html', 'less', 'sass', 'scss', 'stylus', 'vim']
+on_ft = ['css', 'html', 'less', 'sass', 'scss', 'stylus', 'vim', 'blade', 'vue', 'eruby']
 
 [[plugins]] # ヘルプファイル自動生成
 repo = 'LeafCage/vimhelpgenerator'
@@ -22,8 +116,79 @@ let g:vimhelpgenerator_contents = {
 
 [[plugins]] # vimの起動速度を測定
 repo = 'dstein64/vim-startuptime'
-on_cmd = ['Startup Time']
+on_cmd = ['StartupTime']
 
 [[plugins]] # markdownでtable作成
 repo = 'mattn/vim-maketable'
 on_ft = 'markdown'
+
+[[plugins]] # lsp
+repo = 'neoclide/coc.nvim'
+on_event = ['BufRead']
+rev = 'release'
+hook_add = '''
+let g:coc_global_extensions = [
+  \ 'coc-word',
+  \ 'coc-sql',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ 'coc-vetur',
+  \ 'coc-vimlsp',
+  \ 'coc-docker',
+  \ 'coc-markdownlint',
+  \ 'coc-json',
+  \ 'coc-yaml',
+  \ 'coc-xml',
+  \ 'coc-html',
+  \ 'coc-css',
+  \ 'coc-cssmodules',
+  \ 'coc-snippets',
+  \ 'coc-phpls',
+  \ 'coc-blade',
+  \ 'coc-spell-checker',
+  \ 'coc-solargraph'
+\ ]
+inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+nnoremap <space>d <Plug>(coc-definition)
+nnoremap <space>ds :sp<CR><Plug>(coc-definition)
+nnoremap <space>dv :vs<CR><Plug>(coc-definition)
+nnoremap <space>h :<C-u>call CocAction('doHover')<CR>
+command! -nargs=0 Format :call CocAction('format')
+'''
+
+[[plugins]] # ファイラー
+repo = 'scrooloose/nerdtree'
+on_cmd = [
+  'NERDTree',
+  'NERDTree',
+  'NERDTreeCWD',
+  'NERDTreeClose',
+  'NERDTreeFind',
+  'NERDTreeFocus',
+  'NERDTreeFromBookmark',
+  'NERDTreeMirror',
+  'NERDTreeRefreshRoot',
+  'NERDTreeSetting',
+  'NERDTreeShowHidden',
+  'NERDTreeToggle',
+  'NERDTreeToggleVCS',
+  'NERDTreeVCS'
+]
+hook_add = '''
+let g:NERDTreeShowHidden = 1 " 隠しファイルを表示
+nnoremap <C-n> :NERDTreeToggle<CR>
+" FIXME 無名バッファの時(bufname() == "")は下のmapをしないようにする
+nnoremap <C-w>t :NERDTreeFind<CR>
+if getcwd() != $HOME
+  augroup NERDTreeSetting
+    autocmd!
+    autocmd StdinReadPre * let s:std_in = 1
+    if (argc() == 0 || argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in"))
+      autocmd VimEnter,SessionLoadPost * NERDTreeToggle | wincmd p
+    else
+      autocmd VimEnter * NERDTreeToggle | wincmd p
+    endif
+    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  augroup END
+endif
+'''

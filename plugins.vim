@@ -1,5 +1,6 @@
 " ------------------------------------------------------------------------------
 "
+let g:dein#lazy_rplugins = 1
 " deinインストール---ここから
 let $CACHE = expand('~/.cache')
 if !isdirectory($CACHE)
