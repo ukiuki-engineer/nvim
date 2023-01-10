@@ -52,16 +52,19 @@ dein.vimを使用。
 - node, npm
 →coc.nvimを使用するのに必要
 
+## session管理
+
+sessionが壊れないための対策
+- sessionoptionsで、保存する内容を限定する。以下のように設定している。
+```vim
+set sessionoptions=buffers,curdir,tabpages
+```
+- NERDTreeやhelpなど、sessionが不安定になりやすいものを閉じた状態で```:mesession!```で保存する
+
 ## Fonts
 [Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)を使用。
 
 ## FIXME
-- sessionがよくバグるので治したい  
-```:mksession!```でsessionを保存し、後で読み込むと、色々エラーが出る  
-その関係かわからないけど、<C-/>でのコメントアウトが効かなくなったりする  
-あとnerdtreeのアイコン類がおかしくなったりとか  
-→とりあえず、:silent! source Session.vimとるすとなんとかなる
-
 - lspの一部のエラー表示が出ないように設定で変更できないか  
 例えば以下のような場合
   - laravelで```use DB```としても、DBを使ってる箇所で```undefined```と表示される  
