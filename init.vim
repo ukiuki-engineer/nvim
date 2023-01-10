@@ -23,7 +23,7 @@ set nowrapscan            " 検索時にファイルの最後まで行っても�
 set ignorecase            " 検索時に大文字小文字を無視
 set smartcase             " 大文字小文字の両方が含まれている場合は大文字小文字を区別
 " sessionに保存する内容を指定
-set sessionoptions=buffers,resize,curdir,tabpages
+set sessionoptions=buffers,curdir,tabpages
 colorscheme molokai       " カラースキーム
 " ファイルタイプ、拡張子毎のインデント設定
 augroup UserFileTypeIndent

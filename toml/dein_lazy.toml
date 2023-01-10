@@ -28,7 +28,6 @@ hook_add = '''
 repo = 'ryanoasis/vim-devicons'
 on_event = ['VimEnter']
 
-
 [[plugins]] # editorconfig
 repo = 'editorconfig/editorconfig-vim'
 on_event = ['BufRead']
@@ -62,8 +61,12 @@ lua_source = '''
 -- }
 '''
 
+[[plugins]] # TODO しばらく試してみていらなかったら消す
+repo = 'unblevable/quick-scope'
+on_event = ['BufRead']
+
 [[plugins]] # コメントアウト
-repo = 'tyru/caw.vim.git'
+repo = 'tyru/caw.vim'
 on_event = ['BufRead']
 hook_add = '''
 nnoremap <C-/> <Plug>(caw:hatpos:toggle)
@@ -144,10 +147,9 @@ build = './install'
 [[plugins]] # ファジーファインダー
 repo = 'junegunn/fzf.vim'
 on_cmd = ['Files', 'Buffers', 'Lines', 'Rg']
+# こっちでもいい→on_source = ['fzf']
 depends = 'junegunn/fzf'
 hook_add = '''
-" パス指定したい場合はパスを指定してEnter
-" そのまま検索したい場合はそのままEnter
 nnoremap <C-p> :Files<CR>
 nnoremap gb :Buffers<CR>
 nnoremap gl :Lines<CR>
