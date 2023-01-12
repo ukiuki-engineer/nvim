@@ -19,14 +19,14 @@
 
 [[plugins]] # airline
 repo = 'vim-airline/vim-airline'
-on_event = ['BufRead']
+on_event = ['BufWinEnter']
 hook_add = '''
 " let g:airline_powerline_fonts = 1
 '''
 
 [[plugins]] # アイコン類
 repo = 'ryanoasis/vim-devicons'
-on_event = ['VimEnter']
+on_event = ['BufWinEnter']
 
 [[plugins]] # editorconfig
 repo = 'editorconfig/editorconfig-vim'
