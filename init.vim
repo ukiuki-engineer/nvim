@@ -24,7 +24,6 @@ set ignorecase            " 検索時に大文字小文字を無視
 set smartcase             " 大文字小文字の両方が含まれている場合は大文字小文字を区別
 " sessionに保存する内容を指定
 set sessionoptions=buffers,curdir,tabpages
-colorscheme molokai       " カラースキーム
 " ファイルタイプ、拡張子毎のインデント設定
 augroup UserFileTypeIndent
   autocmd!
@@ -48,7 +47,6 @@ augroup UserIME
     autocmd InsertLeave,InsertEnter,BufRead,CmdlineLeave,CmdlineEnter * :call system('zenhan.exe 0')
   endif
 augroup END
-"
 " キーマッピング
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap <C-c><C-c> :nohlsearch<CR><Esc>
@@ -56,7 +54,8 @@ inoremap <C-c> <Esc>
 nnoremap <TAB> :bn<Enter>
 nnoremap <S-TAB> :bN<Enter>
 tnoremap <Esc> <C-\><C-n>
-
+" カラースキーム
+colorscheme molokai
 " ------------------------------------------------------------------------------
 " プラグイン設定読み込み
 source ~/.config/nvim/plugins.vim
