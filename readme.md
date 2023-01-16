@@ -61,6 +61,22 @@ set sessionoptions=buffers,curdir,tabpages
 ```
 - NERDTreeやhelpなど、sessionが不安定になりやすいものを閉じた状態で```:mesession!```で保存する
 
+## ファイル管理
+- ファイルの行き来
+  - 主にfzfとNERDTreeで行き来する
+  ```vim
+  " fzfの操作
+  :Files    " ファイル名検索(キーマップ→<C-p>)
+  :Buffers  " バッファからファイル名で検索(キーマップ→gb)
+  :Rg       " Grep
+  ```
+  - 定義ジャンプ→```Space+d```
+- ファイル作成、リネーム、移動等  
+NERDTreeの機能を使うより```:terminal```で操作した方が楽...
+
+## カッコ、クォーテーション、htmlの閉じタグ補完
+[自作プラグイン](https://github.com/ukiuki-engineer/vim-autoclose)を使用。
+
 ## Fonts
 [Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)を使用。
 
