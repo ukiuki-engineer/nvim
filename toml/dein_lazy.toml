@@ -1,42 +1,25 @@
-# [[plugins]] # カラーテーマ-tender-
-# repo = 'jacoborus/tender.vim'
-# hook_add = '''
-# if isdirectory($HOME . "/.cache/dein/repos/github.com/jacoborus/tender.vim")
-#   if (has("termguicolors"))
-#     set termguicolors
-#   endif
-#   " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-#   syntax enable
-#   let g:lightline = { 'colorscheme': 'tender' }
-#   let g:airline_theme = 'tender'
-#   " let macvim_skip_colorscheme=1
-# endif
-# '''
-
-# [[plugins]] # lightline
-# repo = 'itchyny/lightline.vim'
-# on_event = ['BufRead']
-
 [[plugins]] # git
 repo = 'tpope/vim-fugitive'
+on_event = ['BufRead']
+
+[[plugins]] # airline-themes
+repo = 'vim-airline/vim-airline-themes'
 on_event = ['BufWinEnter']
+hook_add = '''
+let g:airline_theme = 'kalisi'
+'''
 
 [[plugins]] # airline
 repo = 'vim-airline/vim-airline'
 on_event = ['BufWinEnter']
+depends =['vim-airline-themes', 'vim-fugitive']
 hook_add = '''
-let g:airline_theme = 'kalisi'
 let g:airline_deus_bg = 'dark'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_extensions = ['branch', 'tabline']
 let g:airline#extensions#branch#enabled = 1
-let g:airline_symbols.branch = ''
 '''
-
-[[plugins]] # airline-themes
-repo = 'vim-airline/vim-airline-themes'
-on_event = ['BufWinEnter']
 
 [[plugins]] # アイコン類
 repo = 'ryanoasis/vim-devicons'
