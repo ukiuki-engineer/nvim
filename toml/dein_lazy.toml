@@ -17,12 +17,26 @@
 # repo = 'itchyny/lightline.vim'
 # on_event = ['BufRead']
 
+[[plugins]] # git
+repo = 'tpope/vim-fugitive'
+on_event = ['BufWinEnter']
+
 [[plugins]] # airline
 repo = 'vim-airline/vim-airline'
 on_event = ['BufWinEnter']
 hook_add = '''
-" let g:airline_powerline_fonts = 1
+let g:airline_theme = 'kalisi'
+let g:airline_deus_bg = 'dark'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_extensions = ['branch', 'tabline']
+let g:airline#extensions#branch#enabled = 1
+let g:airline_symbols.branch = ''
 '''
+
+[[plugins]] # airline-themes
+repo = 'vim-airline/vim-airline-themes'
+on_event = ['BufWinEnter']
 
 [[plugins]] # アイコン類
 repo = 'ryanoasis/vim-devicons'
