@@ -23,7 +23,7 @@
 ```vim
 nnoremap <C-n> :NERDTreeToggle<CR>                                           " NERDTreeを開く
 nnoremap <C-w>t :NERDTreeFind<CR>                                            " NERDTreeを開き、現在開いているファイルの場所にジャンプ(Ctrl+w t)
-nnoremap <C-p> :Files<space>
+nnoremap <C-p> :Files<CR>
 nnoremap gb :Buffers<CR>
 nnoremap <C-/> <Plug>(caw:i:toggle)                                          " コメントアウト(Ctrl+/)
 vnoremap <C-/> <Plug>(caw:i:toggle)                                          " コメントアウト(Ctrl+/)
@@ -53,7 +53,6 @@ dein.vimを使用。
 →coc.nvimを使用するのに必要
 
 ## session管理
-
 sessionが壊れないための対策
 - sessionoptionsで、保存する内容を限定する。以下のように設定している。
 ```vim
@@ -77,10 +76,9 @@ NERDTreeの機能を使うより```:terminal```で操作した方が楽...
 ## カッコ、クォーテーション、htmlの閉じタグ補完
 [自作プラグイン](https://github.com/ukiuki-engineer/vim-autoclose)を使用。
 
-## Fonts
-[Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)を使用。
-
 ## memo
+- Fonts  
+[Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)を使用。
 - coc.nvimの拡張機能を探す場所
   - [githubのwiki](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
   - [npm moduleを検索するサイト](https://www.npmjs.com/search?q=keywords%3Acoc.nvim)
