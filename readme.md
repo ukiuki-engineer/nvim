@@ -80,6 +80,11 @@ NERDTreeの機能を使うより```:terminal```で操作した方が楽...
 ## Fonts
 [Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)を使用。
 
+## memo
+- coc.nvimの拡張機能を探す場所
+  - [githubのwiki](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
+  - [npm moduleを検索するサイト](https://www.npmjs.com/search?q=keywords%3Acoc.nvim)
+
 ## FIXME
 - lspの一部のエラー表示が出ないように設定で変更できないか  
 例えば以下のような場合
