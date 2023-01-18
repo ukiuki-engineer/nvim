@@ -5,6 +5,9 @@ on_event = ['BufRead']
 [[plugins]] # VSCodeのGitLens的なやつ
 repo = 'APZelos/blamer.nvim'
 on_cmd = ['BlamerHide', 'BlamerShow', 'BlamerToggle']
+hook_add = '''
+let g:blamer_date_format = '%Y/%m/%d %H:%M'
+'''
 
 [[plugins]] # airline-themes
 repo = 'vim-airline/vim-airline-themes'
