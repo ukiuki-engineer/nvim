@@ -2,6 +2,10 @@
 repo = 'tpope/vim-fugitive'
 on_event = ['BufRead']
 
+[[plugins]] # VSCodeのGitLens的なやつ
+repo = 'APZelos/blamer.nvim'
+on_cmd = ['BlamerHide', 'BlamerShow', 'BlamerToggle']
+
 [[plugins]] # airline-themes
 repo = 'vim-airline/vim-airline-themes'
 on_event = ['BufWinEnter']
