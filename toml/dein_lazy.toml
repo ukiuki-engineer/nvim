@@ -127,6 +127,10 @@ on_cmd = [
 ]
 hook_add = '''
 let g:NERDTreeShowHidden = 1 " 隠しファイルを表示
+"1 : ファイル、ディレクトリ両方共ダブルクリックで開く。
+"2 : ディレクトリのみシングルクリックで開く。
+"3 : ファイル、ディレクトリ両方共シングルクリックで開く。
+let g:NERDTreeMouseMode=3
 nnoremap <C-n> :NERDTreeToggle<CR>
 " FIXME 無名バッファの時(bufname() == "")は下のmapをしないようにする
 nnoremap <C-w>t :NERDTreeFind<CR>
