@@ -162,14 +162,14 @@ nnoremap <C-p> :Files<CR>
 nnoremap gb :Buffers<CR>
 nnoremap gl :Lines<CR>
 " Rgはそのまま:Rgで
-" memo: batをインストーするとプレビューウィンドウがハイライトされる
+" NOTE: batをインストーするとプレビューウィンドウがハイライトされる
 '''
 
 [[plugins]] # vimの起動速度を測定
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
 
-[[plugins]] # lsp
+[[plugins]] # coc.nvim
 repo = 'neoclide/coc.nvim'
 on_event = ['BufRead']
 rev = 'release'
