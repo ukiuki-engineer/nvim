@@ -84,6 +84,7 @@ on_event = ['BufRead']
 [[plugins]] # blade
 repo = 'jwalton512/vim-blade'
 on_if = 'expand("%") =~ "blade\.php"'
+on_ft = ['blade']
 
 [[plugins]] # カラーコードを表示
 repo = 'gorodinskiy/vim-coloresque'
