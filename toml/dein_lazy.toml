@@ -1,3 +1,14 @@
+[[plugins]]
+repo = 'RRethy/nvim-base16'
+on_event = ['BufWinEnter']
+hook_source = '''
+colorscheme base16-ayu-dark
+" hi Visual term=reverse ctermbg=237 guibg=#403d3d
+hi Visual term=reverse ctermbg=237 guibg=#403d3d
+hi CursorLine guibg=#2a2a29
+hi CursorColumn guibg=#2a2a29
+'''
+
 [[plugins]] # git
 repo = 'tpope/vim-fugitive'
 on_event = ['BufRead']
@@ -13,7 +24,8 @@ let g:blamer_date_format = '%Y/%m/%d %H:%M'
 repo = 'vim-airline/vim-airline-themes'
 on_event = ['BufWinEnter']
 hook_add = '''
-let g:airline_theme = 'kalisi'
+" let g:airline_theme = 'kalisi'
+let g:airline_theme = 'deus'
 '''
 
 [[plugins]] # airline
@@ -88,7 +100,7 @@ on_ft = ['blade']
 
 [[plugins]] # カラーコードを表示
 repo = 'gorodinskiy/vim-coloresque'
-on_ft = ['css', 'html', 'less', 'sass', 'scss', 'stylus', 'vim', 'blade', 'vue', 'eruby']
+on_ft = ['css', 'html', 'less', 'sass', 'scss', 'stylus', 'vim', 'blade', 'vue', 'eruby', 'toml']
 
 [[plugins]] # ヘルプファイル自動生成
 repo = 'LeafCage/vimhelpgenerator'

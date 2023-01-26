@@ -55,8 +55,8 @@ nnoremap <TAB> :bn<Enter>
 nnoremap <S-TAB> :bN<Enter>
 tnoremap <Esc> <C-\><C-n>
 " カラースキーム
-colorscheme monokai
-hi Visual term=reverse ctermbg=237 guibg=#403d3d
+" colorscheme monokai
+" hi Visual term=reverse ctermbg=237 guibg=#403d3d
 " ------------------------------------------------------------------------------
 " プラグイン設定読み込み
 source ~/.config/nvim/plugins.vim
