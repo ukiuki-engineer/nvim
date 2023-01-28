@@ -3,10 +3,10 @@ repo = 'RRethy/nvim-base16'
 on_event = ['BufWinEnter']
 hook_source = '''
 colorscheme base16-ayu-dark
-" hi Visual term=reverse ctermbg=237 guibg=#403d3d
-hi Visual term=reverse ctermbg=237 guibg=#403d3d
-hi CursorLine guibg=#2a2a29
-hi CursorColumn guibg=#2a2a29
+" hi Visual term=reverse ctermbg=237 guibg=#323232
+hi Visual term=reverse ctermbg=237 guibg=#323232
+hi CursorLine guibg=#1E1E1E
+hi CursorColumn guibg=#1E1E1E
 '''
 
 [[plugins]] # git
@@ -98,9 +98,19 @@ repo = 'jwalton512/vim-blade'
 on_if = 'expand("%") =~ "blade\.php"'
 on_ft = ['blade']
 
-[[plugins]] # カラーコードを表示
-repo = 'gorodinskiy/vim-coloresque'
+[[plugins]]
+repo = 'norcalli/nvim-colorizer.lua'
 on_ft = ['css', 'html', 'less', 'sass', 'scss', 'stylus', 'vim', 'blade', 'vue', 'eruby', 'toml']
+lua_source = '''
+require 'colorizer'.setup()
+'''
+hook_add = '''
+augroup Colorizer
+  autocmd!
+  autocmd FileType css,html,less,sass,scss,stylus,vim,blade,vue,eruby,toml ColorizerAttachToBuffer
+  autocmd BufEnter *.css,*.html,*.sass,*.scss,*.vim,*.blade.php,*.vue,*.erb,*.toml ColorizerAttachToBuffer
+augroup END
+'''
 
 [[plugins]] # ヘルプファイル自動生成
 repo = 'LeafCage/vimhelpgenerator'
