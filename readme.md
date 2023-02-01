@@ -8,15 +8,14 @@
 ```
 ├── init.vim          " メインの設定ファイル
 ├── plugins.vim       " プラグイン関係
-├── toml              " プラグイン関係
+├── toml/             " プラグイン関係
 │   ├── dein.toml
 │   └── dein_lazy.toml
 ├── coc-settings.json " cocの設定
-├── colors
-│   └── tender.vim
-└── pack
-    └── plugins
-        └── start     " プラグインを作る時にここにシンボリックリンクを貼ってテストしたり
+├── colors/
+└── pack/
+    └── plugins/
+        └── start/    " プラグインを作る時にここにシンボリックリンクを貼ってテストしたり
 ```
 
 ## キーマップ

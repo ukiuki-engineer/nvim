@@ -8,6 +8,7 @@ endif
 set helplang=ja           " ヘルプを日本語化
 set mouse=a               " マウス有効化
 set autoread              " 編集中のファイルが変更されたら自動で読み直す
+" NOTE: 以下二つは重くなるが視認性を優先してsetする
 set cursorline            " カーソル行を表示
 set cursorcolumn          " カーソル列を表示
 set number                " 行番号を表示
