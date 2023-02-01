@@ -108,8 +108,8 @@ on_event = ['BufRead']
 repo = 'tyru/caw.vim'
 on_event = ['BufRead']
 hook_add = '''
-nnoremap <C-/> <Plug>(caw:hatpos:toggle)
-vnoremap <C-/> <Plug>(caw:hatpos:toggle)
+nnoremap <C-/> <Plug>(caw:hatpos:toggle)                                     " コメントアウト(ノーマルモード)
+vnoremap <C-/> <Plug>(caw:hatpos:toggle)                                     " コメントアウト(ビジュアルモード)
 '''
 
 [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
@@ -177,9 +177,9 @@ let g:NERDTreeShowHidden = 1 " 隠しファイルを表示
 "2 : ディレクトリのみシングルクリックで開く。
 "3 : ファイル、ディレクトリ両方共シングルクリックで開く。
 let g:NERDTreeMouseMode=3
-nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>                                           " NERDTree表示/非表示切り替え
 " FIXME 無名バッファの時(bufname() == "")は下のmapをしないようにする
-nnoremap <C-w>t :NERDTreeFind<CR>
+nnoremap <C-w>t :NERDTreeFind<CR>                                            " NERDTreeを開き、現在開いているファイルの場所にジャンプ
 '''
 
 [[plugins]] # ファジーファインダー
@@ -230,10 +230,8 @@ let g:coc_global_extensions = [
   \ 'coc-spell-checker',
   \ 'coc-solargraph'
 \ ]
-inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-nnoremap <space>d <Plug>(coc-definition)
-nnoremap <space>ds :sp<CR><Plug>(coc-definition)
-nnoremap <space>dv :vs<CR><Plug>(coc-definition)
-nnoremap <space>h :<C-u>call CocAction('doHover')<CR>
+inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"         " 補完の選択をEnterで決定
+nnoremap <space>d <Plug>(coc-definition)                                     " 定義ジャンプ
+nnoremap <space>h :<C-u>call CocAction('doHover')<CR>                        " 関数とかの情報を表示する
 command! -nargs=0 Format :call CocAction('format')
 '''

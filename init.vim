@@ -13,7 +13,7 @@ set cursorcolumn          " カーソル列を表示
 set number                " 行番号を表示
 set list                  " タブや改行を表示
 " タブや改行の表示記号を定義
-set listchars=tab:»-,trail:-,eol:↓,extends:»,precedes:«,nbsp:%
+" set listchars=tab:»-,trail:-,eol:↓,extends:»,precedes:«,nbsp:%
 set expandtab             " Tab 文字を半角スペースにする
 set shiftwidth=2          " 行頭での Tab 文字の表示幅
 set clipboard+=unnamed    " ヤンクした文字列をクリップボードにコピー

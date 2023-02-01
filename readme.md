@@ -1,7 +1,7 @@
 ## 概要
 自分用neovim設定ファイル。  
-まだneovimを使い始めたばかりなので移行は大変でしたが、ある程度は整ってきたかなと思います。  
-基本的にはMac、たまにWindowsのWSLで使用。
+まだneovimを使い始めたばかりなので移行は大変でしたが、ある程度整ってきたかなと思います。  
+基本的にはMac(iTerm2)で使用、たまにWindowsのWSL(Windows Terminal)で使用。
 
 ## ディレクトリ構成
 
@@ -20,19 +20,20 @@
 ```
 
 ## キーマップ
-各ファイルで定義しているので、ここにメモとしてまとめておく。
+各ファイルで定義しているので、ここにメモとしてまとめておく。  
+基本方針は**"vim本来の操作性を崩さないように"**すること。  
+そのためプラグインを呼び出すためのマッピングが主で、vimそのもののキーマップは**なるべく**変更しないようにする。  
+どうしてもの場合は仕方ない。
 ```vim
-nnoremap <C-n> :NERDTreeToggle<CR>                                           " NERDTreeを開く
+nnoremap <C-n> :NERDTreeToggle<CR>                                           " NERDTree表示/非表示切り替え
 nnoremap <C-w>t :NERDTreeFind<CR>                                            " NERDTreeを開き、現在開いているファイルの場所にジャンプ
-nnoremap <C-p> :Files<CR>
-nnoremap gb :Buffers<CR>
-nnoremap <C-/> <Plug>(caw:i:toggle)                                          " コメントアウト
-vnoremap <C-/> <Plug>(caw:i:toggle)                                          " コメントアウト
-inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-nnoremap <space>d <Plug>(coc-definition)                                     " 定義ジャンプ
-nnoremap <space>ds :sp<CR><Plug>(coc-definition)                             " 定義ジャンプした時に水平分割
-nnoremap <space>dv :vs<CR><Plug>(coc-definition)                             " 定義ジャンプした時に垂直分割
-nnoremap <space>h :<C-u>call CocAction('doHover')<CR>                        " 関数とかのドキュメントを表示する
+nnoremap <C-p> :Files<CR>                                                    " ファイル名検索(カレントディレクトリ配下)
+nnoremap gb :Buffers<CR>                                                     " ファイル名検索(バッファリスト)
+nnoremap <C-/> <Plug>(caw:hatpos:toggle)                                     " コメントアウト(ノーマルモード)
+vnoremap <C-/> <Plug>(caw:hatpos:toggle)                                     " コメントアウト(ビジュアルモード)
+inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"         " 補完の選択をEnterで決定
+nnoremap <space>d <Plug>(coc-definition)                                     " 定義ジャンプ(※)
+nnoremap <space>h :<C-u>call CocAction('doHover')<CR>                        " 関数とかの情報を表示する
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap <C-c><C-c> :nohlsearch<CR><Esc>
 inoremap <C-c> <Esc>
@@ -40,9 +41,12 @@ nnoremap <TAB> :bn<Enter>                                                    " �
 nnoremap <S-TAB> :bN<Enter>                                                  " 前のバッファに切り替え
 tnoremap <Esc> <C-\><C-n>                                                    " ターミナルモード(:termimal)から```ESC```でノーマルモードにに入る
 ```
+※定義元を画面分割して表示したい場合は、画面分割後ジャンプする  
+　最初はキーマップを定義していたが結局この手順に落ち着いている
 
 ## プラグイン管理
 dein.vimを使用。
+
 ## インストールが必要な外部ツール
 本当はもっとある気がするけど主なものだけでもメモしておく。
 - ripgrep  
@@ -80,7 +84,7 @@ NERDTreeの機能を使うより```:terminal```で操作した方が楽...
 ## カッコ、クォーテーション、htmlの閉じタグ補完
 [自作プラグイン](https://github.com/ukiuki-engineer/vim-autoclose)を使用。
 
-## memo
+## NOTE
 - Fonts  
 [Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)を使用。
 - coc.nvimの拡張機能を探す場所
@@ -95,5 +99,3 @@ NERDTreeの機能を使うより```:terminal```で操作した方が楽...
   - markdwonで、```#```を使わずに```##```から始めると警告が出る  
   →```#```はでかくなりすぎて自分はあまり好きじゃないから使わない...
   - コメントの中はundefinedをcheckしない
-- 補完のポップアップウィンドウの配色設定をいい感じに変更したい  
-どれが選択されてるやつなのか見づらい
