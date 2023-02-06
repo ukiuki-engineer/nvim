@@ -9,14 +9,10 @@ set helplang=ja           " ヘルプを日本語化
 set mouse=a               " マウス有効化
 set autoread              " 編集中のファイルが変更されたら自動で読み直す
 " NOTE: 以下二つは重くなるが視認性を優先してsetする
-set cursorline            " カーソル行を表示
-set cursorcolumn          " カーソル列を表示
-set number                " 行番号を表示
-set list                  " タブや改行を表示
+set cursorline cursorcolumn
+set number list           " 行番号、タブや改行を表示
 " タブや改行の表示記号を定義
 " set listchars=tab:»-,trail:-,eol:↓,extends:»,precedes:«,nbsp:%
-set expandtab             " Tab 文字を半角スペースにする
-set shiftwidth=2          " 行頭での Tab 文字の表示幅
 set clipboard+=unnamed    " ヤンクした文字列をクリップボードにコピー
 set splitright            " 画面を垂直分割する際に右に開く
 set splitbelow            " 画面を水平分割する際に下に開く
@@ -25,11 +21,15 @@ set ignorecase            " 検索時に大文字小文字を無視
 set smartcase             " 大文字小文字の両方が含まれている場合は大文字小文字を区別
 " sessionに保存する内容を指定
 set sessionoptions=buffers,curdir,tabpages
+set expandtab             "Tab文字を半角スペースにする
+" インデントは基本的に2
+set shiftwidth=2 tabstop=2 softtabstop=2
 " ファイルタイプ、拡張子毎のインデント設定
 augroup UserFileTypeIndent
   autocmd!
+  " Laravelが4なのでphpは4に
   autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
-  autocmd BufEnter *.erb setlocal tabstop=2 shiftwidth=2 softtabstop=2
+  " autocmd BufEnter *.php setlocal tabstop=4 shiftwidth=4 softtabstop=4
 augroup END
 " :terminalを常にインサートモードで開く
 augroup UserTerminal
