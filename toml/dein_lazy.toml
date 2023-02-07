@@ -260,8 +260,11 @@ let g:coc_global_extensions = [
   \ 'coc-spell-checker',
   \ 'coc-solargraph'
 \ ]
-inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"         " 補完の選択をEnterで決定
-nnoremap <space>d <Plug>(coc-definition)                                     " 定義ジャンプ
-nnoremap <space>h :<C-u>call CocAction('doHover')<CR>                        " 関数とかの情報を表示する
+" 補完の選択をEnterで決定
+inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+" 定義ジャンプ
+nnoremap <space>d <Plug>(coc-definition)
+" 関数とかの情報を表示する
+nnoremap <space>h :<C-u>call CocAction('doHover')<CR>
 command! -nargs=0 Format :call CocAction('format')
 '''
