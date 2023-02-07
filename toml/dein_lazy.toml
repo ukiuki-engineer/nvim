@@ -194,7 +194,32 @@ build = './install'
 
 [[plugins]] # ファジーファインダー
 repo = 'junegunn/fzf.vim'
-on_cmd = ['Files', 'Buffers', 'Lines', 'Rg']
+on_cmd = [
+  'Files',
+  'GFiles',
+  'GFiles?',
+  'Buffers',
+  'Colors',
+  'Ag',
+  'Rg',
+  'Lines',
+  'BLines',
+  'Tags',
+  'BTags',
+  'Marks',
+  'Windows',
+  'Locate PATTERN',
+  'History',
+  'History:',
+  'History/',
+  'Snippets',
+  'Commits',
+  'BCommits',
+  'Commands',
+  'Maps',
+  'Helptags',
+  'Filetypes'
+]
 # こっちでもいい→on_source = ['fzf']
 depends = 'junegunn/fzf'
 hook_add = '''
