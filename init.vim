@@ -10,6 +10,7 @@ set mouse=a               " マウス有効化
 set autoread              " 編集中のファイルが変更されたら自動で読み直す
 " NOTE: 以下二つは重くなるが視認性を優先してsetする
 set cursorline cursorcolumn
+set noruler
 " TODO: relativenumberは慣れなければやめる
 set number relativenumber " 行番号
 set list                  " タブや改行を表示

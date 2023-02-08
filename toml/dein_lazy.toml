@@ -2,11 +2,11 @@
 repo = 'RRethy/nvim-base16'
 on_event = ['BufWinEnter']
 hook_source = '''
-colorscheme base16-ayu-dark
+" colorscheme base16-ayu-dark
 " hi Visual term=reverse ctermbg=237 guibg=#323232
-hi Visual term=reverse ctermbg=237 guibg=#323232
-hi CursorLine guibg=#1E1E1E
-hi CursorColumn guibg=#1E1E1E
+" hi CursorLine guibg=#1E1E1E
+" hi CursorColumn guibg=#1E1E1E
+colorscheme base16-tender
 '''
 
 [[plugins]] # git
