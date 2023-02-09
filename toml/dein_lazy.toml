@@ -1,4 +1,4 @@
-[[plugins]]
+[[plugins]] # colorscheme
 repo = 'RRethy/nvim-base16'
 on_event = ['BufWinEnter']
 hook_source = '''
@@ -6,7 +6,10 @@ hook_source = '''
 " hi Visual term=reverse ctermbg=237 guibg=#323232
 " hi CursorLine guibg=#1E1E1E
 " hi CursorColumn guibg=#1E1E1E
-colorscheme base16-tender
+" colorscheme base16-tender
+" colorscheme base16-woodland
+" colorscheme base16-still-alive
+colorscheme base16-decaf
 '''
 
 [[plugins]] # git
@@ -19,6 +22,7 @@ on_cmd = ['BlamerHide', 'BlamerShow', 'BlamerToggle']
 hook_add = '''
 let g:blamer_date_format = '%Y/%m/%d %H:%M'
 let g:blamer_show_in_visual_modes = 0
+BlamerShow
 '''
 
 [[plugins]] # airline-themes
@@ -27,6 +31,7 @@ on_event = ['BufWinEnter']
 hook_add = '''
 " let g:airline_theme = 'kalisi'
 let g:airline_theme = 'deus'
+" let g:airline_theme = 'sol'
 '''
 
 [[plugins]] # airline
@@ -115,6 +120,13 @@ nnoremap <C-/> <Plug>(caw:hatpos:toggle)
 vnoremap <C-/> <Plug>(caw:hatpos:toggle)
 '''
 
+# NOTE: caw.vimではerubyのコメントアウトが効かなかったので、erubyのみcommentaryで対応
+# gccで一行コメントアウト、gcでビジュアルモード選択範囲をコメントアウト
+[[plugins]]
+repo = 'tpope/vim-commentary'
+on_if = 'expand("%") =~ "\.erb"'
+# on_ft = 'eruby'
+
 [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
 repo = 'ukiuki-engineer/vim-autoclose'
 on_event = ['BufRead']
@@ -124,7 +136,7 @@ repo = 'jwalton512/vim-blade'
 on_if = 'expand("%") =~ "blade\.php"'
 on_ft = ['blade']
 
-[[plugins]]
+[[plugins]] # カラーコード可視化
 repo = 'norcalli/nvim-colorizer.lua'
 on_ft = ['css', 'html', 'less', 'sass', 'scss', 'stylus', 'vim', 'blade', 'vue', 'eruby', 'toml']
 lua_post_source = '''
@@ -194,6 +206,7 @@ build = './install'
 
 [[plugins]] # ファジーファインダー
 repo = 'junegunn/fzf.vim'
+# NOTE: こっちでもいい→on_source = ['fzf']
 on_cmd = [
   'Files',
   'GFiles',
@@ -220,7 +233,6 @@ on_cmd = [
   'Helptags',
   'Filetypes'
 ]
-# こっちでもいい→on_source = ['fzf']
 depends = 'junegunn/fzf'
 hook_add = '''
 nnoremap <C-p> :Files<CR>
