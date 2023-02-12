@@ -8,8 +8,8 @@ endif
 set helplang=ja           " ヘルプを日本語化
 set mouse=a               " マウス有効化
 set autoread              " 編集中のファイルが変更されたら自動で読み直す
-" NOTE: 以下二つは重くなるが視認性を優先してsetする
-set nocursorline cursorcolumn
+" TODO: 以下二つは重いので入れるか結構迷う
+set nocursorline nocursorcolumn
 set noruler
 " TODO: relativenumberは慣れなければやめる
 set number relativenumber " 行番号

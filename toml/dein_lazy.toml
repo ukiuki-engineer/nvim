@@ -246,6 +246,13 @@ nnoremap gl :Lines<CR>
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
 
+# NOTE: coc-snippetsで呼ぶ出す用
+# 個々のcocプラグイン側の補完候補とぶつかって面倒な場合はどちらかをオフにする
+[[plugins]] # スニペットのソース
+repo = 'honza/vim-snippets'
+on_event = ['BufRead']
+
+# NOTE: coc-bladeは、"b:xxx"と打つと補完候補が出る
 [[plugins]] # coc.nvim
 repo = 'neoclide/coc.nvim'
 on_event = ['BufRead']
@@ -267,10 +274,11 @@ let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-cssmodules',
   \ 'coc-snippets',
-  \ 'coc-phpls',
+  \ '@yaegassy/coc-intelephense',
   \ 'coc-blade',
+  \ 'coc-solargraph',
   \ 'coc-spell-checker',
-  \ 'coc-solargraph'
+  \ 'coc-sh'
 \ ]
 " 補完の選択をEnterで決定
 inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"

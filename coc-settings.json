@@ -1,4 +1,19 @@
+{
+  "diagnostic.virtualText": true,
+  "____comment": "NOTE: codeLensは変更履歴を確認する機能。一旦オフに。",
+  "codeLens.enable": false,
+  "solargraph.completion": true,
+  "solargraph.diagnostics": true,
   "intelephense": {
+    "diagnostics": {
+      "undefinedClassConstants": true,
+      "undefinedConstants": true,
+      "undefinedFunctions": true,
+      "undefinedMethods": true,
+      "undefinedProperties": true,
+      "____comment": "NOTE: 下記をtrueとすると、AuthやDBなど、ファサードに対して軒並みエラーが表示される",
+      "undefinedTypes": true
+    },
     "command": "intelephense",
     "args": ["--stdio"],
     "filetypes": ["php"],
@@ -6,3 +21,4 @@
       "storagePath": "/tmp/intelephense"
     }
   }
+}
