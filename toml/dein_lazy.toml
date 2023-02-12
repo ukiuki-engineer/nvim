@@ -7,6 +7,7 @@ require'nvim-treesitter.configs'.setup {
     enable = true,  -- syntax highlightを有効にする
     disable = {     -- 一部の言語では無効にする
       'toml',
+      'css'
     }
   },
   indent = {
@@ -264,9 +265,9 @@ nnoremap gl :Lines<CR>
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
 
-# NOTE: coc-snippetsで呼ぶ出す用
+# NOTE: coc-snippetsで呼ぶ出して使う
 # 個々のcocプラグイン側の補完候補とぶつかって面倒な場合はどちらかをオフにする
-[[plugins]] # スニペットのソース
+[[plugins]] # スニペットのソース類
 repo = 'honza/vim-snippets'
 on_event = ['BufRead']
 

@@ -9,7 +9,7 @@ set helplang=ja           " ヘルプを日本語化
 set mouse=a               " マウス有効化
 set autoread              " 編集中のファイルが変更されたら自動で読み直す
 " TODO: 以下二つは重いので入れるか結構迷う
-set nocursorline nocursorcolumn
+set cursorline cursorcolumn
 set noruler
 " TODO: relativenumberは慣れなければやめる
 set number relativenumber " 行番号
