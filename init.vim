@@ -58,6 +58,16 @@ inoremap <C-c> <Esc>
 nnoremap <TAB> :bn<Enter>
 nnoremap <S-TAB> :bN<Enter>
 tnoremap <Esc> <C-\><C-n>
+" ------------------------------------------------------------------------------
+" コマンド定義
+function! TermHere() abort
+  :lcd %:h
+  :terminal
+endfunction
+" :TermHere
+" →カレントバッファのディレクトリでterminalを開く
+command TermHere :call TermHere()
+" ------------------------------------------------------------------------------
 " カラースキーム
 " colorscheme monokai
 " hi Visual term=reverse ctermbg=237 guibg=#403d3d

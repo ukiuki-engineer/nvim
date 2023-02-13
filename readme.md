@@ -1,7 +1,8 @@
 ## 概要
 自分用neovim設定ファイル。  
 まだneovimを使い始めたばかりなので移行は大変でしたが、ある程度整ってきたかなと思います。  
-基本的にはMac(iTerm2)で使用、たまにWindowsのWSL(Windows Terminal)で使用。
+基本的にはMac(iTerm2)で使用、たまにWindowsのWSL(Windows Terminal)で使用。  
+(そろそろlua化したい...)
 
 ## ディレクトリ構成
 
@@ -42,6 +43,13 @@ tnoremap <Esc> <C-\><C-n>                                                    " �
 ```
 ※定義元を画面分割して表示したい場合は、画面分割後ジャンプする  
 　最初はキーマップを定義していたが結局この手順に落ち着いている
+
+## 独自定義コマンド
+よく使う定型処理は随時コマンド化する(かも)
+- :TermHere
+カレントバッファのディレクトリでターミナルを開く。(ただ:lcd %:hの後に:terminalしてるだけ)  
+いちいちディレクトリ移動してからターミナル開くのが面倒だったため定義した。  
+カレントバッファのディレクトリでファイル操作したい時などに便利かも。
 
 ## プラグイン管理
 dein.vimを使用。
@@ -89,12 +97,3 @@ NERDTreeの機能を使うより```:terminal```で操作した方が楽...
 - coc.nvimの拡張機能を探す場所
   - [githubのwiki](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
   - [npm moduleを検索するサイト](https://www.npmjs.com/search?q=keywords%3Acoc.nvim)
-
-## FIXME
-- lspの一部のエラー表示が出ないように設定で変更できないか  
-例えば以下のような場合
-  - laravelで```use DB```としても、DBを使ってる箇所で```undefined```と表示される  
-  →多分、DBをフルパスで書かないと怒られるようになってる
-  - markdwonで、```#```を使わずに```##```から始めると警告が出る  
-  →```#```はでかくなりすぎて自分はあまり好きじゃないから使わない...
-  - コメントの中はundefinedをcheckしない

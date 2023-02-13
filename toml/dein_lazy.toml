@@ -1,11 +1,11 @@
-[[plugins]]
+[[plugins]] # シンタックスハイライト
 repo = 'nvim-treesitter/nvim-treesitter'
 on_event = ['BufRead']
 lua_source = '''
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,  -- syntax highlightを有効にする
-    disable = {     -- 一部の言語では無効にする
+    disable = {     -- デフォルトの方が見やすい場合は無効に
       'toml',
       'css'
     }
