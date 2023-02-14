@@ -22,13 +22,11 @@ repo = 'RRethy/nvim-base16'
 on_event = ['BufWinEnter']
 hook_source = '''
 " colorscheme base16-ayu-dark
-" hi Visual term=reverse ctermbg=237 guibg=#323232
-" hi CursorLine guibg=#1E1E1E
-" hi CursorColumn guibg=#1E1E1E
 " colorscheme base16-tender
 " colorscheme base16-woodland
 " colorscheme base16-still-alive
-colorscheme base16-decaf
+" colorscheme base16-decaf
+colorscheme base16-atlas
 '''
 
 [[plugins]] # git
@@ -125,7 +123,8 @@ require("indent_blankline").setup {
 #   -- space_char_blankline_highlight_list = {},
 # }
 
-[[plugins]] # TODO しばらく試してみていらなかったら消す
+[[plugins]] # 行内ジャンプ用にハイライトしてくれるやつ
+# TODO しばらく試してみていらなかったら消す
 repo = 'unblevable/quick-scope'
 on_event = ['BufRead']
 
@@ -139,9 +138,9 @@ nnoremap <C-/> <Plug>(caw:hatpos:toggle)
 vnoremap <C-/> <Plug>(caw:hatpos:toggle)
 '''
 
+[[plugins]] # コメントアウト
 # NOTE: caw.vimではerubyのコメントアウトが効かなかったので、erubyのみcommentaryで対応
 # gccで一行コメントアウト、gcでビジュアルモード選択範囲をコメントアウト
-[[plugins]]
 repo = 'tpope/vim-commentary'
 on_if = 'expand("%") =~ "\.erb"'
 # on_ft = 'eruby'
@@ -258,46 +257,49 @@ nnoremap <C-p> :Files<CR>
 nnoremap gb :Buffers<CR>
 nnoremap gl :Lines<CR>
 " Rgはそのまま:Rgで
-" NOTE: batをインストーするとプレビューウィンドウがハイライトされる
+" NOTE: プレビューウィンドウをハイライトするには、batをインストールする
+" →brew install bat
 '''
 
 [[plugins]] # vimの起動速度を測定
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
 
+[[plugins]] # スニペットのソース類
 # NOTE: coc-snippetsで呼ぶ出して使う
 # 個々のcocプラグイン側の補完候補とぶつかって面倒な場合はどちらかをオフにする
-[[plugins]] # スニペットのソース類
 repo = 'honza/vim-snippets'
 on_event = ['BufRead']
 
-# NOTE: coc-bladeは、"b:xxx"と打つと補完候補が出る
 [[plugins]] # coc.nvim
+# FIXME: erubyでjavascriptのsnippetsを使いたい(もうruby触ることないけど...)
+# NOTE: coc-bladeは、"b:xxx"と打つと補完候補が出る
 repo = 'neoclide/coc.nvim'
 on_event = ['BufRead']
 rev = 'release'
 hook_add = '''
+" 拡張機能
 let g:coc_global_extensions = [
   \ 'coc-word',
+  \ 'coc-sh',
+  \ 'coc-yaml',
+  \ 'coc-json',
+  \ 'coc-docker',
   \ 'coc-sql',
   \ 'coc-tsserver',
-  \ 'coc-eslint',
   \ 'coc-vetur',
   \ 'coc-vimlsp',
-  \ 'coc-docker',
-  \ 'coc-markdownlint',
-  \ 'coc-json',
-  \ 'coc-yaml',
   \ 'coc-xml',
   \ 'coc-html',
   \ 'coc-css',
   \ 'coc-cssmodules',
-  \ 'coc-snippets',
   \ '@yaegassy/coc-intelephense',
   \ 'coc-blade',
   \ 'coc-solargraph',
+  \ 'coc-markdownlint',
+  \ 'coc-eslint',
+  \ 'coc-snippets',
   \ 'coc-spell-checker',
-  \ 'coc-sh'
 \ ]
 " 補完の選択をEnterで決定
 inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"

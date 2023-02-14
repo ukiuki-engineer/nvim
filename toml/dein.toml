@@ -1,7 +1,4 @@
 [[plugins]] # 日本語ドキュメント
-repo = 'vim-jp/vimdoc-ja'
-
-# luaのドキュメント
+ # NOTE: luaのドキュメントを読むには↓
 # :h nvim-lua-guide.txt
-[[plugins]]
-repo = 'MDeiml/tree-sitter-markdown'
+repo = 'vim-jp/vimdoc-ja'
