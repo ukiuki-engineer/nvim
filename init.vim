@@ -8,7 +8,7 @@ endif
 set helplang=ja           " ヘルプを日本語化
 set mouse=a               " マウス有効化
 set autoread              " 編集中のファイルが変更されたら自動で読み直す
-" TODO: 以下二つは重いので入れるか結構迷う
+" NOTE: 以下二つは重いので入れるか結構迷う。入れたり入れなかったりブレブレ。
 set cursorline cursorcolumn
 set noruler
 " TODO: relativenumberは慣れなければやめる
@@ -43,11 +43,11 @@ augroup END
 augroup UserIME
   autocmd!
   if has('mac') && exepath('im-select') != ""
-    " macの場合im-selectをインストールしてPATHを通しておく
+    " NOTE: macの場合im-selectをインストールしてPATHを通しておく
     autocmd InsertLeave,InsertEnter,BufRead,CmdlineLeave,CmdlineEnter * :call system('im-select com.apple.keylayout.ABC')
   endif
   if !has('mac') && exepath('zenhan.exe') != ""
-    " windows(WSL)の場合、zenhanをインストールしてPATHを通しておく
+    " NOTE: windows(WSL)の場合、zenhanをインストールしてPATHを通しておく
     autocmd InsertLeave,InsertEnter,BufRead,CmdlineLeave,CmdlineEnter * :call system('zenhan.exe 0')
   endif
 augroup END
