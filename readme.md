@@ -5,7 +5,7 @@
 (そろそろlua化したい...)
 
 ## ディレクトリ構成
-
+割とオーソドックスだと思う、多分...
 ```
 ├── init.vim          " メインの設定ファイル
 ├── plugins.vim       " プラグイン関係
@@ -91,7 +91,9 @@ NERDTreeの機能を使うより```:terminal```で操作した方が楽...
 大体は[```:TermHere```](#user-command)でカレントバッファのディレクトリでterminalを開き、そこで操作することが多い。これで結構素早く操作できる。
 
 ## カッコ、クォーテーション、htmlの閉じタグ補完
-[自作プラグイン](https://github.com/ukiuki-engineer/vim-autoclose)を使用。
+[自作プラグイン](https://github.com/ukiuki-engineer/vim-autoclose)を使用。  
+毎日使いながらちょっとずつチューニングしてきたためそれなりに安定しているかと...  
+htmlのタグに関しては、cocのスニペットを使用することもあるが、ぶつかることなく共存可能。
 
 ## NOTE
 - Fonts  
