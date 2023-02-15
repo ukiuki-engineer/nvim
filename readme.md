@@ -7,16 +7,17 @@
 ## ディレクトリ構成
 割とオーソドックスだと思う、多分...
 ```
-├── init.vim          " メインの設定ファイル
-├── plugins.vim       " プラグイン関係
-├── toml/             " プラグイン関係
-│   ├── dein.toml
-│   └── dein_lazy.toml
-├── coc-settings.json " cocの設定
-├── colors/
-└── pack/
-    └── plugins/
-        └── start/    " プラグインを作る時にここにシンボリックリンクを貼ってテストしたり
+nvim/
+    ├── init.vim          " メインの設定ファイル
+    ├── plugins.vim       " プラグイン関係
+    ├── toml/             " プラグイン関係
+    │   ├── dein.toml
+    │   └── dein_lazy.toml
+    ├── coc-settings.json " cocの設定
+    ├── colors/
+    └── pack/
+        └── plugins/
+            └── start/    " プラグインを作る時にここにシンボリックリンクを貼ってテストしたり
 ```
 
 ## キーマップ
@@ -47,7 +48,7 @@ tnoremap <Esc> <C-\><C-n>                                                    " �
 <a id="user-command"></a>
 ## 独自定義コマンド
 よく使う定型処理は随時コマンド化する(かも)
-- :TermHere
+- :TermHere  
 カレントバッファのディレクトリでターミナルを開く。(ただ:lcd %:hの後に:terminalしてるだけ)  
 いちいちディレクトリ移動してからターミナル開くのが面倒だったため定義した。  
 カレントバッファのディレクトリでファイル操作したい時などに割と便利。
