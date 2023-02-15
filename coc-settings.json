@@ -4,6 +4,7 @@
   "codeLens.enable": false,
   "solargraph.completion": true,
   "solargraph.diagnostics": true,
+  "eslint.filetypes": ["javascript", "vue"],
   "intelephense": {
     "diagnostics": {
       "undefinedClassConstants": true,
