@@ -1,6 +1,7 @@
 ## 概要
 自分用neovim設定ファイル。  
-まだneovimを使い始めたばかりなので移行は大変でしたが、ある程度整ってきたかなと思います。  
+まだneovimを使い始めたばかりなので移行は大変でしたが、ある程度整ってきたかな。  
+なるべくシンプルに使えるような設定を目指している。  
 基本的にはMac(iTerm2)で使用、たまにWindowsのWSL(Windows Terminal)で使用。  
 (そろそろlua化したい...)
 
@@ -26,32 +27,35 @@ nvim/
 そのためプラグインを呼び出すためのマッピングが主で、vimそのもののキーマップは**なるべく**変更しないようにする。  
 どうしてもの場合は仕方ない。
 ```vim
-nnoremap <C-n> :NERDTreeToggle<CR>                                           " NERDTree表示/非表示切り替え
-nnoremap <C-w>t :NERDTreeFind<CR>                                            " NERDTreeを開き、現在開いているファイルの場所にジャンプ
-nnoremap <C-p> :Files<CR>                                                    " ファイル名検索(カレントディレクトリ配下)
-nnoremap gb :Buffers<CR>                                                     " ファイル名検索(バッファリスト)
-nnoremap <C-/> <Plug>(caw:hatpos:toggle)                                     " コメントアウト(ノーマルモード)
-vnoremap <C-/> <Plug>(caw:hatpos:toggle)                                     " コメントアウト(ビジュアルモード)
-inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"         " 補完の選択をEnterで決定
-nnoremap <space>d <Plug>(coc-definition)                                     " 定義ジャンプ(※)
-nnoremap <space>h :<C-u>call CocAction('doHover')<CR>                        " 関数とかの情報を表示する
-nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
-nnoremap <C-c><C-c> :nohlsearch<CR><Esc>
-inoremap <C-c> <Esc>
-nnoremap <TAB> :bn<Enter>                                                    " 次のバッファに切り替え
-nnoremap <S-TAB> :bN<Enter>                                                  " 前のバッファに切り替え
-tnoremap <Esc> <C-\><C-n>                                                    " ターミナルモード(:termimal)から```ESC```でノーマルモードにに入る
+nnoremap <C-n>        :NERDTreeToggle<CR>                                  " NERDTree表示/非表示切り替え
+nnoremap <C-w>t       :NERDTreeFind<CR>                                    " NERDTreeを開き、現在開いているファイルの場所にジャンプ
+nnoremap <C-p>        :Files<CR>                                           " ファイル名検索(カレントディレクトリ配下)
+nnoremap gb           :Buffers<CR>                                         " ファイル名検索(バッファリスト)
+nnoremap <C-/>        <Plug>(caw:hatpos:toggle)                            " コメントアウト(ノーマルモード)
+vnoremap <C-/>        <Plug>(caw:hatpos:toggle)                            " コメントアウト(ビジュアルモード)
+inoremap <expr> <CR>  coc#pum#visible() ? coc#pum#confirm() : "\<CR>"      " 補完の選択をEnterで決定
+nnoremap <space>d     <Plug>(coc-definition)                               " 定義ジャンプ(※)
+nnoremap <space>h     :<C-u>call CocAction('doHover')<CR>                  " 関数とかの情報を表示する
+nnoremap <Esc><Esc>   :nohlsearch<CR><Esc>                                 " Esc2回で検索結果のハイライトをオフに(多分割とよく使われてる設定)
+inoremap <C-c>        <Esc>
+nnoremap <TAB>        :bn<Enter>                                           " 次のバッファに切り替え
+nnoremap <S-TAB>      :bN<Enter>                                           " 前のバッファに切り替え
+tnoremap <Esc>        <C-\><C-n>                                           " ターミナルモード(:termimal)から```ESC```でノーマルモードにに入る
 ```
 ※定義元を画面分割して表示したい場合は、画面分割後ジャンプする  
 　最初はキーマップを定義していたが結局この手順に落ち着いている
 
 <a id="user-command"></a>
 ## 独自定義コマンド
-よく使う定型処理は随時コマンド化する(かも)
-- :TermHere  
-カレントバッファのディレクトリでターミナルを開く。(ただ:lcd %:hの後に:terminalしてるだけ)  
+よく使うけど若干面倒な操作は随時コマンド化する(かも)
+- ```:T```  
+ウィンドウを分割してターミナルを開く。
+- ```:TermHere```  
+カレントバッファのディレクトリ&ウィンドウを分割してターミナルを開く(ただ:lcd %:hの後に:Tしてるだけ)  
 いちいちディレクトリ移動してからターミナル開くのが面倒だったため定義した。  
 カレントバッファのディレクトリでファイル操作したい時などに割と便利。
+- ```:Format```  
+coc.nvimのフォーマッター(CocAction('format'))を呼ぶ。
 
 ## プラグイン管理
 dein.vimを使用。

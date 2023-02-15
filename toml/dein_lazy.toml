@@ -133,9 +133,9 @@ repo = 'tyru/caw.vim'
 on_event = ['BufRead']
 hook_add = '''
 " コメントアウト(ノーマルモード)
-nnoremap <C-/> <Plug>(caw:hatpos:toggle)
+nnoremap <C-/>        <Plug>(caw:hatpos:toggle)
 " コメントアウト(ビジュアルモード)
-vnoremap <C-/> <Plug>(caw:hatpos:toggle)
+vnoremap <C-/>        <Plug>(caw:hatpos:toggle)
 '''
 
 [[plugins]] # コメントアウト
@@ -211,10 +211,10 @@ let g:NERDTreeShowHidden = 1 " 隠しファイルを表示
 "3 : ファイル、ディレクトリ両方共シングルクリックで開く。
 let g:NERDTreeMouseMode=3
 " NERDTree表示/非表示切り替え
-nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-n>        :NERDTreeToggle<CR>
 " FIXME 無名バッファの時(bufname() == "")は下のmapをしないようにする
 " NERDTreeを開き、現在開いているファイルの場所にジャンプ
-nnoremap <C-w>t :NERDTreeFind<CR>
+nnoremap              <C-w>t :NERDTreeFind<CR>
 '''
 
 [[plugins]] # ファジーファインダー
@@ -223,6 +223,8 @@ on_event = ['BufRead']
 build = './install'
 
 [[plugins]] # ファジーファインダー
+# NOTE: プレビューウィンドウをハイライトするには、batをインストールする
+# →brew install bat
 repo = 'junegunn/fzf.vim'
 # NOTE: こっちでもいい→on_source = ['fzf']
 on_cmd = [
@@ -253,12 +255,9 @@ on_cmd = [
 ]
 depends = 'junegunn/fzf'
 hook_add = '''
-nnoremap <C-p> :Files<CR>
-nnoremap gb :Buffers<CR>
-nnoremap gl :Lines<CR>
+nnoremap <C-p>        :Files<CR>
+nnoremap gb           :Buffers<CR>
 " Rgはそのまま:Rgで
-" NOTE: プレビューウィンドウをハイライトするには、batをインストールする
-" →brew install bat
 '''
 
 [[plugins]] # vimの起動速度を測定
@@ -302,10 +301,10 @@ let g:coc_global_extensions = [
   \ 'coc-spell-checker',
 \ ]
 " 補完の選択をEnterで決定
-inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <expr> <CR>  coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 " 定義ジャンプ
-nnoremap <space>d <Plug>(coc-definition)
+nnoremap <space>d     <Plug>(coc-definition)
 " 関数とかの情報を表示する
-nnoremap <space>h :<C-u>call CocAction('doHover')<CR>
+nnoremap <space>h     :<C-u>call CocAction('doHover')<CR>
 command! -nargs=0 Format :call CocAction('format')
 '''

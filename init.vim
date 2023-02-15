@@ -53,20 +53,26 @@ augroup UserIME
 augroup END
 " キーマッピング
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
-nnoremap <C-c><C-c> :nohlsearch<CR><Esc>
-inoremap <C-c> <Esc>
-nnoremap <TAB> :bn<Enter>
-nnoremap <S-TAB> :bN<Enter>
-tnoremap <Esc> <C-\><C-n>
+inoremap <C-c>      <Esc>
+nnoremap <TAB>      :bn<Enter>
+nnoremap <S-TAB>    :bN<Enter>
+tnoremap <Esc>      <C-\><C-n>
+tnoremap <C-w>h     <Cmd>wincmd h<CR>
+tnoremap <C-w>j     <Cmd>wincmd j<CR>
+tnoremap <C-w>k     <Cmd>wincmd k<CR>
+tnoremap <C-w>l     <Cmd>wincmd l<CR>
 " ------------------------------------------------------------------------------
 " コマンド定義
 function! TermHere() abort
   :lcd %:h
-  :terminal
+  :T
 endfunction
+" :T
+" →ウィンドウを分割してターミナルを開く
+command! -nargs=* T split | wincmd j | resize 20 | terminal <args>
 " :TermHere
-" →カレントバッファのディレクトリでterminalを開く
-command TermHere :call TermHere()
+" →カレントバッファのディレクトリ&ウィンドウを分割してターミナルを開く
+command! TermHere :call TermHere()
 " ------------------------------------------------------------------------------
 " カラースキーム
 " colorscheme monokai
