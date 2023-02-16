@@ -14,7 +14,7 @@ nvim/
     ├── toml/             " プラグイン関係
     │   ├── dein.toml
     │   └── dein_lazy.toml
-    ├── coc-settings.json " cocの設定
+    ├── coc-settings.json " coc.nvimの設定
     ├── colors/
     └── pack/
         └── plugins/

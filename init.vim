@@ -84,6 +84,7 @@ command! TermHere :call TermHere()
 " ------------------------------------------------------------------------------
 function! TermHere() abort
   if expand('%') != ''
+    " 無名バッファではない場合にカレントバッファのディレクトリに移動
     :lcd %:h
   endif
   :T
