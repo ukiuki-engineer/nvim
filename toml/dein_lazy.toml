@@ -14,7 +14,7 @@ require'nvim-treesitter.configs'.setup {
     }
   },
   indent = {
-    enable = false
+    enable = true
   },
   ensure_installed = 'all' -- :TSInstall allと同じ
 }
