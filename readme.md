@@ -82,7 +82,7 @@ set sessionoptions=buffers,curdir,tabpages
   - 主にfzfとNERDTreeで行き来する
     - fzf
     ```vim
-    " fzfの操作
+    " 基本的なfzfの操作
     :Files    " ファイル名検索(キーマップ→<C-p>)
     :Buffers  " バッファからファイル名で検索(キーマップ→gb)
     :Rg       " Grep
