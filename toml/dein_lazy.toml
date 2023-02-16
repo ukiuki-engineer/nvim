@@ -26,7 +26,8 @@ hook_source = '''
 " colorscheme base16-woodland
 " colorscheme base16-still-alive
 " colorscheme base16-decaf
-colorscheme base16-atlas
+" colorscheme base16-atlas
+colorscheme base16-spacemacs
 '''
 
 [[plugins]] # git
@@ -265,7 +266,7 @@ repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
 
 [[plugins]] # スニペットのソース類
-# NOTE: coc-snippetsで呼ぶ出して使う
+# NOTE: coc-snippetsで呼び出して使う
 # 個々のcocプラグイン側の補完候補とぶつかって面倒な場合はどちらかをオフにする
 repo = 'honza/vim-snippets'
 on_event = ['BufRead']
