@@ -11,8 +11,8 @@ set autoread              " 編集中のファイルが変更されたら自動�
 " NOTE: 以下二つは重いので入れるか結構迷う。入れたり入れなかったりブレブレ。
 set cursorline cursorcolumn
 set noruler
-" TODO: relativenumberは慣れなければやめる
-set number relativenumber " 行番号
+" NOTE : relativenumberは便利だけど重くなるからいつも悩む
+set number norelativenumber " 行番号
 set list                  " タブや改行を表示
 " タブや改行の表示記号を定義
 " set listchars=tab:»-,trail:-,eol:↓,extends:»,precedes:«,nbsp:%

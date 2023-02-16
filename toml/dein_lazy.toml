@@ -13,7 +13,7 @@ require'nvim-treesitter.configs'.setup {
   indent = {
     enable = false
   },
-  ensure_installed = 'all', -- :TSInstall allと同じ
+  ensure_installed = 'all' -- :TSInstall allと同じ
 }
 '''
 
@@ -142,8 +142,8 @@ vnoremap <C-/>        <Plug>(caw:hatpos:toggle)
 # NOTE: caw.vimではerubyのコメントアウトが効かなかったので、erubyのみcommentaryで対応
 # gccで一行コメントアウト、gcでビジュアルモード選択範囲をコメントアウト
 repo = 'tpope/vim-commentary'
-on_if = 'expand("%") =~ "\.erb"'
-# on_ft = 'eruby'
+on_ft = 'eruby'
+# on_if = 'expand("%") =~ "\.erb"'
 
 [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
 repo = 'ukiuki-engineer/vim-autoclose'
@@ -273,6 +273,7 @@ on_event = ['BufRead']
 [[plugins]] # coc.nvim
 # FIXME: erubyでjavascriptのsnippetsを使いたい(もうruby触ることないけど...)
 # NOTE: coc-bladeは、"b:xxx"と打つと補完候補が出る
+# NOTE: :CocCommand xx.xxで各拡張機能のコマンドを色々呼び出せる
 repo = 'neoclide/coc.nvim'
 on_event = ['BufRead']
 rev = 'release'

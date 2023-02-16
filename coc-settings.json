@@ -1,10 +1,12 @@
 {
-  "diagnostic.virtualText": true,
-  "____comment": "NOTE: codeLensは変更履歴を確認する機能。一旦オフに。",
+  "diagnostic.virtualText": false,
+  "____comment": "NOTE: codeLensは変更履歴を確認する機能。よく分からないので一旦オフに。",
   "codeLens.enable": false,
   "solargraph.completion": true,
   "solargraph.diagnostics": true,
-  "eslint.filetypes": ["javascript", "vue"],
+  "____comment": "NOTE: coc-eslintの動かし方がよく分からないので、tsserverで代用",
+  "tsserver.enable": true,
+  "eslint.enable": false,
   "intelephense": {
     "diagnostics": {
       "undefinedClassConstants": true,
