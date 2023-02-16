@@ -1,4 +1,7 @@
-[[plugins]] # シンタックスハイライト
+[[plugins]] # nvim-treesitter
+# NOTE: デフォルトのシンタックスハイライトは色が少なくて見づらい
+# これを入れるだけであらゆるファイルタイプのシンタックスハイライトが見やすくなる
+# 逆にデフォルトの方が見やすい場合はtreesitterを適宜オフに設定する
 repo = 'nvim-treesitter/nvim-treesitter'
 on_event = ['BufRead']
 lua_source = '''

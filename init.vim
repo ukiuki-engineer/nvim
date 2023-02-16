@@ -31,6 +31,9 @@ set sessionoptions=buffers,curdir,tabpages
 set expandtab             "Tab文字を半角スペースにする
 " インデントは基本的に2
 set shiftwidth=2 tabstop=2 softtabstop=2
+" ------------------------------------------------------------------------------
+" autocmd
+" ------------------------------------------------------------------------------
 " ファイルタイプ、拡張子毎のインデント設定
 augroup UserFileTypeIndent
   autocmd!
