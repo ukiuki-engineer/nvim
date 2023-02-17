@@ -88,3 +88,4 @@ command! TermHere :call MyFunctions#termHere()
 " プラグイン設定
 " ------------------------------------------------------------------------------
 source ~/.config/nvim/plugins.vim
+" test
