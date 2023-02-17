@@ -73,7 +73,7 @@ function! MyPluginSettings#hook_source_vimhelpgenerator()
     \}
 endfunction
 
- " nerdtree
+" nerdtree
 function! MyPluginSettings#hook_add_nerdtree()
   let g:NERDTreeShowHidden = 1 " 隠しファイルを表示
   "1 : ファイル、ディレクトリ両方共ダブルクリックで開く。
