@@ -24,13 +24,10 @@ require'nvim-treesitter.configs'.setup {
 repo = 'RRethy/nvim-base16'
 on_event = ['BufWinEnter']
 hook_source = '''
-" colorscheme base16-ayu-dark
-" colorscheme base16-tender
-" colorscheme base16-woodland
-" colorscheme base16-still-alive
-" colorscheme base16-decaf
-" colorscheme base16-atlas
-colorscheme base16-spacemacs
+call MyPluginSettings#hook_source_base16()
+'''
+hook_post_source = '''
+call MyPluginSettings#hook_post_source_base16()
 '''
 
 [[plugins]] # git
@@ -41,18 +38,14 @@ on_event = ['BufRead']
 repo = 'APZelos/blamer.nvim'
 on_cmd = ['BlamerHide', 'BlamerShow', 'BlamerToggle']
 hook_add = '''
-let g:blamer_date_format = '%Y/%m/%d %H:%M'
-let g:blamer_show_in_visual_modes = 0
-BlamerShow
+call MyPluginSettings#hook_add_blamer()
 '''
 
 [[plugins]] # airline-themes
 repo = 'vim-airline/vim-airline-themes'
 on_event = ['BufWinEnter']
 hook_add = '''
-" let g:airline_theme = 'kalisi'
-let g:airline_theme = 'deus'
-" let g:airline_theme = 'sol'
+call MyPluginSettings#hook_add_airline_themes()
 '''
 
 [[plugins]] # airline
@@ -60,11 +53,7 @@ repo = 'vim-airline/vim-airline'
 on_event = ['BufWinEnter']
 depends =['vim-airline-themes', 'vim-fugitive']
 hook_add = '''
-let g:airline_deus_bg = 'dark'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline_extensions = ['branch', 'tabline']
-let g:airline#extensions#branch#enabled = 1
+call MyPluginSettings#hook_add_airline()
 '''
 
 [[plugins]] # アイコン類
@@ -135,11 +124,8 @@ on_event = ['BufRead']
 [[plugins]] # コメントアウト
 repo = 'tyru/caw.vim'
 on_event = ['BufRead']
-hook_add = '''
-" コメントアウト(ノーマルモード)
-nnoremap <C-/>        <Plug>(caw:hatpos:toggle)
-" コメントアウト(ビジュアルモード)
-vnoremap <C-/>        <Plug>(caw:hatpos:toggle)
+hook_source = '''
+call MyPluginSettings#hook_source_caw()
 '''
 
 [[plugins]] # コメントアウト
@@ -161,29 +147,18 @@ on_ft = ['blade']
 [[plugins]] # カラーコード可視化
 repo = 'norcalli/nvim-colorizer.lua'
 on_ft = ['css', 'html', 'less', 'sass', 'scss', 'stylus', 'vim', 'blade', 'vue', 'eruby', 'toml']
+hook_source = '''
+call MyPluginSettings#hook_source_colorizer()
+'''
 lua_post_source = '''
 require 'colorizer'.setup()
-'''
-hook_source = '''
-augroup Colorizer
-  autocmd!
-  autocmd FileType css,html,less,sass,scss,stylus,vim,blade,vue,eruby,toml ColorizerAttachToBuffer
-  autocmd BufEnter *.css,*.html,*.sass,*.scss,*.vim,*.blade.php,*.vue,*.erb,*.toml ColorizerAttachToBuffer
-augroup END
 '''
 
 [[plugins]] # ヘルプファイル自動生成
 repo = 'LeafCage/vimhelpgenerator'
 on_cmd = ['VimHelpGenerator', 'VimHelpGeneratorVirtual']
-hook_add = '''
-let g:vimhelpgenerator_defaultlanguage = 'ja'
-let g:vimhelpgenerator_version = ''
-let g:vimhelpgenerator_author = 'Author  : ukiuki-engineer'
-let g:vimhelpgenerator_contents = {
-  \ 'contents': 1, 'introduction': 1, 'usage': 1, 'interface': 1,
-  \ 'variables': 1, 'commands': 1, 'key-mappings': 1, 'functions': 1,
-  \ 'setting': 0, 'todo': 1, 'changelog': 0
-  \}
+hook_source = '''
+call MyPluginSettings#hook_source_colorizer()
 '''
 
 [[plugins]] # markdownでtable作成
@@ -209,16 +184,7 @@ on_cmd = [
   'NERDTreeVCS'
 ]
 hook_add = '''
-let g:NERDTreeShowHidden = 1 " 隠しファイルを表示
-"1 : ファイル、ディレクトリ両方共ダブルクリックで開く。
-"2 : ディレクトリのみシングルクリックで開く。
-"3 : ファイル、ディレクトリ両方共シングルクリックで開く。
-let g:NERDTreeMouseMode=3
-" NERDTree表示/非表示切り替え
-nnoremap <C-n>        :NERDTreeToggle<CR>
-" FIXME 無名バッファの時(bufname() == "")は下のmapをしないようにする
-" NERDTreeを開き、現在開いているファイルの場所にジャンプ
-nnoremap              <C-w>t :NERDTreeFind<CR>
+call MyPluginSettings#hook_add_nerdtree()
 '''
 
 [[plugins]] # ファジーファインダー
@@ -259,9 +225,7 @@ on_cmd = [
 ]
 depends = 'junegunn/fzf'
 hook_add = '''
-nnoremap <C-p>        :Files<CR>
-nnoremap gb           :Buffers<CR>
-" Rgはそのまま:Rgで
+call MyPluginSettings#hook_add_fzf()
 '''
 
 [[plugins]] # vimの起動速度を測定
@@ -282,34 +246,9 @@ repo = 'neoclide/coc.nvim'
 on_event = ['BufRead']
 rev = 'release'
 hook_add = '''
-" 拡張機能
-let g:coc_global_extensions = [
-  \ 'coc-word',
-  \ 'coc-sh',
-  \ 'coc-yaml',
-  \ 'coc-json',
-  \ 'coc-docker',
-  \ 'coc-sql',
-  \ 'coc-tsserver',
-  \ 'coc-vetur',
-  \ 'coc-vimlsp',
-  \ 'coc-xml',
-  \ 'coc-html',
-  \ 'coc-css',
-  \ 'coc-cssmodules',
-  \ '@yaegassy/coc-intelephense',
-  \ 'coc-blade',
-  \ 'coc-solargraph',
-  \ 'coc-markdownlint',
-  \ 'coc-eslint',
-  \ 'coc-snippets',
-  \ 'coc-spell-checker',
-\ ]
-" 補完の選択をEnterで決定
-inoremap <expr> <CR>  coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-" 定義ジャンプ
-nnoremap <space>d     <Plug>(coc-definition)
-" 関数とかの情報を表示する
-nnoremap <space>h     :<C-u>call CocAction('doHover')<CR>
-command! -nargs=0 Format :call CocAction('format')
+call MyPluginSettings#hook_add_coc()
 '''
+# FIXME: unusedの色を変える
+# hook_post_source = '''
+# hi! CocFadeOut guibg=#
+# '''

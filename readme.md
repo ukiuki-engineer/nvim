@@ -9,16 +9,19 @@
 割とオーソドックスだと思う、多分...
 ```
 nvim/
-    ├── init.vim          " メインの設定ファイル
-    ├── plugins.vim       " プラグイン関係
-    ├── toml/             " プラグイン関係
-    │   ├── dein.toml
-    │   └── dein_lazy.toml
-    ├── coc-settings.json " coc.nvimの設定
+    ├── init.vim                 " メインの設定ファイル
+    ├── autoload/
+    │   ├── MyFunctions.vim      " 関数
+    │   └── MyPluginSettings.vim " 各プラグインの設定
+    ├── plugins.vim              " プラグイン関係
+    ├── toml/
+    │   ├── dein.toml            " プラグイン(通常ロード)
+    │   └── dein_lazy.toml       " プラグイン(遅延ロード)
+    ├── coc-settings.json        " coc.nvimの設定
     ├── colors/
     └── pack/
         └── plugins/
-            └── start/    " プラグインを作る時にここにシンボリックリンクを貼ってテストしたり
+            └── start/           " プラグインを作る時にここにシンボリックリンクを貼ってテストしたり
 ```
 
 ## キーマップ
