@@ -4,20 +4,8 @@
 # 逆にデフォルトの方が見やすい場合はtreesitterを適宜オフに設定する
 repo = 'nvim-treesitter/nvim-treesitter'
 on_event = ['BufRead']
-lua_source = '''
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,  -- syntax highlightを有効にする
-    disable = {     -- デフォルトの方が見やすい場合は無効に
-      'toml',
-      'css'
-    }
-  },
-  indent = {
-    enable = true
-  },
-  ensure_installed = 'all' -- :TSInstall allと同じ
-}
+hook_source = '''
+call MyPluginSettings#hook_source_treesitter()
 '''
 
 [[plugins]] # colorscheme
@@ -67,15 +55,8 @@ on_event = ['BufRead']
 [[plugins]] # インデント可視化
 repo = 'lukas-reineke/indent-blankline.nvim'
 on_event = ['BufRead']
-lua_source = '''
-vim.opt.list = true
-vim.opt.listchars:append "space:⋅"
-vim.opt.listchars:append "eol:↓"
-
-require("indent_blankline").setup {
-  show_end_of_line = true,
-  space_char_blankline = " ",
-}
+hook_source = '''
+call MyPluginSettings#hook_source_indent_blankline()
 '''
 # -- FIXME: 空行もハイライトされてしまう
 # -- FIXME: ビジュアルモードの選択範囲よりインデントハイライトが優先されてしまう(ビジュアルモードの選択範囲が見えなくなる)

@@ -10,6 +10,25 @@
 "   - .lua
 " - ハイフンはアンダーバーに変更
 " ================================================================================
+" nvim-treesitter
+function! MyPluginSettings#hook_source_treesitter() abort
+lua << EOF
+  require'nvim-treesitter.configs'.setup {
+    highlight = {
+      enable = true,  -- syntax highlightを有効にする
+      disable = {     -- デフォルトの方が見やすい場合は無効に
+        'toml',
+        'css'
+      }
+    },
+    indent = {
+      enable = true
+    },
+    ensure_installed = 'all' -- :TSInstall allと同じ
+  }
+EOF
+endfunction
+
 " nvim-base16
 function! MyPluginSettings#hook_source_base16() abort
   " colorscheme base16-ayu-dark
@@ -43,6 +62,19 @@ function! MyPluginSettings#hook_add_airline()
   let g:airline_extensions = ['branch', 'tabline']
   let g:airline#extensions#branch#enabled = 1
 endfunction
+
+function! MyPluginSettings#hook_source_indent_blankline()
+lua << EOF
+  vim.opt.list = true
+  vim.opt.listchars:append "space:⋅"
+  vim.opt.listchars:append "eol:↓"
+  require("indent_blankline").setup {
+    show_end_of_line = true,
+    space_char_blankline = " "
+  }
+EOF
+endfunction
+
 
 " caw.vim
 function! MyPluginSettings#hook_source_caw()
