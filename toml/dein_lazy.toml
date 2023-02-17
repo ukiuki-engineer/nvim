@@ -8,16 +8,6 @@ hook_source = '''
 call MyPluginSettings#hook_source_treesitter()
 '''
 
-[[plugins]] # colorscheme
-repo = 'RRethy/nvim-base16'
-on_event = ['BufWinEnter']
-hook_source = '''
-call MyPluginSettings#hook_source_base16()
-'''
-hook_post_source = '''
-call MyPluginSettings#hook_post_source_base16()
-'''
-
 [[plugins]] # git
 repo = 'tpope/vim-fugitive'
 on_event = ['BufRead']
@@ -28,25 +18,6 @@ on_cmd = ['BlamerHide', 'BlamerShow', 'BlamerToggle']
 hook_add = '''
 call MyPluginSettings#hook_add_blamer()
 '''
-
-[[plugins]] # airline-themes
-repo = 'vim-airline/vim-airline-themes'
-on_event = ['BufWinEnter']
-hook_add = '''
-call MyPluginSettings#hook_add_airline_themes()
-'''
-
-[[plugins]] # airline
-repo = 'vim-airline/vim-airline'
-on_event = ['BufWinEnter']
-depends =['vim-airline-themes', 'vim-fugitive']
-hook_add = '''
-call MyPluginSettings#hook_add_airline()
-'''
-
-[[plugins]] # アイコン類
-repo = 'ryanoasis/vim-devicons'
-on_event = ['BufWinEnter']
 
 [[plugins]] # editorconfig
 repo = 'editorconfig/editorconfig-vim'
@@ -186,12 +157,8 @@ on_event = ['BufRead']
 # NOTE: coc-bladeは、"b:xxx"と打つと補完候補が出る
 # NOTE: :CocCommand xx.xxで各拡張機能のコマンドを色々呼び出せる
 repo = 'neoclide/coc.nvim'
-on_event = ['BufRead']
 rev = 'release'
+on_event = ['BufRead']
 hook_add = '''
 call MyPluginSettings#hook_add_coc()
 '''
-# FIXME: unusedの色を変える
-# hook_post_source = '''
-# hi! CocFadeOut guibg=#
-# '''

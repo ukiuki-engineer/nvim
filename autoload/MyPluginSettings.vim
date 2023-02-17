@@ -30,7 +30,7 @@ EOF
 endfunction
 
 " nvim-base16
-function! MyPluginSettings#hook_source_base16() abort
+function! MyPluginSettings#hook_add_base16() abort
   " colorscheme base16-ayu-dark
   " colorscheme base16-tender
   " colorscheme base16-woodland
@@ -197,4 +197,6 @@ function! MyPluginSettings#hook_add_coc()
   nnoremap <space>h     :<C-u>call CocAction('doHover')<CR>
   " フォーマッターを呼び出す
   command! -nargs=0 Format :call CocAction('format')
+  " unusedな変数や関数のハイライトの色を変更
+  hi! CocFadeOut guibg=#59626F
 endfunction
