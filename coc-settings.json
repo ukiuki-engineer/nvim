@@ -1,11 +1,13 @@
 {
+  "____comment": "NOTE: :CocLocalConfigを実行すると、カレントディレクトリ/.vim/coc-config.jsonが作成される",
+  "____comment": "このファイルより、ローカルコンフィグの方が優先される",
   "diagnostic.virtualText": false,
   "____comment": "NOTE: codeLensは変更履歴を確認する機能。よく分からないので一旦オフに。",
   "codeLens.enable": false,
   "solargraph.completion": true,
   "solargraph.diagnostics": true,
-  "____comment": "NOTE: coc-eslintの動かし方がよく分からないので、tsserverで代用",
   "tsserver.enable": true,
+  "____comment": "NOTE: eslintを使用する場合は、ローカルのsettings.jsonで設定を上書きしてeslintを有効にする",
   "eslint.enable": false,
   "intelephense": {
     "diagnostics": {
