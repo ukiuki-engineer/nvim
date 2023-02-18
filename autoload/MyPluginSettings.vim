@@ -41,10 +41,18 @@ function! MyPluginSettings#hook_add_base16() abort
 endfunction
 
 " blamer.nvim
+
+function! s:CallBlamerShow(timer) abort
+  BlamerShow
+endfunction
+
 function! MyPluginSettings#hook_add_blamer() abort
   let g:blamer_date_format = '%Y/%m/%d %H:%M'
   let g:blamer_show_in_visual_modes = 0
-  BlamerShow
+  if expand('%') != ''
+    " タイマー遅延
+    call timer_start(500, function("s:CallBlamerShow"))
+  endif
 endfunction
 
 " vim-airline-themes
@@ -55,7 +63,7 @@ function! MyPluginSettings#hook_add_airline_themes() abort
 endfunction
 
 " vim-airline
-function! MyPluginSettings#hook_add_airline()
+function! MyPluginSettings#hook_add_airline() abort
   let g:airline_deus_bg = 'dark'
   let g:airline#extensions#tabline#enabled = 1
   let g:airline_powerline_fonts = 1
@@ -63,7 +71,7 @@ function! MyPluginSettings#hook_add_airline()
   let g:airline#extensions#branch#enabled = 1
 endfunction
 
-function! MyPluginSettings#hook_source_indent_blankline()
+function! MyPluginSettings#hook_source_indent_blankline() abort
 lua << EOF
   vim.opt.list = true
   vim.opt.listchars:append "space:⋅"
@@ -115,7 +123,7 @@ endfunction
 
 
 " caw.vim
-function! MyPluginSettings#hook_source_caw()
+function! MyPluginSettings#hook_source_caw() abort
   " コメントアウト(ノーマルモード)
   nnoremap <C-/>        <Plug>(caw:hatpos:toggle)
   " コメントアウト(ビジュアルモード)
@@ -123,7 +131,7 @@ function! MyPluginSettings#hook_source_caw()
 endfunction
 
 " nvim-colorizer.lua
-function! MyPluginSettings#hook_source_colorizer()
+function! MyPluginSettings#hook_source_colorizer() abort
   augroup Colorizer
     autocmd!
     autocmd FileType css,html,less,sass,scss,stylus,vim,blade,vue,eruby,toml ColorizerAttachToBuffer
@@ -132,7 +140,7 @@ function! MyPluginSettings#hook_source_colorizer()
 endfunction
 
 " vimhelpgenerator
-function! MyPluginSettings#hook_source_vimhelpgenerator()
+function! MyPluginSettings#hook_source_vimhelpgenerator() abort
   let g:vimhelpgenerator_defaultlanguage = 'ja'
   let g:vimhelpgenerator_version = ''
   let g:vimhelpgenerator_author = 'Author  : ukiuki-engineer'
@@ -144,7 +152,7 @@ function! MyPluginSettings#hook_source_vimhelpgenerator()
 endfunction
 
 " nerdtree
-function! MyPluginSettings#hook_add_nerdtree()
+function! MyPluginSettings#hook_add_nerdtree() abort
   let g:NERDTreeShowHidden = 1 " 隠しファイルを表示
   "1 : ファイル、ディレクトリ両方共ダブルクリックで開く。
   "2 : ディレクトリのみシングルクリックで開く。
@@ -158,14 +166,14 @@ function! MyPluginSettings#hook_add_nerdtree()
 endfunction
 
 " fzf.vim
-function! MyPluginSettings#hook_add_fzf()
+function! MyPluginSettings#hook_add_fzf() abort
   nnoremap <C-p>        :Files<CR>
   nnoremap gb           :Buffers<CR>
   " NOTE: Rgはそのまま:Rgで
 endfunction
 
 " coc.nvim
-function! MyPluginSettings#hook_add_coc()
+function! MyPluginSettings#hook_add_coc() abort
   " coc-extensions
   let g:coc_global_extensions = [
     \ 'coc-word',

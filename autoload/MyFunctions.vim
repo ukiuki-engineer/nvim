@@ -10,3 +10,9 @@ function! MyFunctions#termHere() abort
   T
 endfunction
 
+" 標準プラグイン読み込み
+function! MyFunctions#Packadd(timer) abort
+  unlet g:loaded_matchit
+  unlet g:loaded_matchparen
+  packadd matchit
+endfunction

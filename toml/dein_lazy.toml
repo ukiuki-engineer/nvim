@@ -30,6 +30,14 @@ hook_source = '''
 call MyPluginSettings#hook_source_indent_blankline()
 '''
 
+[[plugins]] # 対のカッコをハイライト
+repo = 'itchyny/vim-parenmatch'
+on_event = ['BufRead']
+hook_add = '''
+" NOTE: 標準プラグインのmatchparenを無効化
+let g:loaded_matchparen = 1
+'''
+
 [[plugins]] # 行内ジャンプ用にハイライトしてくれるやつ
 # TODO しばらく試してみていらなかったら消す
 repo = 'unblevable/quick-scope'
