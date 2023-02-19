@@ -34,8 +34,6 @@ nnoremap <C-n>        :NERDTreeToggle<CR>                                  " NER
 nnoremap <C-w>t       :NERDTreeFind<CR>                                    " NERDTreeを開き、現在開いているファイルの場所にジャンプ
 nnoremap <C-p>        :Files<CR>                                           " ファイル名検索(カレントディレクトリ配下)
 nnoremap gb           :Buffers<CR>                                         " ファイル名検索(バッファリスト)
-nnoremap <C-/>        <Plug>(caw:hatpos:toggle)                            " コメントアウト(ノーマルモード)
-vnoremap <C-/>        <Plug>(caw:hatpos:toggle)                            " コメントアウト(ビジュアルモード)
 inoremap <expr> <CR>  coc#pum#visible() ? coc#pum#confirm() : "\<CR>"      " 補完の選択をEnterで決定
 nnoremap <space>d     <Plug>(coc-definition)                               " 定義ジャンプ(※)
 nnoremap <space>h     :<C-u>call CocAction('doHover')<CR>                  " 関数とかの情報を表示する
