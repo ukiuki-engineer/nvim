@@ -13,7 +13,7 @@
 " nvim-treesitter
 function! MyPluginSettings#hook_source_treesitter() abort
 lua << EOF
-  require'nvim-treesitter.configs'.setup {
+  require('nvim-treesitter.configs').setup {
     highlight = {
       enable = true,  -- syntax highlightを有効にする
       disable = {     -- デフォルトの方が見やすい場合は無効に
@@ -35,9 +35,9 @@ function! MyPluginSettings#hook_add_base16() abort
   " colorscheme base16-woodland
   " colorscheme base16-still-alive
   " colorscheme base16-decaf
-  " colorscheme base16-atlas
+  colorscheme base16-atlas
   " colorscheme base16-spacemacs
-  colorscheme base16-tender
+  " colorscheme base16-tender
 endfunction
 
 " blamer.nvim
@@ -132,7 +132,7 @@ endfunction
 
 " nvim-colorizer.lua
 function! MyPluginSettings#hook_source_colorizer() abort
-  augroup Colorizer
+  augroup UserColorizer
     autocmd!
     autocmd FileType css,html,less,sass,scss,stylus,vim,blade,vue,eruby,toml ColorizerAttachToBuffer
     autocmd BufEnter *.css,*.html,*.sass,*.scss,*.vim,*.blade.php,*.vue,*.erb,*.toml ColorizerAttachToBuffer
@@ -205,6 +205,8 @@ function! MyPluginSettings#hook_add_coc() abort
   nnoremap <space>h     :<C-u>call CocAction('doHover')<CR>
   " フォーマッターを呼び出す
   command! -nargs=0 Format :call CocAction('format')
-  " unusedな変数や関数のハイライトの色を変更
-  hi! CocFadeOut guibg=#59626F
+  " ハイライトを変更
+   hi! CocFadeOut ctermfg=7 ctermbg=242 guifg=LightGrey guibg=DarkGrey
+   hi! CocHintSign ctermfg=7 guifg=LightGrey
 endfunction
+
