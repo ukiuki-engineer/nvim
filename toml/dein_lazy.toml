@@ -87,6 +87,10 @@ call MyPluginSettings#hook_source_colorizer()
 repo = 'mattn/vim-maketable'
 on_ft = 'markdown'
 
+[[plugins]] # アイコン類
+repo = 'ryanoasis/vim-devicons'
+on_source = ['airline', 'nerdtree']
+
 [[plugins]] # ファイラー
 repo = 'scrooloose/nerdtree'
 on_cmd = [
