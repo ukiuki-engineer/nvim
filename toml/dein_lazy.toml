@@ -53,7 +53,9 @@ on_event = ['BufRead']
 [[plugins]] # コメントアウト
 repo = 'tpope/vim-commentary'
 on_event = ['BufRead']
-# on_if = 'expand("%") =~ "\.erb"'
+hook_source = '''
+call MyPluginSettings#hook_source_commentary()
+'''
 
 [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
 repo = 'ukiuki-engineer/vim-autoclose'

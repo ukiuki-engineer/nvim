@@ -130,6 +130,15 @@ function! MyPluginSettings#hook_source_caw() abort
   vnoremap <C-/>        <Plug>(caw:hatpos:toggle)
 endfunction
 
+" vim-commentary
+function! MyPluginSettings#hook_source_commentary() abort
+  augroup UserCommentstring
+    autocmd!
+    autocmd FileType php setlocal commentstring=//\ %s
+  augroup END
+endfunction
+
+
 " nvim-colorizer.lua
 function! MyPluginSettings#hook_source_colorizer() abort
   augroup UserColorizer
