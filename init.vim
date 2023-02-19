@@ -80,22 +80,25 @@ command! -nargs=* T split | wincmd j | resize 20 | terminal <args>
 " →カレントバッファのディレクトリ&ウィンドウを分割してターミナルを開く
 command! TermHere :call MyFunctions#termHere()
 " ------------------------------------------------------------------------------
-" 標準プラグインの制御
+" プラグイン管理
 " ------------------------------------------------------------------------------
-let g:loaded_matchit            = 1
-let g:loaded_gzip               = 1
-let g:loaded_man                = 1
+" 標準プラグインの制御
 let g:did_install_default_menus = 1
 let g:did_install_syntax_menu   = 1
 let g:skip_loading_mswin        = 1
+let g:loaded_matchit            = 1
+let g:loaded_gzip               = 1
+let g:loaded_man                = 1
 let g:loaded_tarPlugin          = 1
 let g:loaded_tutor_mode_plugin  = 1
 let g:loaded_zipPlugin          = 1
 let g:loaded_netrwPlugin        = 1
 let g:loaded_remote_plugins     = 1
 let g:did_load_ftplugin         = 1
+let g:loaded_shada_plugin       = 1
+let g:loaded_spellfile_plugin   = 1
+let g:loaded_tarPlugin          = 1
+let g:did_indent_on             = 1
 call timer_start(500, function("MyFunctions#Packadd"))
-" ------------------------------------------------------------------------------
-" プラグイン設定
-" ------------------------------------------------------------------------------
+" 外部プラグイン管理
 source ~/.config/nvim/plugins.vim
