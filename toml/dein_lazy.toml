@@ -93,6 +93,7 @@ on_source = ['airline', 'nerdtree']
 
 [[plugins]] # ファイラー
 repo = 'scrooloose/nerdtree'
+depends = ['ryanoasis/vim-devicons']
 on_cmd = [
   'NERDTree',
   'NERDTree',
