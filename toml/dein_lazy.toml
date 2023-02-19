@@ -43,18 +43,16 @@ let g:loaded_matchparen = 1
 repo = 'unblevable/quick-scope'
 on_event = ['BufRead']
 
-[[plugins]] # コメントアウト
-repo = 'tyru/caw.vim'
-on_event = ['BufRead']
-hook_source = '''
-call MyPluginSettings#hook_source_caw()
-'''
+# [[plugins]] # コメントアウト
+# repo = 'tyru/caw.vim'
+# on_event = []
+# hook_source = '''
+# call MyPluginSettings#hook_source_caw()
+# '''
 
 [[plugins]] # コメントアウト
-# NOTE: caw.vimではerubyのコメントアウトが効かなかったので、erubyのみcommentaryで対応
-# gccで一行コメントアウト、gcでビジュアルモード選択範囲をコメントアウト
 repo = 'tpope/vim-commentary'
-on_ft = 'eruby'
+on_event = ['BufRead']
 # on_if = 'expand("%") =~ "\.erb"'
 
 [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
