@@ -2,7 +2,7 @@
 自分用neovim設定ファイル。  
 まだneovimを使い始めたばかりなので移行は大変でしたが、ある程度整ってきたかな。  
 なるべくシンプルに使えるような設定を目指している。  
-基本的にはMac(iTerm2)で使用、たまにWindowsのWSL(Windows Terminal)で使用。  
+基本的にはMac(iTerm2)で使用。たまにWindowsのWSL(Windows Terminal)で使用。  
 (そろそろlua化したい...)
 
 ## ディレクトリ構成
@@ -30,18 +30,32 @@ nvim/
 そのためプラグインを呼び出すためのマッピングが主で、vimそのもののキーマップは**なるべく**変更しないようにする。  
 どうしてもの場合は仕方ない。
 ```vim
-nnoremap <C-n>        :NERDTreeToggle<CR>                                  " NERDTree表示/非表示切り替え
-nnoremap <C-w>t       :NERDTreeFind<CR>                                    " NERDTreeを開き、現在開いているファイルの場所にジャンプ
-nnoremap <C-p>        :Files<CR>                                           " ファイル名検索(カレントディレクトリ配下)
-nnoremap gb           :Buffers<CR>                                         " ファイル名検索(バッファリスト)
-inoremap <expr> <CR>  coc#pum#visible() ? coc#pum#confirm() : "\<CR>"      " 補完の選択をEnterで決定
-nnoremap <space>d     <Plug>(coc-definition)                               " 定義ジャンプ(※)
-nnoremap <space>h     :<C-u>call CocAction('doHover')<CR>                  " 関数とかの情報を表示する
-nnoremap <Esc><Esc>   :nohlsearch<CR><Esc>                                 " Esc2回で検索結果のハイライトをオフに(多分割とよく使われてる設定)
-inoremap <C-c>        <Esc>
-nnoremap <TAB>        :bn<Enter>                                           " 次のバッファに切り替え
-nnoremap <S-TAB>      :bN<Enter>                                           " 前のバッファに切り替え
-tnoremap <Esc>        <C-\><C-n>                                           " ターミナルモード(:termimal)から```ESC```でノーマルモードにに入る
+nnoremap <Esc><Esc>     :nohlsearch<CR><Esc>                                 " Esc2回で検索結果のハイライトをオフに(多分割とよく使われてる設定)
+inoremap <C-c>          <Esc>
+nnoremap <TAB>          :bn<Enter>                                           " 次のバッファに切り替え
+nnoremap <S-TAB>        :bN<Enter>                                           " 前のバッファに切り替え
+tnoremap <Esc>          <C-\><C-n>                                           " ターミナルモード(:termimal)から```ESC```でノーマルモードにに入る
+tnoremap <C-w>h         <Cmd>wincmd h<CR>                                    " ターミナルモードでもノーマルモードと同じキーバインドでウィンドウの移動をする
+tnoremap <C-w>j         <Cmd>wincmd j<CR>                                    " 同上
+tnoremap <C-w>k         <Cmd>wincmd k<CR>                                    " 同上
+tnoremap <C-w>l         <Cmd>wincmd l<CR>                                    " 同上
+" 以下は各プラグイン用のキーマップ
+nnoremap <C-n>          :NERDTreeToggle<CR>                                  " NERDTree表示/非表示切り替え
+nnoremap <C-w>t         :NERDTreeFind<CR>                                    " NERDTreeを開き、現在開いているファイルの場所にジャンプ
+nnoremap <C-p>          :Files<CR>                                           " ファイル名検索(カレントディレクトリ配下)
+nnoremap gb             :Buffers<CR>                                         " ファイル名検索(バッファリスト)
+inoremap <expr> <CR>    coc#pum#visible() ? coc#pum#confirm() : "\<CR>"      " 補完の選択をEnterで決定
+nnoremap <space>d       <Plug>(coc-definition)                               " 定義ジャンプ(※)
+nnoremap <space>h       :<C-u>call CocAction('doHover')<CR>                  " 関数とかの情報を表示する
+" coc.nvimが表示したウィンドウのスクロール
+nnoremap <nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-j>"
+nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "\<C-k>"
+nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <nowait><expr> <C-i> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1, 1)\<cr>" : "\<Right>"
+inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<cr>" : "\<Left>"
+inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 ```
 ※定義元を画面分割して表示したい場合は、画面分割後ジャンプする  
 　最初はキーマップを定義していたが結局この手順に落ち着いている
@@ -71,12 +85,16 @@ dein.vimを使用。
 →coc.nvimを使用するのに必要
 
 ## session管理
-sessionが壊れないための対策
+ウィンドウ分割やタブを頻繁に使用するため、sessionは超使ってる。  
+定期的にプロジェクトのルートで```:mksession!```してSession.vimを保存する。  
+開く時は```:silent! source Session.vim(or Session.vimのシンボリックリンク)```
+sessionは多少工夫しないとよく壊れる。以下が壊れないための対策。
 - sessionoptionsで、保存する内容を限定する。以下のように設定している。
 ```vim
 set sessionoptions=buffers,curdir,tabpages
 ```
-- NERDTreeやhelpなど、sessionが不安定になりやすいものを閉じた状態で```:mesession!```で保存する
+- NERDTreeやhelpなど、sessionが不安定になりやすいものを閉じた状態で```:mesession!```で保存する  
+(helpは保存しないようにオプションで設定はしているが、念の為)
 
 ## ファイル管理
 - ファイルの行き来
@@ -101,9 +119,12 @@ NERDTreeの機能を使うより```:terminal```で操作した方が楽...
 毎日使いながらちょっとずつチューニングしてきたためそれなりに安定しているかと...  
 htmlのタグに関しては、cocのスニペットを使用することもあるが、ぶつかることなく共存可能。
 
+## LSP
+coc.nvimを使用。
+
 ## NOTE
 - Fonts  
-[Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)を使用。
+[Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)とかHackGenを使用。
 - coc.nvimの拡張機能を探す場所
   - [githubのwiki](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
   - [npm moduleを検索するサイト](https://www.npmjs.com/search?q=keywords%3Acoc.nvim)

@@ -100,5 +100,6 @@ let g:loaded_spellfile_plugin   = 1
 let g:loaded_tarPlugin          = 1
 let g:did_indent_on             = 1
 call timer_start(500, function("MyFunctions#Packadd"))
+
 " 外部プラグイン管理
 source ~/.config/nvim/plugins.vim

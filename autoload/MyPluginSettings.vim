@@ -80,6 +80,7 @@ lua << EOF
     show_end_of_line = true,
     space_char_blankline = " "
   }
+  -- indent-rainbowライクな設定
   -- FIXME: 空行もハイライトされてしまう
   -- FIXME: ビジュアルモードの選択範囲よりインデントハイライトが優先されてしまう(ビジュアルモードの選択範囲が見えなくなる)
   -- vim.opt.termguicolors = true
@@ -223,7 +224,7 @@ function! MyPluginSettings#hook_add_coc() abort
   inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
   inoremap <nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<cr>" : "\<Left>"
   inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  " ハイライトを変更
+  " ハイライト色を変更
   hi! CocFadeOut ctermfg=7 ctermbg=242 guifg=LightGrey guibg=DarkGrey
   hi! CocHintSign ctermfg=7 guifg=LightGrey
 endfunction
