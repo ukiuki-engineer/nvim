@@ -91,6 +91,41 @@ on_ft = 'markdown'
 repo = 'ryanoasis/vim-devicons'
 on_source = ['airline', 'nerdtree']
 
+# [[plugins]]
+# repo = 'folke/noice.nvim'
+# on_event = ['BufRead']
+# depends = ['MunifTanjim/nui.nvim', 'rcarriga/nvim-notify', 'nvim-treesitter/nvim-treesitter']
+# hook_add = '''
+# lua << EOF
+#   require("noice").setup({
+#     lsp = {
+#       -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+#       override = {
+#         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+#         ["vim.lsp.util.stylize_markdown"] = true,
+#         ["cmp.entry.get_documentation"] = true,
+#       },
+#     },
+#     -- you can enable a preset for easier configuration
+#     presets = {
+#       bottom_search = true, -- use a classic bottom cmdline for search
+#       command_palette = true, -- position the cmdline and popupmenu together
+#       long_message_to_split = true, -- long messages will be sent to a split
+#       inc_rename = false, -- enables an input dialog for inc-rename.nvim
+#       lsp_doc_border = false, -- add a border to hover docs and signature help
+#     },
+#   })
+# EOF
+# '''
+
+# [[plugins]]
+# repo = 'MunifTanjim/nui.nvim'
+# on_event = ['BufRead']
+
+# [[plugins]]
+# repo = 'rcarriga/nvim-notify'
+# on_event = ['BufRead']
+
 [[plugins]] # ファイラー
 repo = 'scrooloose/nerdtree'
 depends = ['ryanoasis/vim-devicons']

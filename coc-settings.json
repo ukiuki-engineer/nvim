@@ -2,7 +2,7 @@
   // NOTE: :CocLocalConfigを実行すると、カレントディレクトリ/.vim/coc-config.jsonが作成される
   //        このファイルより、ローカルコンフィグの方が優先される
   "diagnostic.virtualText": false,
-  // NOTE: codeLensは変更履歴を確認する機能。よく分からないので一旦オフに。
+  // NOTE: codeLensはよく分からないので一旦オフに。
   "codeLens.enable": false,
   "solargraph.completion": true,
   "solargraph.diagnostics": true,
