@@ -39,7 +39,8 @@ augroup UserFileTypeIndent
   autocmd!
   " Laravelが4なのでphpは4に
   autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
-  " autocmd BufEnter *.php setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  " env系はシェルスクリプトとして開くとシンタックスハイライトがいい感じになる
+  autocmd BufEnter .env,.env.example setlocal filetype=sh
 augroup END
 " :terminalを常にインサートモードで開く
 augroup UserTerminal
