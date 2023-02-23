@@ -43,7 +43,7 @@ endfunction
 " blamer.nvim
 
 function! s:CallBlamerShow(timer) abort
-  BlamerShow
+  silent BlamerShow
 endfunction
 
 function! MyPluginSettings#hook_add_blamer() abort

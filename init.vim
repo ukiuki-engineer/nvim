@@ -99,7 +99,8 @@ let g:loaded_shada_plugin       = 1
 let g:loaded_spellfile_plugin   = 1
 let g:loaded_tarPlugin          = 1
 let g:did_indent_on             = 1
-call timer_start(500, function("MyFunctions#Packadd"))
+" 標準プラグインの遅延読み込み
+call MyFunctions#LazyLoad()
 
 " 外部プラグイン管理
 source ~/.config/nvim/plugins.vim

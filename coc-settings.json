@@ -22,6 +22,9 @@
     },
     "command": "intelephense",
     "args": ["--stdio"],
+    // "files": {
+      // "associations": ["*.php", "*.phtml", "*.blade.php"]
+    // },
     "filetypes": ["php"],
     "initializationOptions": {
       "storagePath": "/tmp/intelephense"

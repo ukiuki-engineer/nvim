@@ -3,20 +3,31 @@
 # これを入れるだけであらゆるファイルタイプのシンタックスハイライトが見やすくなる
 # 逆にデフォルトの方が見やすい場合はtreesitterを適宜オフに設定する
 repo = 'nvim-treesitter/nvim-treesitter'
-on_event = ['BufRead']
+on_event = ['BufRead', 'InsertEnter', 'FileType']
 hook_source = '''
 call MyPluginSettings#hook_source_treesitter()
 '''
 
-[[plugins]] # git
+[[plugins]] # vimでgitを実行するやつ
+# NOTE: :Git xxでgitコマンドを実行できる
+# TODO: on_cmdにして全コマンドを指定
 repo = 'tpope/vim-fugitive'
 on_event = ['BufRead']
 
 [[plugins]] # VSCodeのGitLens的なやつ
 repo = 'APZelos/blamer.nvim'
+depends = ['tpope/vim-fugitive']
 on_cmd = ['BlamerHide', 'BlamerShow', 'BlamerToggle']
 hook_add = '''
 call MyPluginSettings#hook_add_blamer()
+'''
+
+[[plugins]] # vimから編集中のファイルを素早く実行するやつ
+# FIXME: 実行結果を右ではなく下に小さく表示させたい
+repo = 'thinca/vim-quickrun'
+on_command = ['QuickRun']
+hook_add = '''
+nnoremap <F5> :QuickRun<CR>
 '''
 
 [[plugins]] # editorconfig
@@ -25,14 +36,14 @@ on_event = ['BufRead']
 
 [[plugins]] # インデント可視化
 repo = 'lukas-reineke/indent-blankline.nvim'
-on_event = ['BufRead']
+on_event = ['BufRead', 'InsertEnter']
 hook_source = '''
 call MyPluginSettings#hook_source_indent_blankline()
 '''
 
 [[plugins]] # 対のカッコをハイライト
 repo = 'itchyny/vim-parenmatch'
-on_event = ['BufRead']
+on_event = ['BufRead', 'InsertEnter']
 hook_add = '''
 " NOTE: 標準プラグインのmatchparenを無効化
 let g:loaded_matchparen = 1
@@ -41,7 +52,7 @@ let g:loaded_matchparen = 1
 [[plugins]] # 行内ジャンプ用にハイライトしてくれるやつ
 # TODO しばらく試してみていらなかったら消す
 repo = 'unblevable/quick-scope'
-on_event = ['BufRead']
+on_event = ['BufRead', 'InsertEnter']
 
 # [[plugins]] # コメントアウト
 # repo = 'tyru/caw.vim'
@@ -52,14 +63,14 @@ on_event = ['BufRead']
 
 [[plugins]] # コメントアウト
 repo = 'tpope/vim-commentary'
-on_event = ['BufRead']
+on_event = ['BufRead', 'InsertEnter']
 hook_source = '''
 call MyPluginSettings#hook_source_commentary()
 '''
 
 [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
 repo = 'ukiuki-engineer/vim-autoclose'
-on_event = ['BufRead']
+on_event = ['BufRead', 'InsertEnter']
 
 [[plugins]] # blade
 repo = 'jwalton512/vim-blade'
@@ -198,7 +209,7 @@ on_cmd = ['StartupTime']
 # NOTE: coc-snippetsで呼び出して使う
 # 個々のcocプラグイン側の補完候補とぶつかって面倒な場合はどちらかをオフにする
 repo = 'honza/vim-snippets'
-on_event = ['BufRead']
+on_event = ['BufRead', 'InsertEnter', 'FileType']
 
 [[plugins]] # coc.nvim
 # FIXME: erubyでjavascriptのsnippetsを使いたい(もうruby触ることないけど...)
@@ -208,7 +219,7 @@ on_event = ['BufRead']
 # NOTE: :CocCommand cSpell.addWordToDictionaryでスペルチェックの例外追加
 repo = 'neoclide/coc.nvim'
 rev = 'release'
-on_event = ['BufRead']
+on_event = ['BufRead', 'InsertEnter', 'FileType']
 hook_add = '''
 call MyPluginSettings#hook_add_coc()
 '''
