@@ -25,7 +25,7 @@ call MyPluginSettings#hook_add_blamer()
 [[plugins]] # vimから編集中のファイルを素早く実行するやつ
 # FIXME: 実行結果を右ではなく下に小さく表示させたい
 repo = 'thinca/vim-quickrun'
-on_command = ['QuickRun']
+on_cmd = ['QuickRun']
 hook_add = '''
 nnoremap <F5> :QuickRun<CR>
 '''
