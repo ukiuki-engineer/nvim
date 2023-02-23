@@ -71,6 +71,10 @@ tnoremap <C-w>h     <Cmd>wincmd h<CR>
 tnoremap <C-w>j     <Cmd>wincmd j<CR>
 tnoremap <C-w>k     <Cmd>wincmd k<CR>
 tnoremap <C-w>l     <Cmd>wincmd l<CR>
+tnoremap <C-w>H     <Cmd>wincmd H<CR>
+tnoremap <C-w>J     <Cmd>wincmd J<CR>
+tnoremap <C-w>K     <Cmd>wincmd K<CR>
+tnoremap <C-w>L     <Cmd>wincmd L<CR>
 " ------------------------------------------------------------------------------
 " コマンド定義
 " ------------------------------------------------------------------------------
