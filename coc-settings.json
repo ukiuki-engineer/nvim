@@ -10,6 +10,11 @@
   // NOTE: eslintを使用する場合は、ローカルのsettings.jsonで設定を上書きしてeslintを有効にする
   "eslint.enable": false,
   "intelephense": {
+    // NOTE: intelephense1.9.0 以降だと_ide_helper.phpや_ide_helper_models.phpが上手く効かない
+    // 下記コマンドで古いバージョンの言語サーバーをインストールして、
+    // npm i -g intelephense@1.8.2
+    // 下記のように直接パスを指定する。パスは環境に依存するため、それぞれの環境下で行う。
+    // "intelephense.path": "/opt/homebrew/bin/intelephense",
     "diagnostics": {
       "undefinedClassConstants": true,
       "undefinedConstants": true,

@@ -217,7 +217,7 @@ function! MyPluginSettings#hook_add_coc() abort
   " 関数とかの情報を表示する
   nnoremap <space>h          :<C-u>call CocAction('doHover')<CR>
   " 参照箇所表示
-  nnoremap <silent> <space>r <Plug>(coc-references)
+  nnoremap <space>r          <Plug>(coc-references)
   " ウィンドウのスクロール
   nnoremap <nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-j>"
   nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
