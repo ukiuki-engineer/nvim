@@ -80,45 +80,6 @@ lua << EOF
     show_end_of_line = true,
     space_char_blankline = " "
   }
-  -- indent-rainbowライクな設定
-  -- FIXME: 空行もハイライトされてしまう
-  -- FIXME: ビジュアルモードの選択範囲よりインデントハイライトが優先されてしまう(ビジュアルモードの選択範囲が見えなくなる)
-  -- vim.opt.termguicolors = true
-  -- vim.cmd [[highlight IndentBlanklineIndent1 guibg=#3E1014 gui=nocombine]]
-  -- vim.cmd [[highlight IndentBlanklineIndent2 guibg=#3E3014 gui=nocombine]]
-  -- vim.cmd [[highlight IndentBlanklineIndent3 guibg=#3E4214 gui=nocombine]]
-  -- vim.cmd [[highlight IndentBlanklineIndent4 guibg=#0C2914 gui=nocombine]]
-  -- vim.cmd [[highlight IndentBlanklineIndent5 guibg=#0C4246 gui=nocombine]]
-  -- vim.cmd [[highlight IndentBlanklineIndent6 guibg=#0C1046 gui=nocombine]]
-  -- vim.cmd [[highlight IndentBlanklineIndent7 guibg=#25102D gui=nocombine]]
-  -- vim.opt.listchars:append "space:⋅"
-  -- vim.opt.listchars:append "eol:↓"
-
-  -- require("indent_blankline").setup {
-    -- char = "",
-    -- char_highlight_list = {
-      -- -- "IndentBlanklineIndent1",
-      -- "IndentBlanklineIndent2",
-      -- -- "IndentBlanklineIndent3",
-      -- "IndentBlanklineIndent4",
-      -- -- "IndentBlanklineIndent5",
-      -- "IndentBlanklineIndent6",
-      -- "IndentBlanklineIndent7",
-    -- },
-    -- space_char_highlight_list = {
-      -- -- "IndentBlanklineIndent1",
-      -- "IndentBlanklineIndent2",
-      -- -- "IndentBlanklineIndent3",
-      -- "IndentBlanklineIndent4",
-      -- -- "IndentBlanklineIndent5",
-      -- "IndentBlanklineIndent6",
-      -- "IndentBlanklineIndent7",
-    -- },
-    -- show_trailing_blankline_indent = false,
-    -- show_end_of_line = true,
-    -- space_char_blankline = "",
-    -- space_char_blankline_highlight_list = {},
-  -- }
 EOF
 endfunction
 
