@@ -16,12 +16,14 @@
     // 下記のように直接パスを指定する。パスは環境に依存するため、それぞれの環境下で行う。
     // "intelephense.path": "/opt/homebrew/bin/intelephense",
     "diagnostics": {
+      "enable": true,
       "undefinedClassConstants": true,
       "undefinedConstants": true,
       "undefinedFunctions": true,
       "undefinedMethods": true,
       "undefinedProperties": true,
-      "undefinedTypes": true
+      "undefinedTypes": true,
+      "unusedSymbols": true
     },
     "command": "intelephense",
     "args": ["--stdio"],
