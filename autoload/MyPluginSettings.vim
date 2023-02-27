@@ -32,12 +32,11 @@ endfunction
 " nvim-base16
 function! MyPluginSettings#hook_add_base16() abort
   " colorscheme base16-ayu-dark
-  " colorscheme base16-woodland
-  " colorscheme base16-still-alive
-  " colorscheme base16-decaf
-  colorscheme base16-atlas
+  colorscheme base16-decaf
+  " colorscheme base16-atlas
   " colorscheme base16-spacemacs
-  " colorscheme base16-tender
+  " colorscheme base16-tender " 良いけどコメントが究極的に見づらい
+  " colorscheme base16-da-one-sea
 endfunction
 
 " blamer.nvim
@@ -163,11 +162,11 @@ function! MyPluginSettings#hook_add_coc() abort
     \ '@yaegassy/coc-intelephense',
     \ 'coc-blade',
     \ 'coc-solargraph',
-    \ 'coc-markdownlint',
     \ 'coc-eslint',
     \ 'coc-snippets',
     \ 'coc-spell-checker',
   \ ]
+  " あんま使ってないので外した→'coc-markdownlint'
   " let g:coc_filetype_map = {
   " \ 'blade': 'html',
   " \ }

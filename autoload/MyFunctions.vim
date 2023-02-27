@@ -2,12 +2,18 @@
 " 関数
 " ================================================================================
 " :TermHere用
-function! MyFunctions#termHere() abort
+function! MyFunctions#TermHere(spOrVsp) abort
+  if a:spOrVsp == "sp"      " 水平分割
+    split | wincmd j | resize 20
+  elseif a:spOrVsp == "vsp" " 垂直分割
+    vsplit | wincmd l
+  endif
+  " 無名バッファではない場合にカレントバッファのディレクトリに移動
   if expand('%') != ''
-    " 無名バッファではない場合にカレントバッファのディレクトリに移動
     lcd %:h
   endif
-  T
+  " ターミナルを開く
+  terminal
 endfunction
 
 " ------------------------------------------------------------------------------

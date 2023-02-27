@@ -78,12 +78,14 @@ tnoremap <C-w>L     <Cmd>wincmd L<CR>
 " ------------------------------------------------------------------------------
 " コマンド定義
 " ------------------------------------------------------------------------------
-" :T
+" :Term, :TermV
 " →ウィンドウを分割してターミナルを開く
-command! -nargs=* T split | wincmd j | resize 20 | terminal <args>
-" :TermHere
+command! -nargs=* Term split | wincmd j | resize 20 | terminal <args>
+command! -nargs=* TermV vsplit | wincmd l | terminal <args>
+" :TermHere, :TermHereV
 " →カレントバッファのディレクトリ&ウィンドウを分割してターミナルを開く
-command! TermHere :call MyFunctions#termHere()
+command! TermHere :call MyFunctions#TermHere("sp")
+command! TermHereV :call MyFunctions#TermHere("vsp")
 " ------------------------------------------------------------------------------
 " プラグイン管理
 " ------------------------------------------------------------------------------

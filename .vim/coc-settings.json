@@ -1,8 +1,13 @@
 {
   "cSpell.words": [
+    "autoload",
+    "dein",
     "eruby",
     "intelephense",
     "kalisi",
+    "neovim",
+    "nvim",
+    "solargraph",
     "ukiuki",
     "vetur",
     "yaegassy"

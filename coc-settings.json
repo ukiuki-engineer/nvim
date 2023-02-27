@@ -21,8 +21,6 @@
       "undefinedFunctions": true,
       "undefinedMethods": true,
       "undefinedProperties": true,
-      // NOTE: 下記をtrueとすると、AuthやDBなど、ファサードに対して軒並みエラーが表示される
-      //       use Illuminate\Support\Facades\xxxを記載すると表示されない
       "undefinedTypes": true
     },
     "command": "intelephense",
