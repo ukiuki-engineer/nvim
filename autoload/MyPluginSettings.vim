@@ -37,8 +37,7 @@ function! MyPluginSettings#hook_add_base16() abort
   " colorscheme base16-spacemacs " emacsのテーマ
   " colorscheme base16-tender " 良いけどコメントが究極的に見づらい
   " colorscheme base16-da-one-sea
-  " colorscheme base16-onedark " atomのテーマ
-  colorscheme base16-classic-dark
+  colorscheme base16-onedark " atomのテーマ
 endfunction
 
 " blamer.nvim
