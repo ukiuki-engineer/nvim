@@ -98,6 +98,10 @@ call MyPluginSettings#hook_source_colorizer()
 repo = 'mattn/vim-maketable'
 on_ft = 'markdown'
 
+[[plugins]] # コマンドの実行結果をバッファに読み込んでくれるやつ
+repo = 'numEricL/vim-redirect'
+on_cmd = ['Redirect']
+
 [[plugins]] # アイコン類
 repo = 'ryanoasis/vim-devicons'
 on_source = ['airline', 'nerdtree']
