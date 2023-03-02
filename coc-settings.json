@@ -4,6 +4,7 @@
   "diagnostic.virtualText": false,
   // NOTE: codeLensはよく分からないので一旦オフに。
   "codeLens.enable": false,
+  "html.autoClosingTags": false,
   "solargraph.completion": true,
   "solargraph.diagnostics": true,
   "tsserver.enable": true,
