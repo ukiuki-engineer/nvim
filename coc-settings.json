@@ -35,5 +35,23 @@
     "initializationOptions": {
       "storagePath": "/tmp/intelephense"
     }
-  }
+  },
+  "cSpell.userWords": [
+    "autoclose",
+    "autoclosing",
+    "autoload",
+    "dein",
+    "eruby",
+    "exts",
+    "intelephense",
+    "kalisi",
+    "mkdir",
+    "neovim",
+    "nvim",
+    "quots",
+    "solargraph",
+    "ukiuki",
+    "vetur",
+    "yaegassy"
+  ]
 }
