@@ -28,6 +28,7 @@ repo = 'thinca/vim-quickrun'
 on_cmd = ['QuickRun']
 hook_add = '''
 nnoremap <F5> :QuickRun<CR>
+vnoremap <F5> :QuickRun<CR>
 '''
 
 [[plugins]] # editorconfig
