@@ -27,8 +27,7 @@ call MyPluginSettings#hook_add_blamer()
 repo = 'thinca/vim-quickrun'
 on_cmd = ['QuickRun']
 hook_add = '''
-nnoremap <F5> :QuickRun<CR>
-vnoremap <F5> :QuickRun<CR>
+call MyPluginSettings#hook_add_quickrun()
 '''
 
 [[plugins]] # editorconfig
@@ -71,7 +70,11 @@ call MyPluginSettings#hook_source_commentary()
 
 [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
 repo = 'ukiuki-engineer/vim-autoclose'
+rev = 'develop'
 on_event = ['BufRead', 'InsertEnter']
+hook_add = '''
+call MyPluginSettings#hook_add_autoclose()
+'''
 
 [[plugins]] # blade
 repo = 'jwalton512/vim-blade'

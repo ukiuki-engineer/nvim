@@ -29,6 +29,12 @@ lua << EOF
 EOF
 endfunction
 
+" vim-quickrun
+function! MyPluginSettings#hook_add_quickrun() abort
+  nnoremap <F5> :QuickRun<CR>
+  vnoremap <F5> :QuickRun<CR>
+endfunction
+
 " nvim-base16
 function! MyPluginSettings#hook_add_base16() abort
   " colorscheme base16-ayu-dark
@@ -100,6 +106,13 @@ function! MyPluginSettings#hook_source_commentary() abort
   augroup END
 endfunction
 
+" vim-autoclose
+function! MyPluginSettings#hook_add_autoclose() abort
+  " 補完キャンセル機能をオン
+  let g:autoclose#cancel_completion_enable = 1
+  " 補完キャンセル機能のキーマップ
+  inoremap <expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
+endfunction
 
 " nvim-colorizer.lua
 function! MyPluginSettings#hook_source_colorizer() abort
