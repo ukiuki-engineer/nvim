@@ -50,16 +50,12 @@ let g:loaded_matchparen = 1
 '''
 
 [[plugins]] # 行内ジャンプ用にハイライトしてくれるやつ
-# TODO しばらく試してみていらなかったら消す
 repo = 'unblevable/quick-scope'
 on_event = ['BufRead', 'InsertEnter']
 
-# [[plugins]] # コメントアウト
-# repo = 'tyru/caw.vim'
-# on_event = []
-# hook_source = '''
-# call MyPluginSettings#hook_source_caw()
-# '''
+[[plugins]] # マークを可視化してくれるやつ
+repo = 'kshenoy/vim-signature'
+on_event = ['BufRead', 'InsertEnter']
 
 [[plugins]] # コメントアウト
 repo = 'tpope/vim-commentary'
