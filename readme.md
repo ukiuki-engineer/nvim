@@ -62,13 +62,13 @@ inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(
 <a id="user-command"></a>
 ## 独自定義コマンド
 よく使うけど若干面倒な操作は随時コマンド化する(かも)
-- ```:Term```/```:TermV```  
+- `:Term`/`:TermV`  
 ウィンドウを水平/垂直分割してターミナルを開く。
-- ```:TermHere```/```:TermHereV```  
+- `:TermHere`/`:TermHereV`  
 カレントバッファのディレクトリ&ウィンドウを水平/垂直分割してターミナルを開く  
 いちいちディレクトリ移動してからターミナル開くのが面倒だったため定義した。  
 カレントバッファのディレクトリでファイル操作したい時などに割と便利。
-- ```:Format```  
+- `:Format`  
 coc.nvimのフォーマッター(CocAction('format'))を呼ぶ。
 
 ## プラグイン管理
@@ -80,19 +80,21 @@ dein.vimを使用。
 →fzfのRgを使用するのに必要
 - bat  
 →fzfのプレビューウィンドウをsyntax highlightするのに必要
-- node, npm
+- node, npm  
 →coc.nvimを使用するのに必要
+- [mdr](https://github.com/MichaelMure/mdr)
+→Markdownをプレビューするのに使う(preview-markdown.vim)
 
 ## session管理
 ウィンドウ分割やタブを頻繁に使用するため、sessionは超使ってる。  
-定期的にプロジェクトのルートで```:mksession!```してSession.vimを保存する。  
-開く時は```:silent! source Session.vim(or Session.vimのシンボリックリンク)```
+定期的にプロジェクトのルートで`:mksession!`してSession.vimを保存する。  
+開く時は`:silent! source Session.vim(or Session.vimのシンボリックリンク)`
 sessionは多少工夫しないとよく壊れる。以下が壊れないための対策。
 - sessionoptionsで、保存する内容を限定する。以下のように設定している。
 ```vim
 set sessionoptions=buffers,curdir,tabpages
 ```
-- NERDTreeやhelpなど、sessionが不安定になりやすいものを閉じた状態で```:mesession!```で保存する  
+- NERDTreeやhelpなど、sessionが不安定になりやすいものを閉じた状態で`:mesession!`で保存する  
 (helpは保存しないようにオプションで設定はしているが、念の為)
 
 ## ファイル管理
@@ -106,12 +108,12 @@ set sessionoptions=buffers,curdir,tabpages
     :Rg       " Grep
     ```
     - NERDTree
-    主に```<C-w>t```(:NERDTreeFind)で現在のファイル位置にジャンプしてそこを起点にファイルを探すときくらい  
+    主に`<C-w>t`(:NERDTreeFind)で現在のファイル位置にジャンプしてそこを起点にファイルを探すときくらい  
     後は普通にプロジェクトのルートからディレクトリを辿ったりとか
-  - 定義ジャンプ→```<space>d```
+  - 定義ジャンプ→`<space>d`
 - ファイル作成、リネーム、移動等  
-NERDTreeの機能を使うより```:terminal```で操作した方が楽...  
-大体は[```:TermHere```](#user-command)でカレントバッファのディレクトリでterminalを開き、そこで操作することが多い。これで結構素早く操作できる。
+NERDTreeの機能を使うより`:terminal`で操作した方が楽...  
+大体は[`:TermHere`](#user-command)でカレントバッファのディレクトリでterminalを開き、そこで操作することが多い。これで結構素早く操作できる。
 
 ## カッコ、クォーテーション、htmlの閉じタグ補完
 [自作プラグイン](https://github.com/ukiuki-engineer/vim-autoclose)を使用。  

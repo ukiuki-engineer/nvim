@@ -94,9 +94,14 @@ hook_source = '''
 call MyPluginSettings#hook_source_colorizer()
 '''
 
-[[plugins]] # markdownでtable作成
+[[plugins]] # Markdownでtable作成
 repo = 'mattn/vim-maketable'
-on_ft = 'markdown'
+on_cmd = ['MakeTable', 'UnmakeTable']
+
+[[plugins]] # vim内でMarkdownをプレビューするやつ
+# NOTE: [mdrコマンド](https://github.com/MichaelMure/mdr)をインストールする必要あり
+repo = 'skanehira/preview-markdown.vim'
+on_cmd = ['PreviewMarkdown']
 
 [[plugins]] # コマンドの実行結果をバッファに読み込んでくれるやつ
 repo = 'numEricL/vim-redirect'
