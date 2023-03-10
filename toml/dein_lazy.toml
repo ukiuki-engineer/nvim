@@ -103,6 +103,10 @@ on_cmd = ['MakeTable', 'UnmakeTable']
 repo = 'skanehira/preview-markdown.vim'
 on_cmd = ['PreviewMarkdown']
 
+[[plugins]] # 行番号の左に、gitの状態を表示するやつ
+repo = 'airblade/vim-gitgutter'
+on_event = ['BufRead']
+
 [[plugins]] # コマンドの実行結果をバッファに読み込んでくれるやつ
 repo = 'numEricL/vim-redirect'
 on_cmd = ['Redirect']
@@ -148,7 +152,7 @@ on_source = ['airline', 'nerdtree']
 
 [[plugins]] # ファイラー
 repo = 'scrooloose/nerdtree'
-depends = ['ryanoasis/vim-devicons']
+depends = ['ryanoasis/vim-devicons', 'Xuyuanp/nerdtree-git-plugin']
 on_cmd = [
   'NERDTree',
   'NERDTree',
@@ -168,6 +172,26 @@ on_cmd = [
 hook_add = '''
 call MyPluginSettings#hook_add_nerdtree()
 '''
+
+[[plugins]] # nerdtreeにgitの状態を表示するやつ
+repo = 'Xuyuanp/nerdtree-git-plugin'
+on_event = ['BufRead']
+on_cmd = [
+  'NERDTree',
+  'NERDTree',
+  'NERDTreeCWD',
+  'NERDTreeClose',
+  'NERDTreeFind',
+  'NERDTreeFocus',
+  'NERDTreeFromBookmark',
+  'NERDTreeMirror',
+  'NERDTreeRefreshRoot',
+  'NERDTreeSetting',
+  'NERDTreeShowHidden',
+  'NERDTreeToggle',
+  'NERDTreeToggleVCS',
+  'NERDTreeVCS'
+]
 
 [[plugins]] # ファジーファインダー
 repo = 'junegunn/fzf'

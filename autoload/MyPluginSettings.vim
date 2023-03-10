@@ -201,6 +201,11 @@ function! MyPluginSettings#hook_add_coc() abort
   inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
   inoremap <nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<cr>" : "\<Left>"
   inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  " 指摘箇所へジャンプ
+  try
+    nnoremap <silent> ]c :call CocAction('diagnosticNext')<cr>
+    nnoremap <silent> [c :call CocAction('diagnosticPrevious')<cr>
+  endtry
   " フォーマッターを呼び出す
   command! -nargs=0 Format :call CocAction('format')
   " ハイライト色を変更

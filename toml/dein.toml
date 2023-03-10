@@ -1,5 +1,9 @@
+[[plugins]] # dein.vim
+# NOTE: ここに入れておかないとヘルプタグが追加されない
+repo = 'Shougo/dein.vim'
+
 [[plugins]] # 日本語ドキュメント
- # NOTE: luaのドキュメントを読むには↓
+# NOTE: luaのドキュメントを読むには↓
 # :h nvim-lua-guide.txt
 repo = 'vim-jp/vimdoc-ja'
 
