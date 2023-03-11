@@ -19,15 +19,12 @@ endfunction
 " ------------------------------------------------------------------------------
 " 標準プラグインの遅延読み込み
 " ------------------------------------------------------------------------------
-" FIXME: 無名バッファの時だけタイマーロードを外したい
-"        packadd実行時にvim起動時に中央に出てくるタイトルみたいなやつが消えてしまうため
 function! MyFunctions#LazyLoad() abort
   augroup UserTimerLoad
     autocmd!
-  " FIXME: PackAdd()が呼ばれていないっぽい
-    autocmd InsertEnter,FileType <once> call MyFunctions#PackAdd()
+    execute 'au InsertLeave,FileType * ++once call MyFunctions#PackAdd()'
   augroup END
-  if expand('%') != '' || 1 == 1 " FIXME: 1 == 1は仮。後で消す。
+  if expand('%') != ''
     call timer_start(500, function("s:TimerLoad"))
   endif
 endfunction
@@ -40,4 +37,3 @@ function! MyFunctions#PackAdd() abort
   unlet g:loaded_matchit
   packadd matchit
 endfunction
-
