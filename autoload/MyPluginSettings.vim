@@ -108,6 +108,8 @@ endfunction
 
 " vim-autoclose
 function! MyPluginSettings#hook_add_autoclose() abort
+  let g:autoclose#disable_nextpattern_autoclosing_brackets = []
+  let g:autoclose#disable_nextpattern_autoclosing_quots = []
   " 補完キャンセル機能をオン
   let g:autoclose#cancel_completion_enable = 1
   " 補完キャンセル機能のキーマップ
