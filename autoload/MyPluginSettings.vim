@@ -1,6 +1,6 @@
 " ================================================================================
 " 各プラグインの設定
-" NOTE: 命名規則
+" NOTE: 関数の命名規則
 " - "hookの種類_プラグインの名前"とする
 " - 以下は省略する
 "   - "vim-"
@@ -10,7 +10,9 @@
 "   - ".lua"
 " - ハイフンはアンダーバーに変更
 " ================================================================================
+"
 " nvim-treesitter
+"
 function! MyPluginSettings#hook_source_treesitter() abort
 lua << EOF
   require('nvim-treesitter.configs').setup {
@@ -30,13 +32,17 @@ lua << EOF
 EOF
 endfunction
 
+"
 " vim-quickrun
+"
 function! MyPluginSettings#hook_add_quickrun() abort
   nnoremap <F5> :QuickRun<CR>
   vnoremap <F5> :QuickRun<CR>
 endfunction
 
+"
 " nvim-base16
+"
 function! MyPluginSettings#hook_add_base16() abort
   " colorscheme base16-ayu-dark
   " colorscheme base16-decaf
@@ -47,12 +53,9 @@ function! MyPluginSettings#hook_add_base16() abort
   " colorscheme base16-onedark " atomのテーマ。これもコメントが見づらい...
 endfunction
 
+"
 " blamer.nvim
-
-function! s:CallBlamerShow(timer) abort
-  silent BlamerShow
-endfunction
-
+"
 function! MyPluginSettings#hook_add_blamer() abort
   let g:blamer_date_format = '%Y/%m/%d %H:%M'
   let g:blamer_show_in_visual_modes = 0
@@ -62,14 +65,22 @@ function! MyPluginSettings#hook_add_blamer() abort
   endif
 endfunction
 
+function! s:CallBlamerShow(timer) abort
+  silent BlamerShow
+endfunction
+
+"
 " vim-airline-themes
+"
 function! MyPluginSettings#hook_add_airline_themes() abort
   " let g:airline_theme = 'kalisi'
   " let g:airline_theme = 'sol'
   let g:airline_theme = 'deus'
 endfunction
 
+"
 " vim-airline
+"
 function! MyPluginSettings#hook_add_airline() abort
   let g:airline_deus_bg = 'dark'
   let g:airline_powerline_fonts = 1
@@ -81,6 +92,9 @@ function! MyPluginSettings#hook_add_airline() abort
   let g:airline_extensions = ['branch', 'tabline']
 endfunction
 
+"
+" indent-blankline.nvim
+"
 function! MyPluginSettings#hook_source_indent_blankline() abort
 lua << EOF
   vim.opt.list = true
@@ -94,16 +108,9 @@ lua << EOF
 EOF
 endfunction
 
-
-" caw.vim
-function! MyPluginSettings#hook_source_caw() abort
-  " コメントアウト(ノーマルモード)
-  nnoremap <C-/>        <Plug>(caw:hatpos:toggle)
-  " コメントアウト(ビジュアルモード)
-  vnoremap <C-/>        <Plug>(caw:hatpos:toggle)
-endfunction
-
+"
 " vim-commentary
+"
 function! MyPluginSettings#hook_source_commentary() abort
   augroup UserCommentstring
     autocmd!
@@ -111,18 +118,22 @@ function! MyPluginSettings#hook_source_commentary() abort
   augroup END
 endfunction
 
+"
 " vim-autoclose
+"
 function! MyPluginSettings#hook_add_autoclose() abort
   let g:autoclose#disable_nextpattern_autoclosing_brackets = []
   let g:autoclose#disable_nextpattern_autoclosing_quots = []
   let g:autoclose#autoformat_newline_enable = 0
   " 補完キャンセル機能をオン
   let g:autoclose#cancel_completion_enable = 1
-  " 補完キャンセル機能のキーマップ
+  " <C-c>で補完をキャンセル
   inoremap <expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
 endfunction
 
+"
 " nvim-colorizer.lua
+"
 function! MyPluginSettings#hook_source_colorizer() abort
   augroup UserColorizer
     autocmd!
@@ -131,7 +142,9 @@ function! MyPluginSettings#hook_source_colorizer() abort
   augroup END
 endfunction
 
+"
 " vimhelpgenerator
+"
 function! MyPluginSettings#hook_source_vimhelpgenerator() abort
   let g:vimhelpgenerator_defaultlanguage = 'ja'
   let g:vimhelpgenerator_version = ''
@@ -143,7 +156,9 @@ function! MyPluginSettings#hook_source_vimhelpgenerator() abort
     \}
 endfunction
 
+"
 " nerdtree
+"
 function! MyPluginSettings#hook_add_nerdtree() abort
   let g:NERDTreeShowHidden = 1 " 隠しファイルを表示
   "1 : ファイル、ディレクトリ両方共ダブルクリックで開く。
@@ -157,14 +172,18 @@ function! MyPluginSettings#hook_add_nerdtree() abort
   nnoremap              <C-w>t :NERDTreeFind<CR>
 endfunction
 
+"
 " fzf.vim
+"
 function! MyPluginSettings#hook_add_fzf() abort
   nnoremap <C-p>        :Files<CR>
   nnoremap gb           :Buffers<CR>
   " NOTE: Rgはそのまま:Rgで
 endfunction
 
+"
 " coc.nvim
+"
 function! MyPluginSettings#hook_add_coc() abort
   " coc-extensions
   let g:coc_global_extensions = [
