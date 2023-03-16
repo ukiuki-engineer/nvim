@@ -18,7 +18,8 @@ lua << EOF
       enable = true,  -- syntax highlightを有効にする
       disable = {     -- デフォルトの方が見やすい場合は無効に
         'toml',
-        'css'
+        'css',
+        'sql'
       }
     },
     indent = {
@@ -71,17 +72,21 @@ endfunction
 " vim-airline
 function! MyPluginSettings#hook_add_airline() abort
   let g:airline_deus_bg = 'dark'
-  let g:airline#extensions#tabline#enabled = 1
   let g:airline_powerline_fonts = 1
-  let g:airline_extensions = ['branch', 'tabline']
   let g:airline#extensions#branch#enabled = 1
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#buffer_idx_mode = 1
+  let g:airline#extensions#tabline#show_buffers = 1
+  let g:airline#extensions#tabline#tab_nr_type = 1
+  let g:airline_extensions = ['branch', 'tabline']
 endfunction
 
 function! MyPluginSettings#hook_source_indent_blankline() abort
 lua << EOF
   vim.opt.list = true
   vim.opt.listchars:append "space:⋅"
-  vim.opt.listchars:append "eol:↓"
+  vim.opt.listchars:append "eol:"
+  --- vim.opt.listchars:append "eol:⏎"
   require("indent_blankline").setup {
     show_end_of_line = true,
     space_char_blankline = " "
@@ -110,6 +115,7 @@ endfunction
 function! MyPluginSettings#hook_add_autoclose() abort
   let g:autoclose#disable_nextpattern_autoclosing_brackets = []
   let g:autoclose#disable_nextpattern_autoclosing_quots = []
+  let g:autoclose#autoformat_newline_enable = 0
   " 補完キャンセル機能をオン
   let g:autoclose#cancel_completion_enable = 1
   " 補完キャンセル機能のキーマップ

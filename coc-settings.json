@@ -39,6 +39,7 @@
   "cSpell.userWords": [
     "autoclose",
     "autoclosing",
+    "autoformat",
     "autoload",
     "dein",
     "eruby",
@@ -52,6 +53,7 @@
     "solargraph",
     "ukiuki",
     "vetur",
+    "vimrc",
     "yaegassy"
   ]
 }

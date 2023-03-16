@@ -67,6 +67,7 @@ inoremap <C-c>      <Esc>
 nnoremap <TAB>      :bn<Enter>
 nnoremap <S-TAB>    :bN<Enter>
 tnoremap <Esc>      <C-\><C-n>
+" FIXME: なるべく素vimと同じキーマップにする
 tnoremap <C-w>h     <Cmd>wincmd h<CR>
 tnoremap <C-w>j     <Cmd>wincmd j<CR>
 tnoremap <C-w>k     <Cmd>wincmd k<CR>
