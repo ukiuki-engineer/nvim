@@ -121,7 +121,7 @@ set sessionoptions=buffers,curdir,tabpages
     :Buffers  " バッファからファイル名で検索(キーマップ→gb)
     :Rg       " Grep
     ```
-    - NERDTree
+    - NERDTree  
     主に`<C-w>t`(:NERDTreeFind)で現在のファイル位置にジャンプしてそこを起点にファイルを探すときくらい  
     後は普通にプロジェクトのルートからディレクトリを辿ったりとか
   - 定義ジャンプ→`<space>d`
