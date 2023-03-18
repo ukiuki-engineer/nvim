@@ -2,7 +2,7 @@
 " 関数
 " ================================================================================
 " :TermHere用
-function! MyFunctions#TermHere(spOrVsp) abort
+function! MyFunctions#term_here(spOrVsp) abort
   if a:spOrVsp == "sp"      " 水平分割
     split | wincmd j | resize 20
   elseif a:spOrVsp == "vsp" " 垂直分割
@@ -19,7 +19,7 @@ endfunction
 " ------------------------------------------------------------------------------
 " 標準プラグインの遅延読み込み
 " ------------------------------------------------------------------------------
-function! MyFunctions#LazyLoad() abort
+function! MyFunctions#lazy_load() abort
   augroup UserTimerLoad
     autocmd!
     execute 'au InsertLeave,FileType * ++once call MyFunctions#PackAdd()'

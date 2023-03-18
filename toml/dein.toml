@@ -19,6 +19,7 @@ repo = 'RRethy/nvim-base16'
 hook_add = '''
 call MyPluginSettings#hook_add_base16()
 '''
+
 [[plugins]] # airline-themes
 repo = 'vim-airline/vim-airline-themes'
 hook_add = '''

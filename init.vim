@@ -2,8 +2,6 @@
 " init.vim
 " ================================================================================
 " NOTE: オプション(set xxxとできるもの)をifとかで使いたい場合は&xxxとすれば良い(:h &)
-" FIXME: :terminal周りの設定を別ファイルに切り出して↓みたいな感じで呼ぶ
-" autocmd TermOpen source /path/to/MyTerminla.vim
 " ------------------------------------------------------------------------------
 " 基本的な設定
 " ------------------------------------------------------------------------------
@@ -36,20 +34,15 @@ set shiftwidth=2 tabstop=2 softtabstop=2
 " autocmd
 " ------------------------------------------------------------------------------
 " ファイルタイプ、拡張子毎のインデント設定
-augroup UserFileTypeIndent
+augroup MyFileTypeIndent
   autocmd!
   " Laravelが4なのでphpは4に
   autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
   " env系はシェルスクリプトとして開くとシンタックスハイライトがいい感じになる
   autocmd BufEnter .env,.env.example setlocal filetype=sh
 augroup END
-" :terminalを常にインサートモードで開く
-augroup UserTerminal
-  autocmd!
-  autocmd TermOpen * startinsert
-augroup END
 " IME切り替え設定
-augroup UserIME
+augroup MyIME
   autocmd!
   if has('mac') && exepath('im-select') != ""
     " NOTE: macの場合im-selectをインストールしてPATHを通しておく
@@ -67,27 +60,15 @@ nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 inoremap <C-c>      <Esc>
 nnoremap <TAB>      :bn<Enter>
 nnoremap <S-TAB>    :bN<Enter>
-tnoremap <Esc>      <C-\><C-n>
-" FIXME: なるべく素vimと同じキーマップにする
-tnoremap <C-w>h     <Cmd>wincmd h<CR>
-tnoremap <C-w>j     <Cmd>wincmd j<CR>
-tnoremap <C-w>k     <Cmd>wincmd k<CR>
-tnoremap <C-w>l     <Cmd>wincmd l<CR>
-tnoremap <C-w>H     <Cmd>wincmd H<CR>
-tnoremap <C-w>J     <Cmd>wincmd J<CR>
-tnoremap <C-w>K     <Cmd>wincmd K<CR>
-tnoremap <C-w>L     <Cmd>wincmd L<CR>
 " ------------------------------------------------------------------------------
-" コマンド定義
+" :terminal設定の読み込み
 " ------------------------------------------------------------------------------
-" :Term, :TermV
-" →ウィンドウを分割してターミナルを開く
-command! -nargs=* Term split | wincmd j | resize 20 | terminal <args>
-command! -nargs=* TermV vsplit | wincmd l | terminal <args>
-" :TermHere, :TermHereV
-" →カレントバッファのディレクトリ&ウィンドウを分割してターミナルを開く
-command! TermHere :call MyFunctions#TermHere("sp")
-command! TermHereV :call MyFunctions#TermHere("vsp")
+augroup LoadMyTerminalSettings
+  autocmd!
+  autocmd TermOpen * ++once source ~/.config/nvim/rc/MyTerminal.vim
+  " FIXME: MyTerminal.vimを読み込む前に、以下のコマンドのタブ補完が効くようにしたい
+  autocmd CmdUndefined Term,TermV,TermHere,TermHereV ++once source ~/.config/nvim/rc/MyTerminal.vim
+augroup END
 " ------------------------------------------------------------------------------
 " プラグイン管理
 " ------------------------------------------------------------------------------
@@ -109,7 +90,8 @@ let g:loaded_spellfile_plugin   = 1
 let g:loaded_tarPlugin          = 1
 let g:did_indent_on             = 1
 " 標準プラグインの遅延読み込み
-call MyFunctions#LazyLoad()
+call MyFunctions#lazy_load()
 
 " 外部プラグイン管理
+" FIXME: 相対パスで書けないのか？
 source ~/.config/nvim/plugins.vim

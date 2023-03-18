@@ -1,0 +1,33 @@
+" ------------------------------------------------------------------------------
+" autocmd
+" ------------------------------------------------------------------------------
+augroup MyTerminal
+  autocmd!
+  " 常にインサートモードで開く
+  autocmd TermOpen * startinsert
+augroup END
+" ------------------------------------------------------------------------------
+" キーマッピング
+" ------------------------------------------------------------------------------
+" FIXME: なるべく素vimと同じキーマップにする
+tnoremap <Esc>      <C-\><C-n>
+tnoremap <C-w>N     <C-\><C-n>
+tnoremap <C-w>h     <Cmd>wincmd h<CR>
+tnoremap <C-w>j     <Cmd>wincmd j<CR>
+tnoremap <C-w>k     <Cmd>wincmd k<CR>
+tnoremap <C-w>l     <Cmd>wincmd l<CR>
+tnoremap <C-w>H     <Cmd>wincmd H<CR>
+tnoremap <C-w>J     <Cmd>wincmd J<CR>
+tnoremap <C-w>K     <Cmd>wincmd K<CR>
+tnoremap <C-w>L     <Cmd>wincmd L<CR>
+" ------------------------------------------------------------------------------
+" コマンド定義
+" ------------------------------------------------------------------------------
+" :Term, :TermV
+" →ウィンドウを分割してターミナルを開く
+command! -nargs=* Term split | wincmd j | resize 20 | terminal <args>
+command! -nargs=* TermV vsplit | wincmd l | terminal <args>
+" :TermHere, :TermHereV
+" →カレントバッファのディレクトリ&ウィンドウを分割してターミナルを開く
+command! TermHere :call vimrc#term_here("sp")
+command! TermHereV :call vimrc#term_here("vsp")
