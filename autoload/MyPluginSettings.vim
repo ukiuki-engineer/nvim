@@ -160,7 +160,8 @@ endfunction
 " nerdtree
 "
 function! MyPluginSettings#hook_add_nerdtree() abort
-  let g:NERDTreeShowHidden = 1 " 隠しファイルを表示
+  " 隠しファイルを表示
+  let g:NERDTreeShowHidden = 1
   "1 : ファイル、ディレクトリ両方共ダブルクリックで開く。
   "2 : ディレクトリのみシングルクリックで開く。
   "3 : ファイル、ディレクトリ両方共シングルクリックで開く。

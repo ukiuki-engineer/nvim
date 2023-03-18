@@ -1,6 +1,6 @@
 # My NeoVim Settings
 自分用NeoVim設定ファイル。  
-まだNeoVimを使い始めたばかりなので移行は大変でしたが、ある程度整ってきたかな。  
+まだNeoVimを使い始めたばかりですが、多分ある程度は整ってきてるのかな...  
 なるべくシンプルに使えるような設定を目指している。  
 基本的にはMac(iTerm2)で使用。たまにWindowsのWSL(Windows Terminal)で使用。  
 

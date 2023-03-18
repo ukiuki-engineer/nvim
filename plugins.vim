@@ -40,5 +40,7 @@ if dein#check_install()
 endif
 " dein設定---ここまで
 
-filetype plugin indent on " ファイル形式別プラグインの有効化
-syntax enable             " シンタックスハイライトの有効化
+" ファイル形式別プラグインの有効化
+filetype plugin indent on
+" シンタックスハイライトの有効化
+syntax enable

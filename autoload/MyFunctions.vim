@@ -3,9 +3,11 @@
 " ================================================================================
 " :TermHere用
 function! MyFunctions#term_here(spOrVsp) abort
-  if a:spOrVsp == "sp"      " 水平分割
+  " 水平分割
+  if a:spOrVsp == "sp"
     split | wincmd j | resize 20
-  elseif a:spOrVsp == "vsp" " 垂直分割
+  " 垂直分割
+  elseif a:spOrVsp == "vsp"
     vsplit | wincmd l
   endif
   " 無名バッファではない場合にカレントバッファのディレクトリに移動
