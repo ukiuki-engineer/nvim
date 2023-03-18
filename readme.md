@@ -8,7 +8,7 @@
 割とオーソドックスだと思う、多分...
 ```
 nvim/
-    ├── init.vim                 " メインの設定ファイル
+    ├── init.vim                 " メイン
     ├── autoload/
     │   ├── MyFunctions.vim      " 関数
     │   └── MyPluginSettings.vim " 各プラグインの設定
@@ -16,6 +16,8 @@ nvim/
     ├── toml/
     │   ├── dein.toml            " プラグイン(通常ロード)
     │   └── dein_lazy.toml       " プラグイン(遅延ロード)
+    ├── rc/
+    │   └── MyTerminal.vim       " :terminal周りの設定
     ├── coc-settings.json        " coc.nvimの設定
     ├── colors/
     └── pack/
@@ -30,15 +32,23 @@ nvim/
 どうしてもの場合は仕方ない。
 ```vim
 nnoremap <Esc><Esc>     :nohlsearch<CR><Esc>                                 " Esc2回で検索結果のハイライトをオフに(多分割とよく使われてる設定)
-inoremap <C-c>          <Esc>
+" inoremap <C-c>          <Esc>
 nnoremap <TAB>          :bn<Enter>                                           " 次のバッファに切り替え
 nnoremap <S-TAB>        :bN<Enter>                                           " 前のバッファに切り替え
-tnoremap <Esc>          <C-\><C-n>                                           " ターミナルモード(:termimal)から```ESC```でノーマルモードにに入る
-tnoremap <C-w>h         <Cmd>wincmd h<CR>                                    " ターミナルモードでもノーマルモードと同じキーバインドでウィンドウの移動をする
-tnoremap <C-w>j         <Cmd>wincmd j<CR>                                    " 同上
-tnoremap <C-w>k         <Cmd>wincmd k<CR>                                    " 同上
-tnoremap <C-w>l         <Cmd>wincmd l<CR>                                    " 同上
+" ターミナルモードのキーマップ(なるべく素vimと同じキーマップに)
+tnoremap <C-w>N     <C-\><C-n>
+tnoremap <C-w>h     <Cmd>wincmd h<CR>
+tnoremap <C-w>j     <Cmd>wincmd j<CR>
+tnoremap <C-w>k     <Cmd>wincmd k<CR>
+tnoremap <C-w>l     <Cmd>wincmd l<CR>
+tnoremap <C-w>H     <Cmd>wincmd H<CR>
+tnoremap <C-w>J     <Cmd>wincmd J<CR>
+tnoremap <C-w>K     <Cmd>wincmd K<CR>
+tnoremap <C-w>L     <Cmd>wincmd L<CR>
 " 以下は各プラグイン用のキーマップ
+nnoremap <F5> :QuickRun<CR>
+vnoremap <F5> :QuickRun<CR>
+inoremap <expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
 nnoremap <C-n>          :NERDTreeToggle<CR>                                  " NERDTree表示/非表示切り替え
 nnoremap <C-w>t         :NERDTreeFind<CR>                                    " NERDTreeを開き、現在開いているファイルの場所にジャンプ
 nnoremap <C-p>          :Files<CR>                                           " ファイル名検索(カレントディレクトリ配下)
@@ -46,6 +56,7 @@ nnoremap gb             :Buffers<CR>                                         " �
 inoremap <expr> <CR>    coc#pum#visible() ? coc#pum#confirm() : "\<CR>"      " 補完の選択をEnterで決定
 nnoremap <space>d       <Plug>(coc-definition)                               " 定義ジャンプ(※)
 nnoremap <space>h       :<C-u>call CocAction('doHover')<CR>                  " 関数とかの情報を表示する
+nnoremap <space>r          <Plug>(coc-references)                            " 参照箇所を表示
 " coc.nvimが表示したウィンドウのスクロール
 nnoremap <nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-j>"
 nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
@@ -55,6 +66,8 @@ inoremap <nowait><expr> <C-i> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(
 inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
 inoremap <nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<cr>" : "\<Left>"
 inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+nnoremap <silent> ]c :call CocAction('diagnosticNext')<cr>
+nnoremap <silent> [c :call CocAction('diagnosticPrevious')<cr>
 ```
 ※定義元を画面分割して表示したい場合は、画面分割後ジャンプする  
 　最初はキーマップを定義していたが結局この手順に落ち着いている
@@ -111,6 +124,7 @@ set sessionoptions=buffers,curdir,tabpages
     主に`<C-w>t`(:NERDTreeFind)で現在のファイル位置にジャンプしてそこを起点にファイルを探すときくらい  
     後は普通にプロジェクトのルートからディレクトリを辿ったりとか
   - 定義ジャンプ→`<space>d`
+  - (たまに)`:terminal`→シェル芸でファイルを探す→`gf`
 - ファイル作成、リネーム、移動等  
 NERDTreeの機能を使うより`:terminal`で操作した方が楽...  
 大体は[`:TermHere`](#user-command)でカレントバッファのディレクトリでterminalを開き、そこで操作することが多い。これで結構素早く操作できる。
