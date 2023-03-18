@@ -7,7 +7,7 @@
 " ------------------------------------------------------------------------------
 " 文字コード
 set enc=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
 set helplang=ja             " ヘルプを日本語化
 set mouse=a                 " マウス有効化
 set autoread                " 編集中のファイルが変更されたら自動で読み直す

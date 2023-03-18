@@ -3,13 +3,13 @@
 " ------------------------------------------------------------------------------
 augroup MyTerminal
   autocmd!
-  " $B>o$K%$%s%5!<%H%b!<%I$G3+$/(B
+  " 常にインサートモードで開く
   autocmd TermOpen * startinsert
 augroup END
 " ------------------------------------------------------------------------------
-" $B%-!<%^%C%T%s%0(B
+" キーマッピング
 " ------------------------------------------------------------------------------
-" $B$J$k$Y$/AG(Bvim$B$HF1$8%-!<%^%C%W$K(B
+" なるべく素vimと同じキーマップに
 tnoremap <C-w>N     <C-\><C-n>
 tnoremap <C-w>h     <Cmd>wincmd h<CR>
 tnoremap <C-w>j     <Cmd>wincmd j<CR>
@@ -20,13 +20,13 @@ tnoremap <C-w>J     <Cmd>wincmd J<CR>
 tnoremap <C-w>K     <Cmd>wincmd K<CR>
 tnoremap <C-w>L     <Cmd>wincmd L<CR>
 " ------------------------------------------------------------------------------
-" $B%3%^%s%IDj5A(B
+" コマンド定義
 " ------------------------------------------------------------------------------
 " :Term, :TermV
-" $B"*%&%#%s%I%&$rJ,3d$7$F%?!<%_%J%k$r3+$/(B
+" →ウィンドウを分割してターミナルを開く
 command! -nargs=* Term split | wincmd j | resize 20 | terminal <args>
 command! -nargs=* TermV vsplit | wincmd l | terminal <args>
 " :TermHere, :TermHereV
-" $B"*%+%l%s%H%P%C%U%!$N%G%#%l%/%H%j(B&$B%&%#%s%I%&$rJ,3d$7$F%?!<%_%J%k$r3+$/(B
+" →カレントバッファのディレクトリ&ウィンドウを分割してターミナルを開く
 command! TermHere :call vimrc#term_here("sp")
 command! TermHereV :call vimrc#term_here("vsp")
