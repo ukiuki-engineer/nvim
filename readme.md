@@ -96,7 +96,7 @@ dein.vimを使用。
 →fzfのプレビューウィンドウをsyntax highlightするのに必要
 - node, npm  
 →coc.nvimを使用するのに必要
-- [mdr](https://github.com/MichaelMure/mdr)
+- [mdr](https://github.com/MichaelMure/mdr)  
 →Markdownをプレビューするのに使う(preview-markdown.vim)
 
 ## session管理
