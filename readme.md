@@ -17,6 +17,7 @@ nvim/
     │   ├── dein.toml            " プラグイン(通常ロード)
     │   └── dein_lazy.toml       " プラグイン(遅延ロード)
     ├── rc/
+    │   ├── MyIME.vim            " IME切り替え設定
     │   └── MyTerminal.vim       " :terminal周りの設定
     ├── coc-settings.json        " coc.nvimの設定
     ├── colors/
