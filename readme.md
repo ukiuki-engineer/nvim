@@ -1,6 +1,7 @@
 # My NeoVim Settings
 自分用NeoVim設定ファイル。  
-まだNeoVimを使い始めたばかりですが、多分ある程度は整ってきてるのかな...  
+まだNeoVimを使い始めたばかりですが、なんとかそれなりに使える環境にはなってきたのかな...  
+もっと色々工夫して良い環境にできたらと。  
 なるべくシンプルに使えるような設定を目指している。  
 基本的にはMac(iTerm2)で使用。たまにWindowsのWSL(Windows Terminal)で使用。  
 
@@ -103,7 +104,7 @@ dein.vimを使用。
 ## session管理
 ウィンドウ分割やタブを頻繁に使用するため、sessionは超使ってる。  
 定期的にプロジェクトのルートで`:mksession!`してSession.vimを保存する。  
-開く時は`:silent! source Session.vim(or Session.vimのシンボリックリンク)`
+開く時は`:silent! source Session.vim(or Session.vimのシンボリックリンク)`  
 sessionは多少工夫しないとよく壊れる。以下が壊れないための対策。
 - sessionoptionsで、保存する内容を限定する。以下のように設定している。
 ```vim
@@ -126,10 +127,12 @@ set sessionoptions=buffers,curdir,tabpages
     主に`<C-w>t`(:NERDTreeFind)で現在のファイル位置にジャンプしてそこを起点にファイルを探すときくらい  
     後は普通にプロジェクトのルートからディレクトリを辿ったりとか
   - 定義ジャンプ→`<space>d`
-  - (たまに)`:terminal`→シェル芸でファイルを探す→`gf`
+  - (たまに)`:terminal`→シェル芸でファイルを探す→`gf`  
+  がっつり検索したい時はシェル芸で探した方が早い
 - ファイル作成、リネーム、移動等  
 NERDTreeの機能を使うより`:terminal`で操作した方が楽...  
-大体は[`:TermHere`](#user-command)でカレントバッファのディレクトリでterminalを開き、そこで操作することが多い。これで結構素早く操作できる。
+大体は[`:TermHere`](#user-command)でカレントバッファのディレクトリでterminalを開き、そこで操作することが多い。これで結構素早く操作できる。  
+リネームくらいだったらNERDTreeの機能を使うこともある。
 
 ## カッコ、クォーテーション、htmlの閉じタグ補完
 [自作プラグイン](https://github.com/ukiuki-engineer/vim-autoclose)を使用。  
