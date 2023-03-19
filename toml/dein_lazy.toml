@@ -203,6 +203,15 @@ call MyPluginSettings#hook_add_fzf()
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
 
+# [[plugins]] # vim内部で日本語入力するためのプラグイン
+# # FIXME: 試しに入れてみたけど、快適な環境にするには色々と設定がいりそう
+# #       時間取れるときにゆっくり設定を作りこむ
+# repo = 'vim-skk/eskk.vim'
+# on_event = ['BufRead', 'InsertEnter']
+# hook_add = '''
+# call MyPluginSettings#hook_add_eskk()
+# '''
+
 [[plugins]] # スニペットのソース類
 # NOTE: coc-snippetsで呼び出して使う
 # 個々のcocプラグイン側の補完候補とぶつかって面倒な場合はどちらかをオフにする

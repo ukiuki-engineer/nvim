@@ -1,3 +1,6 @@
+" ================================================================================
+" :terminal周りの設定
+" ================================================================================
 " ------------------------------------------------------------------------------
 " autocmd
 " ------------------------------------------------------------------------------
@@ -28,5 +31,5 @@ command! -nargs=* Term split | wincmd j | resize 20 | terminal <args>
 command! -nargs=* TermV vsplit | wincmd l | terminal <args>
 " :TermHere, :TermHereV
 " →カレントバッファのディレクトリ&ウィンドウを分割してターミナルを開く
-command! TermHere :call vimrc#term_here("sp")
-command! TermHereV :call vimrc#term_here("vsp")
+command! TermHere :call MyFunctions#term_here("sp")
+command! TermHereV :call MyFunctions#term_here("vsp")

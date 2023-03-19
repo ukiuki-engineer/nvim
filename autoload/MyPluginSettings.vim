@@ -183,6 +183,22 @@ function! MyPluginSettings#hook_add_fzf() abort
 endfunction
 
 "
+" eskk.vim
+" (今は未使用)
+"
+function! MyPluginSettings#hook_add_eskk() abort
+  " 辞書ファイルをダウンロード
+  if !filereadable(expand('~/.config/eskk/SKK-JISYO.L'))
+    call mkdir('~/.config/eskk', 'p')
+    call system('cd ~/.config/eskk/ && wget http://openlab.jp/skk/dic/SKK-JISYO.L.gz && gzip -d SKK-JISYO.L.gz')
+  endif
+  " 辞書ファイルを読み込む設定
+  let g:eskk#directory = "~/.config/eskk"
+  let g:eskk#dictionary = { 'path': "~/.config/eskk/my_jisyo", 'sorted': 1, 'encoding': 'utf-8',}
+  let g:eskk#large_dictionary = {'path': "~/.config/eskk/SKK-JISYO.L", 'sorted': 1, 'encoding': 'euc-jp',}
+endfunction
+
+"
 " coc.nvim
 "
 function! MyPluginSettings#hook_add_coc() abort

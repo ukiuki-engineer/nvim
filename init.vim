@@ -1,7 +1,6 @@
 " ================================================================================
 " init.vim
 " ================================================================================
-" NOTE: オプション(set xxxとできるもの)をifとかで使いたい場合は&xxxとすれば良い(:h &)
 " ------------------------------------------------------------------------------
 " 基本的な設定
 " ------------------------------------------------------------------------------
@@ -45,24 +44,20 @@ set shiftwidth=2 tabstop=2 softtabstop=2
 " ------------------------------------------------------------------------------
 " autocmd
 " ------------------------------------------------------------------------------
-" ファイルタイプ、拡張子毎のインデント設定
-augroup MyFileTypeIndent
+augroup MyVimrc
   autocmd!
   " Laravelが4なのでphpは4に
   autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
+  " env系はシェルスクリプトとして開く
   autocmd BufEnter .env,.env.example setlocal filetype=sh
-augroup END
-" IME切り替え設定
-augroup MyIME
-  autocmd!
-  if has('mac') && exepath('im-select') != ""
-    " NOTE: macの場合im-selectをインストールしてPATHを通しておく
-    autocmd InsertLeave,InsertEnter,BufRead,CmdlineLeave,CmdlineEnter * :call system('im-select com.apple.keylayout.ABC')
-  endif
-  if !has('mac') && exepath('zenhan.exe') != ""
-    " NOTE: windows(WSL)の場合、zenhanをインストールしてPATHを通しておく
-    autocmd InsertLeave,InsertEnter,BufRead,CmdlineLeave,CmdlineEnter * :call system('zenhan.exe 0')
-  endif
+  " IME切り替え設定の読み込み
+  " FIXME: sourceは相対パスで書けないのか？
+  autocmd InsertEnter * ++once source ~/.config/nvim/rc/MyIME.vim
+  " :terminal設定の読み込み1
+  autocmd TermOpen * ++once source ~/.config/nvim/rc/MyTerminal.vim
+  " :terminal設定の読み込み2
+  " FIXME: MyTerminal.vim読み込まないと以下のコマンド補完が効かないのを、なんとかしたい
+  autocmd CmdUndefined Term,TermV,TermHere,TermHereV ++once source ~/.config/nvim/rc/MyTerminal.vim
 augroup END
 " ------------------------------------------------------------------------------
 " キーマッピング
@@ -71,15 +66,6 @@ nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 inoremap <C-c>      <Esc>
 nnoremap <TAB>      :bn<Enter>
 nnoremap <S-TAB>    :bN<Enter>
-" ------------------------------------------------------------------------------
-" :terminal設定の読み込み
-" ------------------------------------------------------------------------------
-augroup LoadMyTerminalSettings
-  autocmd!
-  autocmd TermOpen * ++once source ~/.config/nvim/rc/MyTerminal.vim
-  " FIXME: MyTerminal.vim読み込まないと以下のコマンド補完が効かないのを、なんとかしたい
-  autocmd CmdUndefined Term,TermV,TermHere,TermHereV ++once source ~/.config/nvim/rc/MyTerminal.vim
-augroup END
 " ------------------------------------------------------------------------------
 " プラグイン管理
 " ------------------------------------------------------------------------------
@@ -104,5 +90,4 @@ let g:did_indent_on             = 1
 call MyFunctions#lazy_load()
 
 " 外部プラグイン管理
-" FIXME: 相対パスで書けないのか？
 source ~/.config/nvim/plugins.vim
