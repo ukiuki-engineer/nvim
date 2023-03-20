@@ -33,32 +33,44 @@ nvim/
 そのためプラグインを呼び出すためのマッピングが主で、vimそのもののキーマップは**なるべく**変更しないようにする。  
 どうしてもの場合は仕方ない。
 ```vim
-nnoremap <Esc><Esc>     :nohlsearch<CR><Esc>                                 " Esc2回で検索結果のハイライトをオフに(多分割とよく使われてる設定)
+" Esc2回で検索結果のハイライトをオフに(多分割とよく使われてる設定)
+nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 " inoremap <C-c>          <Esc>
-nnoremap <TAB>          :bn<Enter>                                           " 次のバッファに切り替え
-nnoremap <S-TAB>        :bN<Enter>                                           " 前のバッファに切り替え
+" 次のバッファに切り替え
+nnoremap <TAB> :bn<CR>
+" 前のバッファに切り替え
+nnoremap <S-TAB> :bN<CR>
 " ターミナルモードのキーマップ(なるべく素vimと同じキーマップに)
-tnoremap <C-w>N     <C-\><C-n>
-tnoremap <C-w>h     <Cmd>wincmd h<CR>
-tnoremap <C-w>j     <Cmd>wincmd j<CR>
-tnoremap <C-w>k     <Cmd>wincmd k<CR>
-tnoremap <C-w>l     <Cmd>wincmd l<CR>
-tnoremap <C-w>H     <Cmd>wincmd H<CR>
-tnoremap <C-w>J     <Cmd>wincmd J<CR>
-tnoremap <C-w>K     <Cmd>wincmd K<CR>
-tnoremap <C-w>L     <Cmd>wincmd L<CR>
+tnoremap <C-w>N <C-\><C-n>
+tnoremap <C-w>h <Cmd>wincmd h<CR>
+tnoremap <C-w>j <Cmd>wincmd j<CR>
+tnoremap <C-w>k <Cmd>wincmd k<CR>
+tnoremap <C-w>l <Cmd>wincmd l<CR>
+tnoremap <C-w>H <Cmd>wincmd H<CR>
+tnoremap <C-w>J <Cmd>wincmd J<CR>
+tnoremap <C-w>K <Cmd>wincmd K<CR>
+tnoremap <C-w>L <Cmd>wincmd L<CR>
 " 以下は各プラグイン用のキーマップ
 nnoremap <F5> :QuickRun<CR>
 vnoremap <F5> :QuickRun<CR>
 inoremap <expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
-nnoremap <C-n>          :NERDTreeToggle<CR>                                  " NERDTree表示/非表示切り替え
-nnoremap <C-w>t         :NERDTreeFind<CR>                                    " NERDTreeを開き、現在開いているファイルの場所にジャンプ
-nnoremap <C-p>          :Files<CR>                                           " ファイル名検索(カレントディレクトリ配下)
-nnoremap gb             :Buffers<CR>                                         " ファイル名検索(バッファリスト)
-inoremap <expr> <CR>    coc#pum#visible() ? coc#pum#confirm() : "\<CR>"      " 補完の選択をEnterで決定
-nnoremap <space>d       <Plug>(coc-definition)                               " 定義ジャンプ(※)
-nnoremap <space>h       :<C-u>call CocAction('doHover')<CR>                  " 関数とかの情報を表示する
-nnoremap <space>r          <Plug>(coc-references)                            " 参照箇所を表示
+" NERDTree表示/非表示切り替え
+nnoremap <C-n> :NERDTreeToggle<CR>
+" NERDTreeを開き、現在開いているファイルの場所にジャンプ
+nnoremap <expr> <C-w>t bufname() != "" ? "NERDTreeFind<CR>" : ":NERDTreeFocus<CR>"
+" ファイル名検索(カレントディレクトリ配下)
+nnoremap <C-p> :Files<CR>
+" ファイル名検索(バッファリスト)
+nnoremap gb :Buffers<CR>
+
+" 補完の選択をEnterで決定
+inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+" 定義ジャンプ(※)
+nnoremap <space>d <Plug>(coc-definition)
+" 関数とかの情報を表示する
+nnoremap <space>h :<C-u>call CocAction('doHover')<CR>
+" 参照箇所を表示
+nnoremap <space>r <Plug>(coc-references)
 " coc.nvimが表示したウィンドウのスクロール
 nnoremap <nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-j>"
 nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"

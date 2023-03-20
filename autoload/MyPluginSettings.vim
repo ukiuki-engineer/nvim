@@ -162,23 +162,20 @@ endfunction
 function! MyPluginSettings#hook_add_nerdtree() abort
   " 隠しファイルを表示
   let g:NERDTreeShowHidden = 1
-  "1 : ファイル、ディレクトリ両方共ダブルクリックで開く。
-  "2 : ディレクトリのみシングルクリックで開く。
-  "3 : ファイル、ディレクトリ両方共シングルクリックで開く。
+  " ファイル、ディレクトリ両方共シングルクリックで開く。
   let g:NERDTreeMouseMode=3
   " NERDTree表示/非表示切り替え
-  nnoremap <C-n>        :NERDTreeToggle<CR>
-  " FIXME 無名バッファの時(bufname() == "")は下のmapをしないようにする
+  nnoremap <C-n> :NERDTreeToggle<CR>
   " NERDTreeを開き、現在開いているファイルの場所にジャンプ
-  nnoremap              <C-w>t :NERDTreeFind<CR>
+  nnoremap <expr> <C-w>t bufname() != "" ? "NERDTreeFind<CR>" : ":NERDTreeFocus<CR>"
 endfunction
 
 "
 " fzf.vim
 "
 function! MyPluginSettings#hook_add_fzf() abort
-  nnoremap <C-p>        :Files<CR>
-  nnoremap gb           :Buffers<CR>
+  nnoremap <C-p> :Files<CR>
+  nnoremap gb :Buffers<CR>
   " NOTE: Rgはそのまま:Rgで
 endfunction
 
@@ -224,18 +221,14 @@ function! MyPluginSettings#hook_add_coc() abort
     \ 'coc-snippets',
     \ 'coc-spell-checker',
   \ ]
-  " あんま使ってないので外した→'coc-markdownlint'
-  " let g:coc_filetype_map = {
-  " \ 'blade': 'html',
-  " \ }
   " 補完の選択をEnterで決定
-  inoremap <expr> <CR>  coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+  inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
   " 定義ジャンプ
-  nnoremap <space>d          <Plug>(coc-definition)
+  nnoremap <space>d <Plug>(coc-definition)
   " 関数とかの情報を表示する
-  nnoremap <space>h          :<C-u>call CocAction('doHover')<CR>
+  nnoremap <space>h :<C-u>call CocAction('doHover')<CR>
   " 参照箇所表示
-  nnoremap <space>r          <Plug>(coc-references)
+  nnoremap <space>r <Plug>(coc-references)
   " ウィンドウのスクロール
   nnoremap <nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-j>"
   nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
