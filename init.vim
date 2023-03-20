@@ -36,7 +36,7 @@ set ignorecase
 set smartcase
 " sessionに保存する内容を指定
 set sessionoptions=buffers,curdir,tabpages
-"Tab文字を半角スペースにする
+" Tab文字を半角スペースにする
 set expandtab
 " インデントは基本的に2
 set shiftwidth=2 tabstop=2 softtabstop=2

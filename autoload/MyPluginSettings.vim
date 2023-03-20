@@ -167,7 +167,7 @@ function! MyPluginSettings#hook_add_nerdtree() abort
   " NERDTree表示/非表示切り替え
   nnoremap <C-n> :NERDTreeToggle<CR>
   " NERDTreeを開き、現在開いているファイルの場所にジャンプ
-  nnoremap <expr> <C-w>t bufname() != "" ? "NERDTreeFind<CR>" : ":NERDTreeFocus<CR>"
+  nnoremap <expr> <C-w>t bufname() != "" ? ":NERDTreeFind<CR>" : ":NERDTreeFocus<CR>"
 endfunction
 
 "
