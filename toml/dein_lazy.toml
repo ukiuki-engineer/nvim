@@ -204,8 +204,8 @@ repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
 
 # [[plugins]] # vim内部で日本語入力するためのプラグイン
-# # FIXME: 試しに入れてみたけど、快適な環境にするには色々と設定がいりそう
-# #       時間取れるときにゆっくり設定を作りこむ
+# # FIXME: 試しに入れてみたけど、使いこなすには色々設定がいりそう...
+# #        時間取れるときにゆっくり設定を作りこむ
 # repo = 'vim-skk/eskk.vim'
 # on_event = ['BufRead', 'InsertEnter']
 # hook_add = '''

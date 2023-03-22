@@ -101,12 +101,12 @@ lua << EOF
   vim.opt.list = true
   vim.opt.listchars:append({
     space = "⋅",
-    tab = »-,
-    trail = -,
-    eol = ↲,
-    extends = »,
-    precedes = «,
-    nbsp = %
+    tab = "»-",
+    trail = "-",
+    eol = "↲",
+    extends = "»",
+    precedes = "«",
+    nbsp = "%"
   })
   require("indent_blankline").setup {
     show_end_of_line = true,
@@ -188,18 +188,32 @@ endfunction
 
 "
 " eskk.vim
-" (今は未使用)
+" まだ設定中のため、今は不使用
+" 設定がいい感じになってきたら使いたい
 "
 function! MyPluginSettings#hook_add_eskk() abort
+  " TODO: 変換候補を補完のポップアップに表示するようにする
+  "       ddc.vim使うことになるのかな？
+  "       でもそれだとcoc.nvimの補完とぶつかりそう...
+  " TODO: <S-Space>で<Space>の逆を辿れるようにする
   " 辞書ファイルをダウンロード
   if !filereadable(expand('~/.config/eskk/SKK-JISYO.L'))
     call mkdir('~/.config/eskk', 'p')
-    call system('cd ~/.config/eskk/ && wget http://openlab.jp/skk/dic/SKK-JISYO.L.gz && gzip -d SKK-JISYO.L.gz')
+    let s:output = system('cd ~/.config/eskk/ && wget http://openlab.jp/skk/dic/SKK-JISYO.L.gz && gzip -d SKK-JISYO.L.gz')
+    if v:shell_error
+      " NOTE: wgetがなくてダウンロードされなかった時に何の警告も出なかったので、警告を出すようにする
+      echo "SKK辞書ファイルのダウンロードが正常に行われませんでした"
+      echo s:output
+    endif
   endif
   " 辞書ファイルを読み込む設定
   let g:eskk#directory = "~/.config/eskk"
   let g:eskk#dictionary = { 'path': "~/.config/eskk/my_jisyo", 'sorted': 1, 'encoding': 'utf-8',}
   let g:eskk#large_dictionary = {'path': "~/.config/eskk/SKK-JISYO.L", 'sorted': 1, 'encoding': 'euc-jp',}
+  "補完を有効/無効化
+  let g:eskk#enable_completion = 0
+  "漢字変換を確定しても改行しない。
+  let g:eskk#egg_like_newline = 1
 endfunction
 
 "
