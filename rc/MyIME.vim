@@ -5,7 +5,7 @@
 " いずれeskk.vimなどに乗り換えるかも
 augroup MyIME
   autocmd!
-  " MacOs用
+  " MacOS用
   if has('mac') && exepath('im-select') != ""
     " NOTE: im-selectをインストールしてPATHを通しておく
     autocmd InsertLeave,InsertEnter,BufRead,CmdlineLeave,CmdlineEnter * :call system('im-select com.apple.keylayout.ABC')

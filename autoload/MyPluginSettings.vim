@@ -14,11 +14,12 @@
 " nvim-treesitter
 "
 function! MyPluginSettings#hook_source_treesitter() abort
+" NOTE: lua << EOF〜EOFのインデントを深くするとエラーとなるため注意
 lua << EOF
   require('nvim-treesitter.configs').setup {
     highlight = {
-      enable = true,  -- syntax highlightを有効にする
-      disable = {     -- デフォルトの方が見やすい場合は無効に
+      enable = true,         -- syntax highlightを有効にする
+      disable = {            -- デフォルトの方が見やすい場合は無効に
         'toml',
         'css',
         'sql'
@@ -98,9 +99,15 @@ endfunction
 function! MyPluginSettings#hook_source_indent_blankline() abort
 lua << EOF
   vim.opt.list = true
-  vim.opt.listchars:append "space:⋅"
-  vim.opt.listchars:append "eol:"
-  --- vim.opt.listchars:append "eol:⏎"
+  vim.opt.listchars:append({
+    space = "⋅",
+    tab = »-,
+    trail = -,
+    eol = ↲,
+    extends = »,
+    precedes = «,
+    nbsp = %
+  })
   require("indent_blankline").setup {
     show_end_of_line = true,
     space_char_blankline = " "
