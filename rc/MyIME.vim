@@ -3,6 +3,13 @@
 " ================================================================================
 " 基本的には、外部の実行ファイルを叩いてOS側で切り替えを行う方針
 " いずれeskk.vimなどに乗り換えるかも
+
+" 2重読み込み防止
+if exists('g:vimrc#loaded_my_ime')
+  finish
+endif
+let g:vimrc#loaded_my_ime = 1
+
 augroup MyIME
   autocmd!
   " MacOS用
