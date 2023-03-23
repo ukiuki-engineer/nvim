@@ -18,7 +18,7 @@ augroup MyIME
     autocmd InsertLeave,InsertEnter,BufRead,CmdlineLeave,CmdlineEnter * :call system('im-select com.apple.keylayout.ABC')
   endif
   " WSL用
-  if !has('mac') && exepath('zenhan.exe') != ""
+  if has('linux') && exists('$WSLENV') && exepath('zenhan.exe') != ""
     " NOTE: zenhanをインストールしてPATHを通しておく
     autocmd InsertLeave,InsertEnter,BufRead,CmdlineLeave,CmdlineEnter * :call system('zenhan.exe 0')
   endif
