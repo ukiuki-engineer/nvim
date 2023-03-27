@@ -13,8 +13,7 @@ set helplang=ja
 set mouse=a
 " 編集中のファイルが変更されたら自動で読み直す
 set autoread
-" NOTE: 以下二つは重いので入れるか結構迷う。入れたり入れなかったりブレブレ。
-set cursorline cursorcolumn
+" ルーラーを表示しない
 set noruler
 " 行番号を表示
 set number
@@ -45,6 +44,9 @@ set shiftwidth=2 tabstop=2 softtabstop=2
 " ------------------------------------------------------------------------------
 augroup MyVimrc
   autocmd!
+  " CursorHold時のみカーソル行/列を表示
+  autocmd CursorHold * setlocal cursorline cursorcolumn
+  autocmd CursorMoved * setlocal nocursorline nocursorcolumn
   " Laravelが4なのでphpは4に
   autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
   " env系はシェルスクリプトとして開く
@@ -55,13 +57,14 @@ augroup MyVimrc
   autocmd TermOpen * ++once source ~/.config/nvim/rc/MyTerminal.vim
   " :terminal設定の読み込み2
   " FIXME: MyTerminal.vim読み込まないと以下のコマンド補完が効かないのを、なんとかしたい
+  "        →:terminal設定をプラグイン化してdeinで管理する
   autocmd CmdUndefined Term,TermV,TermHere,TermHereV ++once source ~/.config/nvim/rc/MyTerminal.vim
 augroup END
 " ------------------------------------------------------------------------------
 " キーマッピング
 " ------------------------------------------------------------------------------
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
-inoremap <C-c> <Esc>
+" inoremap <C-c> <Esc>
 nnoremap <TAB> :bn<CR>
 nnoremap <S-TAB> :bN<CR>
 " ------------------------------------------------------------------------------
