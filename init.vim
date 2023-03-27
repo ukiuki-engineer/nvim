@@ -1,6 +1,8 @@
 " ================================================================================
 " init.vim
 " ================================================================================
+let s:vimrc_dir = expand('$HOME/.config/nvim')
+let s:rc_dir    = s:vimrc_dir . '/rc'
 " ------------------------------------------------------------------------------
 " 基本的な設定
 " ------------------------------------------------------------------------------
@@ -52,13 +54,13 @@ augroup MyVimrc
   " env系はシェルスクリプトとして開く
   autocmd BufEnter .env,.env.example setlocal filetype=sh
   " IME切り替え設定の読み込み
-  autocmd InsertEnter * ++once source ~/.config/nvim/rc/MyIME.vim
+  autocmd InsertEnter * ++once execute 'source' . s:rc_dir . '/MyIME.vim'
   " :terminal設定の読み込み1
-  autocmd TermOpen * ++once source ~/.config/nvim/rc/MyTerminal.vim
+  autocmd TermOpen * ++once execute 'source' . s:rc_dir . '/MyTerminal.vim'
   " :terminal設定の読み込み2
   " FIXME: MyTerminal.vim読み込まないと以下のコマンド補完が効かないのを、なんとかしたい
   "        →:terminal設定をプラグイン化してdeinで管理する
-  autocmd CmdUndefined Term,TermV,TermHere,TermHereV ++once source ~/.config/nvim/rc/MyTerminal.vim
+  autocmd CmdUndefined Term,TermV,TermHere,TermHereV ++once execute 'source' . s:rc_dir . '/MyTerminal.vim'
 augroup END
 " ------------------------------------------------------------------------------
 " キーマッピング
@@ -91,4 +93,4 @@ let g:did_indent_on             = 1
 call MyFunctions#lazy_load()
 
 " 外部プラグイン管理
-source ~/.config/nvim/plugins.vim
+execute 'source' . s:vimrc_dir . '/plugins.vim'

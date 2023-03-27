@@ -1,14 +1,14 @@
 " ================================================================================
 " 各プラグインの設定
 " NOTE: 関数の命名規則
-" - "hookの種類_プラグインの名前"とする
+" - "hookの種類_プラグイン名"とする
+" - ハイフンはアンダーバーに変更
 " - 以下は省略する
 "   - "vim-"
 "   - "nvim-"
 "   - ".vim"
 "   - ".nvim"
 "   - ".lua"
-" - ハイフンはアンダーバーに変更
 " ================================================================================
 "
 " nvim-treesitter
@@ -126,11 +126,12 @@ function! MyPluginSettings#hook_source_commentary() abort
 endfunction
 
 "
-" vim-autoclose
+" vim-autoclose(自作)
 "
 function! MyPluginSettings#hook_add_autoclose() abort
   let g:autoclose#disable_nextpattern_autoclosing_brackets = []
   let g:autoclose#disable_nextpattern_autoclosing_quots = []
+  " 改行の整形機能をオフ
   let g:autoclose#autoformat_newline_enable = 0
   " 補完キャンセル機能をオン
   let g:autoclose#cancel_completion_enable = 1
