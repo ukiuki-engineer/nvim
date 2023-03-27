@@ -1,5 +1,7 @@
 " ------------------------------------------------------------------------------
-"
+" deinの設定
+" FIXME: 一旦全部の処理をしっかり追ってみる
+" ------------------------------------------------------------------------------
 let g:dein#lazy_rplugins = 1
 " deinインストール---ここから
 let $CACHE = expand('~/.cache')
@@ -20,7 +22,14 @@ endif
 " deinインストール---ここまで
 
 " dein設定---ここから
-set nocompatible
+
+" dein options
+" let g:dein#install_progress_type = 'floating'
+" let g:dein#enable_notification = v:true
+" let g:dein#auto_recache = v:true
+" let g:dein#lazy_rplugins = v:true
+" let g:dein#install_check_remote_threshold = 24 * 60 * 60
+
 let g:rc_dir = expand('~/.config/nvim')
 let s:dein_base = '~/.cache/dein/'
 let s:dein_src = '~/.cache/dein/repos/github.com/Shougo/dein.vim'
@@ -33,6 +42,7 @@ call dein#begin(s:dein_base)
   call dein#load_toml(s:toml,      {'lazy':0})
   call dein#load_toml(s:lazy_toml, {'lazy':1})
 call dein#end()
+call dein#save_state()
 
 " 不足プラグインの自動インストール
 if dein#check_install()

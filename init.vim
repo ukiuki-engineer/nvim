@@ -50,7 +50,6 @@ augroup MyVimrc
   " env系はシェルスクリプトとして開く
   autocmd BufEnter .env,.env.example setlocal filetype=sh
   " IME切り替え設定の読み込み
-  " FIXME: sourceは相対パスで書けないのか？
   autocmd InsertEnter * ++once source ~/.config/nvim/rc/MyIME.vim
   " :terminal設定の読み込み1
   autocmd TermOpen * ++once source ~/.config/nvim/rc/MyTerminal.vim

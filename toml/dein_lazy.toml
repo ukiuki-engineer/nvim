@@ -91,7 +91,7 @@ require 'colorizer'.setup()
 repo = 'LeafCage/vimhelpgenerator'
 on_cmd = ['VimHelpGenerator', 'VimHelpGeneratorVirtual']
 hook_source = '''
-call MyPluginSettings#hook_source_colorizer()
+call MyPluginSettings#hook_source_vimhelpgenerator()
 '''
 
 [[plugins]] # Markdownでtable作成
