@@ -18,8 +18,8 @@ function! MyPluginSettings#hook_source_treesitter() abort
 lua << EOF
   require('nvim-treesitter.configs').setup {
     highlight = {
-      enable = true,         -- syntax highlightを有効にする
-      disable = {            -- デフォルトの方が見やすい場合は無効に
+      enable = true, -- syntax highlightを有効にする
+      disable = {    -- デフォルトの方が見やすい場合は無効に
         'toml',
         'css',
         'sql'
@@ -255,15 +255,13 @@ function! MyPluginSettings#hook_add_coc() abort
   nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
   nnoremap <nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "\<C-k>"
   nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <nowait><expr> <C-i> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1, 1)\<cr>" : "\<Right>"
-  inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<cr>" : "\<Left>"
-  inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  inoremap <nowait><expr> <C-i> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1, 1)\<CR>" : "\<Right>"
+  inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<CR>" : "\<Right>"
+  inoremap <nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<CR>" : "\<Left>"
+  inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
   " 指摘箇所へジャンプ
-  try
-    nnoremap <silent> ]c :call CocAction('diagnosticNext')<cr>
-    nnoremap <silent> [c :call CocAction('diagnosticPrevious')<cr>
-  endtry
+  nnoremap <silent> ]c :call CocAction('diagnosticNext')<CR>
+  nnoremap <silent> [c :call CocAction('diagnosticPrevious')<CR>
   " フォーマッターを呼び出す
   command! -nargs=0 Format :call CocAction('format')
   " ハイライト色を変更
