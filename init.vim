@@ -1,95 +1,56 @@
 " ================================================================================
 " init.vim
 " ================================================================================
-let s:vimrc_dir = expand('$HOME/.config/nvim')
-let s:rc_dir    = s:vimrc_dir . '/rc'
-" ------------------------------------------------------------------------------
-" 基本的な設定
-" ------------------------------------------------------------------------------
-" 文字コード
-set enc=utf-8
-set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
-" ヘルプを日本語化
-set helplang=ja
-" マウス有効化
-set mouse=a
-" 編集中のファイルが変更されたら自動で読み直す
-set autoread
-" ルーラーを表示しない
-set noruler
-" 行番号を表示
-set number
-" タブや改行を表示
-set list
-" タブや改行の表示記号を定義
-" set listchars=tab:»-,trail:-,eol:↓,extends:»,precedes:«,nbsp:%
-" ヤンクした文字列をクリップボードにコピー
-set clipboard+=unnamed
-" 画面を垂直分割する際に右に開く
-set splitright
-" 画面を水平分割する際に下に開く
-set splitbelow
-" 検索時にファイルの最後まで行っても最初に戻らない
-set nowrapscan
-" 検索時に大文字小文字を無視
-set ignorecase
-" 大文字小文字の両方が含まれている場合は大文字小文字を区別
-set smartcase
-" sessionに保存する内容を指定
-set sessionoptions=buffers,curdir,tabpages
-" Tab文字を半角スペースにする
-set expandtab
-" インデントは基本的に2
-set shiftwidth=2 tabstop=2 softtabstop=2
-" ------------------------------------------------------------------------------
-" autocmd
-" ------------------------------------------------------------------------------
-augroup MyVimrc
-  autocmd!
-  " CursorHold時のみカーソル行/列を表示
-  autocmd CursorHold * call MyFunctions#set_cursor_line_column()
-  " Laravelが4なのでphpは4に
-  autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
-  " env系はシェルスクリプトとして開く
-  autocmd BufEnter .env,.env.example setlocal filetype=sh
-  " IME切り替え設定の読み込み
-  autocmd InsertEnter * ++once execute 'source' . s:rc_dir . '/MyIME.vim'
-  " :terminal設定の読み込み1
-  autocmd TermOpen * ++once execute 'source' . s:rc_dir . '/MyTerminal.vim'
-  " :terminal設定の読み込み2
-  " FIXME: MyTerminal.vim読み込まないと以下のコマンド補完が効かないのを、なんとかしたい
-  "        →:terminal設定をプラグイン化してdeinで管理する
-  autocmd CmdUndefined Term,TermV,TermHere,TermHereV ++once execute 'source' . s:rc_dir . '/MyTerminal.vim'
-augroup END
-" ------------------------------------------------------------------------------
-" キーマッピング
-" ------------------------------------------------------------------------------
-nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
-" inoremap <C-c> <Esc>
-nnoremap <TAB> :bn<CR>
-nnoremap <S-TAB> :bN<CR>
-" ------------------------------------------------------------------------------
-" プラグイン管理
-" ------------------------------------------------------------------------------
-" 標準プラグインの制御
-let g:did_install_default_menus = 1
-let g:did_install_syntax_menu   = 1
-let g:skip_loading_mswin        = 1
-let g:loaded_matchit            = 1
-let g:loaded_gzip               = 1
-let g:loaded_man                = 1
-let g:loaded_tarPlugin          = 1
-let g:loaded_tutor_mode_plugin  = 1
-let g:loaded_zipPlugin          = 1
-let g:loaded_netrwPlugin        = 1
-let g:loaded_remote_plugins     = 1
-let g:did_load_ftplugin         = 1
-let g:loaded_shada_plugin       = 1
-let g:loaded_spellfile_plugin   = 1
-let g:loaded_tarPlugin          = 1
-let g:did_indent_on             = 1
-" 標準プラグインの遅延読み込み
-call MyFunctions#lazy_load()
+"if &compatible
+"  set nocompatible " NeoVimだといらないらしい
+"endif
 
-" 外部プラグイン管理
-execute 'source' . s:vimrc_dir . '/plugins.vim'
+let s:cache         = expand('$HOME/.cache')
+let s:dein_dir      = expand(s:cache . '/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let g:vimrc_dir     = expand('$HOME/.config/nvim')
+let g:rc_dir        = g:vimrc_dir . '/rc'
+let s:toml          = g:vimrc_dir . '/toml/dein.toml'
+let s:lazy_toml     = g:vimrc_dir . '/toml/dein_lazy.toml'
+
+" ~/.cacheが無ければ作成
+if !isdirectory(s:cache)
+  call mkdir(s:cache, 'p')
+endif
+
+" deinのインストール
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+    execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
+
+" dein options
+let g:dein#auto_recache = v:true
+
+" 設定開始
+if dein#load_state(s:dein_dir)
+    " vimrc
+    let g:dein#inline_vimrcs = [g:rc_dir . '/MyVimrc.vim']
+
+    call dein#begin(s:dein_dir)
+
+    " tomlのロード
+    call dein#load_toml(s:toml,      {'lazy':0})
+    call dein#load_toml(s:lazy_toml, {'lazy':1})
+
+    call dein#end()
+    call dein#save_state()
+endif
+
+" 未インストールがあればインストール
+if dein#check_install()
+    call dein#install()
+endif
+
+" ファイル形式別プラグインの有効化
+filetype plugin indent on
+" シンタックスハイライトの有効化
+syntax enable
+
