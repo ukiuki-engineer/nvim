@@ -121,7 +121,7 @@ endfunction
 " vim-commentary
 "
 function! MyPluginSettings#hook_source_commentary() abort
-  augroup UserCommentstring
+  augroup MyCommentstring
     autocmd!
     autocmd FileType php setlocal commentstring=//\ %s
   augroup END
@@ -145,7 +145,7 @@ endfunction
 " nvim-colorizer.lua
 "
 function! MyPluginSettings#hook_source_colorizer() abort
-  augroup UserColorizer
+  augroup MyColorizer
     autocmd!
     autocmd FileType css,html,less,sass,scss,stylus,vim,blade,vue,eruby,toml ColorizerAttachToBuffer
     autocmd BufEnter *.css,*.html,*.sass,*.scss,*.vim,*.blade.php,*.vue,*.erb,*.toml ColorizerAttachToBuffer
