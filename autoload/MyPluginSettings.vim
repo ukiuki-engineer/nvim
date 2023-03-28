@@ -58,7 +58,9 @@ endfunction
 " blamer.nvim
 "
 function! MyPluginSettings#hook_add_blamer() abort
+  " 日時のフォーマット
   let g:blamer_date_format = '%Y/%m/%d %H:%M'
+  " ビジュアルモード時はオフ
   let g:blamer_show_in_visual_modes = 0
   if expand('%') != ''
     " タイマー遅延
@@ -128,7 +130,7 @@ endfunction
 "
 " vim-autoclose(自作)
 "
-function! MyPluginSettings#hook_add_autoclose() abort
+function! MyPluginSettings#hook_source_autoclose() abort
   let g:autoclose#disable_nextpattern_autoclosing_brackets = []
   let g:autoclose#disable_nextpattern_autoclosing_quots = []
   " 改行の整形機能をオフ
@@ -168,12 +170,17 @@ endfunction
 " nerdtree
 "
 function! MyPluginSettings#hook_add_nerdtree() abort
+  " NERDTree表示/非表示切り替え
+  nnoremap <C-n> :NERDTreeToggle<CR>
+  " NERDTreeを開き、現在開いているファイルの場所にジャンプ
+  nnoremap <expr> <C-w>t bufname() != "" ? ":NERDTreeFind<CR>" : ":NERDTreeFocus<CR>"
+endfunction
+
+function! MyPluginSettings#hook_source_nerdtree() abort
   " 隠しファイルを表示
   let g:NERDTreeShowHidden = 1
   " ファイル、ディレクトリ両方共シングルクリックで開く。
   let g:NERDTreeMouseMode=3
-  " NERDTree表示/非表示切り替え
-  nnoremap <C-n> :NERDTreeToggle<CR>
   " NERDTreeを開き、現在開いているファイルの場所にジャンプ
   nnoremap <expr> <C-w>t bufname() != "" ? ":NERDTreeFind<CR>" : ":NERDTreeFocus<CR>"
 endfunction
@@ -220,7 +227,7 @@ endfunction
 "
 " coc.nvim
 "
-function! MyPluginSettings#hook_add_coc() abort
+function! MyPluginSettings#hook_source_coc() abort
   " coc-extensions
   let g:coc_global_extensions = [
     \ 'coc-word',
@@ -266,7 +273,10 @@ function! MyPluginSettings#hook_add_coc() abort
   " フォーマッターを呼び出す
   command! -nargs=0 Format :call CocAction('format')
   " ハイライト色を変更
-  hi! CocFadeOut ctermfg=7 ctermbg=242 guifg=LightGrey guibg=DarkGrey
-  hi! CocHintSign ctermfg=7 guifg=LightGrey
+  augroup MyCocColors
+    autocmd!
+    autocmd ColorScheme * hi! CocFadeOut ctermfg=7 ctermbg=242 guifg=LightGrey guibg=DarkGrey
+    autocmd ColorScheme * hi! CocHintSign ctermfg=7 guifg=LightGrey
+  augroup END
 endfunction
 

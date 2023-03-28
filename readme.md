@@ -12,11 +12,11 @@ nvim/
     ├── autoload/
     │   ├── MyFunctions.vim      " 関数
     │   └── MyPluginSettings.vim " 各プラグインの設定
-    ├── plugins.vim              " プラグイン関係
     ├── toml/
     │   ├── dein.toml            " プラグイン(通常ロード)
     │   └── dein_lazy.toml       " プラグイン(遅延ロード)
     ├── rc/
+    │   ├── MyVimrc.vim          " 基本的な設定とその他の設定の読み込み処理
     │   ├── MyIME.vim            " IME切り替え設定
     │   └── MyTerminal.vim       " :terminal周りの設定
     ├── coc-settings.json        " coc.nvimの設定

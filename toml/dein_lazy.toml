@@ -68,8 +68,8 @@ call MyPluginSettings#hook_source_commentary()
 repo = 'ukiuki-engineer/vim-autoclose'
 rev = 'develop'
 on_event = ['BufRead', 'InsertEnter']
-hook_add = '''
-call MyPluginSettings#hook_add_autoclose()
+hook_source = '''
+call MyPluginSettings#hook_source_autoclose()
 '''
 
 [[plugins]] # blade
@@ -136,6 +136,9 @@ on_cmd = [
 ]
 hook_add = '''
 call MyPluginSettings#hook_add_nerdtree()
+'''
+hook_source = '''
+call MyPluginSettings#hook_source_nerdtree()
 '''
 
 [[plugins]] # nerdtreeにgitの状態を表示するやつ
@@ -232,6 +235,6 @@ on_event = ['BufRead', 'InsertEnter', 'FileType']
 repo = 'neoclide/coc.nvim'
 rev = 'release'
 on_event = ['BufRead', 'InsertEnter', 'FileType']
-hook_add = '''
-call MyPluginSettings#hook_add_coc()
+hook_source = '''
+call MyPluginSettings#hook_source_coc()
 '''
