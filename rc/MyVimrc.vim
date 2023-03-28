@@ -44,12 +44,12 @@ set shiftwidth=2 tabstop=2 softtabstop=2
 " ------------------------------------------------------------------------------
 augroup MyVimrc
   autocmd!
-  " CursorHold時のみカーソル行/列を表示
-  autocmd CursorHold * call MyFunctions#set_cursor_line_column()
   " Laravelが4なのでphpは4に
   autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
   " env系はシェルスクリプトとして開く
   autocmd BufEnter .env,.env.example setlocal filetype=sh
+  " CursorHold時のみカーソル行/列を表示
+  autocmd CursorHold * call MyFunctions#set_cursor_line_column()
   " IME切り替え設定の読み込み
   autocmd InsertEnter * ++once execute 'source' . g:rc_dir . '/MyIME.vim'
   " :terminal設定の読み込み1
