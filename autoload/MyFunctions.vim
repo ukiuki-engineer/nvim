@@ -39,18 +39,18 @@ endfunction
 function! MyFunctions#lazy_load() abort
   augroup UserTimerLoad
     autocmd!
-    execute 'au InsertLeave,FileType * ++once call MyFunctions#packadd()'
+    execute 'au InsertLeave,FileType * ++once call s:packadd()'
   augroup END
   if expand('%') != ''
-    call timer_start(500, function("s:TimerLoad"))
+    call timer_start(500, function("s:timer_load"))
   endif
 endfunction
 
-function! s:TimerLoad(timer) abort
-  call MyFunctions#packadd()
-endfunction
-
-function! MyFunctions#packadd() abort
+function! s:packadd() abort
   unlet g:loaded_matchit
   packadd matchit
+endfunction
+
+function! s:timer_load(timer) abort
+  call s:packadd()
 endfunction
