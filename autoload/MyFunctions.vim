@@ -26,7 +26,7 @@ endfunction
 function! MyFunctions#set_cursor_line_column() abort
   " カーソル行/列を表示
   setlocal cursorline cursorcolumn
-  augroup MycursorLineColumn
+  augroup MyCursorLineColumn
     autocmd!
     " カーソル行/列を非表示
     autocmd WinLeave,CursorMoved <buffer> ++once setlocal nocursorline nocursorcolumn
