@@ -18,6 +18,17 @@ function! MyFunctions#term_here(spOrVsp) abort
   terminal
 endfunction
 
+" カーソル行/列の表示と非表示
+function! MyFunctions#set_cursor_line_column() abort
+  " カーソル行/列を表示
+  setlocal cursorline cursorcolumn
+  augroup MycursorLineColumn
+    autocmd!
+    " カーソルが動いたらカーソル行/列を消す
+    autocmd CursorMoved * ++once setlocal nocursorline nocursorcolumn
+  augroup END
+endfunction
+
 " ------------------------------------------------------------------------------
 " 標準プラグインの遅延読み込み
 " ------------------------------------------------------------------------------
