@@ -227,7 +227,7 @@ endfunction
 "
 " coc.nvim
 "
-function! MyPluginSettings#hook_source_coc() abort
+function! MyPluginSettings#hook_add_coc() abort
   " coc-extensions
   let g:coc_global_extensions = [
     \ 'coc-word',

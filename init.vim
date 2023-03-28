@@ -28,6 +28,7 @@ endif
 
 " dein options
 let g:dein#auto_recache = v:true
+" let g:dein#lazy_rplugins = v:true
 
 " 設定開始
 if dein#load_state(s:dein_dir)

@@ -235,6 +235,6 @@ on_event = ['BufRead', 'InsertEnter', 'FileType']
 repo = 'neoclide/coc.nvim'
 rev = 'release'
 on_event = ['BufRead', 'InsertEnter', 'FileType']
-hook_source = '''
-call MyPluginSettings#hook_source_coc()
+hook_add = '''
+call MyPluginSettings#hook_add_coc()
 '''

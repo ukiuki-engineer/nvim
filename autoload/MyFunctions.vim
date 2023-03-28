@@ -28,8 +28,8 @@ function! MyFunctions#set_cursor_line_column() abort
   setlocal cursorline cursorcolumn
   augroup MycursorLineColumn
     autocmd!
-    " カーソルが動いたらカーソル行/列を消す
-    autocmd CursorMoved * ++once setlocal nocursorline nocursorcolumn
+    " カーソル行/列を非表示
+    autocmd WinLeave,CursorMoved <buffer> ++once setlocal nocursorline nocursorcolumn
   augroup END
 endfunction
 
@@ -37,7 +37,7 @@ endfunction
 " 標準プラグインの遅延読み込み
 "
 function! MyFunctions#lazy_load() abort
-  augroup UserTimerLoad
+  augroup MyTimerLoad
     autocmd!
     execute 'au InsertLeave,FileType * ++once call s:packadd()'
   augroup END
