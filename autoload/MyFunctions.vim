@@ -1,7 +1,9 @@
 " ================================================================================
 " 関数
 " ================================================================================
+"
 " :TermHere用
+"
 function! MyFunctions#term_here(spOrVsp) abort
   " 水平分割
   if a:spOrVsp == "sp"
@@ -18,7 +20,9 @@ function! MyFunctions#term_here(spOrVsp) abort
   terminal
 endfunction
 
+"
 " カーソル行/列の表示と非表示
+"
 function! MyFunctions#set_cursor_line_column() abort
   " カーソル行/列を表示
   setlocal cursorline cursorcolumn
@@ -29,9 +33,9 @@ function! MyFunctions#set_cursor_line_column() abort
   augroup END
 endfunction
 
-" ------------------------------------------------------------------------------
+" 
 " 標準プラグインの遅延読み込み
-" ------------------------------------------------------------------------------
+"
 function! MyFunctions#lazy_load() abort
   augroup UserTimerLoad
     autocmd!
