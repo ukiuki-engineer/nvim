@@ -1,9 +1,10 @@
 " ================================================================================
 " init.vim
 " ================================================================================
-"if &compatible
-"  set nocompatible " NeoVimだといらないらしい
-"endif
+" if &compatible
+"   " NOTE: NeoVimだといらないらしい
+"   set nocompatible 
+" endif
 
 let s:cache         = expand('$HOME/.cache')
 let s:dein_dir      = expand(s:cache . '/dein')
@@ -28,7 +29,10 @@ endif
 
 " dein options
 let g:dein#auto_recache = v:true
-" let g:dein#lazy_rplugins = v:true
+" 一応loading rtp pluginsに結構時間かかってるっぽいからtrueにしてみる
+let g:dein#lazy_rplugins = v:true
+" とりあえずhelpの値を入れてみる...
+let g:dein#install_check_remote_threshold = 24 * 60 * 60
 
 " 設定開始
 if dein#load_state(s:dein_dir)
