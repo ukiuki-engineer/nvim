@@ -18,18 +18,20 @@ augroup MyTerminal
 augroup END
 " ------------------------------------------------------------------------------
 " キーマッピング
+" FIXME: レジスタの内容をどうやって貼り付ける？(pure vimとキーバインドが違う...)
 " ------------------------------------------------------------------------------
-" ノーマルモードへの入り方は素vimと同じキーマップを採用
-tnoremap <C-w>N <C-\><C-n>
-" ノーマルモードを経由しなくても色々操作できるように
-tnoremap <C-w>h <Cmd>wincmd h<CR>
-tnoremap <C-w>j <Cmd>wincmd j<CR>
-tnoremap <C-w>k <Cmd>wincmd k<CR>
-tnoremap <C-w>l <Cmd>wincmd l<CR>
-tnoremap <C-w>H <Cmd>wincmd H<CR>
-tnoremap <C-w>J <Cmd>wincmd J<CR>
-tnoremap <C-w>K <Cmd>wincmd K<CR>
-tnoremap <C-w>L <Cmd>wincmd L<CR>
+" ノーマルモードを経由しなくてもwindows操作可能に " TODO: 検証中
+tnoremap <C-w> <C-\><C-n><C-w>
+" TODO: 上記で問題なければ以下は消す
+" tnoremap <C-w>N <C-\><C-n>
+" tnoremap <C-w>h <Cmd>wincmd h<CR>
+" tnoremap <C-w>j <Cmd>wincmd j<CR>
+" tnoremap <C-w>k <Cmd>wincmd k<CR>
+" tnoremap <C-w>l <Cmd>wincmd l<CR>
+" tnoremap <C-w>H <Cmd>wincmd H<CR>
+" tnoremap <C-w>J <Cmd>wincmd J<CR>
+" tnoremap <C-w>K <Cmd>wincmd K<CR>
+" tnoremap <C-w>L <Cmd>wincmd L<CR>
 " ------------------------------------------------------------------------------
 " コマンド定義
 " ------------------------------------------------------------------------------
