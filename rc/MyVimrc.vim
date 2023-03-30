@@ -57,8 +57,6 @@ augroup MyVimrc
   " :terminal設定の読み込み1
   autocmd TermOpen * ++once execute 'source' . g:rc_dir . '/MyTerminal.vim'
   " :terminal設定の読み込み2
-  " FIXME: MyTerminal.vim読み込まないと以下のコマンド補完が効かないのを、なんとかしたい
-  "        →プラグイン化してdeinで管理する
   autocmd CmdUndefined Term,TermV,TermHere,TermHereV ++once execute 'source' . g:rc_dir . '/MyTerminal.vim'
 augroup END
 " ------------------------------------------------------------------------------

@@ -161,6 +161,21 @@ on_cmd = [
   'NERDTreeVCS'
 ]
 
+[[plugins]] # :terminalの代用
+repo = 'akinsho/toggleterm.nvim'
+on_cmd = [
+  'ToggleTerm',
+  'ToggleTermSendCurrentLine',
+  'ToggleTermSendVisualLines',
+  'ToggleTermSendVisualSelection',
+  'ToggleTermSetName',
+  'ToggleTermToggleAll',
+  'TermExec'
+]
+hook_source = '''
+call MyPluginSettings#hook_source_toggleterm()
+'''
+
 [[plugins]] # ファジーファインダー
 repo = 'junegunn/fzf'
 on_event = ['BufRead']
