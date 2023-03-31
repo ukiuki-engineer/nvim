@@ -190,10 +190,13 @@ endfunction
 "
 function! MyPluginSettings#hook_source_toggleterm() abort
   " FIXME: カレントバッファのディレクトリで開くには？
-  " FIXME: 一度<C-w>Lとかした後、新たに開くとサイズがバグる
-  tnoremap <C-w> <C-\><C-n><C-w>
+  " FIXME: <C-w>L<C-w>Jとするとサイズがバグる
 lua << EOF
-  require("toggleterm").setup()
+  local opts = {buffer = 0}
+  vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+  require("toggleterm").setup{
+    persist_size = false
+  }
 EOF
 endfunction
 
