@@ -89,14 +89,21 @@ nnoremap <silent> [c :call CocAction('diagnosticPrevious')<CR>
 <a id="user-command"></a>
 ## 独自定義コマンド
 よく使うけど若干面倒な操作は随時コマンド化する(かも)
-- `:Term`/`:TermV`  
-ウィンドウを水平/垂直分割してターミナルを開く。
-- `:TermHere`/`:TermHereV`  
-カレントバッファのディレクトリ&ウィンドウを水平/垂直分割してターミナルを開く  
-いちいちディレクトリ移動してからターミナル開くのが面倒だったため定義した。  
-カレントバッファのディレクトリでファイル操作したい時などに割と便利。
+- `:TermHere`
+カレントディレクトリでterminalを開く(toggletermというプラグインを使用)。
+```vim
+command! TermHere ToggleTerm dir=%:h
+```
 - `:Format`  
 coc.nvimのフォーマッター(CocAction('format'))を呼ぶ。
+- 現在不使用
+以下は現在不使用だが、定義自体は[ここ](https://github.com/ukiuki-engineer/nvim/blob/master/rc/MyTerminal.vim)に残してある。
+  - `:Term`/`:TermV`  
+  ウィンドウを水平/垂直分割してターミナルを開く。
+  - `:TermHere`/`:TermHereV`  
+  カレントバッファのディレクトリ&ウィンドウを水平/垂直分割してターミナルを開く  
+  いちいちディレクトリ移動してからターミナル開くのが面倒だったため定義した。  
+  カレントバッファのディレクトリでファイル操作したい時などに割と便利。
 
 ## プラグイン管理
 dein.vimを使用。
