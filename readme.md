@@ -161,8 +161,11 @@ htmlのタグに関しては、cocのスニペットを使用することもあ�
 coc.nvimを使用。
 
 ## NOTE
+自分用メモ
 - Fonts  
 [Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)とかHackGenを使用。
 - coc.nvimの拡張機能を探す場所
   - [githubのwiki](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
   - [npm moduleを検索するサイト](https://www.npmjs.com/search?q=keywords%3Acoc.nvim)
+- よく見るけど忘れがちなヘルプ
+  - `:h key-notation`
