@@ -18,11 +18,11 @@ augroup MyIME
   " MacOS用
   if has('mac') && exepath('im-select') != ""
     " NOTE: im-selectをインストールしてPATHを通しておく
-    autocmd InsertLeave,InsertEnter,BufRead,CmdlineLeave,CmdlineEnter * :call system('im-select com.apple.keylayout.ABC')
+    autocmd InsertLeave,InsertEnter * :call system('im-select com.apple.keylayout.ABC')
   endif
   " WSL用
   if has('linux') && exists('$WSLENV') && exepath('zenhan.exe') != ""
     " NOTE: zenhanをインストールしてPATHを通しておく
-    autocmd InsertLeave,InsertEnter,BufRead,CmdlineLeave,CmdlineEnter * :call system('zenhan.exe 0')
+    autocmd InsertLeave,InsertEnter * :call system('zenhan.exe 0')
   endif
 augroup END

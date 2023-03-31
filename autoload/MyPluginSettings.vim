@@ -202,7 +202,7 @@ lua << EOF
     persist_size = false
   }
 EOF
-  " カレントディレクトリでterminalを開く
+  " カレントバッファのディレクトリでterminalを開く
   command! TermHere ToggleTerm dir=%:h
 endfunction
 

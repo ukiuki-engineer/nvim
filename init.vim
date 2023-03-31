@@ -36,22 +36,22 @@ let g:dein#install_check_remote_threshold = 24 * 60 * 60
 
 " 設定開始
 if dein#load_state(s:dein_dir)
-    " vimrc
-    let g:dein#inline_vimrcs = [g:rc_dir . '/MyVimrc.vim']
+  " vimrc
+  let g:dein#inline_vimrcs = [g:rc_dir . '/MyVimrc.vim']
 
-    call dein#begin(s:dein_dir)
+  call dein#begin(s:dein_dir)
 
-    " tomlのロード
-    call dein#load_toml(s:toml,      {'lazy':0})
-    call dein#load_toml(s:lazy_toml, {'lazy':1})
+  " tomlのロード
+  call dein#load_toml(s:toml,      {'lazy':0})
+  call dein#load_toml(s:lazy_toml, {'lazy':1})
 
-    call dein#end()
-    call dein#save_state()
+  call dein#end()
+  call dein#save_state()
 endif
 
 " 未インストールがあればインストール
 if dein#check_install()
-    call dein#install()
+  call dein#install()
 endif
 
 " ファイル形式別プラグインの有効化
