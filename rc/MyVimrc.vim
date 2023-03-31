@@ -54,10 +54,11 @@ augroup MyVimrc
   autocmd CursorHold * call MyFunctions#set_cursor_line_column()
   " IME切り替え設定の読み込み
   autocmd InsertEnter * ++once execute 'source' . g:rc_dir . '/MyIME.vim'
-  " :terminal設定の読み込み1
-  autocmd TermOpen * ++once execute 'source' . g:rc_dir . '/MyTerminal.vim'
-  " :terminal設定の読み込み2
-  autocmd CmdUndefined Term,TermV,TermHere,TermHereV ++once execute 'source' . g:rc_dir . '/MyTerminal.vim'
+  " NOTE: toggletermを使用するため下記はしばらく不使用
+  " " :terminal設定の読み込み1
+  " autocmd TermOpen * ++once execute 'source' . g:rc_dir . '/MyTerminal.vim'
+  " " :terminal設定の読み込み2
+  " autocmd CmdUndefined Term,TermV,TermHere,TermHereV ++once execute 'source' . g:rc_dir . '/MyTerminal.vim'
 augroup END
 " ------------------------------------------------------------------------------
 " キーマッピング

@@ -161,7 +161,7 @@ on_cmd = [
   'NERDTreeVCS'
 ]
 
-[[plugins]] # :terminalの代用
+[[plugins]] # Terminalモードを使いやすくするやつ
 repo = 'akinsho/toggleterm.nvim'
 on_cmd = [
   'ToggleTerm',
@@ -170,8 +170,12 @@ on_cmd = [
   'ToggleTermSendVisualSelection',
   'ToggleTermSetName',
   'ToggleTermToggleAll',
-  'TermExec'
+  'TermExec',
+  'TermHere'
 ]
+hook_add = '''
+call MyPluginSettings#hook_add_toggleterm()
+'''
 hook_source = '''
 call MyPluginSettings#hook_source_toggleterm()
 '''

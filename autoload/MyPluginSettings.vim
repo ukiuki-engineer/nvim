@@ -188,16 +188,22 @@ endfunction
 "
 " toggleterm
 "
+function! MyPluginSettings#hook_add_toggleterm() abort
+  tnoremap <C-`> <Cmd>ToggleTerm<CR>
+  nnoremap <C-`> :ToggleTerm<CR>
+endfunction
+
 function! MyPluginSettings#hook_source_toggleterm() abort
-  " FIXME: カレントバッファのディレクトリで開くには？
   " FIXME: <C-w>L<C-w>Jとするとサイズがバグる
 lua << EOF
-  local opts = {buffer = 0}
-  vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+  -- local opts = {buffer = 0}
+  vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]])
   require("toggleterm").setup{
     persist_size = false
   }
 EOF
+  " カレントディレクトリでterminalを開く
+  command! TermHere ToggleTerm dir=%:h
 endfunction
 
 "

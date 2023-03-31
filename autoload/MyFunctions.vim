@@ -3,6 +3,7 @@
 " ================================================================================
 "
 " :TermHere用
+" NOTE: toggletermを使用するためしばらく不使用
 "
 function! MyFunctions#term_here(spOrVsp) abort
   " 水平分割
@@ -12,12 +13,20 @@ function! MyFunctions#term_here(spOrVsp) abort
   elseif a:spOrVsp == "vsp"
     vsplit | wincmd l
   endif
-  " 無名バッファではない場合にカレントバッファのディレクトリに移動
+  " ターミナルをカレントバッファのディレクトリで開く
+  call MyFunctions#execute_here("terminal")
+endfunction
+
+"
+" カレントバッファのディレクトリに移動してコマンドを実行
+"
+function! MyFunctions#execute_here(command) abort
+  " 無名バッファでなければ移動
   if expand('%') != ''
     lcd %:h
   endif
-  " ターミナルを開く
-  terminal
+  " コマンド実行
+  execute a:command
 endfunction
 
 "
