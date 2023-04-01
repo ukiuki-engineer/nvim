@@ -27,64 +27,9 @@ nvim/
 ```
 
 ## キーマップ
-各ファイルで定義しているので、ここにメモとしてまとめておく。(grepで抜き出しただけ)  
 基本方針は"**vim本来の操作性を崩さないように**"すること。  
 そのためプラグインを呼び出すためのマッピングが主で、vimそのもののキーマップは**なるべく**変更しないようにする。  
 どうしてもの場合は仕方ない。
-```vim
-" Esc2回で検索結果のハイライトをオフに(多分割とよく使われてる設定)
-nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
-" inoremap <C-c>          <Esc>
-" 次のバッファに切り替え
-nnoremap <TAB> :bn<CR>
-" 前のバッファに切り替え
-nnoremap <S-TAB> :bN<CR>
-" ターミナルモードのキーマップ(なるべく素vimと同じキーマップに)
-tnoremap <C-w>N <C-\><C-n>
-tnoremap <C-w>h <Cmd>wincmd h<CR>
-tnoremap <C-w>j <Cmd>wincmd j<CR>
-tnoremap <C-w>k <Cmd>wincmd k<CR>
-tnoremap <C-w>l <Cmd>wincmd l<CR>
-tnoremap <C-w>H <Cmd>wincmd H<CR>
-tnoremap <C-w>J <Cmd>wincmd J<CR>
-tnoremap <C-w>K <Cmd>wincmd K<CR>
-tnoremap <C-w>L <Cmd>wincmd L<CR>
-" 以下は各プラグイン用のキーマップ
-nnoremap <F5> :QuickRun<CR>
-vnoremap <F5> :QuickRun<CR>
-inoremap <expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
-" NERDTree表示/非表示切り替え
-nnoremap <C-n> :NERDTreeToggle<CR>
-" NERDTreeを開き、現在開いているファイルの場所にジャンプ
-nnoremap <expr> <C-w>t bufname() != "" ? "NERDTreeFind<CR>" : ":NERDTreeFocus<CR>"
-" ファイル名検索(カレントディレクトリ配下)
-nnoremap <C-p> :Files<CR>
-" ファイル名検索(バッファリスト)
-nnoremap gb :Buffers<CR>
-
-" 補完の選択をEnterで決定
-inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-" 定義ジャンプ(※)
-nnoremap <space>d <Plug>(coc-definition)
-" 関数とかの情報を表示する
-nnoremap <space>h :<C-u>call CocAction('doHover')<CR>
-" 参照箇所を表示
-nnoremap <space>r <Plug>(coc-references)
-" coc.nvimが表示したウィンドウのスクロール
-nnoremap <nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-j>"
-nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-nnoremap <nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "\<C-k>"
-nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-inoremap <nowait><expr> <C-i> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1, 1)\<CR>" : "\<Right>"
-inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<CR>" : "\<Right>"
-inoremap <nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<CR>" : "\<Left>"
-inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
-" 指摘箇所へジャンプ
-nnoremap <silent> ]c :call CocAction('diagnosticNext')<CR>
-nnoremap <silent> [c :call CocAction('diagnosticPrevious')<CR>
-```
-※定義元を画面分割して表示したい場合は、画面分割後ジャンプする  
-　最初はキーマップを定義していたが結局この手順に落ち着いている
 
 <a id="user-command"></a>
 ## 独自定義コマンド
