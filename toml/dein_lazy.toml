@@ -113,11 +113,10 @@ on_cmd = ['Redirect']
 
 [[plugins]] # アイコン類
 repo = 'ryanoasis/vim-devicons'
-on_source = ['airline', 'nerdtree']
+on_source = ['nerdtree']
 
 [[plugins]] # ファイラー
 repo = 'scrooloose/nerdtree'
-depends = ['ryanoasis/vim-devicons', 'Xuyuanp/nerdtree-git-plugin']
 on_cmd = [
   'NERDTree',
   'NERDTree',
