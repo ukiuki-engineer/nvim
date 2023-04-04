@@ -2,7 +2,7 @@
 " MyVimrc.vim
 " ================================================================================
 " ------------------------------------------------------------------------------
-" 基本的な設定
+" options
 " ------------------------------------------------------------------------------
 " 文字コード
 set enc=utf-8
@@ -61,13 +61,13 @@ augroup MyVimrc
   " autocmd CmdUndefined Term,TermV,TermHere,TermHereV ++once execute 'source' . g:rc_dir . '/MyTerminal.vim'
 augroup END
 " ------------------------------------------------------------------------------
-" キーマッピング
+" maps
 " ------------------------------------------------------------------------------
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap <TAB> :bn<CR>
 nnoremap <S-TAB> :bN<CR>
 " ------------------------------------------------------------------------------
-" コマンド定義
+" commands
 " ------------------------------------------------------------------------------
 command! SetCursorLineColumn :set cursorline cursorcolumn
 command! SetNoCursorLineColumn :set nocursorline nocursorcolumn
