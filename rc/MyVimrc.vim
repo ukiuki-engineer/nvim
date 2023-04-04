@@ -53,7 +53,7 @@ augroup MyVimrc
   " CursorHold時のみカーソル行/列を表示
   autocmd CursorHold * call MyFunctions#set_cursor_line_column()
   " IME切り替え設定の読み込み
-  autocmd InsertEnter * ++once execute 'source' . g:rc_dir . '/MyIME.vim'
+  autocmd InsertEnter,CmdlineEnter * ++once execute 'source' . g:rc_dir . '/MyIME.vim'
   " NOTE: toggletermを使用するため下記はしばらく不使用
   " " :terminal設定の読み込み1
   " autocmd TermOpen * ++once execute 'source' . g:rc_dir . '/MyTerminal.vim'
@@ -66,6 +66,11 @@ augroup END
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap <TAB> :bn<CR>
 nnoremap <S-TAB> :bN<CR>
+" ------------------------------------------------------------------------------
+" コマンド定義
+" ------------------------------------------------------------------------------
+command! SetCursorLineColumn :set cursorline cursorcolumn
+command! SetNoCursorLineColumn :set nocursorline nocursorcolumn
 " ------------------------------------------------------------------------------
 " 標準プラグインの制御
 " ------------------------------------------------------------------------------
