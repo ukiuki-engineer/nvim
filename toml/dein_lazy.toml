@@ -170,8 +170,10 @@ on_cmd = [
   'ToggleTermSetName',
   'ToggleTermToggleAll',
   'TermExec',
+  'Term',
   'TermHere'
 ]
+on_event = ['TermOpen']
 hook_add = '''
 call MyPluginSettings#hook_add_toggleterm()
 '''

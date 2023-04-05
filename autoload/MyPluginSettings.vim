@@ -187,6 +187,7 @@ endfunction
 
 "
 " toggleterm
+" FIXME: <C-w>L<C-w>Jとするとサイズがバグる
 "
 function! MyPluginSettings#hook_add_toggleterm() abort
   tnoremap <C-`> <Cmd>ToggleTerm<CR>
@@ -194,16 +195,16 @@ function! MyPluginSettings#hook_add_toggleterm() abort
 endfunction
 
 function! MyPluginSettings#hook_source_toggleterm() abort
-  " FIXME: <C-w>L<C-w>Jとするとサイズがバグる
+  " NOTE: 自分が設定した:terminalを使用したい場合もあるので、しばらく併用する
+  execute 'source '. g:rc_dir . '/MyTerminal.vim'
 lua << EOF
-  -- local opts = {buffer = 0}
-  vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]])
+  -- vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]])
   require("toggleterm").setup{
     persist_size = false
   }
 EOF
   " カレントバッファのディレクトリでterminalを開く
-  command! TermHere ToggleTerm dir=%:h
+  command! ToggleTermHere ToggleTerm dir=%:h
 endfunction
 
 "
