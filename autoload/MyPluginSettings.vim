@@ -272,12 +272,17 @@ function! MyPluginSettings#hook_add_coc() abort
     \ 'coc-snippets',
     \ 'coc-spell-checker',
   \ ]
+endfunction
+
+function! MyPluginSettings#hook_source_coc() abort
   " 補完の選択をEnterで決定
   inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
   " 定義ジャンプ
   nnoremap <space>d <Plug>(coc-definition)
-  " 関数とかの情報を表示する
-  nnoremap <space>h :<C-u>call CocAction('doHover')<CR>
+  " カーソル位置のsymbolをハイライト
+  nnoremap gh :call CocActionAsync('highlight')<CR>
+  " ドキュメント表示
+  nnoremap <silent> <space>h :call MyPluginSettings#show_documentation()<CR>
   " 参照箇所表示
   nnoremap <space>r <Plug>(coc-references)
   " ウィンドウのスクロール
@@ -294,11 +299,22 @@ function! MyPluginSettings#hook_add_coc() abort
   nnoremap <silent> [c :call CocAction('diagnosticPrevious')<CR>
   " フォーマッターを呼び出す
   command! -nargs=0 Format :call CocAction('format')
-  " ハイライト色を変更
-  augroup MyCocColors
+  augroup MyCocAutocmd
     autocmd!
+  " ハイライト色を変更
     autocmd ColorScheme * hi! CocFadeOut ctermfg=7 ctermbg=242 guifg=LightGrey guibg=DarkGrey
     autocmd ColorScheme * hi! CocHintSign ctermfg=7 guifg=LightGrey
+  " カーソル位置のsymbolをハイライト
+    autocmd CursorHold * silent call CocActionAsync('highlight')
   augroup END
+endfunction
+
+" ドキュメント表示
+function! MyPluginSettings#show_documentation() abort
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
 endfunction
 

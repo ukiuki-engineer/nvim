@@ -13,6 +13,8 @@ set helplang=ja
 set mouse=a
 " 編集中のファイルが変更されたら自動で読み直す
 set autoread
+" カーソル行、列を表示
+set cursorline cursorcolumn
 " ルーラーを表示しない
 set noruler
 " 行番号を表示
@@ -51,7 +53,7 @@ augroup MyVimrc
   " env系はシェルスクリプトとして開く
   autocmd BufEnter .env,.env.example setlocal filetype=sh
   " CursorHold時のみカーソル行/列を表示
-  autocmd CursorHold * call MyFunctions#set_cursor_line_column()
+  " autocmd CursorHold * call MyFunctions#set_cursor_line_column()
   " IME切り替え設定の読み込み
   autocmd InsertEnter,CmdlineEnter * ++once execute 'source' . g:rc_dir . '/MyIME.vim'
   " NOTE: toggletermと一緒にdein側で制御する

@@ -116,6 +116,9 @@ repo = 'ryanoasis/vim-devicons'
 on_source = ['nerdtree']
 
 [[plugins]] # ファイラー
+# そろそろ変えたい...
+# ファイル操作がもっと楽なやつないかなー？
+# yypでファイルコピーできたりするような
 repo = 'scrooloose/nerdtree'
 on_cmd = [
   'NERDTree',
@@ -161,6 +164,7 @@ on_cmd = [
 ]
 
 [[plugins]] # Terminalモードを使いやすくするやつ
+# あんま使ってないから消すかも...
 repo = 'akinsho/toggleterm.nvim'
 on_cmd = [
   'ToggleTerm',
@@ -257,4 +261,7 @@ rev = 'release'
 on_event = ['BufRead', 'InsertEnter', 'FileType']
 hook_add = '''
 call MyPluginSettings#hook_add_coc()
+'''
+hook_source = '''
+call MyPluginSettings#hook_source_coc()
 '''
