@@ -22,6 +22,27 @@ hook_add = '''
 call MyPluginSettings#hook_add_blamer()
 '''
 
+[[plugins]] # 行番号の左に、gitの状態を表示するやつ
+repo = 'airblade/vim-gitgutter'
+on_event = ['BufRead']
+
+[[plugins]] # gitの差分をvimdiffで見るやつ
+repo = 'sindrets/diffview.nvim'
+depends = ['plenary.nvim', 'nvim-web-devicons']
+on_cmd = [
+  'DiffviewClose'
+  'DiffviewFileHistory'
+  'DiffviewFocusFiles'
+  'DiffviewLog'
+  'DiffviewOpen'
+  'DiffviewRefresh'
+  'DiffviewToggleFiles'
+]
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+on_source = ['diffview']
+
 [[plugins]] # vimから編集中のファイルを素早く実行するやつ
 # FIXME: 実行結果を右ではなく下に小さく表示させたい
 repo = 'thinca/vim-quickrun'
@@ -103,65 +124,37 @@ on_cmd = ['MakeTable', 'UnmakeTable']
 repo = 'skanehira/preview-markdown.vim'
 on_cmd = ['PreviewMarkdown']
 
-[[plugins]] # 行番号の左に、gitの状態を表示するやつ
-repo = 'airblade/vim-gitgutter'
-on_event = ['BufRead']
-
 [[plugins]] # コマンドの実行結果をバッファに読み込んでくれるやつ
 repo = 'numEricL/vim-redirect'
 on_cmd = ['Redirect']
 
-[[plugins]] # アイコン類
-repo = 'ryanoasis/vim-devicons'
-on_source = ['nerdtree']
+[[plugins]] # nvim-treeのアイコン
+repo = 'nvim-tree/nvim-web-devicons'
+on_source = ['diffview', 'nvim-tree']
 
-[[plugins]] # ファイラー
-# そろそろ変えたい...
-# ファイル操作がもっと楽なやつないかなー？
-# yypでファイルコピーできたりするような
-repo = 'scrooloose/nerdtree'
+[[plugins]]
+repo = 'nvim-tree/nvim-tree.lua'
+# depends = ['nvim-tree/nvim-web-devicons']
 on_cmd = [
-  'NERDTree',
-  'NERDTree',
-  'NERDTreeCWD',
-  'NERDTreeClose',
-  'NERDTreeFind',
-  'NERDTreeFocus',
-  'NERDTreeFromBookmark',
-  'NERDTreeMirror',
-  'NERDTreeRefreshRoot',
-  'NERDTreeSetting',
-  'NERDTreeShowHidden',
-  'NERDTreeToggle',
-  'NERDTreeToggleVCS',
-  'NERDTreeVCS'
+  'NvimTreeOpen',
+  'NvimTreeClose',
+  'NvimTreeToggle',
+  'NvimTreeFocus',
+  'NvimTreeRefresh',
+  'NvimTreeFindFile',
+  'NvimTreeFindFileToggle',
+  'NvimTreeClipboard',
+  'NvimTreeResize',
+  'NvimTreeCollapse',
+  'NvimTreeCollapseKeepBuffers',
+  'NvimTreeGenerateOnAttach'
 ]
 hook_add = '''
-call MyPluginSettings#hook_add_nerdtree()
+call MyPluginSettings#hook_add_nvim_tree()
 '''
 hook_source = '''
-call MyPluginSettings#hook_source_nerdtree()
+call MyPluginSettings#hook_source_nvim_tree()
 '''
-
-[[plugins]] # nerdtreeにgitの状態を表示するやつ
-repo = 'Xuyuanp/nerdtree-git-plugin'
-on_event = ['BufRead']
-on_cmd = [
-  'NERDTree',
-  'NERDTree',
-  'NERDTreeCWD',
-  'NERDTreeClose',
-  'NERDTreeFind',
-  'NERDTreeFocus',
-  'NERDTreeFromBookmark',
-  'NERDTreeMirror',
-  'NERDTreeRefreshRoot',
-  'NERDTreeSetting',
-  'NERDTreeShowHidden',
-  'NERDTreeToggle',
-  'NERDTreeToggleVCS',
-  'NERDTreeVCS'
-]
 
 [[plugins]] # Terminalモードを使いやすくするやつ
 # あんま使ってないから消すかも...
@@ -229,15 +222,6 @@ call MyPluginSettings#hook_add_fzf()
 [[plugins]] # vimの起動速度を測定
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
-
-# [[plugins]] # vim内部で日本語入力するためのプラグイン
-# # FIXME: 試しに入れてみたけど、使いこなすには色々設定がいりそう...
-# #        時間取れるときにゆっくり設定を作りこむ
-# repo = 'vim-skk/eskk.vim'
-# on_event = ['BufRead', 'InsertEnter']
-# hook_add = '''
-# call MyPluginSettings#hook_add_eskk()
-# '''
 
 [[plugins]] # スニペットのソース類
 # NOTE: coc-snippetsで呼び出して使う

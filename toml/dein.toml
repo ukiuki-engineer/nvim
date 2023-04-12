@@ -39,3 +39,8 @@ hook_add = '''
 call MyPluginSettings#hook_add_airline()
 '''
 
+[[plugins]] # アイコン類
+repo = 'ryanoasis/vim-devicons'
+# on_event = ['BufRead']
+# on_source = ['nerdtree']
+

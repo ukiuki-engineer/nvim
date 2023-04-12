@@ -167,6 +167,21 @@ function! MyPluginSettings#hook_source_vimhelpgenerator() abort
 endfunction
 
 "
+" nvim-tree
+"
+function! MyPluginSettings#hook_add_nvim_tree() abort
+  " nnoremap <C-n> :NvimTreeFindFileToggle<CR>
+  nnoremap <C-n> :NvimTreeToggle<CR>
+  nnoremap <C-w>t :NvimTreeFindFile<CR>
+endfunction
+
+function! MyPluginSettings#hook_source_nvim_tree() abort
+lua << EOF
+  require("nvim-tree").setup()
+EOF
+endfunction
+
+"
 " nerdtree
 "
 function! MyPluginSettings#hook_add_nerdtree() abort
@@ -295,8 +310,8 @@ function! MyPluginSettings#hook_source_coc() abort
   inoremap <nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<CR>" : "\<Left>"
   inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
   " 指摘箇所へジャンプ
-  nnoremap <silent> ]c :call CocAction('diagnosticNext')<CR>
-  nnoremap <silent> [c :call CocAction('diagnosticPrevious')<CR>
+  nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
+  nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
   " フォーマッターを呼び出す
   command! -nargs=0 Format :call CocAction('format')
   augroup MyCocAutocmd
