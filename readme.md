@@ -32,23 +32,19 @@ nvim/
 どうしてもの場合は仕方ない。
 
 <a id="user-command"></a>
-## 独自定義コマンド
-よく使うけど若干面倒な操作は随時コマンド化する(かも)
-- `:TermHere`
-カレントディレクトリでterminalを開く(toggletermというプラグインを使用)。
+## コマンド定義
+よく使うけど若干面倒な操作は随時コマンド化する。  
+以下は`find . -type f -name '*.vim' | grep -v 'colors' | xargs -I{} grep 'command!' {}`でgrepした結果。
 ```vim
-command! TermHere ToggleTerm dir=%:h
+command! SetCursorLineColumn :set cursorline cursorcolumn
+command! SetNoCursorLineColumn :set nocursorline nocursorcolumn
+command! -nargs=* Term split | wincmd j | resize 20 | terminal <args>
+command! -nargs=* TermV vsplit | wincmd l | terminal <args>
+command! TermHere :call MyFunctions#term_here("sp")
+command! TermHereV :call MyFunctions#term_here("vsp")
+command! ToggleTermHere ToggleTerm dir=%:h
+command! -nargs=0 Format :call CocAction('format')
 ```
-- `:Format`  
-coc.nvimのフォーマッター(CocAction('format'))を呼ぶ。
-- 現在不使用
-以下は現在不使用だが、定義自体は[ここ](https://github.com/ukiuki-engineer/nvim/blob/master/rc/MyTerminal.vim)に残してある。
-  - `:Term`/`:TermV`  
-  ウィンドウを水平/垂直分割してターミナルを開く。
-  - `:TermHere`/`:TermHereV`  
-  カレントバッファのディレクトリ&ウィンドウを水平/垂直分割してターミナルを開く  
-  いちいちディレクトリ移動してからターミナル開くのが面倒だったため定義した。  
-  カレントバッファのディレクトリでファイル操作したい時などに割と便利。
 
 ## プラグイン管理
 dein.vimを使用。
@@ -114,3 +110,11 @@ coc.nvimを使用。
   - [npm moduleを検索するサイト](https://www.npmjs.com/search?q=keywords%3Acoc.nvim)
 - よく見るけど忘れがちなヘルプ
   - `:h key-notation`
+## TODO
+vim diffでgitの差分が見れてできればcommitも積みたい。
+以下はその案。
+- gin.vimを使って自作
+- tig-explorer.vim
+- diffview.nvim  
+→commitできないらしい
+- lazygitとcommitizenの組み合わせ
