@@ -80,6 +80,7 @@ function! MyPluginSettings#hook_add_gruvbox() abort
   colorscheme gruvbox
 lua << EOF
   local colors = require("gruvbox.palette").colors;
+  -- diffviewの色を変更
   function FixGruvbox()
     vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { bg = "#431313" })
     vim.api.nvim_set_hl(0, 'DiffDelete', { bg = "none", fg = colors.dark2 })
@@ -91,7 +92,7 @@ lua << EOF
   FixGruvbox()
   vim.api.nvim_create_autocmd(
     "ColorScheme",
-      { pattern = { "gruvbox" }, callback = FixGruvbox }
+    { pattern = { "gruvbox" }, callback = FixGruvbox }
   )
 EOF
 endfunction
@@ -191,7 +192,6 @@ endfunction
 "
 " NOTE: tree上で`g?`とするとヘルプが開く
 " TODO: treeの背景だけちょっと色変えたい
-" TODO: 開いた時に分割する方法
 " TODO: 画面分割しててもマウスクリックで開けるように
 "       (マウスクリック時の挙動がOと同じになるように)
 function! MyPluginSettings#hook_add_nvim_tree() abort
