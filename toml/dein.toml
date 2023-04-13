@@ -20,21 +20,15 @@ hook_add = '''
 lua require('impatient')
 '''
 
-[[plugins]] # airline-themes
-repo = 'vim-airline/vim-airline-themes'
+[[plugins]] # airlineをこれに変えたら起動速度が倍速になった
+repo = 'nvim-lualine/lualine.nvim'
+depends = ['nvim-web-devicons']
 hook_add = '''
-call MyPluginSettings#hook_add_airline_themes()
+call MyPluginSettings#hook_add_lualine()
 '''
 
-[[plugins]] # airline
-repo = 'vim-airline/vim-airline'
-depends = ['vim-airline-themes', 'vim-fugitive']
+[[plugins]] # カラースキーム
+repo = 'ellisonleao/gruvbox.nvim'
 hook_add = '''
-call MyPluginSettings#hook_add_airline()
-'''
-
-[[plugins]] # colorscheme
-repo = 'RRethy/nvim-base16'
-hook_add = '''
-call MyPluginSettings#hook_add_base16()
+call MyPluginSettings#hook_add_gruvbox()
 '''

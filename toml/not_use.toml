@@ -1,5 +1,11 @@
 # NOTE: 今使ってないやつは一旦ここに(コメントアウトだと邪魔)
 
+[[plugins]] # colorscheme
+repo = 'RRethy/nvim-base16'
+hook_add = '''
+call MyPluginSettings#hook_add_base16()
+'''
+
 [[plugins]]
 repo = 'bluz71/vim-nightfly-colors'
 hook_add = '''
@@ -16,6 +22,19 @@ colorscheme nightfly
 repo = 'marko-cerovac/material.nvim'
 hook_add = '''
 call MyPluginSettings#hook_add_material()
+'''
+
+[[plugins]] # airline-themes
+repo = 'vim-airline/vim-airline-themes'
+hook_add = '''
+call MyPluginSettings#hook_add_airline_themes()
+'''
+
+[[plugins]] # airline
+repo = 'vim-airline/vim-airline'
+depends = ['vim-airline-themes', 'vim-fugitive']
+hook_add = '''
+call MyPluginSettings#hook_add_airline()
 '''
 
 [[plugins]] # ファイラー

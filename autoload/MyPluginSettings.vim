@@ -54,15 +54,39 @@ function! MyPluginSettings#hook_add_base16() abort
   " colorscheme base16-onedark " atomのテーマ。これもコメントが見づらい...
 endfunction
 
-function! MyPluginSettings#hook_add_material() abort
-lua << EOF
-  vim.g.material_style = "oceanic"
-  vim.cmd 'colorscheme material'
-  require('material').setup({
-    contrast = {
-      sidebars = true,
-    },
+function! MyPluginSettings#hook_add_lualine() abort
+lua << END
+  require('lualine').setup({
+    tabline = {
+      lualine_a = {'tabs'},
+      lualine_b = {},
+      lualine_c = {},
+      lualine_x = {},
+      lualine_y = {},
+      lualine_z = {'buffers'}
+    }
   })
+END
+endfunction
+
+function! MyPluginSettings#hook_add_gruvbox() abort
+  set background=dark " or light if you want light mode
+  colorscheme gruvbox
+lua << EOF
+  local colors = require("gruvbox.palette").colors;
+  function FixGruvbox()
+    vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { bg = "#431313" })
+    vim.api.nvim_set_hl(0, 'DiffDelete', { bg = "none", fg = colors.dark2 })
+    vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', { bg = "none", fg = colors.dark2 })
+    vim.api.nvim_set_hl(0, 'DiffAdd', { bg = "#142a03" })
+    vim.api.nvim_set_hl(0, 'DiffChange', { bg = "#3B3307" })
+    vim.api.nvim_set_hl(0, 'DiffText', { bg = "#4D520D" })
+  end
+  FixGruvbox()
+  vim.api.nvim_create_autocmd(
+    "ColorScheme",
+      { pattern = { "gruvbox" }, callback = FixGruvbox }
+  )
 EOF
 endfunction
 
