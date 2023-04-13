@@ -54,6 +54,18 @@ function! MyPluginSettings#hook_add_base16() abort
   " colorscheme base16-onedark " atomのテーマ。これもコメントが見づらい...
 endfunction
 
+function! MyPluginSettings#hook_add_material() abort
+lua << EOF
+  vim.g.material_style = "oceanic"
+  vim.cmd 'colorscheme material'
+  require('material').setup({
+    contrast = {
+      sidebars = true,
+    },
+  })
+EOF
+endfunction
+
 "
 " blamer.nvim
 "
@@ -169,6 +181,11 @@ endfunction
 "
 " nvim-tree
 "
+" NOTE: tree上で`g?`とするとヘルプが開く
+" TODO: treeの背景だけちょっと色変えたい
+" TODO: 開いた時に分割する方法
+" TODO: 画面分割しててもマウスクリックで開けるように
+"       (マウスクリック時の挙動がOと同じになるように)
 function! MyPluginSettings#hook_add_nvim_tree() abort
   " nnoremap <C-n> :NvimTreeFindFileToggle<CR>
   nnoremap <C-n> :NvimTreeToggle<CR>

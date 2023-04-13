@@ -1,3 +1,23 @@
+# NOTE: 今使ってないやつは一旦ここに(コメントアウトだと邪魔)
+
+[[plugins]]
+repo = 'bluz71/vim-nightfly-colors'
+hook_add = '''
+colorscheme nightfly
+'''
+
+[[plugins]]
+repo = 'bluz71/vim-nightfly-colors'
+hook_add = '''
+colorscheme nightfly
+'''
+
+[[plugins]]
+repo = 'marko-cerovac/material.nvim'
+hook_add = '''
+call MyPluginSettings#hook_add_material()
+'''
+
 [[plugins]] # ファイラー
 # そろそろ変えたい...
 # ファイル操作がもっと楽なやつないかなー？

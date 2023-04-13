@@ -26,7 +26,9 @@ call MyPluginSettings#hook_add_blamer()
 repo = 'airblade/vim-gitgutter'
 on_event = ['BufRead']
 
-[[plugins]] # gitの差分をvimdiffで見るやつ
+[[plugins]] # gitの差分をvimdiffで表示したりstageしたりするやつ
+# NOTE: stageまではできるので、後は`:Git`でcommit & pushすれば良い
+# FIXME: 差分の箇所がsyntax highlightされない
 repo = 'sindrets/diffview.nvim'
 depends = ['plenary.nvim', 'nvim-web-devicons']
 on_cmd = [
@@ -38,6 +40,13 @@ on_cmd = [
   'DiffviewRefresh'
   'DiffviewToggleFiles'
 ]
+hook_source = '''
+lua << EOF
+require('diffview').setup ({
+  enhanced_diff_hl = true,
+})
+EOF
+'''
 
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
@@ -128,13 +137,17 @@ on_cmd = ['PreviewMarkdown']
 repo = 'numEricL/vim-redirect'
 on_cmd = ['Redirect']
 
+[[plugins]] # アイコン類
+repo = 'ryanoasis/vim-devicons'
+on_event = ['BufRead', 'InsertEnter']
+
 [[plugins]] # nvim-treeのアイコン
 repo = 'nvim-tree/nvim-web-devicons'
-on_source = ['diffview', 'nvim-tree']
+on_source = ['diffview', 'nvim-tree.lua']
 
 [[plugins]]
 repo = 'nvim-tree/nvim-tree.lua'
-# depends = ['nvim-tree/nvim-web-devicons']
+depends = ['nvim-tree/nvim-web-devicons']
 on_cmd = [
   'NvimTreeOpen',
   'NvimTreeClose',
