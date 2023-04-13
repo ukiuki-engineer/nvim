@@ -13,62 +13,10 @@ colorscheme nightfly
 '''
 
 [[plugins]]
-repo = 'bluz71/vim-nightfly-colors'
-hook_add = '''
-colorscheme nightfly
-'''
-
-[[plugins]]
 repo = 'marko-cerovac/material.nvim'
 hook_add = '''
 call MyPluginSettings#hook_add_material()
 '''
-
-[[plugins]] # airline-themes
-repo = 'vim-airline/vim-airline-themes'
-hook_add = '''
-call MyPluginSettings#hook_add_airline_themes()
-'''
-
-[[plugins]] # airline
-repo = 'vim-airline/vim-airline'
-depends = ['vim-airline-themes', 'vim-fugitive']
-hook_add = '''
-call MyPluginSettings#hook_add_airline()
-'''
-
-[[plugins]] # ファイラー
-# そろそろ変えたい...
-# ファイル操作がもっと楽なやつないかなー？
-# yypでファイルコピーできたりするような
-repo = 'scrooloose/nerdtree'
-on_cmd = [
-  'NERDTree',
-  'NERDTree',
-  'NERDTreeCWD',
-  'NERDTreeClose',
-  'NERDTreeFind',
-  'NERDTreeFocus',
-  'NERDTreeFromBookmark',
-  'NERDTreeMirror',
-  'NERDTreeRefreshRoot',
-  'NERDTreeSetting',
-  'NERDTreeShowHidden',
-  'NERDTreeToggle',
-  'NERDTreeToggleVCS',
-  'NERDTreeVCS'
-]
-hook_add = '''
-call MyPluginSettings#hook_add_nerdtree()
-'''
-hook_source = '''
-call MyPluginSettings#hook_source_nerdtree()
-'''
-
-[[plugins]] # nerdtreeにgitの状態を表示するやつ
-repo = 'Xuyuanp/nerdtree-git-plugin'
-on_event = ['BufRead']
-on_source = ['nerdtree']
 
 [[plugins]] # vim内部で日本語入力するためのプラグイン
 # FIXME: 試しに入れてみたけど、使いこなすには色々設定がいりそう...

@@ -54,6 +54,9 @@ function! MyPluginSettings#hook_add_base16() abort
   " colorscheme base16-onedark " atomのテーマ。これもコメントが見づらい...
 endfunction
 
+"
+" lualine.nvim
+"
 function! MyPluginSettings#hook_add_lualine() abort
 lua << END
   require('lualine').setup({
@@ -69,6 +72,9 @@ lua << END
 END
 endfunction
 
+" 
+" gruvbox.nvim
+" 
 function! MyPluginSettings#hook_add_gruvbox() abort
   set background=dark " or light if you want light mode
   colorscheme gruvbox
@@ -108,28 +114,6 @@ function! s:CallBlamerShow(timer) abort
   silent BlamerShow
 endfunction
 
-"
-" vim-airline-themes
-"
-function! MyPluginSettings#hook_add_airline_themes() abort
-  " let g:airline_theme = 'kalisi'
-  " let g:airline_theme = 'sol'
-  let g:airline_theme = 'deus'
-endfunction
-
-"
-" vim-airline
-"
-function! MyPluginSettings#hook_add_airline() abort
-  let g:airline_deus_bg = 'dark'
-  let g:airline_powerline_fonts = 1
-  let g:airline#extensions#branch#enabled = 1
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#buffer_idx_mode = 1
-  let g:airline#extensions#tabline#show_buffers = 1
-  let g:airline#extensions#tabline#tab_nr_type = 1
-  let g:airline_extensions = ['branch', 'tabline']
-endfunction
 
 "
 " indent-blankline.nvim
@@ -220,25 +204,6 @@ function! MyPluginSettings#hook_source_nvim_tree() abort
 lua << EOF
   require("nvim-tree").setup()
 EOF
-endfunction
-
-"
-" nerdtree
-"
-function! MyPluginSettings#hook_add_nerdtree() abort
-  " NERDTree表示/非表示切り替え
-  nnoremap <C-n> :NERDTreeToggle<CR>
-  " NERDTreeを開き、現在開いているファイルの場所にジャンプ
-  nnoremap <expr> <C-w>t bufname() != "" ? ":NERDTreeFind<CR>" : ":NERDTreeFocus<CR>"
-endfunction
-
-function! MyPluginSettings#hook_source_nerdtree() abort
-  " 隠しファイルを表示
-  let g:NERDTreeShowHidden = 1
-  " ファイル、ディレクトリ両方共シングルクリックで開く。
-  let g:NERDTreeMouseMode=3
-  " NERDTreeを開き、現在開いているファイルの場所にジャンプ
-  nnoremap <expr> <C-w>t bufname() != "" ? ":NERDTreeFind<CR>" : ":NERDTreeFocus<CR>"
 endfunction
 
 "
