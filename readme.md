@@ -38,6 +38,7 @@ nvim/
 ```vim
 command! SetCursorLineColumn :set cursorline cursorcolumn
 command! SetNoCursorLineColumn :set nocursorline nocursorcolumn
+command! SourceSession :silent! source Session.vim
 command! -nargs=* Term split | wincmd j | resize 20 | terminal <args>
 command! -nargs=* TermV vsplit | wincmd l | terminal <args>
 command! TermHere :call MyFunctions#term_here("sp")
@@ -69,12 +70,12 @@ sessionは多少工夫しないとよく壊れる。以下が壊れないため�
 ```vim
 set sessionoptions=buffers,curdir,tabpages
 ```
-- NERDTreeやhelpなど、sessionが不安定になりやすいものを閉じた状態で`:mesession!`で保存する  
+- NvimTreeやhelpなど、sessionが不安定になりやすいものを閉じた状態で`:mesession!`で保存する  
 (helpは保存しないようにオプションで設定はしているが、念の為)
 
 ## ファイル管理
 - ファイルの行き来
-  - 主にfzfとNERDTreeで行き来する
+  - 主にfzfとNvimTreeで行き来する
     - fzf
     ```vim
     " 基本的なfzfの操作
@@ -82,16 +83,16 @@ set sessionoptions=buffers,curdir,tabpages
     :Buffers  " バッファからファイル名で検索(キーマップ→gb)
     :Rg       " Grep
     ```
-    - NERDTree  
-    主に`<C-w>t`(:NERDTreeFind)で現在のファイル位置にジャンプしてそこを起点にファイルを探すときくらい  
+    - NvimTree  
+    主に`<C-w>t`(:NvimTreeFindFile)で現在のファイル位置にジャンプしてそこを起点にファイルを探すときくらい  
     後は普通にプロジェクトのルートからディレクトリを辿ったりとか
   - 定義ジャンプ→`<space>d`
   - (たまに)`:terminal`→シェル芸でファイルを探す→`gf`  
   がっつり検索したい時はシェル芸で探した方が早い
 - ファイル作成、リネーム、移動等  
-NERDTreeの機能を使うより`:terminal`で操作した方が楽...  
+NvimTreeの機能を使うより`:terminal`で操作した方が楽...  
 大体は[`:TermHere`](#user-command)でカレントバッファのディレクトリでterminalを開き、そこで操作することが多い。これで結構素早く操作できる。  
-リネームくらいだったらNERDTreeの機能を使うこともある。
+リネームくらいだったらNvimTreeの機能を使うこともある。
 
 ## カッコ、クォーテーション、htmlの閉じタグ補完
 [自作プラグイン](https://github.com/ukiuki-engineer/vim-autoclose)を使用。  
@@ -110,11 +111,3 @@ coc.nvimを使用。
   - [npm moduleを検索するサイト](https://www.npmjs.com/search?q=keywords%3Acoc.nvim)
 - よく見るけど忘れがちなヘルプ
   - `:h key-notation`
-## TODO
-vim diffでgitの差分が見れてできればcommitも積みたい。
-以下はその案。
-- gin.vimを使って自作
-- tig-explorer.vim
-- diffview.nvim  
-→commitできないらしい
-- lazygitとcommitizenの組み合わせ

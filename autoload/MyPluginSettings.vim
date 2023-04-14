@@ -47,11 +47,14 @@ endfunction
 function! MyPluginSettings#hook_add_base16() abort
   " colorscheme base16-ayu-dark
   " colorscheme base16-decaf
-  colorscheme base16-atlas
-  " colorscheme base16-spacemacs " emacsのテーマ
-  " colorscheme base16-tender " 良いけどコメントが究極的に見づらい...
+  "  emacsのテーマ
+  " colorscheme base16-spacemacs
+  " 良いけどコメントが究極的に見づらい...
+  " colorscheme base16-tender 
   " colorscheme base16-da-one-sea
-  " colorscheme base16-onedark " atomのテーマ。これもコメントが見づらい...
+  " atomのテーマ。これもコメントが見づらい...
+  " colorscheme base16-onedark 
+  colorscheme base16-atlas
 endfunction
 
 "
@@ -60,9 +63,55 @@ endfunction
 function! MyPluginSettings#hook_add_lualine() abort
 lua << END
   require('lualine').setup({
+    sections = {
+      lualine_a = {'mode'},
+      lualine_b = {'branch', 'diff', 'diagnostics'}, -- TODO: user.nameとuser.emailも表示させたい
+      lualine_c = {
+        {
+          'filename',
+          file_status = true,      -- Displays file status (readonly status, modified status)
+          newfile_status = false,  -- Display new file status (new file means no write after created)
+          path = 1,                -- 0: Just the filename
+                                   -- 1: Relative path
+                                   -- 2: Absolute path
+                                   -- 3: Absolute path, with tilde as the home directory
+                                   -- 4: Filename and parent dir, with tilde as the home directory
+          shorting_target = 40,    -- Shortens path to leave 40 spaces in the window
+                                   -- for other components. (terrible name, any suggestions?)
+          symbols = {
+            modified = '[+]',      -- Text to show when the file is modified.
+            readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
+            unnamed = '[No Name]', -- Text to show for unnamed buffers.
+            newfile = '[New]',     -- Text to show for newly created file before first write
+          }
+        }
+      },
+      lualine_x = {'encoding', 'fileformat', 'filetype'},
+      lualine_y = {'progress'},
+      lualine_z = {'location'}
+    },
     tabline = {
       lualine_a = {'tabs'},
-      lualine_b = {},
+      lualine_b = {
+        {
+          'filename',
+          file_status = true,      -- Displays file status (readonly status, modified status)
+          newfile_status = false,  -- Display new file status (new file means no write after created)
+          path = 1,                -- 0: Just the filename
+                                   -- 1: Relative path
+                                   -- 2: Absolute path
+                                   -- 3: Absolute path, with tilde as the home directory
+                                   -- 4: Filename and parent dir, with tilde as the home directory
+          shorting_target = 40,    -- Shortens path to leave 40 spaces in the window
+                                   -- for other components. (terrible name, any suggestions?)
+          symbols = {
+            modified = '[+]',      -- Text to show when the file is modified.
+            readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
+            unnamed = '[No Name]', -- Text to show for unnamed buffers.
+            newfile = '[New]',     -- Text to show for newly created file before first write
+          }
+        }
+      },
       lualine_c = {},
       lualine_x = {},
       lualine_y = {},
@@ -232,9 +281,10 @@ endfunction
 " fzf.vim
 "
 function! MyPluginSettings#hook_add_fzf() abort
+  let g:fzf_commands_expect = 'alt-enter,ctrl-x'
   nnoremap <C-p> :Files<CR>
-  nnoremap gb :Buffers<CR>
-  " NOTE: Rgはそのまま:Rgで
+  nnoremap <space>b :Buffers<CR>
+  nnoremap <space>c :Commands<CR>
 endfunction
 
 "

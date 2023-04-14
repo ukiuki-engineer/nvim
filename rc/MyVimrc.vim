@@ -71,8 +71,10 @@ nnoremap <S-TAB> :bN<CR>
 " ------------------------------------------------------------------------------
 " commands
 " ------------------------------------------------------------------------------
+" NOTE: 以下は、コマンド定義するより、補完されるようにした方が良いかも？
 command! SetCursorLineColumn :set cursorline cursorcolumn
 command! SetNoCursorLineColumn :set nocursorline nocursorcolumn
+command! SourceSession :silent! source Session.vim
 " ------------------------------------------------------------------------------
 " 標準プラグインの制御
 " ------------------------------------------------------------------------------
