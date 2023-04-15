@@ -111,3 +111,4 @@ coc.nvimを使用。
   - [npm moduleを検索するサイト](https://www.npmjs.com/search?q=keywords%3Acoc.nvim)
 - よく見るけど忘れがちなヘルプ
   - `:h key-notation`
+  - `:h map-table`

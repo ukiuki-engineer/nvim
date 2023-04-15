@@ -14,8 +14,8 @@
 " nvim-treesitter
 "
 function! MyPluginSettings#hook_source_treesitter() abort
-" NOTE: lua << EOF〜EOFのインデントを深くするとエラーとなるため注意
-lua << EOF
+" NOTE: lua << END〜ENDのインデントを深くするとエラーとなるため注意
+lua << END
   require('nvim-treesitter.configs').setup {
     highlight = {
       enable = true, -- syntax highlightを有効にする
@@ -30,7 +30,7 @@ lua << EOF
     },
     ensure_installed = 'all' -- :TSInstall allと同じ
   }
-EOF
+END
 endfunction
 
 "
@@ -38,7 +38,7 @@ endfunction
 "
 function! MyPluginSettings#hook_add_quickrun() abort
   nnoremap <F5> :QuickRun<CR>
-  vnoremap <F5> :QuickRun<CR>
+  xnoremap <F5> :QuickRun<CR>
 endfunction
 
 "
@@ -127,7 +127,7 @@ endfunction
 function! MyPluginSettings#hook_add_gruvbox() abort
   set background=dark " or light if you want light mode
   colorscheme gruvbox
-lua << EOF
+lua << END
   local colors = require("gruvbox.palette").colors;
   -- diffviewの色を変更
   function FixGruvbox()
@@ -143,7 +143,7 @@ lua << EOF
     "ColorScheme",
     { pattern = { "gruvbox" }, callback = FixGruvbox }
   )
-EOF
+END
 endfunction
 
 "
@@ -164,12 +164,20 @@ function! s:CallBlamerShow(timer) abort
   silent BlamerShow
 endfunction
 
+function! MyPluginSettings#hook_source_diffview() abort
+  " FIXME: スクロールを左右で同期したい
+lua << END
+  require('diffview').setup ({
+    enhanced_diff_hl = true,
+  })
+END
+endfunction
 
 "
 " indent-blankline.nvim
 "
 function! MyPluginSettings#hook_source_indent_blankline() abort
-lua << EOF
+lua << END
   vim.opt.list = true
   vim.opt.listchars:append({
     space = "⋅",
@@ -184,7 +192,7 @@ lua << EOF
     show_end_of_line = true,
     space_char_blankline = " "
   }
-EOF
+END
 endfunction
 
 "
@@ -250,9 +258,9 @@ function! MyPluginSettings#hook_add_nvim_tree() abort
 endfunction
 
 function! MyPluginSettings#hook_source_nvim_tree() abort
-lua << EOF
+lua << END
   require("nvim-tree").setup()
-EOF
+END
 endfunction
 
 "
@@ -267,12 +275,12 @@ endfunction
 function! MyPluginSettings#hook_source_toggleterm() abort
   " NOTE: 自分が設定した:terminalを使用したい場合もあるので、しばらく併用する
   execute 'source '. g:rc_dir . '/MyTerminal.vim'
-lua << EOF
+lua << END
   -- vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]])
   require("toggleterm").setup{
     persist_size = false
   }
-EOF
+END
   " カレントバッファのディレクトリでterminalを開く
   command! ToggleTermHere ToggleTerm dir=%:h
 endfunction
