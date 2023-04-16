@@ -32,12 +32,12 @@ on_event = ['BufRead']
 repo = 'sindrets/diffview.nvim'
 depends = ['plenary.nvim', 'nvim-web-devicons']
 on_cmd = [
-  'DiffviewClose'
-  'DiffviewFileHistory'
-  'DiffviewFocusFiles'
-  'DiffviewLog'
-  'DiffviewOpen'
-  'DiffviewRefresh'
+  'DiffviewClose',
+  'DiffviewFileHistory',
+  'DiffviewFocusFiles',
+  'DiffviewLog',
+  'DiffviewOpen',
+  'DiffviewRefresh',
   'DiffviewToggleFiles'
 ]
 hook_source = '''
