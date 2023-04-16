@@ -26,27 +26,6 @@ nvim/
             └── start/           " プラグインを作る時にここにシンボリックリンクを貼ってテストしたり
 ```
 
-## キーマップ
-基本方針は"**vim本来の操作性を崩さないように**"すること。  
-そのためプラグインを呼び出すためのマッピングが主で、vimそのもののキーマップは**なるべく**変更しないようにする。  
-どうしてもの場合は仕方ない。
-
-<a id="user-command"></a>
-## コマンド定義
-よく使うけど若干面倒な操作は随時コマンド化する。  
-以下は`find . -type f -name '*.vim' | grep -v 'colors' | xargs -I{} grep 'command!' {}`でgrepした結果。
-```vim
-command! SetCursorLineColumn :set cursorline cursorcolumn
-command! SetNoCursorLineColumn :set nocursorline nocursorcolumn
-command! SourceSession :silent! source Session.vim
-command! -nargs=* Term split | wincmd j | resize 20 | terminal <args>
-command! -nargs=* TermV vsplit | wincmd l | terminal <args>
-command! TermHere :call MyFunctions#term_here("sp")
-command! TermHereV :call MyFunctions#term_here("vsp")
-command! ToggleTermHere ToggleTerm dir=%:h
-command! -nargs=0 Format :call CocAction('format')
-```
-
 ## プラグイン管理
 dein.vimを使用。
 
@@ -60,6 +39,16 @@ dein.vimを使用。
 →coc.nvimを使用するのに必要
 - [mdr](https://github.com/MichaelMure/mdr)  
 →Markdownをプレビューするのに使う(preview-markdown.vim)
+
+## キーマップ
+基本方針は"**vim本来の操作性を崩さないように**"すること。  
+そのためプラグインを呼び出すためのマッピングが主で、vimそのもののキーマップは**なるべく**変更しないようにする。  
+どうしてもの場合は仕方ない。
+
+<a id="user-command"></a>
+## コマンド定義
+よく使うけど若干面倒な操作は随時コマンド化する。  
+
 
 ## session管理
 ウィンドウ分割やタブを頻繁に使用するため、sessionは超使ってる。  
@@ -90,9 +79,7 @@ set sessionoptions=buffers,curdir,tabpages
   - (たまに)`:terminal`→シェル芸でファイルを探す→`gf`  
   がっつり検索したい時はシェル芸で探した方が早い
 - ファイル作成、リネーム、移動等  
-NvimTreeの機能を使うより`:terminal`で操作した方が楽...  
-大体は[`:TermHere`](#user-command)でカレントバッファのディレクトリでterminalを開き、そこで操作することが多い。これで結構素早く操作できる。  
-リネームくらいだったらNvimTreeの機能を使うこともある。
+NvimTreeの機能を使うか、Terminalモードで。
 
 ## カッコ、クォーテーション、htmlの閉じタグ補完
 [自作プラグイン](https://github.com/ukiuki-engineer/vim-autoclose)を使用。  
@@ -101,6 +88,12 @@ htmlのタグに関しては、cocのスニペットを使用することもあ�
 
 ## LSP
 coc.nvimを使用。
+
+## Git操作
+- diffview.nvim  
+差分見たり、差分見ながら編集したりstageしたり。
+- vim-fugitive  
+`:Git commit`とか`:Git push`とか。
 
 ## NOTE
 自分用メモ
