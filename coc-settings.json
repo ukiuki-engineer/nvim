@@ -1,5 +1,5 @@
 {
-  // NOTE: :CocLocalConfigを実行すると、カレントディレクトリ/.vim/coc-config.jsonが作成される
+  // NOTE: :CocLocalConfigを実行すると、./.vim/coc-config.jsonが作成される
   //        このファイルより、ローカルコンフィグの方が優先される
   "diagnostic.virtualText": false,
   // NOTE: codeLensはよく分からないので一旦オフに。
@@ -29,9 +29,9 @@
     "command": "intelephense",
     "args": ["--stdio"],
     // "files": {
-      // "associations": ["*.php", "*.phtml", "*.blade.php"]
+      // "associations": ["*.php", "*.blade.php"]
     // },
-    "filetypes": ["php"],
+    "filetypes": ["php", "blade"],
     "initializationOptions": {
       "storagePath": "/tmp/intelephense"
     }

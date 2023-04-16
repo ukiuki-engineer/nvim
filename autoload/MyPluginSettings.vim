@@ -50,10 +50,10 @@ function! MyPluginSettings#hook_add_base16() abort
   "  emacsのテーマ
   " colorscheme base16-spacemacs
   " 良いけどコメントが究極的に見づらい...
-  " colorscheme base16-tender 
+  " colorscheme base16-tender
   " colorscheme base16-da-one-sea
   " atomのテーマ。これもコメントが見づらい...
-  " colorscheme base16-onedark 
+  " colorscheme base16-onedark
   colorscheme base16-atlas
 endfunction
 
@@ -121,9 +121,9 @@ lua << END
 END
 endfunction
 
-" 
+"
 " gruvbox.nvim
-" 
+"
 function! MyPluginSettings#hook_add_gruvbox() abort
   set background=dark " or light if you want light mode
   colorscheme gruvbox
@@ -248,7 +248,6 @@ endfunction
 " nvim-tree
 "
 " NOTE: tree上で`g?`とするとヘルプが開く
-" TODO: treeの背景だけちょっと色変えたい
 " TODO: 画面分割しててもマウスクリックで開けるように
 "       (マウスクリック時の挙動がOと同じになるように)
 function! MyPluginSettings#hook_add_nvim_tree() abort
@@ -259,7 +258,11 @@ endfunction
 
 function! MyPluginSettings#hook_source_nvim_tree() abort
 lua << END
-  require("nvim-tree").setup()
+  require("nvim-tree").setup {
+    git = {
+      ignore = false, -- .gitignoreされたファイルもtreeに表示する
+    },
+  }
 END
 endfunction
 
@@ -331,25 +334,26 @@ endfunction
 function! MyPluginSettings#hook_add_coc() abort
   " coc-extensions
   let g:coc_global_extensions = [
-    \ 'coc-word',
-    \ 'coc-sh',
-    \ 'coc-yaml',
-    \ 'coc-json',
+    \ '@yaegassy/coc-intelephense',
+    \ 'coc-blade',
+    \ 'coc-css',
+    \ 'coc-cssmodules',
     \ 'coc-docker',
+    \ 'coc-eslint',
+    \ 'coc-html',
+    \ 'coc-json',
+    \ 'coc-prettier',
+    \ 'coc-sh',
+    \ 'coc-snippets',
+    \ 'coc-solargraph',
+    \ 'coc-spell-checker',
     \ 'coc-sql',
     \ 'coc-tsserver',
     \ 'coc-vetur',
     \ 'coc-vimlsp',
+    \ 'coc-word',
     \ 'coc-xml',
-    \ 'coc-html',
-    \ 'coc-css',
-    \ 'coc-cssmodules',
-    \ '@yaegassy/coc-intelephense',
-    \ 'coc-blade',
-    \ 'coc-solargraph',
-    \ 'coc-eslint',
-    \ 'coc-snippets',
-    \ 'coc-spell-checker',
+    \ 'coc-yaml',
   \ ]
 endfunction
 
