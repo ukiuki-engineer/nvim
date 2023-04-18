@@ -93,8 +93,7 @@ htmlのタグに関しては、cocのスニペットを使用することもあ�
 
 ## Git操作
 - diffview.nvim  
-vimのdiffでgit差分を見れ、stageや変更の破棄もできるので超便利。  
-これで差分見ながら編集したりstageしたりする。
+vimのdiffでgit差分を見ながら、編集、変更の破棄やstageもできるので超便利。  
 - vim-fugitive  
 `:Git commit`とか`:Git push`とか。
 
