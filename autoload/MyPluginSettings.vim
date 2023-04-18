@@ -333,9 +333,7 @@ endfunction
 " 設定がいい感じになってきたら使いたい
 "
 function! MyPluginSettings#hook_add_eskk() abort
-  " TODO: 変換候補を補完のポップアップに表示するようにする
-  "       ddc.vim使うことになるのかな？
-  "       でもそれだとcoc.nvimの補完とぶつかりそう...
+  " TODO: nvim-cmpで変換候補を表示できるようにする
   " TODO: <S-Space>で<Space>の逆を辿れるようにする
   " 辞書ファイルをダウンロード
   if !filereadable(expand('~/.config/eskk/SKK-JISYO.L'))
