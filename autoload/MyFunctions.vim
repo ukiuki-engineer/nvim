@@ -42,7 +42,7 @@ function! MyFunctions#set_cursor_line_column() abort
   augroup END
 endfunction
 
-" 
+"
 " 標準プラグインの遅延読み込み
 "
 function! MyFunctions#lazy_load() abort

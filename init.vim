@@ -2,8 +2,8 @@
 " init.vim
 " ================================================================================
 " if &compatible
-"   " NOTE: NeoVimだといらないらしい
-"   set nocompatible 
+"   " NOTE: Neovimだといらないらしい
+"   set nocompatible
 " endif
 
 let s:cache         = expand('$HOME/.cache')

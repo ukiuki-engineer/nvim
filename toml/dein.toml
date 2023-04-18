@@ -3,16 +3,7 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]] # 日本語ドキュメント
-# NOTE: luaのドキュメントを読むには↓
-# :h nvim-lua-guide.txt
 repo = 'vim-jp/vimdoc-ja'
-
-[[plugins]] # 標準機能より高速にファイル形式を判別できる。
-repo = 'nathom/filetype.nvim'
-hook_add = '''
-" 標準機能をオフに
-let g:did_load_filetypes = 1
-'''
 
 [[plugins]] # luaモジュールの読み込みを速くするやつ
 repo = 'lewis6991/impatient.nvim'
@@ -20,15 +11,24 @@ hook_add = '''
 lua require('impatient')
 '''
 
+[[plugins]] # 標準機能より高速にファイル形式を判別できる。
+repo = 'nathom/filetype.nvim'
+depends = ['impatient.nvim']
+hook_add = '''
+" 標準機能をオフに
+let g:did_load_filetypes = 1
+'''
+
 [[plugins]] # airlineをこれに変えたら起動速度が倍速になった
 repo = 'nvim-lualine/lualine.nvim'
-depends = ['nvim-web-devicons']
+depends = ['nvim-web-devicons', 'impatient.nvim']
 hook_add = '''
 call MyPluginSettings#hook_add_lualine()
 '''
 
 [[plugins]] # カラースキーム
 repo = 'ellisonleao/gruvbox.nvim'
+depends = ['impatient.nvim']
 hook_add = '''
 call MyPluginSettings#hook_add_gruvbox()
 '''

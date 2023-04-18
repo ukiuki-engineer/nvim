@@ -1,7 +1,4 @@
-[[plugins]] # nvim-treesitter
-# NOTE: デフォルトのシンタックスハイライトは色が少なくて見づらい
-# これを入れるだけであらゆるファイルタイプのシンタックスハイライトが見やすくなる
-# 逆にデフォルトの方が見やすい場合はtreesitterを適宜オフに設定する
+[[plugins]] # デフォルトより見やすいsyntax highlight
 repo = 'nvim-treesitter/nvim-treesitter'
 on_event = ['BufRead', 'InsertEnter', 'FileType']
 hook_source = '''
@@ -10,9 +7,35 @@ call MyPluginSettings#hook_source_treesitter()
 
 [[plugins]] # vimでgitを実行するやつ
 # NOTE: :Git xxでgitコマンドを実行できる
-# TODO: on_cmdにして全コマンドを指定
 repo = 'tpope/vim-fugitive'
-on_event = ['BufRead']
+on_cmd = [
+  'G',
+  'GBrowse',
+  'GDelete',
+  'GMove',
+  'GRemove',
+  'GRename',
+  'GUnlink',
+  'Gcd',
+  'Gdiffsplit',
+  'Gdiffsplit!',
+  'Gdrop',
+  'Gedit',
+  'Ghdiffsplit',
+  'Git',
+  'Git!',
+  'Glcd',
+  'Gllog',
+  'Gpedit',
+  'Gread',
+  'Gsplit',
+  'Gtabedit',
+  'Gvdiffsplit',
+  'Gvsplit',
+  'Gwq',
+  'Gwq!',
+  'Gwrite'
+]
 
 [[plugins]] # VSCodeのGitLens的なやつ
 repo = 'APZelos/blamer.nvim'
@@ -28,7 +51,6 @@ on_event = ['BufRead']
 
 [[plugins]] # gitの差分をvimdiffで表示したりstageしたりするやつ
 # NOTE: stageまではできるので、後は`:Git`でcommit & pushすれば良い
-# FIXME: 差分の箇所がsyntax highlightされない
 repo = 'sindrets/diffview.nvim'
 depends = ['plenary.nvim', 'nvim-web-devicons']
 on_cmd = [
@@ -101,7 +123,19 @@ on_ft = ['blade']
 
 [[plugins]] # カラーコード可視化
 repo = 'norcalli/nvim-colorizer.lua'
-on_ft = ['css', 'html', 'less', 'sass', 'scss', 'stylus', 'vim', 'blade', 'vue', 'eruby', 'toml']
+on_ft = [
+  'css',
+  'html',
+  'less',
+  'sass',
+  'scss',
+  'stylus',
+  'vim',
+  'blade',
+  'vue',
+  'eruby',
+  'toml'
+]
 hook_source = '''
 call MyPluginSettings#hook_source_colorizer()
 '''
@@ -235,7 +269,6 @@ repo = 'honza/vim-snippets'
 on_event = ['BufRead', 'InsertEnter', 'FileType']
 
 [[plugins]] # coc.nvim
-# FIXME: erubyでjavascriptのsnippetsを使いたい(もうruby触ることないけど...)
 # FIXME: bladeでも、phpの関数のhoverが読みたい
 # NOTE: coc-bladeは、"b:xxx"と打つと補完候補が出る
 # NOTE: :CocCommand xx.xxで各拡張機能のコマンドを色々呼び出せる
