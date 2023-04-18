@@ -418,6 +418,12 @@ endfunction
 function! MyPluginSettings#hook_source_coc() abort
   " 補完の選択をEnterで決定
   inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+  " <Tab>/<S-Tab>で補完候補を選択(<C-p>/<C-n>派だけど左小指が痛い時は<Tab>を使いたい...)
+  inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+  inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
   " 定義ジャンプ
   nnoremap <space>d <Plug>(coc-definition)
   " カーソル位置のsymbolをハイライト
