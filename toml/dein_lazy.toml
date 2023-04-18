@@ -262,24 +262,34 @@ call MyPluginSettings#hook_add_fzf()
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
 
+[[plugins]] # コマンドライン補完用nvim-cmpのソース
+repo = 'hrsh7th/cmp-cmdline'
+on_event = ['BufRead', 'InsertEnter', 'FileType']
+
+[[plugins]]
+repo = 'hrsh7th/cmp-buffer'
+on_event = ['BufRead', 'InsertEnter', 'FileType']
+
+[[plugins]]
+repo = 'hrsh7th/cmp-path'
+on_event = ['BufRead', 'InsertEnter', 'FileType']
+
+[[plugins]] # 補完エンジン
+# とりあえずコマンドライン補完のみnvim-cmpを使用する
+repo = 'hrsh7th/nvim-cmp'
+depends = ['cmp-cmdline', 'cmp-buffer', 'cmp-path']
+# CmdlineXx系の方が素直だけど、起動が遅くなる気がする...
+# on_event = ['CmdlineChanged']
+on_event = ['BufRead', 'InsertEnter', 'FileType']
+hook_source = '''
+call MyPluginSettings#hook_source_cmp()
+'''
+
 [[plugins]] # スニペットのソース類
 # NOTE: coc-snippetsで呼び出して使う
 # 個々のcocプラグイン側の補完候補とぶつかって面倒な場合はどちらかをオフにする
 repo = 'honza/vim-snippets'
 on_event = ['BufRead', 'InsertEnter', 'FileType']
-
-[[plugins]] # コマンドライン補完用nvim-cmpのソース
-repo = 'hrsh7th/cmp-cmdline'
-on_event = ['CmdlineEnter']
-
-[[plugins]] # 補完エンジン
-# とりあえずコマンドライン補完のみnvim-cmpを使用する
-repo = 'hrsh7th/nvim-cmp'
-depends = 'cmp-cmdline'
-on_event = ['CmdlineEnter']
-hook_source = '''
-call MyPluginSettings#hook_source_cmp()
-'''
 
 [[plugins]] # coc.nvim
 # FIXME: bladeでも、phpの関数のhoverが読みたい
@@ -293,6 +303,7 @@ call MyPluginSettings#hook_source_cmp()
 # php artisan ide-helper:models --nowrite            # _ide_helper_models.phpを生成
 repo = 'neoclide/coc.nvim'
 rev = 'release'
+depends = ['vim-snippets']
 on_event = ['BufRead', 'InsertEnter', 'FileType']
 hook_add = '''
 call MyPluginSettings#hook_add_coc()

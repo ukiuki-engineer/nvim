@@ -321,9 +321,9 @@ endfunction
 "
 function! MyPluginSettings#hook_add_fzf() abort
   let g:fzf_commands_expect = 'alt-enter,ctrl-x'
-  nnoremap <C-p> :Files<CR>
+  " nnoremap <C-p> :Files<CR>
+  nnoremap <space>f :Files<CR>
   nnoremap <space>b :Buffers<CR>
-  nnoremap <space>c :Commands<CR>
   nnoremap <space>g :Rg<CR>
 endfunction
 
@@ -364,15 +364,21 @@ function! MyPluginSettings#hook_source_cmp() abort
 lua << END
   local cmp = require 'cmp'
   -- 検索
-  cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
+  cmp.setup.cmdline({'/', '?'}, {
+    mapping = cmp.mapping.preset.cmdline({
+      ["<C-p>"] = cmp.mapping.scroll_docs(-1),
+      ["<C-n>"] = cmp.mapping.scroll_docs(1),
+    }),
     sources = {
       { name = 'buffer' }
     }
   })
   -- コマンド
   cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmp.mapping.preset.cmdline({
+      ["<C-p>"] = cmp.mapping.scroll_docs(-1),
+      ["<C-n>"] = cmp.mapping.scroll_docs(1),
+    }),
     sources = cmp.config.sources({
       { name = 'path' }
     }, {
