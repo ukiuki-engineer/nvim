@@ -358,6 +358,31 @@ function! MyPluginSettings#hook_add_eskk() abort
 endfunction
 
 "
+" nvim-cmp
+"
+function! MyPluginSettings#hook_source_cmp() abort
+lua << END
+  local cmp = require 'cmp'
+  -- 検索
+  cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+  -- コマンド
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+END
+endfunction
+
+"
 " coc.nvim
 "
 function! MyPluginSettings#hook_add_coc() abort

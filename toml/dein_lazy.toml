@@ -268,6 +268,19 @@ on_cmd = ['StartupTime']
 repo = 'honza/vim-snippets'
 on_event = ['BufRead', 'InsertEnter', 'FileType']
 
+[[plugins]] # コマンドライン補完用nvim-cmpのソース
+repo = 'hrsh7th/cmp-cmdline'
+on_event = ['CmdlineEnter']
+
+[[plugins]] # 補完エンジン
+# とりあえずコマンドライン補完のみnvim-cmpを使用する
+repo = 'hrsh7th/nvim-cmp'
+depends = 'cmp-cmdline'
+on_event = ['CmdlineEnter']
+hook_source = '''
+call MyPluginSettings#hook_source_cmp()
+'''
+
 [[plugins]] # coc.nvim
 # FIXME: bladeでも、phpの関数のhoverが読みたい
 # NOTE: coc-bladeは、"b:xxx"と打つと補完候補が出る
