@@ -20,6 +20,7 @@ nvim/
     │   ├── MyIME.vim            " IME切り替え設定
     │   └── MyTerminal.vim       " :terminal周りの設定
     ├── coc-settings.json        " coc.nvimの設定
+    ├── .editorconfig            " editorconfig
     ├── colors/
     └── pack/
         └── plugins/
@@ -85,12 +86,15 @@ NvimTreeの機能を使うか、Terminalモードで。
 毎日使いながらちょっとずつチューニングしてきたためそれなりに安定しているかと...  
 htmlのタグに関しては、cocのスニペットを使用することもあるが、ぶつかることなく共存可能。
 
-## LSP
-coc.nvimを使用。
+## 補完、LSP
+- [coc.nvim](https://github.com/neoclide/coc.nvim)
+- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)  
+→コマンドライン補完のみnvim-cmpを使用。(※試運転中。cocとぶつからないかが心配。多分大丈夫。)
 
 ## Git操作
 - diffview.nvim  
-差分見たり、差分見ながら編集したりstageしたり。
+vimのdiffでgit差分を見れ、stageや変更の破棄もできるので超便利。  
+これで差分見ながら編集したりstageしたりする。
 - vim-fugitive  
 `:Git commit`とか`:Git push`とか。
 
