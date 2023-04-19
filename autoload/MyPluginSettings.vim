@@ -62,7 +62,7 @@ endfunction
 " lualine.nvim
 "
 function! MyPluginSettings#hook_add_lualine() abort
-  " FIXME: filenameの横にreadonlyの記号が出るように
+  " FIXME: filenameの横にreadonlyの記号が出るように(nvim-web-deviconsから引っ張ってくる)
 lua << END
   require('lualine').setup({
     sections = {
