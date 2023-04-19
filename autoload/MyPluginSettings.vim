@@ -62,6 +62,7 @@ endfunction
 " lualine.nvim
 "
 function! MyPluginSettings#hook_add_lualine() abort
+  " FIXME: filenameの横にreadonlyの記号が出るように
 lua << END
   require('lualine').setup({
     sections = {
@@ -363,6 +364,7 @@ endfunction
 " nvim-cmp
 "
 function! MyPluginSettings#hook_source_cmp() abort
+  " TODO: `:ls`→`:`の時は補完しように(補完ウィンドウが出ると`:ls`の結果が全部消える...)
 lua << END
   local cmp = require 'cmp'
   -- 検索

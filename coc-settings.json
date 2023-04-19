@@ -36,7 +36,7 @@
       "storagePath": "/tmp/intelephense"
     }
   },
-  "cSpell.userWords": [
+  "cSpell.ignoreWords": [
     "autoclose",
     "autoclosing",
     "autocmd",
@@ -46,6 +46,7 @@
     "eruby",
     "eskk",
     "exts",
+    "gruvbox",
     "intelephense",
     "jisyo",
     "kalisi",
@@ -53,6 +54,7 @@
     "neovim",
     "nvim",
     "quots",
+    "ripgrep",
     "rplugins",
     "shougo",
     "sjis",
