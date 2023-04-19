@@ -163,10 +163,6 @@ on_cmd = ['PreviewMarkdown']
 repo = 'numEricL/vim-redirect'
 on_cmd = ['Redirect']
 
-[[plugins]] # アイコン類
-repo = 'ryanoasis/vim-devicons'
-on_event = ['BufRead', 'InsertEnter']
-
 [[plugins]] # nvim-treeのアイコン
 repo = 'nvim-tree/nvim-web-devicons'
 on_source = ['diffview', 'nvim-tree.lua']
