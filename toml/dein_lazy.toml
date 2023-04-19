@@ -279,8 +279,8 @@ on_source = 'nvim-cmp'
 repo = 'hrsh7th/nvim-cmp'
 depends = ['cmp-cmdline', 'cmp-buffer', 'cmp-path']
 # CmdlineXx系の方が素直だけど、起動が遅くなる気がする...
-# on_event = ['CmdlineEnter']
-on_event = ['BufRead', 'InsertEnter', 'FileType']
+# on_event = ['BufRead', 'InsertEnter', 'FileType']
+on_event = ['CmdlineEnter']
 hook_source = '''
 call MyPluginSettings#hook_source_cmp()
 '''
