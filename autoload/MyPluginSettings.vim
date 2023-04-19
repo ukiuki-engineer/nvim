@@ -153,7 +153,8 @@ endfunction
 " gruvbox.nvim
 "
 function! MyPluginSettings#hook_add_gruvbox() abort
-  set background=dark " or light if you want light mode
+  " dark or light if you want light mode
+  set background=dark
   colorscheme gruvbox
 lua << END
   local colors = require("gruvbox.palette").colors;
@@ -165,6 +166,9 @@ lua << END
     vim.api.nvim_set_hl(0, 'DiffAdd', { bg = "#142a03" })
     vim.api.nvim_set_hl(0, 'DiffChange', { bg = "#3B3307" })
     vim.api.nvim_set_hl(0, 'DiffText', { bg = "#4D520D" })
+    -- cocのハイライト
+    vim.api.nvim_set_hl(0, 'CocFadeOut', { bg = "#464646", fg = "LightGrey" })
+    vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
   end
   FixGruvbox()
   vim.api.nvim_create_autocmd(
@@ -413,6 +417,11 @@ function! MyPluginSettings#hook_add_coc() abort
     \ 'coc-xml',
     \ 'coc-yaml',
   \ ]
+  " NOTE: スペルチェッカーの辞書登録
+  " .config/nvim/coc-settings.json
+  "   :CocCommand cSpell.addIgnoreWordToUser
+  " (多分)./.vim/coc-settings.json
+  "   :CocCommand cSpell.addIgnoreWordToWorkspace
 endfunction
 
 function! MyPluginSettings#hook_source_coc() abort
@@ -446,14 +455,14 @@ function! MyPluginSettings#hook_source_coc() abort
   nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
   " フォーマッターを呼び出す
   command! -nargs=0 Format :call CocAction('format')
-  augroup MyCocAutocmd
-    autocmd!
+  " augroup MyCocAutocmd
+    " autocmd!
   " ハイライト色を変更
-    autocmd ColorScheme * hi! CocFadeOut ctermfg=7 ctermbg=242 guifg=LightGrey guibg=DarkGrey
-    autocmd ColorScheme * hi! CocHintSign ctermfg=7 guifg=LightGrey
+    " autocmd ColorScheme * hi! CocFadeOut ctermfg=7 ctermbg=242 guifg=LightGrey guibg=DarkGrey
+    " autocmd ColorScheme * hi! CocHintSign ctermfg=7 guifg=LightGrey
   " カーソル位置のsymbolをハイライト
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-  augroup END
+    " autocmd CursorHold * silent call CocActionAsync('highlight')
+  " augroup END
 endfunction
 
 " ドキュメント表示
