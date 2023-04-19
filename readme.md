@@ -108,3 +108,11 @@ vimのdiffでgit差分を見ながら、編集、変更の破棄やstageもで�
   - `:h key-notation`
   - `:h map-table`
   - `:h autocmd-events`
+
+## TODO
+- 透過色生成関数を作っておきたい
+  - input  
+  背景色、対象色、透過率
+  - return  
+  透過させた色
+  - 多分luaで書いた方が良さそう
