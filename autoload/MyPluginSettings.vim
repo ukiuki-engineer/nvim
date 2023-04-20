@@ -198,7 +198,7 @@ function! s:CallBlamerShow(timer) abort
 endfunction
 
 function! MyPluginSettings#hook_source_diffview() abort
-  " FIXME: スクロールを左右で同期したい
+  " NOTE: マウスでスクロールする時は、差分の右側をスクロールしないとスクロールが同期されない
 lua << END
   require('diffview').setup ({
     enhanced_diff_hl = true,
@@ -283,9 +283,13 @@ endfunction
 " NOTE: tree上で`g?`とするとヘルプが開く
 " TODO: 画面分割しててもマウスクリックで開けるように
 "       (マウスクリック時の挙動がOと同じになるように)
+" TODO: マウスでツリーの開閉はできないのか？
+"       クリックしたらnvim-tree-api.tree.open()を呼ぶボタンをlualineに配置すれば良いかな？
+" TODO: Visualモード時もdeleteなどができるように
 function! MyPluginSettings#hook_add_nvim_tree() abort
   " nnoremap <C-n> :NvimTreeFindFileToggle<CR>
   nnoremap <C-n> :NvimTreeToggle<CR>
+  " FIXME: そもそも以下のコマンド自体がWSLでは効かない...？
   nnoremap <C-w>t :NvimTreeFindFile<CR>
 endfunction
 
