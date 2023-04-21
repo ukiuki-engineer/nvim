@@ -160,27 +160,43 @@ function! my_plugin_settings#hook_add_gruvbox() abort
 lua << END
   local colors = require("gruvbox.palette").colors;
   local my_functions = require("my_functions")
-  -- diffviewの色を変更
-  function FixGruvbox()
+  local bg_color = "#1C1C1C"
+  -- diffviewのハイライト色を変更
+  function fix_gruvbox()
     vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { bg = "#431313" })
-    vim.api.nvim_set_hl(0, 'DiffDelete', { bg = "none", fg = colors.dark2 })
+    vim.api.nvim_set_hl(0, 'DiffDelete', {
+      bg = my_functions.transparent_color(bg_color, "#FF0000", 0.8)
+    })
     vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', { bg = "none", fg = colors.dark2 })
-    vim.api.nvim_set_hl(0, 'DiffAdd', { bg = "#142a03" })
-    vim.api.nvim_set_hl(0, 'DiffChange', { bg = "#3B3307" })
-    vim.api.nvim_set_hl(0, 'DiffText', { bg = "#4D520D" })
+    vim.api.nvim_set_hl(0, 'DiffAdd', {
+      bg = my_functions.transparent_color(bg_color, "#00A100", 0.8)
+    })
+    vim.api.nvim_set_hl(0, 'DiffChange', {
+      bg = my_functions.transparent_color(bg_color, "#b9c42f", 0.8)
+    })
+    vim.api.nvim_set_hl(0, 'DiffText', {
+      bg = my_functions.transparent_color(bg_color, "#b9c42f", 0.8)
+    })
     -- coc.nvimのハイライト色を変更
     vim.api.nvim_set_hl(0, 'CocFadeOut', {
-      bg = my_functions.transparent_color('#1C1C1C', '#ADABAC', 0.6),
+      bg = my_functions.transparent_color(bg_color, '#ADABAC', 0.6),
       fg = "LightGrey"
     })
     vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
   end
-  FixGruvbox()
+  fix_gruvbox()
   vim.api.nvim_create_autocmd(
     "ColorScheme",
-    { pattern = { "gruvbox" }, callback = FixGruvbox }
+    { pattern = { "gruvbox" }, callback = fix_gruvbox }
   )
 END
+endfunction
+
+"
+" vim-nightfly-colors
+"
+function! my_plugin_settings#hook_add_nightfly_colors() abort
+  colorscheme nightfly
 endfunction
 
 "
