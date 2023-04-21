@@ -26,8 +26,3 @@ on_event = ['BufRead', 'InsertEnter']
 hook_add = '''
 call MyPluginSettings#hook_add_eskk()
 '''
-
-[[plugins]] # マークを可視化してくれるやつ
-repo = 'kshenoy/vim-signature'
-on_event = ['BufRead', 'InsertEnter']
-
