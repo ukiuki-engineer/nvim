@@ -13,4 +13,7 @@ local target_color = "#ADABAC"
 local alpha = 0.8
 
 local result_color = my_functions.transparent_color(bg_color, target_color, alpha)
+-- NOTE: 6行目を省略して、以下のように呼び出しても良い
+-- local result_color = require("lua/my_functions.lua").transparent_color(bg_color, target_color, alpha)
+
 print(result_color)
