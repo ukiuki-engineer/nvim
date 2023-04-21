@@ -159,6 +159,7 @@ function! MyPluginSettings#hook_add_gruvbox() abort
   colorscheme gruvbox
 lua << END
   local colors = require("gruvbox.palette").colors;
+  local my_functions = require("my_functions")
   -- diffviewの色を変更
   function FixGruvbox()
     vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { bg = "#431313" })
@@ -167,8 +168,11 @@ lua << END
     vim.api.nvim_set_hl(0, 'DiffAdd', { bg = "#142a03" })
     vim.api.nvim_set_hl(0, 'DiffChange', { bg = "#3B3307" })
     vim.api.nvim_set_hl(0, 'DiffText', { bg = "#4D520D" })
-    -- cocのハイライト
-    vim.api.nvim_set_hl(0, 'CocFadeOut', { bg = "#464646", fg = "LightGrey" })
+    -- coc.nvimのハイライト色を変更
+    vim.api.nvim_set_hl(0, 'CocFadeOut', {
+      bg = my_functions.transparent_color('#1C1C1C', '#ADABAC', 0.6),
+      fg = "LightGrey"
+    })
     vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
   end
   FixGruvbox()
