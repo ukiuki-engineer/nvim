@@ -10,15 +10,18 @@
 nvim/
     ├── init.vim                 " メイン
     ├── autoload/
-    │   ├── MyFunctions.vim      " 関数
+    │   ├── MyFunctions.vim      " 共通処理(vimscript)
     │   └── MyPluginSettings.vim " 各プラグインの設定
-    ├── toml/
-    │   ├── dein.toml            " プラグイン(通常ロード)
-    │   └── dein_lazy.toml       " プラグイン(遅延ロード)
+    ├── lua/
+    │   └── my_functions.lua     " 共通処理(lua)
+    ├── test/                    " テスト
     ├── rc/
     │   ├── MyVimrc.vim          " 基本的な設定とその他の設定の読み込み処理
     │   ├── MyIME.vim            " IME切り替え設定
     │   └── MyTerminal.vim       " :terminal周りの設定
+    ├── toml/
+    │   ├── dein.toml            " プラグイン(通常ロード)
+    │   └── dein_lazy.toml       " プラグイン(遅延ロード)
     ├── coc-settings.json        " coc.nvimの設定
     ├── .editorconfig            " editorconfig
     ├── colors/
@@ -110,9 +113,4 @@ vimのdiffでgit差分を見ながら、編集、変更の破棄やstageもで�
   - `:h autocmd-events`
 
 ## TODO
-- 透過色生成関数を作っておきたい
-  - input  
-  背景色、対象色、透過率
-  - return  
-  透過させた色
-  - 多分luaで書いた方が良さそう
+- ファイル名をスネークケースに統一した方がいいかも
