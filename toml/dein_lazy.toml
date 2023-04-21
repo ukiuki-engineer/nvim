@@ -2,7 +2,7 @@
 repo = 'nvim-treesitter/nvim-treesitter'
 on_event = ['BufRead', 'InsertEnter', 'FileType']
 hook_source = '''
-call MyPluginSettings#hook_source_treesitter()
+call my_plugin_settings#hook_source_treesitter()
 '''
 
 [[plugins]] # vimでgitを実行するやつ
@@ -42,7 +42,7 @@ repo = 'APZelos/blamer.nvim'
 depends = ['tpope/vim-fugitive']
 on_cmd = ['BlamerHide', 'BlamerShow', 'BlamerToggle']
 hook_add = '''
-call MyPluginSettings#hook_add_blamer()
+call my_plugin_settings#hook_add_blamer()
 '''
 
 [[plugins]] # 行番号の左に、gitの状態を表示するやつ
@@ -63,7 +63,7 @@ on_cmd = [
   'DiffviewToggleFiles'
 ]
 hook_source = '''
-call MyPluginSettings#hook_source_diffview()
+call my_plugin_settings#hook_source_diffview()
 '''
 
 [[plugins]]
@@ -75,7 +75,7 @@ on_source = ['diffview']
 repo = 'thinca/vim-quickrun'
 on_cmd = ['QuickRun']
 hook_add = '''
-call MyPluginSettings#hook_add_quickrun()
+call my_plugin_settings#hook_add_quickrun()
 '''
 
 [[plugins]] # editorconfig
@@ -86,7 +86,7 @@ on_event = ['BufRead']
 repo = 'lukas-reineke/indent-blankline.nvim'
 on_event = ['BufRead', 'InsertEnter']
 hook_source = '''
-call MyPluginSettings#hook_source_indent_blankline()
+call my_plugin_settings#hook_source_indent_blankline()
 '''
 
 [[plugins]] # 対のカッコをハイライト
@@ -105,7 +105,7 @@ on_event = ['BufRead', 'InsertEnter']
 repo = 'tpope/vim-commentary'
 on_event = ['BufRead', 'InsertEnter']
 hook_source = '''
-call MyPluginSettings#hook_source_commentary()
+call my_plugin_settings#hook_source_commentary()
 '''
 
 [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
@@ -113,7 +113,7 @@ repo = 'ukiuki-engineer/vim-autoclose'
 rev = 'develop'
 on_event = ['BufRead', 'InsertEnter']
 hook_source = '''
-call MyPluginSettings#hook_source_autoclose()
+call my_plugin_settings#hook_source_autoclose()
 '''
 
 [[plugins]] # blade
@@ -137,7 +137,7 @@ on_ft = [
   'toml'
 ]
 hook_source = '''
-call MyPluginSettings#hook_source_colorizer()
+call my_plugin_settings#hook_source_colorizer()
 '''
 lua_post_source = '''
 require 'colorizer'.setup()
@@ -147,7 +147,7 @@ require 'colorizer'.setup()
 repo = 'LeafCage/vimhelpgenerator'
 on_cmd = ['VimHelpGenerator', 'VimHelpGeneratorVirtual']
 hook_source = '''
-call MyPluginSettings#hook_source_vimhelpgenerator()
+call my_plugin_settings#hook_source_vimhelpgenerator()
 '''
 
 [[plugins]] # Markdownでtable作成
@@ -185,10 +185,10 @@ on_cmd = [
   'NvimTreeGenerateOnAttach'
 ]
 hook_add = '''
-call MyPluginSettings#hook_add_nvim_tree()
+call my_plugin_settings#hook_add_nvim_tree()
 '''
 hook_source = '''
-call MyPluginSettings#hook_source_nvim_tree()
+call my_plugin_settings#hook_source_nvim_tree()
 '''
 
 [[plugins]] # Terminalモードを使いやすくするやつ
@@ -207,10 +207,10 @@ on_cmd = [
 ]
 on_event = ['TermOpen']
 hook_add = '''
-call MyPluginSettings#hook_add_toggleterm()
+call my_plugin_settings#hook_add_toggleterm()
 '''
 hook_source = '''
-call MyPluginSettings#hook_source_toggleterm()
+call my_plugin_settings#hook_source_toggleterm()
 '''
 
 [[plugins]] # ファジーファインダー
@@ -251,7 +251,7 @@ on_cmd = [
 ]
 depends = 'junegunn/fzf'
 hook_add = '''
-call MyPluginSettings#hook_add_fzf()
+call my_plugin_settings#hook_add_fzf()
 '''
 
 [[plugins]] # vimの起動速度を測定
@@ -278,7 +278,7 @@ depends = ['cmp-cmdline', 'cmp-buffer', 'cmp-path']
 # on_event = ['BufRead', 'InsertEnter', 'FileType']
 on_event = ['CmdlineEnter']
 hook_source = '''
-call MyPluginSettings#hook_source_cmp()
+call my_plugin_settings#hook_source_cmp()
 '''
 
 [[plugins]] # スニペットのソース類
@@ -302,8 +302,8 @@ rev = 'release'
 depends = ['vim-snippets']
 on_event = ['BufRead', 'InsertEnter', 'FileType']
 hook_add = '''
-call MyPluginSettings#hook_add_coc()
+call my_plugin_settings#hook_add_coc()
 '''
 hook_source = '''
-call MyPluginSettings#hook_source_coc()
+call my_plugin_settings#hook_source_coc()
 '''

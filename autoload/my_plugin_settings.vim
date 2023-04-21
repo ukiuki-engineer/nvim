@@ -13,7 +13,7 @@
 "
 " nvim-treesitter
 "
-function! MyPluginSettings#hook_source_treesitter() abort
+function! my_plugin_settings#hook_source_treesitter() abort
 " NOTE: 逆にデフォルトの方が見やすい場合はtreesitterを適宜オフに設定する
 " NOTE: lua << END〜ENDのインデントを深くするとエラーとなるため注意
 lua << END
@@ -37,7 +37,7 @@ endfunction
 "
 " vim-quickrun
 "
-function! MyPluginSettings#hook_add_quickrun() abort
+function! my_plugin_settings#hook_add_quickrun() abort
   nnoremap <F5> :QuickRun<CR>
   xnoremap <F5> :QuickRun<CR>
 endfunction
@@ -45,7 +45,7 @@ endfunction
 "
 " nvim-base16
 "
-function! MyPluginSettings#hook_add_base16() abort
+function! my_plugin_settings#hook_add_base16() abort
   " colorscheme base16-ayu-dark
   " colorscheme base16-decaf
   "  emacsのテーマ
@@ -61,7 +61,7 @@ endfunction
 "
 " lualine.nvim
 "
-function! MyPluginSettings#hook_add_lualine() abort
+function! my_plugin_settings#hook_add_lualine() abort
   " FIXME: filenameの横にreadonlyの記号が出るように(nvim-web-deviconsから引っ張ってくる)
 lua << END
   require('lualine').setup({
@@ -153,7 +153,7 @@ endfunction
 "
 " gruvbox.nvim
 "
-function! MyPluginSettings#hook_add_gruvbox() abort
+function! my_plugin_settings#hook_add_gruvbox() abort
   " dark or light if you want light mode
   set background=dark
   colorscheme gruvbox
@@ -186,7 +186,7 @@ endfunction
 "
 " blamer.nvim
 "
-function! MyPluginSettings#hook_add_blamer() abort
+function! my_plugin_settings#hook_add_blamer() abort
   " 日時のフォーマット
   let g:blamer_date_format = '%Y/%m/%d %H:%M'
   " ビジュアルモード時はオフ
@@ -201,7 +201,7 @@ function! s:CallBlamerShow(timer) abort
   silent BlamerShow
 endfunction
 
-function! MyPluginSettings#hook_source_diffview() abort
+function! my_plugin_settings#hook_source_diffview() abort
   " NOTE: マウスでスクロールする時は、差分の右側をスクロールしないとスクロールが同期されない
 lua << END
   require('diffview').setup ({
@@ -213,7 +213,7 @@ endfunction
 "
 " indent-blankline.nvim
 "
-function! MyPluginSettings#hook_source_indent_blankline() abort
+function! my_plugin_settings#hook_source_indent_blankline() abort
 lua << END
   vim.opt.list = true
   vim.opt.listchars:append({
@@ -235,7 +235,7 @@ endfunction
 "
 " vim-commentary
 "
-function! MyPluginSettings#hook_source_commentary() abort
+function! my_plugin_settings#hook_source_commentary() abort
   augroup MyCommentstring
     autocmd!
     autocmd FileType php setlocal commentstring=//\ %s
@@ -245,7 +245,7 @@ endfunction
 "
 " vim-autoclose(自作)
 "
-function! MyPluginSettings#hook_source_autoclose() abort
+function! my_plugin_settings#hook_source_autoclose() abort
   let g:autoclose#disable_nextpattern_autoclosing_brackets = []
   let g:autoclose#disable_nextpattern_autoclosing_quots = []
   " 改行の整形機能をオフ
@@ -259,7 +259,7 @@ endfunction
 "
 " nvim-colorizer.lua
 "
-function! MyPluginSettings#hook_source_colorizer() abort
+function! my_plugin_settings#hook_source_colorizer() abort
   augroup MyColorizer
     autocmd!
     autocmd FileType css,html,less,sass,scss,stylus,vim,blade,vue,eruby,toml,lua ColorizerAttachToBuffer
@@ -270,7 +270,7 @@ endfunction
 "
 " vimhelpgenerator
 "
-function! MyPluginSettings#hook_source_vimhelpgenerator() abort
+function! my_plugin_settings#hook_source_vimhelpgenerator() abort
   let g:vimhelpgenerator_defaultlanguage = 'ja'
   let g:vimhelpgenerator_version = ''
   let g:vimhelpgenerator_author = 'Author  : ukiuki-engineer'
@@ -290,14 +290,14 @@ endfunction
 " TODO: マウスでツリーの開閉はできないのか？
 "       クリックしたらnvim-tree-api.tree.open()を呼ぶボタンをlualineに配置すれば良いかな？
 " TODO: Visualモード時もdeleteなどができるように
-function! MyPluginSettings#hook_add_nvim_tree() abort
+function! my_plugin_settings#hook_add_nvim_tree() abort
   " nnoremap <C-n> :NvimTreeFindFileToggle<CR>
   nnoremap <C-n> :NvimTreeToggle<CR>
   " FIXME: そもそも以下のコマンド自体がWSLでは効かない...？
   nnoremap <C-w>t :NvimTreeFindFile<CR>
 endfunction
 
-function! MyPluginSettings#hook_source_nvim_tree() abort
+function! my_plugin_settings#hook_source_nvim_tree() abort
 lua << END
   require("nvim-tree").setup {
     git = {
@@ -311,14 +311,14 @@ endfunction
 " toggleterm
 " FIXME: <C-w>L<C-w>Jとするとサイズがバグる
 "
-function! MyPluginSettings#hook_add_toggleterm() abort
+function! my_plugin_settings#hook_add_toggleterm() abort
   tnoremap <C-`> <Cmd>ToggleTerm<CR>
   nnoremap <C-`> :ToggleTerm<CR>
 endfunction
 
-function! MyPluginSettings#hook_source_toggleterm() abort
+function! my_plugin_settings#hook_source_toggleterm() abort
   " NOTE: 自分が設定した:terminalを使用したい場合もあるので、しばらく併用する
-  execute 'source '. g:rc_dir . '/MyTerminal.vim'
+  execute 'source '. g:rc_dir . '/my_terminal.vim'
 lua << END
   -- vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]])
   require("toggleterm").setup{
@@ -332,7 +332,7 @@ endfunction
 "
 " fzf.vim
 "
-function! MyPluginSettings#hook_add_fzf() abort
+function! my_plugin_settings#hook_add_fzf() abort
   let g:fzf_commands_expect = 'alt-enter,ctrl-x'
   " nnoremap <C-p> :Files<CR>
   nnoremap <space>f :Files<CR>
@@ -345,7 +345,7 @@ endfunction
 " まだ設定中のため、今は不使用
 " 設定がいい感じになってきたら使いたい
 "
-function! MyPluginSettings#hook_add_eskk() abort
+function! my_plugin_settings#hook_add_eskk() abort
   " TODO: nvim-cmpで変換候補を表示できるようにする
   " TODO: <S-Space>で<Space>の逆を辿れるようにする
   " 辞書ファイルをダウンロード
@@ -371,7 +371,7 @@ endfunction
 "
 " nvim-cmp
 "
-function! MyPluginSettings#hook_source_cmp() abort
+function! my_plugin_settings#hook_source_cmp() abort
   " TODO: `:ls`→`:`の時は補完しように(補完ウィンドウが出ると`:ls`の結果が全部消える...)
 lua << END
   local cmp = require 'cmp'
@@ -403,7 +403,7 @@ endfunction
 "
 " coc.nvim
 "
-function! MyPluginSettings#hook_add_coc() abort
+function! my_plugin_settings#hook_add_coc() abort
   " coc-extensions
   let g:coc_global_extensions = [
     \ '@yaegassy/coc-intelephense',
@@ -434,7 +434,7 @@ function! MyPluginSettings#hook_add_coc() abort
   "   :CocCommand cSpell.addIgnoreWordToWorkspace
 endfunction
 
-function! MyPluginSettings#hook_source_coc() abort
+function! my_plugin_settings#hook_source_coc() abort
   " 補完の選択をEnterで決定
   inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
   " <Tab>/<S-Tab>で補完候補を選択(<C-p>/<C-n>派だけど左小指が痛い時は<Tab>を使いたい...)
@@ -448,7 +448,7 @@ function! MyPluginSettings#hook_source_coc() abort
   " カーソル位置のsymbolをハイライト
   nnoremap gh :call CocActionAsync('highlight')<CR>
   " ドキュメント表示
-  nnoremap <silent> <space>h :call MyPluginSettings#show_documentation()<CR>
+  nnoremap <silent> <space>h :call my_plugin_settings#show_documentation()<CR>
   " 参照箇所表示
   nnoremap <space>r <Plug>(coc-references)
   " ウィンドウのスクロール
@@ -476,7 +476,7 @@ function! MyPluginSettings#hook_source_coc() abort
 endfunction
 
 " ドキュメント表示
-function! MyPluginSettings#show_documentation() abort
+function! my_plugin_settings#show_documentation() abort
   if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
   else

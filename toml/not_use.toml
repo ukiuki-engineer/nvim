@@ -3,7 +3,7 @@
 [[plugins]] # colorscheme
 repo = 'RRethy/nvim-base16'
 hook_add = '''
-call MyPluginSettings#hook_add_base16()
+call my_plugin_settings#hook_add_base16()
 '''
 
 [[plugins]]
@@ -15,7 +15,7 @@ colorscheme nightfly
 [[plugins]]
 repo = 'marko-cerovac/material.nvim'
 hook_add = '''
-call MyPluginSettings#hook_add_material()
+call my_plugin_settings#hook_add_material()
 '''
 
 [[plugins]] # vim内部で日本語入力するためのプラグイン
@@ -24,5 +24,5 @@ call MyPluginSettings#hook_add_material()
 repo = 'vim-skk/eskk.vim'
 on_event = ['BufRead', 'InsertEnter']
 hook_add = '''
-call MyPluginSettings#hook_add_eskk()
+call my_plugin_settings#hook_add_eskk()
 '''

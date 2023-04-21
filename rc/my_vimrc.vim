@@ -53,9 +53,9 @@ augroup MyVimrc
   " env系はシェルスクリプトとして開く
   autocmd BufEnter .env,.env.example setlocal filetype=sh
   " CursorHold時のみカーソル行/列を表示
-  " autocmd CursorHold * call MyFunctions#set_cursor_line_column()
+  " autocmd CursorHold * call my_functions#set_cursor_line_column()
   " IME切り替え設定の読み込み
-  autocmd InsertEnter,CmdlineEnter * ++once execute 'source' . g:rc_dir . '/MyIME.vim'
+  autocmd InsertEnter,CmdlineEnter * ++once execute 'source' . g:rc_dir . '/my_ime.vim'
   " NOTE: toggletermと一緒にdein側で制御する
   " :terminal設定の読み込み1
   " autocmd TermOpen * ++once execute 'source' . g:rc_dir . '/MyTerminal.vim'
@@ -95,4 +95,4 @@ let g:loaded_spellfile_plugin   = 1
 let g:loaded_tarPlugin          = 1
 let g:did_indent_on             = 1
 " 標準プラグインの遅延読み込み
-call MyFunctions#lazy_load()
+call my_functions#lazy_load()

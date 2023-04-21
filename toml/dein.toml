@@ -23,12 +23,12 @@ let g:did_load_filetypes = 1
 repo = 'nvim-lualine/lualine.nvim'
 depends = ['nvim-web-devicons', 'impatient.nvim']
 hook_add = '''
-call MyPluginSettings#hook_add_lualine()
+call my_plugin_settings#hook_add_lualine()
 '''
 
 [[plugins]] # カラースキーム
 repo = 'ellisonleao/gruvbox.nvim'
 depends = ['impatient.nvim']
 hook_add = '''
-call MyPluginSettings#hook_add_gruvbox()
+call my_plugin_settings#hook_add_gruvbox()
 '''
