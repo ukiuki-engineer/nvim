@@ -160,27 +160,27 @@ function! my_plugin_settings#hook_add_gruvbox() abort
 lua << END
   local colors = require("gruvbox.palette").colors;
   local my_functions = require("my_functions")
-  local bg_color = "#1C1C1C" -- このカラースキームの背景色
+  local bg_color = "#282828" -- :hi Normal
   -- diffviewのハイライト色を変更
   function fix_gruvbox()
     vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { -- FIXME: 不明
-      bg = "#431313"
+      bg = "#FF0000"
     })
     vim.api.nvim_set_hl(0, 'DiffDelete', {              -- 削除された行
-      bg = my_functions.transparent_color(bg_color, "#C70000", 0.8)
+      bg = my_functions.transparent_color(bg_color, "#C70000", 0.90)
     })
     vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', {      -- 行が追加された場合の左側
-      bg = my_functions.transparent_color(bg_color, "#C70000", 0.8),
+      bg = my_functions.transparent_color(bg_color, "#C70000", 0.90),
       fg = colors.dark2
     })
     vim.api.nvim_set_hl(0, 'DiffAdd', {                 -- 追加された行
-      bg = my_functions.transparent_color(bg_color, "#00A100", 0.8)
+      bg = my_functions.transparent_color(bg_color, "#009900", 0.90)
     })
     vim.api.nvim_set_hl(0, 'DiffChange', {              -- 変更行
-      bg = my_functions.transparent_color(bg_color, "#b9c42f", 0.8)
+      bg = my_functions.transparent_color(bg_color, "#b9c42f", 0.90)
     })
     vim.api.nvim_set_hl(0, 'DiffText', {                -- 変更行の変更箇所
-      bg = my_functions.transparent_color(bg_color, "#FD7E00", 0.65)
+      bg = my_functions.transparent_color(bg_color, "#FD7E00", 0.70)
     })
     -- coc.nvimのハイライト色を変更
     vim.api.nvim_set_hl(0, 'CocFadeOut', {
@@ -202,6 +202,43 @@ endfunction
 "
 function! my_plugin_settings#hook_add_nightfly_colors() abort
   colorscheme nightfly
+lua << END
+  local my_functions = require("my_functions")
+  local bg_color = "#011627" -- :hi Normal
+  -- diffviewのハイライト色を変更
+  function fix_nightfly()
+    vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { -- FIXME: 不明
+      bg = "#FF0000"
+    })
+    vim.api.nvim_set_hl(0, 'DiffDelete', {              -- 削除された行
+      bg = my_functions.transparent_color(bg_color, "#C70000", 0.90)
+    })
+    vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', {      -- 行が追加された場合の左側
+      bg = my_functions.transparent_color(bg_color, "#C70000", 0.90),
+      fg = my_functions.transparent_color(bg_color, "#2f2f2f", 0.00)
+    })
+    vim.api.nvim_set_hl(0, 'DiffAdd', {                 -- 追加された行
+      bg = my_functions.transparent_color(bg_color, "#00A100", 0.90)
+    })
+    vim.api.nvim_set_hl(0, 'DiffChange', {              -- 変更行
+      bg = my_functions.transparent_color(bg_color, "#b9c42f", 0.90)
+    })
+    vim.api.nvim_set_hl(0, 'DiffText', {                -- 変更行の変更箇所
+      bg = my_functions.transparent_color(bg_color, "#FD7E00", 0.70)
+    })
+    -- coc.nvimのハイライト色を変更
+    vim.api.nvim_set_hl(0, 'CocFadeOut', {
+      bg = my_functions.transparent_color(bg_color, '#ADABAC', 0.5),
+      fg = "LightGrey"
+    })
+    vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
+  end
+  fix_nightfly()
+  vim.api.nvim_create_autocmd(
+    "ColorScheme",
+    { pattern = { "gruvbox" }, callback = fix_nightfly }
+  )
+END
 endfunction
 
 "

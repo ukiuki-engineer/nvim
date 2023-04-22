@@ -7,12 +7,6 @@ call my_plugin_settings#hook_add_base16()
 '''
 
 [[plugins]]
-repo = 'bluz71/vim-nightfly-colors'
-hook_add = '''
-colorscheme nightfly
-'''
-
-[[plugins]]
 repo = 'marko-cerovac/material.nvim'
 hook_add = '''
 call my_plugin_settings#hook_add_material()
