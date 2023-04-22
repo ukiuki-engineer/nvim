@@ -314,16 +314,20 @@ endfunction
 " nvim-tree
 "
 " NOTE: tree上で`g?`とするとヘルプが開く
+" 小指が痛いのでマウスで操作しやすいようにカスタマイズしたい...
 " TODO: 画面分割しててもマウスクリックで開けるように
 "       (マウスクリック時の挙動がOと同じになるように)
 " TODO: マウスでツリーの開閉はできないのか？
 "       クリックしたらnvim-tree-api.tree.open()を呼ぶボタンをlualineに配置すれば良いかな？
 " TODO: Visual選択範囲を一括削除できるように
 function! my_plugin_settings#hook_add_nvim_tree() abort
-  " nnoremap <C-n> :NvimTreeFindFileToggle<CR>
   nnoremap <C-n> :NvimTreeToggle<CR>
-  " FIXME: そもそも以下のコマンド自体がWSLでは効かない...？
-  nnoremap <C-w>t :NvimTreeFindFile<CR>
+  " WSLで`:NvimTreeFindFile`が上手く効かないから苦肉の策...
+  if has('linux') && exists('$WSLENV') && exepath('zenhan.exe') != ""
+    nnoremap <C-w>t :NvimTreeFindFileToggle<CR>
+  else
+    nnoremap <C-w>t :NvimTreeFindFile<CR>
+  endif
 endfunction
 
 function! my_plugin_settings#hook_source_nvim_tree() abort
