@@ -224,6 +224,7 @@ endfunction
 
 function! my_plugin_settings#hook_source_diffview() abort
   " NOTE: マウスでスクロールする時は、差分の右側をスクロールしないとスクロールが同期されない
+  " TODO: 差分をdiscardする時、confirmするようにする
 lua << END
   require('diffview').setup ({
     enhanced_diff_hl = true,
