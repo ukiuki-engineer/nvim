@@ -160,26 +160,31 @@ function! my_plugin_settings#hook_add_gruvbox() abort
 lua << END
   local colors = require("gruvbox.palette").colors;
   local my_functions = require("my_functions")
-  local bg_color = "#1C1C1C"
+  local bg_color = "#1C1C1C" -- このカラースキームの背景色
   -- diffviewのハイライト色を変更
   function fix_gruvbox()
-    vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { bg = "#431313" })
-    vim.api.nvim_set_hl(0, 'DiffDelete', {
-      bg = my_functions.transparent_color(bg_color, "#FF0000", 0.8)
+    vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { -- FIXME: 不明
+      bg = "#431313"
     })
-    vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', { bg = "none", fg = colors.dark2 })
-    vim.api.nvim_set_hl(0, 'DiffAdd', {
+    vim.api.nvim_set_hl(0, 'DiffDelete', {              -- 削除された行
+      bg = my_functions.transparent_color(bg_color, "#C70000", 0.8)
+    })
+    vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', {      -- 行が追加された場合の左側
+      bg = my_functions.transparent_color(bg_color, "#C70000", 0.8),
+      fg = colors.dark2
+    })
+    vim.api.nvim_set_hl(0, 'DiffAdd', {                 -- 追加された行
       bg = my_functions.transparent_color(bg_color, "#00A100", 0.8)
     })
-    vim.api.nvim_set_hl(0, 'DiffChange', {
+    vim.api.nvim_set_hl(0, 'DiffChange', {              -- 変更行
       bg = my_functions.transparent_color(bg_color, "#b9c42f", 0.8)
     })
-    vim.api.nvim_set_hl(0, 'DiffText', {
-      bg = my_functions.transparent_color(bg_color, "#b9c42f", 0.8)
+    vim.api.nvim_set_hl(0, 'DiffText', {                -- 変更行の変更箇所
+      bg = my_functions.transparent_color(bg_color, "#FD7E00", 0.65)
     })
     -- coc.nvimのハイライト色を変更
     vim.api.nvim_set_hl(0, 'CocFadeOut', {
-      bg = my_functions.transparent_color(bg_color, '#ADABAC', 0.6),
+      bg = my_functions.transparent_color(bg_color, '#ADABAC', 0.5),
       fg = "LightGrey"
     })
     vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
@@ -305,7 +310,7 @@ endfunction
 "       (マウスクリック時の挙動がOと同じになるように)
 " TODO: マウスでツリーの開閉はできないのか？
 "       クリックしたらnvim-tree-api.tree.open()を呼ぶボタンをlualineに配置すれば良いかな？
-" TODO: Visualモード時もdeleteなどができるように
+" TODO: Visual選択範囲を一括削除できるように
 function! my_plugin_settings#hook_add_nvim_tree() abort
   " nnoremap <C-n> :NvimTreeFindFileToggle<CR>
   nnoremap <C-n> :NvimTreeToggle<CR>
