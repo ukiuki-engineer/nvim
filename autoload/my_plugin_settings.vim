@@ -22,8 +22,8 @@ lua << END
       enable = true, -- syntax highlightを有効にする
       disable = {    -- デフォルトの方が見やすい場合は無効に
         -- 'toml',
-        'css',
-        'sql'
+        -- 'css',
+        -- 'sql'
       }
     },
     indent = {
