@@ -1,0 +1,33 @@
+{
+  "cSpell.ignoreWords": [
+    "autoclose",
+    "autoclosing",
+    "autocmd",
+    "autoformat",
+    "autoload",
+    "dein",
+    "eruby",
+    "eskk",
+    "exts",
+    "gruvbox",
+    "intelephense",
+    "jisyo",
+    "kalisi",
+    "mkdir",
+    "neovim",
+    "nvim",
+    "quots",
+    "ripgrep",
+    "rplugins",
+    "shougo",
+    "sjis",
+    "solargraph",
+    "successed",
+    "ukiuki",
+    "vetur",
+    "vimrc",
+    "vimrcs",
+    "wslenv",
+    "yaegassy"
+  ]
+}
