@@ -227,6 +227,13 @@ function! my_plugin_settings#hook_source_diffview() abort
 lua << END
   require('diffview').setup ({
     enhanced_diff_hl = true,
+    file_panel = {
+      win_config = { -- diffviewのwindowの設定
+        type = "split",
+        position = "right",
+        width = 40,
+      },
+    },
   })
 END
 endfunction
