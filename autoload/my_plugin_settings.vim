@@ -227,11 +227,11 @@ lua << END
       bg = my_functions.transparent_color(bg_color, "#FD7E00", 0.70)
     })
     -- coc.nvimのハイライト色を変更
-    vim.api.nvim_set_hl(0, 'CocFadeOut', {
-      bg = my_functions.transparent_color(bg_color, '#ADABAC', 0.50),
-      fg = "LightGrey"
-    })
-    vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
+    -- vim.api.nvim_set_hl(0, 'CocFadeOut', { -- FIXME: 上手くいっていないので後で修正する
+      -- bg = my_functions.transparent_color(bg_color, '#ADABAC', 0.50),
+      -- fg = "LightGrey"
+    -- })
+    -- vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
   end
   fix_nightfly()
   vim.api.nvim_create_autocmd(
@@ -249,7 +249,7 @@ function! my_plugin_settings#hook_add_blamer() abort
   let g:blamer_date_format = '%Y/%m/%d %H:%M'
   " ビジュアルモード時はオフ
   let g:blamer_show_in_visual_modes = 0
-  " タイマー遅延
+  " タイマー遅延で起動させる
   call timer_start(500, function("s:CallBlamerShow"))
 endfunction
 
@@ -539,9 +539,9 @@ function! my_plugin_settings#hook_source_coc() abort
   command! -nargs=0 Format :call CocAction('format')
   " augroup MyCocAutocmd
     " autocmd!
-  " ハイライト色を変更
-    " autocmd ColorScheme * hi! CocFadeOut ctermfg=7 ctermbg=242 guifg=LightGrey guibg=DarkGrey
-    " autocmd ColorScheme * hi! CocHintSign ctermfg=7 guifg=LightGrey
+  " ハイライト色を変更(FIXME: 仮)
+    autocmd ColorScheme * hi! CocFadeOut ctermfg=7 ctermbg=242 guifg=LightGrey guibg="#576069"
+    autocmd ColorScheme * hi! CocHintSign ctermfg=7 guifg=LightGrey
   " カーソル位置のsymbolをハイライト
     " autocmd CursorHold * silent call CocActionAsync('highlight')
   " augroup END
