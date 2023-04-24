@@ -5,15 +5,15 @@
 -- NOTE: 設定ファイル中で呼ぶ時は、`lua/`は省略可
 local my_functions = require("lua/my_functions")
 
--- local bg_color = "#FFFFFF"     -- 白色
--- local target_color = "#0000FF" -- 青色
--- local alpha = 0.5              -- 透過率
-local bg_color = "#1C1C1C"
-local target_color = "#ADABAC"
-local alpha = 0.8
+local bg_color     = "#FFFFFF"     -- 白色
+local target_color = "#0000FF" -- 青色
 
-local result_color = my_functions.transparent_color(bg_color, target_color, alpha)
 -- NOTE: 6行目を省略して、以下のように呼び出しても良い
--- local result_color = require("lua/my_functions.lua").transparent_color(bg_color, target_color, alpha)
+-- require("lua/my_functions.lua").transparent_color(bg_color, target_color, alpha)
 
-print(result_color)
+print("bg_color     = " .. bg_color)
+print("target_color = " .. target_color)
+print("")
+print("透過率1の場合   -> " .. my_functions.transparent_color(bg_color, target_color, 1))
+print("透過率0の場合   -> " .. my_functions.transparent_color(bg_color, target_color, 0))
+print("透過率0.5の場合 -> " .. my_functions.transparent_color(bg_color, target_color, 0.5))
