@@ -184,7 +184,7 @@ lua << END
     })
     -- coc.nvimのハイライト色を変更
     vim.api.nvim_set_hl(0, 'CocFadeOut', {
-      bg = my_functions.transparent_color(bg_color, '#ADABAC', 0.5),
+      bg = my_functions.transparent_color(bg_color, '#ADABAC', 0.50),
       fg = "LightGrey"
     })
     vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
@@ -228,7 +228,7 @@ lua << END
     })
     -- coc.nvimのハイライト色を変更
     vim.api.nvim_set_hl(0, 'CocFadeOut', {
-      bg = my_functions.transparent_color(bg_color, '#ADABAC', 0.5),
+      bg = my_functions.transparent_color(bg_color, '#ADABAC', 0.50),
       fg = "LightGrey"
     })
     vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
@@ -236,7 +236,7 @@ lua << END
   fix_nightfly()
   vim.api.nvim_create_autocmd(
     "ColorScheme",
-    { pattern = { "gruvbox" }, callback = fix_nightfly }
+    { pattern = { "nightfly" }, callback = fix_nightfly }
   )
 END
 endfunction
