@@ -8,26 +8,26 @@
 ## ディレクトリ構成
 ```
 nvim/
-    ├── init.vim                 " メイン
+    ├── init.vim                   " メイン
     ├── autoload/
-    │   ├── my_functions.vim      " 共通処理(vimscript)
+    │   ├── my_functions.vim       " 共通処理(vimscript)
     │   └── my_plugin_settings.vim " 各プラグインの設定
     ├── lua/
-    │   └── my_functions.lua     " 共通処理(lua)
-    ├── test/                    " テスト
+    │   └── my_functions.lua       " 共通処理(lua)
+    ├── test/                      " テスト
     ├── rc/
-    │   ├── my_vimrc.vim          " 基本的な設定とその他の設定の読み込み処理
-    │   ├── my_ime.vim            " IME切り替え設定
-    │   └── my_terminal.vim       " :terminal周りの設定
+    │   ├── my_vimrc.vim           " 基本的な設定とその他の設定の読み込み処理
+    │   ├── my_ime.vim             " IME切り替え設定
+    │   └── my_terminal.vim        " :terminal周りの設定
     ├── toml/
-    │   ├── dein.toml            " プラグイン(通常ロード)
-    │   └── dein_lazy.toml       " プラグイン(遅延ロード)
-    ├── coc-settings.json        " coc.nvimの設定
-    ├── .editorconfig            " editorconfig
+    │   ├── dein.toml              " プラグイン(通常ロード)
+    │   └── dein_lazy.toml         " プラグイン(遅延ロード)
+    ├── coc-settings.json          " coc.nvimの設定
+    ├── .editorconfig              " editorconfig
     ├── colors/
     └── pack/
         └── plugins/
-            └── start/           " プラグインを作る時にここにシンボリックリンクを貼ってテストしたり
+            └── start/             " プラグインを作る時にここにシンボリックリンクを貼ってテストしたり
 ```
 
 ## プラグイン管理
