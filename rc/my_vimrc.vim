@@ -23,10 +23,6 @@ set number
 set list
 " タブや改行の表示記号を定義
 " set listchars=tab:»-,trail:-,eol:↓,extends:»,precedes:«,nbsp:%
-" ヤンクした文字列をクリップボードにコピー
-" FIXME: 下記を参考に、WSL用の設定を行う
-" https://mattn.kaoriya.net/software/wsl/20200530230631.htm
-set clipboard+=unnamed
 " 画面を垂直分割する際に右に開く
 set splitright
 " 画面を水平分割する際に下に開く
@@ -61,6 +57,7 @@ augroup MyVimrc
   " autocmd TermOpen * ++once execute 'source' . g:rc_dir . '/MyTerminal.vim'
   " :terminal設定の読み込み2
   " autocmd CmdUndefined Term,TermV,TermHere,TermHereV ++once execute 'source' . g:rc_dir . '/MyTerminal.vim'
+  autocmd InsertEnter,BufEnter * ++once call my_functions#set_clipboard()
 augroup END
 " ------------------------------------------------------------------------------
 " maps

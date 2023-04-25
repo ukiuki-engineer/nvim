@@ -63,3 +63,14 @@ endfunction
 function! s:timer_load(timer) abort
   call s:packadd()
 endfunction
+
+" クリップボード設定
+function! my_functions#set_clipboard() abort
+  " ヤンクした文字列をクリップボードにコピー
+  if has('linux') && exists('$WSLENV') && exepath('zenhan.exe') != ""
+    " WSLの場合何故かclipboardが重いのでtimer遅延させr
+    call timer_start(1000, { tid -> execute("set clipboard+=unnamedplus") })
+  else
+    set clipboard+=unnamed
+  endif
+endfunction
