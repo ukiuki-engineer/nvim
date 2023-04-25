@@ -52,12 +52,13 @@ augroup MyVimrc
   " autocmd CursorHold * call my_functions#set_cursor_line_column()
   " IME切り替え設定の読み込み
   autocmd InsertEnter,CmdlineEnter * ++once execute 'source' . g:rc_dir . '/my_ime.vim'
+  " クリップボード設定の遅延読み込み(急にWSLで重くなったので遅延させる)
+  autocmd InsertEnter,BufEnter * ++once execute 'source' . g:rc_dir . '/my_clipboard.vim'
   " NOTE: toggletermと一緒にdein側で制御する
   " :terminal設定の読み込み1
   " autocmd TermOpen * ++once execute 'source' . g:rc_dir . '/MyTerminal.vim'
   " :terminal設定の読み込み2
   " autocmd CmdUndefined Term,TermV,TermHere,TermHereV ++once execute 'source' . g:rc_dir . '/MyTerminal.vim'
-  autocmd InsertEnter,BufEnter * ++once call my_functions#set_clipboard()
 augroup END
 " ------------------------------------------------------------------------------
 " maps
