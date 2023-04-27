@@ -92,7 +92,7 @@ htmlのタグに関しては、cocのスニペットを使用することもあ�
 ## 補完、LSP
 - [coc.nvim](https://github.com/neoclide/coc.nvim)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)  
-→コマンドライン補完のみnvim-cmpを使用。(※試運転中。cocとぶつからないかが心配。多分大丈夫。)
+→コマンドライン補完のみnvim-cmpを使用。
 
 ## Git操作
 - diffview.nvim  
