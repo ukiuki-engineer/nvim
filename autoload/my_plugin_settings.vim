@@ -373,7 +373,15 @@ function! my_plugin_settings#hook_source_nvim_tree() abort
 lua << END
   require("nvim-tree").setup {
     git = {
-      ignore = false, -- .gitignoreされたファイルもtreeに表示する
+      ignore = false,          -- .gitignoreされたファイルもtreeに表示する
+    },
+    -- 以下、treeのrootに関する設定
+    -- prefer_startup_root = true,
+    sync_root_with_cwd = true, -- `:cd`, `:tcd`と同期
+    update_focused_file = {
+      enable = false,          -- カレントバッファに合わせて常に更新
+      update_root = true,      -- `:NvimTreeFindFile`すると更新
+      ignore_list = {},
     },
   }
 END
