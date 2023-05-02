@@ -47,9 +47,9 @@ vim-startuptime -vimpath nvim
 Extra options: []
 Measured: 10 times
 
-Total Average: 56.196400 msec
-Total Max:     58.781000 msec
-Total Min:     54.739000 msec
+Total Average: 53.223500 msec
+Total Max:     54.734000 msec
+Total Min:     51.646000 msec
 ```
 
 ## プラグイン管理
