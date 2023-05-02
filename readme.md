@@ -41,8 +41,16 @@ nvim/
 ※2: 何かのタイミングで、WSLでクリップボードが何故か極端に重くなり起動時間に影響が出たため、ファイル分割して遅延読み込みさせることにした。
 
 ## 起動速度
-いくつかの環境で試して、大体60~70[ms]くらいが平均。  
-いつか環境やデータの詳細を書く(かも)。
+WSL2で測定した結果↓
+```
+vim-startuptime -vimpath nvim
+Extra options: []
+Measured: 10 times
+
+Total Average: 56.196400 msec
+Total Max:     58.781000 msec
+Total Min:     54.739000 msec
+```
 
 ## プラグイン管理
 dein.vimを使用。
