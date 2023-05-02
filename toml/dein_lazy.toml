@@ -1,6 +1,6 @@
 [[plugins]] # デフォルトより見やすいsyntax highlight
 repo = 'nvim-treesitter/nvim-treesitter'
-on_event = ['BufRead', 'InsertEnter', 'FileType']
+on_event = ['FileType']
 hook_source = '''
 call my_plugin_settings#hook_source_treesitter()
 '''
@@ -215,8 +215,8 @@ call my_plugin_settings#hook_source_toggleterm()
 
 [[plugins]] # ファジーファインダー
 repo = 'junegunn/fzf'
-on_event = ['BufRead']
 build = './install'
+on_source = 'fzf.vim'
 
 [[plugins]] # ファジーファインダー
 # NOTE: プレビューウィンドウをハイライトするには、batをインストールする
@@ -285,7 +285,7 @@ call my_plugin_settings#hook_source_cmp()
 # NOTE: coc-snippetsで呼び出して使う
 # 個々のcocプラグイン側の補完候補とぶつかって面倒な場合はどちらかをオフにする
 repo = 'honza/vim-snippets'
-on_event = ['BufRead', 'InsertEnter', 'FileType']
+on_event = ['FileType']
 
 [[plugins]] # coc.nvim
 # FIXME: bladeでも、phpの関数のhoverが読みたい
