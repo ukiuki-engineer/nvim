@@ -132,5 +132,3 @@ vimのdiffでgit差分を見ながら、編集、変更の破棄やstageもで�
   - `:h map-table`
   - `:h autocmd-events`
 
-## TODO
-- [ ] プラグイン設定はautoloadの1ファイルにまとめるのではなく、hook_filesで1ファイルごとに分割する
