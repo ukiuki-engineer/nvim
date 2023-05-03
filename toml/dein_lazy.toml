@@ -156,6 +156,8 @@ repo = 'skanehira/preview-markdown.vim'
 on_cmd = ['PreviewMarkdown']
 
 [[plugins]] # コマンドの実行結果をバッファに読み込んでくれるやつ
+# NOTE: 以下の方法で代用も出来る
+# インサートモードに入る → <C-r>=execute("コマンド")<CR>
 repo = 'numEricL/vim-redirect'
 on_cmd = ['Redirect']
 
