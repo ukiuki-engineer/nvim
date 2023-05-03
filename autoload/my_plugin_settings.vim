@@ -21,13 +21,14 @@ lua << END
     highlight = {
       enable = true, -- syntax highlightを有効にする
       disable = {    -- デフォルトの方が見やすい場合は無効に
-        -- 'toml',
-        -- 'css',
-        -- 'sql'
       }
     },
     indent = {
       enable = true
+    },
+    matchup = {
+      -- enable = true,              -- mandatory, false will disable the whole extension
+      -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
     },
     ensure_installed = 'all' -- :TSInstall allと同じ
   }
@@ -164,30 +165,37 @@ lua << END
   -- diffviewのハイライト色を変更
   function fix_gruvbox()
     vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { -- FIXME: 不明
-      bg = "#FF0000"
+      bg = "#ff0000"
     })
     vim.api.nvim_set_hl(0, 'DiffDelete', {              -- 削除された行
-      bg = my_functions.transparent_color(bg_color, "#C70000", 0.90)
+      bg = my_functions.transparent_color(bg_color, "#c70000", 0.90)
     })
     vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', {      -- 行が追加された場合の左側
-      bg = my_functions.transparent_color(bg_color, "#C70000", 0.90),
+      bg = my_functions.transparent_color(bg_color, "#c70000", 0.90),
       fg = colors.dark2
     })
     vim.api.nvim_set_hl(0, 'DiffAdd', {                 -- 追加された行
-      bg = my_functions.transparent_color(bg_color, "#009900", 0.90)
+      bg = my_functions.transparent_color(bg_color, "#009900", 0.85)
     })
     vim.api.nvim_set_hl(0, 'DiffChange', {              -- 変更行
       bg = my_functions.transparent_color(bg_color, "#b9c42f", 0.90)
     })
     vim.api.nvim_set_hl(0, 'DiffText', {                -- 変更行の変更箇所
-      bg = my_functions.transparent_color(bg_color, "#FD7E00", 0.70)
+      bg = my_functions.transparent_color(bg_color, "#fd7e00", 0.70)
     })
     -- coc.nvimのハイライト色を変更
     vim.api.nvim_set_hl(0, 'CocFadeOut', {
-      bg = my_functions.transparent_color(bg_color, '#ADABAC', 0.50),
+      bg = my_functions.transparent_color(bg_color, '#adabac', 0.50),
       fg = "LightGrey"
     })
     vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
+    -- vim-matchupのハイライト色を変更
+    vim.api.nvim_set_hl(0, 'MatchParen', {
+      bg = my_functions.transparent_color(bg_color, "#00ffff", 0.75),
+      bold = true,
+      underline = true
+    })
+    -- TODO: 検索結果のハイライト色を変更する
   end
   fix_gruvbox()
   vim.api.nvim_create_autocmd(
@@ -208,27 +216,27 @@ lua << END
   -- diffviewのハイライト色を変更
   function fix_nightfly()
     vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { -- FIXME: 不明
-      bg = "#FF0000"
+      bg = "#ff0000"
     })
     vim.api.nvim_set_hl(0, 'DiffDelete', {              -- 削除された行
-      bg = my_functions.transparent_color(bg_color, "#C70000", 0.90)
+      bg = my_functions.transparent_color(bg_color, "#c70000", 0.90)
     })
     vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', {      -- 行が追加された場合の左側
-      bg = my_functions.transparent_color(bg_color, "#C70000", 0.90),
+      bg = my_functions.transparent_color(bg_color, "#c70000", 0.90),
       fg = my_functions.transparent_color(bg_color, "#2f2f2f", 0.00)
     })
     vim.api.nvim_set_hl(0, 'DiffAdd', {                 -- 追加された行
-      bg = my_functions.transparent_color(bg_color, "#00A100", 0.90)
+      bg = my_functions.transparent_color(bg_color, "#00a100", 0.90)
     })
     vim.api.nvim_set_hl(0, 'DiffChange', {              -- 変更行
       bg = my_functions.transparent_color(bg_color, "#b9c42f", 0.90)
     })
     vim.api.nvim_set_hl(0, 'DiffText', {                -- 変更行の変更箇所
-      bg = my_functions.transparent_color(bg_color, "#FD7E00", 0.70)
+      bg = my_functions.transparent_color(bg_color, "#fd7e00", 0.70)
     })
     -- coc.nvimのハイライト色を変更
     -- vim.api.nvim_set_hl(0, 'CocFadeOut', { -- FIXME: 上手くいっていないので後で修正する
-      -- bg = my_functions.transparent_color(bg_color, '#ADABAC', 0.50),
+      -- bg = my_functions.transparent_color(bg_color, '#adabac', 0.50),
       -- fg = "LightGrey"
     -- })
     -- vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
@@ -298,6 +306,16 @@ lua << END
     space_char_blankline = " "
   }
 END
+endfunction
+
+"
+" vim-matchup
+"
+function! my_plugin_settings#hook_source_matchup() abort
+  augroup MyMatchupColor
+    autocmd!
+    autocmd ColorScheme * MatchParen cterm=bold gui=bold guibg=#FF0000
+  augroup END
 endfunction
 
 "
@@ -483,6 +501,19 @@ endfunction
 "
 " coc.nvim
 "
+" FIXME: bladeでも、phpの関数のhoverが読みたい
+" NOTE: coc-bladeは、"b:xxx"と打つと補完候補が出る
+" NOTE: :CocCommand xx.xxで各拡張機能のコマンドを色々呼び出せる
+" NOTE: スペルチェッカーの辞書登録
+" .config/nvim/coc-settings.json
+"   :CocCommand cSpell.addIgnoreWordToUser
+" (多分)./.vim/coc-settings.json
+"   :CocCommand cSpell.addIgnoreWordToWorkspace
+" NOTE: Laravel固有のメソッドに対して補完やホバーを行うには、補完ヘルパーファイルを出力する必要がある
+" 手順は以下の通り
+" composer require --dev barryvdh/laravel-ide-helper # ライブラリをインストール
+" php artisan ide-helper:generate                    # _ide_helper.phpを生成
+" php artisan ide-helper:models --nowrite            # _ide_helper_models.phpを生成
 function! my_plugin_settings#hook_add_coc() abort
   " coc-extensions
   let g:coc_global_extensions = [
@@ -507,11 +538,6 @@ function! my_plugin_settings#hook_add_coc() abort
     \ 'coc-xml',
     \ 'coc-yaml',
   \ ]
-  " NOTE: スペルチェッカーの辞書登録
-  " .config/nvim/coc-settings.json
-  "   :CocCommand cSpell.addIgnoreWordToUser
-  " (多分)./.vim/coc-settings.json
-  "   :CocCommand cSpell.addIgnoreWordToWorkspace
 endfunction
 
 function! my_plugin_settings#hook_source_coc() abort
@@ -531,6 +557,12 @@ function! my_plugin_settings#hook_source_coc() abort
   nnoremap <silent> <space>h :call my_plugin_settings#show_documentation()<CR>
   " 参照箇所表示
   nnoremap <space>r <Plug>(coc-references)
+  " カーソル位置のsymbolをハイライト(*でカーソル位置を検索するノリ。shiftがspaceに変わっただけ。)
+  " FIXME: ハイライト色が見づらいから変える
+  nnoremap <space>8 :call CocActionAsync('highlight')<CR>
+  " 指摘箇所へジャンプ
+  nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
+  nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
   " ウィンドウのスクロール
   nnoremap <nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-j>"
   nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
@@ -540,16 +572,13 @@ function! my_plugin_settings#hook_source_coc() abort
   inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<CR>" : "\<Right>"
   inoremap <nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<CR>" : "\<Left>"
   inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
-  " 指摘箇所へジャンプ
-  nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
-  nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
   " フォーマッターを呼び出す
   command! -nargs=0 Format :call CocAction('format')
   " augroup MyCocAutocmd
     " autocmd!
   " ハイライト色を変更(FIXME: 仮)
-    autocmd ColorScheme * hi! CocFadeOut ctermfg=7 ctermbg=242 guifg=LightGrey guibg="#576069"
-    autocmd ColorScheme * hi! CocHintSign ctermfg=7 guifg=LightGrey
+    " autocmd ColorScheme * hi! CocFadeOut ctermfg=7 ctermbg=242 guifg=LightGrey guibg="#576069"
+    " autocmd ColorScheme * hi! CocHintSign ctermfg=7 guifg=LightGrey
   " カーソル位置のsymbolをハイライト
     " autocmd CursorHold * silent call CocActionAsync('highlight')
   " augroup END

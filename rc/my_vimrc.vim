@@ -47,7 +47,9 @@ augroup MyVimrc
   " Laravelが4なのでphpは4に
   autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
   " .env系はシェルスクリプトとして開く
-  autocmd BufEnter .env,.env.* setlocal filetype=sh
+  autocmd BufRead .env,.env.* setlocal filetype=sh
+  " NOTE: なぜか急にerubyが異常に重くなったのでとりあえずrubyとして開くことに...
+  autocmd BufRead *.erb setlocal filetype=ruby
   " CursorHold時のみカーソル行/列を表示
   " autocmd CursorHold * call my_functions#set_cursor_line_column()
   " IME切り替え設定の読み込み

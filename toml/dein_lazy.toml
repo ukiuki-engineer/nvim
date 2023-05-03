@@ -286,15 +286,6 @@ repo = 'honza/vim-snippets'
 on_event = ['FileType']
 
 [[plugins]] # coc.nvim
-# FIXME: bladeでも、phpの関数のhoverが読みたい
-# NOTE: coc-bladeは、"b:xxx"と打つと補完候補が出る
-# NOTE: :CocCommand xx.xxで各拡張機能のコマンドを色々呼び出せる
-# NOTE: :CocCommand cSpell.addWordToDictionaryでスペルチェックの例外追加
-# NOTE: Laravel固有のメソッドに対して補完やホバーを行うには、補完ヘルパーファイルを出力する必要がある
-# 手順は以下の通り
-# composer require --dev barryvdh/laravel-ide-helper # ライブラリをインストール
-# php artisan ide-helper:generate                    # _ide_helper.phpを生成
-# php artisan ide-helper:models --nowrite            # _ide_helper_models.phpを生成
 repo = 'neoclide/coc.nvim'
 rev = 'release'
 depends = ['vim-snippets']
