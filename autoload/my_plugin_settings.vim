@@ -162,8 +162,9 @@ lua << END
   local colors = require("gruvbox.palette").colors;
   local my_functions = require("my_functions")
   local bg_color = "#282828" -- :hi Normal
-  -- diffviewのハイライト色を変更
+  -- ハイライト色を色々と変更
   function fix_gruvbox()
+    -- diffview
     vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { -- FIXME: 不明
       bg = "#ff0000"
     })
@@ -183,19 +184,31 @@ lua << END
     vim.api.nvim_set_hl(0, 'DiffText', {                -- 変更行の変更箇所
       bg = my_functions.transparent_color(bg_color, "#fd7e00", 0.70)
     })
-    -- coc.nvimのハイライト色を変更
+    -- coc.nvim
     vim.api.nvim_set_hl(0, 'CocFadeOut', {
       bg = my_functions.transparent_color(bg_color, '#adabac', 0.50),
       fg = "LightGrey"
     })
     vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
-    -- vim-matchupのハイライト色を変更
+    vim.api.nvim_set_hl(0, 'CocHighlightText', {
+      bg = my_functions.transparent_color(bg_color, "#d3d3d3", 0.55),
+    })
+    -- vim-matchup
     vim.api.nvim_set_hl(0, 'MatchParen', {
       bg = my_functions.transparent_color(bg_color, "#00ffff", 0.75),
       bold = true,
       underline = true
     })
-    -- TODO: 検索結果のハイライト色を変更する
+    -- 検索
+    vim.api.nvim_set_hl(0, 'Search', {
+      bg = my_functions.transparent_color(bg_color, "#fabd2f", 0.80),
+    })
+    vim.api.nvim_set_hl(0, 'CurSearch', {
+      bg = my_functions.transparent_color(bg_color, "#FE8019", 0.40),
+    })
+    vim.api.nvim_set_hl(0, 'IncSearch', {
+      bg = my_functions.transparent_color(bg_color, "#FE8019", 0.40),
+    })
   end
   fix_gruvbox()
   vim.api.nvim_create_autocmd(
