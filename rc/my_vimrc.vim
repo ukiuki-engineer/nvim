@@ -68,6 +68,11 @@ augroup END
 nnoremap <Esc><Esc> :nohlsearch<CR>
 nnoremap <TAB> :bn<CR>
 nnoremap <S-TAB> :bN<CR>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-d> <Del>
 " ------------------------------------------------------------------------------
 " commands
 " ------------------------------------------------------------------------------
