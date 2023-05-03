@@ -20,3 +20,11 @@ on_event = ['BufRead', 'InsertEnter']
 hook_add = '''
 call my_plugin_settings#hook_add_eskk()
 '''
+
+[[plugins]] # 対のカッコをハイライト
+repo = 'itchyny/vim-parenmatch'
+on_event = ['BufRead', 'InsertEnter']
+hook_add = '''
+" NOTE: 標準プラグインのmatchparenを無効化
+let g:loaded_matchparen = 1
+'''

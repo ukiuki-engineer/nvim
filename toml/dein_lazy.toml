@@ -84,26 +84,22 @@ on_event = ['BufRead']
 
 [[plugins]] # インデント可視化
 repo = 'lukas-reineke/indent-blankline.nvim'
-on_event = ['BufRead', 'InsertEnter']
+on_event = ['CursorMoved']
 hook_source = '''
 call my_plugin_settings#hook_source_indent_blankline()
 '''
 
-[[plugins]] # 対のカッコをハイライト
-repo = 'itchyny/vim-parenmatch'
-on_event = ['BufRead', 'InsertEnter']
-hook_add = '''
-" NOTE: 標準プラグインのmatchparenを無効化
-let g:loaded_matchparen = 1
-'''
+[[plugins]] # matchitをもっと強くしたようなやつ(ハイライトとかもされる)
+repo = 'andymass/vim-matchup'
+on_event = ['CursorMoved']
 
 [[plugins]] # 行内ジャンプ用にハイライトしてくれるやつ
 repo = 'unblevable/quick-scope'
-on_event = ['BufRead', 'InsertEnter']
+on_event = ['CursorMoved']
 
 [[plugins]] # コメントアウト
 repo = 'tpope/vim-commentary'
-on_event = ['BufRead', 'InsertEnter']
+on_event = ['CursorMoved']
 hook_source = '''
 call my_plugin_settings#hook_source_commentary()
 '''
@@ -111,7 +107,7 @@ call my_plugin_settings#hook_source_commentary()
 [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
 repo = 'ukiuki-engineer/vim-autoclose'
 rev = 'develop'
-on_event = ['BufRead', 'InsertEnter']
+on_event = ['InsertEnter']
 hook_source = '''
 call my_plugin_settings#hook_source_autoclose()
 '''
@@ -300,7 +296,7 @@ on_event = ['FileType']
 repo = 'neoclide/coc.nvim'
 rev = 'release'
 depends = ['vim-snippets']
-on_event = ['BufRead', 'InsertEnter', 'FileType']
+on_event = ['CursorMoved', 'FileType']
 hook_add = '''
 call my_plugin_settings#hook_add_coc()
 '''
