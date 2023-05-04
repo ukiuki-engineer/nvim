@@ -121,6 +121,9 @@ vimのdiffでgit差分を見ながら、編集、変更の破棄やstageもで�
 - vim-fugitive  
 `:Git commit`とか`:Git push`とか。
 
+## 小指の痛み対策
+よく左小指を痛めるので、mouseでの操作性もなるべく上げていきたい...
+
 ## NOTE
 自分用メモ
 - Fonts  

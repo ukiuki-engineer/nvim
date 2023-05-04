@@ -162,6 +162,32 @@ lua << END
   local colors = require("gruvbox.palette").colors;
   local my_functions = require("my_functions")
   local bg_color = "#282828" -- :hi Normal
+  -- NOTE: `nvim_get_color_by_name()`が上手く動かないのでカラーコードをメモ(後で関数作るかも)
+  -- Black           #000000
+  -- DarkBlue        #00008B
+  -- DarkGreen       #006400
+  -- DarkCyan        #008B8B
+  -- DarkRed         #8B0000
+  -- DarkMagenta     #8B008B
+  -- Brown           #A52A2A
+  -- DarkYellow      #A9A900
+  -- LightGrey       #D3D3D3
+  -- Grey            #808080
+  -- DarkGrey        #A9A9A9
+  -- Blue            #0000FF
+  -- LightBlue       #ADD8E6
+  -- Green           #00FF00
+  -- LightGreen      #90EE90
+  -- Cyan            #00FFFF
+  -- LightCyan       #E0FFFF
+  -- Red             #FF0000
+  -- LightRed        #FFA07A
+  -- Magenta         #FF00FF
+  -- LightMagenta    #FF00FF
+  -- Yellow          #FFFF00
+  -- LightYellow     #FFFFE0
+  -- White           #FFFFFF
+
   -- ハイライト色を色々と変更
   function fix_gruvbox()
     -- diffview
@@ -195,7 +221,7 @@ lua << END
     })
     -- vim-matchup
     vim.api.nvim_set_hl(0, 'MatchParen', {
-      bg = my_functions.transparent_color(bg_color, "#00ffff", 0.75),
+      bg = my_functions.transparent_color(bg_color, "#d3d3d3", 0.75),
       bold = true,
       underline = true
     })
@@ -558,21 +584,20 @@ function! my_plugin_settings#hook_source_coc() abort
   inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
   " <Tab>/<S-Tab>で補完候補を選択(<C-p>/<C-n>派だけど左小指が痛い時は<Tab>を使いたい...)
   inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
+    \ coc#pum#visible() ? coc#pum#next(1) :
+    \ CheckBackspace() ? "\<Tab>" :
+    \ coc#refresh()
   inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
   " 定義ジャンプ
   nnoremap <space>d <Plug>(coc-definition)
-  " カーソル位置のsymbolをハイライト
-  nnoremap gh :call CocActionAsync('highlight')<CR>
   " ドキュメント表示
   nnoremap <silent> <space>h :call my_plugin_settings#show_documentation()<CR>
   " 参照箇所表示
   nnoremap <space>r <Plug>(coc-references)
   " カーソル位置のsymbolをハイライト(*でカーソル位置を検索するノリ。shiftがspaceに変わっただけ。)
-  " FIXME: ハイライト色が見づらいから変える
   nnoremap <space>8 :call CocActionAsync('highlight')<CR>
+  " 上記をダブルクリックでもできるように
+  nnoremap <2-LeftMouse> :call CocActionAsync('highlight')<CR>
   " 指摘箇所へジャンプ
   nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
   nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
