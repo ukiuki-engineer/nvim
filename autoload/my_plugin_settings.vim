@@ -201,13 +201,13 @@ lua << END
     })
     -- 検索
     vim.api.nvim_set_hl(0, 'Search', {
-      bg = my_functions.transparent_color(bg_color, "#fabd2f", 0.80),
+      bg = my_functions.transparent_color(bg_color, "#fabd2f", 0.70),
     })
     vim.api.nvim_set_hl(0, 'CurSearch', {
-      bg = my_functions.transparent_color(bg_color, "#FE8019", 0.40),
+      bg = my_functions.transparent_color(bg_color, "#FE8019", 0.35),
     })
     vim.api.nvim_set_hl(0, 'IncSearch', {
-      bg = my_functions.transparent_color(bg_color, "#FE8019", 0.40),
+      bg = my_functions.transparent_color(bg_color, "#FE8019", 0.35),
     })
   end
   fix_gruvbox()
