@@ -205,10 +205,12 @@ lua << END
       bg = my_functions.transparent_color(bg_color, "#FABD2F", 0.70),
     })
     vim.api.nvim_set_hl(0, 'CurSearch', {
-      bg = my_functions.transparent_color(bg_color, "#FE8019", 0.35),
+      -- bg = my_functions.transparent_color(bg_color, "#FE8019", 0.35),
+      bg = my_functions.transparent_color(bg_color, "#FABD2F", 0.50),
     })
     vim.api.nvim_set_hl(0, 'IncSearch', {
-      bg = my_functions.transparent_color(bg_color, "#FE8019", 0.35),
+      -- bg = my_functions.transparent_color(bg_color, "#FE8019", 0.35),
+      bg = my_functions.transparent_color(bg_color, "#FABD2F", 0.50),
     })
   end
   fix_gruvbox()
@@ -574,6 +576,7 @@ function! my_plugin_settings#hook_source_coc() abort
   nnoremap <space>8 :call CocActionAsync('highlight')<CR>
   " 上記をダブルクリックでもできるように
   nnoremap <2-LeftMouse> :call CocActionAsync('highlight')<CR>
+  " nnoremap <LeftMouse> <LeftMouse>:call CocActionAsync('highlight')<CR>
   " 指摘箇所へジャンプ
   nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
   nnoremap <silent> ]g <Plug>(coc-diagnostic-next)

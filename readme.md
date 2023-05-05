@@ -71,12 +71,6 @@ dein.vimを使用。
 - [mdr](https://github.com/MichaelMure/mdr)  
 →Markdownをプレビューするのに使う(preview-markdown.vim)
 
-## キーマップ
-なるべくシンプルにしたいので、プラグインを呼び出すためのマッピングが主です。
-
-## コマンド定義
-よく使うけど若干面倒な操作は随時コマンド化したりとか。  
-
 ## session管理
 ウィンドウ分割やタブを頻繁に使用するため、sessionは超使ってる。  
 定期的にプロジェクトのルートで`:mksession!`してSession.vimを保存する。  
