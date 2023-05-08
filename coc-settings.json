@@ -36,6 +36,7 @@
       "storagePath": "/tmp/intelephense"
     }
   },
+  "Lua.diagnostics.globals": ["vim"],
   "cSpell.ignoreWords": [
     "autoclose",
     "autoclosing",

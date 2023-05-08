@@ -1,8 +1,8 @@
 [[plugins]] # デフォルトより見やすいsyntax highlight
 repo = 'nvim-treesitter/nvim-treesitter'
 on_event = ['FileType']
-hook_source = '''
-call my_plugin_settings#hook_source_treesitter()
+lua_source = '''
+require("my_plugin_settings").lua_source_treesitter()
 '''
 
 [[plugins]] # vimでgitを実行するやつ
@@ -65,6 +65,9 @@ on_cmd = [
 hook_source = '''
 call my_plugin_settings#hook_source_diffview()
 '''
+lua_source = '''
+require("my_plugin_settings").lua_source_diffview()
+'''
 
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
@@ -85,8 +88,8 @@ on_event = ['BufRead']
 [[plugins]] # インデント可視化
 repo = 'lukas-reineke/indent-blankline.nvim'
 on_event = ['CursorMoved']
-hook_source = '''
-call my_plugin_settings#hook_source_indent_blankline()
+lua_source = '''
+require("my_plugin_settings").lua_source_indent_blankline()
 '''
 
 [[plugins]] # matchitをもっと強くしたようなやつ(ハイライトとかもされる)
@@ -120,17 +123,18 @@ on_ft = ['blade']
 [[plugins]] # カラーコード可視化
 repo = 'norcalli/nvim-colorizer.lua'
 on_ft = [
+  'blade',
   'css',
+  'eruby',
   'html',
   'less',
+  'lua',
   'sass',
   'scss',
   'stylus',
+  'toml',
   'vim',
-  'blade',
-  'vue',
-  'eruby',
-  'toml'
+  'vue'
 ]
 hook_source = '''
 call my_plugin_settings#hook_source_colorizer()
@@ -185,8 +189,8 @@ on_cmd = [
 hook_add = '''
 call my_plugin_settings#hook_add_nvim_tree()
 '''
-hook_source = '''
-call my_plugin_settings#hook_source_nvim_tree()
+lua_source = '''
+require("my_plugin_settings").lua_source_nvim_tree()
 '''
 
 [[plugins]] # Terminalモードを使いやすくするやつ
@@ -275,8 +279,8 @@ depends = ['cmp-cmdline', 'cmp-buffer', 'cmp-path']
 # CmdlineXx系の方が素直だけど、起動が遅くなる気がする...
 # on_event = ['BufRead', 'InsertEnter', 'FileType']
 on_event = ['CmdlineEnter']
-hook_source = '''
-call my_plugin_settings#hook_source_cmp()
+lua_source = '''
+require("my_plugin_settings").lua_source_nvim_cmp()
 '''
 
 [[plugins]] # スニペットのソース類

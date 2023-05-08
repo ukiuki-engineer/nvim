@@ -22,23 +22,20 @@ let g:did_load_filetypes = 1
 [[plugins]] # airlineをこれに変えたら起動速度が倍速になった
 repo = 'nvim-lualine/lualine.nvim'
 depends = ['nvim-web-devicons', 'impatient.nvim']
-hook_add = '''
-call my_plugin_settings#hook_add_lualine()
-'''
-
-[[plugins]] # カラースキーム
-repo = 'ellisonleao/gruvbox.nvim'
-depends = ['impatient.nvim']
-hook_add = '''
-call my_plugin_settings#hook_add_gruvbox()
+lua_add = '''
+require("my_plugin_settings").lua_add_lualine()
 '''
 
 # [[plugins]] # カラースキーム
-# repo = 'bluz71/vim-nightfly-colors'
+# repo = 'ellisonleao/gruvbox.nvim'
 # depends = ['impatient.nvim']
-# hook_add = '''
-# call my_plugin_settings#hook_add_nightfly_colors()
+# lua_add = '''
+# require("my_plugin_settings").lua_add_gruvbox()
 # '''
 
-# [[plugins]]
-# repo = 'jlcrochet/vim-ruby'
+[[plugins]] # カラースキーム
+repo = 'bluz71/vim-nightfly-colors'
+depends = ['impatient.nvim']
+lua_add = '''
+require("my_plugin_settings").lua_add_nightfly_colors()
+'''

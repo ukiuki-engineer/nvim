@@ -1,5 +1,5 @@
 " ================================================================================
-" 各プラグインの設定
+" 各プラグインの設定(vimscript)
 " NOTE: 関数の命名規則
 " - "hookの種類_プラグイン名"とする
 " - ハイフンはアンダーバーに変更
@@ -10,31 +10,6 @@
 "   - ".nvim"
 "   - ".lua"
 " ================================================================================
-"
-" nvim-treesitter
-"
-function! my_plugin_settings#hook_source_treesitter() abort
-" NOTE: 逆にデフォルトの方が見やすい場合はtreesitterを適宜オフに設定する
-" NOTE: lua << END〜ENDのインデントを深くするとエラーとなるため注意
-lua << END
-  require('nvim-treesitter.configs').setup {
-    highlight = {
-      enable = true, -- syntax highlightを有効にする
-      disable = {    -- デフォルトの方が見やすい場合は無効に
-      }
-    },
-    indent = {
-      enable = true
-    },
-    matchup = {
-      -- enable = true,              -- mandatory, false will disable the whole extension
-      -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
-    },
-    ensure_installed = 'all' -- :TSInstall allと同じ
-  }
-END
-endfunction
-
 "
 " vim-quickrun
 "
@@ -60,212 +35,6 @@ function! my_plugin_settings#hook_add_base16() abort
 endfunction
 
 "
-" lualine.nvim
-"
-function! my_plugin_settings#hook_add_lualine() abort
-  " FIXME: filenameの横にreadonlyの記号が出るように(nvim-web-deviconsから引っ張ってくる)
-lua << END
-  require('lualine').setup({
-    sections = {
-      lualine_a = {'mode'},
-      lualine_b = {'branch', 'diff', 'diagnostics'}, -- TODO: user.nameとuser.emailも表示させたい
-      lualine_c = {
-        {
-          'filename',
-          file_status = true,      -- Displays file status (readonly status, modified status)
-          newfile_status = false,  -- Display new file status (new file means no write after created)
-          path = 1,                -- 0: Just the filename
-                                   -- 1: Relative path
-                                   -- 2: Absolute path
-                                   -- 3: Absolute path, with tilde as the home directory
-                                   -- 4: Filename and parent dir, with tilde as the home directory
-          shorting_target = 40,    -- Shortens path to leave 40 spaces in the window
-                                   -- for other components. (terrible name, any suggestions?)
-          symbols = {
-            modified = '[+]',      -- Text to show when the file is modified.
-            readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
-            unnamed = '[No Name]', -- Text to show for unnamed buffers.
-            newfile = '[New]',     -- Text to show for newly created file before first write
-          }
-        }
-      },
-      lualine_x = {'encoding', 'fileformat', 'filetype'},
-      lualine_y = {'progress'},
-      lualine_z = {'location'}
-    },
-    inactive_sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = {
-        {
-          'filename',
-          file_status = true,      -- Displays file status (readonly status, modified status)
-          newfile_status = false,  -- Display new file status (new file means no write after created)
-          path = 1,                -- 0: Just the filename
-                                   -- 1: Relative path
-                                   -- 2: Absolute path
-                                   -- 3: Absolute path, with tilde as the home directory
-                                   -- 4: Filename and parent dir, with tilde as the home directory
-          shorting_target = 40,    -- Shortens path to leave 40 spaces in the window
-                                   -- for other components. (terrible name, any suggestions?)
-          symbols = {
-            modified = '[+]',      -- Text to show when the file is modified.
-            readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
-            unnamed = '[No Name]', -- Text to show for unnamed buffers.
-            newfile = '[New]',     -- Text to show for newly created file before first write
-          }
-        }
-      },
-      lualine_x = {'location'},
-      lualine_y = {},
-      lualine_z = {}
-    },
-    tabline = {
-      lualine_a = {'tabs'},
-      lualine_b = {
-        {
-          'filename',
-          file_status = true,      -- Displays file status (readonly status, modified status)
-          newfile_status = false,  -- Display new file status (new file means no write after created)
-          path = 1,                -- 0: Just the filename
-                                   -- 1: Relative path
-                                   -- 2: Absolute path
-                                   -- 3: Absolute path, with tilde as the home directory
-                                   -- 4: Filename and parent dir, with tilde as the home directory
-          shorting_target = 40,    -- Shortens path to leave 40 spaces in the window
-                                   -- for other components. (terrible name, any suggestions?)
-          symbols = {
-            modified = '[+]',      -- Text to show when the file is modified.
-            readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
-            unnamed = '[No Name]', -- Text to show for unnamed buffers.
-            newfile = '[New]',     -- Text to show for newly created file before first write
-          }
-        }
-      },
-      lualine_c = {},
-      lualine_x = {},
-      lualine_y = {},
-      lualine_z = {'buffers'}
-    }
-  })
-END
-endfunction
-
-"
-" gruvbox.nvim
-"
-function! my_plugin_settings#hook_add_gruvbox() abort
-  " dark or light if you want light mode
-  set background=dark
-  colorscheme gruvbox
-lua << END
-  local colors = require("gruvbox.palette").colors;
-  local my_functions = require("my_functions")
-  local bg_color = "#282828" -- :hi Normal
-
-  -- ハイライト色を色々と変更
-  function fix_gruvbox()
-    -- diffview
-    vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { -- FIXME: 不明
-      bg = "#FF0000"
-    })
-    vim.api.nvim_set_hl(0, 'DiffDelete', {              -- 削除された行
-      bg = my_functions.transparent_color(bg_color, "#C70000", 0.90)
-    })
-    vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', {      -- 行が追加された場合の左側
-      bg = my_functions.transparent_color(bg_color, "#C70000", 0.90),
-      fg = colors.dark2
-    })
-    vim.api.nvim_set_hl(0, 'DiffAdd', {                 -- 追加された行
-      bg = my_functions.transparent_color(bg_color, "#009900", 0.85)
-    })
-    vim.api.nvim_set_hl(0, 'DiffChange', {              -- 変更行
-      bg = my_functions.transparent_color(bg_color, "#B9C42F", 0.90)
-    })
-    vim.api.nvim_set_hl(0, 'DiffText', {                -- 変更行の変更箇所
-      bg = my_functions.transparent_color(bg_color, "#FD7E00", 0.70)
-    })
-    -- coc.nvim
-    vim.api.nvim_set_hl(0, 'CocFadeOut', {
-      bg = my_functions.transparent_color(bg_color, '#ADABAC', 0.50),
-      fg = "LightGrey"
-    })
-    vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
-    vim.api.nvim_set_hl(0, 'CocHighlightText', {
-      bg = my_functions.transparent_color(bg_color, "LightGrey", 0.55),
-    })
-    -- vim-matchup
-    vim.api.nvim_set_hl(0, 'MatchParen', {
-      bg = my_functions.transparent_color(bg_color, "LightGrey", 0.75),
-      bold = true,
-      underline = true
-    })
-    -- 検索
-    vim.api.nvim_set_hl(0, 'Search', {
-      bg = my_functions.transparent_color(bg_color, "#FABD2F", 0.70),
-    })
-    vim.api.nvim_set_hl(0, 'CurSearch', {
-      -- bg = my_functions.transparent_color(bg_color, "#FE8019", 0.35),
-      bg = my_functions.transparent_color(bg_color, "#FABD2F", 0.50),
-    })
-    vim.api.nvim_set_hl(0, 'IncSearch', {
-      -- bg = my_functions.transparent_color(bg_color, "#FE8019", 0.35),
-      bg = my_functions.transparent_color(bg_color, "#FABD2F", 0.50),
-    })
-  end
-  fix_gruvbox()
-  vim.api.nvim_create_autocmd(
-    "ColorScheme",
-    { pattern = { "gruvbox" }, callback = fix_gruvbox }
-  )
-END
-endfunction
-
-"
-" vim-nightfly-colors
-"
-function! my_plugin_settings#hook_add_nightfly_colors() abort
-  colorscheme nightfly
-lua << END
-  local my_functions = require("my_functions")
-  local bg_color = "#011627" -- :hi Normal
-  -- diffviewのハイライト色を変更
-  function fix_nightfly()
-    vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { -- FIXME: 不明
-      bg = "#FF0000"
-    })
-    vim.api.nvim_set_hl(0, 'DiffDelete', {              -- 削除された行
-      bg = my_functions.transparent_color(bg_color, "#C70000", 0.90)
-    })
-    vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', {      -- 行が追加された場合の左側
-      bg = my_functions.transparent_color(bg_color, "#C70000", 0.90),
-      fg = my_functions.transparent_color(bg_color, "#2F2F2F", 0.00)
-    })
-    vim.api.nvim_set_hl(0, 'DiffAdd', {                 -- 追加された行
-      bg = my_functions.transparent_color(bg_color, "#00A100", 0.90)
-    })
-    vim.api.nvim_set_hl(0, 'DiffChange', {              -- 変更行
-      bg = my_functions.transparent_color(bg_color, "#B9C42F", 0.90)
-    })
-    vim.api.nvim_set_hl(0, 'DiffText', {                -- 変更行の変更箇所
-      bg = my_functions.transparent_color(bg_color, "#FD7E00", 0.70)
-    })
-    -- coc.nvimのハイライト色を変更
-    -- vim.api.nvim_set_hl(0, 'CocFadeOut', { -- FIXME: 上手くいっていないので後で修正する
-      -- bg = my_functions.transparent_color(bg_color, '#ADABAC', 0.50),
-      -- fg = "LightGrey"
-    -- })
-    -- vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
-  end
-  fix_nightfly()
-  vim.api.nvim_create_autocmd(
-    "ColorScheme",
-    { pattern = { "nightfly" }, callback = fix_nightfly }
-  )
-END
-endfunction
-
-"
 " blamer.nvim
 "
 function! my_plugin_settings#hook_add_blamer() abort
@@ -283,45 +52,6 @@ function! s:CallBlamerShow(timer) abort
     " gitレポジトリなら`:BlamerShow`を実行する
     silent BlamerShow
   endif
-endfunction
-
-function! my_plugin_settings#hook_source_diffview() abort
-  " NOTE: マウスでスクロールする時は、差分の右側をスクロールしないとスクロールが同期されない
-  " TODO: 差分をdiscardする時、confirmするようにする
-lua << END
-  require('diffview').setup ({
-    enhanced_diff_hl = true,
-    file_panel = {
-      win_config = { -- diffviewのwindowの設定
-        type = "split",
-        position = "right",
-        width = 40,
-      },
-    },
-  })
-END
-endfunction
-
-"
-" indent-blankline.nvim
-"
-function! my_plugin_settings#hook_source_indent_blankline() abort
-lua << END
-  vim.opt.list = true
-  vim.opt.listchars:append({
-    space = "⋅",
-    tab = "»-",
-    trail = "-",
-    eol = "↲",
-    extends = "»",
-    precedes = "«",
-    nbsp = "%"
-  })
-  require("indent_blankline").setup {
-    show_end_of_line = true,
-    space_char_blankline = " "
-  }
-END
 endfunction
 
 "
@@ -403,24 +133,6 @@ function! my_plugin_settings#hook_add_nvim_tree() abort
   endif
 endfunction
 
-function! my_plugin_settings#hook_source_nvim_tree() abort
-lua << END
-  require("nvim-tree").setup {
-    git = {
-      ignore = false,          -- .gitignoreされたファイルもtreeに表示する
-    },
-    -- 以下、treeのrootに関する設定
-    -- prefer_startup_root = true,
-    sync_root_with_cwd = true, -- `:cd`, `:tcd`と同期
-    update_focused_file = {
-      enable = false,          -- カレントバッファに合わせて常に更新
-      update_root = true,      -- `:NvimTreeFindFile`すると更新
-      ignore_list = {},
-    },
-  }
-END
-endfunction
-
 "
 " toggleterm
 " FIXME: <C-w>L<C-w>Jとするとサイズがバグる
@@ -480,38 +192,6 @@ function! my_plugin_settings#hook_add_eskk() abort
   let g:eskk#enable_completion = 0
   "漢字変換を確定しても改行しない。
   let g:eskk#egg_like_newline = 1
-endfunction
-
-"
-" nvim-cmp
-"
-function! my_plugin_settings#hook_source_cmp() abort
-  " TODO: `:ls`→`:`の時は補完しように(補完ウィンドウが出ると`:ls`の結果が全部消える...)
-lua << END
-  local cmp = require 'cmp'
-  -- 検索
-  cmp.setup.cmdline({'/', '?'}, {
-    mapping = cmp.mapping.preset.cmdline({
-      ["<C-p>"] = cmp.mapping.scroll_docs(-1),
-      ["<C-n>"] = cmp.mapping.scroll_docs(1),
-    }),
-    sources = {
-      { name = 'buffer' }
-    }
-  })
-  -- コマンド
-  cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline({
-      ["<C-p>"] = cmp.mapping.scroll_docs(-1),
-      ["<C-n>"] = cmp.mapping.scroll_docs(1),
-    }),
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-    })
-  })
-END
 endfunction
 
 "
