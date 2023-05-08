@@ -55,7 +55,7 @@ function! s:CallBlamerShow(timer) abort
 endfunction
 
 "
-" vim-matchup
+" vim-matchup(未使用)
 "
 function! my_plugin_settings#hook_source_matchup() abort
   augroup MyMatchupColor
@@ -266,14 +266,6 @@ function! my_plugin_settings#hook_source_coc() abort
   inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
   " フォーマッターを呼び出す
   command! -nargs=0 Format :call CocAction('format')
-  " augroup MyCocAutocmd
-    " autocmd!
-  " ハイライト色を変更(FIXME: 仮)
-    " autocmd ColorScheme * hi! CocFadeOut ctermfg=7 ctermbg=242 guifg=LightGrey guibg="#576069"
-    " autocmd ColorScheme * hi! CocHintSign ctermfg=7 guifg=LightGrey
-  " カーソル位置のsymbolをハイライト
-    " autocmd CursorHold * silent call CocActionAsync('highlight')
-  " augroup END
 endfunction
 
 " ドキュメント表示

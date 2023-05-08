@@ -103,7 +103,7 @@ end
 
 
 --
--- vim-nightfly-colors
+-- nvim-treesitter
 --
 M.lua_source_treesitter = function()
   -- NOTE: 逆にデフォルトの方が見やすい場合はtreesitterを適宜オフに設定する
