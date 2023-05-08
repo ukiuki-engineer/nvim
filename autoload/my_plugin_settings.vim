@@ -125,12 +125,7 @@ endfunction
 " TODO: Visual選択範囲を一括削除できるように
 function! my_plugin_settings#hook_add_nvim_tree() abort
   nnoremap <C-n> :NvimTreeToggle<CR>
-  " WSLで`:NvimTreeFindFile`が上手く効かないから苦肉の策...
-  if has('linux') && exists('$WSLENV') && exepath('zenhan.exe') != ""
-    nnoremap <C-w>t :NvimTreeFindFileToggle<CR>
-  else
-    nnoremap <C-w>t :NvimTreeFindFile<CR>
-  endif
+  nnoremap <C-w>t :NvimTreeFindFile<CR>
 endfunction
 
 "
