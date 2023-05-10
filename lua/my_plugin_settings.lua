@@ -161,7 +161,7 @@ M.lua_add_nightfly_colors = function()
     })
     vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
     vim.api.nvim_set_hl(0, 'CocHighlightText', {
-      bg = my_functions.transparent_color(bg_color, "LightGrey", 0.55),
+      bg = my_functions.transparent_color(bg_color, "LightGrey", 0.75),
     })
     -- vim-matchup
     vim.api.nvim_set_hl(0, 'MatchParen', {
@@ -221,7 +221,7 @@ M.lua_add_gruvbox = function()
     })
     vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
     vim.api.nvim_set_hl(0, 'CocHighlightText', {
-      bg = my_functions.transparent_color(bg_color, "LightGrey", 0.55),
+      bg = my_functions.transparent_color(bg_color, "LightGrey", 0.75),
     })
     -- vim-matchup
     vim.api.nvim_set_hl(0, 'MatchParen', {
@@ -233,10 +233,10 @@ M.lua_add_gruvbox = function()
     vim.api.nvim_set_hl(0, 'Search', {
       bg = my_functions.transparent_color(bg_color, "#FABD2F", 0.70),
     })
-    vim.api.nvim_set_hl(0, 'CurSearch', {
+    -- vim.api.nvim_set_hl(0, 'CurSearch', {
       -- bg = my_functions.transparent_color(bg_color, "#FE8019", 0.35),
-      bg = my_functions.transparent_color(bg_color, "#FABD2F", 0.50),
-    })
+      -- bg = my_functions.transparent_color(bg_color, "#FABD2F", 0.50),
+    -- })
     vim.api.nvim_set_hl(0, 'IncSearch', {
       -- bg = my_functions.transparent_color(bg_color, "#FE8019", 0.35),
       bg = my_functions.transparent_color(bg_color, "#FABD2F", 0.50),
