@@ -285,8 +285,6 @@ on_source = 'nvim-cmp'
 # とりあえずコマンドライン補完のみnvim-cmpを使用する
 repo = 'hrsh7th/nvim-cmp'
 depends = ['cmp-cmdline', 'cmp-buffer', 'cmp-path']
-# CmdlineXx系の方が素直だけど、起動が遅くなる気がする...
-# on_event = ['BufRead', 'InsertEnter', 'FileType']
 on_event = ['CmdlineEnter']
 lua_source = '''
 require("my_plugin_settings").lua_source_nvim_cmp()
