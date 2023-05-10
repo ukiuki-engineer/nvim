@@ -169,6 +169,8 @@ M.lua_add_nightfly_colors = function()
       bold = true,
       underline = true
     })
+    vim.api.nvim_set_hl(0, 'MatchWord', {link = "MatchParen"})
+    vim.api.nvim_set_hl(0, 'MatchWordCur', {link = "MatchParen"})
   end
 
   local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
@@ -191,7 +193,7 @@ M.lua_add_gruvbox = function()
   local bg_color = "#282828" -- :hi Normal
 
   -- ハイライト色を色々と変更
-  function fix_gruvbox()
+  local function fix_gruvbox()
     -- diffview
     vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { -- FIXME: 不明
       bg = "#FF0000"
@@ -244,7 +246,7 @@ M.lua_add_gruvbox = function()
   local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
 
   vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = { "gruvbox" },
+    pattern = {"gruvbox"},
     callback = fix_gruvbox,
     group = custom_highlight,
   })

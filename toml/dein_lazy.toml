@@ -100,9 +100,14 @@ on_event = ['CursorMoved']
 repo = 'unblevable/quick-scope'
 on_event = ['CursorMoved']
 
-[[plugins]]
+[[plugins]] # ウィンドウリサイズを楽にするやつ
+# NOTE: <C-e>でresizeモードに入る
 repo = 'simeji/winresizer'
 on_event = ['WinEnter']
+hook_source = '''
+" ctrl系は小指にダメージがいくので...
+let g:winresizer_start_key = '<space>w'
+'''
 
 [[plugins]] # コメントアウト
 repo = 'tpope/vim-commentary'
@@ -175,7 +180,7 @@ on_source = ['diffview', 'nvim-tree.lua']
 
 [[plugins]]
 repo = 'nvim-tree/nvim-tree.lua'
-depends = ['nvim-tree/nvim-web-devicons']
+depends = ['nvim-web-devicons']
 on_cmd = [
   'NvimTreeOpen',
   'NvimTreeClose',
@@ -255,7 +260,7 @@ on_cmd = [
   'Helptags',
   'Filetypes'
 ]
-depends = 'junegunn/fzf'
+depends = ['fzf']
 hook_add = '''
 call my_plugin_settings#hook_add_fzf()
 '''
