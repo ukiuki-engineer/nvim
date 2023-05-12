@@ -55,13 +55,15 @@ function! s:CallBlamerShow(timer) abort
 endfunction
 
 "
-" vim-matchup(未使用)
+" vim-matchup
 "
 function! my_plugin_settings#hook_source_matchup() abort
-  augroup MyMatchupColor
-    autocmd!
-    autocmd ColorScheme * MatchParen cterm=bold gui=bold guibg=#FF0000
-  augroup END
+  " TODO: bladeでtagnameonlyが効かない
+  let g:matchup_matchpref = {
+    \'html': {'tagnameonly': 1},
+    \'xml': {'tagnameonly': 1},
+    \'blade': {'tagnameonly': 1}
+  \}
 endfunction
 
 "

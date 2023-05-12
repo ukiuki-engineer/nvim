@@ -95,6 +95,9 @@ require("my_plugin_settings").lua_source_indent_blankline()
 [[plugins]] # matchitをもっと強くしたようなやつ(ハイライトとかもされる)
 repo = 'andymass/vim-matchup'
 on_event = ['CursorMoved']
+hook_source = '''
+call my_plugin_settings#hook_source_matchup()
+'''
 
 [[plugins]] # 行内ジャンプ用にハイライトしてくれるやつ
 repo = 'unblevable/quick-scope'
