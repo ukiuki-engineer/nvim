@@ -205,6 +205,7 @@ endfunction
 " NOTE: Laravel固有のメソッドに対して補完やホバーを行うには、補完ヘルパーファイルを出力する必要がある
 " 手順は以下の通り
 " composer require --dev barryvdh/laravel-ide-helper # ライブラリをインストール
+" composer require barryvdh/laravel-ide-helper:*     # ↑で上手くいかなかった場合
 " php artisan ide-helper:generate                    # _ide_helper.phpを生成
 " php artisan ide-helper:models --nowrite            # _ide_helper_models.phpを生成
 function! my_plugin_settings#hook_add_coc() abort

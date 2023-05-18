@@ -8,8 +8,12 @@
   "solargraph.completion": true,
   "solargraph.diagnostics": true,
   "tsserver.enable": true,
-  // NOTE: eslintを使用する場合は、ローカルのsettings.jsonで設定を上書きしてeslintを有効にする
+  // NOTE: coc-eslintを使用する場合は、ローカルのsettings.jsonで設定を上書きしてeslintを有効にする
   "eslint.enable": false,
+  // NOTE: coc-eslintの設定例
+  // "eslint.enable": true,
+  // "eslint.autoFixOnSave": true,
+  // "eslint.filetypes": ["javascript", "vue"]
   "intelephense": {
     // NOTE: intelephense1.9.0 以降だと_ide_helper.phpや_ide_helper_models.phpが上手く効かない
     // 下記コマンドで古いバージョンの言語サーバーをインストールして、
