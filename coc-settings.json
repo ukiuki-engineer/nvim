@@ -13,7 +13,14 @@
   // NOTE: coc-eslintの設定例
   // "eslint.enable": true,
   // "eslint.autoFixOnSave": true,
-  // "eslint.filetypes": ["javascript", "vue"]
+  // "eslint.filetypes": ["javascript", "vue"],
+  "php-cs-fixer.enable": false,
+  // NOTE: coc-php-cs-fixerの設定例
+  // "coc.preferences.formatOnSaveFiletypes": [
+    // "php"
+  // ],
+  // "php-cs-fixer.enable": true,
+  // "php-cs-fixer.rules": "",
   "intelephense": {
     // NOTE: intelephense1.9.0 以降だと_ide_helper.phpや_ide_helper_models.phpが上手く効かない
     // 下記コマンドで古いバージョンの言語サーバーをインストールして、
