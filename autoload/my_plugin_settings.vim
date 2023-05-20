@@ -237,6 +237,7 @@ function! my_plugin_settings#hook_add_coc() abort
 endfunction
 
 function! my_plugin_settings#hook_source_coc() abort
+  " TODO: CocOutlineの設定
   " 補完の選択をEnterで決定
   inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
   " <Tab>/<S-Tab>で補完候補を選択(<C-p>/<C-n>派だけど左小指が痛い時は<Tab>を使いたい...)
