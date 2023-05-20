@@ -5,19 +5,22 @@
 extensions_dir=~/.config/coc/extensions/node_modules
 readme_dir=~/coc-extensions-readme
 
-# 既存のリンクを解除
 if [ -d "$readme_dir" ]; then
-  \ls $feadme_dir | xargs -I{} unlink {}
-fi
-
-# readme格納用のディレクトリが中れば作成
-if [ ! -d "$readme_dir" ]; then
+  # 既存のリンクを解除
+  find $readme_dir -type l | xargs -I{} unlink {}
+else
+  # ディレクトリが無ければ作成
   mkdir $readme_dir
 fi
 
-find $extensions_dir -type f -iname 'readme.md' -maxdepth 2 | while read -r extension_path; do
+find $extensions_dir -maxdepth 2 -type f -iname 'readme.md'  | while read -r extension_path
+do
   # coc-extension名
-  extension_name=$(echo $extension_path | sed -e 's/\/readme\.md//I' | xargs -I{} basename {})
+  extension_name=$(
+    echo $extension_path |
+      sed -e 's/\/readme\.md//I' |
+      xargs -I{} basename {}
+  )
   # シンボリックリンクを張る
   ln -s $extension_path $readme_dir/$extension_name.md
 done
