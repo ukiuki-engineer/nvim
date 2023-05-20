@@ -14,6 +14,7 @@ else
 fi
 
 find $extensions_dir -maxdepth 2 -type f -iname 'readme.md'  |
+  # readmeファイルごとに処理
   while read -r extension_path; do
     # coc-extension名
     extension_name=$(
