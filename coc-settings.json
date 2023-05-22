@@ -1,11 +1,15 @@
 {
   // NOTE: :CocLocalConfigを実行すると、./.vim/coc-config.jsonが作成される
   //        このファイルより、ローカルコンフィグの方が優先される
-  "outline.sortBy": "position",
-  "diagnostic.virtualText": false,
-  // NOTE: codeLensはよく分からないので一旦オフに。
   "codeLens.enable": false,
+  "diagnostic.virtualText": false,
   "html.autoClosingTags": false,
+  "list.floatPreview": true,
+  "outline.autoPreview": true,
+  "outline.previewBorderRounded": true,
+  "outline.sortBy": "position",
+  "outline.togglePreviewKey": "p",
+  //
   "solargraph.completion": true,
   "solargraph.diagnostics": true,
   "tsserver.enable": true,
