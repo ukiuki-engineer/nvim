@@ -222,6 +222,7 @@ function! my_plugin_settings#hook_add_coc() abort
     \ 'coc-html',
     \ 'coc-json',
     \ 'coc-lua',
+    \ 'coc-nav',
     \ 'coc-php-cs-fixer',
     \ 'coc-prettier',
     \ 'coc-sh',
