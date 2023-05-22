@@ -205,6 +205,13 @@ lua_source = '''
 require("my_plugin_settings").lua_source_nvim_tree()
 '''
 
+[[plugins]] # 上のbar
+repo = 'akinsho/bufferline.nvim'
+on_event = ['BufRead', 'TabNew', 'InsertEnter']
+lua_source = '''
+require("my_plugin_settings").lua_source_bufferline()
+'''
+
 [[plugins]] # Terminalモードを使いやすくするやつ
 # あんま使ってないから消すかも...
 repo = 'akinsho/toggleterm.nvim'
