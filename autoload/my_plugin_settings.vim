@@ -195,6 +195,7 @@ endfunction
 " coc.nvim
 "
 " FIXME: bladeでも、phpの関数のhoverが読みたい
+" TODO: coc-fzf-previewをしばらく使い倒してみて、よく使いそうな機能はkey-mappingを追加する
 " NOTE: coc-bladeは、"b:xxx"と打つと補完候補が出る
 " NOTE: :CocCommand xx.xxで各拡張機能のコマンドを色々呼び出せる
 " NOTE: スペルチェッカーの辞書登録
