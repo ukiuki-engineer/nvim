@@ -217,6 +217,7 @@ function! my_plugin_settings#hook_add_coc() abort
     \ 'coc-cssmodules',
     \ 'coc-docker',
     \ 'coc-eslint',
+    \ 'coc-fzf-preview',
     \ 'coc-html',
     \ 'coc-json',
     \ 'coc-lua',
