@@ -320,8 +320,24 @@ M.lua_source_nvim_cmp = function()
   -- 検索
   cmp.setup.cmdline({'/', '?'}, {
     mapping = cmp.mapping.preset.cmdline({
-      ["<C-p>"] = cmp.mapping.scroll_docs(-1),
       ["<C-n>"] = cmp.mapping.scroll_docs(1),
+      ["<C-p>"] = cmp.mapping.scroll_docs(-1),
+      ['<C-j>'] = cmp.mapping({
+        c = function(fallback)
+          if cmp.visible() then
+            return cmp.select_next_item()
+          end
+          fallback()
+        end,
+      }),
+      ['<C-k>'] = cmp.mapping({
+        c = function(fallback)
+          if cmp.visible() then
+            return cmp.select_prev_item()
+          end
+          fallback()
+        end,
+      }),
     }),
     sources = {
       { name = 'buffer' }
@@ -330,8 +346,24 @@ M.lua_source_nvim_cmp = function()
   -- コマンド
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline({
-      ["<C-p>"] = cmp.mapping.scroll_docs(-1),
       ["<C-n>"] = cmp.mapping.scroll_docs(1),
+      ["<C-p>"] = cmp.mapping.scroll_docs(-1),
+      ['<C-j>'] = cmp.mapping({
+        c = function(fallback)
+          if cmp.visible() then
+            return cmp.select_next_item()
+          end
+          fallback()
+        end,
+      }),
+      ['<C-k>'] = cmp.mapping({
+        c = function(fallback)
+          if cmp.visible() then
+            return cmp.select_prev_item()
+          end
+          fallback()
+        end,
+      }),
     }),
     sources = cmp.config.sources({
       { name = 'path' }
