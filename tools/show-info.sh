@@ -2,15 +2,17 @@
 # 結構適当
 # 引数に"-startuptime"と入れると、`vim-startuptime -vimpath nvim`を叩く
 
+vimrc_dir=~/.config/nvim
+
 # vim設定行数
-printf "%20s%s%5s\n" "vim設定行数" " =" $(find .. -type f |
+printf "%20s%s%5s\n" "vim設定行数" " =" $(find $vimrc_dir -type f |
   grep -E 'vim$|lua$|toml$|json$' |
   grep -vE 'colors|not_use' |
   xargs -I{} cat {} |
   wc -l)
 
 # 使用プラグイン数
-printf "%20s%s%5s\n" "使用プラグイン数" " =" $(cat ../toml/dein.toml ../toml/dein_lazy.toml |
+printf "%20s%s%5s\n" "使用プラグイン数" " =" $(cat $vimrc_dir/toml/dein.toml $vimrc_dir/toml/dein_lazy.toml |
   grep 'repo = ' |
   grep -vE '^#' |
   wc -l)
