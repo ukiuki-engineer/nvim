@@ -1,6 +1,7 @@
 {
   // NOTE: :CocLocalConfigを実行すると、./.vim/coc-config.jsonが作成される
   //        このファイルより、ローカルコンフィグの方が優先される
+  "outline.sortBy": "position",
   "diagnostic.virtualText": false,
   // NOTE: codeLensはよく分からないので一旦オフに。
   "codeLens.enable": false,

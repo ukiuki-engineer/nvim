@@ -237,7 +237,6 @@ function! my_plugin_settings#hook_add_coc() abort
 endfunction
 
 function! my_plugin_settings#hook_source_coc() abort
-  " TODO: CocOutlineの設定
   " 補完の選択をEnterで決定
   inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
   " <Tab>/<S-Tab>で補完候補を選択(<C-p>/<C-n>派だけど左小指が痛い時は<Tab>を使いたい...)
@@ -260,6 +259,12 @@ function! my_plugin_settings#hook_source_coc() abort
   " 指摘箇所へジャンプ
   nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
   nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
+  " coc-outlineを表示
+  nnoremap <silent><nowait> <space>o :call my_plugin_settings#toggle_outline()<CR>
+  " coc-outlineにジャンプ
+  " NOTE: ジャンプ前の箇所に戻るには、普通に<C-o>で
+  " NOTE: outline tree上で<space>tで、treeの開閉ができる
+  nnoremap <silent><nowait> <space>t :call CocActionAsync('showOutline')<CR>
   " ウィンドウのスクロール
   nnoremap <nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-j>"
   nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
@@ -279,6 +284,16 @@ function! my_plugin_settings#show_documentation() abort
     call CocActionAsync('doHover')
   else
     call feedkeys('K', 'in')
+  endif
+endfunction
+
+" coc-outlineを表示
+function! my_plugin_settings#toggle_outline() abort
+  let winid = coc#window#find('cocViewId', 'OUTLINE')
+  if winid == -1
+    call CocActionAsync('showOutline', 1)
+  else
+    call coc#window#close(winid)
   endif
 endfunction
 
