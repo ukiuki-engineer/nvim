@@ -39,7 +39,7 @@ on_cmd = [
 
 [[plugins]] # VSCodeのGitLens的なやつ
 repo = 'APZelos/blamer.nvim'
-depends = ['tpope/vim-fugitive']
+depends = ['vim-fugitive']
 on_cmd = ['BlamerHide', 'BlamerShow', 'BlamerToggle']
 hook_add = '''
 call my_plugin_settings#hook_add_blamer()
@@ -62,9 +62,6 @@ on_cmd = [
   'DiffviewRefresh',
   'DiffviewToggleFiles'
 ]
-hook_source = '''
-call my_plugin_settings#hook_source_diffview()
-'''
 lua_source = '''
 require("my_plugin_settings").lua_source_diffview()
 '''
