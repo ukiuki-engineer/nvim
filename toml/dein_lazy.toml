@@ -209,13 +209,6 @@ lua_source = '''
 require("my_plugin_settings").lua_source_bufferline()
 '''
 
-[[plugins]]
-repo = 'b0o/incline.nvim'
-on_event = ['BufRead', 'FileType']
-lua_source = '''
-require("my_plugin_settings").lua_source_incline()
-'''
-
 [[plugins]] # Terminalモードを使いやすくするやつ
 # あんま使ってないから消すかも...
 repo = 'akinsho/toggleterm.nvim'
