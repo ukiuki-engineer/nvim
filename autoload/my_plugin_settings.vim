@@ -268,6 +268,8 @@ function! my_plugin_settings#hook_source_coc() abort
   " NOTE: ジャンプ前の箇所に戻るには、普通に<C-o>で
   " NOTE: outline tree上で<space>tで、treeの開閉ができる
   nnoremap <silent><nowait> <space>t :call CocActionAsync('showOutline')<CR>
+  " CocCommand fzf-preview.CocOutline
+  nnoremap <silent> mo :CocCommand fzf-preview.CocOutline<CR>
   " ウィンドウのスクロール
   nnoremap <nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-j>"
   nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
