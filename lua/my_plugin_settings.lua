@@ -288,11 +288,13 @@ end
 -- bufferline.nvim
 --
 M.lua_source_bufferline = function()
-  require('bufferline').setup({
+  local bufferline = require('bufferline')
+  bufferline.setup({
     options = {
       -- mode = 'tabs',
       show_tab_indicators = true,
       buffer_close_icon = '×',
+      style_preset = bufferline.style_preset.no_italic,
       numbers = function(opts)
         return string.format('%s.%s', opts.lower(opts.id), opts.lower(opts.ordinal))
       end,
@@ -309,6 +311,7 @@ end
 -- incline.nvim
 --
 M.lua_source_incline = function()
+  -- TODO: 長くなるとコードと重なるのをどうにかしたい...
   require('incline').setup({
     window = {
       width = 'fit',
@@ -366,56 +369,40 @@ end
 -- nvim-cmp
 --
 M.lua_source_nvim_cmp = function()
-  -- TODO: `:ls`→`:`の時は補完しように(補完ウィンドウが出ると`:ls`の結果が全部消える...)
   local cmp = require 'cmp'
+  -- cmdlineのマッピング(検索/コマンド共通)
+  local cmdline_mapping = cmp.mapping.preset.cmdline({
+    -- 履歴の選択はデフォルト操作で
+    ["<C-n>"] = cmp.mapping.scroll_docs(1),
+    ["<C-p>"] = cmp.mapping.scroll_docs(-1),
+    -- 補完候補の選択は<C-j>, <C-k>で
+    ['<C-j>'] = cmp.mapping({
+      c = function(fallback)
+        if cmp.visible() then
+          return cmp.select_next_item()
+        end
+        fallback()
+      end,
+    }),
+    ['<C-k>'] = cmp.mapping({
+      c = function(fallback)
+        if cmp.visible() then
+          return cmp.select_prev_item()
+        end
+        fallback()
+      end,
+    }),
+  })
   -- 検索
   cmp.setup.cmdline({'/', '?'}, {
-    mapping = cmp.mapping.preset.cmdline({
-      ["<C-n>"] = cmp.mapping.scroll_docs(1),
-      ["<C-p>"] = cmp.mapping.scroll_docs(-1),
-      ['<C-j>'] = cmp.mapping({
-        c = function(fallback)
-          if cmp.visible() then
-            return cmp.select_next_item()
-          end
-          fallback()
-        end,
-      }),
-      ['<C-k>'] = cmp.mapping({
-        c = function(fallback)
-          if cmp.visible() then
-            return cmp.select_prev_item()
-          end
-          fallback()
-        end,
-      }),
-    }),
+    mapping = cmdline_mapping,
     sources = {
       { name = 'buffer' }
     }
   })
   -- コマンド
   cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline({
-      ["<C-n>"] = cmp.mapping.scroll_docs(1),
-      ["<C-p>"] = cmp.mapping.scroll_docs(-1),
-      ['<C-j>'] = cmp.mapping({
-        c = function(fallback)
-          if cmp.visible() then
-            return cmp.select_next_item()
-          end
-          fallback()
-        end,
-      }),
-      ['<C-k>'] = cmp.mapping({
-        c = function(fallback)
-          if cmp.visible() then
-            return cmp.select_prev_item()
-          end
-          fallback()
-        end,
-      }),
-    }),
+    mapping = cmdline_mapping,
     sources = cmp.config.sources({
       { name = 'path' }
     }, {
