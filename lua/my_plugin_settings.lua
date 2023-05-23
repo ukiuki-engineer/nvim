@@ -311,7 +311,14 @@ end
 -- incline.nvim
 --
 M.lua_source_incline = function()
-  -- TODO: 長くなるとコードと重なるのをどうにかしたい...
+  -- TODO: とりあえず設定コピーしてきただけだから後で整理する
+  --       あと、coc-navの内容をinclineじゃなくてwinbarに表示できないか？
+  vim.api.nvim_create_autocmd({ 'User' }, {
+    pattern = 'CocNavChanged',
+    callback = function()
+      require('incline.manager').update({ refresh = true })
+    end,
+  })
   require('incline').setup({
     window = {
       width = 'fit',
