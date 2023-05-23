@@ -63,9 +63,9 @@ augroup END
 " ------------------------------------------------------------------------------
 " maps
 " ------------------------------------------------------------------------------
-nnoremap <Esc><Esc> :nohlsearch<CR>
-nnoremap <TAB> :bn<CR>
-nnoremap <S-TAB> :bN<CR>
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
+nnoremap <silent> <TAB> :bn<CR>
+nnoremap <silent> <S-TAB> :bN<CR>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>

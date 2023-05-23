@@ -87,7 +87,7 @@ function! my_plugin_settings#hook_source_autoclose() abort
   " 補完キャンセル機能をオン
   let g:autoclose#cancel_completion_enable = 1
   " <C-c>で補完をキャンセル
-  inoremap <expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
+  inoremap <silent><expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
 endfunction
 
 "
@@ -126,8 +126,8 @@ endfunction
 "       クリックしたらnvim-tree-api.tree.open()を呼ぶボタンをlualineに配置すれば良いかな？
 " TODO: Visual選択範囲を一括削除できるように
 function! my_plugin_settings#hook_add_nvim_tree() abort
-  nnoremap <C-n> :NvimTreeToggle<CR>
-  nnoremap <C-w>t :NvimTreeFindFile<CR>
+  nnoremap <silent> <C-n> :NvimTreeToggle<CR>
+  nnoremap <silent> <C-w>t :NvimTreeFindFile<CR>
 endfunction
 
 "
@@ -135,8 +135,8 @@ endfunction
 " FIXME: <C-w>L<C-w>Jとするとサイズがバグる
 "
 function! my_plugin_settings#hook_add_toggleterm() abort
-  tnoremap <C-`> <Cmd>ToggleTerm<CR>
-  nnoremap <C-`> :ToggleTerm<CR>
+  tnoremap <silent> <C-`> <Cmd>ToggleTerm<CR>
+  nnoremap <silent> <C-`> :ToggleTerm<CR>
 endfunction
 
 function! my_plugin_settings#hook_source_toggleterm() abort
@@ -241,23 +241,23 @@ endfunction
 
 function! my_plugin_settings#hook_source_coc() abort
   " 補完の選択をEnterで決定
-  inoremap <expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+  inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
   " <Tab>/<S-Tab>で補完候補を選択(<C-p>/<C-n>派だけど左小指が痛い時は<Tab>を使いたい...)
   inoremap <silent><expr> <TAB>
     \ coc#pum#visible() ? coc#pum#next(1) :
     \ CheckBackspace() ? "\<Tab>" :
     \ coc#refresh()
-  inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+  inoremap <silent><expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
   " 定義ジャンプ
-  nnoremap <space>d <Plug>(coc-definition)
+  nnoremap <silent><space>d <Plug>(coc-definition)
   " ドキュメント表示
   nnoremap <silent> <space>h :call my_plugin_settings#show_documentation()<CR>
   " 参照箇所表示
-  nnoremap <space>r <Plug>(coc-references)
+  nnoremap <silent> <space>r <Plug>(coc-references)
   " カーソル位置のsymbolをハイライト(*でカーソル位置を検索するノリ。shiftがspaceに変わっただけ。)
-  nnoremap <space>8 :call CocActionAsync('highlight')<CR>
+  nnoremap <silent> <space>8 :call CocActionAsync('highlight')<CR>
   " 上記をダブルクリックでもできるように
-  nnoremap <2-LeftMouse> :call CocActionAsync('highlight')<CR>
+  nnoremap <silent> <2-LeftMouse> :call CocActionAsync('highlight')<CR>
   " nnoremap <LeftMouse> <LeftMouse>:call CocActionAsync('highlight')<CR>
   " 指摘箇所へジャンプ
   nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
