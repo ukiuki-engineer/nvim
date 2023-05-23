@@ -291,8 +291,11 @@ M.lua_source_bufferline = function()
   require('bufferline').setup({
     options = {
       -- mode = 'tabs',
-      buffer_close_icon = '×',
       show_tab_indicators = true,
+      buffer_close_icon = '×',
+      numbers = function(opts)
+        return string.format('%s.%s', opts.lower(opts.id), opts.lower(opts.ordinal))
+      end,
       diagnostics = "coc",
       diagnostics_indicator = function(count, level)
         local icon = level:match("error") and " " or " "
