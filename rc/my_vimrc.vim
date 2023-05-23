@@ -9,6 +9,8 @@ set enc=utf-8
 set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
 " ヘルプを日本語化
 set helplang=ja
+" スワップファイルを作らない
+set noswapfile
 " マウス有効化
 set mouse=a
 " 編集中のファイルが変更されたら自動で読み直す
