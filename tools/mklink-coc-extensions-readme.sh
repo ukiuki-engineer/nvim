@@ -1,4 +1,5 @@
 #!/bin/sh
+# NOTE: coc.nvim側がbug fixされこのスクリプトは必要なくなったので基本的に不使用
 # coc-extensionsのreadmeのシンボリックリンクを`~/coc-extensions-readme/`配下に生成する
 # `:CocList extensions`→extensionを選ぶ→`<Tab>`→`h`が上手く機能しないので、応急処置的にこれで対応する
 

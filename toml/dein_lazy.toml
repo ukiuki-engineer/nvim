@@ -305,7 +305,9 @@ on_event = ['FileType']
 
 [[plugins]] # coc.nvim
 repo = 'neoclide/coc.nvim'
-rev = 'release'
+# rev = 'release'
+rev = 'master'
+build = 'yarn install --frozen-lockfile' # NOTE: masterの場合のみ
 depends = ['vim-snippets']
 on_event = ['CursorMoved', 'FileType']
 hook_add = '''
