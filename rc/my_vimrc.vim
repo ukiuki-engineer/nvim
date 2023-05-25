@@ -81,10 +81,11 @@ cnoremap <C-d> <Del>
 " ------------------------------------------------------------------------------
 " commands
 " ------------------------------------------------------------------------------
+" NOTE: command定義が増えてきたら、CmdlineEnterで遅延ロードした方が良いかな？
 command! SetCursorLineColumn :set cursorline cursorcolumn
 command! SetNoCursorLineColumn :set nocursorline nocursorcolumn
 command! SourceSession :silent! source Session.vim
-command! -bang MksessionAndQuit :silent! mksession | qa<bang>
+command! -bang MksessionAndQuitAll :mksession! | qa<bang>
 " ------------------------------------------------------------------------------
 " 標準プラグインの制御
 " ------------------------------------------------------------------------------
