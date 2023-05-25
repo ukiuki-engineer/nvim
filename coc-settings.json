@@ -1,88 +1,48 @@
 {
   // NOTE: :CocLocalConfigを実行すると、./.vim/coc-config.jsonが作成される
   //        このファイルより、ローカルコンフィグの方が優先される
+
+  //
+  // coc.nvimの設定
+  //
   "codeLens.enable": false,
   "diagnostic.virtualText": false,
-  "html.autoClosingTags": false,
   "list.floatPreview": true,
   "outline.autoPreview": true,
   "outline.previewBorderRounded": true,
   "outline.sortBy": "position",
   "outline.togglePreviewKey": "p",
   //
-  "solargraph.completion": true,
-  "solargraph.diagnostics": true,
-  "tsserver.enable": true,
+  // coc-extensionsの設定
+  //
+  "Lua.diagnostics.globals": [
+    "vim"
+  ],
+  "cSpell.userWords": [
+    "eruby"
+  ],
   // NOTE: coc-eslintを使用する場合は、ローカルのsettings.jsonで設定を上書きしてeslintを有効にする
-  "eslint.enable": false,
   // NOTE: coc-eslintの設定例
   // "eslint.enable": true,
   // "eslint.autoFixOnSave": true,
   // "eslint.filetypes": ["javascript", "vue"],
-  "php-cs-fixer.enable": false,
+  "eslint.enable": false,
+  "html.autoClosingTags": false,
+  // NOTE: intelephense1.9.0 以降だと_ide_helper.phpや_ide_helper_models.phpが上手く効かない
+  // 下記コマンドで古いバージョンの言語サーバーをインストールして、
+  // npm i -g intelephense@1.8.2
+  // 下記のように直接パスを指定する。パスは環境に依存するため、それぞれの環境下で行う。
+  // "intelephense.path": "/opt/homebrew/bin/intelephense",
+  "intelephense.files.associations": [
+    "*.php",
+    "*.blade.php"
+  ],
   // NOTE: coc-php-cs-fixerの設定例
   // "coc.preferences.formatOnSaveFiletypes": [
     // "php"
   // ],
   // "php-cs-fixer.enable": true,
   // "php-cs-fixer.rules": "",
-  "intelephense": {
-    // NOTE: intelephense1.9.0 以降だと_ide_helper.phpや_ide_helper_models.phpが上手く効かない
-    // 下記コマンドで古いバージョンの言語サーバーをインストールして、
-    // npm i -g intelephense@1.8.2
-    // 下記のように直接パスを指定する。パスは環境に依存するため、それぞれの環境下で行う。
-    // "intelephense.path": "/opt/homebrew/bin/intelephense",
-    "diagnostics": {
-      "enable": true,
-      "undefinedClassConstants": true,
-      "undefinedConstants": true,
-      "undefinedFunctions": true,
-      "undefinedMethods": true,
-      "undefinedProperties": true,
-      "undefinedTypes": true,
-      "unusedSymbols": true
-    },
-    "command": "intelephense",
-    "args": ["--stdio"],
-    // "files": {
-      // "associations": ["*.php", "*.blade.php"]
-    // },
-    "filetypes": ["php", "blade"],
-    "initializationOptions": {
-      "storagePath": "/tmp/intelephense"
-    }
-  },
-  "Lua.diagnostics.globals": ["vim"],
-  "cSpell.ignoreWords": [
-    "autoclose",
-    "autoclosing",
-    "autocmd",
-    "autoformat",
-    "autoload",
-    "dein",
-    "eruby",
-    "eskk",
-    "exts",
-    "gruvbox",
-    "intelephense",
-    "jisyo",
-    "kalisi",
-    "mkdir",
-    "neovim",
-    "nvim",
-    "quots",
-    "ripgrep",
-    "rplugins",
-    "shougo",
-    "sjis",
-    "solargraph",
-    "successed",
-    "ukiuki",
-    "vetur",
-    "vimrc",
-    "vimrcs",
-    "vimscript",
-    "wslenv",
-    "yaegassy"
-  ]
+  "php-cs-fixer.enable": false,
+  "solargraph.diagnostics": true,
 }
