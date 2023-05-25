@@ -2,6 +2,7 @@
 自分用Neovim設定ファイル。  
 まだNeovimを使い始めたばかりですが、なんとかそれなりに使える環境にはなってきたのかな...  
 基本的にはMac(iTerm2)で使用。たまにWindowsのWSL(Windows Terminal)で使用。  
+![image](https://github.com/ukiuki-engineer/nvim/assets/101523180/adf0996b-d1e7-4723-98e2-1996d238f04b)
 
 ## ディレクトリ構成
 ```
