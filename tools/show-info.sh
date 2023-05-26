@@ -5,17 +5,21 @@
 vimrc_dir=~/.config/nvim
 
 # vim設定行数
-printf "%20s%s%5s\n" "vim設定行数" " =" $(find $vimrc_dir -type f |
-  grep -E 'vim$|lua$|toml$|json$' |
-  grep -vE 'colors|not_use' |
-  xargs -I{} cat {} |
-  wc -l)
+printf "%20s%s%5s\n" "vim設定行数" " =" $(
+  find $vimrc_dir -type f |
+    grep -E 'vim$|lua$|toml$|json$' |
+    grep -vE 'colors|not_use' |
+    xargs -I{} cat {} |
+    wc -l
+)
 
 # 使用プラグイン数
-printf "%20s%s%5s\n" "使用プラグイン数" " =" $(cat $vimrc_dir/toml/dein.toml $vimrc_dir/toml/dein_lazy.toml |
-  grep 'repo = ' |
-  grep -vE '^#' |
-  wc -l)
+printf "%20s%s%5s\n" "使用プラグイン数" " =" $(
+  cat $vimrc_dir/toml/dein.toml $vimrc_dir/toml/dein_lazy.toml |
+    grep 'repo = ' |
+    grep -vE '^#' |
+    wc -l
+)
 
 # 起動速度
 # NOTE: [vim-startuptime](https://github.com/rhysd/vim-startuptime)をインストールする必要あり
