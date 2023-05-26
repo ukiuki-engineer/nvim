@@ -240,16 +240,15 @@ function! my_plugin_settings#hook_add_coc() abort
 endfunction
 
 function! my_plugin_settings#hook_source_coc() abort
-  " 補完の選択をEnterで決定
+  " 補完候補の決定
   inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-  " <Tab>/<S-Tab>で補完候補を選択(<C-p>/<C-n>派だけど左小指が痛い時は<Tab>を使いたい...)
-  inoremap <silent><expr> <TAB>
-    \ coc#pum#visible() ? coc#pum#next(1) :
-    \ CheckBackspace() ? "\<Tab>" :
-    \ coc#refresh()
-  inoremap <silent><expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+  " 補完候補の選択
+  inoremap <silent><expr> <TAB>  coc#pum#visible() ? coc#pum#next(1) : "\<TAB>"
+  inoremap <silent><expr> <S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<S-TAB>"
+  inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : coc#refresh()
+  inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : coc#refresh()
   " 定義ジャンプ
-  nnoremap <silent><space>d <Plug>(coc-definition)
+  nnoremap <silent> <space>d <Plug>(coc-definition)
   " ドキュメント表示
   nnoremap <silent> <space>h :call my_plugin_settings#show_documentation()<CR>
   " 参照箇所表示

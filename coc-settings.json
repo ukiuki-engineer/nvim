@@ -5,13 +5,46 @@
   //
   // coc.nvimの設定
   //
-  "codeLens.enable": false,
-  "diagnostic.virtualText": false,
+  "codeLens.enable": true,
+  "diagnostic.virtualText": true,
+  "hover.floatConfig": {
+    "border": true,
+    "close": true,
+    "rounded": true,
+    "shadow": true,
+  },
   "list.floatPreview": true,
   "outline.autoPreview": true,
   "outline.previewBorderRounded": true,
   "outline.sortBy": "position",
   "outline.togglePreviewKey": "p",
+  "suggest.virtualText": true,
+  "suggest.completionItemKindLabels": {
+    // "class": "\uf0e8",
+    // "color": "\ue22b",
+    // "constant": "\uf8ff",
+    // "default": "\uf29c",
+    // "enum": "\uf435",
+    // "enumMember": "\uf02b",
+    // "event": "\ufacd",
+    // "field": "\uf93d",
+    // "file": "\uf471",
+    // "folder": "\uf115",
+    // "function": "\uf794",
+    // "interface": "\ufa52",
+    // "keyword": "\uf893",
+    // "method":"\uf6a6",
+    // "operator": "\uf915",
+    // "property": "\ufab6",
+    // "reference": "\uf87a",
+    // "snippet": "\uf64d",
+    // "struct": "\ufb44",
+    // "text": "\ue612",
+    // "typeParameter": "\uf278",
+    // "unit": "\uf475",
+    // "value": "\uf8a3",
+    // "variable": "\uf71b",
+  },
   //
   // coc-extensionsの設定
   //
