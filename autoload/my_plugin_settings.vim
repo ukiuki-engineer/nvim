@@ -73,6 +73,7 @@ function! my_plugin_settings#hook_source_commentary() abort
   augroup MyCommentstring
     autocmd!
     autocmd FileType php setlocal commentstring=//\ %s
+    autocmd FileType json setlocal commentstring=//\ %s
   augroup END
 endfunction
 
