@@ -251,6 +251,8 @@ function! my_plugin_settings#hook_source_coc() abort
   nnoremap <silent> <space>d <Plug>(coc-definition)
   " ドキュメント表示
   nnoremap <silent> <space>h :call my_plugin_settings#show_documentation()<CR>
+  " float windowへジャンプ
+  nnoremap <silent> <space>j <Plug>(coc-float-jump)
   " 参照箇所表示
   nnoremap <silent> <space>r <Plug>(coc-references)
   " カーソル位置のsymbolをハイライト(*でカーソル位置を検索するノリ。shiftがspaceに変わっただけ。)
