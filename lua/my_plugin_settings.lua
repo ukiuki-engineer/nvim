@@ -335,6 +335,47 @@ M.lua_source_nvim_cmp = function()
       end,
     }),
   })
+  cmp.setup({
+    -- mapping = cmp.mapping.preset.insert({
+    --   ['<C-n>'] = cmp.mapping({
+    --     i = function(fallback)
+    --       if cmp.visible() then
+    --         return cmp.select_next_item()
+    --       end
+    --       fallback()
+    --     end,
+    --   }),
+    --   ['<C-p>'] = cmp.mapping({
+    --     i = function(fallback)
+    --       if cmp.visible() then
+    --         return cmp.select_prev_item()
+    --       end
+    --       fallback()
+    --     end,
+    --   }),
+    --    -- ["<CR>"] = cmp.mapping.confirm { select = true },
+    --   -- ['<CR>'] = cmp.mapping.confirm({
+    --   --   behavior = cmp.ConfirmBehavior.Replace,
+    --   --   select = false
+    --   -- }),
+    --   -- ['<CR>'] = cmp.mapping({
+    --   --   i = function(fallback)
+    --   --     if cmp.visible() then
+    --   --       return cmp.confirm({ select = true })
+    --   --     else
+    --   --       fallback() -- If you use vim-endwise, this fallback will behave the same as vim-endwise.
+    --   --     end
+    --   --   end,
+    --   -- }),
+    -- }),
+    -- sources = cmp.config.sources({
+    --   { name = 'skkeleton' },
+    -- }),
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
+  })
   -- 検索
   cmp.setup.cmdline({'/', '?'}, {
     mapping = cmdline_mapping,
@@ -343,10 +384,10 @@ M.lua_source_nvim_cmp = function()
     }
   })
   -- コマンド
-  cmp.setup.cmdline(':', {
+  cmp.setup.cmdline({':'}, {
     mapping = cmdline_mapping,
     sources = cmp.config.sources({
-      { name = 'path' }
+      { name = 'path' },
     }, {
       { name = 'cmdline' }
     })

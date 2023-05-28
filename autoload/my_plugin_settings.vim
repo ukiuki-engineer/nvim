@@ -165,31 +165,36 @@ function! my_plugin_settings#hook_add_fzf() abort
 endfunction
 
 "
-" eskk.vim
-" まだ設定中のため、今は不使用
-" 設定がいい感じになってきたら使いたい
+" skk.vim
 "
-function! my_plugin_settings#hook_add_eskk() abort
-  " TODO: nvim-cmpで変換候補を表示できるようにする
-  " TODO: <S-Space>で<Space>の逆を辿れるようにする
+function! my_plugin_settings#hook_source_skk() abort
+  let s:skk_dir = expand('~/.config/nvim/skk')
   " 辞書ファイルをダウンロード
-  if !filereadable(expand('~/.config/eskk/SKK-JISYO.L'))
-    call mkdir('~/.config/eskk', 'p')
-    let s:output = system('cd ~/.config/eskk/ && wget http://openlab.jp/skk/dic/SKK-JISYO.L.gz && gzip -d SKK-JISYO.L.gz')
+  if !filereadable(s:skk_dir .. '/SKK-JISYO.L')
+    call mkdir(s:skk_dir, 'p')
+    let s:output = system('cd ' .. s:skk_dir .. ' && wget https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gzip -d SKK-JISYO.L.gz && gzip -d SKK-JISYO.L.gz')
     if v:shell_error
       " NOTE: wgetがなくてダウンロードされなかった時に何の警告も出なかったので、警告を出すようにする
       echo "SKK辞書ファイルのダウンロードが正常に行われませんでした"
       echo s:output
     endif
   endif
-  " 辞書ファイルを読み込む設定
-  let g:eskk#directory = "~/.config/eskk"
-  let g:eskk#dictionary = { 'path': "~/.config/eskk/my_jisyo", 'sorted': 1, 'encoding': 'utf-8',}
-  let g:eskk#large_dictionary = {'path': "~/.config/eskk/SKK-JISYO.L", 'sorted': 1, 'encoding': 'euc-jp',}
-  "補完を有効/無効化
-  let g:eskk#enable_completion = 0
-  "漢字変換を確定しても改行しない。
-  let g:eskk#egg_like_newline = 1
+  imap <C-j> <Plug>(skkeleton-enable)
+  augroup MySkkeleton
+    autocmd!
+    autocmd User skkeleton-initialize-pre call my_plugin_settings#skkeleton_init()
+  augroup END
+endfunction
+
+function! my_plugin_settings#skkeleton_init() abort
+  call skkeleton#config({
+    \ 'eggLikeNewline': v:true,
+    \ 'globalDictionaries': [["~/.config/nvim/skk/SKK-JISYO.L", "euc-jp"]],
+    \ 'usePopu': v:true
+  \ })
+  call skkeleton#register_kanatable('rom', {
+    \ "z\<Space>": ["\u3000", ''],
+    \ })
 endfunction
 
 "
@@ -283,6 +288,11 @@ function! my_plugin_settings#hook_source_coc() abort
   inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
   " フォーマッターを呼び出す
   command! -nargs=0 Format :call CocAction('format')
+  " augroup MySkkeletonCoc
+  "   autocmd!
+  "   autocmd User skkeleton-enable-pre let b:coc_suggest_disable = v:true
+  "   autocmd User skkeleton-disable-pre let b:coc_suggest_disable = v:false
+  " augroup END
 endfunction
 
 " ドキュメント表示
