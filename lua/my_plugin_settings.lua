@@ -336,8 +336,9 @@ M.lua_source_nvim_cmp = function()
     }),
   })
   cmp.setup({
+    -- skkeleton
     -- mapping = cmp.mapping.preset.insert({
-    --   ['<C-n>'] = cmp.mapping({
+    --   ['<Tab>'] = cmp.mapping({
     --     i = function(fallback)
     --       if cmp.visible() then
     --         return cmp.select_next_item()
@@ -345,7 +346,7 @@ M.lua_source_nvim_cmp = function()
     --       fallback()
     --     end,
     --   }),
-    --   ['<C-p>'] = cmp.mapping({
+    --   ['<S-Tab>'] = cmp.mapping({
     --     i = function(fallback)
     --       if cmp.visible() then
     --         return cmp.select_prev_item()
@@ -353,17 +354,12 @@ M.lua_source_nvim_cmp = function()
     --       fallback()
     --     end,
     --   }),
-    --    -- ["<CR>"] = cmp.mapping.confirm { select = true },
-    --   -- ['<CR>'] = cmp.mapping.confirm({
-    --   --   behavior = cmp.ConfirmBehavior.Replace,
-    --   --   select = false
-    --   -- }),
-    --   -- ['<CR>'] = cmp.mapping({
+    --   -- ['<C-n>'] = cmp.mapping({
     --   --   i = function(fallback)
     --   --     if cmp.visible() then
     --   --       return cmp.confirm({ select = true })
     --   --     else
-    --   --       fallback() -- If you use vim-endwise, this fallback will behave the same as vim-endwise.
+    --   --       fallback()
     --   --     end
     --   --   end,
     --   -- }),

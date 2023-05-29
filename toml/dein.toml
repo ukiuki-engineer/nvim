@@ -40,6 +40,6 @@ lua_add = '''
 require("my_plugin_settings").lua_add_nightfly_colors()
 '''
 
-[[plugins]]
-repo = 'vim-denops/denops.vim'
+# [[plugins]]
+# repo = 'vim-denops/denops.vim'
 

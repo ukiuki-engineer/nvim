@@ -297,17 +297,17 @@ on_source = 'nvim-cmp'
 repo = 'hrsh7th/cmp-path'
 on_source = 'nvim-cmp'
 
-[[plugins]]
-repo = 'rinx/cmp-skkeleton'
-on_source = 'nvim-cmp'
+# [[plugins]]
+# repo = 'rinx/cmp-skkeleton'
+# on_source = 'nvim-cmp'
 
-[[plugins]]
-repo = 'vim-skk/skkeleton'
-on_event = ['InsertEnter']
-depends = ['denops']
-hook_source = '''
-call my_plugin_settings#hook_source_skk()
-'''
+# [[plugins]]
+# repo = 'vim-skk/skkeleton'
+# on_event = ['InsertEnter']
+# depends = ['denops']
+# hook_source = '''
+# call my_plugin_settings#hook_source_skk()
+# '''
 
 [[plugins]] # スニペットのソース類
 # NOTE: coc-snippetsで呼び出して使う

@@ -179,7 +179,7 @@ function! my_plugin_settings#hook_source_skk() abort
       echo s:output
     endif
   endif
-  imap <C-j> <Plug>(skkeleton-enable)
+  imap <C-j> <Plug>(skkeleton-toggle)
   augroup MySkkeleton
     autocmd!
     autocmd User skkeleton-initialize-pre call my_plugin_settings#skkeleton_init()
@@ -188,13 +188,15 @@ endfunction
 
 function! my_plugin_settings#skkeleton_init() abort
   call skkeleton#config({
-    \ 'eggLikeNewline': v:true,
+    \ 'eggLikeNewline': v:false,
     \ 'globalDictionaries': [["~/.config/nvim/skk/SKK-JISYO.L", "euc-jp"]],
     \ 'usePopu': v:true
   \ })
   call skkeleton#register_kanatable('rom', {
+    \ "xn": 'ん',
     \ "z\<Space>": ["\u3000", ''],
-    \ })
+  \ })
+  call skkeleton#register_keymap('henkan', "\<CR>", 'kakutei')
 endfunction
 
 "
