@@ -42,6 +42,7 @@ end
 -- 色名をカラーコードに変換
 -- @param string colorname
 -- @return string colorcode
+-- NOTE: vim内の関数であるような気もするけど見つけられなかったので一旦これを使う
 M.get_colorcode_by_colorname = function(colorname)
   local colornames = {
     ["Black"]        = "#000000",

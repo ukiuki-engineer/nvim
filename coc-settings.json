@@ -19,37 +19,36 @@
   "outline.sortBy": "position",
   "outline.togglePreviewKey": "p",
   "suggest.completionItemKindLabels": {
-    // NOTE:
-    // :h coc-config-suggest-completionItemKindLabels
-    // に定義されているパラメータを、以下を参考に決めた
-    // NOTE: https://www.nerdfonts.com/cheat-sheet
-    "text": "v:\ue612",
-    "method": "f:\uea8c",
-    // "function": "\uf0871",
-    "function": "f:\ueb88",
-    "constructor": "f:f1949",
-    "field": "m:\ueb5f",
-    "variable": "v:\uea88",
-    "class": "C:\uf0e8",
-    "interface": "I:\ueb61",
-    "module": "M:\uf148c",
-    "property": "m:\ueb65",
-    "unit": "U:\uf475",
-    "value": "v:\uf03a6",
-    "enum": "E:\uf435",
-    "keyword": "k:\ueb62",
-    "snippet": "S:\ueb66",
-    "color": "v:\ue22b",
-    "file": "\uf471",
-    "reference": "r:\uf4bd",
-    "folder": "\uf115",
-    "enumMember": "m:\uf02b",
-    "constant": "v:\ueb5d",
-    "struct": "S:\uf0645",
-    "event": "E:\uea86",
-    "operator": "O:\ueb64",
+    // NOTE: :h coc-config-suggest-completionItemKindLabels
+    //       に定義されているパラメータを、以下を参考に決めた
+    //       https://www.nerdfonts.com/cheat-sheet
+    "text"         : "v:\ue612",
+    "method"       : "f:\uea8c",
+    // "function"   : "\uf0871",
+    "function"     : "f:\ueb88",
+    "constructor"  : "f:f1949",
+    "field"        : "m:\ueb5f",
+    "variable"     : "v:\uea88",
+    "class"        : "C:\uf0e8",
+    "interface"    : "I:\ueb61",
+    "module"       : "M:\uf148c",
+    "property"     : "m:\ueb65",
+    "unit"         : "U:\uf475",
+    "value"        : "v:\uf03a6",
+    "enum"         : "E:\uf435",
+    "keyword"      : "k:\ueb62",
+    "snippet"      : "S:\ueb66",
+    "color"        : "v:\ue22b",
+    "file"         : "\uf471",
+    "reference"    : "r:\uf4bd",
+    "folder"       : "\uf115",
+    "enumMember"   : "m:\uf02b",
+    "constant"     : "v:\ueb5d",
+    "struct"       : "S:\uf0645",
+    "event"        : "E:\uea86",
+    "operator"     : "O:\ueb64",
     "typeParameter": "T:\uf278",
-    "default": "\uf4c3"
+    "default"      : "\uf4c3"
   },
   "suggest.floatConfig": {
     "border": true,
@@ -64,7 +63,9 @@
     "vim"
   ],
   "cSpell.userWords": [
-    "eruby"
+    "eruby",
+    "fuga",
+    "hoge",
   ],
   // NOTE: coc-eslintを使用する場合は、ローカルのsettings.jsonで設定を上書きしてeslintを有効にする
   // NOTE: coc-eslintの設定例

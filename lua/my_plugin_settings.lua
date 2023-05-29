@@ -34,7 +34,7 @@ M.lua_add_lualine = function()
                                    -- for other components. (terrible name, any suggestions?)
           symbols = {
             modified = '[+]',      -- Text to show when the file is modified.
-            readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
+            readonly = '',        -- Text to show when the file is non-modifiable or readonly.(\ue0a2)
             unnamed = '[No Name]', -- Text to show for unnamed buffers.
             newfile = '[New]',     -- Text to show for newly created file before first write
           }
@@ -108,7 +108,7 @@ M.lua_add_nightfly_colors = function()
 
   local function fix_nightfly()
     -- diffview
-    vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { -- FIXME: 不明
+    vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { -- NOTE: 不明
       bg = "#FF0000"
     })
     vim.api.nvim_set_hl(0, 'DiffDelete', {              -- 削除された行
@@ -168,7 +168,7 @@ M.lua_add_gruvbox = function()
   -- ハイライト色を色々と変更
   local function fix_gruvbox()
     -- diffview
-    vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { -- FIXME: 不明
+    vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { -- NOTE: 不明
       bg = "#FF0000"
     })
     vim.api.nvim_set_hl(0, 'DiffDelete', {              -- 削除された行

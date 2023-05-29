@@ -207,9 +207,9 @@ endfunction
 " NOTE: coc-bladeは、"b:xxx"と打つと補完候補が出る
 " NOTE: :CocCommand xx.xxで各拡張機能のコマンドを色々呼び出せる
 " NOTE: スペルチェッカーの辞書登録
-" .config/nvim/coc-settings.json
-"   :CocCommand cSpell.addIgnoreWordToUser
-" (多分)./.vim/coc-settings.json
+" .config/nvim/coc-settings.jsonの"cSpell.userWords"に追加
+"   :CocCommand cSpell.addWordToUserDictionary
+" ./.vim/coc-settings.jsonの"cSpell.ignoreWords"に追加
 "   :CocCommand cSpell.addIgnoreWordToWorkspace
 " NOTE: Laravel固有のメソッドに対して補完やホバーを行うには、補完ヘルパーファイルを出力する必要がある
 " 手順は以下の通り
