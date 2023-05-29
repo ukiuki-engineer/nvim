@@ -5,10 +5,12 @@
 " options
 " ------------------------------------------------------------------------------
 " 文字コード
-set enc=utf-8
+" Vim が内部処理に利用する文字コード。
+set encoding=utf-8
+" Vim が 既存ファイルの 文字コード推定に使う文字コードのリスト。
 set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
-" ヘルプを日本語化
-set helplang=ja
+"  新規ファイルを作成する際の文字コード
+set fileencoding=utf-8
 " スワップファイルを作らない
 set noswapfile
 " マウス有効化
@@ -63,7 +65,7 @@ augroup MyVimrc
   " autocmd CmdUndefined Term,TermV,TermHere,TermHereV ++once execute 'source' . g:rc_dir . '/MyTerminal.vim'
 augroup END
 " ------------------------------------------------------------------------------
-" maps
+" keymaps
 " ------------------------------------------------------------------------------
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 nnoremap <silent> <TAB> :bn<CR>

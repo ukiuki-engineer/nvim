@@ -4,6 +4,10 @@ repo = 'Shougo/dein.vim'
 
 [[plugins]] # 日本語ドキュメント
 repo = 'vim-jp/vimdoc-ja'
+hook_add = '''
+" ヘルプを日本語化
+set helplang=ja
+'''
 
 [[plugins]] # luaモジュールの読み込みを速くするやつ
 repo = 'lewis6991/impatient.nvim'
