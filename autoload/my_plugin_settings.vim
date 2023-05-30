@@ -203,7 +203,6 @@ endfunction
 " coc.nvim
 "
 " FIXME: bladeでも、phpの関数のhoverが読みたい
-" TODO: coc-fzf-previewをしばらく使い倒してみて、よく使いそうな機能はkey-mappingを追加する
 " NOTE: coc-bladeは、"b:xxx"と打つと補完候補が出る
 " NOTE: :CocCommand xx.xxで各拡張機能のコマンドを色々呼び出せる
 " NOTE: スペルチェッカーの辞書登録
@@ -289,7 +288,9 @@ function! my_plugin_settings#hook_source_coc() abort
   inoremap <nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<CR>" : "\<Left>"
   inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
   " フォーマッターを呼び出す
-  command! -nargs=0 Format :call CocAction('format')
+  command! Format :call CocAction('format')
+  " 開いているバッファをgrep
+  command! BufferLines :CocCommand fzf-preview.BufferLines
   " augroup MySkkeletonCoc
   "   autocmd!
   "   autocmd User skkeleton-enable-pre let b:coc_suggest_disable = v:true
