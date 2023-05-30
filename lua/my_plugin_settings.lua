@@ -306,6 +306,94 @@ M.lua_source_bufferline = function()
     },
   })
 end
+--
+-- dropbar.nvim
+--
+M.lua_source_dropbar = function()
+  require('dropbar').setup({
+    icons = {
+      kinds = {
+        use_devicons = true,
+        symbols = {
+          -- TODO: 上手く表示できない奴は変える
+          Array = '󰅪 ',
+          Boolean = ' ',
+          BreakStatement = '󰙧 ',
+          Call = '󰃷 ',
+          CaseStatement = '󱃙 ',
+          Class = ' ',
+          Color = '󰏘 ',
+          Constant = '󰏿 ',
+          Constructor = ' ',
+          ContinueStatement = '→ ',
+          Copilot = ' ',
+          Declaration = '󰙠 ',
+          Delete = '󰩺 ',
+          DoStatement = '󰑖 ',
+          Enum = ' ',
+          EnumMember = ' ',
+          Event = ' ',
+          Field = ' ',
+          File = '󰈔 ',
+          Folder = '󰉋 ',
+          ForStatement = '󰑖 ',
+          Function = '󰊕 ',
+          Identifier = '󰀫 ',
+          IfStatement = '󰇉 ',
+          Interface = ' ',
+          Keyword = '󰌋 ',
+          List = '󰅪 ',
+          Log = '󰦪 ',
+          Lsp = ' ',
+          Macro = '󰁌 ',
+          MarkdownH1 = '󰉫 ',
+          MarkdownH2 = '󰉬 ',
+          MarkdownH3 = '󰉭 ',
+          MarkdownH4 = '󰉮 ',
+          MarkdownH5 = '󰉯 ',
+          MarkdownH6 = '󰉰 ',
+          Method = '󰆧 ',
+          Module = '󰏗 ',
+          Namespace = '󰅩 ',
+          Null = '󰢤 ',
+          Number = '󰎠 ',
+          Object = '󰅩 ',
+          Operator = '󰆕 ',
+          Package = '󰆦 ',
+          Property = ' ',
+          Reference = '󰦾 ',
+          Regex = ' ',
+          Repeat = '󰑖 ',
+          Scope = '󰅩 ',
+          Snippet = '󰩫 ',
+          Specifier = '󰦪 ',
+          Statement = '󰅩 ',
+          String = '󰉾 ',
+          Struct = ' ',
+          SwitchStatement = '󰺟 ',
+          Text = ' ',
+          Type = ' ',
+          TypeParameter = '󰆩 ',
+          Unit = ' ',
+          Value = '󰎠 ',
+          Variable = '󰀫 ',
+          WhileStatement = '󰑖 ',
+        },
+      },
+      ui = {
+        bar = {
+          separator = ' ',
+          extends = '…',
+        },
+        menu = {
+              separator = ' ',
+              indicator = ' ',
+        },
+      },
+    },
+  })
+  vim.keymap.set('n', '<space>p', require('dropbar.api').pick)
+end
 
 --
 -- nvim-cmp
@@ -336,7 +424,7 @@ M.lua_source_nvim_cmp = function()
     }),
   })
   cmp.setup({
-    -- skkeleton
+    -- skkeleton {{{
     -- mapping = cmp.mapping.preset.insert({
     --   ['<Tab>'] = cmp.mapping({
     --     i = function(fallback)
@@ -367,6 +455,7 @@ M.lua_source_nvim_cmp = function()
     -- sources = cmp.config.sources({
     --   { name = 'skkeleton' },
     -- }),
+    -- }}}
     window = {
       completion = cmp.config.window.bordered(),
       documentation = cmp.config.window.bordered(),
