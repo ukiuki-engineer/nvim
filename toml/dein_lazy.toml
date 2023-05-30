@@ -309,6 +309,11 @@ on_source = 'nvim-cmp'
 # call my_plugin_settings#hook_source_skk()
 # '''
 
+[[plugins]] # カーソル位置の階層を表示するやつ
+# NOTE: Neovim Nightly (>= 0.10.0-dev)
+repo = 'Bekaboo/dropbar.nvim'
+on_event = ['FileType', 'BufRead']
+
 [[plugins]] # スニペットのソース類
 # NOTE: coc-snippetsで呼び出して使う
 # 個々のcocプラグイン側の補完候補とぶつかって面倒な場合はどちらかをオフにする
