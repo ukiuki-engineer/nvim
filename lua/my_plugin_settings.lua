@@ -386,8 +386,8 @@ M.lua_source_dropbar = function()
           extends = '…',
         },
         menu = {
-              separator = ' ',
-              indicator = ' ',
+          separator = ' ',
+          indicator = ' ',
         },
       },
     },
