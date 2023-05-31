@@ -168,27 +168,32 @@ endfunction
 " skk.vim
 "
 function! my_plugin_settings#hook_source_skk() abort
-  let s:skk_dir = expand('~/.config/nvim/skk')
+  let l:skk_dir = expand('~/.config/nvim/skk')
   " 辞書ファイルをダウンロード
-  if !filereadable(s:skk_dir .. '/SKK-JISYO.L')
-    call mkdir(s:skk_dir, 'p')
-    let s:output = system('cd ' .. s:skk_dir .. ' && wget https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gzip -d SKK-JISYO.L.gz && gzip -d SKK-JISYO.L.gz')
+  if !filereadable(l:skk_dir .. '/SKK-JISYO.L')
+    call mkdir(l:skk_dir, 'p')
+    let l:output = system('cd ' .. l:skk_dir .. ' && wget https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gzip -d SKK-JISYO.L.gz')
     if v:shell_error
       " NOTE: wgetがなくてダウンロードされなかった時に何の警告も出なかったので、警告を出すようにする
       echo "SKK辞書ファイルのダウンロードが正常に行われませんでした"
-      echo s:output
+      echo l:output
     endif
   endif
+
   imap <C-j> <Plug>(skkeleton-toggle)
+
   augroup MySkkeleton
     autocmd!
     autocmd User skkeleton-initialize-pre call my_plugin_settings#skkeleton_init()
+    autocmd User skkeleton-enable-pre let b:coc_suggest_disable = v:true
+    autocmd User skkeleton-disable-pre let b:coc_suggest_disable = v:false
   augroup END
+
 endfunction
 
 function! my_plugin_settings#skkeleton_init() abort
   call skkeleton#config({
-    \ 'eggLikeNewline': v:false,
+    \ 'eggLikeNewline': v:true,
     \ 'globalDictionaries': [["~/.config/nvim/skk/SKK-JISYO.L", "euc-jp"]],
     \ 'usePopu': v:true
   \ })
@@ -196,7 +201,7 @@ function! my_plugin_settings#skkeleton_init() abort
     \ "xn": 'ん',
     \ "z\<Space>": ["\u3000", ''],
   \ })
-  call skkeleton#register_keymap('henkan', "\<CR>", 'kakutei')
+  " call skkeleton#register_keymap('henkan', "\<CR>", 'kakutei')
 endfunction
 
 "
@@ -291,11 +296,6 @@ function! my_plugin_settings#hook_source_coc() abort
   command! Format :call CocAction('format')
   " 開いているバッファをgrep
   command! BufferLines :CocCommand fzf-preview.BufferLines
-  " augroup MySkkeletonCoc
-  "   autocmd!
-  "   autocmd User skkeleton-enable-pre let b:coc_suggest_disable = v:true
-  "   autocmd User skkeleton-disable-pre let b:coc_suggest_disable = v:false
-  " augroup END
 endfunction
 
 " ドキュメント表示
