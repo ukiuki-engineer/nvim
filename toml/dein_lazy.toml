@@ -1,10 +1,167 @@
-[[plugins]] # デフォルトより見やすいsyntax highlight
-repo = 'nvim-treesitter/nvim-treesitter'
-on_event = ['FileType']
+################################################################################
+# UI
+################################################################################
+[[plugins]]
+repo = 'nvim-tree/nvim-tree.lua'
+depends = ['nvim-web-devicons']
+on_cmd = [
+  'NvimTreeOpen',
+  'NvimTreeClose',
+  'NvimTreeToggle',
+  'NvimTreeFocus',
+  'NvimTreeRefresh',
+  'NvimTreeFindFile',
+  'NvimTreeFindFileToggle',
+  'NvimTreeClipboard',
+  'NvimTreeResize',
+  'NvimTreeCollapse',
+  'NvimTreeCollapseKeepBuffers',
+  'NvimTreeGenerateOnAttach'
+]
+hook_add = '''
+call my_plugin_settings#hook_add_nvim_tree()
+'''
 lua_source = '''
-require("my_plugin_settings").lua_source_treesitter()
+require("my_plugin_settings").lua_source_nvim_tree()
 '''
 
+[[plugins]] # nvim-treeのアイコン
+repo = 'nvim-tree/nvim-web-devicons'
+on_source = ['diffview', 'nvim-tree.lua']
+
+[[plugins]] # 上のbar
+repo = 'akinsho/bufferline.nvim'
+on_event = ['BufRead', 'TabNew', 'InsertEnter']
+lua_source = '''
+require("my_plugin_settings").lua_source_bufferline()
+'''
+
+[[plugins]] # カーソル位置の階層を表示するやつ
+# NOTE: Neovim Nightly (>= 0.10.0-dev)
+repo = 'Bekaboo/dropbar.nvim'
+on_event = ['FileType', 'BufRead']
+lua_source = '''
+require("my_plugin_settings").lua_source_dropbar()
+'''
+################################################################################
+# Code Editting
+################################################################################
+[[plugins]] # インデント可視化
+repo = 'lukas-reineke/indent-blankline.nvim'
+on_event = ['CursorMoved']
+lua_source = '''
+require("my_plugin_settings").lua_source_indent_blankline()
+'''
+
+[[plugins]] # matchitをもっと強くしたようなやつ(ハイライトとかもされる)
+repo = 'andymass/vim-matchup'
+on_event = ['CursorMoved']
+hook_source = '''
+call my_plugin_settings#hook_source_matchup()
+'''
+
+[[plugins]] # 行内ジャンプ用にハイライトしてくれるやつ
+repo = 'unblevable/quick-scope'
+on_event = ['CursorMoved']
+
+[[plugins]] # コメントアウト
+repo = 'tpope/vim-commentary'
+on_event = ['CursorMoved']
+hook_source = '''
+call my_plugin_settings#hook_source_commentary()
+'''
+[[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
+repo = 'ukiuki-engineer/vim-autoclose'
+rev = 'develop'
+on_event = ['InsertEnter']
+hook_source = '''
+call my_plugin_settings#hook_source_autoclose()
+'''
+
+[[plugins]] # カラーコード可視化
+repo = 'norcalli/nvim-colorizer.lua'
+on_ft = [
+  'blade',
+  'css',
+  'eruby',
+  'html',
+  'less',
+  'lua',
+  'sass',
+  'scss',
+  'stylus',
+  'toml',
+  'vim',
+  'vue'
+]
+hook_source = '''
+call my_plugin_settings#hook_source_colorizer()
+'''
+lua_post_source = '''
+require 'colorizer'.setup()
+'''
+
+[[plugins]] # Markdownでtable作成
+repo = 'mattn/vim-maketable'
+on_cmd = ['MakeTable', 'UnmakeTable']
+
+# [[plugins]]
+# repo = 'vim-skk/skkeleton'
+# on_event = ['InsertEnter']
+# depends = ['denops']
+# hook_source = '''
+# call my_plugin_settings#hook_source_skk()
+# '''
+################################################################################
+# LSP and Completion
+################################################################################
+[[plugins]] # 補完エンジン
+repo = 'hrsh7th/nvim-cmp'
+# depends = ['cmp-cmdline', 'cmp-buffer', 'cmp-path', 'cmp-skkeleton']
+depends = ['cmp-cmdline', 'cmp-buffer', 'cmp-path']
+on_event = ['CmdlineEnter', 'InsertEnter']
+lua_source = '''
+require("my_plugin_settings").lua_source_nvim_cmp()
+'''
+
+[[plugins]] # コマンドライン補完用nvim-cmpのソース
+repo = 'hrsh7th/cmp-cmdline'
+on_source = 'nvim-cmp'
+
+[[plugins]]
+repo = 'hrsh7th/cmp-buffer'
+on_source = 'nvim-cmp'
+
+[[plugins]]
+repo = 'hrsh7th/cmp-path'
+on_source = 'nvim-cmp'
+
+# [[plugins]]
+# repo = 'rinx/cmp-skkeleton'
+# on_source = 'nvim-cmp'
+
+[[plugins]] # coc.nvim
+repo = 'neoclide/coc.nvim'
+# rev = 'release'
+rev = 'master'
+build = 'yarn install --frozen-lockfile' # NOTE: masterの場合のみ
+depends = ['vim-snippets']
+on_event = ['CursorMoved', 'FileType']
+hook_add = '''
+call my_plugin_settings#hook_add_coc()
+'''
+hook_source = '''
+call my_plugin_settings#hook_source_coc()
+'''
+
+[[plugins]] # スニペットのソース類
+# NOTE: coc-snippetsで呼び出して使う
+# 個々のcocプラグイン側の補完候補とぶつかって面倒な場合はどちらかをオフにする
+repo = 'honza/vim-snippets'
+on_event = ['FileType']
+################################################################################
+# Git
+################################################################################
 [[plugins]] # vimでgitを実行するやつ
 # NOTE: :Git xxでgitコマンドを実行できる
 repo = 'tpope/vim-fugitive'
@@ -69,174 +226,14 @@ require("my_plugin_settings").lua_source_diffview()
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
 on_source = ['diffview']
-
-[[plugins]] # vimから編集中のファイルを素早く実行するやつ
-# FIXME: 実行結果を右ではなく下に小さく表示させたい
-repo = 'thinca/vim-quickrun'
-on_cmd = ['QuickRun']
-hook_add = '''
-call my_plugin_settings#hook_add_quickrun()
-'''
-
-[[plugins]] # editorconfig
-repo = 'editorconfig/editorconfig-vim'
-on_event = ['BufRead']
-
-[[plugins]] # インデント可視化
-repo = 'lukas-reineke/indent-blankline.nvim'
-on_event = ['CursorMoved']
+################################################################################
+# Others
+################################################################################
+[[plugins]] # デフォルトより見やすいsyntax highlight
+repo = 'nvim-treesitter/nvim-treesitter'
+on_event = ['FileType']
 lua_source = '''
-require("my_plugin_settings").lua_source_indent_blankline()
-'''
-
-[[plugins]] # matchitをもっと強くしたようなやつ(ハイライトとかもされる)
-repo = 'andymass/vim-matchup'
-on_event = ['CursorMoved']
-hook_source = '''
-call my_plugin_settings#hook_source_matchup()
-'''
-
-[[plugins]] # 行内ジャンプ用にハイライトしてくれるやつ
-repo = 'unblevable/quick-scope'
-on_event = ['CursorMoved']
-
-[[plugins]] # ウィンドウリサイズを楽にするやつ
-# NOTE: <C-e>でresizeモードに入る
-repo = 'simeji/winresizer'
-on_event = ['WinEnter']
-hook_source = '''
-" ctrl系は小指にダメージがいくので...
-let g:winresizer_start_key = '<space>w'
-'''
-
-[[plugins]] # コメントアウト
-repo = 'tpope/vim-commentary'
-on_event = ['CursorMoved']
-hook_source = '''
-call my_plugin_settings#hook_source_commentary()
-'''
-
-[[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
-repo = 'ukiuki-engineer/vim-autoclose'
-rev = 'develop'
-on_event = ['InsertEnter']
-hook_source = '''
-call my_plugin_settings#hook_source_autoclose()
-'''
-
-[[plugins]] # blade
-repo = 'jwalton512/vim-blade'
-on_if = 'expand("%") =~ "blade\.php"'
-on_ft = ['blade']
-
-[[plugins]] # カラーコード可視化
-repo = 'norcalli/nvim-colorizer.lua'
-on_ft = [
-  'blade',
-  'css',
-  'eruby',
-  'html',
-  'less',
-  'lua',
-  'sass',
-  'scss',
-  'stylus',
-  'toml',
-  'vim',
-  'vue'
-]
-hook_source = '''
-call my_plugin_settings#hook_source_colorizer()
-'''
-lua_post_source = '''
-require 'colorizer'.setup()
-'''
-
-[[plugins]] # ヘルプファイル自動生成
-repo = 'LeafCage/vimhelpgenerator'
-on_cmd = ['VimHelpGenerator', 'VimHelpGeneratorVirtual']
-hook_source = '''
-call my_plugin_settings#hook_source_vimhelpgenerator()
-'''
-
-[[plugins]] # Markdownでtable作成
-repo = 'mattn/vim-maketable'
-on_cmd = ['MakeTable', 'UnmakeTable']
-
-[[plugins]] # vim内でMarkdownをプレビューするやつ
-# NOTE: [mdrコマンド](https://github.com/MichaelMure/mdr)をインストールする必要あり
-repo = 'skanehira/preview-markdown.vim'
-on_cmd = ['PreviewMarkdown']
-
-[[plugins]] # コマンドの実行結果をバッファに読み込んでくれるやつ
-# NOTE: 以下の方法で代用も出来る
-# インサートモードに入る → <C-r>=execute("コマンド")<CR>
-repo = 'numEricL/vim-redirect'
-on_cmd = ['Redirect']
-
-[[plugins]] # nvim-treeのアイコン
-repo = 'nvim-tree/nvim-web-devicons'
-on_source = ['diffview', 'nvim-tree.lua']
-
-[[plugins]]
-repo = 'nvim-tree/nvim-tree.lua'
-depends = ['nvim-web-devicons']
-on_cmd = [
-  'NvimTreeOpen',
-  'NvimTreeClose',
-  'NvimTreeToggle',
-  'NvimTreeFocus',
-  'NvimTreeRefresh',
-  'NvimTreeFindFile',
-  'NvimTreeFindFileToggle',
-  'NvimTreeClipboard',
-  'NvimTreeResize',
-  'NvimTreeCollapse',
-  'NvimTreeCollapseKeepBuffers',
-  'NvimTreeGenerateOnAttach'
-]
-hook_add = '''
-call my_plugin_settings#hook_add_nvim_tree()
-'''
-lua_source = '''
-require("my_plugin_settings").lua_source_nvim_tree()
-'''
-
-[[plugins]] # 上のbar
-repo = 'akinsho/bufferline.nvim'
-on_event = ['BufRead', 'TabNew', 'InsertEnter']
-lua_source = '''
-require("my_plugin_settings").lua_source_bufferline()
-'''
-
-[[plugins]] # カーソル位置の階層を表示するやつ
-# NOTE: Neovim Nightly (>= 0.10.0-dev)
-repo = 'Bekaboo/dropbar.nvim'
-on_event = ['FileType', 'BufRead']
-lua_source = '''
-require("my_plugin_settings").lua_source_dropbar()
-'''
-
-[[plugins]] # Terminalモードを使いやすくするやつ
-# あんま使ってないから消すかも...
-repo = 'akinsho/toggleterm.nvim'
-on_cmd = [
-  'ToggleTerm',
-  'ToggleTermSendCurrentLine',
-  'ToggleTermSendVisualLines',
-  'ToggleTermSendVisualSelection',
-  'ToggleTermSetName',
-  'ToggleTermToggleAll',
-  'TermExec',
-  'Term',
-  'TermHere'
-]
-on_event = ['TermOpen']
-hook_add = '''
-call my_plugin_settings#hook_add_toggleterm()
-'''
-hook_source = '''
-call my_plugin_settings#hook_source_toggleterm()
+require("my_plugin_settings").lua_source_treesitter()
 '''
 
 [[plugins]] # ファジーファインダー
@@ -280,59 +277,74 @@ hook_add = '''
 call my_plugin_settings#hook_add_fzf()
 '''
 
+[[plugins]] # vimから編集中のファイルを素早く実行するやつ
+# FIXME: 実行結果を右ではなく下に小さく表示させたい
+repo = 'thinca/vim-quickrun'
+on_cmd = ['QuickRun']
+hook_add = '''
+call my_plugin_settings#hook_add_quickrun()
+'''
+
+[[plugins]] # editorconfig
+repo = 'editorconfig/editorconfig-vim'
+on_event = ['BufRead']
+
+
+[[plugins]] # ウィンドウリサイズを楽にするやつ
+# NOTE: <C-e>でresizeモードに入る
+repo = 'simeji/winresizer'
+on_event = ['WinEnter']
+hook_source = '''
+" ctrl系は小指にダメージがいくので...
+let g:winresizer_start_key = '<space>w'
+'''
+
+[[plugins]] # Terminalモードを使いやすくするやつ
+# あんま使ってないから消すかも...
+repo = 'akinsho/toggleterm.nvim'
+on_cmd = [
+  'ToggleTerm',
+  'ToggleTermSendCurrentLine',
+  'ToggleTermSendVisualLines',
+  'ToggleTermSendVisualSelection',
+  'ToggleTermSetName',
+  'ToggleTermToggleAll',
+  'TermExec',
+  'Term',
+  'TermHere'
+]
+on_event = ['TermOpen']
+hook_add = '''
+call my_plugin_settings#hook_add_toggleterm()
+'''
+hook_source = '''
+call my_plugin_settings#hook_source_toggleterm()
+'''
+
+[[plugins]] # blade
+repo = 'jwalton512/vim-blade'
+on_if = 'expand("%") =~ "blade\.php"'
+on_ft = ['blade']
+
+[[plugins]] # ヘルプファイル自動生成
+repo = 'LeafCage/vimhelpgenerator'
+on_cmd = ['VimHelpGenerator', 'VimHelpGeneratorVirtual']
+hook_source = '''
+call my_plugin_settings#hook_source_vimhelpgenerator()
+'''
+
 [[plugins]] # vimの起動速度を測定
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
 
-[[plugins]] # 補完エンジン
-repo = 'hrsh7th/nvim-cmp'
-# depends = ['cmp-cmdline', 'cmp-buffer', 'cmp-path', 'cmp-skkeleton']
-depends = ['cmp-cmdline', 'cmp-buffer', 'cmp-path']
-on_event = ['CmdlineEnter', 'InsertEnter']
-lua_source = '''
-require("my_plugin_settings").lua_source_nvim_cmp()
-'''
+[[plugins]] # vim内でMarkdownをプレビューするやつ
+# NOTE: [mdrコマンド](https://github.com/MichaelMure/mdr)をインストールする必要あり
+repo = 'skanehira/preview-markdown.vim'
+on_cmd = ['PreviewMarkdown']
 
-[[plugins]] # コマンドライン補完用nvim-cmpのソース
-repo = 'hrsh7th/cmp-cmdline'
-on_source = 'nvim-cmp'
+[[plugins]] # コマンドの実行結果をバッファに読み込んでくれるやつ
+# NOTE: 以下の方法で代用も出来る
+# インサートモードに入る → <C-r>=execute("コマンド")<CR>
+repo = 'numEricL/vim-redirect'
+on_cmd = ['Redirect']
 
-[[plugins]]
-repo = 'hrsh7th/cmp-buffer'
-on_source = 'nvim-cmp'
-
-[[plugins]]
-repo = 'hrsh7th/cmp-path'
-on_source = 'nvim-cmp'
-
-# [[plugins]]
-# repo = 'rinx/cmp-skkeleton'
-# on_source = 'nvim-cmp'
-
-# [[plugins]]
-# repo = 'vim-skk/skkeleton'
-# on_event = ['InsertEnter']
-# depends = ['denops']
-# hook_source = '''
-# call my_plugin_settings#hook_source_skk()
-# '''
-
-[[plugins]] # スニペットのソース類
-# NOTE: coc-snippetsで呼び出して使う
-# 個々のcocプラグイン側の補完候補とぶつかって面倒な場合はどちらかをオフにする
-repo = 'honza/vim-snippets'
-on_event = ['FileType']
-
-[[plugins]] # coc.nvim
-repo = 'neoclide/coc.nvim'
-# rev = 'release'
-rev = 'master'
-build = 'yarn install --frozen-lockfile' # NOTE: masterの場合のみ
-depends = ['vim-snippets']
-on_event = ['CursorMoved', 'FileType']
-hook_add = '''
-call my_plugin_settings#hook_add_coc()
-'''
-hook_source = '''
-call my_plugin_settings#hook_source_coc()
-'''

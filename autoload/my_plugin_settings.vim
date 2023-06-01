@@ -10,12 +10,22 @@
 "   - ".nvim"
 "   - ".lua"
 " ================================================================================
+" ================================================================================
+" UI
+" ================================================================================
 "
-" vim-quickrun
+" nvim-tree
 "
-function! my_plugin_settings#hook_add_quickrun() abort
-  nnoremap <F5> :QuickRun<CR>
-  xnoremap <F5> :QuickRun<CR>
+" NOTE: tree上で`g?`とするとヘルプが開く
+" 小指が痛いのでマウスで操作しやすいようにカスタマイズしたい...
+" TODO: 画面分割しててもマウスクリックで開けるように
+"       (マウスクリック時の挙動がOと同じになるように)
+" TODO: マウスでツリーの開閉はできないのか？
+"       クリックしたらnvim-tree-api.tree.open()を呼ぶボタンをlualineに配置すれば良いかな？
+" TODO: Visual選択範囲を一括削除できるように
+function! my_plugin_settings#hook_add_nvim_tree() abort
+  nnoremap <silent> <C-n> :NvimTreeToggle<CR>
+  nnoremap <silent> <C-w>t :NvimTreeFindFile<CR>
 endfunction
 
 "
@@ -33,36 +43,18 @@ function! my_plugin_settings#hook_add_base16() abort
   " colorscheme base16-onedark
   colorscheme base16-atlas
 endfunction
-
-"
-" blamer.nvim
-"
-function! my_plugin_settings#hook_add_blamer() abort
-  " 日時のフォーマット
-  let g:blamer_date_format = '%Y/%m/%d %H:%M'
-  " ビジュアルモード時はオフ
-  let g:blamer_show_in_visual_modes = 0
-  " タイマー遅延で起動させる
-  call timer_start(500, function("s:CallBlamerShow"))
-endfunction
-
-function! s:CallBlamerShow(timer) abort
-  " NOTE: 多分このif文の処理にも時間がかかるので、このif自体もタイマー遅延の対象としている
-  if system('git status > /dev/null 2>&1') == 0
-    " gitレポジトリなら`:BlamerShow`を実行する
-    silent BlamerShow
-  endif
-endfunction
-
+" ================================================================================
+" Code Editting
+" ================================================================================
 "
 " vim-matchup
 "
 function! my_plugin_settings#hook_source_matchup() abort
   " TODO: bladeでtagnameonlyが効かない
   let g:matchup_matchpref = {
-    \'html': {'tagnameonly': 1},
-    \'xml': {'tagnameonly': 1},
-    \'blade': {'tagnameonly': 1}
+    \ 'html': {'tagnameonly': 1},
+    \ 'xml': {'tagnameonly': 1},
+    \ 'blade': {'tagnameonly': 1}
   \}
 endfunction
 
@@ -100,68 +92,6 @@ function! my_plugin_settings#hook_source_colorizer() abort
     autocmd FileType css,html,less,sass,scss,stylus,vim,blade,vue,eruby,toml,lua ColorizerAttachToBuffer
     autocmd BufEnter *.css,*.html,*.sass,*.scss,*.vim,*.blade.php,*.vue,*.erb,*.toml,*.lua ColorizerAttachToBuffer
   augroup END
-endfunction
-
-"
-" vimhelpgenerator
-"
-function! my_plugin_settings#hook_source_vimhelpgenerator() abort
-  let g:vimhelpgenerator_defaultlanguage = 'ja'
-  let g:vimhelpgenerator_version = ''
-  let g:vimhelpgenerator_author = 'Author  : ukiuki-engineer'
-  let g:vimhelpgenerator_contents = {
-    \ 'contents': 1, 'introduction': 1, 'usage': 1, 'interface': 1,
-    \ 'variables': 1, 'commands': 1, 'key-mappings': 1, 'functions': 1,
-    \ 'setting': 0, 'todo': 1, 'changelog': 0
-    \}
-endfunction
-
-"
-" nvim-tree
-"
-" NOTE: tree上で`g?`とするとヘルプが開く
-" 小指が痛いのでマウスで操作しやすいようにカスタマイズしたい...
-" TODO: 画面分割しててもマウスクリックで開けるように
-"       (マウスクリック時の挙動がOと同じになるように)
-" TODO: マウスでツリーの開閉はできないのか？
-"       クリックしたらnvim-tree-api.tree.open()を呼ぶボタンをlualineに配置すれば良いかな？
-" TODO: Visual選択範囲を一括削除できるように
-function! my_plugin_settings#hook_add_nvim_tree() abort
-  nnoremap <silent> <C-n> :NvimTreeToggle<CR>
-  nnoremap <silent> <C-w>t :NvimTreeFindFile<CR>
-endfunction
-
-"
-" toggleterm
-" FIXME: <C-w>L<C-w>Jとするとサイズがバグる
-"
-function! my_plugin_settings#hook_add_toggleterm() abort
-  tnoremap <silent> <C-`> <Cmd>ToggleTerm<CR>
-  nnoremap <silent> <C-`> :ToggleTerm<CR>
-endfunction
-
-function! my_plugin_settings#hook_source_toggleterm() abort
-  " NOTE: 自分が設定した:terminalを使用したい場合もあるので、しばらく併用する
-  execute 'source '. g:rc_dir . '/my_terminal.vim'
-lua << END
-  -- vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]])
-  require("toggleterm").setup{
-    persist_size = false
-  }
-END
-  " カレントバッファのディレクトリでterminalを開く
-  command! ToggleTermHere ToggleTerm dir=%:h
-endfunction
-
-"
-" fzf.vim
-"
-function! my_plugin_settings#hook_add_fzf() abort
-  let g:fzf_commands_expect = 'alt-enter,ctrl-x'
-  " nnoremap <C-p> :Files<CR>
-  nnoremap <space>f :Files<CR>
-  nnoremap <space>b :Buffers<CR>
-  nnoremap <space>g :Rg<CR>
 endfunction
 
 "
@@ -203,7 +133,9 @@ function! my_plugin_settings#skkeleton_init() abort
   \ })
   " call skkeleton#register_keymap('henkan', "\<CR>", 'kakutei')
 endfunction
-
+" ================================================================================
+" LSP and Completion
+" ================================================================================
 "
 " coc.nvim
 "
@@ -315,5 +247,86 @@ function! my_plugin_settings#toggle_outline() abort
   else
     call coc#window#close(winid)
   endif
+endfunction
+
+" ================================================================================
+" Git
+" ================================================================================
+"
+" blamer.nvim
+"
+function! my_plugin_settings#hook_add_blamer() abort
+  " 日時のフォーマット
+  let g:blamer_date_format = '%Y/%m/%d %H:%M'
+  " ビジュアルモード時はオフ
+  let g:blamer_show_in_visual_modes = 0
+  " タイマー遅延で起動させる
+  call timer_start(500, function("s:CallBlamerShow"))
+endfunction
+
+function! s:CallBlamerShow(timer) abort
+  " NOTE: 多分このif文の処理にも時間がかかるので、このif自体もタイマー遅延の対象としている
+  if system('git status > /dev/null 2>&1') == 0
+    " gitレポジトリなら`:BlamerShow`を実行する
+    silent BlamerShow
+  endif
+endfunction
+
+" ================================================================================
+" Others
+" ================================================================================
+"
+" vim-quickrun
+"
+function! my_plugin_settings#hook_add_quickrun() abort
+  nnoremap <F5> :QuickRun<CR>
+  xnoremap <F5> :QuickRun<CR>
+endfunction
+
+"
+" vimhelpgenerator
+"
+function! my_plugin_settings#hook_source_vimhelpgenerator() abort
+  let g:vimhelpgenerator_defaultlanguage = 'ja'
+  let g:vimhelpgenerator_version = ''
+  let g:vimhelpgenerator_author = 'Author  : ukiuki-engineer'
+  let g:vimhelpgenerator_contents = {
+    \ 'contents': 1, 'introduction': 1, 'usage': 1, 'interface': 1,
+    \ 'variables': 1, 'commands': 1, 'key-mappings': 1, 'functions': 1,
+    \ 'setting': 0, 'todo': 1, 'changelog': 0
+    \}
+endfunction
+
+"
+" toggleterm
+" FIXME: <C-w>L<C-w>Jとするとサイズがバグる
+"
+function! my_plugin_settings#hook_add_toggleterm() abort
+  tnoremap <silent> <C-`> <Cmd>ToggleTerm<CR>
+  nnoremap <silent> <C-`> :ToggleTerm<CR>
+endfunction
+
+function! my_plugin_settings#hook_source_toggleterm() abort
+  " NOTE: 自分が設定した:terminalを使用したい場合もあるので、しばらく併用する
+  execute 'source '. g:rc_dir . '/my_terminal.vim'
+lua << END
+  -- vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]])
+  require("toggleterm").setup{
+    persist_size = false
+  }
+END
+  " カレントバッファのディレクトリでterminalを開く
+  command! ToggleTermHere ToggleTerm dir=%:h
+endfunction
+
+"
+" fzf.vim
+"
+function! my_plugin_settings#hook_add_fzf() abort
+  let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+  " nnoremap <C-p> :Files<CR>
+  nnoremap <space>f :Files<CR>
+  nnoremap <space>b :Buffers<CR>
+  nnoremap <space>g :Rg<CR>
 endfunction
 
