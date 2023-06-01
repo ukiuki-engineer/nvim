@@ -138,7 +138,8 @@ vimのdiffでgit差分を見ながら、編集、変更の破棄やstageもで�
 ## NOTE
 自分用メモ
 - Fonts  
-[Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)とかHackGenを使用。
+[Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)とかHackGenを使用。  
+iconを設定するときなどは[ここ](https://www.nerdfonts.com/cheat-sheet)見たりとか。
 - coc.nvimの拡張機能を探す場所
   - [githubのwiki](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
   - [npm moduleを検索するサイト](https://www.npmjs.com/search?q=keywords%3Acoc.nvim)
@@ -146,4 +147,3 @@ vimのdiffでgit差分を見ながら、編集、変更の破棄やstageもで�
   - `:h key-notation`
   - `:h map-table`
   - `:h autocmd-events`
-
