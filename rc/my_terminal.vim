@@ -32,6 +32,7 @@ tnoremap <silent> <C-w> <C-\><C-n><C-w>
 " E464: ユーザー定義コマンドのあいまいな使用です
 " というエラーが出るので、一旦Terminalに変更
 command! -nargs=* Terminal split | wincmd j | resize 20 | terminal <args>
+command! -nargs=* Term Terminal <args>
 command! -nargs=* TermV vsplit | wincmd l | terminal <args>
 " :TermHere, :TermHereV
 " →カレントバッファのディレクトリ&ウィンドウを分割してターミナルを開く

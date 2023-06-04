@@ -392,10 +392,11 @@ M.lua_source_nvim_cmp = function()
   local my_source = {}
   function my_source:complete(_, callback)
     callback({
-      { label = 'Terminal' },
+      { label = 'Term' },
       { label = 'TermV' },
       { label = 'TermHere' },
       { label = 'TermHereV' },
+      { label = 'Terminal' },
     })
   end
   cmp.register_source('my_source', my_source)
