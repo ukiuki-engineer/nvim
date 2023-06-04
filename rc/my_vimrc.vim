@@ -58,11 +58,10 @@ augroup MyVimrc
   autocmd InsertEnter,CmdlineEnter * ++once execute 'source' . g:rc_dir . '/my_ime.vim'
   " クリップボード設定の遅延読み込み(急にWSLで重くなったので遅延させる)
   autocmd InsertEnter,CursorMoved * ++once execute 'source' . g:rc_dir . '/my_clipboard.vim'
-  " NOTE: toggletermと一緒にdein側で制御する
   " :terminal設定の読み込み1
-  " autocmd TermOpen * ++once execute 'source' . g:rc_dir . '/MyTerminal.vim'
+  autocmd TermOpen * ++once execute 'source' . g:rc_dir . '/my_terminal.vim'
   " :terminal設定の読み込み2
-  " autocmd CmdUndefined Term,TermV,TermHere,TermHereV ++once execute 'source' . g:rc_dir . '/MyTerminal.vim'
+  autocmd CmdUndefined Terminal,TermV,TermHere,TermHereV ++once execute 'source' . g:rc_dir . '/my_terminal.vim'
 augroup END
 " ------------------------------------------------------------------------------
 " keymaps

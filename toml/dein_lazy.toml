@@ -310,8 +310,6 @@ on_cmd = [
   'ToggleTermSetName',
   'ToggleTermToggleAll',
   'TermExec',
-  'Term',
-  'TermHere'
 ]
 on_event = ['TermOpen']
 hook_add = '''

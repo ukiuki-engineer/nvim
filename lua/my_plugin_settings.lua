@@ -364,7 +364,7 @@ end
 -- nvim-cmp
 --
 M.lua_source_nvim_cmp = function()
-  local cmp = require 'cmp'
+  local cmp = require('cmp')
   -- cmdlineのマッピング(検索/コマンド共通)
   local cmdline_mapping = cmp.mapping.preset.cmdline({
     -- 履歴の選択はデフォルト操作で
@@ -388,6 +388,17 @@ M.lua_source_nvim_cmp = function()
       end,
     }),
   })
+  -- 遅延ロードされる独自定義コマンド用のsource
+  local my_source = {}
+  function my_source:complete(_, callback)
+    callback({
+      { label = 'Terminal' },
+      { label = 'TermV' },
+      { label = 'TermHere' },
+      { label = 'TermHereV' },
+    })
+  end
+  cmp.register_source('my_source', my_source)
   cmp.setup({
     -- skkeleton {{{
     -- mapping = cmp.mapping.preset.insert({
@@ -436,11 +447,20 @@ M.lua_source_nvim_cmp = function()
   -- コマンド
   cmp.setup.cmdline({':'}, {
     mapping = cmdline_mapping,
-    sources = cmp.config.sources({
+    sources = {
       { name = 'path' },
-    }, {
-      { name = 'cmdline' }
-    })
+      { name = 'my_source' },
+      { name = 'cmdline' },
+    }
+    -- NOTE: 以下の書き方だと、source同士が結合されて新しいsourceが作られるらしい。
+    --       以下の書き方だとmy_sourceの一部が上手く補完されなかった。
+    -- sources = cmp.config.sources({
+    --   { name = 'path' },
+    -- }, {
+    --   { name = 'cmdline' }
+    -- }, {
+    --   { name = 'my_source' }
+    -- })
   })
 end
 -- ================================================================================

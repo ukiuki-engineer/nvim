@@ -307,8 +307,6 @@ function! my_plugin_settings#hook_add_toggleterm() abort
 endfunction
 
 function! my_plugin_settings#hook_source_toggleterm() abort
-  " NOTE: 自分が設定した:terminalを使用したい場合もあるので、しばらく併用する
-  execute 'source '. g:rc_dir . '/my_terminal.vim'
 lua << END
   -- vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]])
   require("toggleterm").setup{
