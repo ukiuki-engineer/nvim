@@ -55,13 +55,13 @@ augroup MyVimrc
   " CursorHold時のみカーソル行/列を表示
   " autocmd CursorHold * call my_functions#set_cursor_line_column()
   " IME切り替え設定の読み込み
-  autocmd InsertEnter,CmdlineEnter * ++once execute 'source' . g:rc_dir . '/my_ime.vim'
+  autocmd InsertEnter,CmdlineEnter * ++once execute 'source' .. g:rc_dir .. '/my_ime.vim'
   " クリップボード設定の遅延読み込み(急にWSLで重くなったので遅延させる)
-  autocmd InsertEnter,CursorMoved * ++once execute 'source' . g:rc_dir . '/my_clipboard.vim'
+  autocmd InsertEnter,CursorMoved * ++once execute 'source' .. g:rc_dir .. '/my_clipboard.vim'
   " :terminal設定の読み込み1
-  autocmd TermOpen * ++once execute 'source' . g:rc_dir . '/my_terminal.vim'
+  autocmd TermOpen * ++once execute 'source' .. g:rc_dir .. '/my_terminal.vim'
   " :terminal設定の読み込み2
-  autocmd CmdUndefined Terminal,TermV,TermHere,TermHereV ++once execute 'source' . g:rc_dir . '/my_terminal.vim'
+  autocmd CmdUndefined Terminal,TermV,TermHere,TermHereV ++once execute 'source' .. g:rc_dir .. '/my_terminal.vim'
 augroup END
 " ------------------------------------------------------------------------------
 " keymaps
