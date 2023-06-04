@@ -147,3 +147,8 @@ iconを設定するときなどは[ここ](https://www.nerdfonts.com/cheat-sheet
   - `:h key-notation`
   - `:h map-table`
   - `:h autocmd-events`
+
+## TODO
+- [ ] ファイル名変更
+    - [ ] my_functions -> utils
+    - [ ] my_plugin_settings -> plugins
