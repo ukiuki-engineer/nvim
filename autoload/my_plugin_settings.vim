@@ -66,6 +66,12 @@ function! my_plugin_settings#hook_source_commentary() abort
     autocmd!
     autocmd FileType php setlocal commentstring=//\ %s
     autocmd FileType json setlocal commentstring=//\ %s
+    autocmd FileType vue setlocal commentstring=<!--\ %s\ -->
+    " NOTE: <script>タグ内は、手動で
+    " :set commentstring=//\ %s
+    " として、
+    " :set ft=vue
+    " で`<!--  -->`に戻せば良い
   augroup END
 endfunction
 
