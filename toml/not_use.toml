@@ -3,13 +3,13 @@
 [[plugins]] # colorscheme
 repo = 'RRethy/nvim-base16'
 hook_add = '''
-call my_plugin_settings#hook_add_base16()
+call plugins#hook_add_base16()
 '''
 
 [[plugins]]
 repo = 'marko-cerovac/material.nvim'
 hook_add = '''
-call my_plugin_settings#hook_add_material()
+call plugins#hook_add_material()
 '''
 
 [[plugins]] # vim内部で日本語入力するためのプラグイン
@@ -18,7 +18,7 @@ call my_plugin_settings#hook_add_material()
 repo = 'vim-skk/eskk.vim'
 on_event = ['BufRead', 'InsertEnter']
 hook_add = '''
-call my_plugin_settings#hook_add_eskk()
+call plugins#hook_add_eskk()
 '''
 
 [[plugins]] # 対のカッコをハイライト

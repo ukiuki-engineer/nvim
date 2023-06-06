@@ -5,7 +5,7 @@
 " :TermHere用
 " NOTE: toggletermを使用するためしばらく不使用
 "
-function! my_functions#term_here(spOrVsp) abort
+function! utils#term_here(spOrVsp) abort
   " 水平分割
   if a:spOrVsp == "sp"
     split | wincmd j | resize 20
@@ -14,13 +14,13 @@ function! my_functions#term_here(spOrVsp) abort
     vsplit | wincmd l
   endif
   " ターミナルをカレントバッファのディレクトリで開く
-  call my_functions#execute_here("terminal")
+  call utils#execute_here("terminal")
 endfunction
 
 "
 " カレントバッファのディレクトリに移動してコマンドを実行
 "
-function! my_functions#execute_here(command) abort
+function! utils#execute_here(command) abort
   " 無名バッファでなければ移動
   if expand('%') != ''
     lcd %:h
@@ -32,7 +32,7 @@ endfunction
 "
 " カーソル行/列の表示と非表示
 "
-function! my_functions#set_cursor_line_column() abort
+function! utils#set_cursor_line_column() abort
   " カーソル行/列を表示
   setlocal cursorline cursorcolumn
   augroup MyCursorLineColumn
@@ -45,7 +45,7 @@ endfunction
 "
 " 標準プラグインの遅延読み込み
 "
-function! my_functions#lazy_load() abort
+function! utils#lazy_load() abort
   augroup MyTimerLoad
     autocmd!
     execute 'au InsertLeave,FileType * ++once call s:packadd()'

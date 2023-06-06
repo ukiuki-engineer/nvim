@@ -53,7 +53,7 @@ augroup MyVimrc
   " .env系はシェルスクリプトとして開く
   autocmd BufRead .env,.env.* setlocal filetype=sh
   " CursorHold時のみカーソル行/列を表示
-  " autocmd CursorHold * call my_functions#set_cursor_line_column()
+  " autocmd CursorHold * call utils#set_cursor_line_column()
   " IME切り替え設定の読み込み
   autocmd InsertEnter,CmdlineEnter * ++once execute 'source' .. g:rc_dir .. '/my_ime.vim'
   " クリップボード設定の遅延読み込み(急にWSLで重くなったので遅延させる)
@@ -108,4 +108,4 @@ let g:loaded_tutor_mode_plugin  = 1
 let g:loaded_zipPlugin          = 1
 let g:skip_loading_mswin        = 1
 " 標準プラグインの遅延読み込み
-" call my_functions#lazy_load()
+" call utils#lazy_load()

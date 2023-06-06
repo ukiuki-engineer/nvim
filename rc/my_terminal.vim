@@ -36,5 +36,5 @@ command! -nargs=* Term Terminal <args>
 command! -nargs=* TermV vsplit | wincmd l | terminal <args>
 " :TermHere, :TermHereV
 " →カレントバッファのディレクトリ&ウィンドウを分割してターミナルを開く
-command! TermHere :call my_functions#term_here("sp")
-command! TermHereV :call my_functions#term_here("vsp")
+command! TermHere :call utils#term_here("sp")
+command! TermHereV :call utils#term_here("vsp")

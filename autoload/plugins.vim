@@ -23,7 +23,7 @@
 " TODO: マウスでツリーの開閉はできないのか？
 "       クリックしたらnvim-tree-api.tree.open()を呼ぶボタンをlualineに配置すれば良いかな？
 " TODO: Visual選択範囲を一括削除できるように
-function! my_plugin_settings#hook_add_nvim_tree() abort
+function! plugins#hook_add_nvim_tree() abort
   nnoremap <silent> <C-n> :NvimTreeToggle<CR>
   nnoremap <silent> <C-w>t :NvimTreeFindFile<CR>
 endfunction
@@ -31,7 +31,7 @@ endfunction
 "
 " nvim-base16
 "
-function! my_plugin_settings#hook_add_base16() abort
+function! plugins#hook_add_base16() abort
   " colorscheme base16-ayu-dark
   " colorscheme base16-decaf
   "  emacsのテーマ
@@ -49,7 +49,7 @@ endfunction
 "
 " vim-matchup
 "
-function! my_plugin_settings#hook_source_matchup() abort
+function! plugins#hook_source_matchup() abort
   " TODO: bladeでtagnameonlyが効かない
   let g:matchup_matchpref = {
     \ 'html': {'tagnameonly': 1},
@@ -61,7 +61,7 @@ endfunction
 "
 " vim-commentary
 "
-function! my_plugin_settings#hook_source_commentary() abort
+function! plugins#hook_source_commentary() abort
   augroup MyCommentstring
     autocmd!
     autocmd FileType php setlocal commentstring=//\ %s
@@ -78,7 +78,7 @@ endfunction
 "
 " vim-autoclose(自作)
 "
-function! my_plugin_settings#hook_source_autoclose() abort
+function! plugins#hook_source_autoclose() abort
   let g:autoclose#disable_nextpattern_autoclosing_brackets = []
   let g:autoclose#disable_nextpattern_autoclosing_quots = []
   " 改行の整形機能をオフ
@@ -92,7 +92,7 @@ endfunction
 "
 " nvim-colorizer.lua
 "
-function! my_plugin_settings#hook_source_colorizer() abort
+function! plugins#hook_source_colorizer() abort
   augroup MyColorizer
     autocmd!
     autocmd FileType css,html,less,sass,scss,stylus,vim,blade,vue,eruby,toml,lua ColorizerAttachToBuffer
@@ -103,7 +103,7 @@ endfunction
 "
 " skk.vim
 "
-function! my_plugin_settings#hook_source_skk() abort
+function! plugins#hook_source_skk() abort
   let l:skk_dir = expand('~/.config/nvim/skk')
   " 辞書ファイルをダウンロード
   if !filereadable(l:skk_dir .. '/SKK-JISYO.L')
@@ -120,14 +120,14 @@ function! my_plugin_settings#hook_source_skk() abort
 
   augroup MySkkeleton
     autocmd!
-    autocmd User skkeleton-initialize-pre call my_plugin_settings#skkeleton_init()
+    autocmd User skkeleton-initialize-pre call plugins#skkeleton_init()
     autocmd User skkeleton-enable-pre let b:coc_suggest_disable = v:true
     autocmd User skkeleton-disable-pre let b:coc_suggest_disable = v:false
   augroup END
 
 endfunction
 
-function! my_plugin_settings#skkeleton_init() abort
+function! plugins#skkeleton_init() abort
   call skkeleton#config({
     \ 'eggLikeNewline': v:true,
     \ 'globalDictionaries': [["~/.config/nvim/skk/SKK-JISYO.L", "euc-jp"]],
@@ -159,7 +159,7 @@ endfunction
 " composer require barryvdh/laravel-ide-helper:*     # ↑で上手くいかなかった場合
 " php artisan ide-helper:generate                    # _ide_helper.phpを生成
 " php artisan ide-helper:models --nowrite            # _ide_helper_models.phpを生成
-function! my_plugin_settings#hook_add_coc() abort
+function! plugins#hook_add_coc() abort
   " coc-extensions
   let g:coc_global_extensions = [
     \ '@yaegassy/coc-intelephense',
@@ -189,7 +189,7 @@ function! my_plugin_settings#hook_add_coc() abort
   " \ 'coc-nav',
 endfunction
 
-function! my_plugin_settings#hook_source_coc() abort
+function! plugins#hook_source_coc() abort
   " 補完候補の決定
   inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
   " 補完候補の選択
@@ -200,7 +200,7 @@ function! my_plugin_settings#hook_source_coc() abort
   " 定義ジャンプ
   nnoremap <silent> <space>d <Plug>(coc-definition)
   " ドキュメント表示
-  nnoremap <silent> <space>h :call my_plugin_settings#show_documentation()<CR>
+  nnoremap <silent> <space>h :call plugins#show_documentation()<CR>
   " float windowへジャンプ
   nnoremap <silent> <space>j <Plug>(coc-float-jump)
   " 参照箇所表示
@@ -214,7 +214,7 @@ function! my_plugin_settings#hook_source_coc() abort
   nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
   nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
   " coc-outlineを表示
-  nnoremap <silent><nowait> <space>o :call my_plugin_settings#toggle_outline()<CR>
+  nnoremap <silent><nowait> <space>o :call plugins#toggle_outline()<CR>
   " coc-outlineにジャンプ
   " NOTE: ジャンプ前の箇所に戻るには、普通に<C-o>で
   " NOTE: outline tree上で<space>tで、treeの開閉ができる
@@ -237,7 +237,7 @@ function! my_plugin_settings#hook_source_coc() abort
 endfunction
 
 " ドキュメント表示
-function! my_plugin_settings#show_documentation() abort
+function! plugins#show_documentation() abort
   if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
   else
@@ -246,7 +246,7 @@ function! my_plugin_settings#show_documentation() abort
 endfunction
 
 " coc-outlineを表示
-function! my_plugin_settings#toggle_outline() abort
+function! plugins#toggle_outline() abort
   let winid = coc#window#find('cocViewId', 'OUTLINE')
   if winid == -1
     call CocActionAsync('showOutline', 1)
@@ -261,7 +261,7 @@ endfunction
 "
 " blamer.nvim
 "
-function! my_plugin_settings#hook_add_blamer() abort
+function! plugins#hook_add_blamer() abort
   " 日時のフォーマット
   let g:blamer_date_format = '%Y/%m/%d %H:%M'
   " ビジュアルモード時はオフ
@@ -284,7 +284,7 @@ endfunction
 "
 " vim-quickrun
 "
-function! my_plugin_settings#hook_add_quickrun() abort
+function! plugins#hook_add_quickrun() abort
   nnoremap <F5> :QuickRun<CR>
   xnoremap <F5> :QuickRun<CR>
 endfunction
@@ -292,7 +292,7 @@ endfunction
 "
 " vimhelpgenerator
 "
-function! my_plugin_settings#hook_source_vimhelpgenerator() abort
+function! plugins#hook_source_vimhelpgenerator() abort
   let g:vimhelpgenerator_defaultlanguage = 'ja'
   let g:vimhelpgenerator_version = ''
   let g:vimhelpgenerator_author = 'Author  : ukiuki-engineer'
@@ -307,12 +307,12 @@ endfunction
 " toggleterm
 " FIXME: <C-w>L<C-w>Jとするとサイズがバグる
 "
-function! my_plugin_settings#hook_add_toggleterm() abort
+function! plugins#hook_add_toggleterm() abort
   tnoremap <silent> <C-`> <Cmd>ToggleTerm<CR>
   nnoremap <silent> <C-`> :ToggleTerm<CR>
 endfunction
 
-function! my_plugin_settings#hook_source_toggleterm() abort
+function! plugins#hook_source_toggleterm() abort
 lua << END
   -- vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]])
   require("toggleterm").setup{
@@ -326,7 +326,7 @@ endfunction
 "
 " fzf.vim
 "
-function! my_plugin_settings#hook_add_fzf() abort
+function! plugins#hook_add_fzf() abort
   let g:fzf_commands_expect = 'alt-enter,ctrl-x'
   " nnoremap <C-p> :Files<CR>
   nnoremap <space>f :Files<CR>
