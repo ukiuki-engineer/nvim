@@ -211,7 +211,7 @@ end
 --
 M.lua_add_nightfly_colors = function()
 
-  local my_functions = require("my_functions")
+  local utils = require("utils")
   local bg_color = "#011627" -- :hi Normal
 
 
@@ -221,33 +221,33 @@ M.lua_add_nightfly_colors = function()
       bg = "#FF0000"
     })
     vim.api.nvim_set_hl(0, 'DiffDelete', {              -- 削除された行
-      bg = my_functions.transparent_color(bg_color, "#C70000", 0.90)
+      bg = utils.transparent_color(bg_color, "#C70000", 0.90)
     })
     vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', {      -- 行が追加された場合の左側
-      bg = my_functions.transparent_color(bg_color, "#C70000", 0.90),
-      fg = my_functions.transparent_color(bg_color, "#2F2F2F", 0.00)
+      bg = utils.transparent_color(bg_color, "#C70000", 0.90),
+      fg = utils.transparent_color(bg_color, "#2F2F2F", 0.00)
     })
     vim.api.nvim_set_hl(0, 'DiffAdd', {                 -- 追加された行
-      bg = my_functions.transparent_color(bg_color, "#00A100", 0.85)
+      bg = utils.transparent_color(bg_color, "#00A100", 0.85)
     })
     vim.api.nvim_set_hl(0, 'DiffChange', {              -- 変更行
-      bg = my_functions.transparent_color(bg_color, "#B9C42F", 0.90)
+      bg = utils.transparent_color(bg_color, "#B9C42F", 0.90)
     })
     vim.api.nvim_set_hl(0, 'DiffText', {                -- 変更行の変更箇所
-      bg = my_functions.transparent_color(bg_color, "#FD7E00", 0.70)
+      bg = utils.transparent_color(bg_color, "#FD7E00", 0.70)
     })
     -- coc.nvim
     vim.api.nvim_set_hl(0, 'CocFadeOut', {
-      bg = my_functions.transparent_color(bg_color, '#ADABAC', 0.50),
+      bg = utils.transparent_color(bg_color, '#ADABAC', 0.50),
       fg = "LightGrey"
     })
     vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
     vim.api.nvim_set_hl(0, 'CocHighlightText', {
-      bg = my_functions.transparent_color(bg_color, "LightGrey", 0.75),
+      bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
     })
     -- vim-matchup
     vim.api.nvim_set_hl(0, 'MatchParen', {
-      bg = my_functions.transparent_color(bg_color, "LightGrey", 0.75),
+      bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
       bold = true,
       underline = true
     })
@@ -271,7 +271,7 @@ end
 --
 M.lua_add_gruvbox = function()
   local colors = require("gruvbox.palette").colors;
-  local my_functions = require("my_functions")
+  local utils = require("utils")
   local bg_color = "#282828" -- :hi Normal
 
   -- ハイライト色を色々と変更
@@ -281,47 +281,47 @@ M.lua_add_gruvbox = function()
       bg = "#FF0000"
     })
     vim.api.nvim_set_hl(0, 'DiffDelete', {              -- 削除された行
-      bg = my_functions.transparent_color(bg_color, "#C70000", 0.90)
+      bg = utils.transparent_color(bg_color, "#C70000", 0.90)
     })
     vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', {      -- 行が追加された場合の左側
-      bg = my_functions.transparent_color(bg_color, "#C70000", 0.90),
+      bg = utils.transparent_color(bg_color, "#C70000", 0.90),
       fg = colors.dark2
     })
     vim.api.nvim_set_hl(0, 'DiffAdd', {                 -- 追加された行
-      bg = my_functions.transparent_color(bg_color, "#009900", 0.85)
+      bg = utils.transparent_color(bg_color, "#009900", 0.85)
     })
     vim.api.nvim_set_hl(0, 'DiffChange', {              -- 変更行
-      bg = my_functions.transparent_color(bg_color, "#B9C42F", 0.90)
+      bg = utils.transparent_color(bg_color, "#B9C42F", 0.90)
     })
     vim.api.nvim_set_hl(0, 'DiffText', {                -- 変更行の変更箇所
-      bg = my_functions.transparent_color(bg_color, "#FD7E00", 0.70)
+      bg = utils.transparent_color(bg_color, "#FD7E00", 0.70)
     })
     -- coc.nvim
     vim.api.nvim_set_hl(0, 'CocFadeOut', {
-      bg = my_functions.transparent_color(bg_color, '#ADABAC', 0.50),
+      bg = utils.transparent_color(bg_color, '#ADABAC', 0.50),
       fg = "LightGrey"
     })
     vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
     vim.api.nvim_set_hl(0, 'CocHighlightText', {
-      bg = my_functions.transparent_color(bg_color, "LightGrey", 0.75),
+      bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
     })
     -- vim-matchup
     vim.api.nvim_set_hl(0, 'MatchParen', {
-      bg = my_functions.transparent_color(bg_color, "LightGrey", 0.75),
+      bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
       bold = true,
       underline = true
     })
     -- 検索
     vim.api.nvim_set_hl(0, 'Search', {
-      bg = my_functions.transparent_color(bg_color, "#FABD2F", 0.70),
+      bg = utils.transparent_color(bg_color, "#FABD2F", 0.70),
     })
     -- vim.api.nvim_set_hl(0, 'CurSearch', {
-      -- bg = my_functions.transparent_color(bg_color, "#FE8019", 0.35),
-      -- bg = my_functions.transparent_color(bg_color, "#FABD2F", 0.50),
+      -- bg = utils.transparent_color(bg_color, "#FE8019", 0.35),
+      -- bg = utils.transparent_color(bg_color, "#FABD2F", 0.50),
     -- })
     vim.api.nvim_set_hl(0, 'IncSearch', {
-      -- bg = my_functions.transparent_color(bg_color, "#FE8019", 0.35),
-      bg = my_functions.transparent_color(bg_color, "#FABD2F", 0.50),
+      -- bg = utils.transparent_color(bg_color, "#FE8019", 0.35),
+      bg = utils.transparent_color(bg_color, "#FABD2F", 0.50),
     })
   end
 
