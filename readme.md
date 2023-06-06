@@ -9,11 +9,11 @@
 nvim/
     ├── init.vim                   " メイン
     ├── autoload/
-    │   ├── my_functions.vim       " 共通処理(vimscript)
-    │   └── my_plugin_settings.vim " 各プラグインの設定(vimscript)
+    │   ├── utils.vim              " 共通処理(vimscript)
+    │   └── plugins.vim            " 各プラグインの設定(vimscript)
     ├── lua/
-    │   ├── my_functions.lua       " 共通処理(lua)
-    │   └── my_plugin_settings.lua " 各プラグインの設定(lua)
+    │   ├── utils.lua              " 共通処理(lua)
+    │   └── plugins.lua            " 各プラグインの設定(lua)
     ├── test/                      " テスト
     ├── rc/
     │   ├── my_vimrc.vim           " 基本的な設定とその他の設定の読み込み処理
@@ -147,8 +147,3 @@ iconを設定するときなどは[ここ](https://www.nerdfonts.com/cheat-sheet
   - `:h key-notation`
   - `:h map-table`
   - `:h autocmd-events`
-
-## TODO
-- [ ] ファイル名変更
-    - [ ] my_functions -> utils
-    - [ ] my_plugin_settings -> plugins
