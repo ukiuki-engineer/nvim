@@ -105,13 +105,13 @@ require 'colorizer'.setup()
 repo = 'mattn/vim-maketable'
 on_cmd = ['MakeTable', 'UnmakeTable']
 
-# [[plugins]]
-# repo = 'vim-skk/skkeleton'
-# on_event = ['InsertEnter']
-# depends = ['denops']
-# hook_source = '''
-# call plugins#hook_source_skk()
-# '''
+[[plugins]]
+repo = 'vim-skk/skkeleton'
+on_event = ['InsertEnter']
+depends = ['denops']
+hook_source = '''
+call plugins#hook_source_skkeleton()
+'''
 ################################################################################
 # LSP and Completion
 ################################################################################
