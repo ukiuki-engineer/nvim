@@ -7,6 +7,11 @@
   //
   "codeLens.enable": true,
   "diagnostic.virtualText": true,
+  "diagnostic.floatConfig": {
+    "border": true,
+    "rounded": true,
+    "shadow": true,
+  },
   "hover.floatConfig": {
     "border": true,
     "close": true,
