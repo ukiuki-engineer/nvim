@@ -47,3 +47,9 @@ require("plugins").lua_add_nightfly_colors()
 [[plugins]]
 repo = 'vim-denops/denops.vim'
 
+[[plugins]]
+repo = 'vim-skk/skkeleton'
+depends = ['denops']
+hook_add = '''
+call plugins#hook_add_skkeleton()
+'''

@@ -104,7 +104,7 @@ endfunction
 "
 " skkeleton
 "
-function! plugins#hook_source_skkeleton() abort
+function! plugins#hook_add_skkeleton() abort
   let l:skk_dir = expand('~/.config/nvim/skk')
   " 辞書ファイルをダウンロード
   if !filereadable(l:skk_dir .. '/SKK-JISYO.L')
