@@ -402,36 +402,27 @@ M.lua_source_nvim_cmp = function()
   cmp.register_source('my_source', my_source)
   cmp.setup({
     -- skkeleton {{{
-    -- mapping = cmp.mapping.preset.insert({
-    --   ['<Tab>'] = cmp.mapping({
-    --     i = function(fallback)
-    --       if cmp.visible() then
-    --         return cmp.select_next_item()
-    --       end
-    --       fallback()
-    --     end,
-    --   }),
-    --   ['<S-Tab>'] = cmp.mapping({
-    --     i = function(fallback)
-    --       if cmp.visible() then
-    --         return cmp.select_prev_item()
-    --       end
-    --       fallback()
-    --     end,
-    --   }),
-    --   -- ['<C-n>'] = cmp.mapping({
-    --   --   i = function(fallback)
-    --   --     if cmp.visible() then
-    --   --       return cmp.confirm({ select = true })
-    --   --     else
-    --   --       fallback()
-    --   --     end
-    --   --   end,
-    --   -- }),
-    -- }),
-    -- sources = cmp.config.sources({
-    --   { name = 'skkeleton' },
-    -- }),
+    mapping = cmp.mapping.preset.insert({
+      ['<Tab>'] = cmp.mapping({
+        i = function(fallback)
+          if cmp.visible() then
+            return cmp.select_next_item()
+          end
+          fallback()
+        end,
+      }),
+      ['<S-Tab>'] = cmp.mapping({
+        i = function(fallback)
+          if cmp.visible() then
+            return cmp.select_prev_item()
+          end
+          fallback()
+        end,
+      }),
+    }),
+    sources = cmp.config.sources({
+      { name = 'skkeleton' },
+    }),
     -- }}}
     window = {
       completion = cmp.config.window.bordered(),

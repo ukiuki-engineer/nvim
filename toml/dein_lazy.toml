@@ -109,8 +109,7 @@ on_cmd = ['MakeTable', 'UnmakeTable']
 ################################################################################
 [[plugins]] # 補完エンジン
 repo = 'hrsh7th/nvim-cmp'
-# depends = ['cmp-cmdline', 'cmp-buffer', 'cmp-path', 'cmp-skkeleton']
-depends = ['cmp-cmdline', 'cmp-buffer', 'cmp-path']
+depends = ['cmp-cmdline', 'cmp-buffer', 'cmp-path', 'cmp-skkeleton']
 on_event = ['CmdlineEnter', 'InsertEnter']
 lua_source = '''
 require("plugins").lua_source_nvim_cmp()
@@ -128,9 +127,9 @@ on_source = 'nvim-cmp'
 repo = 'hrsh7th/cmp-path'
 on_source = 'nvim-cmp'
 
-# [[plugins]]
-# repo = 'rinx/cmp-skkeleton'
-# on_source = 'nvim-cmp'
+[[plugins]]
+repo = 'rinx/cmp-skkeleton'
+on_source = 'nvim-cmp'
 
 [[plugins]] # coc.nvim
 repo = 'neoclide/coc.nvim'

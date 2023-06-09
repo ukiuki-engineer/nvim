@@ -105,8 +105,8 @@ endfunction
 " skkeleton
 "
 function! plugins#hook_add_skkeleton() abort
+  " 辞書ファイルをダウンロード {{{
   let l:skk_dir = expand('~/.config/nvim/skk')
-  " 辞書ファイルをダウンロード
   if !filereadable(l:skk_dir .. '/SKK-JISYO.L')
     call mkdir(l:skk_dir, 'p')
     let l:output = system('cd ' .. l:skk_dir .. ' && wget https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gzip -d SKK-JISYO.L.gz')
@@ -116,6 +116,7 @@ function! plugins#hook_add_skkeleton() abort
       echo l:output
     endif
   endif
+  " }}}
 
   imap <C-j> <Plug>(skkeleton-toggle)
 
@@ -136,7 +137,7 @@ function! plugins#skkeleton_init() abort
   \ })
   call skkeleton#register_kanatable('rom', {
     \ "xn": 'ん',
-    \ "z\<Space>": ["\u3000", ''],
+    \ "z\<Space>": ["\u3000"],
   \ })
   " call skkeleton#register_keymap('henkan', "\<CR>", 'kakutei')
 endfunction
