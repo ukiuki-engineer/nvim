@@ -370,23 +370,6 @@ M.lua_source_nvim_cmp = function()
     -- 履歴の選択はデフォルト操作で
     ["<C-n>"] = cmp.mapping.scroll_docs(1),
     ["<C-p>"] = cmp.mapping.scroll_docs(-1),
-    -- 補完候補の選択は<C-j>, <C-k>で
-    -- ['<C-j>'] = cmp.mapping({
-    --   c = function(fallback)
-    --     if cmp.visible() then
-    --       return cmp.select_next_item()
-    --     end
-    --     fallback()
-    --   end,
-    -- }),
-    -- ['<C-k>'] = cmp.mapping({
-    --   c = function(fallback)
-    --     if cmp.visible() then
-    --       return cmp.select_prev_item()
-    --     end
-    --     fallback()
-    --   end,
-    -- }),
   })
   -- 遅延ロードされる独自定義コマンド用のsource
   local my_source = {}
