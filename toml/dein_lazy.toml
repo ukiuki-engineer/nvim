@@ -79,13 +79,13 @@ hook_source = '''
 call plugins#code_editting#hook_source_autoclose()
 '''
 
-[[plugins]] # 括弧、クォーテーション補完
-            # 試しに使ってみて色々と参考にする
-repo = 'cohama/lexima.vim'
-on_event = ['InsertEnter']
-hook_source = '''
-call plugins#code_editting#hook_source_lexima()
-'''
+# [[plugins]] # 括弧、クォーテーション補完
+#             # 試しに使ってみて色々と参考にする
+# repo = 'cohama/lexima.vim'
+# on_event = ['InsertEnter']
+# hook_source = '''
+# call plugins#code_editting#hook_source_lexima()
+# '''
 
 [[plugins]] # カラーコード可視化
 repo = 'norcalli/nvim-colorizer.lua'
@@ -319,11 +319,6 @@ hook_source = '''
 call plugins#others#hook_source_toggleterm()
 '''
 
-[[plugins]] # blade
-repo = 'jwalton512/vim-blade'
-on_if = 'expand("%") =~ "blade\.php"'
-on_ft = ['blade']
-
 [[plugins]] # ヘルプファイル自動生成
 repo = 'LeafCage/vimhelpgenerator'
 on_cmd = ['VimHelpGenerator', 'VimHelpGeneratorVirtual']
@@ -345,4 +340,13 @@ on_cmd = ['PreviewMarkdown']
 # インサートモードに入る → <C-r>=execute("コマンド")<CR>
 repo = 'numEricL/vim-redirect'
 on_cmd = ['Redirect']
+
+[[plugins]] # blade
+repo = 'jwalton512/vim-blade'
+on_if = 'expand("%") =~ "blade\.php"'
+on_ft = ['blade']
+
+[[plugins]] # applescriptのsyntax highlight
+repo = 'vim-scripts/applescript.vim'
+on_ft = ['applescript']
 
