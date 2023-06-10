@@ -35,6 +35,9 @@ endfunction
 " vim-autoclose(自作)
 "
 function! plugins#code_editting#hook_source_autoclose() abort
+	let g:autoclose#autoclosing_brackets_enable = 0
+	let g:autoclose#autoclosing_quots_enable = 0
+	let g:autoclose#autoclosing_eruby_tags = 0
   let g:autoclose#disable_nextpattern_autoclosing_brackets = []
   let g:autoclose#disable_nextpattern_autoclosing_quots = []
   " 改行の整形機能をオフ
@@ -42,7 +45,13 @@ function! plugins#code_editting#hook_source_autoclose() abort
   " 補完キャンセル機能をオン
   let g:autoclose#cancel_completion_enable = 1
   " <C-c>で補完をキャンセル
-  inoremap <silent><expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
+  " inoremap <silent><expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
+endfunction
+
+"
+" lexima.vim
+"
+function! plugins#code_editting#hook_source_lexima() abort
 endfunction
 
 "

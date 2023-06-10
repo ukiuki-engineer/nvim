@@ -70,12 +70,21 @@ on_event = ['CursorMoved']
 hook_source = '''
 call plugins#code_editting#hook_source_commentary()
 '''
+
 [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
 repo = 'ukiuki-engineer/vim-autoclose'
 rev = 'develop'
 on_event = ['InsertEnter']
 hook_source = '''
 call plugins#code_editting#hook_source_autoclose()
+'''
+
+[[plugins]] # 括弧、クォーテーション補完
+            # 試しに使ってみて色々と参考にする
+repo = 'cohama/lexima.vim'
+on_event = ['InsertEnter']
+hook_source = '''
+call plugins#code_editting#hook_source_lexima()
 '''
 
 [[plugins]] # カラーコード可視化
