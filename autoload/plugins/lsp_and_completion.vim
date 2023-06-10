@@ -29,6 +29,7 @@ function! plugins#lsp_and_completion#hook_add_coc() abort
     \ 'coc-eslint',
     \ 'coc-fzf-preview',
     \ 'coc-html',
+    \ 'coc-jedi',
     \ 'coc-json',
     \ 'coc-lua',
     \ 'coc-php-cs-fixer',
