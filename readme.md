@@ -10,10 +10,20 @@ nvim/
     ├── init.vim                   " メイン
     ├── autoload/
     │   ├── utils.vim              " 共通処理(vimscript)
-    │   └── plugins.vim            " 各プラグインの設定(vimscript)
+    │   └── plugins/               " 各プラグインの設定(vimscript)
+    │       ├── ui.vim
+    │       ├── code_editting.vim
+    │       ├── lsp_and_completion.vim
+    │       ├── git.vim
+    │       └── others.vim
     ├── lua/
     │   ├── utils.lua              " 共通処理(lua)
-    │   └── plugins.lua            " 各プラグインの設定(lua)
+    │   └── plugins/               " 各プラグインの設定(lua)
+    │       ├── ui.lua
+    │       ├── code_editting.lua
+    │       ├── lsp_and_completion.lua
+    │       ├── git.lua
+    │       └── others.lua
     ├── test/                      " テスト
     ├── rc/
     │   ├── my_vimrc.vim           " 基本的な設定とその他の設定の読み込み処理

@@ -19,10 +19,10 @@ on_cmd = [
   'NvimTreeGenerateOnAttach'
 ]
 hook_add = '''
-call plugins#hook_add_nvim_tree()
+call plugins#ui#hook_add_nvim_tree()
 '''
 lua_source = '''
-require("plugins").lua_source_nvim_tree()
+require("plugins.ui").lua_source_nvim_tree()
 '''
 
 [[plugins]] # nvim-treeのアイコン
@@ -33,7 +33,7 @@ on_source = ['diffview', 'nvim-tree.lua']
 repo = 'akinsho/bufferline.nvim'
 on_event = ['BufRead', 'TabNew', 'InsertEnter']
 lua_source = '''
-require("plugins").lua_source_bufferline()
+require("plugins.ui").lua_source_bufferline()
 '''
 
 [[plugins]] # カーソル位置の階層を表示するやつ
@@ -41,7 +41,7 @@ require("plugins").lua_source_bufferline()
 repo = 'Bekaboo/dropbar.nvim'
 on_event = ['FileType', 'BufRead']
 lua_source = '''
-require("plugins").lua_source_dropbar()
+require("plugins.ui").lua_source_dropbar()
 '''
 ################################################################################
 # Code Editting
@@ -50,14 +50,14 @@ require("plugins").lua_source_dropbar()
 repo = 'lukas-reineke/indent-blankline.nvim'
 on_event = ['CursorMoved']
 lua_source = '''
-require("plugins").lua_source_indent_blankline()
+require("plugins.code_editting").lua_source_indent_blankline()
 '''
 
 [[plugins]] # matchitをもっと強くしたようなやつ(ハイライトとかもされる)
 repo = 'andymass/vim-matchup'
 on_event = ['CursorMoved']
 hook_source = '''
-call plugins#hook_source_matchup()
+call plugins#code_editting#hook_source_matchup()
 '''
 
 [[plugins]] # 行内ジャンプ用にハイライトしてくれるやつ
@@ -68,14 +68,14 @@ on_event = ['CursorMoved']
 repo = 'tpope/vim-commentary'
 on_event = ['CursorMoved']
 hook_source = '''
-call plugins#hook_source_commentary()
+call plugins#code_editting#hook_source_commentary()
 '''
 [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
 repo = 'ukiuki-engineer/vim-autoclose'
 rev = 'develop'
 on_event = ['InsertEnter']
 hook_source = '''
-call plugins#hook_source_autoclose()
+call plugins#code_editting#hook_source_autoclose()
 '''
 
 [[plugins]] # カラーコード可視化
@@ -95,7 +95,7 @@ on_ft = [
   'vue'
 ]
 hook_source = '''
-call plugins#hook_source_colorizer()
+call plugins#code_editting#hook_source_colorizer()
 '''
 lua_post_source = '''
 require 'colorizer'.setup()
@@ -112,7 +112,7 @@ repo = 'hrsh7th/nvim-cmp'
 depends = ['cmp-cmdline', 'cmp-buffer', 'cmp-path', 'cmp-skkeleton']
 on_event = ['CmdlineEnter', 'InsertEnter']
 lua_source = '''
-require("plugins").lua_source_nvim_cmp()
+require("plugins.lsp_and_completion").lua_source_nvim_cmp()
 '''
 
 [[plugins]] # コマンドライン補完用nvim-cmpのソース
@@ -139,10 +139,10 @@ build = 'yarn install --frozen-lockfile' # NOTE: masterの場合のみ
 depends = ['vim-snippets']
 on_event = ['CursorMoved', 'FileType']
 hook_add = '''
-call plugins#hook_add_coc()
+call plugins#lsp_and_completion#hook_add_coc()
 '''
 hook_source = '''
-call plugins#hook_source_coc()
+call plugins#lsp_and_completion#hook_source_coc()
 '''
 
 [[plugins]] # スニペットのソース類
@@ -190,7 +190,7 @@ repo = 'APZelos/blamer.nvim'
 depends = ['vim-fugitive']
 on_cmd = ['BlamerHide', 'BlamerShow', 'BlamerToggle']
 hook_add = '''
-call plugins#hook_add_blamer()
+call plugins#git#hook_add_blamer()
 '''
 
 [[plugins]] # 行番号の左に、gitの状態を表示するやつ
@@ -211,7 +211,7 @@ on_cmd = [
   'DiffviewToggleFiles'
 ]
 lua_source = '''
-require("plugins").lua_source_diffview()
+require("plugins.git").lua_source_diffview()
 '''
 
 [[plugins]]
@@ -224,7 +224,7 @@ on_source = ['diffview']
 repo = 'nvim-treesitter/nvim-treesitter'
 on_event = ['FileType']
 lua_source = '''
-require("plugins").lua_source_treesitter()
+require("plugins.others").lua_source_treesitter()
 '''
 
 [[plugins]] # ファジーファインダー
@@ -265,7 +265,7 @@ on_cmd = [
 ]
 depends = ['fzf']
 hook_add = '''
-call plugins#hook_add_fzf()
+call plugins#others#hook_add_fzf()
 '''
 
 [[plugins]] # vimから編集中のファイルを素早く実行するやつ
@@ -273,7 +273,7 @@ call plugins#hook_add_fzf()
 repo = 'thinca/vim-quickrun'
 on_cmd = ['QuickRun']
 hook_add = '''
-call plugins#hook_add_quickrun()
+call plugins#others#hook_add_quickrun()
 '''
 
 [[plugins]] # editorconfig
@@ -304,10 +304,10 @@ on_cmd = [
 ]
 on_event = ['TermOpen']
 hook_add = '''
-call plugins#hook_add_toggleterm()
+call plugins#others#hook_add_toggleterm()
 '''
 hook_source = '''
-call plugins#hook_source_toggleterm()
+call plugins#others#hook_source_toggleterm()
 '''
 
 [[plugins]] # blade
@@ -319,7 +319,7 @@ on_ft = ['blade']
 repo = 'LeafCage/vimhelpgenerator'
 on_cmd = ['VimHelpGenerator', 'VimHelpGeneratorVirtual']
 hook_source = '''
-call plugins#hook_source_vimhelpgenerator()
+call plugins#others#hook_source_vimhelpgenerator()
 '''
 
 [[plugins]] # vimの起動速度を測定

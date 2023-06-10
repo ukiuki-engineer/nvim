@@ -27,21 +27,21 @@ let g:did_load_filetypes = 1
 repo = 'nvim-lualine/lualine.nvim'
 depends = ['nvim-web-devicons', 'impatient.nvim']
 lua_add = '''
-require("plugins").lua_add_lualine()
+require("plugins.ui").lua_add_lualine()
 '''
 
 # [[plugins]] # カラースキーム
 # repo = 'ellisonleao/gruvbox.nvim'
 # depends = ['impatient.nvim']
 # lua_add = '''
-# require("plugins").lua_add_gruvbox()
+# require("plugins.ui").lua_add_gruvbox()
 # '''
 
 [[plugins]] # カラースキーム
 repo = 'bluz71/vim-nightfly-colors'
 depends = ['impatient.nvim']
 lua_add = '''
-require("plugins").lua_add_nightfly_colors()
+require("plugins.ui").lua_add_nightfly_colors()
 '''
 
 [[plugins]]
@@ -51,5 +51,5 @@ repo = 'vim-denops/denops.vim'
 repo = 'vim-skk/skkeleton'
 depends = ['denops']
 hook_add = '''
-call plugins#hook_add_skkeleton()
+call plugins#code_editting#hook_add_skkeleton()
 '''
