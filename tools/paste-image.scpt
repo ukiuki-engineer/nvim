@@ -1,6 +1,6 @@
 # (MacOS用)clipboardの画像を取得するスクリプト
-# 実行例)
-# osascrpt ~/.config/nvim/tools/paste-image.scpt output.png
+# 実行方法
+# osascript ~/.config/nvim/tools/paste-image.scpt outputfileのフルパス
 
 property fileTypes : {{«class PNGf», ".png"}, {«class JPG », ".jpg"}, {JPEG picture, ".jpg"}}
 

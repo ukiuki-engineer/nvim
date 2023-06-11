@@ -16,7 +16,9 @@ M.lua_source_nvim_cmp = function()
   -- 遅延ロードされる独自定義コマンド用のsource
   local my_source = {}
   function my_source:complete(_, callback)
+    -- TODO: ロードされたら補完候補から消すように
     callback({
+      { label = 'PasteImage' },
       { label = 'Term' },
       { label = 'TermV' },
       { label = 'TermHere' },

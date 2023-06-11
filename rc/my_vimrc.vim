@@ -62,6 +62,8 @@ augroup MyVimrc
   autocmd TermOpen * ++once execute 'source' .. g:rc_dir .. '/my_terminal.vim'
   " :terminal設定の読み込み2
   autocmd CmdUndefined Terminal,Term,TermV,TermHere,TermHereV ++once execute 'source' .. g:rc_dir .. '/my_terminal.vim'
+  " paste_image.vimの読み込み
+  autocmd CmdUndefined PasteImage ++once execute 'source' .. g:rc_dir .. '/paste_image.vim'
 augroup END
 " ------------------------------------------------------------------------------
 " keymaps
