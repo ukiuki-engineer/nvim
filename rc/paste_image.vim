@@ -9,13 +9,19 @@ if exists('g:vimrc#loaded_paste_image')
 endif
 let g:vimrc#loaded_paste_image = 1
 
-if has('mac')
-  command! -nargs=* PasteImage :call s:paste_image("<args>")
-endif
+command! -nargs=* PasteImage :call s:paste_image("<args>")
 
 "
 " TODO: 画像が保存されなかった場合、textが挿入されないようにする
 function! s:paste_image(args = '') abort
+  " Mac以外ならエラー
+  if !has('mac')
+    echohl ErrorMsg
+    echomsg 'This Command can only on MacOS.'
+    echohl None
+    return
+  endif
+
   " markdownじゃなければエラーメッセージを出力
   if &filetype != 'markdown'
     echohl ErrorMsg
