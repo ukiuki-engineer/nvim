@@ -89,6 +89,7 @@ command! SetCursorLineColumn :set cursorline cursorcolumn
 command! SetNoCursorLineColumn :set nocursorline nocursorcolumn
 command! SourceSession :silent! source Session.vim
 command! -bang MksessionAndQuitAll :mksession! | qa<bang>
+command! ShowVimrcInfo :echo system('~/.config/nvim/tools/show-vimrc-info.sh')
 " ------------------------------------------------------------------------------
 " 標準プラグインの制御
 " ------------------------------------------------------------------------------

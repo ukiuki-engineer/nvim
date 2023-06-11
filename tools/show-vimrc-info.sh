@@ -7,7 +7,7 @@ vimrc_dir=~/.config/nvim
 # vim設定行数
 printf "%20s%s%5s\n" "vim設定行数" " =" $(
   find $vimrc_dir -type f |
-    grep -E 'vim$|lua$|toml$|json$' |
+    grep -E 'vim$|lua$|toml$|json$|sh$|scpt$' |
     grep -vE 'colors|not_use' |
     xargs -I{} cat {} |
     wc -l
