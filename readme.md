@@ -28,8 +28,9 @@ nvim/
     ├── rc/
     │   ├── my_vimrc.vim           " 基本的な設定とその他の設定の読み込み処理
     │   ├── my_clipboard.vim       " クリップボード設定(※1)
-    │   ├── my_ime.vim             " IME切り替え設定(skkに乗り換えたいと思いつつまだIME...)
-    │   └── my_terminal.vim        " :terminal周りの設定
+    │   ├── my_ime.vim             " IME切り替え設定
+    │   ├── my_terminal.vim        " :terminal周りの設定
+    │   └── paste_image.vim        " 画像貼り付け
     ├── toml/
     │   ├── dein.toml              " プラグイン(通常ロード)
     │   └── dein_lazy.toml         " プラグイン(遅延ロード)
@@ -131,8 +132,9 @@ htmlのタグに関しては、cocのスニペットを使用することもあ�
 
 ## 補完、LSP
 - [coc.nvim](https://github.com/neoclide/coc.nvim)
+→基本こっち
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)  
-→コマンドライン補完のみnvim-cmpを使用。
+→コマンドライン補完、skkeletonの補完のみこっち
 
 ## Git操作
 - diffview.nvim  
