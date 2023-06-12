@@ -1,10 +1,10 @@
 " ================================================================================
 " 画像貼り付け
+" 以下のVSCodeのプラグインを参考にvimに移植した
+" https://github.com/mushanshitiancai/vscode-paste-image
 " いつかプラグイン化する、かも？
 " シェルのコマンドに依存した書き方になってるけど、自分用の内はまーいいかな…
 " 今はまだMacOSのみ対応
-" 以下を参考にvimに移植した
-" https://github.com/mushanshitiancai/vscode-paste-image
 " ================================================================================
 " 2重読み込み防止
 if exists('g:vimrc#loaded_paste_image')
