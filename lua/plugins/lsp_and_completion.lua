@@ -7,26 +7,39 @@ local M = {}
 --
 M.lua_source_nvim_cmp = function()
   local cmp = require('cmp')
+
   -- cmdlineのマッピング(検索/コマンド共通)
   local cmdline_mapping = cmp.mapping.preset.cmdline({
     -- 履歴の選択はデフォルト操作で
     ["<C-n>"] = cmp.mapping.scroll_docs(1),
     ["<C-p>"] = cmp.mapping.scroll_docs(-1),
   })
+
   -- 遅延ロードされる独自定義コマンド用のsource
   local my_source = {}
   function my_source:complete(_, callback)
-    -- TODO: ロードされたら補完候補から消すように
-    callback({
-      { label = 'PasteImage' },
-      { label = 'Term' },
-      { label = 'TermV' },
-      { label = 'TermHere' },
-      { label = 'TermHereV' },
-      { label = 'Terminal' },
-    })
+    -- コマンドリストを初期化
+    local my_commands = {}
+
+    -- paste_image.vimがロードされてなければコマンドリストに追加
+    if vim.g['vimrc#loaded_paste_image'] == nil then
+      table.insert(my_commands, { label = 'PasteImage' })
+    end
+
+    -- my_terminal.vimがロードされてなければコマンドリストに追加
+    if vim.g['vimrc#loaded_my_terminal'] == nil then
+      table.insert(my_commands, { label = 'Term' })
+      table.insert(my_commands, { label = 'TermV' })
+      table.insert(my_commands, { label = 'TermHere' })
+      table.insert(my_commands, { label = 'TermHereV' })
+      table.insert(my_commands, { label = 'Terminal' })
+    end
+
+    callback(my_commands)
   end
+  -- sourceを登録
   cmp.register_source('my_source', my_source)
+
   cmp.setup({
     -- skkeleton {{{
     mapping = cmp.mapping.preset.insert({

@@ -12,9 +12,12 @@ if exists('g:vimrc#loaded_paste_image')
 endif
 let g:vimrc#loaded_paste_image = 1
 
+" コマンド定義
 command! -nargs=* PasteImage :call s:paste_image("<args>")
 
-"
+" nvim-cmpの設定をリロード
+lua require("plugins.lsp_and_completion").lua_source_nvim_cmp()
+
 " TODO: 画像が保存されなかった場合、textが挿入されないようにする
 function! s:paste_image(args = '') abort
   " Mac以外ならエラー
