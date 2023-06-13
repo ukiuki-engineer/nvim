@@ -1,0 +1,1 @@
+自作のcoc-extensionsはここに置く
