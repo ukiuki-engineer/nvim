@@ -94,6 +94,8 @@ function! plugins#lsp_and_completion#hook_source_coc() abort
   command! Format :call CocAction('format')
   " 開いているバッファをgrep
   command! BufferLines :CocCommand fzf-preview.BufferLines
+  " カレントバッファの変更箇所(:changesのfzf版)
+  command! Changes :CocCommand fzf-preview.Changes
 endfunction
 
 " ドキュメント表示
