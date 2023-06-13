@@ -72,7 +72,7 @@ endfunction
 "
 function! plugins#code_editting#hook_add_skkeleton() abort
   " 辞書ファイルをダウンロード {{{
-  let l:skk_dir = expand('~/.config/nvim/skk')
+  let l:skk_dir = g:init_dir .. '/skk'
   if !filereadable(l:skk_dir .. '/SKK-JISYO.L')
     call mkdir(l:skk_dir, 'p')
     let l:output = system('cd ' .. l:skk_dir .. ' && wget https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gzip -d SKK-JISYO.L.gz')
@@ -98,7 +98,7 @@ endfunction
 function! plugins#code_editting#skkeleton_init() abort
   call skkeleton#config({
     \ 'eggLikeNewline': v:true,
-    \ 'globalDictionaries': [["~/.config/nvim/skk/SKK-JISYO.L", "euc-jp"]],
+    \ 'globalDictionaries': [[g:init_dir .. "/skk/SKK-JISYO.L", "euc-jp"]],
     \ 'usePopu': v:true
   \ })
   call skkeleton#register_kanatable('rom', {

@@ -2,7 +2,8 @@
 # 結構適当
 # 引数に"-startuptime"と入れると、`vim-startuptime -vimpath nvim`を叩く
 
-vimrc_dir=~/.config/nvim
+script_dir=$(dirname $(readlink -f $0))
+vimrc_dir=${script_dir/\/tools/}
 
 # vim設定行数
 printf "%20s%s%5s\n" "vim設定行数" " =" $(

@@ -6,11 +6,11 @@
 "   set nocompatible
 " endif
 
+let g:init_dir      = fnamemodify(resolve(expand('<sfile>')), ':h')
+let g:rc_dir        = g:init_dir .. '/rc'
 let s:cache         = expand('$HOME/.cache')
 let s:dein_dir      = expand(s:cache .. '/dein')
 let s:dein_repo_dir = s:dein_dir .. '/repos/github.com/Shougo/dein.vim'
-let g:init_dir      = expand('$HOME/.config/nvim')
-let g:rc_dir        = g:init_dir .. '/rc'
 let s:toml          = g:init_dir .. '/toml/dein.toml'
 let s:lazy_toml     = g:init_dir .. '/toml/dein_lazy.toml'
 
