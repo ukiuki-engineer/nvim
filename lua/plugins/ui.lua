@@ -6,6 +6,9 @@ local M = {}
 -- lualine.nvim
 --
 M.lua_add_lualine = function()
+  -- TODO: skkeletonのモードも表示したい
+  -- 例) NOMAL(skkeleton: あ)
+  -- 例) NOMAL(skkeleton: ア)
   require('lualine').setup({
     sections = {
       lualine_a = {'mode'},

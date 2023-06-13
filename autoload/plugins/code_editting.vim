@@ -105,6 +105,7 @@ function! plugins#code_editting#skkeleton_init() abort
     \ "xn": 'ん',
     \ "z\<Space>": ["\u3000"],
   \ })
-  " call skkeleton#register_keymap('henkan', "\<CR>", 'kakutei')
+  " FIXME: <S-space>で変換を遡れるようにしたいけど上手くいかない…
+  " call skkeleton#register_keymap('henkan', '<S-Space>', 'henkanBackward')
 endfunction
 
