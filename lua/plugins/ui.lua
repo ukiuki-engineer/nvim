@@ -236,6 +236,9 @@ M.lua_add_nightfly_colors = function()
     vim.api.nvim_set_hl(0, 'CocHighlightText', {
       bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
     })
+    vim.api.nvim_set_hl(0, 'HighlightedyankRegion', {
+      bg = utils.transparent_color(bg_color, "Magenta", 0.75),
+    })
     -- vim-matchup
     vim.api.nvim_set_hl(0, 'MatchParen', {
       bg = utils.transparent_color(bg_color, "LightGrey", 0.75),

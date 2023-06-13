@@ -45,6 +45,7 @@ function! plugins#lsp_and_completion#hook_add_coc() abort
     \ 'coc-word',
     \ 'coc-xml',
     \ 'coc-yaml',
+    \ 'coc-yank',
   \ ]
   " \ 'coc-nav',
 endfunction
