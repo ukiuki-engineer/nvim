@@ -1,1 +1,1 @@
-自作のcoc-extensionsはここに置く
+coc-extensionsをローカルでガチャガチャやる用のディレクトリ
