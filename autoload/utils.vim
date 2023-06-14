@@ -3,7 +3,6 @@
 " ================================================================================
 "
 " :TermHere用
-" NOTE: toggletermを使用するためしばらく不使用
 "
 function! utils#term_here(spOrVsp) abort
   " 水平分割
