@@ -12,15 +12,6 @@ hook_add = '''
 call plugins#hook_add_material()
 '''
 
-[[plugins]] # vim内部で日本語入力するためのプラグイン
-# FIXME: 試しに入れてみたけど、使いこなすには色々設定がいりそう...
-#        時間取れるときにゆっくり設定を作りこむ
-repo = 'vim-skk/eskk.vim'
-on_event = ['BufRead', 'InsertEnter']
-hook_add = '''
-call plugins#hook_add_eskk()
-'''
-
 [[plugins]] # 対のカッコをハイライト
 repo = 'itchyny/vim-parenmatch'
 on_event = ['BufRead', 'InsertEnter']
