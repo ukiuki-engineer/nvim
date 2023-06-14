@@ -20,7 +20,10 @@ M.lua_source_treesitter = function()
       -- enable = true,              -- mandatory, false will disable the whole extension
       -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
     },
-    ensure_installed = 'all' -- :TSInstall allと同じ
+    context_commentstring = {
+      enable = true,
+    },
+    ensure_installed = 'all', -- :TSInstall allと同じ
   }
 end
 

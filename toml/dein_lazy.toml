@@ -231,10 +231,15 @@ on_source = ['diffview']
 ################################################################################
 [[plugins]] # デフォルトより見やすいsyntax highlight
 repo = 'nvim-treesitter/nvim-treesitter'
+depends = ['nvim-ts-context-commentstring']
 on_event = ['FileType']
 lua_source = '''
 require("plugins.others").lua_source_treesitter()
 '''
+
+[[plugins]]
+repo = 'JoosepAlviste/nvim-ts-context-commentstring'
+on_event = ['FileType']
 
 [[plugins]] # ファジーファインダー
 repo = 'junegunn/fzf'
