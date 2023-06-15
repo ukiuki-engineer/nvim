@@ -99,7 +99,7 @@ function! plugins#code_editting#skkeleton_init() abort
   call skkeleton#config({
     \ 'eggLikeNewline': v:true,
     \ 'globalDictionaries': [[g:init_dir .. "/skk/SKK-JISYO.L", "euc-jp"]],
-    \ 'usePopu': v:true
+    \ 'usePopup': v:true
   \ })
   call skkeleton#register_kanatable('rom', {
     \ "xn": 'ん',
