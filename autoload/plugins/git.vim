@@ -25,7 +25,9 @@ endfunction
 " vim-gitgutter
 "
 function! plugins#git#hook_source_gitgutter() abort
-  " TODO: もっと色々調整したいけど、一旦これで
-  nnoremap ]h <Plug>(GitGutterNextHunk)
-  nnoremap [h <Plug>(GitGutterPrevHunk)
+  nnoremap ]c <Plug>(GitGutterNextHunk)
+  nnoremap [c <Plug>(GitGutterPrevHunk)
+  nnoremap ghp <Plug>(GitGutterPreviewHunk)
+  nnoremap ghs <Plug>(GitGutterStageHunk)
+  nnoremap ghu <Plug>(GitGutterUndoHunk)
 endfunction
