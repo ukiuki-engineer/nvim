@@ -205,6 +205,9 @@ call plugins#git#hook_add_blamer()
 [[plugins]] # 行番号の左に、gitの状態を表示するやつ
 repo = 'airblade/vim-gitgutter'
 on_event = ['BufRead']
+hook_source = '''
+call plugins#git#hook_source_gitgutter()
+'''
 
 [[plugins]] # gitの差分をvimdiffで表示したりstageしたりするやつ
 # NOTE: stageまではできるので、後は`:Git`でcommit & pushすれば良い
