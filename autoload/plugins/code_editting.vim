@@ -72,14 +72,14 @@ endfunction
 "
 function! plugins#code_editting#hook_add_skkeleton() abort
   " 辞書ファイルをダウンロード {{{
-  let l:skk_dir = g:init_dir .. '/skk'
-  if !filereadable(l:skk_dir .. '/SKK-JISYO.L')
-    call mkdir(l:skk_dir, 'p')
-    let l:output = system('cd ' .. l:skk_dir .. ' && wget https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gzip -d SKK-JISYO.L.gz')
+  let s:skk_dir = expand('~/.skk')
+  if !filereadable(s:skk_dir .. '/SKK-JISYO.L')
+    call mkdir(s:skk_dir, 'p')
+    let s:output = system('cd ' .. s:skk_dir .. ' && wget https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gzip -d SKK-JISYO.L.gz')
     if v:shell_error
       " NOTE: wgetがなくてダウンロードされなかった時に何の警告も出なかったので、警告を出すようにする
       echo "SKK辞書ファイルのダウンロードが正常に行われませんでした"
-      echo l:output
+      echo s:output
     endif
   endif
   " }}}
@@ -96,9 +96,10 @@ function! plugins#code_editting#hook_add_skkeleton() abort
 endfunction
 
 function! plugins#code_editting#skkeleton_init() abort
+  " NOTE: 多分、絵文字に関しては、Macならctrl+cmd+spaceを押した方が早い
   call skkeleton#config({
     \ 'eggLikeNewline': v:true,
-    \ 'globalDictionaries': [[g:init_dir .. "/skk/SKK-JISYO.L", "euc-jp"]],
+    \ 'globalDictionaries': [[s:skk_dir .. "/SKK-JISYO.L", "euc-jp"], s:skk_dir .. "/SKK-JISYO.emoji.utf8"],
     \ 'usePopup': v:true
   \ })
   call skkeleton#register_kanatable('rom', {
