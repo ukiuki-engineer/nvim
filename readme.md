@@ -155,7 +155,8 @@ iconを設定するときなどは[ここ](https://www.nerdfonts.com/cheat-sheet
 - coc.nvimの拡張機能を探す場所
   - [githubのwiki](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
   - [npm moduleを検索するサイト](https://www.npmjs.com/search?q=keywords%3Acoc.nvim)
-- よく見るけど忘れがちなヘルプタグ
+- 時々見たいけど忘れがちなヘルプタグ
   - `:h key-notation`
   - `:h map-table`
   - `:h autocmd-events`
+  - `:h encoding-values`
