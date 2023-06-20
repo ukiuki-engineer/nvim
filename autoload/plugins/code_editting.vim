@@ -99,6 +99,7 @@ endfunction
 "
 function! plugins#code_editting#hook_add_skkeleton() abort
   " 辞書ファイルをダウンロード {{{
+  " TODO: 辞書配列を作って、全部ダウンロードするようにする
   let s:skk_dir = expand('~/.skk')
   if !filereadable(s:skk_dir .. '/SKK-JISYO.L')
     call mkdir(s:skk_dir, 'p')
@@ -111,7 +112,8 @@ function! plugins#code_editting#hook_add_skkeleton() abort
   endif
   " }}}
 
-  imap <C-j> <Plug>(skkeleton-toggle)
+  inoremap <C-j> <Plug>(skkeleton-toggle)
+  cnoremap <C-j> <Plug>(skkeleton-toggle)
 
   augroup MySkkeleton
     autocmd!
@@ -126,11 +128,12 @@ function! plugins#code_editting#skkeleton_init() abort
   " NOTE: 多分、絵文字に関しては、Macならctrl+cmd+spaceを押した方が早い
   call skkeleton#config({
     \ 'eggLikeNewline': v:true,
-    \ 'globalDictionaries': [[s:skk_dir .. "/SKK-JISYO.L", "euc-jp"], s:skk_dir .. "/SKK-JISYO.emoji.utf8"],
+    \ 'globalDictionaries': [[s:skk_dir .. "/SKK-JISYO.L", "euc-jp"], s:skk_dir .. "/SKK-JISYO.emoji.utf8", [s:skk_dir .. "/SKK-JISYO.jinmei", "euc-jp"]],
     \ 'usePopup': v:true
   \ })
   call skkeleton#register_kanatable('rom', {
     \ "xn": ['ん', ''],
+    \ "~": ['〜', ''],
     \ "z\<Space>": ["\u3000", ''],
   \ })
   call skkeleton#register_keymap('henkan', '<S-Space>', 'henkanBackward')
