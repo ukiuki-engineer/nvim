@@ -30,4 +30,10 @@ function! plugins#git#hook_source_gitgutter() abort
   nnoremap ghp <Plug>(GitGutterPreviewHunk)
   nnoremap ghs <Plug>(GitGutterStageHunk)
   nnoremap ghu <Plug>(GitGutterUndoHunk)
+
+  augroup MyGitGutter
+    autocmd!
+    " 保存時も更新するように
+    autocmd BufWritePost * GitGutter
+  augroup END
 endfunction
