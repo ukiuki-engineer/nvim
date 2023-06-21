@@ -77,8 +77,8 @@ nnoremap <silent> <S-TAB> :bN<CR>
 " NOTE: 下記はcmy_plugin_settings#hook_source_coc()にて。
 " nnoremap <C-j> 10j
 " nnoremap <C-k> 10k
-vnoremap <C-j> 10j
-vnoremap <C-k> 10k
+vnoremap <C-j> 7j
+vnoremap <C-k> 7k
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
