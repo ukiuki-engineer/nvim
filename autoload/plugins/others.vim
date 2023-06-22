@@ -24,6 +24,18 @@ function! plugins#others#hook_source_vimhelpgenerator() abort
 endfunction
 
 "
+" previm
+"
+function! plugins#others#hook_source_previm() abort
+  if has('mac')
+    " MacOS用
+    let g:previm_open_cmd = 'open -a Google\ Chrome'
+  elseif has('linux') && exists('$WSLENV')
+    " TODO: WSL用
+  endif
+endfunction
+
+"
 " toggleterm
 " FIXME: <C-w>L<C-w>Jとするとサイズがバグる
 "
