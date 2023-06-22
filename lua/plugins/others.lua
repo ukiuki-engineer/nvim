@@ -27,4 +27,13 @@ M.lua_source_treesitter = function()
   }
 end
 
+--
+-- toggleterm.nvim
+--
+M.lua_source_toggleterm = function()
+  require("toggleterm").setup{
+    persist_size = false
+  }
+end
+
 return M

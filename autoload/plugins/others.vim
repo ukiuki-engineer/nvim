@@ -36,7 +36,7 @@ function! plugins#others#hook_source_previm() abort
 endfunction
 
 "
-" toggleterm
+" toggleterm.nvim
 " FIXME: <C-w>L<C-w>Jとするとサイズがバグる
 "
 function! plugins#others#hook_add_toggleterm() abort
@@ -45,12 +45,6 @@ function! plugins#others#hook_add_toggleterm() abort
 endfunction
 
 function! plugins#others#hook_source_toggleterm() abort
-lua << END
-  -- vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]])
-  require("toggleterm").setup{
-    persist_size = false
-  }
-END
   " カレントバッファのディレクトリでterminalを開く
   command! ToggleTermHere ToggleTerm dir=%:h
 endfunction

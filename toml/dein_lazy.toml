@@ -324,6 +324,7 @@ hook_add = '''
 call plugins#others#hook_add_toggleterm()
 '''
 hook_source = '''
+lua require("plugins.others").lua_source_toggleterm()
 call plugins#others#hook_source_toggleterm()
 '''
 
