@@ -243,7 +243,7 @@ M.lua_add_nightfly_colors = function()
     vim.api.nvim_set_hl(0, 'MatchParen', {
       bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
       bold = true,
-      underline = true
+      underline = false
     })
     vim.api.nvim_set_hl(0, 'MatchWord', {link = "MatchParen"})
     vim.api.nvim_set_hl(0, 'MatchWordCur', {link = "MatchParen"})
