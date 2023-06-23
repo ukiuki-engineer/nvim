@@ -45,6 +45,15 @@ function! plugins#code_editting#hook_source_autoclose() abort
   let g:autoclose#autoformat_newline_enable = 0
   " 補完キャンセル機能をオン
   let g:autoclose#cancel_completion_enable = 1
+	let g:autoclose#enabled_autoclosing_tags_filetypes = [
+	  \"html",
+	  \"xml",
+	  \"javascript",
+	  \"blade",
+	  \"eruby",
+	  \"vue",
+	  \"markdown"
+	\]
   " <C-c>で補完をキャンセル
   inoremap <silent><expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
   augroup AutocloseHtmlComment
