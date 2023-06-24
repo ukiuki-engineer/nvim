@@ -44,6 +44,8 @@ set sessionoptions=buffers,curdir,tabpages
 set expandtab
 " インデントは基本的に2
 set shiftwidth=2 tabstop=2 softtabstop=2
+" optionではないけどここに...
+let mapleader = "m"
 " ------------------------------------------------------------------------------
 " autocmd
 " ------------------------------------------------------------------------------

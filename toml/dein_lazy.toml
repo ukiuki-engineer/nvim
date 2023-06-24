@@ -43,6 +43,13 @@ on_event = ['FileType', 'BufRead']
 lua_source = '''
 require("plugins.ui").lua_source_dropbar()
 '''
+
+[[plugins]]
+repo= 'lewis6991/satellite.nvim'
+on_event = ['FileType', 'BufRead', 'InsertEnter']
+lua_source = '''
+require("plugins.ui").lua_source_satelite()
+'''
 ################################################################################
 # Code Editting
 ################################################################################
@@ -203,10 +210,10 @@ call plugins#git#hook_add_blamer()
 '''
 
 [[plugins]] # 行番号の左に、gitの状態を表示するやつ
-repo = 'airblade/vim-gitgutter'
+repo = 'lewis6991/gitsigns.nvim'
 on_event = ['BufRead']
-hook_source = '''
-call plugins#git#hook_source_gitgutter()
+lua_source = '''
+require("plugins.git").lua_source_gitsigns()
 '''
 
 [[plugins]] # gitの差分をvimdiffで表示したりstageしたりするやつ

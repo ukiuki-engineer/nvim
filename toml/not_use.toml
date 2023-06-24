@@ -19,3 +19,10 @@ hook_add = '''
 " NOTE: 標準プラグインのmatchparenを無効化
 let g:loaded_matchparen = 1
 '''
+
+[[plugins]] # 行番号の左に、gitの状態を表示するやつ
+repo = 'airblade/vim-gitgutter'
+on_event = ['BufRead']
+hook_source = '''
+call plugins#git#hook_source_gitgutter()
+'''
