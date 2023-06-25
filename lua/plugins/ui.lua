@@ -6,12 +6,25 @@ local M = {}
 -- lualine.nvim
 --
 M.lua_add_lualine = function()
-  -- TODO: skkeletonのモードも表示したい
-  -- 例) NOMAL(skkeleton: あ)
-  -- 例) NOMAL(skkeleton: ア)
+  -- skkeletonのモードを返す
+  local function skkeleton_mode()
+    local modes = {
+      ["hira"]    = "あ",
+      ["kata"]    = "ア",
+      ["hankata"] = "ｱ",
+      ["zenkaku"] = "ａ",
+      ["abbrev"]  = "a",
+    }
+    if vim.call('skkeleton#is_enabled') then
+      return modes[vim.call('skkeleton#mode')]
+    else
+      return ''
+    end
+  end
+
   require('lualine').setup({
     sections = {
-      lualine_a = {'mode'},
+      lualine_a = {'mode', skkeleton_mode},
       lualine_b = {'branch', 'diff', 'diagnostics'}, -- TODO: user.nameとuser.emailも表示させたい
       lualine_c = {
         {
