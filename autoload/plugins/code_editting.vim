@@ -52,7 +52,6 @@ function! plugins#code_editting#hook_source_autoclose() abort
 	  \"blade",
 	  \"eruby",
 	  \"vue",
-	  \"markdown"
 	\]
   " <C-c>で補完をキャンセル
   inoremap <silent><expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
