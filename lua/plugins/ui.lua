@@ -188,6 +188,11 @@ M.lua_source_bufferline = function()
         return " " .. icon .. count
       end,
     },
+    highlights = {
+      tab_selected = {
+          fg = vim.g['colors_name'] == 'gruvbox' and '#ECE0BF' or '',
+      },
+    }
   })
 end
 --
