@@ -1,6 +1,75 @@
 -- ================================================================================
 -- UI
 -- ================================================================================
+-----------------------------------------------------------------------------------
+-- private
+-----------------------------------------------------------------------------------
+--
+-- ハイライト色をカスタムする
+--
+local function custom_color(bg_color, colorscheme)
+  local utils = require("utils")
+
+  local function set_customcolor()
+    -- diffview
+    vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { -- NOTE: 不明
+      bg = "#FF0000"
+    })
+    vim.api.nvim_set_hl(0, 'DiffDelete', {              -- 削除された行
+      bg = utils.transparent_color(bg_color, "#C70000", 0.90)
+    })
+    vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', {      -- 行が追加された場合の左側
+      bg = utils.transparent_color(bg_color, "#C70000", 0.90),
+      fg = colorscheme == 'gruvbox' and require("gruvbox.palette").colors.dark2 or utils.transparent_color(bg_color, "#2F2F2F", 0.00)
+    })
+    vim.api.nvim_set_hl(0, 'DiffAdd', {                 -- 追加された行
+      bg = utils.transparent_color(bg_color, "#00A100", 0.85)
+    })
+    vim.api.nvim_set_hl(0, 'DiffChange', {              -- 変更行
+      bg = utils.transparent_color(bg_color, "#B9C42F", 0.90)
+    })
+    vim.api.nvim_set_hl(0, 'DiffText', {                -- 変更行の変更箇所
+      bg = utils.transparent_color(bg_color, "#FD7E00", 0.70)
+    })
+    -- coc.nvim
+    vim.api.nvim_set_hl(0, 'CocFadeOut', {
+      bg = utils.transparent_color(bg_color, '#ADABAC', 0.50),
+      fg = "LightGrey"
+    })
+    vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
+    vim.api.nvim_set_hl(0, 'CocHighlightText', {
+      bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
+    })
+    if colorscheme == 'nightfly' then
+      vim.api.nvim_set_hl(0, 'HighlightedyankRegion', {
+        bg = utils.transparent_color(bg_color, "Magenta", 0.65),
+      })
+    else
+      vim.api.nvim_set_hl(0, 'HighlightedyankRegion', {
+        bg = utils.transparent_color(bg_color, "#FD7E00", 0.70)
+      })
+    end
+    -- vim-matchup
+    vim.api.nvim_set_hl(0, 'MatchParen', {
+      bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
+      bold = true,
+      underline = false
+    })
+    vim.api.nvim_set_hl(0, 'MatchWord', {link = "MatchParen"})
+    vim.api.nvim_set_hl(0, 'MatchWordCur', {link = "MatchParen"})
+  end
+
+  local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
+
+  vim.api.nvim_create_autocmd("ColorScheme", {
+    pattern = { colorscheme },
+    callback = set_customcolor,
+    group = custom_highlight,
+  })
+end
+-----------------------------------------------------------------------------------
+-- public
+-----------------------------------------------------------------------------------
 local M = {}
 --
 -- lualine.nvim
@@ -214,62 +283,8 @@ end
 -- vim-nightfly-colors
 --
 M.lua_add_nightfly_colors = function()
-
-  local utils = require("utils")
   local bg_color = "#011627" -- :hi Normal
-
-
-  local function fix_nightfly()
-    -- diffview
-    vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { -- NOTE: 不明
-      bg = "#FF0000"
-    })
-    vim.api.nvim_set_hl(0, 'DiffDelete', {              -- 削除された行
-      bg = utils.transparent_color(bg_color, "#C70000", 0.90)
-    })
-    vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', {      -- 行が追加された場合の左側
-      bg = utils.transparent_color(bg_color, "#C70000", 0.90),
-      fg = utils.transparent_color(bg_color, "#2F2F2F", 0.00)
-    })
-    vim.api.nvim_set_hl(0, 'DiffAdd', {                 -- 追加された行
-      bg = utils.transparent_color(bg_color, "#00A100", 0.85)
-    })
-    vim.api.nvim_set_hl(0, 'DiffChange', {              -- 変更行
-      bg = utils.transparent_color(bg_color, "#B9C42F", 0.90)
-    })
-    vim.api.nvim_set_hl(0, 'DiffText', {                -- 変更行の変更箇所
-      bg = utils.transparent_color(bg_color, "#FD7E00", 0.70)
-    })
-    -- coc.nvim
-    vim.api.nvim_set_hl(0, 'CocFadeOut', {
-      bg = utils.transparent_color(bg_color, '#ADABAC', 0.50),
-      fg = "LightGrey"
-    })
-    vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
-    vim.api.nvim_set_hl(0, 'CocHighlightText', {
-      bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
-    })
-    vim.api.nvim_set_hl(0, 'HighlightedyankRegion', {
-      bg = utils.transparent_color(bg_color, "Magenta", 0.65),
-    })
-    -- vim-matchup
-    vim.api.nvim_set_hl(0, 'MatchParen', {
-      bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
-      bold = true,
-      underline = false
-    })
-    vim.api.nvim_set_hl(0, 'MatchWord', {link = "MatchParen"})
-    vim.api.nvim_set_hl(0, 'MatchWordCur', {link = "MatchParen"})
-  end
-
-  local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
-
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = {"nightfly"},
-    callback = fix_nightfly,
-    group = custom_highlight,
-  })
-
+  custom_color(bg_color, "nightfly")
   vim.cmd [[colorscheme nightfly]]
 end
 
@@ -277,68 +292,8 @@ end
 -- gruvbox.nvim
 --
 M.lua_add_gruvbox = function()
-  local colors = require("gruvbox.palette").colors;
-  local utils = require("utils")
   local bg_color = "#282828" -- :hi Normal
-
-  -- ハイライト色を色々と変更
-  local function fix_gruvbox()
-    -- diffview
-    vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { -- NOTE: 不明
-      bg = "#FF0000"
-    })
-    vim.api.nvim_set_hl(0, 'DiffDelete', {              -- 削除された行
-      bg = utils.transparent_color(bg_color, "#C70000", 0.90)
-    })
-    vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', {      -- 行が追加された場合の左側
-      bg = utils.transparent_color(bg_color, "#C70000", 0.90),
-      fg = colors.dark2
-    })
-    vim.api.nvim_set_hl(0, 'DiffAdd', {                 -- 追加された行
-      bg = utils.transparent_color(bg_color, "#009900", 0.85)
-    })
-    vim.api.nvim_set_hl(0, 'DiffChange', {              -- 変更行
-      bg = utils.transparent_color(bg_color, "#B9C42F", 0.90)
-    })
-    vim.api.nvim_set_hl(0, 'DiffText', {                -- 変更行の変更箇所
-      bg = utils.transparent_color(bg_color, "#FD7E00", 0.70)
-    })
-    -- coc.nvim
-    vim.api.nvim_set_hl(0, 'CocFadeOut', {
-      bg = utils.transparent_color(bg_color, '#ADABAC', 0.50),
-      fg = "LightGrey"
-    })
-    vim.api.nvim_set_hl(0, 'CocHintSign', { fg = "LightGrey" })
-    vim.api.nvim_set_hl(0, 'CocHighlightText', {
-      bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
-    })
-    -- vim-matchup
-    vim.api.nvim_set_hl(0, 'MatchParen', {
-      bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
-      bold = true,
-      underline = true
-    })
-    -- 検索
-    vim.api.nvim_set_hl(0, 'Search', {
-      bg = utils.transparent_color(bg_color, "#FABD2F", 0.70),
-    })
-    -- vim.api.nvim_set_hl(0, 'CurSearch', {
-      -- bg = utils.transparent_color(bg_color, "#FE8019", 0.35),
-      -- bg = utils.transparent_color(bg_color, "#FABD2F", 0.50),
-    -- })
-    vim.api.nvim_set_hl(0, 'IncSearch', {
-      -- bg = utils.transparent_color(bg_color, "#FE8019", 0.35),
-      bg = utils.transparent_color(bg_color, "#FABD2F", 0.50),
-    })
-  end
-
-  local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
-
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    pattern = {"gruvbox"},
-    callback = fix_gruvbox,
-    group = custom_highlight,
-  })
+  custom_color(bg_color, "gruvbox")
   vim.o.background = "dark"
   vim.cmd [[colorscheme gruvbox]]
 end
