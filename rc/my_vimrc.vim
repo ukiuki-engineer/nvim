@@ -32,18 +32,16 @@ set list
 set splitright
 " 画面を水平分割する際に下に開く
 set splitbelow
-" 検索時にファイルの最後まで行っても最初に戻らない
-set nowrapscan
-" 検索時に大文字小文字を無視
-set ignorecase
-" 大文字小文字の両方が含まれている場合は大文字小文字を区別
-set smartcase
+" 検索時の挙動
+set nowrapscan ignorecase smartcase
 " sessionに保存する内容を指定
 set sessionoptions=buffers,curdir,tabpages
 " Tab文字を半角スペースにする
 set expandtab
 " インデントは基本的に2
 set shiftwidth=2 tabstop=2 softtabstop=2
+" 符号なし数字として扱う
+set nrformats+=unsigned
 " optionではないけどここに...
 let mapleader = "m"
 " ------------------------------------------------------------------------------
