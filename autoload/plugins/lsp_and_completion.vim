@@ -60,6 +60,8 @@ function! plugins#lsp_and_completion#hook_add_coc() abort
   command! BufferLines :CocCommand fzf-preview.BufferLines
   " カレントバッファの変更箇所(:changesのfzf版)
   command! Changes :CocCommand fzf-preview.Changes
+  " カレントバッファをgrep
+  command! Lines :CocCommand fzf-preview.Lines
   " ディレクトリ内をファイル名検索
   command! Files :CocCommand fzf-preview.DirectoryFiles
 endfunction
