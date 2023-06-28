@@ -7,6 +7,7 @@
 --
 -- ハイライト色をカスタムする
 --
+-- TODO: (TODO, FIXME, NOTE)について、どのファイルでもハイライトされるようにする
 local function custom_color(bg_color, colorscheme)
   local utils = require("utils")
 
@@ -26,10 +27,10 @@ local function custom_color(bg_color, colorscheme)
       bg = utils.transparent_color(bg_color, "#00A100", 0.85)
     })
     vim.api.nvim_set_hl(0, 'DiffChange', {              -- 変更行
-      bg = utils.transparent_color(bg_color, "#B9C42F", 0.90)
+      bg = utils.transparent_color(bg_color, "#B9C42F", 0.80)
     })
     vim.api.nvim_set_hl(0, 'DiffText', {                -- 変更行の変更箇所
-      bg = utils.transparent_color(bg_color, "#FD7E00", 0.70)
+      bg = utils.transparent_color(bg_color, "#FD7E00", 0.65)
     })
     -- coc.nvim
     vim.api.nvim_set_hl(0, 'CocFadeOut', {
