@@ -31,19 +31,19 @@ lua_add = '''
 require("plugins.ui").lua_add_lualine()
 '''
 
-# [[plugins]]
-# repo = 'ellisonleao/gruvbox.nvim'
-# depends = ['impatient.nvim']
-# lua_add = '''
-# require("plugins.ui").lua_add_gruvbox()
-# '''
-
 [[plugins]]
-repo = 'bluz71/vim-nightfly-colors'
+repo = 'ellisonleao/gruvbox.nvim'
 depends = ['impatient.nvim']
 lua_add = '''
-require("plugins.ui").lua_add_nightfly_colors()
+require("plugins.ui").lua_add_gruvbox()
 '''
+
+# [[plugins]]
+# repo = 'bluz71/vim-nightfly-colors'
+# depends = ['impatient.nvim']
+# lua_add = '''
+# require("plugins.ui").lua_add_nightfly_colors()
+# '''
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
