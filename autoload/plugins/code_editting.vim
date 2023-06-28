@@ -20,15 +20,10 @@ endfunction
 function! plugins#code_editting#hook_source_commentary() abort
   augroup MyCommentstring
     autocmd!
-    autocmd FileType applescript setlocal commentstring=#\ %s
+    autocmd FileType applescript,toml setlocal commentstring=#\ %s
     autocmd FileType php setlocal commentstring=//\ %s
     autocmd FileType json setlocal commentstring=//\ %s
     autocmd FileType vue setlocal commentstring=<!--\ %s\ -->
-    " NOTE: <script>タグ内は、手動で
-    " :set commentstring=//\ %s
-    " として、
-    " :set ft=vue
-    " で`<!--  -->`に戻せば良い
   augroup END
 endfunction
 
