@@ -26,3 +26,39 @@ on_event = ['BufRead']
 hook_source = '''
 call plugins#git#hook_source_gitgutter()
 '''
+
+# [[plugins]] # ファジーファインダー
+# # NOTE: プレビューウィンドウをハイライトするには、batをインストールする
+# # →brew install bat
+# repo = 'junegunn/fzf.vim'
+# # NOTE: こっちでもいい→on_source = ['fzf']
+# on_cmd = [
+#   'Files',
+#   'GFiles',
+#   'GFiles?',
+#   'Buffers',
+#   'Colors',
+#   'Ag',
+#   'Rg',
+#   'Lines',
+#   'BLines',
+#   'Tags',
+#   'BTags',
+#   'Marks',
+#   'Windows',
+#   'Locate PATTERN',
+#   'History',
+#   'History:',
+#   'History/',
+#   'Snippets',
+#   'Commits',
+#   'BCommits',
+#   'Commands',
+#   'Maps',
+#   'Helptags',
+#   'Filetypes'
+# ]
+# depends = ['fzf']
+# hook_add = '''
+# call plugins#others#hook_add_fzf()
+# '''

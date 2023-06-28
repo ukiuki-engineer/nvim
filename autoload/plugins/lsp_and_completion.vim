@@ -47,7 +47,21 @@ function! plugins#lsp_and_completion#hook_add_coc() abort
     \ 'coc-yaml',
     \ 'coc-yank',
   \ ]
-  " \ 'coc-nav',
+
+  " CocCommand fzf-preview.CocOutline
+  nnoremap <silent> mo :CocCommand fzf-preview.CocOutline<CR>
+  " ファイル名検索
+  nnoremap <silent> <space>f :CocCommand fzf-preview.ProjectFiles<CR>
+  " バッファの中からファイル名検索
+  nnoremap <silent> <space>b :CocCommand fzf-preview.Buffers<CR>
+  " grep
+  nnoremap <space>g :CocCommand fzf-preview.ProjectGrep<Space>
+  " 開いているバッファをgrep
+  command! BufferLines :CocCommand fzf-preview.BufferLines
+  " カレントバッファの変更箇所(:changesのfzf版)
+  command! Changes :CocCommand fzf-preview.Changes
+  " ディレクトリ内をファイル名検索
+  command! Files :CocCommand fzf-preview.DirectoryFiles
 endfunction
 
 function! plugins#lsp_and_completion#hook_source_coc() abort
@@ -80,8 +94,6 @@ function! plugins#lsp_and_completion#hook_source_coc() abort
   " NOTE: ジャンプ前の箇所に戻るには、普通に<C-o>で
   " NOTE: outline tree上で<space>tで、treeの開閉ができる
   nnoremap <silent><nowait> <space>t :call CocActionAsync('showOutline')<CR>
-  " CocCommand fzf-preview.CocOutline
-  nnoremap <silent> mo :CocCommand fzf-preview.CocOutline<CR>
   " ウィンドウのスクロール
   nnoremap <nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "7j"
   nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
@@ -93,10 +105,6 @@ function! plugins#lsp_and_completion#hook_source_coc() abort
   inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
   " フォーマッターを呼び出す
   command! Format :call CocAction('format')
-  " 開いているバッファをgrep
-  command! BufferLines :CocCommand fzf-preview.BufferLines
-  " カレントバッファの変更箇所(:changesのfzf版)
-  command! Changes :CocCommand fzf-preview.Changes
 endfunction
 
 " ドキュメント表示

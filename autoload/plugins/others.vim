@@ -53,10 +53,10 @@ endfunction
 
 "
 " fzf.vim
+" NOTE: 今は不使用
 "
 function! plugins#others#hook_add_fzf() abort
   let g:fzf_commands_expect = 'alt-enter,ctrl-x'
-  " nnoremap <C-p> :Files<CR>
   nnoremap <space>f :Files<CR>
   nnoremap <space>b :Buffers<CR>
   nnoremap <space>g :Rg<CR>

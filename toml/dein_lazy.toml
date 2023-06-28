@@ -152,8 +152,9 @@ repo = 'neoclide/coc.nvim'
 # rev = 'release'
 rev = 'master'
 build = 'yarn install --frozen-lockfile' # NOTE: masterの場合のみ
-depends = ['vim-snippets']
+depends = ['vim-snippets', 'fzf']
 on_event = ['CursorMoved', 'FileType']
+on_cmd = ['CocCommand']
 hook_add = '''
 call plugins#lsp_and_completion#hook_add_coc()
 '''
@@ -254,43 +255,7 @@ on_event = ['FileType']
 [[plugins]] # ファジーファインダー
 repo = 'junegunn/fzf'
 build = './install'
-on_source = 'fzf.vim'
-
-[[plugins]] # ファジーファインダー
-# NOTE: プレビューウィンドウをハイライトするには、batをインストールする
-# →brew install bat
-repo = 'junegunn/fzf.vim'
-# NOTE: こっちでもいい→on_source = ['fzf']
-on_cmd = [
-  'Files',
-  'GFiles',
-  'GFiles?',
-  'Buffers',
-  'Colors',
-  'Ag',
-  'Rg',
-  'Lines',
-  'BLines',
-  'Tags',
-  'BTags',
-  'Marks',
-  'Windows',
-  'Locate PATTERN',
-  'History',
-  'History:',
-  'History/',
-  'Snippets',
-  'Commits',
-  'BCommits',
-  'Commands',
-  'Maps',
-  'Helptags',
-  'Filetypes'
-]
-depends = ['fzf']
-hook_add = '''
-call plugins#others#hook_add_fzf()
-'''
+on_source = ['coc.nvim']
 
 [[plugins]] # vimから編集中のファイルを素早く実行するやつ
 # FIXME: 実行結果を右ではなく下に小さく表示させたい
