@@ -41,13 +41,13 @@ local function custom_color(bg_color, colorscheme)
     vim.api.nvim_set_hl(0, 'CocHighlightText', {
       bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
     })
-    if colorscheme == 'nightfly' then
+    if colorscheme == 'gruvbox' then
       vim.api.nvim_set_hl(0, 'HighlightedyankRegion', {
-        bg = utils.transparent_color(bg_color, "Magenta", 0.65),
+        bg = utils.transparent_color(bg_color, "#FD7E00", 0.70)
       })
     else
       vim.api.nvim_set_hl(0, 'HighlightedyankRegion', {
-        bg = utils.transparent_color(bg_color, "#FD7E00", 0.70)
+        bg = utils.transparent_color(bg_color, "Magenta", 0.65),
       })
     end
     -- vim-matchup
@@ -302,6 +302,15 @@ M.lua_add_gruvbox = function()
   custom_color(bg_color, "gruvbox")
   vim.o.background = "dark"
   vim.cmd [[colorscheme gruvbox]]
+end
+
+--
+-- nightfox.nvim
+--
+M.lua_add_nightfox = function()
+  local bg_color = "#192330" -- :hi Normal
+  custom_color(bg_color, "nightfox")
+  vim.cmd("colorscheme nightfox")
 end
 
 --

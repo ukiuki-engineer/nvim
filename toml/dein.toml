@@ -32,11 +32,23 @@ require("plugins.ui").lua_add_lualine()
 '''
 
 [[plugins]]
-repo = 'ellisonleao/gruvbox.nvim'
-depends = ['impatient.nvim']
-lua_add = '''
-require("plugins.ui").lua_add_gruvbox()
+repo = 'vim-denops/denops.vim'
+
+[[plugins]]
+repo = 'vim-skk/skkeleton'
+depends = ['denops']
+hook_add = '''
+call plugins#code_editting#hook_add_skkeleton()
 '''
+################################################################################
+# ColorScheme
+################################################################################
+# [[plugins]]
+# repo = 'ellisonleao/gruvbox.nvim'
+# depends = ['impatient.nvim']
+# lua_add = '''
+# require("plugins.ui").lua_add_gruvbox()
+# '''
 
 # [[plugins]]
 # repo = 'bluz71/vim-nightfly-colors'
@@ -46,11 +58,9 @@ require("plugins.ui").lua_add_gruvbox()
 # '''
 
 [[plugins]]
-repo = 'vim-denops/denops.vim'
-
-[[plugins]]
-repo = 'vim-skk/skkeleton'
-depends = ['denops']
-hook_add = '''
-call plugins#code_editting#hook_add_skkeleton()
+repo = 'EdenEast/nightfox.nvim'
+depends = ['impatient.nvim']
+lua_add = '''
+require("plugins.ui").lua_add_nightfox()
 '''
+
