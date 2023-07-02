@@ -64,3 +64,9 @@ lua_add = '''
 require("plugins.ui").lua_add_nightfox()
 '''
 
+# [[plugins]]
+# repo = 'catppuccin/nvim'
+# depends = ['impatient.nvim']
+# lua_add = '''
+# require("plugins.ui").lua_add_catppuccin()
+# '''
