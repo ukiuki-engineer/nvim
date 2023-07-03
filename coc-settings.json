@@ -91,4 +91,13 @@
   // "php-cs-fixer.rules": "",
   "php-cs-fixer.enable": false,
   "solargraph.diagnostics": true,
+  "workspace.rootPatterns": [
+    ".git",
+    ".hg",
+    ".projections.json",
+    ".env"
+  ],
+  // "workspace.bottomUpFiletypes": ["*"],
+  // "workspace.workspaceFolderCheckCwd": false,
+  // "workspace.workspaceFolderFallbackCwd": false,
 }
