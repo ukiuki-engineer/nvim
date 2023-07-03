@@ -4,46 +4,6 @@
 基本的にはMac(iTerm2)で使用。たまにWindowsのWSL(Windows Terminal)で使用。  
 ![image](https://github.com/ukiuki-engineer/nvim/assets/101523180/2bce9011-06d4-499c-9a19-bc38f7ff8c23)
 
-## ディレクトリ構成
-```
-nvim/
-    ├── init.vim                   " メイン
-    ├── autoload/
-    │   ├── utils.vim              " 共通処理(vimscript)
-    │   └── plugins/               " 各プラグインの設定(vimscript)
-    │       ├── ui.vim
-    │       ├── code_editting.vim
-    │       ├── lsp_and_completion.vim
-    │       ├── git.vim
-    │       └── others.vim
-    ├── lua/
-    │   ├── utils.lua              " 共通処理(lua)
-    │   └── plugins/               " 各プラグインの設定(lua)
-    │       ├── ui.lua
-    │       ├── code_editting.lua
-    │       ├── lsp_and_completion.lua
-    │       ├── git.lua
-    │       └── others.lua
-    ├── test/                      " テスト
-    ├── rc/
-    │   ├── my_vimrc.vim           " 基本的な設定とその他の設定の読み込み処理
-    │   ├── my_clipboard.vim       " クリップボード設定(※1)
-    │   ├── my_ime.vim             " IME切り替え設定
-    │   ├── my_terminal.vim        " :terminal周りの設定
-    │   └── paste_image.vim        " 画像貼り付け
-    ├── toml/
-    │   ├── dein.toml              " プラグイン(通常ロード)
-    │   └── dein_lazy.toml         " プラグイン(遅延ロード)
-    ├── coc-settings.json          " coc.nvimの設定
-    ├── .editorconfig              " editorconfig
-    ├── colors/
-    └── pack/
-        └── plugins/
-            └── start/             " プラグインを作る時にここにシンボリックリンクを貼ってテストしたり
-```
-
-※1 何かのタイミングで、WSLでクリップボードが何故か極端に重くなり起動時間に影響が出たため、ファイル分割して遅延読み込みさせることにした。
-
 ## 起動速度
 - WSL2で測定した結果
 ```
@@ -55,8 +15,6 @@ Total Average: 25.044000 msec
 Total Max:     25.874000 msec
 Total Min:     23.898000 msec
 ```
-Macだとこれの倍近くかかる。  
-Linuxだから速いってことだとすると、WSLじゃなくて素のLinuxならもっと速いのかも。
 
 - ハードウェアスペック
 
@@ -82,70 +40,6 @@ Linuxだから速いってことだとすると、WSLじゃなくて素のLinux�
   ```
   のようなifは、Windows領域へファイルを探しにいくので起動速度への影響が大きい。  
   そのため、こういった処理は起動時ではなく後から行うようにする。
-
-## プラグイン管理
-dein.vimを使用。
-
-## インストールが必要な外部ツール
-本当はもっとある気がするけど主なものだけでもメモしておく。
-- ripgrep  
-→強くなったgrep的なやつ。fzfでgrepする時使う。
-- bat  
-→fzfのプレビューウィンドウをsyntax highlightするのに必要
-- node, npm  
-→coc.nvimを使用するのに必要
-- [mdr](https://github.com/MichaelMure/mdr)  
-→Markdownをプレビューするのに使う(preview-markdown.vim)
-
-## session管理
-ウィンドウ分割やタブを頻繁に使用するため、sessionは超使ってる。  
-定期的にプロジェクトのルートで`:mksession!`してSession.vimを保存する。  
-開く時は`:silent! source Session.vim(or Session.vimのシンボリックリンク)`  
-sessionは多少工夫しないとよく壊れる。以下が壊れないための対策。
-- sessionoptionsで、保存する内容を限定する。以下のように設定している。
-```vim
-set sessionoptions=buffers,curdir,tabpages
-```
-- NvimTreeやhelpなど、sessionが不安定になりやすいものを閉じた状態で`:mesession!`で保存する  
-(helpは保存しないようにオプションで設定はしているが、念の為)
-
-## ファイル管理
-- ファイルの行き来
-  - 主にfzfとNvimTreeで行き来する
-    - fzf
-      - ファイル名検索(プロジェクト内)
-      - ファイル名検索(バッファリスト内)
-      - grep  
-    - NvimTree  
-    主に`<C-w>t`(:NvimTreeFindFile)で現在のファイル位置にジャンプしてそこを起点にファイルを探すときくらい  
-    後は普通にプロジェクトのルートからディレクトリを辿ったりとか(あんましない)
-  - 定義ジャンプ(coc.nvimの機能)
-  - (たまに)`:terminal`→シェル芸でファイルを探す→`gf`  
-  がっつり検索したい時はシェル芸で探した方が早い
-- ファイル作成、リネーム、移動等  
-NvimTreeの機能を使うか、Terminalモードで。
-
-## カッコ、クォーテーション、htmlの閉じタグ補完
-[自作プラグイン](https://github.com/ukiuki-engineer/vim-autoclose)を使用。  
-毎日使いながらちょっとずつチューニングしてきたためそれなりに安定しているかと...  
-htmlのタグに関しては、cocのスニペットを使用することもあるが、ぶつかることなく共存可能。
-
-## 補完、LSP
-- [coc.nvim](https://github.com/neoclide/coc.nvim)
-→基本こっち
-- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)  
-→コマンドライン補完、skkeletonの補完のみこっち
-
-## Git操作
-- diffview.nvim  
-vimのdiffでgit差分を見ながら、編集、変更の破棄やstageもできるので超便利。
-![image](https://github.com/ukiuki-engineer/nvim/assets/101523180/42b5cfef-1764-4fb3-a85c-45e9a6eedee4)
-
-- vim-fugitive  
-`:Git commit`とか`:Git push`とか。
-
-## 小指の痛み対策
-よく左小指を痛めるので、mouseでの操作性もなるべく上げていきたい...
 
 ## NOTE
 自分用メモ
