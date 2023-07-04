@@ -249,6 +249,11 @@ require("plugins.others").lua_source_treesitter()
 '''
 
 [[plugins]]
+repo = 'nvim-treesitter/playground'
+depends = ['nvim-treesitter']
+on_cmd = ['TSPlaygroundToggle']
+
+[[plugins]]
 repo = 'JoosepAlviste/nvim-ts-context-commentstring'
 on_event = ['FileType']
 
