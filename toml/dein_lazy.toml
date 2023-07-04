@@ -267,6 +267,7 @@ repo = 'nvim-telescope/telescope.nvim'
 depends = ['plenary']
 on_cmd = [
   'Buffers',
+  'FindAllFiles',
   'FindFiles',
   'GitStatus',
   'HelpTags',

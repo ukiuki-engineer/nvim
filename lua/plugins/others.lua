@@ -93,6 +93,7 @@ end
 -- NOTE: on_cmdで遅延ロードさせるためにこういう回りくどいやり方をしている…
 --
 M.lua_add_telescope = function()
+  vim.keymap.set('n', '<space>af', "<Cmd>FindAllFiles<CR>", {})
   vim.keymap.set('n', '<space>b', "<Cmd>Buffers<CR>", {})
   vim.keymap.set('n', '<space>f', "<Cmd>FindFiles<CR>", {})
   vim.keymap.set('n', '<space>g', "<Cmd>LiveGrep<CR>", {})
@@ -100,11 +101,16 @@ end
 
 M.lua_source_telescope = function()
   vim.api.nvim_create_user_command('Buffers', "lua require('telescope.builtin').buffers()", {})
+  vim.api.nvim_create_user_command('FindAllFiles', [[lua require('telescope.builtin').find_files({
+    hidden = true,
+    no_ignore = true,
+  })]], {})
   vim.api.nvim_create_user_command('FindFiles', "lua require('telescope.builtin').find_files()", {})
   vim.api.nvim_create_user_command('GitStatus', "lua require('telescope.builtin').git_status()", {})
   vim.api.nvim_create_user_command('HelpTags', "lua require('telescope.builtin').help_tags()", {})
   vim.api.nvim_create_user_command('LiveGrep', "lua require('telescope.builtin').live_grep()", {})
 end
+
 --
 -- toggleterm.nvim
 --
