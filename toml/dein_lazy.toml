@@ -236,7 +236,7 @@ require("plugins.git").lua_source_diffview()
 
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
-on_source = ['diffview']
+on_source = ['diffview', 'telescope.nvim']
 ################################################################################
 # Others
 ################################################################################
@@ -261,6 +261,24 @@ on_event = ['FileType']
 repo = 'junegunn/fzf'
 build = './install'
 on_source = ['coc.nvim']
+
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+depends = ['plenary']
+on_cmd = [
+  'Buffers',
+  'FindFiles',
+  'GitStatus',
+  'HelpTags',
+  'LiveGrep',
+  'Telescope',
+]
+lua_add = '''
+require("plugins.others").lua_add_telescope()
+'''
+lua_source = '''
+require("plugins.others").lua_source_telescope()
+'''
 
 [[plugins]] # vimから編集中のファイルを素早く実行するやつ
 # FIXME: 実行結果を右ではなく下に小さく表示させたい

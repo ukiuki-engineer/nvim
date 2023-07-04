@@ -50,15 +50,3 @@ function! plugins#others#hook_source_toggleterm() abort
   " カレントバッファのディレクトリでterminalを開く
   command! ToggleTermHere ToggleTerm dir=%:h
 endfunction
-
-"
-" fzf.vim
-" NOTE: 今は不使用
-"
-function! plugins#others#hook_add_fzf() abort
-  let g:fzf_commands_expect = 'alt-enter,ctrl-x'
-  nnoremap <space>f :Files<CR>
-  nnoremap <space>b :Buffers<CR>
-  nnoremap <space>g :Rg<CR>
-endfunction
-

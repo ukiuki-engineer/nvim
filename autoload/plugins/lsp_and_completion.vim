@@ -48,24 +48,9 @@ function! plugins#lsp_and_completion#hook_add_coc() abort
     \ 'coc-yank',
   \ ]
 
-  " CocCommand fzf-preview.CocOutline
-  nnoremap <silent> mo :CocCommand fzf-preview.CocOutline<CR>
-  " ファイル名検索
-  nnoremap <silent> <space>f :CocCommand fzf-preview.ProjectFiles<CR>
-  " バッファの中からファイル名検索
-  nnoremap <silent> <space>b :CocCommand fzf-preview.Buffers<CR>
-  " grep
-  nnoremap <space>g :CocCommand fzf-preview.ProjectGrep<Space>
-  " 開いているバッファをgrep
-  command! BufferLines :CocCommand fzf-preview.BufferLines
-  " カレントバッファの変更箇所(:changesのfzf版)
+  command! PreviewCocOutline :CocCommand fzf-preview.CocOutlie
+  command! ProjectFiles :CocCommand fzf-preview.ProjectFiles
   command! Changes :CocCommand fzf-preview.Changes
-  " ディレクトリ内をファイル名検索
-  command! Files :CocCommand fzf-preview.DirectoryFiles
-  " git status
-  command! GitStatus :CocCommand fzf-preview.GitStatus
-  " カレントバッファをgrep
-  command! Lines :CocCommand fzf-preview.Lines
 endfunction
 
 function! plugins#lsp_and_completion#hook_source_coc() abort
