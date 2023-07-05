@@ -65,6 +65,12 @@ function! plugins#code_editting#hook_source_autoclose() abort
       \ 'output'    : '%%>',
       \ 'back_count': 2
     \ })
+    autocmd FileType blade call autoclose#custom_completion({
+      \ 'prev_char' : '{',
+      \ 'input_char': '-',
+      \ 'output'    : '--  --',
+      \ 'back_count': 3
+    \ })
   augroup END
 endfunction
 
