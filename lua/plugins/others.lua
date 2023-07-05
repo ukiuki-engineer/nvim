@@ -107,6 +107,7 @@ M.lua_source_telescope = function()
   })]], {})
   vim.api.nvim_create_user_command('FindFiles', "lua require('telescope.builtin').find_files()", {})
   vim.api.nvim_create_user_command('GitStatus', "lua require('telescope.builtin').git_status()", {})
+  vim.api.nvim_create_user_command('GrepCurrentBuffer', "lua require('telescope.builtin').current_buffer_fuzzy_find()", {})
   vim.api.nvim_create_user_command('HelpTags', "lua require('telescope.builtin').help_tags()", {})
   vim.api.nvim_create_user_command('LiveGrep', "lua require('telescope.builtin').live_grep()", {})
 end
