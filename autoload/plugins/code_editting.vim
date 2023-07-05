@@ -53,7 +53,7 @@ function! plugins#code_editting#hook_source_autoclose() abort
   " カスタム補完定義
   augroup autoclose#custom_completion
     autocmd!
-    autocmd FileType html,vue call autoclose#custom_completion({
+    autocmd FileType html,vue,markdown call autoclose#custom_completion({
       \ 'prev_char' : '<',
       \ 'input_char': '!',
       \ 'output'    : '!--  -->',
