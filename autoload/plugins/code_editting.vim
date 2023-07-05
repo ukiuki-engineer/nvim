@@ -11,7 +11,7 @@ function! plugins#code_editting#hook_source_matchup() abort
     \ 'xml': {'tagnameonly': 1},
     \ 'blade': {'tagnameonly': 1},
     \ 'vue': {'tagnameonly': 1},
-  \}
+  \ }
 endfunction
 
 "
@@ -41,42 +41,31 @@ function! plugins#code_editting#hook_source_autoclose() abort
   " 補完キャンセル機能をオン
   let g:autoclose#cancel_completion_enable = 1
 	let g:autoclose#enabled_autoclosing_tags_filetypes = [
-	  \"html",
-	  \"xml",
-	  \"javascript",
-	  \"blade",
-	  \"eruby",
-	  \"vue",
-	\]
+	  \ "html",
+	  \ "xml",
+	  \ "javascript",
+	  \ "blade",
+	  \ "eruby",
+	  \ "vue",
+	\ ]
   " <C-c>で補完をキャンセル
   inoremap <silent><expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
-  augroup AutocloseHtmlComment
+  " カスタム補完定義
+  augroup autoclose#custom_completion
     autocmd!
-    autocmd FileType html,vue call plugins#code_editting#autoclose_html_comment()
+    autocmd FileType html,vue call autoclose#custom_completion({
+      \ 'prev_char' : '<',
+      \ 'input_char': '!',
+      \ 'output'    : '!--  -->',
+      \ 'back_count': 4
+    \ })
+    autocmd FileType eruby call autoclose#custom_completion({
+      \ 'prev_char' : '<',
+      \ 'input_char': '%',
+      \ 'output'    : '%%>',
+      \ 'back_count': 2
+    \ })
   augroup END
-endfunction
-
-"
-" <!--  -->の補完
-"
-" ここに書くのは変だけど、一旦ここで(これは補完というよりスニペットでやった方が良い？)
-" TODO: leximaみたいに、vim-autoclose(自作)にルールを追加できるようにする。例えば以下のような感じ。
-" call autoclose#add_rule({'prev_string': '<', 'input_char': '!', 'output': '!--  -->', 'back_count': 4, 'filetype': ['html', 'vue']})
-" call autoclose#add_rule({'prev_string': '<', 'input_char': '%', 'output': '%%>', 'back_count': 2, 'filetype': ['html', 'vue']})
-function! plugins#code_editting#autoclose_html_comment() abort
-  " NOTE: mapの引数に<buffer>を指定することで、カレントバッファだけマップする
-  inoremap <buffer> <expr> ! plugins#code_editting#write_html_comment()
-endfunction
-
-function! plugins#code_editting#write_html_comment() abort
-  " カーソルの前の文字
-  let l:prev_char = getline('.')[col('.') - 2]
-  " カーソルの前の文字が<の場合、--  -->を補完し、それ以外は!を返す
-  if l:prev_char == "<"
-    return "!--  -->\<Left>\<Left>\<Left>\<Left>"
-  else
-    return "!"
-  endif
 endfunction
 
 "
