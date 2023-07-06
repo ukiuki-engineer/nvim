@@ -31,23 +31,23 @@ endfunction
 " vim-autoclose(自作)
 "
 function! plugins#code_editting#hook_source_autoclose() abort
-	" let g:autoclose#autoclosing_brackets_enable = 0
-	" let g:autoclose#autoclosing_quots_enable = 0
-	" let g:autoclose#autoclosing_eruby_tags = 0
+  " let g:autoclose#autoclosing_brackets_enable = 0
+  " let g:autoclose#autoclosing_quots_enable = 0
+  " let g:autoclose#autoclosing_eruby_tags = 0
   let g:autoclose#disable_nextpattern_autoclosing_brackets = []
   let g:autoclose#disable_nextpattern_autoclosing_quots = []
   " 改行の整形機能をオフ
   let g:autoclose#autoformat_newline_enable = 0
   " 補完キャンセル機能をオン
   let g:autoclose#cancel_completion_enable = 1
-	let g:autoclose#enabled_autoclosing_tags_filetypes = [
-	  \ "html",
-	  \ "xml",
-	  \ "javascript",
-	  \ "blade",
-	  \ "eruby",
-	  \ "vue",
-	\ ]
+  let g:autoclose#enabled_autoclosing_tags_filetypes = [
+    \ "html",
+    \ "xml",
+    \ "javascript",
+    \ "blade",
+    \ "eruby",
+    \ "vue",
+  \ ]
   " <C-c>で補完をキャンセル
   inoremap <silent><expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
   " カスタム補完定義
