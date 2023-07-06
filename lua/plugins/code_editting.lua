@@ -8,16 +8,16 @@ local M = {}
 M.lua_source_indent_blankline = function()
   vim.opt.list = true
   vim.opt.listchars:append({
-    space = "⋅",
-    tab = "»-",
-    trail = "-",
-    eol = "↓",
-    extends = "»",
+    space    = "⋅",
+    tab      = "»-",
+    trail    = "-",
+    eol      = "↓",
+    extends  = "»",
     precedes = "«",
-    nbsp = "%"
+    nbsp     = "%"
   })
   require("indent_blankline").setup {
-    show_end_of_line = true,
+    show_end_of_line     = true,
     space_char_blankline = " "
   }
 end

@@ -7,10 +7,10 @@
 function! plugins#code_editting#hook_source_matchup() abort
   " TODO: bladeでtagnameonlyが効かない
   let g:matchup_matchpref = {
-    \ 'html': {'tagnameonly': 1},
-    \ 'xml': {'tagnameonly': 1},
+    \ 'html' : {'tagnameonly': 1},
+    \ 'xml'  : {'tagnameonly': 1},
     \ 'blade': {'tagnameonly': 1},
-    \ 'vue': {'tagnameonly': 1},
+    \ 'vue'  : {'tagnameonly': 1},
   \ }
 endfunction
 
@@ -87,8 +87,7 @@ endfunction
 function! plugins#code_editting#hook_source_colorizer() abort
   augroup MyColorizer
     autocmd!
-    autocmd FileType css,html,less,sass,scss,stylus,vim,blade,vue,eruby,toml,lua ColorizerAttachToBuffer
-    autocmd BufEnter *.css,*.html,*.sass,*.scss,*.vim,*.blade.php,*.vue,*.erb,*.toml,*.lua ColorizerAttachToBuffer
+    autocmd FileType css,html,xml,less,sass,scss,stylus,vim,blade,vue,eruby,toml,lua,javascript,markdown ColorizerAttachToBuffer
   augroup END
 endfunction
 
@@ -125,13 +124,13 @@ endfunction
 function! plugins#code_editting#skkeleton_init() abort
   " NOTE: 多分、絵文字に関しては、Macならctrl+cmd+spaceを押した方が早い
   call skkeleton#config({
-    \ 'eggLikeNewline': v:true,
+    \ 'eggLikeNewline'    : v:true,
     \ 'globalDictionaries': [[s:skk_dir .. "/SKK-JISYO.L", "euc-jp"], s:skk_dir .. "/SKK-JISYO.emoji.utf8", [s:skk_dir .. "/SKK-JISYO.jinmei", "euc-jp"]],
-    \ 'usePopup': v:true
+    \ 'usePopup'          : v:true
   \ })
   call skkeleton#register_kanatable('rom', {
-    \ "xn": ['ん', ''],
-    \ "~": ['〜', ''],
+    \ "xn"       : ['ん', ''],
+    \ "~"        : ['〜', ''],
     \ "z\<Space>": ["\u3000", ''],
   \ })
   call skkeleton#register_keymap('henkan', '<S-Space>', 'henkanBackward')

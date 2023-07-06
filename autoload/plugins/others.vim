@@ -17,9 +17,9 @@ function! plugins#others#hook_source_vimhelpgenerator() abort
   let g:vimhelpgenerator_version = ''
   let g:vimhelpgenerator_author = 'Author  : ukiuki-engineer'
   let g:vimhelpgenerator_contents = {
-    \ 'contents': 1, 'introduction': 1, 'usage': 1, 'interface': 1,
+    \ 'contents' : 1, 'introduction': 1, 'usage': 1, 'interface': 1,
     \ 'variables': 1, 'commands': 1, 'key-mappings': 1, 'functions': 1,
-    \ 'setting': 0, 'todo': 1, 'changelog': 0
+    \ 'setting'  : 0, 'todo': 1, 'changelog': 0
     \}
 endfunction
 

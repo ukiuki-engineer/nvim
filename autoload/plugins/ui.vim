@@ -15,19 +15,3 @@ function! plugins#ui#hook_add_nvim_tree() abort
   nnoremap <silent> <C-n> :NvimTreeToggle<CR>
   nnoremap <silent> <C-w>t :NvimTreeFindFile<CR>
 endfunction
-
-"
-" nvim-base16
-"
-function! plugins#ui#hook_add_base16() abort
-  " colorscheme base16-ayu-dark
-  " colorscheme base16-decaf
-  "  emacsのテーマ
-  " colorscheme base16-spacemacs
-  " 良いけどコメントが究極的に見づらい...
-  " colorscheme base16-tender
-  " colorscheme base16-da-one-sea
-  " atomのテーマ。これもコメントが見づらい...
-  " colorscheme base16-onedark
-  colorscheme base16-atlas
-endfunction
