@@ -129,9 +129,17 @@ function! plugins#code_editting#skkeleton_init() abort
     \ 'usePopup'          : v:true
   \ })
   call skkeleton#register_kanatable('rom', {
-    \ "xn"       : ['ん', ''],
-    \ "~"        : ['〜', ''],
-    \ "z\<Space>": ["\u3000", ''],
+    \ "xn"          : ['ん', ''],
+    \ "&"           : ['＆', ''],
+    \ "("           : ['（', ''],
+    \ ")"           : ['）', ''],
+    \ "_"           : ['＿', ''],
+    \ "+"           : ['＋', ''],
+    \ "="           : ['＝', ''],
+    \ "~"           : ['〜', ''],
+    \ "\'"          : ['’', ''],
+    \ "\""          : ['”', ''],
+    \ "z\<Space>"   : ["\u3000", ''],
   \ })
   call skkeleton#register_keymap('henkan', '<S-Space>', 'henkanBackward')
 endfunction
