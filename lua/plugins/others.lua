@@ -110,6 +110,20 @@ M.lua_source_telescope = function()
   vim.api.nvim_create_user_command('GrepCurrentBuffer', "lua require('telescope.builtin').current_buffer_fuzzy_find()", {})
   vim.api.nvim_create_user_command('HelpTags', "lua require('telescope.builtin').help_tags()", {})
   vim.api.nvim_create_user_command('LiveGrep', "lua require('telescope.builtin').live_grep()", {})
+
+  require('telescope').setup({
+    defaults = {
+      mappings = {
+        i = {
+          ["<C-j>"] = function()
+            vim.cmd([[call skkeleton#handle('toggle', {})]])
+          end
+        }
+      }
+    },
+    -- pickers = {},
+    -- extensions = {}
+  })
 end
 
 --
