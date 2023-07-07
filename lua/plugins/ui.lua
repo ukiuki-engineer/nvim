@@ -60,6 +60,20 @@ local function custom_color(bg_color, colorscheme)
     })
     vim.api.nvim_set_hl(0, 'MatchWord', {link = "MatchParen"})
     vim.api.nvim_set_hl(0, 'MatchWordCur', {link = "MatchParen"})
+    -- search
+    if colorscheme == 'gruvbox' then
+      vim.api.nvim_set_hl(0, 'CurSearch', {
+        reverse = true,
+        fg = "#FABD2F",
+        bg = "#282828",
+      })
+      vim.api.nvim_set_hl(0, 'IncSearch', {
+        bg = utils.transparent_color(bg_color, "#FABD2F", 0.70),
+      })
+      vim.api.nvim_set_hl(0, 'Search', {
+        link = "IncSearch"
+      })
+    end
   end
 
   local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
@@ -74,6 +88,47 @@ end
 -- public
 -----------------------------------------------------------------------------------
 local M = {}
+-- colorschemes {{{
+
+--
+-- vim-nightfly-colors
+--
+M.lua_add_nightfly_colors = function()
+  local bg_color = "#011627" -- :hi Normal
+  custom_color(bg_color, "nightfly")
+  vim.cmd([[colorscheme nightfly]])
+end
+
+--
+-- gruvbox.nvim
+--
+M.lua_add_gruvbox = function()
+  local bg_color = "#282828" -- :hi Normal
+  custom_color(bg_color, "gruvbox")
+  vim.o.background = "dark"
+  vim.cmd([[colorscheme gruvbox]])
+end
+
+--
+-- nightfox.nvim
+--
+M.lua_add_nightfox = function()
+  local bg_color = "#192330" -- :hi Normal
+  custom_color(bg_color, "nightfox")
+  vim.cmd([[colorscheme nightfox]])
+end
+
+--
+-- catppuccin.nvim
+--
+M.lua_add_catppuccin = function()
+  local bg_color = "1e1e2e" -- :hi Normal
+  custom_color(bg_color, "catppuccin-mocha")
+  vim.cmd([[colorscheme catppuccin]])
+end
+
+-- }}}
+
 --
 -- lualine.nvim
 --
@@ -285,43 +340,6 @@ M.lua_source_dropbar = function()
     },
   })
   vim.keymap.set('n', '<space>p', require('dropbar.api').pick)
-end
-
---
--- vim-nightfly-colors
---
-M.lua_add_nightfly_colors = function()
-  local bg_color = "#011627" -- :hi Normal
-  custom_color(bg_color, "nightfly")
-  vim.cmd [[colorscheme nightfly]]
-end
-
---
--- gruvbox.nvim
---
-M.lua_add_gruvbox = function()
-  local bg_color = "#282828" -- :hi Normal
-  custom_color(bg_color, "gruvbox")
-  vim.o.background = "dark"
-  vim.cmd [[colorscheme gruvbox]]
-end
-
---
--- nightfox.nvim
---
-M.lua_add_nightfox = function()
-  local bg_color = "#192330" -- :hi Normal
-  custom_color(bg_color, "nightfox")
-  vim.cmd("colorscheme nightfox")
-end
-
---
--- catppuccin.nvim
---
-M.lua_add_catppuccin = function()
-  local bg_color = "1e1e2e" -- :hi Normal
-  custom_color(bg_color, "catppuccin-mocha")
-  vim.cmd("colorscheme catppuccin")
 end
 
 --
