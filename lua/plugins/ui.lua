@@ -45,7 +45,7 @@ local function custom_color(bg_color, colorscheme)
     })
     if colorscheme == 'gruvbox' then
       vim.api.nvim_set_hl(0, 'HighlightedyankRegion', {
-        bg = utils.transparent_color(bg_color, "#FD7E00", 0.70)
+        bg = utils.transparent_color(bg_color, "#FD7E00", 0.65)
       })
     else
       vim.api.nvim_set_hl(0, 'HighlightedyankRegion', {

@@ -25,6 +25,10 @@ M.lua_source_treesitter = function()
     },
     ensure_installed = 'all', -- :TSInstall allと同じ
   }
+  -- Highlight the @foo.bar capture group with the "Identifier" highlight group
+  -- vim.api.nvim_set_hl(0, "@foo.bar", { link = "Identifier" })
+  -- Highlight @foo.bar as "Identifier" only in Lua files
+  -- vim.api.nvim_set_hl(0, "@foo.bar.lua", { link = "Identifier" })
   -- FIXME: 全部書かずに、追加分だけ書く事はできないのか？
   require("vim.treesitter.query").set(
     "markdown",
