@@ -94,9 +94,9 @@ end
 
 --
 -- telescope.nvim
--- NOTE: on_cmdで遅延ロードさせるためにこういう回りくどいやり方をしている…
 --
 M.lua_add_telescope = function()
+  -- NOTE: on_cmdで遅延ロードさせるためにこういう回りくどいやり方をしている…
   vim.keymap.set('n', '<space>af', "<Cmd>FindAllFiles<CR>", {})
   vim.keymap.set('n', '<space>b', "<Cmd>Buffers<CR>", {})
   vim.keymap.set('n', '<space>f', "<Cmd>FindFiles<CR>", {})
@@ -110,6 +110,7 @@ M.lua_source_telescope = function()
     no_ignore = true,
   })]], {})
   vim.api.nvim_create_user_command('FindFiles', "lua require('telescope.builtin').find_files()", {})
+  vim.api.nvim_create_user_command('GitBranches', "lua require('telescope.builtin').git_branches()", {})
   vim.api.nvim_create_user_command('GitStatus', "lua require('telescope.builtin').git_status()", {})
   vim.api.nvim_create_user_command('GrepCurrentBuffer', "lua require('telescope.builtin').current_buffer_fuzzy_find()", {})
   vim.api.nvim_create_user_command('HelpTags', "lua require('telescope.builtin').help_tags()", {})
@@ -117,17 +118,32 @@ M.lua_source_telescope = function()
 
   require('telescope').setup({
     defaults = {
+      layout_config = {
+        height = 0.90,
+        width  = 0.95
+      },
       mappings = {
         i = {
           ["<C-j>"] = function()
             vim.cmd([[call skkeleton#handle('toggle', {})]])
-          end
-        }
-      }
+          end,
+          ["<C-h>"] = "which_key", -- keymapのhelpを表示
+        },
+      },
+
     },
     -- pickers = {},
-    -- extensions = {}
+    extensions = {
+      fzf = {
+        fuzzy = true,                    -- false will only do exact matching
+        override_generic_sorter = false, -- override the generic sorter
+        override_file_sorter = true,     -- override the file sorter
+        case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                         -- the default case_mode is "smart_case"
+      }
+    }
   })
+  require('telescope').load_extension('fzf')
 end
 
 --

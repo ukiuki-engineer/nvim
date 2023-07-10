@@ -264,11 +264,12 @@ on_source = ['coc.nvim']
 
 [[plugins]]
 repo = 'nvim-telescope/telescope.nvim'
-depends = ['plenary']
+depends = ['plenary', 'telescope-fzf-native.nvim']
 on_cmd = [
   'Buffers',
   'FindAllFiles',
   'FindFiles',
+  'GitBranches',
   'GitStatus',
   'GrepCurrentBuffer',
   'HelpTags',
@@ -281,6 +282,11 @@ require("plugins.others").lua_add_telescope()
 lua_source = '''
 require("plugins.others").lua_source_telescope()
 '''
+
+[[plugins]]
+repo = 'nvim-telescope/telescope-fzf-native.nvim'
+build = 'make'
+on_source = ['telescope.nvim']
 
 [[plugins]] # vimから編集中のファイルを素早く実行するやつ
 # FIXME: 実行結果を右ではなく下に小さく表示させたい
