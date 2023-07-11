@@ -97,7 +97,6 @@ end
 --
 M.lua_add_telescope = function()
   -- NOTE: on_cmdで遅延ロードさせるためにこういう回りくどいやり方をしている…
-  vim.keymap.set('n', '<space>af', "<Cmd>FindAllFiles<CR>", {})
   vim.keymap.set('n', '<space>b', "<Cmd>Buffers<CR>", {})
   vim.keymap.set('n', '<space>f', "<Cmd>FindFiles<CR>", {})
   vim.keymap.set('n', '<space>g', "<Cmd>LiveGrep<CR>", {})
@@ -105,11 +104,14 @@ end
 
 M.lua_source_telescope = function()
   vim.api.nvim_create_user_command('Buffers', "lua require('telescope.builtin').buffers()", {})
-  vim.api.nvim_create_user_command('FindAllFiles', [[lua require('telescope.builtin').find_files({
-    hidden = true,
-    no_ignore = true,
-  })]], {})
-  vim.api.nvim_create_user_command('FindFiles', "lua require('telescope.builtin').find_files()", {})
+  vim.api.nvim_create_user_command(
+    'FindFiles',
+    [[lua require('telescope.builtin').find_files({
+      find_command = {"rg", "--files", "--hidden", "--follow", "--glob", "!**/.git/*"}
+    })]],
+    {}
+  )
+    -- find_command = {"rg --files --hidden --glob !*.git"}
   vim.api.nvim_create_user_command('GitBranches', "lua require('telescope.builtin').git_branches()", {})
   vim.api.nvim_create_user_command('GitStatus', "lua require('telescope.builtin').git_status()", {})
   vim.api.nvim_create_user_command('GrepCurrentBuffer', "lua require('telescope.builtin').current_buffer_fuzzy_find()", {})
@@ -127,7 +129,8 @@ M.lua_source_telescope = function()
           ["<C-j>"] = function()
             vim.cmd([[call skkeleton#handle('toggle', {})]])
           end,
-          ["<C-h>"] = "which_key", -- keymapのhelpを表示
+          -- NOTE: <C-/>でkeymapのhelpを表示
+          -- ["<C-/>"] = "which_key",
         },
       },
 
