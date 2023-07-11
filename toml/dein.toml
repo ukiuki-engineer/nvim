@@ -15,7 +15,7 @@ hook_add = '''
 lua require('impatient')
 '''
 
-# # FIXME: シェルスクリプトのときバグるので一旦オフに
+# FIXME: シェルスクリプトのときバグるので一旦オフに
 # [[plugins]] # 標準機能より高速にファイル形式を判別できる。
 # repo = 'nathom/filetype.nvim'
 # depends = ['impatient.nvim']

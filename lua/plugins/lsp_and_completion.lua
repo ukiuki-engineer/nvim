@@ -79,20 +79,12 @@ M.lua_source_nvim_cmp = function()
   -- コマンド
   cmp.setup.cmdline({':'}, {
     mapping = cmdline_mapping,
-    sources = {
+    sources = { -- NOTE: cmp.config.sources({...})とすると、
+                -- source同士が結合されて新しいsourceが作られるので上手くいかない
       { name = 'path' },
       { name = 'my_source' },
       { name = 'cmdline' },
     }
-    -- NOTE: 以下の書き方だと、source同士が結合されて新しいsourceが作られるらしい。
-    --       以下の書き方だとmy_sourceの一部が上手く補完されなかった。
-    -- sources = cmp.config.sources({
-    --   { name = 'path' },
-    -- }, {
-    --   { name = 'cmdline' }
-    -- }, {
-    --   { name = 'my_source' }
-    -- })
   })
 end
 

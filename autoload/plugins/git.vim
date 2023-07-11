@@ -21,19 +21,3 @@ function! s:CallBlamerShow(timer) abort
   endif
 endfunction
 
-"
-" vim-gitgutter
-"
-function! plugins#git#hook_source_gitgutter() abort
-  nnoremap ]c <Plug>(GitGutterNextHunk)
-  nnoremap [c <Plug>(GitGutterPrevHunk)
-  nnoremap ghp <Plug>(GitGutterPreviewHunk)
-  nnoremap ghs <Plug>(GitGutterStageHunk)
-  nnoremap ghu <Plug>(GitGutterUndoHunk)
-
-  augroup MyGitGutter
-    autocmd!
-    " 保存時も更新するように
-    autocmd BufWritePost * GitGutter
-  augroup END
-endfunction
