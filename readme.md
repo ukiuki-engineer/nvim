@@ -1,6 +1,4 @@
 # My Neovim Settings
-自分用Neovim設定ファイル。  
-まだNeovimを使い始めたばかりですが、なんとかそれなりに使える環境にはなってきたのかな...  
 基本的にはMac(iTerm2)で使用。たまにWindowsのWSL(Windows Terminal)で使用。  
 ![image](https://github.com/ukiuki-engineer/nvim/assets/101523180/2bce9011-06d4-499c-9a19-bc38f7ff8c23)
 
@@ -23,23 +21,39 @@ Total Min:     23.898000 msec
 |  CPU  |  AMD Ryzen 5 3500 6-Core Processor                 3.59 GHz  |
 | MEMORY | 16G |
 
-- 高速化のために気をつけている事
-  - プラグインの遅延ロード
-  - 設定の遅延ロード  
-  →例えばTerminalモードに関する設定を`autocmd TermOpen * ++once source 設定ファイル名`のように、使用するタイミングでロードするようにしたりなど。
-  - プラグイン設定をロードするタイミングにも気を遣う  
-  →(dein.vimを使用している場合)hook_sourceやhook_post_sourceなどでなるべくロードするタイミングを遅らせる
-  - 不要な標準プラグインを読み込まないように制御(場合によっては代替プラグインを探す)
-  - なるべく軽いプラグインを使用する  
-  →これで起動速度が倍くらい速くなったこともあるから結構大事...
-  - WSLの場合、固有の事情を考慮する  
-  →WSLは、Windows領域へのI/Oが遅いため、起動時には行わないようにする。  
-  例えば
-  ```vim
-  if exepath('zenhan.exe') != ""
-  ```
-  のようなifは、Windows領域へファイルを探しにいくので起動速度への影響が大きい。  
-  そのため、こういった処理は起動時ではなく後から行うようにする。
+## ディレクトリ構成
+```
+nvim/
+    ├── init.vim                   " メインファイル
+    ├── autoload/
+    │   ├── utils.vim              " 共通処理(vimscript)
+    │   └── plugins/               " 各プラグインの設定(vimscript)
+    │       ├── ui.vim
+    │       ├── code_editting.vim
+    │       ├── lsp_and_completion.vim
+    │       ├── git.vim
+    │       └── others.vim
+    ├── lua/
+    │   ├── utils.lua              " 共通処理(lua)
+    │   └── plugins/               " 各プラグインの設定(lua)
+    │       ├── ui.lua
+    │       ├── code_editting.lua
+    │       ├── lsp_and_completion.lua
+    │       ├── git.lua
+    │       └── others.lua
+    ├── rc/
+    │   ├── my_vimrc.vim           " 基本的な設定とその他の設定の読み込み処理
+    │   ├── my_clipboard.vim
+    │   ├── my_ime.vim
+    │   ├── my_terminal.vim
+    │   └── paste_image.vim
+    ├── toml/
+    │   ├── dein.toml              " プラグイン(通常ロード)
+    │   └── dein_lazy.toml         " プラグイン(遅延ロード)
+    ├── tools/                     " 色々なスクリプト類など
+    ├── coc-settings.json          " coc.nvimの設定
+    └── .editorconfig              " editorconfig
+```
 
 ## NOTE
 自分用メモ
