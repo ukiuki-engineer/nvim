@@ -267,6 +267,8 @@ repo = 'nvim-telescope/telescope.nvim'
 depends = ['plenary', 'telescope-fzf-native.nvim']
 on_cmd = [
   'Buffers',
+  'CommandHistories',
+  'Commands',
   'FindAllFiles',
   'FindFiles',
   'GitBranches',
@@ -274,6 +276,7 @@ on_cmd = [
   'GrepCurrentBuffer',
   'HelpTags',
   'LiveGrep',
+  'OldFiles',
   'Telescope',
 ]
 lua_add = '''

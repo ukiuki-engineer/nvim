@@ -25,7 +25,7 @@ local function custom_color(bg_color, colorscheme)
         fg = colorscheme == 'gruvbox' and require("gruvbox.palette").colors.dark2 or utils.transparent_color(bg_color, "#2F2F2F", 0.00)
       })
       vim.api.nvim_set_hl(0, 'DiffAdd', {                 -- 追加された行
-        bg = utils.transparent_color(bg_color, "#00A100", 0.85)
+        bg = utils.transparent_color(bg_color, "#00A100", 0.70)
       })
       vim.api.nvim_set_hl(0, 'DiffChange', {              -- 変更行
         bg = utils.transparent_color(bg_color, "#B9C42F", 0.80)

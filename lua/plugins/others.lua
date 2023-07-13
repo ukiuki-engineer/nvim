@@ -107,12 +107,14 @@ M.lua_source_telescope = function()
     })]],
     {}
   )
-    -- find_command = {"rg --files --hidden --glob !*.git"}
+  vim.api.nvim_create_user_command('CommandHistories', "lua require('telescope.builtin').command_history()", {})
+  vim.api.nvim_create_user_command('Commands', "lua require('telescope.builtin').commands()", {})
   vim.api.nvim_create_user_command('GitBranches', "lua require('telescope.builtin').git_branches()", {})
   vim.api.nvim_create_user_command('GitStatus', "lua require('telescope.builtin').git_status()", {})
   vim.api.nvim_create_user_command('GrepCurrentBuffer', "lua require('telescope.builtin').current_buffer_fuzzy_find()", {})
   vim.api.nvim_create_user_command('HelpTags', "lua require('telescope.builtin').help_tags()", {})
   vim.api.nvim_create_user_command('LiveGrep', "lua require('telescope.builtin').live_grep()", {})
+  vim.api.nvim_create_user_command('OldFiles', "lua require('telescope.builtin').oldfiles()", {})
 
   require('telescope').setup({
     defaults = {
