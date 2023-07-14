@@ -113,9 +113,6 @@ on_ft = [
 hook_source = '''
 call plugins#code_editting#hook_source_colorizer()
 '''
-lua_post_source = '''
-require 'colorizer'.setup()
-'''
 
 [[plugins]] # Markdownでtable作成
 repo = 'mattn/vim-maketable'

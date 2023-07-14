@@ -89,6 +89,7 @@ function! plugins#code_editting#hook_source_colorizer() abort
     autocmd!
     autocmd FileType css,html,xml,less,sass,scss,stylus,vim,blade,vue,eruby,toml,lua,javascript,markdown ColorizerAttachToBuffer
   augroup END
+  lua require 'colorizer'.setup()
 endfunction
 
 "
