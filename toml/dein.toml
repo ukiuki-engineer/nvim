@@ -43,30 +43,30 @@ call plugins#code_editting#hook_add_skkeleton()
 ################################################################################
 # ColorScheme
 ################################################################################
-[[plugins]]
-repo = 'ellisonleao/gruvbox.nvim'
-depends = ['impatient.nvim']
-lua_add = '''
-require("plugins.ui").lua_add_gruvbox()
-'''
+# [[plugins]]
+# repo = 'ellisonleao/gruvbox.nvim'
+# depends = ['impatient.nvim']
+# lua_post_source = '''
+# require("plugins.ui").lua_post_source_gruvbox()
+# '''
 
 # [[plugins]]
 # repo = 'bluz71/vim-nightfly-colors'
 # depends = ['impatient.nvim']
-# lua_add = '''
-# require("plugins.ui").lua_add_nightfly_colors()
+# lua_post_source = '''
+# require("plugins.ui").lua_post_source_nightfly_colors()
 # '''
 
-# [[plugins]]
-# repo = 'EdenEast/nightfox.nvim'
-# depends = ['impatient.nvim']
-# lua_add = '''
-# require("plugins.ui").lua_add_nightfox()
-# '''
+[[plugins]]
+repo = 'EdenEast/nightfox.nvim'
+depends = ['impatient.nvim']
+lua_post_source = '''
+require("plugins.ui").lua_post_source_nightfox()
+'''
 
 # [[plugins]]
 # repo = 'catppuccin/nvim'
 # depends = ['impatient.nvim']
-# lua_add = '''
-# require("plugins.ui").lua_add_catppuccin()
+# lua_post_source = '''
+# require("plugins.ui").lua_post_source_catppuccin()
 # '''

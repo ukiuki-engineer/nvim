@@ -93,7 +93,7 @@ local M = {}
 --
 -- vim-nightfly-colors
 --
-M.lua_add_nightfly_colors = function()
+M.lua_post_source_nightfly_colors = function()
   local bg_color = "#011627" -- :hi Normal
   custom_color(bg_color, "nightfly")
   vim.cmd([[colorscheme nightfly]])
@@ -102,7 +102,7 @@ end
 --
 -- gruvbox.nvim
 --
-M.lua_add_gruvbox = function()
+M.lua_post_source_gruvbox = function()
   local bg_color = "#282828" -- :hi Normal
   custom_color(bg_color, "gruvbox")
   vim.o.background = "dark"
@@ -112,7 +112,7 @@ end
 --
 -- nightfox.nvim
 --
-M.lua_add_nightfox = function()
+M.lua_post_source_nightfox = function()
   local bg_color = "#192330" -- :hi Normal
   custom_color(bg_color, "nightfox")
   vim.cmd([[colorscheme nightfox]])
@@ -121,7 +121,7 @@ end
 --
 -- catppuccin.nvim
 --
-M.lua_add_catppuccin = function()
+M.lua_post_source_catppuccin = function()
   local bg_color = "1e1e2e" -- :hi Normal
   custom_color(bg_color, "catppuccin-mocha")
   vim.cmd([[colorscheme catppuccin]])
