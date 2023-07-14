@@ -43,8 +43,6 @@ set expandtab
 set shiftwidth=2 tabstop=2 softtabstop=2
 " 符号なし数字として扱う
 set nrformats+=unsigned
-" optionではないけどここに...
-let mapleader = "m"
 " ------------------------------------------------------------------------------
 " autocmd
 " ------------------------------------------------------------------------------
@@ -70,8 +68,9 @@ augroup MyVimrc
   autocmd CmdUndefined PasteImage ++once execute 'source' .. g:rc_dir .. '/paste_image.vim'
 augroup END
 " ------------------------------------------------------------------------------
-" keymaps
+" Key mapping
 " ------------------------------------------------------------------------------
+let g:mapleader = "m"
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 nnoremap <silent> <TAB> :bn<CR>
 nnoremap <silent> <S-TAB> :bN<CR>
@@ -117,3 +116,14 @@ let g:loaded_zipPlugin          = 1
 let g:skip_loading_mswin        = 1
 " 標準プラグインの遅延読み込み
 " call utils#lazy_load()
+" ------------------------------------------------------------------------------
+" FIXME: 応急処置。いつか消す。
+" 最近macの時だけvimが落ちるようになったので、応急処置として保存時にmksessionする
+" ------------------------------------------------------------------------------
+if has('mac')
+  let g:pwd_in_startup = $PWD
+  augroup PwdInStartup
+    autocmd!
+    autocmd BufWrite * execute 'mksession! ' .. expand(g:pwd_in_startup) .. '/Session.vim'
+  augroup END
+endif
