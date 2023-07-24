@@ -56,9 +56,9 @@ augroup MyVimrc
   autocmd BufRead .env,.env.* setlocal filetype=sh
   " CursorHold時のみカーソル行/列を表示
   " autocmd CursorHold * call utils#set_cursor_line_column()
-  " IME切り替え設定の読み込み
+  " IME切り替え設定の読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
   autocmd InsertEnter,CmdlineEnter * ++once execute 'source' .. g:rc_dir .. '/my_ime.vim'
-  " クリップボード設定の遅延読み込み(急にWSLで重くなったので遅延させる)
+  " クリップボード設定の遅延読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
   autocmd InsertEnter,CursorMoved * ++once execute 'source' .. g:rc_dir .. '/my_clipboard.vim'
   " :terminal設定の読み込み1
   autocmd TermOpen * ++once execute 'source' .. g:rc_dir .. '/my_terminal.vim'
