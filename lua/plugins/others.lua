@@ -113,8 +113,14 @@ M.lua_source_telescope = function()
   vim.api.nvim_create_user_command('GitStatus', "lua require('telescope.builtin').git_status()", {})
   vim.api.nvim_create_user_command('GrepCurrentBuffer', "lua require('telescope.builtin').current_buffer_fuzzy_find()", {})
   vim.api.nvim_create_user_command('HelpTags', "lua require('telescope.builtin').help_tags()", {})
-  vim.api.nvim_create_user_command('LiveGrep', "lua require('telescope.builtin').live_grep()", {})
+  -- vim.api.nvim_create_user_command('LiveGrep', "lua require('telescope.builtin').live_grep()", {})
   vim.api.nvim_create_user_command('OldFiles', "lua require('telescope.builtin').oldfiles()", {})
+
+  -- NOTE: 使用例)
+  -- :LiveGrep *.toml
+  vim.cmd[[
+    command! -nargs=* LiveGrep :lua require("plugins.others").live_grep_with_glob("<args>")
+  ]]
 
   require('telescope').setup({
     defaults = {
@@ -145,6 +151,20 @@ M.lua_source_telescope = function()
     }
   })
   require('telescope').load_extension('fzf')
+end
+
+-- コマンド実行時に呼び出される関数を定義
+-- TODO: 拡張子を複数指定できるようにする
+M.live_grep_with_glob = function(args)
+  local glob_pattern = args
+  print(glob_pattern)
+  if glob_pattern then
+    -- 拡張子が指定されていればそれを使用してlive_grepを呼び出す
+    require('telescope.builtin').live_grep({ glob_pattern = glob_pattern })
+  else
+    -- 引数がない場合は通常のlive_grepを呼び出す
+    require('telescope.builtin').live_grep()
+  end
 end
 
 --
