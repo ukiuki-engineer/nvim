@@ -263,6 +263,7 @@ on_source = ['coc.nvim']
 repo = 'nvim-telescope/telescope.nvim'
 depends = ['plenary', 'telescope-fzf-native.nvim']
 on_cmd = [
+  'BufferLines',
   'Buffers',
   'CommandHistories',
   'Commands',
@@ -270,7 +271,6 @@ on_cmd = [
   'FindFiles',
   'GitBranches',
   'GitStatus',
-  'GrepCurrentBuffer',
   'HelpTags',
   'LiveGrep',
   'OldFiles',
