@@ -101,17 +101,17 @@ end
 function M.lua_source_telescope()
   vim.api.nvim_create_user_command('BufferLines', "lua require('telescope.builtin').current_buffer_fuzzy_find()", {})
   vim.api.nvim_create_user_command('Buffers', "lua require('plugins.others').buffers()", {})
-  vim.api.nvim_create_user_command('FindFiles', "lua require('plugins.others').find_files()", {})
   vim.api.nvim_create_user_command('CommandHistories', "lua require('telescope.builtin').command_history()", {})
   vim.api.nvim_create_user_command('Commands', "lua require('telescope.builtin').commands()", {})
+  vim.api.nvim_create_user_command('Commits', "lua require('telescope.builtin').git_commits()", {})
+  vim.api.nvim_create_user_command('FindFiles', "lua require('plugins.others').find_files()", {})
   vim.api.nvim_create_user_command('GitBranches', "lua require('telescope.builtin').git_branches()", {})
   vim.api.nvim_create_user_command('GitStatus', "lua require('telescope.builtin').git_status()", {})
   vim.api.nvim_create_user_command('HelpTags', "lua require('telescope.builtin').help_tags()", {})
   vim.api.nvim_create_user_command('OldFiles', "lua require('telescope.builtin').oldfiles()", {})
-  vim.cmd[[
-    command! -nargs=* LiveGrep :lua require("plugins.others").live_grep_with_glob("<args>")
-  ]]
-  -- NOTE: 上記の使用例)
+
+  vim.cmd([[command! -nargs=* LiveGrep :lua require("plugins.others").live_grep("<args>")]])
+  -- NOTE: ↑の使用例)
   -- :LiveGrep *.toml
 
   require('telescope').setup({
@@ -149,6 +149,7 @@ function M.buffers()
   local action_state = require('telescope.actions.state')
   local actions = require('telescope.actions')
 
+  -- 指定されたバッファを削除する
   local delete_buf = function(prompt_bufnr)
     local current_picker = action_state.get_current_picker(prompt_bufnr)
     local multi_selections = current_picker:get_multi_selection()
@@ -184,19 +185,18 @@ function M.find_files()
     find_command = {
       "rg",
       "--files",
-       "--hidden",
-       "--follow",
-       "--glob",
-       "!**/.git/*"
+      "--hidden",
+      "--follow",
+      "--glob",
+      "!**/.git/*"
     }
   })
 end
 
 -- コマンド実行時に呼び出される関数を定義
 -- TODO: 拡張子を複数指定できるようにする
-function M.live_grep_with_glob(args)
+function M.live_grep(args)
   local glob_pattern = args
-  print(glob_pattern)
   if glob_pattern then
     -- 拡張子が指定されていればそれを使用してlive_grepを呼び出す
     require('telescope.builtin').live_grep({ glob_pattern = glob_pattern })
