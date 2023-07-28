@@ -5,7 +5,7 @@ local M = {}
 --
 -- indent-blankline.nvim
 --
-M.lua_source_indent_blankline = function()
+function M.lua_source_indent_blankline()
   vim.opt.list = true
   vim.opt.listchars:append({
     space    = "⋅",

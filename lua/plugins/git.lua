@@ -5,7 +5,7 @@ local M = {}
 --
 -- diffview.nvim
 --
-M.lua_source_diffview = function()
+function M.lua_source_diffview()
   -- NOTE: マウスでスクロールする時は、差分の右側をスクロールしないとスクロールが同期されない
   -- TODO: 差分をdiscardする時、confirmするようにする
   require('diffview').setup ({
@@ -23,7 +23,7 @@ end
 --
 -- gitsigns.nvim
 --
-M.lua_source_gitsigns = function()
+function M.lua_source_gitsigns()
   require('gitsigns').setup({
     -- settings
     signs = {

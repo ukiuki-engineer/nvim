@@ -93,7 +93,7 @@ local M = {}
 --
 -- vim-nightfly-colors
 --
-M.lua_add_nightfly_colors = function()
+function M.lua_add_nightfly_colors()
   local bg_color = "#011627" -- :hi Normal
   custom_color(bg_color, "nightfly")
   vim.cmd([[colorscheme nightfly]])
@@ -102,7 +102,7 @@ end
 --
 -- gruvbox.nvim
 --
-M.lua_add_gruvbox = function()
+function M.lua_add_gruvbox()
   local bg_color = "#282828" -- :hi Normal
   custom_color(bg_color, "gruvbox")
   vim.o.background = "dark"
@@ -112,7 +112,7 @@ end
 --
 -- nightfox.nvim
 --
-M.lua_add_nightfox = function()
+function M.lua_add_nightfox()
   local bg_color = "#192330" -- :hi Normal
   custom_color(bg_color, "nightfox")
   vim.cmd([[colorscheme nightfox]])
@@ -121,7 +121,7 @@ end
 --
 -- catppuccin.nvim
 --
-M.lua_add_catppuccin = function()
+function M.lua_add_catppuccin()
   local bg_color = "1e1e2e" -- :hi Normal
   custom_color(bg_color, "catppuccin-mocha")
   vim.cmd([[colorscheme catppuccin]])
@@ -132,7 +132,7 @@ end
 --
 -- lualine.nvim
 --
-M.lua_add_lualine = function()
+function M.lua_add_lualine()
   -- skkeletonのモードを返す
   local function skkeleton_mode()
     local modes = {
@@ -210,7 +210,7 @@ end
 --
 -- nvim-tree
 --
-M.lua_source_nvim_tree = function()
+function M.lua_source_nvim_tree()
   require("nvim-tree").setup {
     git = {
       ignore = false,          -- .gitignoreされたファイルもtreeに表示する
@@ -229,7 +229,7 @@ end
 --
 -- bufferline.nvim
 --
-M.lua_source_bufferline = function()
+function M.lua_source_bufferline()
   local bufferline = require('bufferline')
   bufferline.setup({
     options = {
@@ -256,7 +256,7 @@ end
 --
 -- dropbar.nvim
 --
-M.lua_source_dropbar = function()
+function M.lua_source_dropbar()
   require('dropbar').setup({
     icons = {
       kinds = {
@@ -345,7 +345,7 @@ end
 --
 -- satelite.nvim
 --
-M.lua_source_satelite = function()
+function M.lua_source_satelite()
   require('satellite').setup({
     current_only = false,
     winblend = 50,

@@ -5,7 +5,7 @@ local M = {}
 --
 -- nvim-cmp
 --
-M.lua_source_nvim_cmp = function()
+function M.lua_source_nvim_cmp()
   local cmp = require('cmp')
 
   -- cmdlineのマッピング(検索/コマンド共通)

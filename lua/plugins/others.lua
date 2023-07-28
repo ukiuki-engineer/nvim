@@ -5,7 +5,7 @@ local M = {}
 --
 -- nvim-treesitter
 --
-M.lua_source_treesitter = function()
+function M.lua_source_treesitter()
   -- NOTE: 逆にデフォルトの方が見やすい場合はtreesitterを適宜オフに設定する
   require('nvim-treesitter.configs').setup {
     highlight = {
@@ -91,14 +91,14 @@ end
 --
 -- telescope.nvim
 --
-M.lua_add_telescope = function()
+function M.lua_add_telescope()
   -- NOTE: on_cmdで遅延ロードさせるためにこういう回りくどいやり方をしている…
   vim.keymap.set('n', '<space>b', "<Cmd>Buffers<CR>", {})
   vim.keymap.set('n', '<space>f', "<Cmd>FindFiles<CR>", {})
   vim.keymap.set('n', '<space>g', "<Cmd>LiveGrep<CR>", {})
 end
 
-M.lua_source_telescope = function()
+function M.lua_source_telescope()
   vim.api.nvim_create_user_command('BufferLines', "lua require('telescope.builtin').current_buffer_fuzzy_find()", {})
   vim.api.nvim_create_user_command('Buffers', "lua require('plugins.others').buffers()", {})
   vim.api.nvim_create_user_command('FindFiles', "lua require('plugins.others').find_files()", {})
@@ -145,7 +145,7 @@ M.lua_source_telescope = function()
   require('telescope').load_extension('fzf')
 end
 
-M.buffers = function()
+function M.buffers()
   local action_state = require('telescope.actions.state')
   local actions = require('telescope.actions')
 
@@ -179,7 +179,7 @@ M.buffers = function()
   })
 end
 
-M.find_files = function()
+function M.find_files()
   require('telescope.builtin').find_files({
     find_command = {
       "rg",
@@ -194,7 +194,7 @@ end
 
 -- コマンド実行時に呼び出される関数を定義
 -- TODO: 拡張子を複数指定できるようにする
-M.live_grep_with_glob = function(args)
+function M.live_grep_with_glob(args)
   local glob_pattern = args
   print(glob_pattern)
   if glob_pattern then
@@ -209,7 +209,7 @@ end
 --
 -- toggleterm.nvim
 --
-M.lua_source_toggleterm = function()
+function M.lua_source_toggleterm()
   require("toggleterm").setup{
     persist_size = false
   }

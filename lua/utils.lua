@@ -10,7 +10,7 @@ local M = {}
 -- @param string target_color 対象色のカラーコード(16進数)。例: "#000000"
 -- @param number alpha 透過率。0から1の値で指定する。0に近いほど背景色が優先され、1に近いほど対象色が優先される。
 -- @return string 透過させた色のカラーコード(16進数)。例: "#808080"
-M.transparent_color = function(bg_color, target_color, alpha)
+function M.transparent_color(bg_color, target_color, alpha)
   -- target_colorにcolornameが指定されている場合、colorcodeに変換
   if string.sub(target_color, 1, 1) ~= "#" then
     target_color = M.get_colorcode_by_colorname(target_color)
@@ -43,7 +43,7 @@ end
 -- @param string colorname
 -- @return string colorcode
 -- NOTE: vim内の関数であるような気もするけど見つけられなかったので一旦これを使う
-M.get_colorcode_by_colorname = function(colorname)
+function M.get_colorcode_by_colorname(colorname)
   local colornames = {
     ["Black"]        = "#000000",
     ["DarkBlue"]     = "#00008B",
