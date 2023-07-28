@@ -169,9 +169,11 @@ M.buffers = function()
 
   require('telescope.builtin').buffers({
     attach_mappings = function(prompt_bufnr, map)
-      map({"i"}, "<C-d>", function()
-        delete_buf(prompt_bufnr)
-      end)
+      map({"i"}, "<C-d>",
+        function()
+          delete_buf(prompt_bufnr)
+        end
+      )
       return true
     end,
   })
