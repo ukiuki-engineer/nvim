@@ -100,27 +100,19 @@ end
 
 M.lua_source_telescope = function()
   vim.api.nvim_create_user_command('BufferLines', "lua require('telescope.builtin').current_buffer_fuzzy_find()", {})
-  vim.api.nvim_create_user_command('Buffers', "lua require('telescope.builtin').buffers()", {})
-  vim.api.nvim_create_user_command(
-    'FindFiles',
-    [[lua require('telescope.builtin').find_files({
-      find_command = {"rg", "--files", "--hidden", "--follow", "--glob", "!**/.git/*"}
-    })]],
-    {}
-  )
+  vim.api.nvim_create_user_command('Buffers', "lua require('plugins.others').buffers()", {})
+  vim.api.nvim_create_user_command('FindFiles', "lua require('plugins.others').find_files()", {})
   vim.api.nvim_create_user_command('CommandHistories', "lua require('telescope.builtin').command_history()", {})
   vim.api.nvim_create_user_command('Commands', "lua require('telescope.builtin').commands()", {})
   vim.api.nvim_create_user_command('GitBranches', "lua require('telescope.builtin').git_branches()", {})
   vim.api.nvim_create_user_command('GitStatus', "lua require('telescope.builtin').git_status()", {})
   vim.api.nvim_create_user_command('HelpTags', "lua require('telescope.builtin').help_tags()", {})
-  -- vim.api.nvim_create_user_command('LiveGrep', "lua require('telescope.builtin').live_grep()", {})
   vim.api.nvim_create_user_command('OldFiles', "lua require('telescope.builtin').oldfiles()", {})
-
-  -- NOTE: 使用例)
-  -- :LiveGrep *.toml
   vim.cmd[[
     command! -nargs=* LiveGrep :lua require("plugins.others").live_grep_with_glob("<args>")
   ]]
+  -- NOTE: 上記の使用例)
+  -- :LiveGrep *.toml
 
   require('telescope').setup({
     defaults = {
@@ -151,6 +143,51 @@ M.lua_source_telescope = function()
     }
   })
   require('telescope').load_extension('fzf')
+end
+
+M.buffers = function()
+  local action_state = require('telescope.actions.state')
+  local actions = require('telescope.actions')
+
+  local delete_buf = function(prompt_bufnr)
+    local current_picker = action_state.get_current_picker(prompt_bufnr)
+    local multi_selections = current_picker:get_multi_selection()
+
+    if next(multi_selections) == nil then
+      local selection = action_state.get_selected_entry()
+      actions.close(prompt_bufnr) -- TODO: 閉じずにlistを更新することはできないか？
+      vim.api.nvim_buf_delete(selection.bufnr, {force = true})
+      require('plugins.others').buffers()
+    else
+      actions.close(prompt_bufnr)-- TODO: 閉じずにlistを更新することはできないか？
+      for _, selection in ipairs(multi_selections) do
+        vim.api.nvim_buf_delete(selection.bufnr, {force = true})
+      end
+      require('plugins.others').buffers()
+    end
+  end
+
+  require('telescope.builtin').buffers({
+    attach_mappings = function(prompt_bufnr, map)
+      map({"i"}, "<C-d>", function()
+        delete_buf(prompt_bufnr)
+      end)
+      return true
+    end,
+  })
+end
+
+M.find_files = function()
+  require('telescope.builtin').find_files({
+    find_command = {
+      "rg",
+      "--files",
+       "--hidden",
+       "--follow",
+       "--glob",
+       "!**/.git/*"
+    }
+  })
 end
 
 -- コマンド実行時に呼び出される関数を定義
