@@ -8,7 +8,7 @@ vimrc_dir=${script_dir/\/tools/}
 # vim設定行数
 printf "%20s%s%5s\n" "vim設定行数" " =" $(
   find $vimrc_dir -type f\
-    | grep -E 'vim$|lua$|toml$|json$|sh$'\
+    | grep -E 'vim$|lua$|toml$|json$'\
     | grep -vE 'colors|not_use'\
     | xargs -I{} cat {}\
     | wc -l
