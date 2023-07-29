@@ -96,30 +96,9 @@ endfunction
 " skkeleton
 "
 function! plugins#code_editting#hook_add_skkeleton() abort
-  " 辞書ファイルをダウンロード {{{ " TODO: 動作未確認
-  let s:dictionaries = [
-    \ {"name": "SKK-JISYO.L", "url": "https://skk-dev.github.io/dict/SKK-JISYO.L.gz"},
-    \ {"name" : "SKK-JISYO.emoji.utf8", "url": "TODO: 後で書く"},
-    \ {"name" : "/SKK-JISYO.jinmei", "url": "TODO: 後で書く"}
-  \]
-  let s:skk_dir = expand('~/.skk')
-
-  " ~/.skkが無ければ作成
-  if isdirectory(s:skk_dir)
-    call mkdir(s:skk_dir, 'p')
-  endif
-
-  for dictionary in s:dictionaries
-    if !filereadable(s:skk_dir .. dictionary['name'])
-      let s:output = system('cd ' .. s:skk_dir .. ' && wget ' .. dictionary['url'] .. ' && gzip -d ' .. dictionary['name'])
-      if v:shell_error
-        " NOTE: wgetがなくてダウンロードされなかった時に何の警告も出なかったので、警告を出すようにする
-        echo "\'dictionary['name']\'のダウンロードが正常に行われませんでした"
-        echo s:output
-      endif
-    endif
-  endfor
-  " }}}
+  " 辞書ファイルダウンロード
+  " TODO: 何かどっかで上手くいってないけど面倒だから必要な時に直す
+  " call s:download_skk_jisyo()
 
   inoremap <C-j> <Plug>(skkeleton-toggle)
   cnoremap <C-j> <Plug>(skkeleton-toggle)
@@ -156,3 +135,32 @@ function! plugins#code_editting#skkeleton_init() abort
   call skkeleton#register_keymap('henkan', '<S-Space>', 'henkanBackward')
 endfunction
 
+" 辞書ファイルダウンロード
+function! s:download_skk_jisyo() abort
+  let s:dictionaries = [
+    \ {"name": "SKK-JISYO.L", "url": "https://skk-dev.github.io/dict/SKK-JISYO.L.gz"},
+    \ {"name" : "SKK-JISYO.emoji.utf8", "url": "https://raw.githubusercontent.com/uasi/skk-emoji-jisyo/master/SKK-JISYO.emoji.utf8"},
+    \ {"name" : "SKK-JISYO.jinmei", "url": "https://github.com/skk-dev/dict/blob/master/SKK-JISYO.jinmei"}
+  \ ]
+  let s:skk_dir = expand('~/.skk')
+
+  " ~/.skkが無ければ作成
+  if isdirectory(s:skk_dir)
+    call mkdir(s:skk_dir, 'p')
+  endif
+
+  for dictionary in s:dictionaries
+    if !filereadable(s:skk_dir .. dictionary['name'])
+      if dictionary['name'] == 'SKK-JISYO.L'
+        let s:output = system('cd ' .. s:skk_dir .. ' && wget ' .. dictionary['url'] .. ' && gzip -d ' .. dictionary['name'])
+      else
+        let s:output = system('cd ' .. s:skk_dir .. ' && curl -O ' .. dictionary['url'])
+      endif
+      if v:shell_error
+        " NOTE: wgetがなくてダウンロードされなかった時に何の警告も出なかったので、警告を出すようにする
+        echo "dictionary['name']のダウンロードが正常に行われませんでした"
+        echo s:output
+      endif
+    endif
+  endfor
+endfunction
