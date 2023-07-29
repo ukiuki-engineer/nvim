@@ -96,18 +96,29 @@ endfunction
 " skkeleton
 "
 function! plugins#code_editting#hook_add_skkeleton() abort
-  " 辞書ファイルをダウンロード {{{
-  " TODO: 辞書配列を作って、全部ダウンロードするようにする
+  " 辞書ファイルをダウンロード {{{ " TODO: 動作未確認
+  let s:dictionaries = [
+    \ {"name": "SKK-JISYO.L", "url": "https://skk-dev.github.io/dict/SKK-JISYO.L.gz"},
+    \ {"name" : "SKK-JISYO.emoji.utf8", "url": "TODO: 後で書く"},
+    \ {"name" : "/SKK-JISYO.jinmei", "url": "TODO: 後で書く"}
+  \]
   let s:skk_dir = expand('~/.skk')
-  if !filereadable(s:skk_dir .. '/SKK-JISYO.L')
+
+  " ~/.skkが無ければ作成
+  if isdirectory(s:skk_dir)
     call mkdir(s:skk_dir, 'p')
-    let s:output = system('cd ' .. s:skk_dir .. ' && wget https://skk-dev.github.io/dict/SKK-JISYO.L.gz && gzip -d SKK-JISYO.L.gz')
-    if v:shell_error
-      " NOTE: wgetがなくてダウンロードされなかった時に何の警告も出なかったので、警告を出すようにする
-      echo "SKK辞書ファイルのダウンロードが正常に行われませんでした"
-      echo s:output
-    endif
   endif
+
+  for dictionary in s:dictionaries
+    if !filereadable(s:skk_dir .. dictionary['name'])
+      let s:output = system('cd ' .. s:skk_dir .. ' && wget ' .. dictionary['url'] .. ' && gzip -d ' .. dictionary['name'])
+      if v:shell_error
+        " NOTE: wgetがなくてダウンロードされなかった時に何の警告も出なかったので、警告を出すようにする
+        echo "\'dictionary['name']\'のダウンロードが正常に行われませんでした"
+        echo s:output
+      endif
+    endif
+  endfor
   " }}}
 
   inoremap <C-j> <Plug>(skkeleton-toggle)
