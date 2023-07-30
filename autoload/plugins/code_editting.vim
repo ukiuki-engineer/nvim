@@ -98,6 +98,7 @@ endfunction
 function! plugins#code_editting#hook_add_skkeleton() abort
   " 辞書ファイルダウンロード
   " TODO: 何かどっかで上手くいってないけど面倒だから必要な時に直す
+  let s:skk_dir = expand('~/.skk')
   " call s:download_skk_jisyo()
 
   inoremap <C-j> <Plug>(skkeleton-toggle)
@@ -142,7 +143,6 @@ function! s:download_skk_jisyo() abort
     \ {"name" : "SKK-JISYO.emoji.utf8", "url": "https://raw.githubusercontent.com/uasi/skk-emoji-jisyo/master/SKK-JISYO.emoji.utf8"},
     \ {"name" : "SKK-JISYO.jinmei", "url": "https://github.com/skk-dev/dict/blob/master/SKK-JISYO.jinmei"}
   \ ]
-  let s:skk_dir = expand('~/.skk')
 
   " ~/.skkが無ければ作成
   if isdirectory(s:skk_dir)
