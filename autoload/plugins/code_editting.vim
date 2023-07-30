@@ -150,17 +150,19 @@ function! s:download_skk_jisyo() abort
   endif
 
   for dictionary in s:dictionaries
-    if !filereadable(s:skk_dir .. dictionary['name'])
-      if dictionary['name'] == 'SKK-JISYO.L'
-        let s:output = system('cd ' .. s:skk_dir .. ' && wget ' .. dictionary['url'] .. ' && gzip -d ' .. dictionary['name'])
-      else
-        let s:output = system('cd ' .. s:skk_dir .. ' && curl -O ' .. dictionary['url'])
-      endif
-      if v:shell_error
-        " NOTE: wgetがなくてダウンロードされなかった時に何の警告も出なかったので、警告を出すようにする
-        echo "dictionary['name']のダウンロードが正常に行われませんでした"
-        echo s:output
-      endif
+    if filereadable(s:skk_dir .. dictionary['name'])
+      continue
+    endif
+
+    if dictionary['name'] == 'SKK-JISYO.L'
+      let s:output = system('cd ' .. s:skk_dir .. ' && wget ' .. dictionary['url'] .. ' && gzip -d ' .. dictionary['name'])
+    else
+      let s:output = system('cd ' .. s:skk_dir .. ' && curl -O ' .. dictionary['url'])
+    endif
+
+    if v:shell_error
+      echo dictionary['name'] .. "のダウンロードが正常に行われませんでした"
+      echo s:output
     endif
   endfor
 endfunction
