@@ -106,7 +106,7 @@ function M.lua_source_telescope()
   vim.api.nvim_create_user_command('Commits', "lua require('telescope.builtin').git_commits()", {})
   vim.api.nvim_create_user_command('FindFiles', "lua require('plugins.others').find_files()", {})
   vim.api.nvim_create_user_command('GitBranches', "lua require('telescope.builtin').git_branches()", {})
-  vim.api.nvim_create_user_command('GitStatus', "lua require('telescope.builtin').git_status()", {})
+  vim.api.nvim_create_user_command('GitStatus', "lua require('telescope.builtin').git_status()", {}) -- TODO: <C-r>でrestoreできるように
   vim.api.nvim_create_user_command('HelpTags', "lua require('telescope.builtin').help_tags()", {})
   vim.api.nvim_create_user_command('OldFiles', "lua require('telescope.builtin').oldfiles()", {})
 
