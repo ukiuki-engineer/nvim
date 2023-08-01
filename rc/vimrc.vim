@@ -1,5 +1,5 @@
 " ================================================================================
-" my_vimrc.vim
+" vimrc.vim
 " ================================================================================
 " ------------------------------------------------------------------------------
 " options
@@ -58,13 +58,13 @@ augroup MyVimrc
   " autocmd CursorHold * call utils#set_cursor_line_column()
   " 遅延ロード {{{
   " IME切り替え設定の読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
-  autocmd InsertEnter,CmdlineEnter * ++once execute 'source' .. g:rc_dir .. '/my_ime.vim'
+  autocmd InsertEnter,CmdlineEnter * ++once execute 'source' .. g:rc_dir .. '/ime.vim'
   " クリップボード設定の遅延読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
-  autocmd InsertEnter,CursorMoved * ++once execute 'source' .. g:rc_dir .. '/my_clipboard.vim'
+  autocmd InsertEnter,CursorMoved * ++once execute 'source' .. g:rc_dir .. '/clipboard.vim'
   " :terminal設定の読み込み1
-  autocmd TermOpen * ++once execute 'source' .. g:rc_dir .. '/my_terminal.vim'
+  autocmd TermOpen * ++once execute 'source' .. g:rc_dir .. '/terminal.vim'
   " :terminal設定の読み込み2
-  autocmd CmdUndefined Terminal,Term,TermV,TermHere,TermHereV ++once execute 'source' .. g:rc_dir .. '/my_terminal.vim'
+  autocmd CmdUndefined Terminal,Term,TermV,TermHere,TermHereV ++once execute 'source' .. g:rc_dir .. '/terminal.vim'
   " markdownで、画像をクリップボードから貼り付けする設定の読み込み
   autocmd CmdUndefined PasteImage ++once execute 'source' .. g:rc_dir .. '/paste_image.vim'
   " }}}
@@ -76,7 +76,7 @@ let g:mapleader = "m"
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 nnoremap <silent> <TAB> :bn<CR>
 nnoremap <silent> <S-TAB> :bN<CR>
-" NOTE: 下記はcmy_plugin_settings#hook_source_coc()にて。
+" NOTE: 下記はcplugin_settings#hook_source_coc()にて。
 " nnoremap <C-j> 10j
 " nnoremap <C-k> 10k
 vnoremap <C-j> 7j
