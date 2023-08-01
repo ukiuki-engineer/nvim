@@ -155,10 +155,7 @@ function M.buffers()
     local multi_selections = current_picker:get_multi_selection()
 
     if next(multi_selections) == nil then
-      local selection = action_state.get_selected_entry()
-      actions.close(prompt_bufnr) -- TODO: 閉じずにlistを更新することはできないか？
-      vim.api.nvim_buf_delete(selection.bufnr, {force = true})
-      require('plugins.others').buffers()
+      actions.delete_buffer(prompt_bufnr)
     else
       actions.close(prompt_bufnr)-- TODO: 閉じずにlistを更新することはできないか？
       for _, selection in ipairs(multi_selections) do
