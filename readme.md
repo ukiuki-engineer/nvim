@@ -41,10 +41,10 @@ nvim/
     │       ├── git.lua
     │       └── others.lua
     ├── rc/
-    │   ├── my_vimrc.vim           " 基本的な設定とその他の設定の読み込み処理
-    │   ├── my_clipboard.vim
-    │   ├── my_ime.vim
-    │   ├── my_terminal.vim
+    │   ├── vimrc.vim           " 基本的な設定とその他の設定の読み込み処理
+    │   ├── clipboard.vim
+    │   ├── ime.vim
+    │   ├── terminal.vim
     │   └── paste_image.vim
     ├── toml/
     │   ├── dein.toml              " プラグイン(通常ロード)
