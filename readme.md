@@ -27,7 +27,6 @@ nvim/
     ├── autoload/
     │   ├── utils.vim              " 共通処理(vimscript)
     │   └── plugins/               " 各プラグインの設定(vimscript)
-    │       ├── ui.vim
     │       ├── code_editting.vim
     │       ├── lsp_and_completion.vim
     │       ├── git.vim

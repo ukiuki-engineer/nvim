@@ -18,8 +18,8 @@ on_cmd = [
   'NvimTreeCollapseKeepBuffers',
   'NvimTreeGenerateOnAttach'
 ]
-hook_add = '''
-call plugins#ui#hook_add_nvim_tree()
+lua_add = '''
+require("plugins.ui").lua_add_nvim_tree()
 '''
 lua_source = '''
 require("plugins.ui").lua_source_nvim_tree()
