@@ -210,9 +210,8 @@ function M.git_status()
   })
 end
 
--- コマンド実行時に呼び出される関数を定義
--- TODO: 拡張子を複数指定できるようにする
 function M.live_grep(args)
+  -- TODO: 拡張子を複数指定できるようにする
   local glob_pattern = args
   if glob_pattern then
     -- 拡張子が指定されていればそれを使用してlive_grepを呼び出す
