@@ -121,7 +121,7 @@ function M.lua_source_telescope()
         height = 0.90,
         width  = 0.95,
         horizontal = {
-          preview_width = 0.55
+          preview_width = 0.60
         },
       },
       mappings = {
