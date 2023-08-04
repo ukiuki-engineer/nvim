@@ -7,7 +7,6 @@ local M = {}
 --
 function M.lua_source_diffview()
   -- NOTE: マウスでスクロールする時は、差分の右側をスクロールしないとスクロールが同期されない
-  -- TODO: 差分をdiscardする時、confirmするようにする
   require('diffview').setup ({
     enhanced_diff_hl = true,
     file_panel = {
