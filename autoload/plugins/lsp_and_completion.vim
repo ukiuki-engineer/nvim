@@ -22,7 +22,6 @@ function! plugins#lsp_and_completion#hook_add_coc() abort
   " coc-extensions
   let g:coc_global_extensions = [
     \ '@yaegassy/coc-intelephense',
-    \ '@yaegassy/coc-laravel',
     \ 'coc-blade',
     \ 'coc-css',
     \ 'coc-cssmodules',
@@ -48,6 +47,7 @@ function! plugins#lsp_and_completion#hook_add_coc() abort
     \ 'coc-yaml',
     \ 'coc-yank',
   \ ]
+    " \ '@yaegassy/coc-laravel',
 
   command! PreviewCocOutline :CocCommand fzf-preview.CocOutlie
   command! ProjectFiles :CocCommand fzf-preview.ProjectFiles
