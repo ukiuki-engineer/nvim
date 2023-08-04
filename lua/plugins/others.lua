@@ -146,8 +146,8 @@ function M.lua_source_telescope()
 end
 
 function M.buffers()
-  local action_state = require('telescope.actions.state')
   local actions = require('telescope.actions')
+  local action_state = require('telescope.actions.state')
 
   -- 指定されたバッファを削除する
   local delete_buf = function(prompt_bufnr)
