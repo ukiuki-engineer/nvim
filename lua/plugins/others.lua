@@ -191,15 +191,22 @@ function M.find_files()
 end
 
 function M.git_status()
-  -- TODO: <C-r>でrestoreできるように
+  local actions = require('telescope.actions')
+  local action_state = require('telescope.actions.state')
+
   require('telescope.builtin').git_status({
-    -- attach_mappings = function(prompt_bufnr, map)
-    --   map({"i", "n"}, "<C-r>",
-    --     function()
-    --     end
-    --   )
-    --   return true
-    -- end,
+    attach_mappings = function(prompt_bufnr, map)
+      -- <C-r>で選択したファイルをgit restoreする
+      map({"i", "n"}, "<C-r>",
+        function()
+          local selection = action_state.get_selected_entry()
+          vim.fn.system("git restore " .. selection.value)
+          actions.close(prompt_bufnr) -- TODO: 閉じずにlistを更新することはできないか？
+          require('plugins.others').git_status()
+        end
+      )
+      return true
+    end,
   })
 end
 
