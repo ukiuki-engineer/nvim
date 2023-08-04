@@ -197,7 +197,7 @@ function M.git_status()
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)
       -- <C-r>で選択したファイルをgit restoreする
-      map({"i", "n"}, "<C-r>",
+      map({"i"}, "<C-r>",
         function()
           local selection = action_state.get_selected_entry()
           vim.fn.system("git restore " .. selection.value)
