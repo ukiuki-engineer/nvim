@@ -111,19 +111,23 @@ function M.lua_source_telescope()
   vim.api.nvim_create_user_command('OldFiles', "lua require('telescope.builtin').oldfiles()", {})
 
   vim.cmd([[command! -nargs=* LiveGrep :lua require("plugins.others").live_grep("<args>")]])
-  -- NOTE: ↑の使用例)
+  -- NOTE: ↑の使用例:
   -- :LiveGrep *.toml
 
   require('telescope').setup({
     defaults = {
+      layout_strategy = 'horizontal',
       layout_config = {
         height = 0.90,
-        width  = 0.95
+        width  = 0.95,
+        horizontal = {
+          preview_width = 0.55
+        },
       },
       mappings = {
         i = {
           ["<C-j>"] = function()
-            vim.cmd([[call skkeleton#handle('toggle', {})]])
+            vim.fn['skkeleton#handle']('toggle', {})
           end,
           -- NOTE: <C-/>でkeymapのhelpを表示
           -- ["<C-/>"] = "which_key",
@@ -131,7 +135,12 @@ function M.lua_source_telescope()
       },
 
     },
-    -- pickers = {},
+    pickers = {
+      live_grep = {
+        -- grepはResultを広く取りたいので水平分割
+        layout_strategy = 'vertical',
+      }
+    },
     extensions = {
       fzf = {
         fuzzy = true,                    -- false will only do exact matching
