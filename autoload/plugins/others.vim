@@ -20,7 +20,7 @@ function! plugins#others#hook_source_vimhelpgenerator() abort
     \ 'contents' : 1, 'introduction': 1, 'usage': 1, 'interface': 1,
     \ 'variables': 1, 'commands': 1, 'key-mappings': 1, 'functions': 1,
     \ 'setting'  : 0, 'todo': 1, 'changelog': 0
-    \}
+    \ }
 endfunction
 
 "
