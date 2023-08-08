@@ -142,8 +142,8 @@ function M.lua_add_lualine()
       ["zenkaku"] = "ａ",
       ["abbrev"]  = "a",
     }
-    if vim.call('skkeleton#is_enabled') then
-      return modes[vim.call('skkeleton#mode')]
+    if vim.fn['skkeleton#is_enabled']() then
+      return modes[vim.fn['skkeleton#mode']()]
     else
       return ''
     end
