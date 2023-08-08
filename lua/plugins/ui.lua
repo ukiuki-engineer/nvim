@@ -232,7 +232,7 @@ function M.lua_source_nvim_tree()
       -- sizeを動的に調整する
       width = {
         min = 30,
-        max = 60,
+        max = 75,
         padding = 1
       }
     },
