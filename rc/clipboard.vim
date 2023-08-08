@@ -2,10 +2,10 @@
 " クリップボード設定
 " ================================================================================
 " 2重読み込み防止
-if exists('g:vimrc#loaded_my_clipboard')
+if exists('g:vimrc#loaded_clipboard')
   finish
 endif
-let g:vimrc#loaded_my_clipboard = 1
+let g:vimrc#loaded_clipboard = 1
 
 if has('linux') && exists('$WSLENV')
   " WSLの場合clipboardが重いのでtimer遅延させる

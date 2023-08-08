@@ -8,10 +8,10 @@
 " 読み込み時の処理
 " ------------------------------------------------------------------------------
 " 2重読み込み防止
-if exists('g:vimrc#loaded_my_terminal')
+if exists('g:vimrc#loaded_terminal')
   finish
 endif
-let g:vimrc#loaded_my_terminal = 1
+let g:vimrc#loaded_terminal = 1
 
 " nvim-cmpの設定をリロード
 lua require("plugins.lsp_and_completion").lua_source_nvim_cmp()
