@@ -4,12 +4,14 @@
 
 script_dir=$(dirname $(readlink -f $0))
 vimrc_dir=${script_dir/\/tools/}
+target='vim$|lua$|toml$|json$' # 行数カウント対象
+not_target='colors|not_use'    # 行数カウント対象外
 
 # vim設定行数
 printf "%20s%s%5s\n" "vim設定行数" " =" $(
   find $vimrc_dir -type f\
-    | grep -E 'vim$|lua$|toml$|json$'\
-    | grep -vE 'colors|not_use'\
+    | grep -E $target\
+    | grep -vE $not_target\
     | xargs -I{} cat {}\
     | wc -l
 )
