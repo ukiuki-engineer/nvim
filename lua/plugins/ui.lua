@@ -350,7 +350,7 @@ end
 --
 -- satelite.nvim
 --
-function M.lua_source_satelite()
+function M.lua_source_satellite()
   require('satellite').setup({
     current_only = false,
     winblend = 50,

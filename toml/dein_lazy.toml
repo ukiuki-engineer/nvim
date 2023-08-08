@@ -48,7 +48,7 @@ require("plugins.ui").lua_source_dropbar()
 repo= 'lewis6991/satellite.nvim'
 on_event = ['FileType', 'BufRead', 'InsertEnter']
 lua_source = '''
-require("plugins.ui").lua_source_satelite()
+require("plugins.ui").lua_source_satellite()
 '''
 ################################################################################
 # Code Editting
