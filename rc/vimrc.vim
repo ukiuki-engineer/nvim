@@ -78,9 +78,8 @@ let g:mapleader = "m"
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 nnoremap <silent> <TAB> :bn<CR>
 nnoremap <silent> <S-TAB> :bN<CR>
-" NOTE: 下記はcplugin_settings#hook_source_coc()にて。
-" nnoremap <C-j> 10j
-" nnoremap <C-k> 10k
+nnoremap <C-j> 7j
+nnoremap <C-k> 7k
 vnoremap <C-j> 7j
 vnoremap <C-k> 7k
 cnoremap <C-b> <Left>
