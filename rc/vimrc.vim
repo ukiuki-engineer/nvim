@@ -57,14 +57,16 @@ augroup MyVimrc
   " CursorHold時のみカーソル行/列を表示
   " autocmd CursorHold * call utils#set_cursor_line_column()
   " 遅延ロード {{{
-  " IME切り替え設定の読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
-  autocmd InsertEnter,CmdlineEnter * ++once execute 'source' .. g:rc_dir .. '/ime.vim'
-  " クリップボード設定の遅延読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
-  autocmd InsertEnter,CursorMoved * ++once execute 'source' .. g:rc_dir .. '/clipboard.vim'
+  " command定義
+  autocmd CmdlineEnter * ++once execute 'source' .. g:rc_dir .. '/commands.vim'
   " :terminal設定の読み込み1
   autocmd TermOpen * ++once execute 'source' .. g:rc_dir .. '/terminal.vim'
   " :terminal設定の読み込み2
   autocmd CmdUndefined Terminal,Term,TermV,TermHere,TermHereV ++once execute 'source' .. g:rc_dir .. '/terminal.vim'
+  " IME切り替え設定の読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
+  autocmd InsertEnter,CmdlineEnter * ++once execute 'source' .. g:rc_dir .. '/ime.vim'
+  " クリップボード設定の遅延読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
+  autocmd InsertEnter,CursorMoved * ++once execute 'source' .. g:rc_dir .. '/clipboard.vim'
   " markdownで、画像をクリップボードから貼り付けする設定の読み込み
   autocmd CmdUndefined PasteImage ++once execute 'source' .. g:rc_dir .. '/paste_image.vim'
   " }}}
@@ -86,16 +88,6 @@ cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-d> <Del>
-" ------------------------------------------------------------------------------
-" commands
-" ------------------------------------------------------------------------------
-" NOTE: command定義が増えてきたら、CmdlineEnterで遅延ロードした方が良いかな？
-command! SetCursorLineColumn       :set cursorline cursorcolumn
-command! SetNoCursorLineColumn     :set nocursorline nocursorcolumn
-command! SourceSession             :silent! source Session.vim
-command! -bang MksessionAndQuitAll :mksession! | :qa<bang>
-command! ShowVimrcInfo             :echo system(g:init_dir .. '/tools/show-vimrc-info.sh')
-command! OpenVimrc                 :tabnew | :tcd ~/.config/nvim
 " ------------------------------------------------------------------------------
 " 標準プラグインの制御
 " ------------------------------------------------------------------------------
