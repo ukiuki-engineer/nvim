@@ -21,18 +21,12 @@ set mouse=a
 set autoread
 " カーソル行、列を表示
 set cursorline cursorcolumn
-" ルーラーを表示しない
-set noruler
-" 行番号を表示
-set number
-" タブや改行を表示
-set list
+" ルーラーを表示しない、行番号を表示、タブや改行を表示
+set noruler number list
 " タブや改行の表示記号を定義
 " set listchars=tab:»-,trail:-,eol:↓,extends:»,precedes:«,nbsp:%
-" 画面を垂直分割する際に右に開く
-set splitright
-" 画面を水平分割する際に下に開く
-set splitbelow
+" 画面を垂直(水平)分割する際に右(下)に開く
+set splitright splitbelow
 " 検索時の挙動
 set nowrapscan ignorecase smartcase
 " sessionに保存する内容を指定
