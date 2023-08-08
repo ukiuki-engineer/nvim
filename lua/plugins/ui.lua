@@ -228,6 +228,14 @@ function M.lua_source_nvim_tree()
       update_root = true,      -- `:NvimTreeFindFile`すると更新
       ignore_list = {},
     },
+    view = {
+      -- sizeを動的に調整する
+      width = {
+        min = 30,
+        max = 60,
+        padding = 1
+      }
+    },
   }
 end
 
