@@ -92,6 +92,7 @@ let g:loaded_gzip               = 1
 let g:loaded_man                = 1
 let g:loaded_matchit            = 1
 let g:loaded_matchparen         = 1
+let g:loaded_netrw              = 1
 let g:loaded_netrwPlugin        = 1
 let g:loaded_remote_plugins     = 1
 let g:loaded_shada_plugin       = 1
