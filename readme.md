@@ -42,6 +42,7 @@ nvim/
     ├── rc/
     │   ├── vimrc.vim           " 基本的な設定とその他の設定の読み込み処理
     │   ├── clipboard.vim
+    │   ├── commands.vim
     │   ├── ime.vim
     │   ├── terminal.vim
     │   └── paste_image.vim
