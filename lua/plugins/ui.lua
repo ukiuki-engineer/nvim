@@ -356,7 +356,7 @@ function M.lua_source_dropbar()
 end
 
 --
--- satelite.nvim
+-- satellite.nvim
 --
 function M.lua_source_satellite()
   require('satellite').setup({
