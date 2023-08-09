@@ -91,7 +91,7 @@ function M.lua_source_gitsigns()
       end, {expr=true})
 
       -- Actions
-      -- TODO: この辺はコマンド定義しても良いかも
+      -- NOTE: この辺はコマンド定義しても良いかも
       map('n', '<leader>hs', gs.stage_hunk)
       map('n', '<leader>hr', gs.reset_hunk)
       map('x', '<leader>hs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)

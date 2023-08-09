@@ -275,7 +275,7 @@ function M.lua_source_dropbar()
       kinds = {
         use_devicons = true,
         symbols = {
-          -- TODO: 上手く表示できない奴は変える
+          -- NOTE: 上手く表示できない奴は適宜変える
           Array             = '󰅪 ',
           Boolean           = ' ',
           BreakStatement    = '󰙧 ',
