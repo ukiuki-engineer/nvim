@@ -231,7 +231,7 @@ function M.lua_source_nvim_tree()
     view = {
       -- sizeを動的に調整する
       width = {
-        min = 30,
+        min = 5,
         max = 75,
         padding = 1
       }
