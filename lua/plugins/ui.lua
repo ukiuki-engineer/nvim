@@ -384,7 +384,7 @@ function M.lua_source_satellite()
       },
       marks = {
         enable = true,
-        show_builtins = false, -- shows the builtin marks like [ ] < >
+        show_builtins = true, -- shows the builtin marks like [ ] < >
       },
     },
   })
