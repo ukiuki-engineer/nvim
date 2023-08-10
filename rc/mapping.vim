@@ -1,5 +1,6 @@
 " ================================================================================
 " mapping.vim
+" TODO: BufReadとInsertEnterで遅延ロードするように
 " ================================================================================
 let g:mapleader = "m"
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
@@ -14,6 +15,7 @@ cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-d> <Del>
+" TODO: 全角文字を配列に入れてforで回す {{{
 " f{全角文字}
 nnoremap <leader>f, f、
 nnoremap <leader>f. f。
@@ -86,4 +88,5 @@ nnoremap <leader>yti ytい
 nnoremap <leader>ytu ytう
 nnoremap <leader>yte ytえ
 nnoremap <leader>yto ytお
+" }}}
 
