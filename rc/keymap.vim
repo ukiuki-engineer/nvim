@@ -17,7 +17,7 @@ cnoremap <C-e> <End>
 cnoremap <C-d> <Del>
 " }}}
 lua << END
-  require('utils').map_zenkaku({
+  require('utils').jump_to_zenkaku({
     [","] = "、",
     ["."] = "。",
     ["("] = "（",

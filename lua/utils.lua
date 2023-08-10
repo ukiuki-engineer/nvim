@@ -74,7 +74,7 @@ function M.get_colorcode_by_colorname(colorname)
   return colornames[colorname]
 end
 
-function M.map_zenkaku(hankaku_zenkaku_pairs)
+function M.jump_to_zenkaku(hankaku_zenkaku_pairs)
   for hankaku, zenkaku in pairs(hankaku_zenkaku_pairs) do
     vim.keymap.set('n', '<leader>f' .. hankaku, 'f' .. zenkaku, {})
     vim.keymap.set('n', '<leader>t' .. hankaku, 't' .. zenkaku, {})
