@@ -53,6 +53,8 @@ augroup MyVimrc
   " 遅延ロード {{{
   " command定義
   autocmd CmdlineEnter * ++once execute 'source ' .. g:rc_dir .. '/commands.vim'
+  " keymap
+  autocmd InsertEnter,BufRead * ++once execute 'source ' .. g:rc_dir .. '/keymap.vim'
   " :terminal設定の読み込み1
   autocmd TermOpen * ++once execute 'source ' .. g:rc_dir .. '/terminal.vim'
   " :terminal設定の読み込み2
@@ -65,10 +67,6 @@ augroup MyVimrc
   autocmd CmdUndefined PasteImage ++once execute 'source ' .. g:rc_dir .. '/paste_image.vim'
   " }}}
 augroup END
-" ------------------------------------------------------------------------------
-" Key mapping
-" ------------------------------------------------------------------------------
-execute 'source ' .. g:rc_dir .. '/mapping.vim'
 " ------------------------------------------------------------------------------
 " 標準プラグインの制御
 " ------------------------------------------------------------------------------
