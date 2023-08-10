@@ -20,40 +20,6 @@ Total Min:     23.898000 msec
 |  CPU  |  AMD Ryzen 5 3500 6-Core Processor                 3.59 GHz  |
 | MEMORY | 16G |
 
-## ディレクトリ構成
-```
-nvim/
-    ├── init.vim                   " メインファイル
-    ├── autoload/
-    │   ├── utils.vim              " 共通処理(vimscript)
-    │   └── plugins/               " 各プラグインの設定(vimscript)
-    │       ├── code_editting.vim
-    │       ├── lsp_and_completion.vim
-    │       ├── git.vim
-    │       └── others.vim
-    ├── lua/
-    │   ├── utils.lua              " 共通処理(lua)
-    │   └── plugins/               " 各プラグインの設定(lua)
-    │       ├── ui.lua
-    │       ├── code_editting.lua
-    │       ├── lsp_and_completion.lua
-    │       ├── git.lua
-    │       └── others.lua
-    ├── rc/
-    │   ├── vimrc.vim           " 基本的な設定とその他の設定の読み込み処理
-    │   ├── clipboard.vim
-    │   ├── commands.vim
-    │   ├── ime.vim
-    │   ├── terminal.vim
-    │   └── paste_image.vim
-    ├── toml/
-    │   ├── dein.toml              " プラグイン(通常ロード)
-    │   └── dein_lazy.toml         " プラグイン(遅延ロード)
-    ├── tools/                     " 色々なスクリプト類など
-    ├── coc-settings.json          " coc.nvimの設定
-    └── .editorconfig              " editorconfig
-```
-
 ## NOTE
 自分用メモ
 - Fonts  
