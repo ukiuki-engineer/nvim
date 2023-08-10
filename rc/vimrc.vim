@@ -68,19 +68,7 @@ augroup END
 " ------------------------------------------------------------------------------
 " Key mapping
 " ------------------------------------------------------------------------------
-let g:mapleader = "m"
-nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
-nnoremap <silent> <TAB> :bn<CR>
-nnoremap <silent> <S-TAB> :bN<CR>
-nnoremap <C-j> 7j
-nnoremap <C-k> 7k
-vnoremap <C-j> 7j
-vnoremap <C-k> 7k
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-d> <Del>
+execute 'source ' .. g:rc_dir .. '/mapping.vim'
 " ------------------------------------------------------------------------------
 " 標準プラグインの制御
 " ------------------------------------------------------------------------------
