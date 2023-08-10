@@ -11,8 +11,6 @@ let g:rc_dir        = g:init_dir .. '/rc'
 let s:cache         = expand('$HOME/.cache')
 let s:dein_dir      = expand(s:cache .. '/dein')
 let s:dein_repo_dir = s:dein_dir .. '/repos/github.com/Shougo/dein.vim'
-let s:toml          = g:init_dir .. '/toml/dein.toml'
-let s:lazy_toml     = g:init_dir .. '/toml/dein_lazy.toml'
 
 " ~/.cacheが無ければ作成
 if !isdirectory(s:cache)
@@ -36,14 +34,26 @@ let g:dein#install_check_remote_threshold = 24 * 60 * 60
 
 " 設定開始
 if dein#load_state(s:dein_dir)
-  " vimrc
-  let g:dein#inline_vimrcs = [g:rc_dir .. '/init.vim']
+  " vimrc {{{
+  let s:init          = g:rc_dir .. '/init.vim'
+  let s:options       = g:rc_dir .. '/options.vim'
+  let s:autocmd       = g:rc_dir .. '/autocmd.vim'
+
+  let g:dein#inline_vimrcs = [
+    \ s:init,
+    \ s:options,
+    \ s:autocmd
+  \ ]
+  " }}}
 
   call dein#begin(s:dein_dir)
 
-  " tomlのロード
+  " toml {{{
+  let s:toml          = g:init_dir .. '/toml/dein.toml'
+  let s:lazy_toml     = g:init_dir .. '/toml/dein_lazy.toml'
   call dein#load_toml(s:toml,      {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
+  " }}}
 
   call dein#end()
   call dein#save_state()

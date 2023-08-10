@@ -2,10 +2,8 @@
 " vimrc.vim
 " ================================================================================
 " ------------------------------------------------------------------------------
-" 読み込み
+" 遅延ロード
 " ------------------------------------------------------------------------------
-let s:options     = g:rc_dir .. '/options.vim'
-let s:autocmd     = g:rc_dir .. '/autocmd.vim'
 let s:commands    = g:rc_dir .. '/commands.vim'
 let s:keymap      = g:rc_dir .. '/keymap.vim'
 let s:terminal    = g:rc_dir .. '/terminal.vim'
@@ -13,10 +11,6 @@ let s:ime         = g:rc_dir .. '/ime.vim'
 let s:clipboard   = g:rc_dir .. '/clipboard.vim'
 let s:paste_image = g:rc_dir .. '/paste_image.vim'
 
-" 通常ロード
-execute 'source ' .. s:options
-execute 'source ' .. s:autocmd
-" 遅延ロード
 augroup MyLazyLoad
   autocmd!
   " command定義
