@@ -52,17 +52,17 @@ augroup MyVimrc
   " autocmd CursorHold * call utils#set_cursor_line_column()
   " 遅延ロード {{{
   " command定義
-  autocmd CmdlineEnter * ++once execute 'source' .. g:rc_dir .. '/commands.vim'
+  autocmd CmdlineEnter * ++once execute 'source ' .. g:rc_dir .. '/commands.vim'
   " :terminal設定の読み込み1
-  autocmd TermOpen * ++once execute 'source' .. g:rc_dir .. '/terminal.vim'
+  autocmd TermOpen * ++once execute 'source ' .. g:rc_dir .. '/terminal.vim'
   " :terminal設定の読み込み2
-  autocmd CmdUndefined Terminal,Term,TermV,TermHere,TermHereV ++once execute 'source' .. g:rc_dir .. '/terminal.vim'
+  autocmd CmdUndefined Terminal,Term,TermV,TermHere,TermHereV ++once execute 'source ' .. g:rc_dir .. '/terminal.vim'
   " IME切り替え設定の読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
-  autocmd InsertEnter,CmdlineEnter * ++once execute 'source' .. g:rc_dir .. '/ime.vim'
+  autocmd InsertEnter,CmdlineEnter * ++once execute 'source ' .. g:rc_dir .. '/ime.vim'
   " クリップボード設定の遅延読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
-  autocmd InsertEnter,CursorMoved * ++once execute 'source' .. g:rc_dir .. '/clipboard.vim'
+  autocmd InsertEnter,CursorMoved * ++once execute 'source ' .. g:rc_dir .. '/clipboard.vim'
   " markdownで、画像をクリップボードから貼り付けする設定の読み込み
-  autocmd CmdUndefined PasteImage ++once execute 'source' .. g:rc_dir .. '/paste_image.vim'
+  autocmd CmdUndefined PasteImage ++once execute 'source ' .. g:rc_dir .. '/paste_image.vim'
   " }}}
 augroup END
 " ------------------------------------------------------------------------------
