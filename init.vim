@@ -35,14 +35,15 @@ let g:dein#install_check_remote_threshold = 24 * 60 * 60
 " 設定開始
 if dein#load_state(s:dein_dir)
   " vimrc {{{
-  let s:init          = g:rc_dir .. '/init.vim'
-  let s:options       = g:rc_dir .. '/options.vim'
-  let s:autocmd       = g:rc_dir .. '/autocmd.vim'
+  " let s:init     = g:rc_dir .. '/init.vim'
+  let s:init     = g:init_dir .. '/lua/config/init.lua'
+  let s:options  = g:init_dir .. '/lua/config/options.lua'
+  let s:autocmds = g:init_dir .. '/lua/config/autocmds.lua'
 
   let g:dein#inline_vimrcs = [
     \ s:init,
     \ s:options,
-    \ s:autocmd
+    \ s:autocmds
   \ ]
   " }}}
 

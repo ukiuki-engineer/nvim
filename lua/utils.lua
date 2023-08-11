@@ -85,4 +85,10 @@ function M.jump_to_zenkaku(hankaku_zenkaku_pairs)
   end
 end
 
+function M.setlocal_indent(indent)
+  vim.bo.tabstop     = indent
+  vim.bo.shiftwidth  = indent
+  vim.bo.softtabstop = indent
+end
+
 return M
