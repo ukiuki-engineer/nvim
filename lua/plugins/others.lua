@@ -99,16 +99,17 @@ function M.lua_add_telescope()
 end
 
 function M.lua_source_telescope()
-  vim.api.nvim_create_user_command('BufferLines', "lua require('telescope.builtin').current_buffer_fuzzy_find()", {})
-  vim.api.nvim_create_user_command('Buffers', "lua require('plugins.others').buffers()", {})
-  vim.api.nvim_create_user_command('CommandHistories', "lua require('telescope.builtin').command_history()", {})
-  vim.api.nvim_create_user_command('Commands', "lua require('telescope.builtin').commands()", {})
-  vim.api.nvim_create_user_command('Commits', "lua require('telescope.builtin').git_commits()", {})
-  vim.api.nvim_create_user_command('FindFiles', "lua require('plugins.others').find_files()", {})
-  vim.api.nvim_create_user_command('GitBranches', "lua require('telescope.builtin').git_branches()", {})
-  vim.api.nvim_create_user_command('GitStatus', "lua require('plugins.others').git_status()", {})
-  vim.api.nvim_create_user_command('HelpTags', "lua require('telescope.builtin').help_tags()", {})
-  vim.api.nvim_create_user_command('OldFiles', "lua require('telescope.builtin').oldfiles()", {})
+  local command = vim.api.nvim_create_user_command
+  command('BufferLines', "lua require('telescope.builtin').current_buffer_fuzzy_find()", {})
+  command('Buffers', "lua require('plugins.others').buffers()", {})
+  command('CommandHistories', "lua require('telescope.builtin').command_history()", {})
+  command('Commands', "lua require('telescope.builtin').commands()", {})
+  command('Commits', "lua require('telescope.builtin').git_commits()", {})
+  command('FindFiles', "lua require('plugins.others').find_files()", {})
+  command('GitBranches', "lua require('telescope.builtin').git_branches()", {})
+  command('GitStatus', "lua require('plugins.others').git_status()", {})
+  command('HelpTags', "lua require('telescope.builtin').help_tags()", {})
+  command('OldFiles', "lua require('telescope.builtin').oldfiles()", {})
 
   vim.cmd([[command! -nargs=* LiveGrep :lua require("plugins.others").live_grep("<args>")]])
   -- NOTE: ↑の使用例:
