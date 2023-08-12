@@ -1,4 +1,4 @@
-local keymap = vim.keymap.set
+local keyset = vim.keymap.set
 local fn     = vim.fn
 
 local M = {}
@@ -7,9 +7,9 @@ local M = {}
 --
 function M.lua_add_telescope()
   -- NOTE: on_cmdで遅延ロードさせるためにこういう回りくどいやり方をしている…
-  keymap('n', '<space>b', "<Cmd>Buffers<CR>", {})
-  keymap('n', '<space>f', "<Cmd>FindFiles<CR>", {})
-  keymap('n', '<space>g', "<Cmd>LiveGrep<CR>", {})
+  keyset('n', '<space>b', "<Cmd>Buffers<CR>", {})
+  keyset('n', '<space>f', "<Cmd>FindFiles<CR>", {})
+  keyset('n', '<space>g', "<Cmd>LiveGrep<CR>", {})
 end
 
 function M.lua_source_telescope()

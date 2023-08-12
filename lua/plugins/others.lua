@@ -2,7 +2,7 @@
 -- Others
 -- ================================================================================
 local fn     = vim.fn
-local keymap = vim.keymap.set
+local keyset = vim.keymap.set
 local opts   = {noremap = true, silent = true}
 
 local M = {}
@@ -116,7 +116,7 @@ end
 -- vim-quickrun
 --
 function M.lua_add_quickrun()
-  keymap({"n", "x"}, "<F5>", ":QuickRun<CR>", opts)
+  keyset({"n", "x"}, "<F5>", ":QuickRun<CR>", opts)
 end
 
 --
@@ -138,8 +138,8 @@ end
 -- FIXME: <C-w>L<C-w>Jとするとサイズがバグる
 --
 function M.lua_add_toggleterm()
-  keymap("t", "<C-`>", "<Cmd>ToggleTerm<CR>")
-  keymap("n", "<C-`>", ":ToggleTerm<CR>")
+  keyset("t", "<C-`>", "<Cmd>ToggleTerm<CR>")
+  keyset("n", "<C-`>", ":ToggleTerm<CR>")
 end
 
 function M.lua_source_toggleterm()

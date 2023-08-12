@@ -4,7 +4,7 @@
 -----------------------------------------------------------------------------------
 -- private
 -----------------------------------------------------------------------------------
-local keymap = vim.keymap.set
+local keyset = vim.keymap.set
 --
 -- ハイライト色をカスタムする
 --
@@ -213,8 +213,8 @@ end
 -- nvim-tree
 --
 function M.lua_add_nvim_tree()
-  keymap('n', '<C-n>', "<Cmd>NvimTreeToggle<CR>", {})
-  keymap('n', '<C-w>t', "<Cmd>NvimTreeFindFile<CR>", {})
+  keyset('n', '<C-n>', "<Cmd>NvimTreeToggle<CR>", {})
+  keyset('n', '<C-w>t', "<Cmd>NvimTreeFindFile<CR>", {})
 end
 
 function M.lua_source_nvim_tree()
@@ -354,7 +354,7 @@ function M.lua_source_dropbar()
       },
     },
   })
-  keymap('n', '<space>p', require('dropbar.api').pick)
+  keyset('n', '<space>p', require('dropbar.api').pick)
 end
 
 --
