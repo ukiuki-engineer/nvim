@@ -7,7 +7,7 @@ local api     = vim.api
 local has     = vim.fn.has
 local exepath = vim.fn.exepath
 local exists  = vim.fn.exists
-local events  = {"InsertLeave", "InsertEnter", "CmdlineLeave", }
+local events  = {"InsertLeave", "InsertEnter", "CmdlineLeave"}
 
 api.nvim_create_augroup("my_ime", {})
 
