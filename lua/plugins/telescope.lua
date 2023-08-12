@@ -1,12 +1,15 @@
+local keymap = vim.keymap.set
+local fn     = vim.fn
+
 local M = {}
 --
 -- telescope.nvim
 --
 function M.lua_add_telescope()
   -- NOTE: on_cmdで遅延ロードさせるためにこういう回りくどいやり方をしている…
-  vim.keymap.set('n', '<space>b', "<Cmd>Buffers<CR>", {})
-  vim.keymap.set('n', '<space>f', "<Cmd>FindFiles<CR>", {})
-  vim.keymap.set('n', '<space>g', "<Cmd>LiveGrep<CR>", {})
+  keymap('n', '<space>b', "<Cmd>Buffers<CR>", {})
+  keymap('n', '<space>f', "<Cmd>FindFiles<CR>", {})
+  keymap('n', '<space>g', "<Cmd>LiveGrep<CR>", {})
 end
 
 function M.lua_source_telescope()
@@ -39,7 +42,7 @@ function M.lua_source_telescope()
       mappings = {
         i = {
           ["<C-j>"] = function()
-            vim.fn['skkeleton#handle']('toggle', {})
+            fn['skkeleton#handle']('toggle', {})
           end,
           -- NOTE: <C-/>でkeymapのhelpを表示
           -- ["<C-/>"] = "which_key",
@@ -121,7 +124,7 @@ function M.git_status()
       map({"i"}, "<C-r>",
         function()
           local selection = action_state.get_selected_entry()
-          vim.fn.system("git restore " .. selection.value)
+          fn.system("git restore " .. selection.value)
           actions.close(prompt_bufnr) -- TODO: 閉じずにlistを更新することはできないか？
           require('plugins.telescope').git_status()
         end

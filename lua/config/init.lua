@@ -2,11 +2,12 @@
 -- 遅延ロード
 -- ------------------------------------------------------------------------------
 local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
+local au = vim.api.nvim_create_autocmd
+local fn = vim.fn
 
 augroup("my_lazyload", {})
 -- comannds
-autocmd("CmdlineEnter", {
+au("CmdlineEnter", {
   group = "my_lazyload",
   callback = function()
     require("config.lazy.commands")
@@ -14,7 +15,7 @@ autocmd("CmdlineEnter", {
   once = true
 })
 -- keymaps
-autocmd({"InsertEnter", "BufRead"}, {
+au({"InsertEnter", "BufRead"}, {
   group = "my_lazyload",
   callback = function()
     require("config.lazy.keymappings")
@@ -22,7 +23,7 @@ autocmd({"InsertEnter", "BufRead"}, {
   once = true,
 })
 -- :terminal設定の読み込み1
-autocmd("TermOpen", {
+au("TermOpen", {
   group = "my_lazyload",
   callback = function()
     require("config.lazy.terminal")
@@ -30,7 +31,7 @@ autocmd("TermOpen", {
   once = true
 })
 -- :terminal設定の読み込み2
-autocmd("CmdUndefined", {
+au("CmdUndefined", {
   group = "my_lazyload",
   callback = function()
     require("config.lazy.terminal")
@@ -39,7 +40,7 @@ autocmd("CmdUndefined", {
   once = true
 })
 -- IME切り替え設定の読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
-autocmd({"InsertEnter", "CmdlineEnter"}, {
+au({"InsertEnter", "CmdlineEnter"}, {
   group = "my_lazyload",
   callback = function()
     require("config.lazy.ime")
@@ -47,7 +48,7 @@ autocmd({"InsertEnter", "CmdlineEnter"}, {
   once = true
 })
 -- クリップボード設定の遅延読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
-autocmd({"InsertEnter", "CursorMoved"}, {
+au({"InsertEnter", "CursorMoved"}, {
   group = "my_lazyload",
   callback = function()
     require("config.lazy.clipboard")
@@ -56,7 +57,7 @@ autocmd({"InsertEnter", "CursorMoved"}, {
 })
 -- markdownで、画像をクリップボードから貼り付けする設定の読み込み
 -- TODO: lua以降後動作未確認
-autocmd("CmdUndefined", {
+au("CmdUndefined", {
   group = "my_lazyload",
   callback = function()
     require("config.lazy.paste_image")
@@ -88,17 +89,17 @@ g.loaded_tutor_mode_plugin  = 1
 g.loaded_zipPlugin          = 1
 g.skip_loading_mswin        = 1
 -- 標準プラグインの遅延読み込み
--- vim.fn["utils#lazy_load"]()
+-- fn["utils#lazy_load"]()
 -- ------------------------------------------------------------------------------
 -- FIXME: 応急処置。いつか消す。
 -- 最近macの時だけvimが落ちるようになったので、応急処置として保存時にmksessionする
 -- ------------------------------------------------------------------------------
 -- TODO: 動作未確認
-if vim.fn.has('mac') == 1 then
-  local pwd_in_startup = vim.fn.expand('$PWD')
+if fn.has('mac') == 1 then
+  local pwd_in_startup = fn.expand('$PWD')
   local command = 'mksession! ' .. pwd_in_startup .. '/Session.vim'
   augroup("auto_mksession", {})
-  autocmd("FileType", {
+  au("FileType", {
     group = "auto_mksession",
     pattern = {"BufWrite"},
     callback = function()

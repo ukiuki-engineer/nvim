@@ -1,10 +1,11 @@
-local api = vim.api
+local augroup = vim.api.nvim_create_augroup
+local au = vim.api.nvim_create_autocmd
 local utils = require("utils")
 
-api.nvim_create_augroup("my_vimrc", {})
+augroup("my_vimrc", {})
 
 -- phpのインデントは4
-api.nvim_create_autocmd("FileType", {
+au("FileType", {
   group = "my_vimrc",
   pattern = {"php"},
   callback = function()
@@ -13,7 +14,7 @@ api.nvim_create_autocmd("FileType", {
 })
 
 -- FIXME: markdownだけ何故かインデン4になってしまうので一旦強制的に2に。後で原因を調べる。
-api.nvim_create_autocmd("FileType", {
+au("FileType", {
   group = "my_vimrc",
   pattern = {"markdown"},
   callback = function()
