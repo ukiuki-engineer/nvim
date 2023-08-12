@@ -1,7 +1,7 @@
----
+-------------------------------------------------------------------------------
 -- 共通処理
 -- luaで書いた共通処理はここに集める
----
+-------------------------------------------------------------------------------
 local M = {}
 
 ---
@@ -74,17 +74,9 @@ function M.get_colorcode_by_colorname(colorname)
   return colornames[colorname]
 end
 
-function M.jump_to_zenkaku(hankaku_zenkaku_pairs)
-  for hankaku, zenkaku in pairs(hankaku_zenkaku_pairs) do
-    vim.keymap.set('n', '<leader>f' .. hankaku, 'f' .. zenkaku, {})
-    vim.keymap.set('n', '<leader>t' .. hankaku, 't' .. zenkaku, {})
-    vim.keymap.set('n', '<leader>df' .. hankaku, 'df' .. zenkaku, {})
-    vim.keymap.set('n', '<leader>dt' .. hankaku, 'dt' .. zenkaku, {})
-    vim.keymap.set('n', '<leader>yf' .. hankaku, 'yf' .. zenkaku, {})
-    vim.keymap.set('n', '<leader>yt' .. hankaku, 'yt' .. zenkaku, {})
-  end
-end
-
+--
+-- インデントをセットする(バッファローカル)
+--
 function M.setlocal_indent(indent)
   vim.bo.tabstop     = indent
   vim.bo.shiftwidth  = indent

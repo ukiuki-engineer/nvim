@@ -51,20 +51,13 @@ lua_source = '''
 require("plugins.ui").lua_source_satellite()
 '''
 ################################################################################
-# Code Editting
+# coding
 ################################################################################
-[[plugins]] # インデント可視化
-repo = 'lukas-reineke/indent-blankline.nvim'
-on_event = ['CursorMoved']
-lua_source = '''
-require("plugins.code_editting").lua_source_indent_blankline()
-'''
-
 [[plugins]] # matchitをもっと強くしたようなやつ(ハイライトとかもされる)
 repo = 'andymass/vim-matchup'
 on_event = ['CursorMoved']
-hook_source = '''
-call plugins#code_editting#hook_source_matchup()
+lua_source = '''
+require("plugins.coding").lua_source_matchup()
 '''
 
 [[plugins]] # 行内ジャンプ用にハイライトしてくれるやつ
@@ -74,25 +67,17 @@ on_event = ['CursorMoved']
 [[plugins]] # コメントアウト
 repo = 'tpope/vim-commentary'
 on_event = ['CursorMoved']
-hook_source = '''
-call plugins#code_editting#hook_source_commentary()
+lua_source = '''
+require("plugins.coding").lua_source_commentary()
 '''
 
 [[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン(自作)
 repo = 'ukiuki-engineer/vim-autoclose'
 rev = 'develop'
 on_event = ['InsertEnter']
-hook_source = '''
-call plugins#code_editting#hook_source_autoclose()
+lua_source = '''
+require("plugins.coding").lua_source_autoclose()
 '''
-
-# [[plugins]] # 括弧、クォーテーション補完
-#             # 試しに使ってみて色々と参考にする
-# repo = 'cohama/lexima.vim'
-# on_event = ['InsertEnter']
-# hook_source = '''
-# call plugins#code_editting#hook_source_lexima()
-# '''
 
 [[plugins]] # カラーコード可視化
 repo = 'norcalli/nvim-colorizer.lua'
@@ -110,22 +95,20 @@ on_ft = [
   'vim',
   'vue'
 ]
-hook_source = '''
-call plugins#code_editting#hook_source_colorizer()
+lua_source = '''
+require("plugins.coding").lua_source_colorizer()
 '''
 
 [[plugins]] # Markdownでtable作成
 repo = 'mattn/vim-maketable'
 on_cmd = ['MakeTable', 'UnmakeTable']
-################################################################################
-# LSP and Completion
-################################################################################
+
 [[plugins]] # 補完エンジン
 repo = 'hrsh7th/nvim-cmp'
 depends = ['cmp-cmdline', 'cmp-buffer', 'cmp-path', 'cmp-skkeleton']
 on_event = ['CmdlineEnter', 'InsertEnter']
 lua_source = '''
-require("plugins.lsp_and_completion").lua_source_nvim_cmp()
+require("plugins.coding").lua_source_nvim_cmp()
 '''
 
 [[plugins]] # コマンドライン補完用nvim-cmpのソース
@@ -144,6 +127,9 @@ on_source = 'nvim-cmp'
 repo = 'rinx/cmp-skkeleton'
 on_source = 'nvim-cmp'
 
+################################################################################
+# LSP
+################################################################################
 [[plugins]] # coc.nvim
 repo = 'neoclide/coc.nvim'
 # rev = 'release'
@@ -152,11 +138,11 @@ build = 'yarn install --frozen-lockfile' # NOTE: masterの場合のみ
 depends = ['vim-snippets', 'fzf']
 on_event = ['CursorMoved', 'FileType']
 on_cmd = ['CocCommand']
-hook_add = '''
-call plugins#lsp_and_completion#hook_add_coc()
+lua_add = '''
+require("plugins.coc").lua_add_coc()
 '''
-hook_source = '''
-call plugins#lsp_and_completion#hook_source_coc()
+lua_source = '''
+require("plugins.coc").lua_source_coc()
 '''
 
 [[plugins]] # スニペットのソース類
@@ -203,8 +189,8 @@ on_cmd = [
 repo = 'APZelos/blamer.nvim'
 depends = ['vim-fugitive']
 on_cmd = ['BlamerHide', 'BlamerShow', 'BlamerToggle']
-hook_add = '''
-call plugins#git#hook_add_blamer()
+lua_add = '''
+require("plugins.git").lua_add_blamer()
 '''
 
 [[plugins]] # 行番号の左に、gitの状態を表示するやつ
@@ -254,47 +240,19 @@ on_cmd = ['TSPlaygroundToggle']
 repo = 'JoosepAlviste/nvim-ts-context-commentstring'
 on_event = ['FileType']
 
-[[plugins]] # ファジーファインダー
-repo = 'junegunn/fzf'
-build = './install'
-on_source = ['coc.nvim']
-
-[[plugins]]
-repo = 'nvim-telescope/telescope.nvim'
-depends = ['plenary', 'telescope-fzf-native.nvim']
-on_cmd = [
-  'BufferLines',
-  'Buffers',
-  'CommandHistories',
-  'Commands',
-  'Commits',
-  'FindAllFiles',
-  'FindFiles',
-  'GitBranches',
-  'GitStatus',
-  'HelpTags',
-  'LiveGrep',
-  'OldFiles',
-  'Telescope',
-]
-lua_add = '''
-require("plugins.others").lua_add_telescope()
-'''
+[[plugins]] # インデント可視化
+repo = 'lukas-reineke/indent-blankline.nvim'
+on_event = ['CursorMoved']
 lua_source = '''
-require("plugins.others").lua_source_telescope()
+require("plugins.others").lua_source_indent_blankline()
 '''
-
-[[plugins]]
-repo = 'nvim-telescope/telescope-fzf-native.nvim'
-build = 'make'
-on_source = ['telescope.nvim']
 
 [[plugins]] # vimから編集中のファイルを素早く実行するやつ
 # FIXME: 実行結果を右ではなく下に小さく表示させたい
 repo = 'thinca/vim-quickrun'
 on_cmd = ['QuickRun']
-hook_add = '''
-call plugins#others#hook_add_quickrun()
+lua_add = '''
+require("plugins.others").lua_add_quickrun()
 '''
 
 [[plugins]] # editorconfig
@@ -324,19 +282,18 @@ on_cmd = [
   'TermExec',
 ]
 on_event = ['TermOpen']
-hook_add = '''
-call plugins#others#hook_add_toggleterm()
+lua_add = '''
+require("plugins.others").lua_add_toggleterm()
 '''
-hook_source = '''
-lua require("plugins.others").lua_source_toggleterm()
-call plugins#others#hook_source_toggleterm()
+lua_source = '''
+require("plugins.others").lua_source_toggleterm()
 '''
 
 [[plugins]] # ヘルプファイル自動生成
 repo = 'LeafCage/vimhelpgenerator'
 on_cmd = ['VimHelpGenerator', 'VimHelpGeneratorVirtual']
-hook_source = '''
-call plugins#others#hook_source_vimhelpgenerator()
+lua_source = '''
+require("plugins.others").lua_source_vimhelpgenerator()
 '''
 
 [[plugins]] # vimの起動速度を測定
@@ -353,8 +310,8 @@ on_cmd = ['PreviewMarkdown']
 #       rst2html.py --version
 repo = 'previm/previm'
 on_cmd = ['PrevimOpen']
-hook_source = '''
-call plugins#others#hook_source_previm()
+lua_source = '''
+require("plugins.others").lua_source_previm()
 '''
 
 [[plugins]] # コマンドの実行結果をバッファに読み込んでくれるやつ
@@ -372,3 +329,37 @@ on_ft = ['blade']
 repo = 'vim-scripts/applescript.vim'
 on_ft = ['applescript']
 
+[[plugins]] # ファジーファインダー
+repo = 'junegunn/fzf'
+build = './install'
+on_source = ['coc.nvim']
+
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+depends = ['plenary', 'telescope-fzf-native.nvim']
+on_cmd = [
+  'BufferLines',
+  'Buffers',
+  'CommandHistories',
+  'Commands',
+  'Commits',
+  'FindAllFiles',
+  'FindFiles',
+  'GitBranches',
+  'GitStatus',
+  'HelpTags',
+  'LiveGrep',
+  'OldFiles',
+  'Telescope',
+]
+lua_add = '''
+require("plugins.telescope").lua_add_telescope()
+'''
+lua_source = '''
+require("plugins.telescope").lua_source_telescope()
+'''
+
+[[plugins]]
+repo = 'nvim-telescope/telescope-fzf-native.nvim'
+build = 'make'
+on_source = ['telescope.nvim']

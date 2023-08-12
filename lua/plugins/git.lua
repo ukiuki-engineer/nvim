@@ -1,6 +1,9 @@
 -- ================================================================================
 -- Git
 -- ================================================================================
+local g = vim.g
+local fn = vim.fn
+
 local M = {}
 --
 -- diffview.nvim
@@ -17,6 +20,25 @@ function M.lua_source_diffview()
       },
     },
   })
+end
+
+--
+-- blamer.nvim
+--
+function M.lua_add_blamer()
+  -- 日時のフォーマット
+  g.blamer_date_format = '%Y/%m/%d %H:%M'
+  -- ビジュアルモード時はオフ
+  g.blamer_show_in_visual_modes = 0
+
+  fn.timer_start(500,
+    function()
+      if fn["utils#is_git_project"] then
+        vim.cmd([[silent BlamerShow]])
+      end
+      -- vim.cmd([[silent BlamerShow]])
+    end
+  )
 end
 
 --

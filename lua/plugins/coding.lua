@@ -1,7 +1,49 @@
 -- ================================================================================
--- LSP and Completion
+-- coding
 -- ================================================================================
+local fn = vim.fn
 local M = {}
+
+--
+-- vim-matchup
+--
+function M.lua_source_matchup()
+  fn["plugins#hook_source_matchup"]()
+end
+
+--
+-- vim-commentary
+--
+function M.lua_source_commentary()
+  fn["plugins#hook_source_commentary"]()
+end
+
+--
+-- vim-autoclose(自作)
+--
+function M.lua_source_autoclose()
+  fn["plugins#hook_source_autoclose"]()
+end
+
+--
+-- snvim-colorizer.lua
+--
+function M.lua_source_colorizer()
+  fn["plugins#hook_source_colorizer"]()
+end
+
+--
+-- skkeleton
+--
+function M.lua_add_skkeleton()
+  fn["plugins#hook_add_skkeleton"]()
+end
+
+function M.lua_source_skkeleton()
+  fn["plugins#hook_source_skkeleton"]()
+end
+
+
 --
 -- nvim-cmp
 --

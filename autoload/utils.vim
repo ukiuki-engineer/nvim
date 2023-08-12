@@ -1,6 +1,42 @@
 " ================================================================================
-" 関数
+" vimscriptで書いた処理はここに集める
 " ================================================================================
+" --------------------------------------------------------------------------------
+" utils
+" --------------------------------------------------------------------------------
+"
+" git projectかどうかを返す
+"
+function! utils#is_git_project() abort
+  return system('git status > /dev/null 2>&1') == 0
+endfunction
+" --------------------------------------------------------------------------------
+" lua/config/init.lua
+" --------------------------------------------------------------------------------
+"
+" 標準プラグインの遅延読み込み
+"
+function! utils#lazy_load() abort
+  augroup MyTimerLoad
+    autocmd!
+    execute 'au InsertLeave,FileType * ++once call s:packadd()'
+  augroup END
+  if expand('%') != ''
+    call timer_start(500, function("s:timer_load"))
+  endif
+endfunction
+
+function! s:packadd() abort
+  unlet g:loaded_matchit
+  packadd matchit
+endfunction
+
+function! s:timer_load(timer) abort
+  call s:packadd()
+endfunction
+" --------------------------------------------------------------------------------
+" lua/config/lazy/terminal.lua
+" --------------------------------------------------------------------------------
 "
 " :TermHere用
 "
@@ -27,7 +63,9 @@ function! utils#execute_here(command) abort
   " コマンド実行
   execute a:command
 endfunction
-
+" --------------------------------------------------------------------------------
+" lua/config/lazy/commands.lua
+" --------------------------------------------------------------------------------
 "
 " カーソル行/列の表示と非表示
 "
@@ -41,30 +79,14 @@ function! utils#set_cursor_line_column() abort
   augroup END
 endfunction
 
+" --------------------------------------------------------------------------------
+" lua/config/lazy/paste_image.lua
+" --------------------------------------------------------------------------------
 "
-" 標準プラグインの遅延読み込み
+" 画像の貼り付け
 "
-function! utils#lazy_load() abort
-  augroup MyTimerLoad
-    autocmd!
-    execute 'au InsertLeave,FileType * ++once call s:packadd()'
-  augroup END
-  if expand('%') != ''
-    call timer_start(500, function("s:timer_load"))
-  endif
-endfunction
-
-function! s:packadd() abort
-  unlet g:loaded_matchit
-  packadd matchit
-endfunction
-
-function! s:timer_load(timer) abort
-  call s:packadd()
-endfunction
-
-" TODO: 画像が保存されなかった場合、textが挿入されないようにする
 function! utils#paste_image(args = '') abort
+  " TODO: 画像が保存されなかった場合、textが挿入されないようにする
   " Mac以外ならエラー
   if !has('mac')
     echohl ErrorMsg
@@ -131,10 +153,13 @@ function! utils#paste_image(args = '') abort
   put =l:insert_text
 endfunction
 
+"
 " 連番ファイル名を取得
+"
 function! utils#seq_filename(target_dir) abort
   let l:files = glob(a:target_dir .. '/image-*.png')
   let l:command = "\\ls " .. a:target_dir .. " | \\grep -E 'image-.*[0-1]*\\.png' | \\sed -e 's/image-//' -e 's/\\.png//' | \\sort -n | \\tail -n1 | tr -d '\n'"
   let l:num = system(l:command)
   return 'image-' .. (l:num + 1) .. '.png'
 endfunction
+

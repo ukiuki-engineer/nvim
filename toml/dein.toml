@@ -37,8 +37,8 @@ repo = 'vim-denops/denops.vim'
 [[plugins]]
 repo = 'vim-skk/skkeleton'
 depends = ['denops']
-hook_add = '''
-call plugins#code_editting#hook_add_skkeleton()
+lua_add = '''
+require("plugins.coding").lua_add_skkeleton()
 '''
 ################################################################################
 # ColorScheme

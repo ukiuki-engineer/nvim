@@ -4,7 +4,7 @@ end
 vim.g['vimrc#loaded_terminal'] = true
 
 -- nvim-cmpの設定をリロード
-require("plugins.lsp_and_completion").lua_source_nvim_cmp()
+require("plugins.coding").lua_source_nvim_cmp()
 
 local api = vim.api
 

@@ -1,14 +1,9 @@
 # 各プラグインの設定(vimscript)
-vimscriptで書くプラグインの設定はこのディレクトリ内に配置する。
-## ディレクトリ構成
-```
-plugins/
-       ├── ui.lua
-       ├── code_editting.lua
-       ├── lsp_and_completion.lua
-       ├── git.lua
-       └── others.lua
-```
+プラグインの設定はこのディレクトリ内に配置する。
+基本はluaで書く方針。
+vimscript->luaの移行ができてないやつは`autoload/plugins.vim`に集めてる。
+vimscriptで書いた設定はlua側をエントリーポイントにしてlua側から呼ぶ方針(基本的には)。
+
 ## 関数の命名規則
 - "hookの種類_プラグイン名"とする
 - ハイフンはアンダーバーに変更
