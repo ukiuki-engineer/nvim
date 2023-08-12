@@ -125,7 +125,7 @@ function! utils#paste_image(args = '') abort
     let l:insert_text = '![Alt text](' .. l:image_relativepath .. ')'
   endif
 
-  let l:command = 'osascript ' .. g:init_dir .. '/tools/paste-image.scpt ' .. l:image_fullpath
+  let l:command = 'osascript ' .. g:init_dir .. '/scripts/paste-image.scpt ' .. l:image_fullpath
   echo l:command
   let l:output = system(l:command)
   put =l:insert_text

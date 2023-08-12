@@ -3,7 +3,7 @@
 # 引数に"-startuptime"と入れると、`vim-startuptime -vimpath nvim`を叩く
 
 script_dir=$(dirname $(readlink -f $0))
-vimrc_dir=${script_dir/\/tools/}
+vimrc_dir=${script_dir/\/scripts/}
 target='vim$|lua$|toml$|json$' # 行数カウント対象
 not_target='colors|not_use'    # 行数カウント対象外
 
