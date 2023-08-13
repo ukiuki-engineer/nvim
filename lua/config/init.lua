@@ -15,7 +15,7 @@ au("CmdlineEnter", {
   once = true
 })
 -- keymaps
-au({"InsertEnter", "BufRead"}, {
+au({"CmdlineEnter", "BufRead", "InsertEnter"}, {
   group = "my_lazyload",
   callback = function()
     require("config.lazy.keymappings")
