@@ -11,5 +11,7 @@ vim.cmd([[
   command! -bang MksessionAndQuitAll :mksession! | :qa<bang>
   command! ShowVimrcInfo             :echo system(g:init_dir .. '/scripts/show-vimrc-info.sh')
   command! OpenVimrc                 :tabnew | :tcd ~/.config/nvim
+  " バッファのフルパスをヤンクする
+  command! YankBufPath               :let @0 = expand('%:p') | :let @+ = expand('%:p')
 ]])
 
