@@ -6,56 +6,7 @@
 " -----------------------------------------------------------------------------
 " coc.nvim
 " -----------------------------------------------------------------------------
-" FIXME: bladeでも、phpの関数のhoverが読みたい
-" NOTE: coc-bladeは、"b:xxx"と打つと補完候補が出る
-" NOTE: :CocCommand xx.xxで各拡張機能のコマンドを色々呼び出せる
-" NOTE: スペルチェッカーの辞書登録
-" .config/nvim/coc-settings.jsonの"cSpell.userWords"に追加
-"   :CocCommand cSpell.addWordToUserDictionary
-" ./.vim/coc-settings.jsonの"cSpell.ignoreWords"に追加
-"   :CocCommand cSpell.addIgnoreWordToWorkspace
-" NOTE: Laravel固有のメソッドに対して補完やホバーを行うには、補完ヘルパーファイルを出力する必要がある
-" 手順は以下の通り
-" composer require --dev barryvdh/laravel-ide-helper # ライブラリをインストール
-" composer require barryvdh/laravel-ide-helper:*     # ↑で上手くいかなかった場合
-" php artisan ide-helper:generate                    # _ide_helper.phpを生成
-" php artisan ide-helper:models --nowrite            # _ide_helper_models.phpを生成
-function! plugins#hook_add_coc() abort
-  " coc-extensions
-  let g:coc_global_extensions = [
-    \ '@yaegassy/coc-intelephense',
-    \ 'coc-blade',
-    \ 'coc-css',
-    \ 'coc-cssmodules',
-    \ 'coc-docker',
-    \ 'coc-eslint',
-    \ 'coc-fzf-preview',
-    \ 'coc-html',
-    \ 'coc-jedi',
-    \ 'coc-json',
-    \ 'coc-lua',
-    \ 'coc-php-cs-fixer',
-    \ 'coc-prettier',
-    \ 'coc-sh',
-    \ 'coc-snippets',
-    \ 'coc-solargraph',
-    \ 'coc-spell-checker',
-    \ 'coc-sql',
-    \ 'coc-tsserver',
-    \ 'coc-vetur',
-    \ 'coc-vimlsp',
-    \ 'coc-word',
-    \ 'coc-xml',
-    \ 'coc-yaml',
-    \ 'coc-yank',
-  \ ]
-    " \ '@yaegassy/coc-laravel',
-
-  command! PreviewCocOutline :CocCommand fzf-preview.CocOutlie
-  command! ProjectFiles :CocCommand fzf-preview.ProjectFiles
-  command! Changes :CocCommand fzf-preview.Changes
-endfunction
-
+" NOTE: これはvimscriptで書いた方が可読性高い気がするのでlua化はしない
 function! plugins#hook_source_coc() abort
   " 補完候補の決定
   inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
@@ -122,34 +73,9 @@ endfunction
 " coding
 " -----------------------------------------------------------------------------
 "
-" vim-matchup
-"
-function! plugins#hook_source_matchup() abort
-  " TODO: bladeでtagnameonlyが効かない
-  let g:matchup_matchpref = {
-    \ 'html' : {'tagnameonly': 1},
-    \ 'xml'  : {'tagnameonly': 1},
-    \ 'blade': {'tagnameonly': 1},
-    \ 'vue'  : {'tagnameonly': 1},
-  \ }
-endfunction
-
-"
-" vim-commentary
-"
-function! plugins#hook_source_commentary() abort
-  augroup MyCommentstring
-    autocmd!
-    autocmd FileType applescript,toml setlocal commentstring=#\ %s
-    autocmd FileType php setlocal commentstring=//\ %s
-    autocmd FileType json setlocal commentstring=//\ %s
-    autocmd FileType vue setlocal commentstring=<!--\ %s\ -->
-  augroup END
-endfunction
-
-"
 " vim-autoclose(自作)
 "
+" NOTE: これはvimscriptで書いた方が可読性高い気がするのでlua化はしない
 function! plugins#hook_source_autoclose() abort
   " let g:autoclose#autoclosing_brackets_enable = 0
   " let g:autoclose#autoclosing_quots_enable = 0
@@ -195,19 +121,10 @@ function! plugins#hook_source_autoclose() abort
 endfunction
 
 "
-" nvim-colorizer.lua
-"
-function! plugins#hook_source_colorizer() abort
-  augroup MyColorizer
-    autocmd!
-    autocmd FileType css,html,xml,less,sass,scss,stylus,vim,blade,vue,eruby,toml,lua,javascript,markdown ColorizerAttachToBuffer
-  augroup END
-  lua require 'colorizer'.setup()
-endfunction
-
-"
 " skkeleton
 "
+" NOTE: lua化保留
+let s:skk_dir = ""
 function! plugins#hook_add_skkeleton() abort
   " 辞書ファイルダウンロード
   " TODO: 何かどっかで上手くいってないけど面倒だから必要な時に直す
@@ -226,6 +143,7 @@ function! plugins#hook_add_skkeleton() abort
 
 endfunction
 
+" NOTE: lua化保留
 function! plugins#skkeleton_init() abort
   " NOTE: 多分、絵文字に関しては、Macならctrl+cmd+spaceを押した方が早い
   call skkeleton#config({
@@ -251,7 +169,7 @@ endfunction
 
 " 辞書ファイルダウンロード
 function! s:download_skk_jisyo() abort
-  let s:dictionaries = [
+  let dictionaries = [
     \ {"name": "SKK-JISYO.L", "url": "https://skk-dev.github.io/dict/SKK-JISYO.L.gz"},
     \ {"name" : "SKK-JISYO.emoji.utf8", "url": "https://raw.githubusercontent.com/uasi/skk-emoji-jisyo/master/SKK-JISYO.emoji.utf8"},
     \ {"name" : "SKK-JISYO.jinmei", "url": "https://github.com/skk-dev/dict/blob/master/SKK-JISYO.jinmei"}
@@ -262,51 +180,20 @@ function! s:download_skk_jisyo() abort
     call mkdir(s:skk_dir, 'p')
   endif
 
-  for dictionary in s:dictionaries
+  for dictionary in dictionaries
     if filereadable(s:skk_dir .. dictionary['name'])
       continue
     endif
 
     if dictionary['name'] == 'SKK-JISYO.L'
-      let s:output = system('cd ' .. s:skk_dir .. ' && wget ' .. dictionary['url'] .. ' && gzip -d ' .. dictionary['name'])
+      let output = system('cd ' .. s:skk_dir .. ' && wget ' .. dictionary['url'] .. ' && gzip -d ' .. dictionary['name'])
     else
-      let s:output = system('cd ' .. s:skk_dir .. ' && curl -O ' .. dictionary['url'])
+      let output = system('cd ' .. s:skk_dir .. ' && curl -O ' .. dictionary['url'])
     endif
 
     if v:shell_error
       echo dictionary['name'] .. "のダウンロードが正常に行われませんでした"
-      echo s:output
+      echo output
     endif
   endfor
 endfunction
-" -----------------------------------------------------------------------------
-" others
-" -----------------------------------------------------------------------------
-"
-" vimhelpgenerator
-"
-function! plugins#hook_source_vimhelpgenerator() abort
-  let g:vimhelpgenerator_defaultlanguage = 'ja'
-  let g:vimhelpgenerator_version = ''
-  let g:vimhelpgenerator_author = 'Author  : ukiuki-engineer'
-  let g:vimhelpgenerator_contents = {
-    \ 'contents' : 1, 'introduction': 1, 'usage': 1, 'interface': 1,
-    \ 'variables': 1, 'commands': 1, 'key-mappings': 1, 'functions': 1,
-    \ 'setting'  : 0, 'todo': 1, 'changelog': 0
-    \ }
-endfunction
-
-"
-" previm
-"
-function! plugins#hook_source_previm() abort
-  let g:previm_show_header = 1
-  let g:previm_enable_realtime = 1
-  if has('mac')
-    " MacOS用
-    let g:previm_open_cmd = 'open -a Google\ Chrome'
-  elseif has('linux') && exists('$WSLENV')
-    " TODO: WSL用
-  endif
-endfunction
-

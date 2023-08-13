@@ -1,11 +1,12 @@
 -- ================================================================================
 -- Others
 -- ================================================================================
+local M = {}
+
+local g      = vim.g
 local fn     = vim.fn
 local keyset = vim.keymap.set
 local opts   = {noremap = true, silent = true}
-
-local M = {}
 --
 -- nvim-treesitter
 --
@@ -123,14 +124,37 @@ end
 -- vimhelpgenerator
 --
 function M.lua_source_vimhelpgenerator()
-  fn["plugins#hook_source_vimhelpgenerator"]()
+  g.vimhelpgenerator_defaultlanguage = 'ja'
+  g.vimhelpgenerator_version = ''
+  g.vimhelpgenerator_author = 'Author  : ukiuki-engineer'
+  g.vimhelpgenerator_contents = {
+    contents         = 1,
+    introduction     = 1,
+    usage            = 1,
+    interface        = 1,
+    variables        = 1,
+    commands         = 1,
+    ["key-mappings"] = 1,
+    functions        = 1,
+    setting          = 0,
+    todo             = 1,
+    changelog        = 0
+  }
 end
 
 --
 -- previm
 --
 function M.lua_source_previm()
-  fn["plugins#hook_source_previm"]()
+  -- fn["plugins#hook_source_previm"]()
+  g.previm_show_header = 1
+  g.previm_enable_realtime = 1
+  if fn.has('mac') then
+    -- MacOS用
+    g.previm_open_cmd = [[open -a Google\ Chrome]]
+  elseif fn.has('linux') and fn.exists('$WSLENV') then
+    -- TODO: WSL用
+  end
 end
 
 --

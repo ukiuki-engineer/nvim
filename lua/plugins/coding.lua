@@ -1,21 +1,51 @@
 -- ================================================================================
 -- coding
 -- ================================================================================
-local fn = vim.fn
 local M = {}
+
+local fn = vim.fn
+local g  = vim.g
+local augroup = vim.api.nvim_create_augroup
+local au = vim.api.nvim_create_autocmd
 
 --
 -- vim-matchup
 --
 function M.lua_source_matchup()
-  fn["plugins#hook_source_matchup"]()
+  g.matchup_matchpref = {
+    html  = {tagnameonly = 1},
+    xml   = {tagnameonly = 1},
+    blade = {tagnameonly = 1},
+    vue   = {tagnameonly = 1}
+  }
 end
 
 --
 -- vim-commentary
 --
 function M.lua_source_commentary()
-  fn["plugins#hook_source_commentary"]()
+  augroup("my_commentstring", {})
+  au("FileType", {
+    group = "my_commentstring",
+    pattern = {"applescript", "toml"},
+    callback = function()
+      vim.bo.commentstring = "# %s"
+    end
+  })
+  au("FileType", {
+    group = "my_commentstring",
+    pattern = {"php", "json"},
+    callback = function()
+      vim.bo.commentstring = "// %s"
+    end
+  })
+  au("FileType", {
+    group = "my_commentstring",
+    pattern = {"vue"},
+    callback = function()
+      vim.bo.commentstring = "<!-- %s -->"
+    end
+  })
 end
 
 --
@@ -26,19 +56,43 @@ function M.lua_source_autoclose()
 end
 
 --
--- snvim-colorizer.lua
+-- nvim-colorizer.lua
 --
 function M.lua_source_colorizer()
-  fn["plugins#hook_source_colorizer"]()
+  augroup("my_colorizer", {})
+  au("FileType", {
+    group = "my_colorizer",
+    pattern = {
+      "blade",
+      "css",
+      "eruby",
+      "html",
+      "javascript",
+      "less",
+      "lua",
+      "markdown",
+      "sass",
+      "scss",
+      "stylus",
+      "toml",
+      "vim",
+      "vue",
+      "xml",
+    },
+    command = "ColorizerAttachToBuffer"
+  })
+  require("colorizer").setup()
 end
 
 --
 -- skkeleton
 --
+-- NOTE: lua化保留
 function M.lua_add_skkeleton()
   fn["plugins#hook_add_skkeleton"]()
 end
 
+-- NOTE: lua化保留
 function M.lua_source_skkeleton()
   fn["plugins#hook_source_skkeleton"]()
 end
