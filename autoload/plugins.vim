@@ -11,12 +11,22 @@
 " NOTE: これはvimscriptで書いた方が可読性高い気がするのでlua化はしない
 function! plugins#hook_source_coc() abort
   " 補完候補の決定
-  inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+  inoremap <silent><expr> <CR> coc#pum#visible()
+    \ ? coc#pum#confirm()
+    \ : "\<CR>"
   " 補完候補の選択
-  inoremap <silent><expr> <TAB>  coc#pum#visible() ? coc#pum#next(1) : "\<TAB>"
-  inoremap <silent><expr> <S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<S-TAB>"
-  inoremap <silent><expr> <C-n> coc#pum#visible() ? coc#pum#next(1) : coc#refresh()
-  inoremap <silent><expr> <C-p> coc#pum#visible() ? coc#pum#prev(1) : coc#refresh()
+  inoremap <silent><expr> <TAB>  coc#pum#visible()
+    \ ? coc#pum#next(1)
+    \ : "\<TAB>"
+  inoremap <silent><expr> <S-TAB> coc#pum#visible()
+    \ ? coc#pum#prev(1)
+    \ : "\<S-TAB>"
+  inoremap <silent><expr> <C-n> coc#pum#visible()
+    \ ? coc#pum#next(1)
+    \ : coc#refresh()
+  inoremap <silent><expr> <C-p> coc#pum#visible()
+    \ ? coc#pum#prev(1)
+    \ : coc#refresh()
   " 定義ジャンプ
   nnoremap <silent> <space>d <Plug>(coc-definition)
   " ドキュメント表示
@@ -40,14 +50,30 @@ function! plugins#hook_source_coc() abort
   " NOTE: outline tree上で<space>tで、treeの開閉ができる
   nnoremap <silent><nowait> <space>t :call CocActionAsync('showOutline')<CR>
   " ウィンドウのスクロール
-  nnoremap <nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "7j"
-  nnoremap <nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "7k"
-  nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <nowait><expr> <C-i> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1, 1)\<CR>" : "\<Right>"
-  inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<CR>" : "\<Right>"
-  inoremap <nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<CR>" : "\<Left>"
-  inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
+  nnoremap <nowait><expr> <C-j> coc#float#has_scroll()
+        \ ? coc#float#scroll(1, 1)
+        \ : "7j"
+  nnoremap <nowait><expr> <C-k> coc#float#has_scroll()
+    \ ? coc#float#scroll(0, 1)
+    \ : "7k"
+  nnoremap <nowait><expr> <C-f> coc#float#has_scroll()
+    \ ? coc#float#scroll(1)
+    \ : "\<C-f>"
+  nnoremap <nowait><expr> <C-b> coc#float#has_scroll()
+    \ ? coc#float#scroll(0)
+    \ : "\<C-b>"
+  inoremap <nowait><expr> <C-i> coc#float#has_scroll()
+    \ ? "\<c-r>=coc#float#scroll(1, 1)\<CR>"
+    \ : "\<Right>"
+  inoremap <nowait><expr> <C-f> coc#float#has_scroll()
+    \ ? "\<c-r>=coc#float#scroll(1)\<CR>"
+    \ : "\<Right>"
+  inoremap <nowait><expr> <C-k> coc#float#has_scroll()
+    \ ? "\<c-r>=coc#float#scroll(0, 1)\<CR>"
+    \ : "\<Left>"
+  inoremap <nowait><expr> <C-b> coc#float#has_scroll()
+    \ ? "\<c-r>=coc#float#scroll(0)\<CR>"
+    \ : "\<Left>"
   " フォーマッターを呼び出す
   command! Format :call CocAction('format')
 endfunction
