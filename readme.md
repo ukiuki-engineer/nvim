@@ -1,6 +1,9 @@
 # My Neovim Settings
 基本的にはMac(iTerm2)で使用。たまにWindowsのWSL(Windows Terminal)で使用。  
 
+# このブランチについて
+vimscript->luaへ移行する前の状態を残しておく用。
+
 ## 起動速度
 - WSL2で測定した結果
 ```
