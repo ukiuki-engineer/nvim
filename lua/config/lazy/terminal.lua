@@ -6,14 +6,14 @@ vim.g['vimrc#loaded_terminal'] = true
 -- nvim-cmpの設定をリロード
 require("plugins.coding").lua_source_nvim_cmp()
 
-local api = vim.api
+local api     = vim.api
+local augroup = api.nvim_create_augroup
+local au      = api.nvim_create_au
 
 api.nvim_create_augroup("my_terminal", {})
 api.nvim_create_autocmd("TermOpen", {
   group = "my_terminal",
-  callback = function()
-    vim.cmd("startinsert")
-  end,
+  command = "startinsert"
 })
 
 -- keymappings {{{

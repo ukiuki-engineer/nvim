@@ -4,7 +4,9 @@
 -----------------------------------------------------------------------------------
 -- private
 -----------------------------------------------------------------------------------
-local keyset = vim.keymap.set
+local keyset  = vim.keymap.set
+local augroup = vim.api.nvim_create_augroup
+local au      = vim.api.nvim_create_autocmd
 --
 -- ハイライト色をカスタムする
 --
@@ -78,9 +80,9 @@ local function custom_color(bg_color, colorscheme)
     end
   end
 
-  local custom_highlight = vim.api.nvim_create_augroup("CustomHighlight", {})
+  local custom_highlight = augroup("CustomHighlight", {})
 
-  vim.api.nvim_create_autocmd("ColorScheme", {
+  au("ColorScheme", {
     pattern = { colorscheme },
     callback = set_customcolor,
     group = custom_highlight,
