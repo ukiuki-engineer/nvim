@@ -7,6 +7,7 @@ local g      = vim.g
 local fn     = vim.fn
 local keyset = vim.keymap.set
 local opts   = {noremap = true, silent = true}
+
 --
 -- nvim-treesitter
 --

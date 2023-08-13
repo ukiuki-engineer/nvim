@@ -3,6 +3,7 @@ local M = {}
 local fn = vim.fn
 local g  = vim.g
 local command = vim.api.nvim_create_user_command
+
 -- FIXME: bladeでも、phpの関数のhoverが読みたい
 -- NOTE: coc-bladeは、"b:xxx"と打つと補完候補が出る
 -- NOTE: :CocCommand xx.xxで各拡張機能のコマンドを色々呼び出せる
@@ -17,7 +18,6 @@ local command = vim.api.nvim_create_user_command
 -- composer require barryvdh/laravel-ide-helper:*     # ↑で上手くいかなかった場合
 -- php artisan ide-helper:generate                    # _ide_helper.phpを生成
 -- php artisan ide-helper:models --nowrite            # _ide_helper_models.phpを生成
-
 function M.lua_add_coc()
   -- coc-extensions
   g.coc_global_extensions = {
