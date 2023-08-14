@@ -3,7 +3,6 @@
 -- ------------------------------------------------------------------------------
 local augroup = vim.api.nvim_create_augroup
 local au = vim.api.nvim_create_autocmd
-local fn = vim.fn
 
 augroup("my_lazyload", {})
 -- comannds
@@ -89,4 +88,4 @@ g.loaded_tutor_mode_plugin  = 1
 g.loaded_zipPlugin          = 1
 g.skip_loading_mswin        = 1
 -- 標準プラグインの遅延読み込み
--- fn["utils#lazy_load"]()
+-- vim.fn["utils#lazy_load"]()
