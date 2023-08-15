@@ -26,7 +26,9 @@ local function custom_color(bg_color, colorscheme)
       })
       hi(0, 'DiffviewDiffDelete', {      -- 行が追加された場合の左側
         bg = utils.transparent_color(bg_color, "#C70000", 0.90),
-        fg = colorscheme == 'gruvbox' and require("gruvbox.palette").colors.dark2 or utils.transparent_color(bg_color, "#2F2F2F", 0.00)
+        fg = colorscheme == 'gruvbox'
+          and require("gruvbox.palette").colors.dark2
+          or utils.transparent_color(bg_color, "#2F2F2F", 0.00)
       })
       hi(0, 'DiffAdd', {                 -- 追加された行
         bg = utils.transparent_color(bg_color, "#00A100", 0.85)
@@ -80,12 +82,12 @@ local function custom_color(bg_color, colorscheme)
     end
   end
 
-  local custom_highlight = augroup("CustomHighlight", {})
+  augroup("custom_highlight", {})
 
   au("ColorScheme", {
     pattern = { colorscheme },
     callback = set_customcolor,
-    group = custom_highlight,
+    group = "custom_highlight",
   })
 end
 -----------------------------------------------------------------------------------
