@@ -30,21 +30,13 @@ au({"CmdlineEnter", "BufRead", "InsertEnter"}, {
   end,
   once = true,
 })
--- :terminal設定の読み込み1
-au("TermOpen", {
+-- Terminalモードの設定
+au({"TermOpen", "CmdUndefined"}, {
   group = "my_lazyload",
   callback = function()
     require("config.lazy.terminal")
   end,
-  once = true
-})
--- :terminal設定の読み込み2
-au("CmdUndefined", {
-  group = "my_lazyload",
-  callback = function()
-    require("config.lazy.terminal")
-  end,
-  pattern = {"Terminal", "Term", "TermV", "TermHere", "TermHereV"},
+  pattern = {"Term", "TermHere", "TermHereV", "TermV", "Terminal"},
   once = true
 })
 -- IME切り替え設定の読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
