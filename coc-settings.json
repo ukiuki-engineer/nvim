@@ -1,4 +1,7 @@
 {
+  "coc.preferences.formatOnSaveFiletypes": [
+    "lua"
+  ],
   // NOTE: :CocLocalConfigを実行すると、./.vim/coc-config.jsonが作成される
   //        このファイルより、ローカルコンフィグの方が優先される
   "codeLens.enable": true,
