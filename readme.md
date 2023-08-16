@@ -38,3 +38,8 @@ Total Min:     23.898000 msec
   - `:h map-table`
   - `:h autocmd-events`
   - `:h encoding-values`
+
+## TODO
+
+- 外部ツールインストールが必要な場合のインストール処理を書く
+  → 今のところ結構放置してるところも多いはず...
