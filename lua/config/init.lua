@@ -56,7 +56,7 @@ au({ "InsertEnter", "CursorMoved" }, {
   once = true
 })
 -- markdownで、画像をクリップボードから貼り付けする設定の読み込み
--- TODO: lua以降後動作未確認
+-- TODO: lua移行後動作未確認
 au("CmdUndefined", {
   group = "my_lazyload",
   callback = function()

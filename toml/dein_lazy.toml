@@ -255,7 +255,6 @@ require("plugins.others").lua_source_indent_blankline()
 '''
 
 [[plugins]] # vimから編集中のファイルを素早く実行するやつ
-# FIXME: 実行結果を右ではなく下に小さく表示させたい
 repo = 'thinca/vim-quickrun'
 on_cmd = ['QuickRun']
 lua_add = '''
