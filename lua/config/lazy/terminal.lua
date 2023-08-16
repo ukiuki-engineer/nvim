@@ -17,7 +17,7 @@ api.nvim_create_autocmd("TermOpen", {
 })
 
 -- keymappings {{{
-local opts = {noremap = true, silent = true}
+local opts = { noremap = true, silent = true }
 -- NOTE: vimと違って、Normalモード中にpでペーストできる
 vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>", opts)
 -- }}}

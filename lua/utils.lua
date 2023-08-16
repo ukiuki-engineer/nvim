@@ -16,14 +16,14 @@ function M.transparent_color(bg_color, target_color, alpha)
     target_color = M.get_colorcode_by_colorname(target_color)
   end
 
-  if string.sub(target_color, 1, 1) ~= "#"  and (not target_color or target_color == "") then
+  if string.sub(target_color, 1, 1) ~= "#" and (not target_color or target_color == "") then
     return ''
   end
 
   local result_color = "#"
 
   -- 背景色と対象色を10進数に変換して、透過させた色を計算
-  for i = 1, 3 do -- R, G, Bごとに処理
+  for i = 1, 3 do                                                   -- R, G, Bごとに処理
     local bg_hex = string.sub(bg_color, i * 2, (i * 2) + 1)         -- 背景(16進数)
     local bg_dec = tonumber(bg_hex, 16)                             -- 背景(10進数)
     local target_hex = string.sub(target_color, i * 2, (i * 2) + 1) -- 対象(16進数)
@@ -35,7 +35,7 @@ function M.transparent_color(bg_color, target_color, alpha)
     result_color = result_color .. string.format("%02X", result_dec)
   end
 
-    return result_color
+  return result_color
 end
 
 ---

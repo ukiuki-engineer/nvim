@@ -21,22 +21,23 @@ local function custom_color(bg_color, colorscheme)
       hi(0, 'DiffviewDiffAddAsDelete', { -- NOTE: 不明
         bg = "#FF0000"
       })
-      hi(0, 'DiffDelete', {              -- 削除された行
+      hi(0, 'DiffDelete', { -- 削除された行
         bg = utils.transparent_color(bg_color, "#C70000", 0.90)
       })
-      hi(0, 'DiffviewDiffDelete', {      -- 行が追加された場合の左側
+      hi(0, 'DiffviewDiffDelete', {
+                                    -- 行が追加された場合の左側
         bg = utils.transparent_color(bg_color, "#C70000", 0.90),
         fg = colorscheme == 'gruvbox'
-          and require("gruvbox.palette").colors.dark2
-          or utils.transparent_color(bg_color, "#2F2F2F", 0.00)
+            and require("gruvbox.palette").colors.dark2
+            or utils.transparent_color(bg_color, "#2F2F2F", 0.00)
       })
-      hi(0, 'DiffAdd', {                 -- 追加された行
+      hi(0, 'DiffAdd', { -- 追加された行
         bg = utils.transparent_color(bg_color, "#00A100", 0.85)
       })
-      hi(0, 'DiffChange', {              -- 変更行
+      hi(0, 'DiffChange', { -- 変更行
         bg = utils.transparent_color(bg_color, "#B9C42F", 0.80)
       })
-      hi(0, 'DiffText', {                -- 変更行の変更箇所
+      hi(0, 'DiffText', { -- 変更行の変更箇所
         bg = utils.transparent_color(bg_color, "#FD7E00", 0.60)
       })
     end
@@ -64,8 +65,8 @@ local function custom_color(bg_color, colorscheme)
       bold = true,
       underline = false
     })
-    hi(0, 'MatchWord', {link = "MatchParen"})
-    hi(0, 'MatchWordCur', {link = "MatchParen"})
+    hi(0, 'MatchWord', { link = "MatchParen" })
+    hi(0, 'MatchWordCur', { link = "MatchParen" })
     -- search
     if colorscheme == 'gruvbox' then
       hi(0, 'CurSearch', {
@@ -157,31 +158,31 @@ function M.lua_add_lualine()
 
   require('lualine').setup({
     sections = {
-      lualine_a = {'mode', skkeleton_mode},
-      lualine_b = {'branch', 'diff', 'diagnostics'}, -- TODO: user.nameとuser.emailも表示させたい
+      lualine_a = { 'mode', skkeleton_mode },
+      lualine_b = { 'branch', 'diff', 'diagnostics' }, -- TODO: user.nameとuser.emailも表示させたい
       lualine_c = {
         {
           'filename',
-          file_status = true,      -- Displays file status (readonly status, modified status)
-          newfile_status = false,  -- Display new file status (new file means no write after created)
-          path = 1,                -- 0: Just the filename
-                                   -- 1: Relative path
-                                   -- 2: Absolute path
-                                   -- 3: Absolute path, with tilde as the home directory
-                                   -- 4: Filename and parent dir, with tilde as the home directory
-          shorting_target = 40,    -- Shortens path to leave 40 spaces in the window
-                                   -- for other components. (terrible name, any suggestions?)
+          file_status = true,     -- Displays file status (readonly status, modified status)
+          newfile_status = false, -- Display new file status (new file means no write after created)
+          path = 1,               -- 0: Just the filename
+          -- 1: Relative path
+          -- 2: Absolute path
+          -- 3: Absolute path, with tilde as the home directory
+          -- 4: Filename and parent dir, with tilde as the home directory
+          shorting_target = 40, -- Shortens path to leave 40 spaces in the window
+          -- for other components. (terrible name, any suggestions?)
           symbols = {
             modified = '[+]',      -- Text to show when the file is modified.
-            readonly = '',        -- Text to show when the file is non-modifiable or readonly.(\ue0a2)
+            readonly = '',      -- Text to show when the file is non-modifiable or readonly.(\ue0a2)
             unnamed = '[No Name]', -- Text to show for unnamed buffers.
             newfile = '[New]',     -- Text to show for newly created file before first write
           }
         }
       },
-      lualine_x = {'encoding', 'fileformat', 'filetype'},
-      lualine_y = {'progress'},
-      lualine_z = {'location'}
+      lualine_x = { 'encoding', 'fileformat', 'filetype' },
+      lualine_y = { 'progress' },
+      lualine_z = { 'location' }
     },
     inactive_sections = {
       lualine_a = {},
@@ -189,15 +190,15 @@ function M.lua_add_lualine()
       lualine_c = {
         {
           'filename',
-          file_status = true,      -- Displays file status (readonly status, modified status)
-          newfile_status = false,  -- Display new file status (new file means no write after created)
-          path = 1,                -- 0: Just the filename
-                                   -- 1: Relative path
-                                   -- 2: Absolute path
-                                   -- 3: Absolute path, with tilde as the home directory
-                                   -- 4: Filename and parent dir, with tilde as the home directory
-          shorting_target = 40,    -- Shortens path to leave 40 spaces in the window
-                                   -- for other components. (terrible name, any suggestions?)
+          file_status = true,     -- Displays file status (readonly status, modified status)
+          newfile_status = false, -- Display new file status (new file means no write after created)
+          path = 1,               -- 0: Just the filename
+          -- 1: Relative path
+          -- 2: Absolute path
+          -- 3: Absolute path, with tilde as the home directory
+          -- 4: Filename and parent dir, with tilde as the home directory
+          shorting_target = 40, -- Shortens path to leave 40 spaces in the window
+          -- for other components. (terrible name, any suggestions?)
           symbols = {
             modified = '[+]',      -- Text to show when the file is modified.
             readonly = '[-]',      -- Text to show when the file is non-modifiable or readonly.
@@ -206,7 +207,7 @@ function M.lua_add_lualine()
           }
         }
       },
-      lualine_x = {'location'},
+      lualine_x = { 'location' },
       lualine_y = {},
       lualine_z = {}
     },
@@ -224,7 +225,7 @@ end
 function M.lua_source_nvim_tree()
   require("nvim-tree").setup {
     git = {
-      ignore = false,          -- .gitignoreされたファイルもtreeに表示する
+      ignore = false, -- .gitignoreされたファイルもtreeに表示する
     },
     -- 以下、treeのrootに関する設定
     -- prefer_startup_root = true,
@@ -267,11 +268,12 @@ function M.lua_source_bufferline()
     },
     highlights = {
       tab_selected = {
-          fg = vim.g['colors_name'] == 'gruvbox' and '#ECE0BF' or '',
+        fg = vim.g['colors_name'] == 'gruvbox' and '#ECE0BF' or '',
       },
     }
   })
 end
+
 --
 -- dropbar.nvim
 --
@@ -377,12 +379,13 @@ function M.lua_source_satellite()
       },
       diagnostic = {
         enable = true,
-        signs = {'-', '=', '≡'},
+        signs = { '-', '=', '≡' },
         min_severity = vim.diagnostic.severity.HINT,
       },
       gitsigns = {
         enable = true,
-        signs = { -- can only be a single character (multibyte is okay)
+        signs = {
+                  -- can only be a single character (multibyte is okay)
           add = "│",
           change = "│",
           delete = "-",

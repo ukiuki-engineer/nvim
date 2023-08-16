@@ -1,4 +1,4 @@
-local M = {}
+local M      = {}
 
 local keyset = vim.keymap.set
 local fn     = vim.fn
@@ -34,8 +34,8 @@ function M.lua_source_telescope()
     defaults = {
       layout_strategy = 'horizontal',
       layout_config = {
-        height = 0.90,
-        width  = 0.95,
+        height     = 0.90,
+        width      = 0.95,
         horizontal = {
           preview_width = 0.60
         },
@@ -63,7 +63,7 @@ function M.lua_source_telescope()
         override_generic_sorter = false, -- override the generic sorter
         override_file_sorter = true,     -- override the file sorter
         case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-                                         -- the default case_mode is "smart_case"
+        -- the default case_mode is "smart_case"
       }
     }
   })
@@ -82,9 +82,9 @@ function M.buffers()
     if next(multi_selections) == nil then
       actions.delete_buffer(prompt_bufnr)
     else
-      actions.close(prompt_bufnr)-- TODO: 閉じずにlistを更新することはできないか？
+      actions.close(prompt_bufnr) -- TODO: 閉じずにlistを更新することはできないか？
       for _, selection in ipairs(multi_selections) do
-        vim.api.nvim_buf_delete(selection.bufnr, {force = true})
+        vim.api.nvim_buf_delete(selection.bufnr, { force = true })
       end
       require('plugins.telescope').buffers()
     end
@@ -92,7 +92,7 @@ function M.buffers()
 
   require('telescope.builtin').buffers({
     attach_mappings = function(prompt_bufnr, map)
-      map({"i"}, "<C-d>",
+      map({ "i" }, "<C-d>",
         function()
           delete_buf(prompt_bufnr)
         end
@@ -122,7 +122,7 @@ function M.git_status()
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)
       -- <C-r>で選択したファイルをgit restoreする
-      map({"i"}, "<C-r>",
+      map({ "i" }, "<C-r>",
         function()
           local selection = action_state.get_selected_entry()
           fn.system("git restore " .. selection.value)

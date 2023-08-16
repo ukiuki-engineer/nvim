@@ -14,4 +14,3 @@ vim.cmd([[
   " バッファのフルパスをヤンクする
   command! YankBufPath               :let @0 = expand('%:p') | :let @+ = expand('%:p')
 ]])
-

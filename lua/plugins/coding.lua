@@ -1,22 +1,22 @@
 -- ================================================================================
 -- coding
 -- ================================================================================
-local M = {}
+local M       = {}
 
-local fn = vim.fn
-local g  = vim.g
+local fn      = vim.fn
+local g       = vim.g
 local augroup = vim.api.nvim_create_augroup
-local au = vim.api.nvim_create_autocmd
+local au      = vim.api.nvim_create_autocmd
 
 --
 -- vim-matchup
 --
 function M.lua_source_matchup()
   g.matchup_matchpref = {
-    html  = {tagnameonly = 1},
-    xml   = {tagnameonly = 1},
-    blade = {tagnameonly = 1},
-    vue   = {tagnameonly = 1}
+    html  = { tagnameonly = 1 },
+    xml   = { tagnameonly = 1 },
+    blade = { tagnameonly = 1 },
+    vue   = { tagnameonly = 1 }
   }
 end
 
@@ -27,21 +27,21 @@ function M.lua_source_commentary()
   augroup("my_commentstring", {})
   au("FileType", {
     group = "my_commentstring",
-    pattern = {"applescript", "toml"},
+    pattern = { "applescript", "toml" },
     callback = function()
       vim.bo.commentstring = "# %s"
     end
   })
   au("FileType", {
     group = "my_commentstring",
-    pattern = {"php", "json"},
+    pattern = { "php", "json" },
     callback = function()
       vim.bo.commentstring = "// %s"
     end
   })
   au("FileType", {
     group = "my_commentstring",
-    pattern = {"vue"},
+    pattern = { "vue" },
     callback = function()
       vim.bo.commentstring = "<!-- %s -->"
     end
@@ -97,7 +97,6 @@ function M.lua_source_skkeleton()
   fn["plugins#hook_source_skkeleton"]()
 end
 
-
 --
 -- nvim-cmp
 --
@@ -133,6 +132,7 @@ function M.lua_source_nvim_cmp()
 
     callback(my_commands)
   end
+
   -- sourceを登録
   cmp.register_source('my_source', my_source)
 
@@ -166,17 +166,17 @@ function M.lua_source_nvim_cmp()
     },
   })
   -- 検索
-  cmp.setup.cmdline({'/', '?'}, {
+  cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmdline_mapping,
     sources = {
       { name = 'buffer' }
     }
   })
   -- コマンド
-  cmp.setup.cmdline({':'}, {
+  cmp.setup.cmdline({ ':' }, {
     mapping = cmdline_mapping,
     sources = { -- NOTE: cmp.config.sources({...})とすると、
-                -- source同士が結合されて新しいsourceが作られるので上手くいかない
+      -- source同士が結合されて新しいsourceが作られるので上手くいかない
       { name = 'path' },
       { name = 'my_source' },
       { name = 'cmdline' },

@@ -37,7 +37,7 @@ opt.ignorecase = true
 opt.smartcase = true
 -- }}}
 -- sessionに保存する内容を指定
-opt.sessionoptions='buffers,curdir,tabpages'
+opt.sessionoptions = 'buffers,curdir,tabpages'
 -- Tab文字を半角スペースにする
 opt.expandtab = true
 -- インデントは基本的に2 {{{
@@ -47,4 +47,3 @@ opt.softtabstop = 2
 -- }}}
 -- 符号なし数字として扱う
 opt.nrformats:append("unsigned")
-

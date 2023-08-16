@@ -7,7 +7,7 @@ vim.g['vimrc#loaded_keymappings'] = true
 vim.g.mapleader = "m"
 
 local keyset = vim.keymap.set
-local opts = {noremap = true, silent = true}
+local opts = { noremap = true, silent = true }
 
 
 keyset("i", "jj", "<Esc>", opts)
@@ -30,7 +30,7 @@ vim.cmd([[
   cnoremap <C-e> <End>
   cnoremap <C-d> <Del>
 ]])
-  -- }}}
+-- }}}
 
 -- 全角文字に行内ジャンプ
 local function jump_to_zenkaku(hankaku_zenkaku_pairs)

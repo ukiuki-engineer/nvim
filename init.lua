@@ -1,5 +1,5 @@
-local g = vim.g
-local fn = vim.fn
+local g             = vim.g
+local fn            = vim.fn
 
 g.init_dir          = fn.fnamemodify(fn.resolve(fn.expand("<sfile>")), ":h")
 local cache         = fn.expand("$HOME/.cache")
@@ -35,9 +35,9 @@ g["dein#install_check_remote_threshold"] = "24 * 60 * 60"
 -- 設定開始
 if fn["dein#load_state"](dein_dir) == 1 then
   -- vimrc {{{
-  local init     = g.init_dir .. '/lua/config/init.lua'
-  local options  = g.init_dir .. '/lua/config/options.lua'
-  local autocmds = g.init_dir .. '/lua/config/autocmds.lua'
+  local init              = g.init_dir .. '/lua/config/init.lua'
+  local options           = g.init_dir .. '/lua/config/options.lua'
+  local autocmds          = g.init_dir .. '/lua/config/autocmds.lua'
 
   g["dein#inline_vimrcs"] = {
     init,
@@ -46,17 +46,17 @@ if fn["dein#load_state"](dein_dir) == 1 then
   }
   -- }}}
 
-	fn["dein#begin"](dein_dir)
+  fn["dein#begin"](dein_dir)
 
   -- toml {{{
   local toml      = g.init_dir .. "/toml/dein.toml"
   local lazy_toml = g.init_dir .. "/toml/dein_lazy.toml"
-	fn["dein#load_toml"](toml,      {lazy = 0})
-	fn["dein#load_toml"](lazy_toml, {lazy = 1})
+  fn["dein#load_toml"](toml, { lazy = 0 })
+  fn["dein#load_toml"](lazy_toml, { lazy = 1 })
   -- }}}
 
-	fn["dein#end"]()
-	fn["dein#save_state"]()
+  fn["dein#end"]()
+  fn["dein#save_state"]()
 end
 
 -- 未インストールがあればインストール

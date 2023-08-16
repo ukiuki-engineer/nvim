@@ -3,13 +3,13 @@ if vim.g["vimrc#loaded_ime"] then
 end
 vim.g["vimrc#loaded_ime"] = true
 
-local augroup = vim.api.nvim_create_augroup
-local au      = vim.api.nvim_create_autocmd
-local has     = vim.fn.has
-local exepath = vim.fn.exepath
-local exists  = vim.fn.exists
+local augroup             = vim.api.nvim_create_augroup
+local au                  = vim.api.nvim_create_autocmd
+local has                 = vim.fn.has
+local exepath             = vim.fn.exepath
+local exists              = vim.fn.exists
 
-local events  = {"InsertLeave", "InsertEnter", "CmdlineLeave"}
+local events              = { "InsertLeave", "InsertEnter", "CmdlineLeave" }
 
 augroup("my_ime", {})
 

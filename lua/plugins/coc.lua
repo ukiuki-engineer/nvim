@@ -1,7 +1,7 @@
-local M = {}
+local M       = {}
 
-local fn = vim.fn
-local g  = vim.g
+local fn      = vim.fn
+local g       = vim.g
 local command = vim.api.nvim_create_user_command
 
 -- FIXME: bladeでも、phpの関数のhoverが読みたい

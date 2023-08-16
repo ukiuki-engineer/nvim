@@ -23,7 +23,7 @@ au("CmdlineEnter", {
   once = true
 })
 -- keymaps
-au({"CmdlineEnter", "BufRead", "InsertEnter"}, {
+au({ "CmdlineEnter", "BufRead", "InsertEnter" }, {
   group = "my_lazyload",
   callback = function()
     require("config.lazy.keymappings")
@@ -31,16 +31,16 @@ au({"CmdlineEnter", "BufRead", "InsertEnter"}, {
   once = true,
 })
 -- Terminalモードの設定
-au({"TermOpen", "CmdUndefined"}, {
+au({ "TermOpen", "CmdUndefined" }, {
   group = "my_lazyload",
   callback = function()
     require("config.lazy.terminal")
   end,
-  pattern = {"Term", "TermHere", "TermHereV", "TermV", "Terminal"},
+  pattern = { "Term", "TermHere", "TermHereV", "TermV", "Terminal" },
   once = true
 })
 -- IME切り替え設定の読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
-au({"InsertEnter", "CmdlineEnter"}, {
+au({ "InsertEnter", "CmdlineEnter" }, {
   group = "my_lazyload",
   callback = function()
     require("config.lazy.ime")
@@ -48,7 +48,7 @@ au({"InsertEnter", "CmdlineEnter"}, {
   once = true
 })
 -- クリップボード設定の遅延読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
-au({"InsertEnter", "CursorMoved"}, {
+au({ "InsertEnter", "CursorMoved" }, {
   group = "my_lazyload",
   callback = function()
     require("config.lazy.clipboard")
@@ -62,7 +62,7 @@ au("CmdUndefined", {
   callback = function()
     require("config.lazy.paste_image")
   end,
-  pattern = {"PasteImage"},
+  pattern = { "PasteImage" },
   once = true
 })
 -- }}}
@@ -70,7 +70,7 @@ au("CmdUndefined", {
 -- ------------------------------------------------------------------------------
 -- 標準プラグインの制御
 -- ------------------------------------------------------------------------------
-local g = vim.g
+local g                     = vim.g
 g.did_indent_on             = 1
 g.did_install_default_menus = 1
 g.did_install_syntax_menu   = 1

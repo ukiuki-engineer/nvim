@@ -1,12 +1,12 @@
 -- ================================================================================
 -- Others
 -- ================================================================================
-local M = {}
+local M      = {}
 
 local g      = vim.g
 local fn     = vim.fn
 local keyset = vim.keymap.set
-local opts   = {noremap = true, silent = true}
+local opts   = { noremap = true, silent = true }
 
 --
 -- nvim-treesitter
@@ -118,7 +118,7 @@ end
 -- vim-quickrun
 --
 function M.lua_add_quickrun()
-  keyset({"n", "x"}, "<F5>", ":QuickRun<CR>", opts)
+  keyset({ "n", "x" }, "<F5>", ":QuickRun<CR>", opts)
 end
 
 --
@@ -168,7 +168,7 @@ function M.lua_add_toggleterm()
 end
 
 function M.lua_source_toggleterm()
-  require("toggleterm").setup{
+  require("toggleterm").setup {
     persist_size = false
   }
   -- カレントバッファのディレクトリでterminalを開く

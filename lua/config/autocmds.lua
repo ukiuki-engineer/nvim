@@ -8,7 +8,7 @@ augroup("my_autocmds", {})
 -- phpのインデントは4
 au("FileType", {
   group = "my_autocmds",
-  pattern = {"php"},
+  pattern = { "php" },
   callback = function()
     utils.setlocal_indent(4)
   end
@@ -17,7 +17,7 @@ au("FileType", {
 -- FIXME: markdownだけ何故かインデン4になってしまうので一旦強制的に2に。後で原因を調べる。
 au("FileType", {
   group = "my_autocmds",
-  pattern = {"markdown"},
+  pattern = { "markdown" },
   callback = function()
     utils.setlocal_indent(2)
   end
