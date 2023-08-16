@@ -8,10 +8,10 @@ require("plugins.coding").lua_source_nvim_cmp()
 
 local api     = vim.api
 local augroup = api.nvim_create_augroup
-local au      = api.nvim_create_au
+local au      = api.nvim_create_autocmd
 
-api.nvim_create_augroup("my_terminal", {})
-api.nvim_create_autocmd("TermOpen", {
+augroup("my_terminal", {})
+au("TermOpen", {
   group = "my_terminal",
   command = "startinsert"
 })
