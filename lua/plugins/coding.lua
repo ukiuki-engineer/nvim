@@ -184,4 +184,16 @@ function M.lua_source_nvim_cmp()
   })
 end
 
+--
+-- vim-shfmt
+--
+function M.lua_source_shfmt()
+  -- shfmtが無ければインストール
+  if fn.exepath("shfmt") == "" then
+    fn.system("go install mvdan.cc/sh/v3/cmd/shfmt@latest")
+  end
+  g.shfmt_extra_args  = '-i 2 -ci -bn -s'
+  g.shfmt_fmt_on_save = 1 -- TODO: zshとかでformat on saveが効かないような...？
+end
+
 return M

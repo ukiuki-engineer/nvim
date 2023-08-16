@@ -127,6 +127,13 @@ on_source = 'nvim-cmp'
 repo = 'rinx/cmp-skkeleton'
 on_source = 'nvim-cmp'
 
+[[plugins]] # shfmtをvimから実行するやつ
+repo = 'z0mbix/vim-shfmt'
+on_ft = ['bash', 'sh', 'zsh']
+lua_source = '''
+require("plugins.coding").lua_source_shfmt()
+'''
+
 ################################################################################
 # LSP
 ################################################################################
