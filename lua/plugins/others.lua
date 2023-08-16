@@ -29,7 +29,33 @@ function M.lua_source_treesitter()
     context_commentstring = {
       enable = true,
     },
-    ensure_installed = 'all', -- :TSInstall allと同じ
+    -- ensure_installed = 'all', -- :TSInstall allと同じ
+    ensure_installed = {
+      "lua",
+      "vim",
+      "java",
+      "javascript",
+      "typescript",
+      "markdown",
+      "markdown_inline",
+      "php",
+      "phpdoc",
+      "vimdoc",
+      "vue",
+      "awk",
+      "bash",
+      "html",
+      "sql",
+      "toml",
+      "json",
+      "css",
+      "scss",
+      "ruby",
+      "jq",
+      "ini",
+      "dockerfile",
+      "diff",
+    },
   }
   -- FIXME: 全部書かずに、追加分だけ書く事はできないのか？
   require("vim.treesitter.query").set(
