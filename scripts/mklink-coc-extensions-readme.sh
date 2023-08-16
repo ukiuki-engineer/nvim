@@ -14,12 +14,12 @@ else
   mkdir $readme_dir
 fi
 
-find $extensions_dir -maxdepth 2 -type f -iname 'readme.md'\
+find $extensions_dir -maxdepth 2 -type f -iname 'readme.md' \
   | while read -r extension_path; do # readmeファイルごとに処理
     # coc-extension名
     extension_name=$(
-      echo $extension_path\
-        | sed -e 's/\/readme\.md//I'\
+      echo $extension_path \
+        | sed -e 's/\/readme\.md//I' \
         | xargs -I{} basename {}
     )
     # シンボリックリンクを張る

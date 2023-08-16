@@ -9,18 +9,18 @@ not_target='colors|not_use'    # 行数カウント対象外
 
 # vim設定行数
 printf "%20s%s%5s\n" "vim設定行数" " =" $(
-  find $vimrc_dir -type f\
-    | grep -E $target\
-    | grep -vE $not_target\
-    | xargs -I{} cat {}\
+  find $vimrc_dir -type f \
+    | grep -E $target \
+    | grep -vE $not_target \
+    | xargs -I{} cat {} \
     | wc -l
 )
 
 # 使用プラグイン数
 printf "%20s%s%5s\n" "使用プラグイン数" " =" $(
-  cat $vimrc_dir/toml/dein.toml $vimrc_dir/toml/dein_lazy.toml\
-    | grep 'repo = '\
-    | grep -vE '^#'\
+  cat $vimrc_dir/toml/dein.toml $vimrc_dir/toml/dein_lazy.toml \
+    | grep 'repo = ' \
+    | grep -vE '^#' \
     | wc -l
 )
 
@@ -32,4 +32,3 @@ if [[ $* == *-startuptime* ]]; then # 引数なしの場合起動速度測定は
   echo $command
   $command
 fi
-
