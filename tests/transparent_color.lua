@@ -3,9 +3,9 @@
 ---
 
 -- NOTE: 設定ファイル中で呼ぶ時は、`lua/`は省略可
-local utils = require("lua/utils")
+local utils        = require("lua/utils")
 
-local bg_color     = "#FFFFFF"     -- 白色
+local bg_color     = "#FFFFFF" -- 白色
 local target_color = "#0000FF" -- 青色
 
 -- NOTE: 6行目を省略して、以下のように呼び出しても良い
