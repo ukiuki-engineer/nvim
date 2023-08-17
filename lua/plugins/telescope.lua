@@ -121,11 +121,17 @@ function M.git_status()
 
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)
-      -- <C-r>で選択したファイルをgit restoreする
+      -- <C-r>で選択したファイルをgit restore or 削除する
       map({ "i" }, "<C-r>",
         function()
           local selection = action_state.get_selected_entry()
-          fn.system("git restore " .. selection.value)
+          if fn.system("git status " .. selection.value .. " --porcelain | grep '??'") ~= "" then
+            -- untrackedな場合、ファイルを削除する
+            fn.system("rm " .. selection.value)
+          else
+            -- untrackedではない場合、restoreする
+            fn.system("git restore " .. selection.value)
+          end
           actions.close(prompt_bufnr) -- TODO: 閉じずにlistを更新することはできないか？
           require('plugins.telescope').git_status()
         end
