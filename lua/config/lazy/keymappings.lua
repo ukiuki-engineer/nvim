@@ -3,7 +3,7 @@ if vim.g['vimrc#loaded_keymappings'] then
 end
 vim.g['vimrc#loaded_keymappings'] = true
 
--- NOTE: 基本、markは使わないのでleaderにする
+-- NOTE: markは使ってないのでleaderにする
 vim.g.mapleader = "m"
 
 local keyset = vim.keymap.set
