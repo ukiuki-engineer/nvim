@@ -25,7 +25,7 @@ local function custom_color(bg_color, colorscheme)
         bg = utils.transparent_color(bg_color, "#C70000", 0.90)
       })
       hi(0, 'DiffviewDiffDelete', {
-                                    -- 行が追加された場合の左側
+        -- 行が追加された場合の左側
         bg = utils.transparent_color(bg_color, "#C70000", 0.90),
         fg = colorscheme == 'gruvbox'
             and require("gruvbox.palette").colors.dark2
@@ -385,7 +385,7 @@ function M.lua_source_satellite()
       gitsigns = {
         enable = true,
         signs = {
-                  -- can only be a single character (multibyte is okay)
+          -- can only be a single character (multibyte is okay)
           add = "│",
           change = "│",
           delete = "-",

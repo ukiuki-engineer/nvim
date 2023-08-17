@@ -15,7 +15,7 @@ function M.lua_source_diffview()
     enhanced_diff_hl = true,
     file_panel = {
       win_config = {
-                     -- diffviewのwindowの設定
+        -- diffviewのwindowの設定
         type = "split",
         position = "right",
         width = 40,
@@ -59,7 +59,7 @@ function M.lua_source_gitsigns()
       changedelete = { text = '~' },
       untracked    = { text = '┆' },
     },
-    signcolumn                   = true, -- Toggle with `:Gitsigns toggle_signs`
+    signcolumn                   = true,  -- Toggle with `:Gitsigns toggle_signs`
     numhl                        = false, -- Toggle with `:Gitsigns toggle_numhl`
     linehl                       = false, -- Toggle with `:Gitsigns toggle_linehl`
     word_diff                    = false, -- Toggle with `:Gitsigns toggle_word_diff`
@@ -77,7 +77,7 @@ function M.lua_source_gitsigns()
     current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
     sign_priority                = 6,
     update_debounce              = 100,
-    status_formatter             = nil, -- Use default
+    status_formatter             = nil,   -- Use default
     max_file_length              = 40000, -- Disable if file is longer than this (in lines)
     preview_config               = {
       -- Options passed to nvim_open_win
