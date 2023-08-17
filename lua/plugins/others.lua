@@ -1,12 +1,12 @@
 -- ================================================================================
 -- Others
 -- ================================================================================
-local M      = {}
-
 local g      = vim.g
 local fn     = vim.fn
 local keyset = vim.keymap.set
 local opts   = { noremap = true, silent = true }
+
+local M      = {}
 
 --
 -- nvim-treesitter

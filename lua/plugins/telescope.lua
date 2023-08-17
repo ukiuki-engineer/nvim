@@ -1,7 +1,7 @@
-local M      = {}
-
 local keyset = vim.keymap.set
 local fn     = vim.fn
+
+local M      = {}
 
 --
 -- telescope.nvim

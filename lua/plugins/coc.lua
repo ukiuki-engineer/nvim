@@ -1,8 +1,8 @@
-local M       = {}
-
 local fn      = vim.fn
 local g       = vim.g
 local command = vim.api.nvim_create_user_command
+
+local M       = {}
 
 -- FIXME: bladeでも、phpの関数のhoverが読みたい
 -- NOTE: coc-bladeは、"b:xxx"と打つと補完候補が出る

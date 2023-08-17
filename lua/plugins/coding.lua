@@ -1,12 +1,12 @@
 -- ================================================================================
 -- coding
 -- ================================================================================
-local M       = {}
-
 local fn      = vim.fn
 local g       = vim.g
 local augroup = vim.api.nvim_create_augroup
 local au      = vim.api.nvim_create_autocmd
+
+local M       = {}
 
 --
 -- vim-matchup
