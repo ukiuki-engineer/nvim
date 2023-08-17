@@ -35,8 +35,8 @@ vim.cmd([[
 -- 全角文字に行内ジャンプ
 local function jump_to_zenkaku(hankaku_zenkaku_pairs)
   for hankaku, zenkaku in pairs(hankaku_zenkaku_pairs) do
-    keyset('n', '<leader>f' .. hankaku, 'f' .. zenkaku, opts)
-    keyset('n', '<leader>t' .. hankaku, 't' .. zenkaku, opts)
+    keyset({ 'n', 'x' }, '<leader>f' .. hankaku, 'f' .. zenkaku, opts)
+    keyset({ 'n', 'x' }, '<leader>t' .. hankaku, 't' .. zenkaku, opts)
     keyset('n', '<leader>df' .. hankaku, 'df' .. zenkaku, opts)
     keyset('n', '<leader>dt' .. hankaku, 'dt' .. zenkaku, opts)
     keyset('n', '<leader>yf' .. hankaku, 'yf' .. zenkaku, opts)
