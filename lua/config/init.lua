@@ -39,7 +39,7 @@ au({ "TermOpen", "CmdUndefined" }, {
   pattern = { "Term", "TermHere", "TermHereV", "TermV", "Terminal" },
   once = true
 })
--- IME切り替え設定の読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
+-- IME切り替え設定(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
 au({ "InsertEnter", "CmdlineEnter" }, {
   group = "my_lazyload",
   callback = function()
@@ -47,7 +47,7 @@ au({ "InsertEnter", "CmdlineEnter" }, {
   end,
   once = true
 })
--- クリップボード設定の遅延読み込み(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
+-- クリップボード設定(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
 au({ "InsertEnter", "CursorMoved" }, {
   group = "my_lazyload",
   callback = function()
@@ -55,7 +55,7 @@ au({ "InsertEnter", "CursorMoved" }, {
   end,
   once = true
 })
--- markdownで、画像をクリップボードから貼り付けする設定の読み込み
+-- markdownで画像をクリップボードから貼り付け
 -- TODO: lua移行後動作未確認
 au("CmdUndefined", {
   group = "my_lazyload",
