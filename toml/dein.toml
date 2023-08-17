@@ -47,26 +47,26 @@ require("plugins.coding").lua_add_skkeleton()
 repo = 'ellisonleao/gruvbox.nvim'
 depends = ['impatient.nvim']
 lua_add = '''
-require("plugins.ui").lua_add_gruvbox()
+require("plugins.colorscheme").lua_add_gruvbox()
 '''
 
 # [[plugins]]
 # repo = 'bluz71/vim-nightfly-colors'
 # depends = ['impatient.nvim']
 # lua_add = '''
-# require("plugins.ui").lua_add_nightfly_colors()
+# require("plugins.colorscheme").lua_add_nightfly_colors()
 # '''
 
 # [[plugins]]
 # repo = 'EdenEast/nightfox.nvim'
 # depends = ['impatient.nvim']
 # lua_add = '''
-# require("plugins.ui").lua_add_nightfox()
+# require("plugins.colorscheme").lua_add_nightfox()
 # '''
 
 # [[plugins]]
 # repo = 'catppuccin/nvim'
 # depends = ['impatient.nvim']
 # lua_add = '''
-# require("plugins.ui").lua_add_catppuccin()
+# require("plugins.colorscheme").lua_add_catppuccin()
 # '''
