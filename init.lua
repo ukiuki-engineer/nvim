@@ -27,10 +27,7 @@ end
 
 -- dein options
 g["dein#auto_recache"] = true
--- 一応loading rtp pluginsに結構時間かかってるっぽいからtrueにしてみる
 g["dein#lazy_rplugins"] = true
--- とりあえずhelpの値を入れてみる...
-g["dein#install_check_remote_threshold"] = "24 * 60 * 60"
 
 -- 設定開始
 if fn["dein#load_state"](dein_dir) == 1 then
