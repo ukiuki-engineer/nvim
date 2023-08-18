@@ -124,7 +124,7 @@ function M.git_status()
           local selection = action_state.get_selected_entry()
           if fn.system("git status " .. selection.value .. " --porcelain | grep '??'") ~= "" then
             -- untrackedな場合、ファイルを削除する
-            fn.system("rm " .. selection.value)
+            fn.delete(selection.value)
           else
             -- untrackedではない場合、restoreする
             fn.system("git restore " .. selection.value)
