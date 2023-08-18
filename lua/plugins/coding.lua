@@ -116,13 +116,13 @@ function M.lua_source_nvim_cmp()
     -- コマンドリストを初期化
     local my_commands = {}
 
-    -- paste_image.vimがロードされてなければコマンドリストに追加
+    -- paste_image.luaがロードされてなければコマンドリストに追加
     if vim.g['vimrc#loaded_paste_image'] == nil then
       table.insert(my_commands, { label = 'PasteImage' })
     end
 
-    -- my_terminal.vimがロードされてなければコマンドリストに追加
-    if vim.g['vimrc#loaded_my_terminal'] == nil then
+    -- terminal.luaがロードされてなければコマンドリストに追加
+    if vim.g['vimrc#loaded_terminal'] == nil then
       table.insert(my_commands, { label = 'Term' })
       table.insert(my_commands, { label = 'TermV' })
       table.insert(my_commands, { label = 'TermHere' })
