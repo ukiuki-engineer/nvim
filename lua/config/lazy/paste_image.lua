@@ -11,8 +11,8 @@ if vim.g['vimrc#loaded_paste_image'] then
 end
 vim.g['vimrc#loaded_paste_image'] = true
 
--- コマンド定義
-vim.cmd([[command! -nargs=* PasteImage :call utils#paste_image("<args>")]])
-
 -- nvim-cmpの設定をリロード
 require("plugins.coding").lua_source_nvim_cmp()
+
+-- コマンド定義
+vim.cmd([[command! -nargs=* PasteImage :call utils#paste_image("<args>")]])
