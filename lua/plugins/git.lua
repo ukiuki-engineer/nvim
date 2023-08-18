@@ -11,7 +11,28 @@ local M = {}
 --
 function M.lua_add_fugitive()
   vim.keymap.set('n', '<leader>gc', "<Cmd>Git commit<CR>", {})
-  vim.keymap.set('n', '<leader>gp', "<Cmd>Git push<CR>", {})
+  vim.keymap.set('n', '<leader>gp', function()
+    local commit_number = fn.system([[
+      git status \
+        | grep 'Your branch is' \
+        | sed -e 's/Your branch.*by //' -e 's/ commit.//' \
+        | grep -E 'by .* commit'
+    ]])
+
+    if commit_number == "" then
+      print("no commits")
+      return
+    end
+
+    commit_number = tonumber(commit_number)
+    local message = commit_number == 1
+        and "push " .. commit_number .. " commit?"
+        or "push " .. commit_number .. "commits?"
+
+    if fn.confirm(message, "&Yes\n&No\n&Cancel") == 1 then
+      vim.cmd([[Git push]])
+    end
+  end, {})
 end
 
 --
