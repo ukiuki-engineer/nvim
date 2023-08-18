@@ -74,13 +74,4 @@ function M.get_colorcode_by_colorname(colorname)
   return colornames[colorname]
 end
 
---
--- インデントをセットする(バッファローカル)
---
-function M.setlocal_indent(indent)
-  vim.bo.tabstop     = indent
-  vim.bo.shiftwidth  = indent
-  vim.bo.softtabstop = indent
-end
-
 return M
