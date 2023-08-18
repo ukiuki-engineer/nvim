@@ -5,8 +5,9 @@
 -- 通常ロード
 -- ------------------------------------------------------------------------------
 -- NOTE: deinのinline_vimrcs側で読み込んでいるので不要
--- require("config.autocmds")
 -- require("config.options")
+-- require("config.autocmds")
+-- require("config.keymappings")
 -- ------------------------------------------------------------------------------
 -- 遅延ロード
 -- ------------------------------------------------------------------------------
@@ -21,14 +22,6 @@ au("CmdlineEnter", {
     require("config.lazy.commands")
   end,
   once = true
-})
--- keymaps
-au({ "CmdlineEnter", "BufRead", "InsertEnter" }, {
-  group = "my_lazyload",
-  callback = function()
-    require("config.lazy.keymappings")
-  end,
-  once = true,
 })
 -- Terminalモードの設定
 au({ "TermOpen", "CmdUndefined" }, {

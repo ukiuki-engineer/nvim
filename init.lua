@@ -35,11 +35,13 @@ if fn["dein#load_state"](dein_dir) == 1 then
   local init              = g.init_dir .. '/lua/config/init.lua'
   local options           = g.init_dir .. '/lua/config/options.lua'
   local autocmds          = g.init_dir .. '/lua/config/autocmds.lua'
+  local keymappings       = g.init_dir .. '/lua/config/keymappings.lua'
 
   g["dein#inline_vimrcs"] = {
     init,
     options,
-    autocmds
+    autocmds,
+    keymappings,
   }
   -- }}}
 
