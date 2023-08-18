@@ -118,7 +118,7 @@ function M.git_status()
 
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)
-      -- <C-r>で選択したファイルをgit restore or 削除する
+      -- 選択したファイルをgit restore or 削除する
       map({ "i" }, "<C-r>",
         function()
           local selection = action_state.get_selected_entry()
