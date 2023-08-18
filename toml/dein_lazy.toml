@@ -224,6 +224,9 @@ on_cmd = [
   'DiffviewRefresh',
   'DiffviewToggleFiles'
 ]
+lua_add = '''
+require("plugins.git").lua_add_diffview()
+'''
 lua_source = '''
 require("plugins.git").lua_source_diffview()
 '''

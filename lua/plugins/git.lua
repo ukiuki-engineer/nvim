@@ -33,6 +33,10 @@ end
 --
 -- diffview.nvim
 --
+function M.lua_add_diffview()
+  vim.keymap.set('n', '<leader>df', "<Cmd>DiffviewOpen<CR>", {})
+end
+
 function M.lua_source_diffview()
   -- NOTE: マウスでスクロールする時は、差分の右側をスクロールしないとスクロールが同期されない
   require('diffview').setup({
