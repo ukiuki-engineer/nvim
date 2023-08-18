@@ -25,10 +25,19 @@ function M.lua_add_lualine()
     end
   end
 
+  local function commit_number()
+    if not vim.fn['utils#is_git_project']() then
+      return ""
+    end
+
+    local number = vim.fn['utils#get_commit_number'](true)
+    return "󰑓 ↓" .. number['remote'] .. " ↑" .. number['local']
+  end
+
   require('lualine').setup({
     sections = {
       lualine_a = { 'mode', skkeleton_mode },
-      lualine_b = { 'branch', 'diff', 'diagnostics' }, -- TODO: user.nameとuser.emailも表示させたい
+      lualine_b = { 'branch', commit_number, 'diff', 'diagnostics' },
       lualine_c = {
         {
           'filename',
