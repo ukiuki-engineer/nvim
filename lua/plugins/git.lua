@@ -12,13 +12,8 @@ local M = {}
 function M.lua_add_fugitive()
   vim.keymap.set('n', '<leader>gc', "<Cmd>Git commit<CR>", {})
   vim.keymap.set('n', '<leader>gp', function()
-    local commit_number = fn.system([[
-      git status \
-        | grep 'Your branch is' \
-        | sed -e 's/Your branch.*by //' -e 's/ commit.//' \
-        | grep -E 'by .* commit'
-    ]])
-
+    -- vim.fn.system("git fetch >/dev/null 2>&1")
+    local commit_number = vim.fn['utils#get_commit_number'](false)
     if commit_number == "" then
       print("no commits")
       return
