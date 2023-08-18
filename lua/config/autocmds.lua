@@ -28,5 +28,10 @@ local pwd_in_startup = fn.expand('$PWD')
 local mksession = 'mksession! ' .. pwd_in_startup .. '/Session.vim'
 au("BufWrite", {
   group = "my_autocmds",
-  command = mksession
+  callback = function()
+    if fn.expand('%:t') == "COMMIT_EDITMSG" then
+      return
+    end
+    vim.cmd(mksession)
+  end
 })
