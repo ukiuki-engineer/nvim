@@ -133,6 +133,23 @@ function M.git_status()
           require('plugins.telescope').git_status()
         end
       )
+      -- 直前のcommitを取り消す
+      map({ "i", "n" }, "<C-d>",
+        function()
+          local message = "delete a last commit?"
+          if fn.confirm(message, "&Yes\n&No\n&Cancel") == 1 then
+            vim.cmd("Git reset --soft HEAD^")
+          end
+          actions.close(prompt_bufnr) -- TODO: 閉じずにlistを更新することはできないか？
+          require('plugins.telescope').git_status()
+        end
+      )
+      -- commitする
+      map({ "n" }, "gc",
+        function()
+          vim.cmd([[tabnew | Git commit]])
+        end
+      )
       return true
     end,
   })
