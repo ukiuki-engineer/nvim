@@ -8,7 +8,14 @@
 " git projectかどうかを返す
 "
 function! utils#is_git_project() abort
-  return system('git status > /dev/null 2>&1') == 0
+  let result = str2nr(system('git status > /dev/null 2>&1; echo -n $?'))
+  " NOTE: return result == 0だと上手くいかなかった...
+  if result == 0
+    return v:true
+  else
+    return v:false
+  endif
+endfunction
 endfunction
 " --------------------------------------------------------------------------------
 " lua/config/init.lua
