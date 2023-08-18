@@ -172,13 +172,14 @@ on_cmd = [
   'GRename',
   'GUnlink',
   'Gcd',
-  'Gdiffsplit',
+  'Gcommit'
   'Gdiffsplit!',
+  'Gdiffsplit',
   'Gdrop',
   'Gedit',
   'Ghdiffsplit',
-  'Git',
   'Git!',
+  'Git',
   'Glcd',
   'Gllog',
   'Gpedit',
@@ -187,10 +188,13 @@ on_cmd = [
   'Gtabedit',
   'Gvdiffsplit',
   'Gvsplit',
-  'Gwq',
   'Gwq!',
-  'Gwrite'
+  'Gwq',
+  'Gwrite',
 ]
+lua_add = '''
+require("plugins.git").lua_add_fugitive()
+'''
 
 [[plugins]] # VSCodeのGitLens的なやつ
 repo = 'APZelos/blamer.nvim'

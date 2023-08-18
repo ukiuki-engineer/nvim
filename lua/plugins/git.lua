@@ -7,6 +7,14 @@ local fn = vim.fn
 local M = {}
 
 --
+-- vim-fugitive
+--
+function M.lua_add_fugitive()
+  vim.keymap.set('n', '<leader>gc', "<Cmd>Git commit<CR>", {})
+  vim.keymap.set('n', '<leader>gp', "<Cmd>Git push<CR>", {})
+end
+
+--
 -- diffview.nvim
 --
 function M.lua_source_diffview()
