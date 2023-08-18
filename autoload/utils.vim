@@ -38,7 +38,7 @@ endfunction
 " lua/config/lazy/terminal.lua
 " --------------------------------------------------------------------------------
 "
-" :TermHere用
+" ターミナルをカレントバッファのディレクトリで開く
 "
 function! utils#term_here(spOrVsp) abort
   " 水平分割
@@ -48,7 +48,7 @@ function! utils#term_here(spOrVsp) abort
   elseif a:spOrVsp == "vsp"
     vsplit | wincmd l
   endif
-  " ターミナルをカレントバッファのディレクトリで開く
+  " ターミナルを開く
   call utils#execute_here("terminal")
 endfunction
 

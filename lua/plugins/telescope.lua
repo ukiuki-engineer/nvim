@@ -3,9 +3,6 @@ local fn     = vim.fn
 
 local M      = {}
 
---
--- telescope.nvim
---
 function M.lua_add_telescope()
   -- NOTE: on_cmdで遅延ロードさせるためにこういう回りくどいやり方をしている…
   keyset('n', '<space>b', "<Cmd>Buffers<CR>", {})
