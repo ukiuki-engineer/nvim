@@ -118,7 +118,9 @@ function M.git_status()
   local action_state = require('telescope.actions.state')
 
   vim.fn['utils#refresh_git_commit_status']()
-  local commit_status = vim.g.git_commit_status
+  local git_commit_status_text = function()
+    return vim.fn['utils#git_commit_status_text']()
+  end
 
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)
@@ -156,7 +158,7 @@ function M.git_status()
       )
       return true
     end,
-    prompt_prefix = commit_status .. " > "
+    prompt_prefix = git_commit_status_text() .. " > "
   })
 end
 

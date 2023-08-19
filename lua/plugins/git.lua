@@ -13,8 +13,8 @@ function M.lua_add_fugitive()
   local command = vim.api.nvim_create_user_command
   -- confirmしてpushする
   local function git_push_confirm()
-    -- vim.fn.system("git fetch >/dev/null 2>&1")
-    local commit_number = vim.fn['utils#get_git_commit_status'](false)['local']
+    vim.fn['utils#refresh_git_commit_status']()
+    local commit_number = vim.g.git_commit_status['local']
     if commit_number == "" then
       print("no commits")
       return
@@ -27,6 +27,7 @@ function M.lua_add_fugitive()
 
     if fn.confirm(message, "&Yes\n&No\n&Cancel") == 1 then
       vim.cmd([[Git push]])
+      fn['utils#refresh_git_commit_status'](false)
     end
   end
 

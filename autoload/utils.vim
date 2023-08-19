@@ -41,8 +41,17 @@ function! utils#refresh_git_commit_status() abort
   if !utils#is_git_project()
     return
   endif
-  let git_commit_status = utils#get_git_commit_status(v:true)
-  let g:git_commit_status = "󰑓 ↓" .. git_commit_status['remote'] .. " ↑" .. git_commit_status['local']
+  let g:git_commit_status = utils#get_git_commit_status(v:true)
+endfunction
+
+"
+" commit数の状態のテキストを返す
+"
+function! utils#git_commit_status_text() abort
+  if g:git_commit_status['remote'] == "" && g:git_commit_status['local'] == ""
+    return ""
+  endif
+  return "󰑓 ↓" .. g:git_commit_status['remote'] .. " ↑" .. g:git_commit_status['local']
 endfunction
 " --------------------------------------------------------------------------------
 " lua/config/init.lua

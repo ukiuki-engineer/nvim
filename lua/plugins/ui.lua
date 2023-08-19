@@ -12,7 +12,7 @@ local M       = {}
 --
 function M.lua_add_lualine()
   -- commit数の状態の更新
-  local events = { "InsertEnter", "CmdlineLeave", "TabLeave" }
+  local events = { "InsertEnter", "CmdlineEnter", "TabLeave" }
   augroup("MyLualine", {})
   au(events, {
     group = "MyLualine",
@@ -37,19 +37,10 @@ function M.lua_add_lualine()
     end
   end
 
-  -- 未定義なら初期化
-  if not vim.g.git_commit_status then
-    vim.g.git_commit_status = ""
-  end
-
-  local function git_commit_status()
-    return vim.g.git_commit_status
-  end
-
   require('lualine').setup({
     sections = {
       lualine_a = { 'mode', skkeleton_mode },
-      lualine_b = { 'branch', git_commit_status, 'diff', 'diagnostics' },
+      lualine_b = { 'branch', function() return vim.fn['utils#git_commit_status_text']() end, 'diff', 'diagnostics' },
       lualine_c = {
         {
           'filename',
