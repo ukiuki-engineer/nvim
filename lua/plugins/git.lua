@@ -10,8 +10,9 @@ local M = {}
 -- vim-fugitive
 --
 function M.lua_add_fugitive()
-  vim.keymap.set('n', '<leader>gc', "<Cmd>Git commit<CR>", {})
-  vim.keymap.set('n', '<leader>gp', function()
+  local command = vim.api.nvim_create_user_command
+  -- confirmしてpushする
+  local function git_push_confirm()
     -- vim.fn.system("git fetch >/dev/null 2>&1")
     local commit_number = vim.fn['utils#get_git_commit_status'](false)['local']
     if commit_number == "" then
@@ -27,8 +28,19 @@ function M.lua_add_fugitive()
     if fn.confirm(message, "&Yes\n&No\n&Cancel") == 1 then
       vim.cmd([[Git push]])
     end
+  end
+
+  -- keymappings
+  vim.keymap.set('n', '<leader>gc', "<Cmd>Git commit<CR>", {})
+  vim.keymap.set('n', '<leader>gp', function()
+    git_push_confirm()
   end, {})
-  vim.cmd([[ command! GitResetSoftHEAD :Git reset --soft HEAD^ ]])
+
+  -- commands
+  command('GitResetSoftHEAD', ':Git reset --soft HEAD^', {})
+  command('GitPush', function()
+    git_push_confirm()
+  end, {})
 end
 
 --
