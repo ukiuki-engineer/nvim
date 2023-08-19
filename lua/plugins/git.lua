@@ -27,7 +27,7 @@ function M.lua_add_fugitive()
 
     if fn.confirm(message, "&Yes\n&No\n&Cancel") == 1 then
       vim.cmd([[Git push]])
-      fn['utils#refresh_git_commit_status'](false)
+      fn['utils#refresh_git_commit_status']()
     end
   end
 
