@@ -28,6 +28,7 @@ function M.lua_add_fugitive()
       vim.cmd([[Git push]])
     end
   end, {})
+  vim.cmd([[ command! GitResetSoftHEAD :Git reset --soft HEAD^ ]])
 end
 
 --
