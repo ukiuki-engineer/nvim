@@ -13,4 +13,5 @@ vim.cmd([[
   command! OpenVimrc                 :tabnew | :tcd ~/.config/nvim
   " バッファのフルパスをヤンクする
   command! YankBufPath               :let @0 = expand('%:p') | :let @+ = expand('%:p')
+  command! RefreshGitCommitStatus    :call utils#refresh_git_commit_status()
 ]])

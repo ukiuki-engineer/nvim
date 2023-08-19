@@ -1,14 +1,26 @@
 -- ================================================================================
 -- UI
 -- ================================================================================
-local keyset = vim.keymap.set
+local au      = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+local keyset  = vim.keymap.set
 
-local M = {}
+local M       = {}
 
 --
 -- lualine.nvim
 --
 function M.lua_add_lualine()
+  -- commit数の状態の更新
+  local events = { "InsertEnter", "CmdlineLeave", "TabLeave" }
+  augroup("MyLualine", {})
+  au(events, {
+    group = "MyLualine",
+    callback = function()
+      vim.fn['utils#refresh_git_commit_status']()
+    end,
+  })
+
   -- skkeletonのモードを返す
   local function skkeleton_mode()
     local modes = {
@@ -25,26 +37,19 @@ function M.lua_add_lualine()
     end
   end
 
-  local function commit_status()
-    if not vim.fn['utils#is_git_project']() then
-      return ""
-    end
+  -- 未定義なら初期化
+  if not vim.g.git_commit_status then
+    vim.g.git_commit_status = ""
+  end
 
-    local commit = vim.fn['utils#get_commit_status'](true)
-    return "󰑓 ↓" .. commit['remote'] .. " ↑" .. commit['local']
+  local function git_commit_status()
+    return vim.g.git_commit_status
   end
 
   require('lualine').setup({
     sections = {
       lualine_a = { 'mode', skkeleton_mode },
-      -- lualine_b = { 'branch', commit_status, 'diff', 'diagnostics' },
-      -- TODO: 重くなるから一旦やめる...
-      -- 対策案↓
-      -- ・非同期化して軽くする
-      -- ・global変数とかにcommit数を入れておいて、
-      -- ・BufWriteとかで変数の更新&lualineのreflesh(require('lualine').refresh())
-      -- ・diffviewとかtelescope(git_status)の時だけ表示するように
-      lualine_b = { 'branch', 'diff', 'diagnostics' },
+      lualine_b = { 'branch', git_commit_status, 'diff', 'diagnostics' },
       lualine_c = {
         {
           'filename',

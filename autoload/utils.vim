@@ -16,10 +16,11 @@ function! utils#is_git_project() abort
     return v:false
   endif
 endfunction
+
 "
-" pullしていないcommit数、pushしていないcommit数を返す
+" remoteの未pullなcommit数、localの未pushなcommit数を返す
 "
-function! utils#get_commit_status(fetch) abort
+function! utils#get_git_commit_status(fetch) abort
   if a:fetch
     call jobstart("git fetch >/dev/null 2>&1")
   endif
@@ -31,6 +32,17 @@ function! utils#get_commit_status(fetch) abort
   let result['remote'] = parts[0]
   let result['local'] = parts[1]
   return result
+endfunction
+
+"
+" commit数の状態を更新する
+"
+function! utils#refresh_git_commit_status() abort
+  if !utils#is_git_project()
+    return
+  endif
+  let git_commit_status = utils#get_git_commit_status(v:true)
+  let g:git_commit_status = "󰑓 ↓" .. git_commit_status['remote'] .. " ↑" .. git_commit_status['local']
 endfunction
 " --------------------------------------------------------------------------------
 " lua/config/init.lua
