@@ -37,8 +37,12 @@ function M.lua_add_lualine()
   require('lualine').setup({
     sections = {
       lualine_a = { 'mode', skkeleton_mode },
-      lualine_b = { 'branch', commit_status, 'diff', 'diagnostics' },
-      -- lualine_b = { 'branch', 'diff', 'diagnostics' },
+      -- TODO: 重くなるから一旦やめる...
+      -- 対策案↓
+      -- ・非同期化して軽くする
+      -- ・diffviewとかの時だけ表示するように
+      -- lualine_b = { 'branch', commit_status, 'diff', 'diagnostics' },
+      lualine_b = { 'branch', 'diff', 'diagnostics' },
       lualine_c = {
         {
           'filename',
