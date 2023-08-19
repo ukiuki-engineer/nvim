@@ -83,4 +83,11 @@ function M.setlocal_indent(indent)
   vim.bo.softtabstop = indent
 end
 
+--
+-- git projectかどうか
+--
+function M.is_git_project()
+  return tonumber(vim.fn.system('git status > /dev/null 2>&1; echo -n $?')) == 0
+end
+
 return M
