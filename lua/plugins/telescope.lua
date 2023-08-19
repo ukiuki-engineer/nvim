@@ -117,6 +117,9 @@ function M.git_status()
   local actions = require('telescope.actions')
   local action_state = require('telescope.actions.state')
 
+  local commits = vim.fn['utils#get_commit_status'](true)
+  local commit_status = "󰑓 ↓" .. commits['remote'] .. " ↑" .. commits['local']
+
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)
       -- 選択したファイルをgit restore or 削除する
@@ -153,6 +156,7 @@ function M.git_status()
       )
       return true
     end,
+    prompt_prefix = commit_status .. " > "
   })
 end
 
