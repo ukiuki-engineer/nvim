@@ -19,12 +19,12 @@ endfunction
 "
 " pullしていないcommit数、pushしていないcommit数を返す
 "
-function! utils#get_commit_number(fetch) abort
+function! utils#get_commit_status(fetch) abort
   if a:fetch
     call jobstart("git fetch >/dev/null 2>&1")
   endif
 
-  let input_string = system(g:init_dir .. '/scripts/commit_number.sh')
+  let input_string = system(g:init_dir .. '/scripts/commit_status.sh')
   let result = {}
   let parts = split(input_string, ', ')
 
