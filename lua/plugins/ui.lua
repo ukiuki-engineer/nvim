@@ -30,18 +30,20 @@ function M.lua_add_lualine()
       return ""
     end
 
-    local number = vim.fn['utils#get_commit_status'](true)
-    return "󰑓 ↓" .. number['remote'] .. " ↑" .. number['local']
+    local commit = vim.fn['utils#get_commit_status'](true)
+    return "󰑓 ↓" .. commit['remote'] .. " ↑" .. commit['local']
   end
 
   require('lualine').setup({
     sections = {
       lualine_a = { 'mode', skkeleton_mode },
+      -- lualine_b = { 'branch', commit_status, 'diff', 'diagnostics' },
       -- TODO: 重くなるから一旦やめる...
       -- 対策案↓
       -- ・非同期化して軽くする
-      -- ・diffviewとかの時だけ表示するように
-      -- lualine_b = { 'branch', commit_status, 'diff', 'diagnostics' },
+      -- ・global変数とかにcommit数を入れておいて、
+      -- ・BufWriteとかで変数の更新&lualineのreflesh(require('lualine').refresh())
+      -- ・diffviewとかtelescope(git_status)の時だけ表示するように
       lualine_b = { 'branch', 'diff', 'diagnostics' },
       lualine_c = {
         {
