@@ -109,7 +109,11 @@ function M.lua_add_lualine()
           return vim.fn['utils#git_commit_status_text']()
         end,
       },
-      lualine_c = { function() return '┐(ﾟдﾟ┐)└(ﾟдﾟ)┐(┌ﾟдﾟ)┌ ┌(ﾟдﾟ)┘┐(ﾟдﾟ┐)└(ﾟдﾟ)┐' end },
+      lualine_c = {
+        function()
+          return '┐(ﾟдﾟ┐)└(ﾟдﾟ)┐(┌ﾟдﾟ)┌ ┌(ﾟдﾟ)┘┐(ﾟдﾟ┐)└(ﾟдﾟ)┐'
+        end
+      },
       lualine_x = { 'buffers' },
       lualine_y = {},
       lualine_z = { 'tabs' }
