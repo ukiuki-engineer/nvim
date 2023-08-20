@@ -29,12 +29,12 @@ require("plugins.ui").lua_source_nvim_tree()
 repo = 'nvim-tree/nvim-web-devicons'
 on_source = ['diffview', 'nvim-tree.lua']
 
-[[plugins]] # 上のbar
-repo = 'akinsho/bufferline.nvim'
-on_event = ['BufRead', 'TabNew', 'InsertEnter']
-lua_source = '''
-require("plugins.ui").lua_source_bufferline()
-'''
+# [[plugins]] # 上のbar
+# repo = 'akinsho/bufferline.nvim'
+# on_event = ['BufRead', 'TabNew', 'InsertEnter']
+# lua_source = '''
+# require("plugins.ui").lua_source_bufferline()
+# '''
 
 [[plugins]] # カーソル位置の階層を表示するやつ
 # NOTE: Neovim Nightly (>= 0.10.0-dev)

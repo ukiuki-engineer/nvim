@@ -11,7 +11,7 @@ local M       = {}
 -- lualine.nvim
 --
 function M.lua_add_lualine()
-  -- commit数の状態の更新
+  -- commit数の状態の更新 {{{
   local events = { "InsertEnter", "CmdlineEnter", "TabLeave" }
   augroup("MyLualine", {})
   au(events, {
@@ -20,6 +20,7 @@ function M.lua_add_lualine()
       vim.fn['utils#refresh_git_commit_status']()
     end,
   })
+  -- }}}
 
   -- skkeletonのモードを返す
   local function skkeleton_mode()
@@ -38,17 +39,14 @@ function M.lua_add_lualine()
   end
 
   require('lualine').setup({
+    options = {
+      component_separators = { left = '', right = '' },
+      section_separators = { left = '', right = '' },
+      -- section_separators = { left = '', right = '' },
+      -- component_separators = { left = '', right = '' }
+    },
     sections = {
-      lualine_a = { 'mode', skkeleton_mode },
-      lualine_b = {
-        'branch',
-        function()
-          return vim.fn['utils#git_commit_status_text']()
-        end,
-        'diff',
-        'diagnostics'
-      },
-      lualine_c = {
+      lualine_a = {
         {
           'filename',
           file_status = true,     -- Displays file status (readonly status, modified status)
@@ -66,8 +64,10 @@ function M.lua_add_lualine()
             unnamed = '[No Name]', -- Text to show for unnamed buffers.
             newfile = '[New]',     -- Text to show for newly created file before first write
           }
-        }
+        },
       },
+      lualine_b = { 'diff', 'diagnostics' },
+      lualine_c = {},
       lualine_x = { 'encoding', 'fileformat', 'filetype' },
       lualine_y = { 'progress' },
       lualine_z = { 'location' }
@@ -99,6 +99,21 @@ function M.lua_add_lualine()
       lualine_y = {},
       lualine_z = {}
     },
+    tabline = {
+      lualine_a = {
+        'mode', skkeleton_mode
+      },
+      lualine_b = {
+        'branch',
+        function()
+          return vim.fn['utils#git_commit_status_text']()
+        end,
+      },
+      lualine_c = { function() return '┐(ﾟдﾟ┐)└(ﾟдﾟ)┐(┌ﾟдﾟ)┌ ┌(ﾟдﾟ)┘┐(ﾟдﾟ┐)└(ﾟдﾟ)┐' end },
+      lualine_x = { 'buffers' },
+      lualine_y = {},
+      lualine_z = { 'tabs' }
+    }
   })
 end
 
