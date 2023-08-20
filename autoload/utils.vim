@@ -18,7 +18,7 @@ function! utils#is_git_project() abort
 endfunction
 
 "
-" remoteの未pullなcommit数、localの未pushなcommit数を返す
+" 未pull、未pushなcommit数を返す
 "
 function! utils#get_git_commit_status(fetch) abort
   if a:fetch

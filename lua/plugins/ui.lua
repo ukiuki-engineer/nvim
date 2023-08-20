@@ -40,7 +40,14 @@ function M.lua_add_lualine()
   require('lualine').setup({
     sections = {
       lualine_a = { 'mode', skkeleton_mode },
-      lualine_b = { 'branch', function() return vim.fn['utils#git_commit_status_text']() end, 'diff', 'diagnostics' },
+      lualine_b = {
+        'branch',
+        function()
+          return vim.fn['utils#git_commit_status_text']()
+        end,
+        'diff',
+        'diagnostics'
+      },
       lualine_c = {
         {
           'filename',
