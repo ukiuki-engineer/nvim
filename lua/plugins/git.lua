@@ -48,7 +48,7 @@ end
 -- diffview.nvim
 --
 function M.lua_add_diffview()
-  vim.keymap.set('n', '<leader>df', "<Cmd>DiffviewOpen<CR>", {})
+  vim.keymap.set('n', '<leader>d', "<Cmd>DiffviewOpen<CR>", {})
 end
 
 function M.lua_source_diffview()
