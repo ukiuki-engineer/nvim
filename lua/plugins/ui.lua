@@ -11,17 +11,6 @@ local M       = {}
 -- lualine.nvim
 --
 function M.lua_add_lualine()
-  -- commit数の状態の更新 {{{
-  local events = { "InsertEnter", "CmdlineEnter", "TabLeave" }
-  augroup("MyLualine", {})
-  au(events, {
-    group = "MyLualine",
-    callback = function()
-      vim.fn['utils#refresh_git_commit_status']()
-    end,
-  })
-  -- }}}
-
   -- skkeletonのモードを返す
   local function skkeleton_mode()
     local modes = {

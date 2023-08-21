@@ -2,17 +2,25 @@ local fn = vim.fn
 local augroup = vim.api.nvim_create_augroup
 local au = vim.api.nvim_create_autocmd
 
-augroup("my_autocmds", {})
+augroup("MyAutocmds", {})
 
 -- 保存時にSession.vimを書き込む
 local pwd_in_startup = fn.expand('$PWD')
 local mksession = 'mksession! ' .. pwd_in_startup .. '/Session.vim'
 au("BufWrite", {
-  group = "my_autocmds",
+  group = "MyAutocmds",
   callback = function()
     if fn.expand('%:t') == "COMMIT_EDITMSG" then
       return
     end
     vim.cmd(mksession)
   end
+})
+
+-- commit数の状態の更新
+au({ "InsertEnter", "CmdlineEnter", "TabLeave" }, {
+  group = "MyAutocmds",
+  callback = function()
+    vim.fn['utils#refresh_git_commit_status']()
+  end,
 })
