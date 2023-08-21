@@ -18,40 +18,55 @@ function! utils#is_git_project() abort
 endfunction
 
 "
-" 未pull、未pushなcommit数を返す
+" g:git_commit_statusを更新する
 "
-function! utils#get_git_commit_status(fetch) abort
-  if a:fetch
-    call jobstart("git fetch >/dev/null 2>&1")
-  endif
-
-  let input_string = system(g:init_dir .. '/scripts/commit_status.sh')
-  let result = {}
-  let parts = split(input_string, ', ')
-
-  let result['remote'] = parts[0]
-  let result['local'] = parts[1]
-  return result
-endfunction
-
-"
-" commit数の状態を更新する
-"
-function! utils#refresh_git_commit_status() abort
+function! utils#refresh_git_commit_status(fetch = v:false) abort
+  " git projectではないなら処理終了
   if !utils#is_git_project()
     return
   endif
-  let g:git_commit_status = utils#get_git_commit_status(v:true)
+
+  " git fetch
+  if a:fetch
+    try
+      call jobstart("git fetch >/dev/null 2>&1")
+    catch
+      echohl ErrorMsg
+      echomsg "An error occurred while executing the external command."
+      echohl None
+    endtry
+  endif
+
+  let sh_output = substitute(system(g:init_dir .. '/scripts/commit_status.sh'), '\n', '', 'g')
+
+  if sh_output == 'NO_REMOTE_BRANCH'
+    let g:git_commit_status = 'NO_REMOTE_BRANCH'
+    return
+  else
+    let parts = split(sh_output, ', ')
+    let g:git_commit_status = {}
+    let g:git_commit_status['remote'] = parts[0]
+    let g:git_commit_status['local'] = parts[1]
+    return
+  endif
+
 endfunction
 
 "
 " commit数の状態のテキストを返す
 "
 function! utils#git_commit_status_text() abort
-  if g:git_commit_status['remote'] == "" && g:git_commit_status['local'] == ""
+  if !exists('g:git_commit_status')
     return ""
   endif
-  return "󰑓 ↓" .. g:git_commit_status['remote'] .. " ↑" .. g:git_commit_status['local']
+
+  if type(g:git_commit_status) != v:t_dict && g:git_commit_status == 'NO_REMOTE_BRANCH'
+    return "󰧠"
+  elseif g:git_commit_status['remote'] == "" && g:git_commit_status['local'] == ""
+    return ""
+  else
+    return "↓" .. g:git_commit_status['remote'] .. " ↑" .. g:git_commit_status['local']
+  endif
 endfunction
 " --------------------------------------------------------------------------------
 " lua/config/init.lua
