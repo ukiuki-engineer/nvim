@@ -47,3 +47,4 @@ opt.softtabstop = 2
 -- }}}
 -- 符号なし数字として扱う
 opt.nrformats:append("unsigned")
+opt.laststatus = 3

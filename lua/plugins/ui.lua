@@ -1,11 +1,9 @@
 -- ================================================================================
 -- UI
 -- ================================================================================
-local au      = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
-local keyset  = vim.keymap.set
+local keyset = vim.keymap.set
 
-local M       = {}
+local M      = {}
 
 --
 -- lualine.nvim
@@ -27,8 +25,37 @@ function M.lua_add_lualine()
     end
   end
 
+  local frames = {
+    "(.-.)",
+    "     (:I )",
+    "          (ﾟ-ﾟ)",
+    "               ( I:)",
+    "                     (.-.)",
+    "                          (:I )",
+    "                               (ﾟ-ﾟ)",
+    "                                    ( I:)",
+    "                                         (.-.)",
+    "                                              (:I )",
+    "                                                   (ﾟ-ﾟ)",
+    "                                                        ( I:)",
+    "                                                              (.-.)",
+    "                                                                   (:I )",
+    "                                                                        (ﾟ-ﾟ)",
+    "                                                                             ( I:)",
+  }
+  local frame_number = 1
+  local function animation()
+    if frame_number > #frames then
+      frame_number = 1
+    end
+    local output = frames[frame_number]
+    frame_number = frame_number + 1
+    return output
+  end
+
   require('lualine').setup({
     options = {
+      globalstatus = true,
       component_separators = { left = '', right = '' },
       section_separators = { left = '', right = '' },
       -- section_separators = { left = '', right = '' },
@@ -36,6 +63,15 @@ function M.lua_add_lualine()
     },
     sections = {
       lualine_a = {
+        'mode', skkeleton_mode
+      },
+      lualine_b = {
+        'branch',
+        function()
+          return vim.fn['utils#git_commit_status_text']()
+        end,
+      },
+      lualine_c = {
         {
           'filename',
           file_status = true,     -- Displays file status (readonly status, modified status)
@@ -54,9 +90,12 @@ function M.lua_add_lualine()
             newfile = '[New]',     -- Text to show for newly created file before first write
           }
         },
+        'diff',
+        'diagnostics',
+        function()
+          return animation()
+        end
       },
-      lualine_b = { 'diff', 'diagnostics' },
-      lualine_c = {},
       lualine_x = { 'encoding', 'fileformat', 'filetype' },
       lualine_y = { 'progress' },
       lualine_z = { 'location' }
@@ -88,25 +127,25 @@ function M.lua_add_lualine()
       lualine_y = {},
       lualine_z = {}
     },
-    tabline = {
-      lualine_a = {
-        'mode', skkeleton_mode
-      },
-      lualine_b = {
-        'branch',
-        function()
-          return vim.fn['utils#git_commit_status_text']()
-        end,
-      },
-      lualine_c = {
-        function()
-          return '┐(ﾟдﾟ┐)└(ﾟдﾟ)┐(┌ﾟдﾟ)┌ ┌(ﾟдﾟ)┘┐(ﾟдﾟ┐)└(ﾟдﾟ)┐'
-        end
-      },
-      lualine_x = { 'buffers' },
-      lualine_y = {},
-      lualine_z = { 'tabs' }
-    }
+    -- tabline = {
+    --   lualine_a = {
+    --     'mode', skkeleton_mode
+    --   },
+    --   lualine_b = {
+    --     'branch',
+    --     function()
+    --       return vim.fn['utils#git_commit_status_text']()
+    --     end,
+    --   },
+    --   lualine_c = {
+    --     function()
+    --       return '┐(ﾟдﾟ┐)└(ﾟдﾟ)┐(┌ﾟдﾟ)┌ ┌(ﾟдﾟ)┘┐(ﾟдﾟ┐)└(ﾟдﾟ)┐'
+    --     end
+    --   },
+    --   lualine_x = { 'buffers' },
+    --   lualine_y = {},
+    --   lualine_z = { 'tabs' }
+    -- }
   })
 end
 
