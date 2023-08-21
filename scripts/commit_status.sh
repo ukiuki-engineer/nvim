@@ -1,7 +1,4 @@
 #!/bin/sh
-# TODO: 一旦vimscript側で
-# git fetch >/dev/null 2>&1
-
 git_status=$(git status)
 
 # pullもpushも無い場合
