@@ -18,7 +18,8 @@ au("BufWrite", {
 })
 
 -- commit数の状態の更新
-au({ "InsertEnter", "CmdlineEnter", "TabLeave" }, {
+-- TODO: 一旦これで。後でタイマー遅延とかにする。
+au({ "VimEnter" }, {
   group = "MyAutocmds",
   callback = function()
     vim.fn['utils#refresh_git_commit_status']()

@@ -27,7 +27,6 @@ function M.lua_add_fugitive()
 
     if fn.confirm(message, "&Yes\n&No\n&Cancel") == 1 then
       vim.cmd([[Git push]])
-      fn['utils#refresh_git_commit_status']()
     end
   end
 
@@ -42,6 +41,15 @@ function M.lua_add_fugitive()
   command('GitPush', function()
     git_push_confirm()
   end, {})
+
+  -- commit数の状態の更新
+  -- NOTE: luaのvim apiでautocmdするとカーソルがちらついたり何かおかしくなったのでvimscriptで
+  vim.cmd([[
+    augroup MyFugitiveActions
+      au!
+      au User FugitiveChanged call utils#refresh_git_commit_status()
+    augroup END
+  ]])
 end
 
 --
