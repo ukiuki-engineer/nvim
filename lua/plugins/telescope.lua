@@ -117,6 +117,7 @@ function M.git_status()
   local actions = require('telescope.actions')
   local action_state = require('telescope.actions.state')
 
+  -- commit情報を取得
   vim.fn['utils#refresh_git_commit_status']()
   local git_commit_status_text = function()
     return vim.fn['utils#git_commit_status_text']()
