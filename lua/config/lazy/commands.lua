@@ -14,4 +14,6 @@ vim.cmd([[
   " バッファのフルパスをヤンクする
   command! YankBufPath               :let @0 = expand('%:p') | :let @+ = expand('%:p')
   command! RefreshGitCommitStatus    :call utils#refresh_git_commit_status()
+  " format on saveを無視して保存
+  command! W                         :noautocmd w
 ]])
