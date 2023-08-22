@@ -3,8 +3,10 @@ if vim.g['vimrc#loaded_keymappings'] then
 end
 vim.g['vimrc#loaded_keymappings'] = true
 
--- NOTE: markは使ってないのでleaderにする
-vim.g.mapleader = "m"
+-- NOTE: <leader>の使用に関する方針
+-- <leaer>は、何かしらのactionを起こすmappingに対して使用する
+-- 何かを表示する系は<space>を使用する
+vim.g.mapleader = "m" -- NOTE: markは使ってないのでleaderにする
 
 local keyset = vim.keymap.set
 local opts = { noremap = true, silent = true }
@@ -30,6 +32,7 @@ keyset("n", "<TAB>", ":bn<CR>", opts)
 keyset("n", "<S-TAB>", ":bN<CR>", opts)
 keyset({ "n", "x" }, "<C-j>", "7j", opts)
 keyset({ "n", "x" }, "<C-k>", "7k", opts)
+keyset("n", "<leader>tc", ":tabclose<CR>", opts)
 -- cmdlineモードをemacsキーバインドでカーソル移動 {{{
 -- keyset("c", "<C-b>", "<Left>", opts)
 -- keyset("c", "<C-f>", "<Right>", opts)
