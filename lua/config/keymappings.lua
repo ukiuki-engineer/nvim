@@ -3,9 +3,10 @@ if vim.g['vimrc#loaded_keymappings'] then
 end
 vim.g['vimrc#loaded_keymappings'] = true
 
--- NOTE: <leader>の使用に関する方針
--- <leaer>は、何かしらのactionを起こすmappingに対して使用する
--- 何かを表示する系は<space>を使用する
+-- TODO: <leader>, <space>, gの使い分けの方針を決めておく
+-- <leaer>: 何かしらのactionを起こす系？
+-- <space>: 何かを表示する系？
+--       g: どうしよう...
 vim.g.mapleader = "m" -- NOTE: markは使ってないのでleaderにする
 
 local keyset = vim.keymap.set
