@@ -29,6 +29,8 @@ function M.lua_add_lualine()
   local frames = {
     "(꜆꜄ ˙꒳˙)꜆꜄꜆ｱﾀﾀﾀﾀﾀﾀﾀ",
     "(꜄꜆ ˙꒳˙)꜄꜆꜄ｱﾀﾀﾀﾀﾀﾀﾀ",
+    "(꜄꜆꜄˙꒳˙)꜆꜄ ｱﾀﾀﾀﾀﾀﾀﾀ",
+    "(꜆꜄꜆˙꒳˙)꜄꜆ ｱﾀﾀﾀﾀﾀﾀﾀ",
   }
   local frame_number = 1
   local function animation()
