@@ -123,6 +123,9 @@ function M.git_status()
     return vim.fn['utils#git_commit_status_text']()
   end
 
+  -- local branch_name = string.gsub(vim.fn.system('git rev-parse --abbrev-ref HEAD'), "\n", "")
+  local branch_name = vim.fn['fugitive#Head']()
+
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)
       -- 選択したファイルをgit restore or 削除する
@@ -163,7 +166,7 @@ function M.git_status()
       )
       return true
     end,
-    prompt_prefix = git_commit_status_text() .. " > "
+    prompt_prefix = branch_name .. " " .. git_commit_status_text() .. " > "
   })
 end
 
