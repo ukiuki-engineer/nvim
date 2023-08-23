@@ -56,7 +56,7 @@ function M.lua_add_lualine()
         'mode', skkeleton_mode
       },
       lualine_b = {
-        'branch',
+        'FugitiveHead',                 -- NOTE: 'branch'だと、diffviewのパネルの時表示表示されないのでfugitiveの関数を呼ぶ
         function()
           return vim.fn['utils#git_commit_status_text']()
         end,
