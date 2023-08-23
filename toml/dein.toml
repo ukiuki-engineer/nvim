@@ -24,13 +24,6 @@ lua require('impatient')
 # let g:did_load_filetypes = 1
 # '''
 
-[[plugins]] # airlineをこれに変えたら起動速度が倍速になった
-repo = 'nvim-lualine/lualine.nvim'
-depends = ['nvim-web-devicons', 'impatient.nvim']
-lua_add = '''
-require("plugins.ui").lua_add_lualine()
-'''
-
 [[plugins]]
 repo = 'vim-denops/denops.vim'
 
@@ -39,6 +32,29 @@ repo = 'vim-skk/skkeleton'
 depends = ['denops']
 lua_add = '''
 require("plugins.coding").lua_add_skkeleton()
+'''
+################################################################################
+# UI
+################################################################################
+[[plugins]] # airlineをこれに変えたら起動速度が倍速になった
+repo = 'nvim-lualine/lualine.nvim'
+depends = ['nvim-web-devicons', 'impatient.nvim']
+lua_add = '''
+require("plugins.ui").timer_start_lualine()
+'''
+
+[[plugins]] # 上のbar
+repo = 'akinsho/bufferline.nvim'
+lua_add = '''
+require("plugins.ui").timer_start_bufferline()
+'''
+
+[[plugins]]
+repo= 'lewis6991/satellite.nvim'
+# on_event = ['FileType', 'BufRead', 'InsertEnter']
+lua_add = '''
+-- require("plugins.ui").lua_source_satellite()
+require("plugins.ui").timer_start_satellite()
 '''
 ################################################################################
 # ColorScheme

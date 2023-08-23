@@ -8,6 +8,14 @@ local M      = {}
 --
 -- lualine.nvim
 --
+function M.timer_start_lualine()
+  vim.fn.timer_start(300,
+    function()
+      require('plugins.ui').lua_add_lualine()
+    end
+  )
+end
+
 function M.lua_add_lualine()
   -- skkeletonのモードを返す
   local function skkeleton_mode()
@@ -170,7 +178,15 @@ end
 --
 -- bufferline.nvim
 --
-function M.lua_source_bufferline()
+function M.timer_start_bufferline()
+  vim.fn.timer_start(400,
+    function()
+      require('plugins.ui').lua_add_bufferline()
+    end
+  )
+end
+
+function M.lua_add_bufferline()
   local bufferline = require('bufferline')
   bufferline.setup({
     options = {
@@ -287,7 +303,15 @@ end
 --
 -- satellite.nvim
 --
-function M.lua_source_satellite()
+function M.timer_start_satellite()
+  vim.fn.timer_start(500,
+    function()
+      require('plugins.ui').lua_add_satellite()
+    end
+  )
+end
+
+function M.lua_add_satellite()
   require('satellite').setup({
     current_only = false,
     winblend = 50,
