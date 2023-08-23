@@ -67,6 +67,21 @@ au("CmdUndefined", {
 })
 -- }}}
 
+
+-- タイマー遅延
+vim.fn.timer_start(900,
+  function()
+    -- git projectでないなら終了
+    if not require('utils').is_git_project() then
+      return
+    end
+
+    -- commit数の状態を更新
+    vim.fn['utils#refresh_git_commit_status']()
+    -- Blamer起動
+    vim.cmd([[silent BlamerShow]])
+  end
+)
 -- ------------------------------------------------------------------------------
 -- 標準プラグインの制御
 -- ------------------------------------------------------------------------------

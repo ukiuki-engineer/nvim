@@ -82,15 +82,6 @@ function M.lua_add_blamer()
   g.blamer_date_format = '%Y/%m/%d %H:%M'
   -- ビジュアルモード時はオフ
   g.blamer_show_in_visual_modes = 0
-
-  fn.timer_start(500,
-    function()
-      if not require('utils').is_git_project() then
-        return
-      end
-      vim.cmd([[silent BlamerShow]])
-    end
-  )
 end
 
 --
