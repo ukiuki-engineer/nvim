@@ -5,24 +5,11 @@
 " utils
 " --------------------------------------------------------------------------------
 "
-" git projectかどうかを返す
-"
-function! utils#is_git_project() abort
-  let result = str2nr(system('git status > /dev/null 2>&1; echo -n $?'))
-  " NOTE: return result == 0だと上手くいかなかった...
-  if result == 0
-    return v:true
-  else
-    return v:false
-  endif
-endfunction
-
-"
 " g:git_commit_statusを更新する
 "
 function! utils#refresh_git_commit_status(fetch = v:false) abort
   " git projectではないなら処理終了
-  if !utils#is_git_project()
+  if !v:lua.require('utils').is_git_project()
     return
   endif
 

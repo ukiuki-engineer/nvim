@@ -85,7 +85,7 @@ function M.lua_add_blamer()
 
   fn.timer_start(500,
     function()
-      if not fn["utils#is_git_project"] then
+      if not require('utils').is_git_project() then
         return
       end
       vim.cmd([[silent BlamerShow]])
