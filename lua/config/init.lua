@@ -69,7 +69,7 @@ au("CmdUndefined", {
 
 
 -- タイマー遅延
-vim.fn.timer_start(900,
+vim.fn.timer_start(90,
   function()
     -- git projectでないなら終了
     if not require('utils').is_git_project() then

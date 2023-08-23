@@ -40,21 +40,19 @@ require("plugins.coding").lua_add_skkeleton()
 repo = 'nvim-lualine/lualine.nvim'
 depends = ['nvim-web-devicons', 'impatient.nvim']
 lua_add = '''
-require("plugins.ui").timer_start_lualine()
+require("plugins.ui").timer_start_lualine(100)
 '''
 
 [[plugins]] # 上のbar
 repo = 'akinsho/bufferline.nvim'
 lua_add = '''
-require("plugins.ui").timer_start_bufferline()
+require("plugins.ui").timer_start_bufferline(100)
 '''
 
 [[plugins]]
 repo= 'lewis6991/satellite.nvim'
-# on_event = ['FileType', 'BufRead', 'InsertEnter']
 lua_add = '''
--- require("plugins.ui").lua_source_satellite()
-require("plugins.ui").timer_start_satellite()
+require("plugins.ui").timer_start_satellite(100)
 '''
 ################################################################################
 # ColorScheme
