@@ -66,9 +66,9 @@ function! utils#git_commit_status_text() abort
   endif
 
   let is_dict = type(g:git_commit_status) != v:t_dict
-  let is_no_remote_branch = g:git_commit_status == 'NO_REMOTE_BRANCH'
+  let is_no_remote_branch = is_dict && g:git_commit_status == 'NO_REMOTE_BRANCH'
 
-  if is_dict && is_no_remote_branch
+  if is_no_remote_branch
     return "󰧠"
   elseif g:git_commit_status['remote'] == "" && g:git_commit_status['local'] == ""
     return ""
