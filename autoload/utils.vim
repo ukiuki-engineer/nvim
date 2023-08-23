@@ -37,7 +37,12 @@ function! utils#refresh_git_commit_status(fetch = v:false) abort
     endtry
   endif
 
-  let sh_output = substitute(system(g:init_dir .. '/scripts/commit_status.sh'), '\n', '', 'g')
+  let sh_output = substitute(
+        \ system(g:init_dir .. '/scripts/commit_status.sh'),
+        \ '\n',
+        \ '',
+        \ 'g'
+  \ )
 
   if sh_output == 'NO_REMOTE_BRANCH'
     let g:git_commit_status = 'NO_REMOTE_BRANCH'
@@ -60,7 +65,10 @@ function! utils#git_commit_status_text() abort
     return ""
   endif
 
-  if type(g:git_commit_status) != v:t_dict && g:git_commit_status == 'NO_REMOTE_BRANCH'
+  let is_dict = type(g:git_commit_status) != v:t_dict
+  let is_no_remote_branch = g:git_commit_status == 'NO_REMOTE_BRANCH'
+
+  if is_dict && is_no_remote_branch
     return "󰧠"
   elseif g:git_commit_status['remote'] == "" && g:git_commit_status['local'] == ""
     return ""
