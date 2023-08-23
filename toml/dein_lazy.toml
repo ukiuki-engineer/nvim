@@ -125,9 +125,9 @@ require("plugins.coding").lua_source_shfmt()
 ################################################################################
 [[plugins]] # coc.nvim
 repo = 'neoclide/coc.nvim'
-# rev = 'release'
-rev = 'master'
-build = 'yarn install --frozen-lockfile' # NOTE: masterの場合のみ
+rev = 'release'
+# rev = 'master'
+# build = 'yarn install --frozen-lockfile' # NOTE: masterの場合のみ
 depends = ['vim-snippets', 'fzf']
 on_event = ['CursorMoved', 'FileType']
 on_cmd = ['CocCommand']
