@@ -32,15 +32,11 @@ function M.lua_add_fugitive()
 
   -- keymappings
   vim.keymap.set('n', '<leader>gc', "<Cmd>Git commit<CR>", {})
-  vim.keymap.set('n', '<leader>gp', function()
-    git_push_confirm()
-  end, {})
+  vim.keymap.set('n', '<leader>gp', git_push_confirm, {})
 
   -- commands
   command('GitResetSoftHEAD', ':Git reset --soft HEAD^', {})
-  command('GitPush', function()
-    git_push_confirm()
-  end, {})
+  command('GitPush', git_push_confirm, {})
 
   -- commit数の状態の更新
   -- NOTE: luaのvim apiでautocmdするとカーソルがちらついたり何かおかしくなったのでvimscriptで
