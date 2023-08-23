@@ -14,13 +14,15 @@ function M.lua_add_fugitive()
   -- confirmしてpushする
   local function git_push_confirm()
     vim.fn['utils#refresh_git_commit_status']()
+
     local commit_number = vim.g.git_commit_status['local']
-    if commit_number == "" then
+    commit_number = tonumber(commit_number)
+
+    if commit_number == "" or commit_number == 0 then
       print("no commits")
       return
     end
 
-    commit_number = tonumber(commit_number)
     local message = commit_number == 1
         and "push " .. commit_number .. " commit?"
         or "push " .. commit_number .. "commits?"
