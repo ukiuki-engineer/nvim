@@ -33,7 +33,7 @@ function M.lua_add_lualine()
     "(꜄꜆꜄˙꒳˙)꜆꜄ ｱﾀﾀﾀﾀﾀﾀﾀ!!",
   }
   local frame_number = 1
-  local function animation()
+  local function atatata()
     if frame_number > #frames then
       frame_number = 1
     end
@@ -57,9 +57,7 @@ function M.lua_add_lualine()
       },
       lualine_b = {
         'FugitiveHead',                 -- NOTE: 'branch'だと、diffviewのパネルの時表示表示されないのでfugitiveの関数を呼ぶ
-        function()
-          return vim.fn['utils#git_commit_status_text']()
-        end,
+        'utils#git_commit_status_text', -- 未pull、未pushのcommit数
       },
       lualine_c = {
         {
@@ -82,9 +80,7 @@ function M.lua_add_lualine()
         },
         'diff',
         'diagnostics',
-        function()
-          return animation()
-        end
+        atatata,
       },
       lualine_x = { 'encoding', 'fileformat', 'filetype' },
       lualine_y = { 'progress' },
