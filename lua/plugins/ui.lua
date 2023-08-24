@@ -61,7 +61,8 @@ function M.lua_add_lualine()
     },
     sections = {
       lualine_a = {
-        'mode', skkeleton_mode
+        'mode',
+        skkeleton_mode
       },
       lualine_b = {
         'FugitiveHead',                 -- NOTE: 'branch'だと、diffviewのパネルの時表示表示されないのでfugitiveの関数を呼ぶ
