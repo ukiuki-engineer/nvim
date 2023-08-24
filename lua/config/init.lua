@@ -76,8 +76,8 @@ vim.fn.timer_start(90,
       return
     end
 
-    -- commit数の状態を更新
-    vim.fn['utils#refresh_git_commit_status']()
+    -- gitの情報を更新
+    vim.fn['utils#refresh_git_infomations']()
     -- Blamer起動
     vim.cmd([[silent BlamerShow]])
   end

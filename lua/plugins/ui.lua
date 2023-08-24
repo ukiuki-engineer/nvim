@@ -33,6 +33,20 @@ function M.lua_add_lualine()
     end
   end
 
+  local function pull()
+    return "↓" .. vim.g.git_commit_status['remote']
+  end
+
+  local function push()
+    return "↑" .. vim.g.git_commit_status['local']
+  end
+
+  -- user.nameとuser.emailのtextを返す
+  local function user_info()
+    -- return '  ' .. vim.g.git_config['user_name'] .. '   hogehoge@gmail.com' -- キャプチャ用
+    return '  ' .. vim.g.git_config['user_name'] .. '   ' .. vim.g.git_config['user_email']
+  end
+
   -- animation {{{
   local frames = {
     "(꜆꜄ ˙꒳˙)꜆꜄꜆ｱﾀﾀﾀﾀﾀﾀﾀ!!",
@@ -65,8 +79,35 @@ function M.lua_add_lualine()
         skkeleton_mode
       },
       lualine_b = {
-        'FugitiveHead',                 -- NOTE: 'branch'だと、diffviewのパネルの時表示表示されないのでfugitiveの関数を呼ぶ
-        'utils#git_commit_status_text', -- 未pull、未pushのcommit数
+        -- 'branch', -- NOTE: ←だと、diffviewのパネルの時表示表示されないのでfugitiveの関数を使う
+        {
+          'FugitiveHead',
+          icon = { '', color = { fg = '#FFA500' } },
+          separator = ''
+        },
+        -- TODO: pullとpushの間を詰めたい...
+        {
+          pull,
+          color = { fg = '#ADFF2F' },
+          separator = ''
+        },
+        {
+          push,
+          color = { fg = '#00ffff' },
+        },
+        {
+          -- 'utils#remote_branch_info_text',
+          function()
+            local result = vim.fn['utils#remote_branch_info_text']()
+            if result ~= "" then
+              return result .. ' '
+            else
+              return ''
+            end
+          end,
+          color = { fg = '#00ffff' },
+        },
+        user_info, -- user.name, user.email
       },
       lualine_c = {
         {

@@ -47,7 +47,7 @@ function M.lua_add_fugitive()
   vim.cmd([[
     augroup MyFugitiveActions
       au!
-      au User FugitiveChanged call utils#refresh_git_commit_status()
+      au User FugitiveChanged call utils#refresh_git_infomations()
     augroup END
   ]])
 end

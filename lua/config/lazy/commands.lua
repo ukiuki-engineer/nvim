@@ -13,7 +13,7 @@ vim.cmd([[
   command! OpenVimrc                 :tabnew | :tcd ~/.config/nvim
   " バッファのフルパスをヤンクする
   command! YankBufPath               :let @0 = expand('%:p') | :let @+ = expand('%:p')
-  command! RefreshGitCommitStatus    :call utils#refresh_git_commit_status()
+  command! RefreshGitInfomations     :call utils#refresh_git_infomations()
   " format on saveを無視して保存
   command! W                         :noautocmd w
 ]])
