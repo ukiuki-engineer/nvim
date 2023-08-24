@@ -17,7 +17,7 @@ printf "%20s%s%5s\n" "vim設定行数" " =" $(
 )
 
 # 使用プラグイン数
-printf "%20s%s%5s\n" "使用プラグイン数" " =" $(
+printf "%20s%s%5s" "使用プラグイン数" " =" $(
   cat $vimrc_dir/toml/dein.toml $vimrc_dir/toml/dein_lazy.toml \
     | grep 'repo = ' \
     | grep -vE '^#' \
