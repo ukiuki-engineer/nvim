@@ -3,42 +3,44 @@
 -- ================================================================================
 local g = vim.g
 local fn = vim.fn
+local command = vim.api.nvim_create_user_command
 
 local M = {}
+
+-- confirmしてpushする
+function M.git_push_confirm()
+  vim.fn['utils#refresh_git_infomations']()
+
+  local commit_number = vim.g.git_commit_status['local']
+  commit_number = tonumber(commit_number)
+
+  if commit_number == "" or commit_number == 0 then
+    print("no commits")
+    return
+  end
+
+  local message = commit_number == 1
+      and "push " .. commit_number .. " commit?"
+      or "push " .. commit_number .. "commits?"
+
+  if fn.confirm(message, "&Yes\n&No\n&Cancel") == 1 then
+    vim.cmd([[Git push]])
+  end
+end
 
 --
 -- vim-fugitive
 --
 function M.lua_add_fugitive()
-  local command = vim.api.nvim_create_user_command
-  -- confirmしてpushする
-  local function git_push_confirm()
-    vim.fn['utils#refresh_git_commit_status']()
-
-    local commit_number = vim.g.git_commit_status['local']
-    commit_number = tonumber(commit_number)
-
-    if commit_number == "" or commit_number == 0 then
-      print("no commits")
-      return
-    end
-
-    local message = commit_number == 1
-        and "push " .. commit_number .. " commit?"
-        or "push " .. commit_number .. "commits?"
-
-    if fn.confirm(message, "&Yes\n&No\n&Cancel") == 1 then
-      vim.cmd([[Git push]])
-    end
-  end
-
   -- keymappings
   vim.keymap.set('n', '<leader>gc', "<Cmd>Git commit<CR>", {})
-  vim.keymap.set('n', '<leader>gp', git_push_confirm, {})
+  vim.keymap.set('n', '<Down>', "<Cmd>Git commit<CR>", {})
+  vim.keymap.set('n', '<leader>gp', require('plugins.git').git_push_confirm, {})
+  vim.keymap.set('n', '<Up>', require('plugins.git').git_push_confirm, {})
 
   -- commands
   command('GitResetSoftHEAD', ':Git reset --soft HEAD^', {})
-  command('GitPush', git_push_confirm, {})
+  command('GitPush', require('plugins.git').git_push_confirm, {})
 
   -- commit数の状態の更新
   -- NOTE: luaのvim apiでautocmdするとカーソルがちらついたり何かおかしくなったのでvimscriptで
@@ -55,6 +57,7 @@ end
 --
 function M.lua_add_diffview()
   vim.keymap.set('n', '<leader>dv', "<Cmd>DiffviewOpen<CR>", {})
+  vim.keymap.set('n', '<Right>', "<Cmd>DiffviewOpen<CR>", {})
   vim.keymap.set('n', '<leader>dc', "<Cmd>DiffviewFileHistory<CR>", {}) -- NOTE: d(diffview), c(commit履歴)
 end
 
@@ -70,6 +73,12 @@ function M.lua_source_diffview()
         width = 40,
       },
     },
+    keymaps = {
+      file_panel = {
+        { "n", "<Down>", "<Cmd>Git commit<CR>" },
+        { "n", "<Up>",   "<Cmd>GitPush<CR>" },
+      }
+    }
   })
 end
 

@@ -10,6 +10,7 @@ function M.lua_add_telescope()
   keyset('n', '<space>f', "<Cmd>FindFiles<CR>", {})
   keyset('n', '<space>g', "<Cmd>LiveGrep<CR>", {})
   keyset('n', '<space>s', "<Cmd>GitStatus<CR>", {})
+  keyset('n', '<Left>', "<Cmd>GitStatus<CR>", {})
 end
 
 function M.lua_source_telescope()
