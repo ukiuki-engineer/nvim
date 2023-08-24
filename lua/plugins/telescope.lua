@@ -6,6 +6,7 @@ local M      = {}
 function M.lua_add_telescope()
   -- NOTE: on_cmdで遅延ロードさせるためにこういう回りくどいやり方をしている…
   keyset('n', '<space>b', "<Cmd>Buffers<CR>", {})
+  keyset('n', '<space>c', "<Cmd>Commits<CR>", {})
   keyset('n', '<space>f', "<Cmd>FindFiles<CR>", {})
   keyset('n', '<space>g', "<Cmd>LiveGrep<CR>", {})
   keyset('n', '<space>s', "<Cmd>GitStatus<CR>", {})
