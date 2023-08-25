@@ -57,12 +57,12 @@ require("plugins.ui").timer_start_satellite(100)
 ################################################################################
 # ColorScheme
 ################################################################################
-[[plugins]]
-repo = 'ellisonleao/gruvbox.nvim'
-depends = ['impatient.nvim']
-lua_add = '''
-require("plugins.colorscheme").lua_add_gruvbox()
-'''
+# [[plugins]]
+# repo = 'ellisonleao/gruvbox.nvim'
+# depends = ['impatient.nvim']
+# lua_add = '''
+# require("plugins.colorscheme").lua_add_gruvbox()
+# '''
 
 # [[plugins]]
 # repo = 'bluz71/vim-nightfly-colors'
@@ -71,12 +71,12 @@ require("plugins.colorscheme").lua_add_gruvbox()
 # require("plugins.colorscheme").lua_add_nightfly_colors()
 # '''
 
-# [[plugins]]
-# repo = 'EdenEast/nightfox.nvim'
-# depends = ['impatient.nvim']
-# lua_add = '''
-# require("plugins.colorscheme").lua_add_nightfox()
-# '''
+[[plugins]]
+repo = 'EdenEast/nightfox.nvim'
+depends = ['impatient.nvim']
+lua_add = '''
+require("plugins.colorscheme").lua_add_nightfox()
+'''
 
 # [[plugins]]
 # repo = 'catppuccin/nvim'
