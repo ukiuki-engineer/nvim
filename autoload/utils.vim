@@ -71,14 +71,9 @@ endfunction
 " commit数の状態のテキストを返す
 "
 function! utils#git_commit_status_text() abort
-  if !exists('g:git_commit_status')
-    return ""
-  endif
+  let remote_branch_info_text = utils#remote_branch_info_text()
 
-  let is_dict = type(g:git_commit_status) != v:t_dict
-  let is_no_remote_branch = is_dict && g:git_commit_status == 'NO_REMOTE_BRANCH'
-
-  if is_no_remote_branch
+  if remote_branch_info_text != ""
     return ""
   elseif g:git_commit_status['remote'] == "" && g:git_commit_status['local'] == ""
     return ""
