@@ -12,13 +12,30 @@ function! utils#delete_line_breaks(str) abort
 endfunction
 
 "
-" g:git_commit_status, g:git_configを更新する
+" git情報を更新する(以下の構造を持つグローバル変数)
+"
+" g:my#git_infomations  : v:t_dict
+"   exists_remote_branch: v:t_bool
+"   commit              : v:t_dict
+"     remote            : v:t_string
+"     local             : v:t_string
+"   config              : v:t_dict
+"     user_name         : v:t_string
+"     user_email        : v:t_string
 "
 function! utils#refresh_git_infomations(fetch = v:false) abort
+  let g:my#git_infomations = {}
+
   " git projectではないなら処理終了
   if !v:lua.require('utils').is_git_project()
     return
   endif
+
+  let g:my#git_infomations = {
+    \ 'exists_remote_branch': v:false,
+    \ 'commit'              : {},
+    \ 'config'              : {}
+  \ }
 
   " git fetch
   if a:fetch
@@ -35,20 +52,17 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
   " 情報取得
   let git_info = v:lua.require('utils').get_git_infomations()
   " ここから加工
-  if git_info == 'NO_REMOTE_BRANCH'
-    let g:git_commit_status = 'NO_REMOTE_BRANCH'
-  else
+  if git_info != 'NO_REMOTE_BRANCH'
+    let g:my#git_infomations['exists_remote_branch'] = v:true
     let parts = split(git_info, ', ')
-    let g:git_commit_status = {}
-    let g:git_commit_status['remote'] = parts[0]
-    let g:git_commit_status['local'] = parts[1]
+    let g:my#git_infomations['commit']['remote'] = parts[0]
+    let g:my#git_infomations['commit']['local'] = parts[1]
   endif
   " }}}
 
   " user.nameとuser.email {{{
-  let g:git_config = {}
-  let g:git_config['user_name'] = utils#delete_line_breaks(system("git config user.name"))
-  let g:git_config['user_email'] = utils#delete_line_breaks(system("git config user.email"))
+  let g:my#git_infomations['config']['user_name'] = utils#delete_line_breaks(system("git config user.name"))
+  let g:my#git_infomations['config']['user_email'] = utils#delete_line_breaks(system("git config user.email"))
   " }}}
 endfunction
 " --------------------------------------------------------------------------------

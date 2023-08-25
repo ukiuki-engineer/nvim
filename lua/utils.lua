@@ -108,10 +108,7 @@ function M.remote_branch_info_text()
     return
   end
 
-  local is_table = type(vim.g.git_commit_status) == "table"
-  local is_no_remote_branch = not is_table and vim.g.git_commit_status == "NO_REMOTE_BRANCH"
-
-  if is_no_remote_branch then
+  if not vim.g['my#git_infomations']['exists_remote_branch'] then
     return ""
   else
     -- リモートブランチがあれば空文字を返す

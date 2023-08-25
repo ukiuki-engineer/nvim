@@ -5,13 +5,14 @@ local utils                  = require('utils')
 -- commit数の状態を返す
 local git_commit_status_text = function()
   local remote_branch_info_text = utils.remote_branch_info_text()
+  local commit = vim.g['my#git_infomations']['commit']
 
   if remote_branch_info_text ~= "" then
     return remote_branch_info_text
-  elseif vim.g.git_commit_status['remote'] == "" and vim.g.git_commit_status['local'] == "" then
+  elseif commit['remote'] == "" and commit['local'] == "" then
     return ""
   else
-    return "↓" .. vim.g.git_commit_status['remote'] .. " ↑" .. vim.g.git_commit_status['local']
+    return "↓" .. commit['remote'] .. " ↑" .. commit['local']
   end
 end
 

@@ -33,18 +33,32 @@ function M.lua_add_lualine()
     end
   end
 
+  local function show_git_info()
+    return vim.g['my#git_infomations'] and vim.g['my#git_infomations'] ~= {}
+  end
+
   local function pull()
-    return "↓" .. vim.g.git_commit_status['remote']
+    if not show_git_info then
+      return ""
+    end
+    return "↓" .. vim.g['my#git_infomations']['commit']['remote']
   end
 
   local function push()
-    return "↑" .. vim.g.git_commit_status['local']
+    if not show_git_info then
+      return ""
+    end
+    return "↑" .. vim.g['my#git_infomations']['commit']['local']
   end
 
   -- user.nameとuser.emailのtextを返す
   local function user_info()
-    -- return '  ' .. vim.g.git_config['user_name'] .. '   hogehoge@gmail.com' -- キャプチャ用
-    return '  ' .. vim.g.git_config['user_name'] .. '   ' .. vim.g.git_config['user_email']
+    if not show_git_info then
+      return ""
+    end
+    local config = vim.g['my#git_infomations']['config']
+    -- return '  ' .. config['user_name'] .. '   hogehoge@gmail.com' -- キャプチャ用
+    return '  ' .. config['user_name'] .. '   ' .. config['user_email']
   end
 
   -- animation {{{

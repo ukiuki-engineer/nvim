@@ -11,7 +11,7 @@ local M = {}
 function M.git_push_confirm()
   vim.fn['utils#refresh_git_infomations']()
 
-  local commit_number = vim.g.git_commit_status['local']
+  local commit_number = g['my#git_infomations']['commit']['local']
   commit_number = tonumber(commit_number)
 
   if commit_number == "" or commit_number == 0 then
