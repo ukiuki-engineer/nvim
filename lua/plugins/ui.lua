@@ -103,6 +103,13 @@ function M.lua_add_lualine()
       },
       lualine_c = {
         {
+          'filetype',
+          colored = true,
+          icon_only = true,
+          icon = { align = 'right' }, -- Display filetype icon on the right hand side
+          separator = ''
+        },
+        {
           'filename',
           file_status = true,     -- Displays file status (readonly status, modified status)
           newfile_status = false, -- Display new file status (new file means no write after created)
