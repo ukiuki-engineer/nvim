@@ -94,6 +94,8 @@ end
 
 --
 -- gitsigns.nvim
+-- FIXME: cocのdiagnosticsが被ってgitsignsが見えなくなるのをどうにかできないか？
+-- TODO: stageした行もそれが分るように表示できないか？
 --
 function M.lua_source_gitsigns()
   require('gitsigns').setup({
