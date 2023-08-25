@@ -1,7 +1,23 @@
-local keyset = vim.keymap.set
-local fn     = vim.fn
+local keyset                 = vim.keymap.set
+local fn                     = vim.fn
+local utils                  = require('utils')
 
-local M      = {}
+-- commit数の状態を返す
+local git_commit_status_text = function()
+  local remote_branch_info_text = utils.remote_branch_info_text()
+
+  if remote_branch_info_text ~= "" then
+    return remote_branch_info_text
+  elseif vim.g.git_commit_status['remote'] == "" and vim.g.git_commit_status['local'] == "" then
+    return ""
+  else
+    return "↓" .. vim.g.git_commit_status['remote'] .. " ↑" .. vim.g.git_commit_status['local']
+  end
+end
+
+--
+
+local M                      = {}
 
 function M.lua_add_telescope()
   -- NOTE: on_cmdで遅延ロードさせるためにこういう回りくどいやり方をしている…
@@ -121,12 +137,10 @@ function M.git_status()
 
   -- commit情報を取得
   vim.fn['utils#refresh_git_infomations']()
-  local git_commit_status_text = function()
-    return vim.fn['utils#git_commit_status_text']()
-  end
+
 
   -- local branch_name = string.gsub(vim.fn.system('git rev-parse --abbrev-ref HEAD'), "\n", "")
-  local branch_name = vim.fn['fugitive#Head']()
+  local branch_name = " " .. vim.fn['fugitive#Head']()
 
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)

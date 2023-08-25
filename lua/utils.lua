@@ -87,7 +87,36 @@ end
 -- git projectかどうか
 --
 function M.is_git_project()
-  return tonumber(vim.fn.system('git status > /dev/null 2>&1; echo -n $?')) == 0
+  return tonumber(vim.fn.system('git status > /dev/null 2>&1; echo $?')) == 0
+end
+
+--
+-- 未pull、未pushなcommit数と、リモートブランチ情報を取得する
+-- TODO: scripts/commit_status.shの処理内容をここに実装する
+--
+function M.get_git_infomations()
+  local fn = vim.fn
+  -- TODO: 一旦
+  return fn['utils#delete_line_breaks'](fn.system('~/.config/nvim/scripts/commit_status.sh'))
+end
+
+--
+-- リモートブランチ情報のテキストを返す
+--
+function M.remote_branch_info_text()
+  if vim.g.git_commit_status == nil then
+    return
+  end
+
+  local is_table = type(vim.g.git_commit_status) == "table"
+  local is_no_remote_branch = not is_table and vim.g.git_commit_status == "NO_REMOTE_BRANCH"
+
+  if is_no_remote_branch then
+    return ""
+  else
+    -- リモートブランチがあれば空文字を返す
+    return ""
+  end
 end
 
 return M

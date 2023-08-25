@@ -31,55 +31,25 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     endtry
   endif
 
-  let script_path = g:init_dir .. '/scripts/commit_status.sh'
-  let sh_output = utils#delete_line_breaks(system(script_path))
-
-  if sh_output == 'NO_REMOTE_BRANCH'
+  " ブランチ、commit情報 {{{
+  " 情報取得
+  let git_info = v:lua.require('utils').get_git_infomations()
+  " ここから加工
+  if git_info == 'NO_REMOTE_BRANCH'
     let g:git_commit_status = 'NO_REMOTE_BRANCH'
   else
-    let parts = split(sh_output, ', ')
+    let parts = split(git_info, ', ')
     let g:git_commit_status = {}
     let g:git_commit_status['remote'] = parts[0]
     let g:git_commit_status['local'] = parts[1]
   endif
+  " }}}
 
-  " user.nameとuser.email
+  " user.nameとuser.email {{{
   let g:git_config = {}
   let g:git_config['user_name'] = utils#delete_line_breaks(system("git config user.name"))
   let g:git_config['user_email'] = utils#delete_line_breaks(system("git config user.email"))
-endfunction
-
-"
-"
-"
-function! utils#remote_branch_info_text() abort
-  if !exists('g:git_commit_status')
-    return ""
-  endif
-
-  let is_dict = type(g:git_commit_status) != v:t_dict
-  let is_no_remote_branch = is_dict && g:git_commit_status == 'NO_REMOTE_BRANCH'
-
-  if is_no_remote_branch
-    return ""
-  else
-    return ""
-  endif
-endfunction
-
-"
-" commit数の状態のテキストを返す
-"
-function! utils#git_commit_status_text() abort
-  let remote_branch_info_text = utils#remote_branch_info_text()
-
-  if remote_branch_info_text != ""
-    return ""
-  elseif g:git_commit_status['remote'] == "" && g:git_commit_status['local'] == ""
-    return ""
-  else
-    return "↓" .. g:git_commit_status['remote'] .. " ↑" .. g:git_commit_status['local']
-  endif
+  " }}}
 endfunction
 " --------------------------------------------------------------------------------
 " lua/config/init.lua

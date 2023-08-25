@@ -96,15 +96,7 @@ function M.lua_add_lualine()
           color = { fg = '#00ffff' },
         },
         {
-          -- 'utils#remote_branch_info_text',
-          function()
-            local result = vim.fn['utils#remote_branch_info_text']()
-            if result ~= "" then
-              return result .. ' '
-            else
-              return ''
-            end
-          end,
+          require('utils').remote_branch_info_text, -- リモートブランチがあるかの情報
           color = { fg = '#00ffff' },
         },
         user_info, -- user.name, user.email
