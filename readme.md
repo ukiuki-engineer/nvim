@@ -41,7 +41,6 @@ Total Min:     23.898000 msec
 
 ## TODO
 
-- [ ] telescope: ヒットした個数を表示っけ？
 - [ ] coc-outline: markdown で効かない...
 - [ ] git の差分があるかどうかを lualine に表示させる
 - gitsigns.nvim
