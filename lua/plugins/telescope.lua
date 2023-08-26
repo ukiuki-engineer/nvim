@@ -115,6 +115,11 @@ function M.buffers()
           delete_buf(prompt_bufnr)
         end
       )
+      map({ "n" }, "dd",
+        function()
+          delete_buf(prompt_bufnr)
+        end
+      )
       return true
     end,
   })
@@ -147,7 +152,7 @@ function M.git_status()
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)
       -- 選択したファイルをgit restore or 削除する
-      map({ "i" }, "<C-r>",
+      map({ "i", "n" }, "<C-r>",
         function()
           if fn.confirm("delete this change?", "&Yes\n&No\n&Cancel") ~= 1 then
             return
@@ -160,18 +165,6 @@ function M.git_status()
             -- untrackedではない場合、restoreする
             fn.system("git restore " .. selection.value)
           end
-          actions.close(prompt_bufnr) -- TODO: 閉じずにlistを更新することはできないか？
-          require('plugins.telescope').git_status()
-        end
-      )
-      -- 直前のcommitを取り消す
-      map({ "i", "n" }, "<C-d>",
-        function()
-          local message = "delete a last commit?"
-          if fn.confirm(message, "&Yes\n&No\n&Cancel") ~= 1 then
-            return
-          end
-          vim.cmd("Git reset --soft HEAD^")
           actions.close(prompt_bufnr) -- TODO: 閉じずにlistを更新することはできないか？
           require('plugins.telescope').git_status()
         end
