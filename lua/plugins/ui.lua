@@ -64,10 +64,9 @@ function M.lua_add_lualine()
 
   -- animation {{{
   local frames = {
-    "(꜆꜄ ˙꒳˙)꜆꜄꜆ｱﾀﾀﾀﾀﾀﾀﾀ!!",
     "(꜆꜄꜆˙꒳˙)꜆꜄ ｱﾀﾀﾀﾀﾀﾀﾀ!!",
     "(꜄꜆ ˙꒳˙)꜄꜆꜄ｱﾀﾀﾀﾀﾀﾀﾀ!!",
-    "(꜄꜆꜄˙꒳˙)꜄꜆ ｱﾀﾀﾀﾀﾀﾀﾀ!!",
+    "(꜄꜆꜄˙꒳˙)꜆꜄꜆ｱﾀﾀﾀﾀﾀﾀﾀ!!",
   }
   local frame_number = 1
   local function atatata()
