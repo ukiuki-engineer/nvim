@@ -19,6 +19,7 @@ endfunction
 "   commit              : v:t_dict
 "     remote            : v:t_string
 "     local             : v:t_string
+"   has_changed         : v:t_bool
 "   config              : v:t_dict
 "     user_name         : v:t_string
 "     user_email        : v:t_string
@@ -34,6 +35,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
   let g:my#git_infomations = {
     \ 'exists_remote_branch': v:false,
     \ 'commit'              : {},
+    \ 'has_changed'         : {},
     \ 'config'              : {}
   \ }
 
@@ -59,6 +61,9 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     let g:my#git_infomations['commit']['local'] = parts[1]
   endif
   " }}}
+
+  " 変更があるか
+  let g:my#git_infomations['has_changed'] = v:lua.require('utils').has_git_changed()
 
   " user.nameとuser.email {{{
   let g:my#git_infomations['config']['user_name'] = utils#delete_line_breaks(system("git config user.name"))

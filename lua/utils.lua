@@ -2,7 +2,10 @@
 -- 共通処理
 -- luaで書いた共通処理はここに集める
 -------------------------------------------------------------------------------
-local M = {}
+local fn = vim.fn
+local g  = vim.g
+
+local M  = {}
 
 ---
 -- 透過色を計算する関数
@@ -95,20 +98,27 @@ end
 -- TODO: scripts/commit_status.shの処理内容をここに実装する
 --
 function M.get_git_infomations()
-  local fn = vim.fn
   -- TODO: 一旦
   return fn['utils#delete_line_breaks'](fn.system('~/.config/nvim/scripts/commit_status.sh'))
+end
+
+--
+-- git上の変更があるか
+--
+function M.has_git_changed()
+  fn.system("git status | grep 'nothing to commit, working tree clean'")
+  return vim.v.shell_error ~= 0
 end
 
 --
 -- リモートブランチ情報のテキストを返す
 --
 function M.remote_branch_info_text()
-  if vim.g.git_commit_status == nil then
+  if g.git_commit_status == nil then
     return
   end
 
-  if not vim.g['my#git_infomations']['exists_remote_branch'] then
+  if not g['my#git_infomations']['exists_remote_branch'] then
     return ""
   else
     -- リモートブランチがあれば空文字を返す
