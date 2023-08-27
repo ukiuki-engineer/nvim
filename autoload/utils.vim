@@ -45,12 +45,13 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
       call jobstart("git fetch >/dev/null 2>&1")
     catch
       echohl ErrorMsg
-      echomsg "An error occurred while executing the external command."
+      echomsg v:lua.require("const").error_messages("ERROR_EXTERNAL_COMMAND")
       echohl None
     endtry
   endif
 
   " ブランチ、commit情報 {{{
+  try
   " 情報取得
   let git_info = v:lua.require('utils').get_git_infomations()
   " ここから加工
@@ -60,14 +61,32 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     let g:my#git_infomations['commit']['remote'] = parts[0]
     let g:my#git_infomations['commit']['local'] = parts[1]
   endif
+  catch
+    echohl ErrorMsg
+    echomsg v:lua.require("const").error_messages("ERROR_BRANCH_COMMIT_INFO")
+    echohl None
+  endtry
   " }}}
 
-  " 変更があるか
-  let g:my#git_infomations['has_changed'] = v:lua.require('utils').has_git_changed()
+  " git上の変更があるか {{{
+  try
+    let g:my#git_infomations['has_changed'] = v:lua.require('utils').has_git_changed()
+  catch
+    echohl ErrorMsg
+    echomsg v:lua.require("const").error_messages("ERROR_GIT_CHANGES")
+    echohl None
+  endtry
+  " }}}
 
   " user.nameとuser.email {{{
-  let g:my#git_infomations['config']['user_name'] = utils#delete_line_breaks(system("git config user.name"))
-  let g:my#git_infomations['config']['user_email'] = utils#delete_line_breaks(system("git config user.email"))
+  try
+    let g:my#git_infomations['config']['user_name'] = utils#delete_line_breaks(system("git config user.name"))
+    let g:my#git_infomations['config']['user_email'] = utils#delete_line_breaks(system("git config user.email"))
+  catch
+    echohl ErrorMsg
+    echomsg v:lua.require("const").error_messages("ERROR_USER_INFO")
+    echohl None
+  endtry
   " }}}
 endfunction
 " --------------------------------------------------------------------------------
