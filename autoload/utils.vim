@@ -77,7 +77,7 @@ function! utils#lazy_load() abort
     execute 'au InsertLeave,FileType * ++once call s:packadd()'
   augroup END
   if expand('%') != ''
-    call timer_start(500, function("s:timer_load"))
+    call timer_start(v:lua.require('const').config("TIMER_START_STANDARD_PLUGINS"), function("s:timer_load"))
   endif
 endfunction
 

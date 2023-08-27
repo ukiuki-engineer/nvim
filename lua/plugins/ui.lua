@@ -9,7 +9,8 @@ local M      = {}
 -- lualine.nvim
 --
 function M.timer_start_lualine(time)
-  vim.fn.timer_start(time,
+  vim.fn.timer_start(
+    time,
     function()
       require('plugins.ui').lua_add_lualine()
     end
@@ -188,7 +189,8 @@ end
 -- bufferline.nvim
 --
 function M.timer_start_bufferline(time)
-  vim.fn.timer_start(time,
+  vim.fn.timer_start(
+    time,
     function()
       require('plugins.ui').lua_add_bufferline()
     end
@@ -313,7 +315,8 @@ end
 -- satellite.nvim
 --
 function M.timer_start_satellite(time)
-  vim.fn.timer_start(time,
+  vim.fn.timer_start(
+    time,
     function()
       require('plugins.ui').lua_add_satellite()
     end
