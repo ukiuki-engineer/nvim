@@ -184,12 +184,6 @@ function M.git_status()
           require('plugins.telescope').git_status()
         end
       )
-      -- commitする
-      map({ "n" }, "<leader>gc",
-        function()
-          vim.cmd([[tabnew | Git commit]])
-        end
-      )
       return true
     end,
     prompt_prefix = branch_name .. " " .. git_commit_status_text() .. " > "
