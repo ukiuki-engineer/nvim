@@ -12,21 +12,21 @@
 function! plugins#hook_source_coc() abort
   " 補完候補の決定
   inoremap <silent><expr> <CR> coc#pum#visible()
-    \ ? coc#pum#confirm()
-    \ : "\<CR>"
+        \ ? coc#pum#confirm()
+        \ : "\<CR>"
   " 補完候補の選択
   inoremap <silent><expr> <TAB>  coc#pum#visible()
-    \ ? coc#pum#next(1)
-    \ : "\<TAB>"
+        \ ? coc#pum#next(1)
+        \ : "\<TAB>"
   inoremap <silent><expr> <S-TAB> coc#pum#visible()
-    \ ? coc#pum#prev(1)
-    \ : "\<S-TAB>"
+        \ ? coc#pum#prev(1)
+        \ : "\<S-TAB>"
   inoremap <silent><expr> <C-n> coc#pum#visible()
-    \ ? coc#pum#next(1)
-    \ : coc#refresh()
+        \ ? coc#pum#next(1)
+        \ : coc#refresh()
   inoremap <silent><expr> <C-p> coc#pum#visible()
-    \ ? coc#pum#prev(1)
-    \ : coc#refresh()
+        \ ? coc#pum#prev(1)
+        \ : coc#refresh()
   " 定義ジャンプ
   nnoremap <silent> <space>d <Plug>(coc-definition)
   " ドキュメント表示
@@ -54,26 +54,26 @@ function! plugins#hook_source_coc() abort
         \ ? coc#float#scroll(1, 1)
         \ : "7j"
   nnoremap <nowait><expr> <C-k> coc#float#has_scroll()
-    \ ? coc#float#scroll(0, 1)
-    \ : "7k"
+        \ ? coc#float#scroll(0, 1)
+        \ : "7k"
   nnoremap <nowait><expr> <C-f> coc#float#has_scroll()
-    \ ? coc#float#scroll(1)
-    \ : "\<C-f>"
+        \ ? coc#float#scroll(1)
+        \ : "\<C-f>"
   nnoremap <nowait><expr> <C-b> coc#float#has_scroll()
-    \ ? coc#float#scroll(0)
-    \ : "\<C-b>"
+        \ ? coc#float#scroll(0)
+        \ : "\<C-b>"
   inoremap <nowait><expr> <C-i> coc#float#has_scroll()
-    \ ? "\<c-r>=coc#float#scroll(1, 1)\<CR>"
-    \ : "\<Right>"
+        \ ? "\<c-r>=coc#float#scroll(1, 1)\<CR>"
+        \ : "\<Right>"
   inoremap <nowait><expr> <C-f> coc#float#has_scroll()
-    \ ? "\<c-r>=coc#float#scroll(1)\<CR>"
-    \ : "\<Right>"
+        \ ? "\<c-r>=coc#float#scroll(1)\<CR>"
+        \ : "\<Right>"
   inoremap <nowait><expr> <C-k> coc#float#has_scroll()
-    \ ? "\<c-r>=coc#float#scroll(0, 1)\<CR>"
-    \ : "\<Left>"
+        \ ? "\<c-r>=coc#float#scroll(0, 1)\<CR>"
+        \ : "\<Left>"
   inoremap <nowait><expr> <C-b> coc#float#has_scroll()
-    \ ? "\<c-r>=coc#float#scroll(0)\<CR>"
-    \ : "\<Left>"
+        \ ? "\<c-r>=coc#float#scroll(0)\<CR>"
+        \ : "\<Left>"
   " フォーマッターを呼び出す
   command! Format :call CocAction('format')
 endfunction
@@ -115,36 +115,36 @@ function! plugins#hook_source_autoclose() abort
   " 補完キャンセル機能をオン
   let g:autoclose#cancel_completion_enable = 1
   let g:autoclose#enabled_autoclosing_tags_filetypes = [
-    \ "html",
-    \ "xml",
-    \ "javascript",
-    \ "blade",
-    \ "eruby",
-    \ "vue",
-  \ ]
+        \ "html",
+        \ "xml",
+        \ "javascript",
+        \ "blade",
+        \ "eruby",
+        \ "vue",
+        \ ]
   " <C-c>で補完をキャンセル
   inoremap <silent><expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
   " カスタム補完定義
   augroup autoclose#custom_completion
     autocmd!
     autocmd FileType html,vue,markdown call autoclose#custom_completion({
-      \ 'prev_char' : '<',
-      \ 'input_char': '!',
-      \ 'output'    : '!--  -->',
-      \ 'back_count': 4
-    \ })
+          \ 'prev_char' : '<',
+          \ 'input_char': '!',
+          \ 'output'    : '!--  -->',
+          \ 'back_count': 4
+          \ })
     autocmd FileType eruby call autoclose#custom_completion({
-      \ 'prev_char' : '<',
-      \ 'input_char': '%',
-      \ 'output'    : '%%>',
-      \ 'back_count': 2
-    \ })
+          \ 'prev_char' : '<',
+          \ 'input_char': '%',
+          \ 'output'    : '%%>',
+          \ 'back_count': 2
+          \ })
     autocmd FileType blade call autoclose#custom_completion({
-      \ 'prev_char' : '{',
-      \ 'input_char': '-',
-      \ 'output'    : '--  --',
-      \ 'back_count': 3
-    \ })
+          \ 'prev_char' : '{',
+          \ 'input_char': '-',
+          \ 'output'    : '--  --',
+          \ 'back_count': 3
+          \ })
   augroup END
 endfunction
 
@@ -175,33 +175,33 @@ endfunction
 function! plugins#skkeleton_init() abort
   " NOTE: 多分、絵文字に関しては、Macならctrl+cmd+spaceを押した方が早い
   call skkeleton#config({
-    \ 'eggLikeNewline'    : v:true,
-    \ 'globalDictionaries': [[s:skk_dir .. "/SKK-JISYO.L", "euc-jp"], s:skk_dir .. "/SKK-JISYO.emoji.utf8", [s:skk_dir .. "/SKK-JISYO.jinmei", "euc-jp"]],
-    \ 'usePopup'          : v:true
-  \ })
+        \ 'eggLikeNewline'    : v:true,
+        \ 'globalDictionaries': [[s:skk_dir .. "/SKK-JISYO.L", "euc-jp"], s:skk_dir .. "/SKK-JISYO.emoji.utf8", [s:skk_dir .. "/SKK-JISYO.jinmei", "euc-jp"]],
+        \ 'usePopup'          : v:true
+        \ })
   call skkeleton#register_kanatable('rom', {
-    \ "xn"          : ['ん', ''],
-    \ "&"           : ['＆', ''],
-    \ "("           : ['（', ''],
-    \ ")"           : ['）', ''],
-    \ "_"           : ['＿', ''],
-    \ "+"           : ['＋', ''],
-    \ "="           : ['＝', ''],
-    \ "~"           : ['〜', ''],
-    \ "\'"          : ['’', ''],
-    \ "\""          : ['”', ''],
-    \ "z\<Space>"   : ["\u3000", ''],
-  \ })
+        \ "xn"          : ['ん', ''],
+        \ "&"           : ['＆', ''],
+        \ "("           : ['（', ''],
+        \ ")"           : ['）', ''],
+        \ "_"           : ['＿', ''],
+        \ "+"           : ['＋', ''],
+        \ "="           : ['＝', ''],
+        \ "~"           : ['〜', ''],
+        \ "\'"          : ['’', ''],
+        \ "\""          : ['”', ''],
+        \ "z\<Space>"   : ["\u3000", ''],
+        \ })
   call skkeleton#register_keymap('henkan', '<S-Space>', 'henkanBackward')
 endfunction
 
 " 辞書ファイルダウンロード
 function! s:download_skk_jisyo() abort
   let dictionaries = [
-    \ {"name": "SKK-JISYO.L", "url": "https://skk-dev.github.io/dict/SKK-JISYO.L.gz"},
-    \ {"name" : "SKK-JISYO.emoji.utf8", "url": "https://raw.githubusercontent.com/uasi/skk-emoji-jisyo/master/SKK-JISYO.emoji.utf8"},
-    \ {"name" : "SKK-JISYO.jinmei", "url": "https://github.com/skk-dev/dict/blob/master/SKK-JISYO.jinmei"}
-  \ ]
+        \ {"name": "SKK-JISYO.L", "url": "https://skk-dev.github.io/dict/SKK-JISYO.L.gz"},
+        \ {"name" : "SKK-JISYO.emoji.utf8", "url": "https://raw.githubusercontent.com/uasi/skk-emoji-jisyo/master/SKK-JISYO.emoji.utf8"},
+        \ {"name" : "SKK-JISYO.jinmei", "url": "https://github.com/skk-dev/dict/blob/master/SKK-JISYO.jinmei"}
+        \ ]
 
   " ~/.skkが無ければ作成
   if isdirectory(s:skk_dir)

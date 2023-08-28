@@ -33,11 +33,11 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
   endif
 
   let g:my#git_infomations = {
-    \ 'exists_remote_branch': v:false,
-    \ 'commit'              : {},
-    \ 'has_changed'         : {},
-    \ 'config'              : {}
-  \ }
+        \ 'exists_remote_branch': v:false,
+        \ 'commit'              : {},
+        \ 'has_changed'         : {},
+        \ 'config'              : {}
+        \ }
 
   " git fetch
   if a:fetch
@@ -52,15 +52,15 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
 
   " ブランチ、commit情報 {{{
   try
-  " 情報取得
-  let git_info = v:lua.require('utils').get_git_infomations()
-  " ここから加工
-  if git_info != 'NO_REMOTE_BRANCH'
-    let g:my#git_infomations['exists_remote_branch'] = v:true
-    let parts = split(git_info, ', ')
-    let g:my#git_infomations['commit']['remote'] = parts[0]
-    let g:my#git_infomations['commit']['local'] = parts[1]
-  endif
+    " 情報取得
+    let git_info = v:lua.require('utils').get_git_infomations()
+    " ここから加工
+    if git_info != 'NO_REMOTE_BRANCH'
+      let g:my#git_infomations['exists_remote_branch'] = v:true
+      let parts = split(git_info, ', ')
+      let g:my#git_infomations['commit']['remote'] = parts[0]
+      let g:my#git_infomations['commit']['local'] = parts[1]
+    endif
   catch
     echohl ErrorMsg
     echomsg v:lua.require("const").error_messages("ERROR_BRANCH_COMMIT_INFO")
@@ -120,11 +120,11 @@ endfunction
 " ターミナルをカレントバッファのディレクトリで開く
 "
 function! utils#term_here(spOrVsp) abort
-  " 水平分割
   if a:spOrVsp == "sp"
+  " 水平分割
     split | wincmd j | resize 20
-  " 垂直分割
   elseif a:spOrVsp == "vsp"
+    " 垂直分割
     vsplit | wincmd l
   endif
   " ターミナルを開く
@@ -193,8 +193,8 @@ function! utils#paste_image(args = '') abort
     let l:image_fullpath = getcwd() .. '/' .. l:image_filename
     let l:insert_text = '![Alt text](./' .. l:image_filename .. ')'
 
-  " 保存先のディレクトリが指定された場合
   elseif a:args != '' && a:args[len(a:args) - 1] == '/'
+    " 保存先のディレクトリが指定された場合
     " 絶対パスに変換
     let l:image_dir = fnamemodify(a:args, ':p')
 
@@ -210,8 +210,8 @@ function! utils#paste_image(args = '') abort
     let l:image_filename = utils#seq_filename(l:image_dir)
     let l:image_fullpath = l:image_dir .. '/' .. l:image_filename
 
-  " フルパスが指定された場合
   elseif a:args != '' && a:args[len(a:args) - 1] != '/'
+    " フルパスが指定された場合
     let l:image_fullpath = fnamemodify(a:args, ':p')
     let l:image_dir = fnamemodify(fnamemodify(l:image_fullpath, ':h'), ':p')
     " ディレクトリが無ければ作成
