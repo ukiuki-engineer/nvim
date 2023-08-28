@@ -110,7 +110,10 @@ function M.lua_add_lualine()
         {
           'FugitiveHead',
           icon = { '', color = { fg = '#FFA500' } },
-          separator = ''
+          separator = '',
+          on_click = function()
+            vim.cmd([[GitBranches]])
+          end
         },
         -- TODO: pullとpushの間を詰めたい...
         {
