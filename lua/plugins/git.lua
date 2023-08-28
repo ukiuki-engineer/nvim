@@ -50,7 +50,7 @@ function M.lua_source_diffview()
     keymaps = {
       file_panel = {
         { "n", "<Down>", "<Cmd>Gin commit<CR>" },
-        { "n", "<Up>",   "<Cmd>Gin push<CR>" },
+        { "n", "<Up>",   "<Cmd>GinPush<CR>" },
       }
     }
   })
