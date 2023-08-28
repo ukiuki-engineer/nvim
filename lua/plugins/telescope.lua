@@ -38,7 +38,7 @@ function M.lua_source_telescope()
   command('Commands', "lua require('telescope.builtin').commands()", {})
   command('Commits', "lua require('telescope.builtin').git_commits()", {})
   command('FindFiles', "lua require('plugins.telescope').find_files()", {})
-  command('GitBranches', "lua require('telescope.builtin').git_branches()", {})
+  command('GitBranches', "lua require('plugins.telescope').git_branches()", {})
   command('GitStash', "lua require('telescope.builtin').git_stash()", {})
   command('GitStatus', "lua require('plugins.telescope').git_status()", {})
   command('HelpTags', "lua require('telescope.builtin').help_tags()", {})
@@ -110,7 +110,8 @@ function M.buffers()
 
   require('telescope.builtin').buffers({
     attach_mappings = function(prompt_bufnr, map)
-      map({ "n" }, "<leader>d",
+      -- bufferを削除
+      map({ "n" }, "<leader>dd",
         function()
           delete_buf(prompt_bufnr)
         end
@@ -130,6 +131,23 @@ function M.find_files()
       "--glob",
       "!**/.git/*"
     }
+  })
+end
+
+function M.git_branches()
+  local actions = require('telescope.actions')
+  require('telescope.builtin').git_branches({
+    attach_mappings = function(prompt_bufnr, map)
+      map({ "i", "n" }, "<CR>",
+        function()
+          -- checkout
+          actions.git_checkout_current_buffer(prompt_bufnr)
+          -- git情報を更新(lualine用)
+          vim.fn["utils#refresh_git_infomations"]()
+        end
+      )
+      return true
+    end,
   })
 end
 
@@ -160,12 +178,14 @@ function M.git_status()
             -- untrackedではない場合、restoreする
             fn.system("git restore " .. selection.value)
           end
+          -- git情報を更新(lualine用)
+          vim.fn["utils#refresh_git_infomations"]()
           actions.close(prompt_bufnr) -- TODO: 閉じずにlistを更新することはできないか？
           require('plugins.telescope').git_status()
         end
       )
       -- commitする
-      map({ "n" }, "gc",
+      map({ "n" }, "<leader>gc",
         function()
           vim.cmd([[tabnew | Git commit]])
         end
