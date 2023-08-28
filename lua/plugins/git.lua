@@ -28,19 +28,28 @@ function M.git_push_confirm()
   end
 end
 
+-- confirmしてgit resetする
+function M.delete_latest_commit(soft_or_hard)
+  if fn.confirm("Delete latest commit?", "&Yes\n&No\n&Cancel") ~= 1 then
+    return
+  end
+  vim.cmd("Git reset --" .. soft_or_hard .. " HEAD^")
+end
+
 --
 -- vim-fugitive
 --
 function M.lua_add_fugitive()
+  local plugins_git = require("plugins.git")
   -- keymappings
   vim.keymap.set('n', '<leader>gc', "<Cmd>Git commit<CR>", {})
   vim.keymap.set('n', '<Down>', "<Cmd>Git commit<CR>", {})
-  vim.keymap.set('n', '<leader>gp', require('plugins.git').git_push_confirm, {})
-  vim.keymap.set('n', '<Up>', require('plugins.git').git_push_confirm, {})
+  vim.keymap.set('n', '<leader>gp', plugins_git.git_push_confirm, {})
+  vim.keymap.set('n', '<Up>', plugins_git.git_push_confirm, {})
 
   -- commands
-  command('GitResetSoftHEAD', ':Git reset --soft HEAD^', {})
-  command('GitPush', require('plugins.git').git_push_confirm, {})
+  command('DeleteLatestCommit', function() plugins_git.delete_latest_commit('soft') end, {})
+  command('GitPush', plugins_git.git_push_confirm, {})
 
   -- commit数の状態の更新
   -- NOTE: luaのvim apiでautocmdするとカーソルがちらついたり何かおかしくなったのでvimscriptで
