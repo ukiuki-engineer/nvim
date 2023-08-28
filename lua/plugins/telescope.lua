@@ -159,15 +159,15 @@ function M.git_status()
   vim.fn['utils#refresh_git_infomations']()
 
 
-  -- local branch_name = string.gsub(vim.fn.system('git rev-parse --abbrev-ref HEAD'), "\n", "")
-  local branch_name = " " .. vim.fn['fugitive#Head']()
+  -- ginで何か関数はないかな？
+  local branch_name = string.gsub(vim.fn.system('git rev-parse --abbrev-ref HEAD'), "\n", "")
 
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)
       -- 選択したファイルをgit restore or 削除する
       map({ "i", "n" }, "<C-r>",
         function()
-          if fn.confirm("delete this change?", "&Yes\n&No\n&Cancel") ~= 1 then
+          if fn.confirm("delete this change?", "&Yes\n&No") ~= 1 then
             return
           end
           local selection = action_state.get_selected_entry()

@@ -108,7 +108,7 @@ function M.lua_add_lualine()
       lualine_b = {
         -- 'branch', -- NOTE: ←だと、diffviewのパネルの時表示表示されないのでfugitiveの関数を使う
         {
-          'FugitiveHead',
+          'FugitiveHead', -- TODO: gin.vimで同じような関数はないだろうか？
           icon = { '', color = { fg = '#FFA500' } },
           separator = '',
           on_click = function()

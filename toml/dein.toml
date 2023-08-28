@@ -23,7 +23,10 @@ lua require('impatient')
 # " 標準機能をオフに
 # let g:did_load_filetypes = 1
 # '''
-
+################################################################################
+# denops
+# NOTE: denops製は遅延いらんらしい
+################################################################################
 [[plugins]]
 repo = 'vim-denops/denops.vim'
 
@@ -32,6 +35,12 @@ repo = 'vim-skk/skkeleton'
 depends = ['denops']
 lua_add = '''
 require("plugins.coding").lua_add_skkeleton()
+'''
+
+[[plugins]]
+repo = 'lambdalisue/gin.vim'
+lua_add = '''
+require("plugins.git").lua_add_gin()
 '''
 ################################################################################
 # UI
@@ -84,3 +93,4 @@ require("plugins.colorscheme").lua_add_nightfox()
 # lua_add = '''
 # require("plugins.colorscheme").lua_add_catppuccin()
 # '''
+

@@ -178,11 +178,9 @@ on_cmd = [
   'Gwq',
   'Gwrite',
 ]
-lua_add = '''
-require("plugins.git").lua_add_fugitive()
-'''
 
 [[plugins]] # VSCodeのGitLens的なやつ
+# TODO: gitsigns.nvimに同じ機能があるので後でそっちに移行する
 repo = 'APZelos/blamer.nvim'
 depends = ['vim-fugitive']
 on_cmd = ['BlamerHide', 'BlamerShow', 'BlamerToggle']

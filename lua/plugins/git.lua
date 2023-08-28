@@ -7,58 +7,23 @@ local command = vim.api.nvim_create_user_command
 
 local M = {}
 
--- confirmしてpushする
-function M.git_push_confirm()
-  vim.fn['utils#refresh_git_infomations']()
-
-  local commit_number = g['my#git_infomations']['commit']['local']
-  commit_number = tonumber(commit_number)
-
-  if commit_number == "" or commit_number == 0 then
-    print("no commits")
-    return
-  end
-
-  local message = commit_number == 1
-      and "push " .. commit_number .. " commit?"
-      or "push " .. commit_number .. "commits?"
-
-  if fn.confirm(message, "&Yes\n&No\n&Cancel") == 1 then
-    vim.cmd([[Git push]])
-  end
-end
-
--- confirmしてgit resetする
-function M.delete_latest_commit(soft_or_hard)
-  if fn.confirm("Delete latest commit?", "&Yes\n&No\n&Cancel") ~= 1 then
-    return
-  end
-  vim.cmd("Git reset --" .. soft_or_hard .. " HEAD^")
-end
-
 --
--- vim-fugitive
+-- gin.vim
 --
-function M.lua_add_fugitive()
+function M.lua_add_gin()
   local plugins_git = require("plugins.git")
-  -- keymappings
-  vim.keymap.set('n', '<leader>gc', "<Cmd>Git commit<CR>", {})
-  vim.keymap.set('n', '<Down>', "<Cmd>Git commit<CR>", {})
-  vim.keymap.set('n', '<leader>gp', plugins_git.git_push_confirm, {})
-  vim.keymap.set('n', '<Up>', plugins_git.git_push_confirm, {})
+
+  vim.cmd([[
+    augroup MyGinActions
+      au!
+      au User GinCommandPost call utils#refresh_git_infomations()
+      au User GinComponentPost call utils#refresh_git_infomations()
+    augroup END
+  ]])
 
   -- commands
   command('DeleteLatestCommit', function() plugins_git.delete_latest_commit('soft') end, {})
-  command('GitPush', plugins_git.git_push_confirm, {})
-
-  -- commit数の状態の更新
-  -- NOTE: luaのvim apiでautocmdするとカーソルがちらついたり何かおかしくなったのでvimscriptで
-  vim.cmd([[
-    augroup MyFugitiveActions
-      au!
-      au User FugitiveChanged call utils#refresh_git_infomations()
-    augroup END
-  ]])
+  command('GinPush', plugins_git.git_push_confirm, {})
 end
 
 --
@@ -84,8 +49,8 @@ function M.lua_source_diffview()
     },
     keymaps = {
       file_panel = {
-        { "n", "<Down>", "<Cmd>Git commit<CR>" },
-        { "n", "<Up>",   "<Cmd>GitPush<CR>" },
+        { "n", "<Down>", "<Cmd>Gin commit<CR>" },
+        { "n", "<Up>",   "<Cmd>Gin push<CR>" },
       }
     }
   })
@@ -195,6 +160,36 @@ function M.lua_source_gitsigns()
     end
 
   })
+end
+
+--------------------------------------------------------------------------------
+-- confirmしてpushする
+function M.git_push_confirm()
+  vim.fn['utils#refresh_git_infomations']()
+
+  local commit_number = g['my#git_infomations']['commit']['local']
+  commit_number = tonumber(commit_number)
+
+  if commit_number == "" or commit_number == 0 then
+    print("no commits")
+    return
+  end
+
+  local message = commit_number == 1
+      and "push " .. commit_number .. " commit?"
+      or "push " .. commit_number .. "commits?"
+
+  if fn.confirm(message, "&Yes\n&No") == 1 then
+    vim.cmd([[Gin push]])
+  end
+end
+
+-- confirmしてgit resetする
+function M.delete_latest_commit(soft_or_hard)
+  if fn.confirm("Delete latest commit?", "&Yes\n&No") ~= 1 then
+    return
+  end
+  vim.cmd("Gin reset --" .. soft_or_hard .. " HEAD^")
 end
 
 return M
