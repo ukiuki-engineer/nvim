@@ -43,14 +43,14 @@ function M.lua_add_lualine()
     if not show_git_info then
       return ""
     end
-    return "↓" .. vim.g['my#git_infomations']['commit']['remote']
+    return "↓" .. vim.g['my#git_infomations']['commit_count']['remote']
   end
 
   local function push()
     if not show_git_info then
       return ""
     end
-    return "↑" .. vim.g['my#git_infomations']['commit']['local']
+    return "↑" .. vim.g['my#git_infomations']['commit_count']['local']
   end
 
   local function has_changed()

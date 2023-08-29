@@ -167,17 +167,17 @@ end
 function M.git_push_confirm()
   vim.fn['utils#refresh_git_infomations']()
 
-  local commit_number = g['my#git_infomations']['commit']['local']
-  commit_number = tonumber(commit_number)
+  local commit_count = g['my#git_infomations']['commit_count']['local']
+  commit_count = tonumber(commit_count)
 
-  if commit_number == "" or commit_number == 0 then
+  if commit_count == "" or commit_count == 0 then
     print("no commits")
     return
   end
 
-  local message = commit_number == 1
-      and "push " .. commit_number .. " commit?"
-      or "push " .. commit_number .. "commits?"
+  local message = commit_count == 1
+      and "push " .. commit_count .. " commit?"
+      or "push " .. commit_count .. "commits?"
 
   if fn.confirm(message, "&Yes\n&No") == 1 then
     vim.cmd([[Gin push]])

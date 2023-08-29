@@ -17,7 +17,7 @@ endfunction
 " g:my#git_infomations  : v:t_dict
 "   branch_name         : v:t_string
 "   exists_remote_branch: v:t_bool
-"   commit              : v:t_dict
+"   commit_count        : v:t_dict
 "     remote            : v:t_string
 "     local             : v:t_string
 "   has_changed         : v:t_bool
@@ -36,7 +36,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
   let g:my#git_infomations = {
         \ 'branch_name'         : '',
         \ 'exists_remote_branch': v:false,
-        \ 'commit'              : {},
+        \ 'commit_count'        : {},
         \ 'has_changed'         : {},
         \ 'config'              : {}
         \ }
@@ -60,8 +60,8 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     if git_info != 'NO_REMOTE_BRANCH'
       let g:my#git_infomations['exists_remote_branch'] = v:true
       let parts = split(git_info, ', ')
-      let g:my#git_infomations['commit']['remote'] = parts[0]
-      let g:my#git_infomations['commit']['local'] = parts[1]
+      let g:my#git_infomations['commit_count']['remote'] = parts[0]
+      let g:my#git_infomations['commit_count']['local'] = parts[1]
     endif
   catch
     echohl ErrorMsg
