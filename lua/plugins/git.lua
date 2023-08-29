@@ -166,6 +166,8 @@ function M.lua_source_gitsigns()
 end
 
 --------------------------------------------------------------------------------
+-- functions
+--------------------------------------------------------------------------------
 -- confirmしてpushする
 function M.git_push_confirm()
   vim.fn['utils#refresh_git_infomations']()

@@ -88,6 +88,9 @@ function M.lua_source_telescope()
   require('telescope').load_extension('fzf')
 end
 
+--------------------------------------------------------------------------------
+-- functions
+--------------------------------------------------------------------------------
 function M.buffers()
   local actions = require('telescope.actions')
   local action_state = require('telescope.actions.state')
