@@ -29,10 +29,32 @@ end
 -- 通常のmapping
 keyset("i", "jj", "<Esc>", opts)
 keyset("n", "<Esc><Esc>", ":nohlsearch<CR>", opts)
-keyset("n", "<TAB>", ":bn<CR>", opts)
-keyset("n", "<S-TAB>", ":bN<CR>", opts)
+keyset("n", "gb", ":bn<CR>", opts)
+keyset("n", "gB", ":bN<CR>", opts)
 keyset({ "n", "x" }, "<C-j>", "7j", opts)
 keyset({ "n", "x" }, "<C-k>", "7k", opts)
+keyset("n", "<TAB>", -- 次のタブに移動(タブが一個ならtabnewする)
+  function()
+    local tab_count = #vim.fn.gettabinfo()
+    if tonumber(tab_count) > 1 then
+      vim.cmd([[tabnext]])
+    else
+      vim.cmd([[tabnew]])
+    end
+  end,
+  opts
+)
+keyset("n", "<S-TAB>", -- 前のタブに移動(タブが一個ならtabnewする)
+  function()
+    local tab_count = #vim.fn.gettabinfo()
+    if tonumber(tab_count) > 1 then
+      vim.cmd([[tabp]])
+    else
+      vim.cmd([[tabnew | -tabmove]])
+    end
+  end,
+  opts
+)
 keyset("n", "<leader>tc", ":tabclose<CR>", opts)
 -- cmdlineモードをemacsキーバインドでカーソル移動 {{{
 -- keyset("c", "<C-b>", "<Left>", opts)
