@@ -36,7 +36,7 @@ function M.lua_source_telescope()
   command('Buffers', "lua require('plugins.telescope').buffers()", {})
   command('CommandHistories', "lua require('telescope.builtin').command_history()", {})
   command('Commands', "lua require('telescope.builtin').commands()", {})
-  command('Commits', "lua require('telescope.builtin').git_commits()", {}) -- TODO: date, authorとかも表示させたい
+  command('Commits', "lua require('plugins.telescope').git_commits()", {})
   command('FindFiles', "lua require('plugins.telescope').find_files()", {})
   command('GitBranches', "lua require('plugins.telescope').git_branches()", {})
   command('GitStash', "lua require('telescope.builtin').git_stash()", {})
@@ -121,6 +121,20 @@ function M.buffers()
       )
       return true
     end,
+  })
+end
+
+function M.git_commits()
+  require('telescope.builtin').git_commits({
+    git_command = {
+      "git",
+      "log",
+      "--pretty=%C(auto)%h %C(blue)%ad [%C(green)%an%C(reset)] %s",
+      "--date=short",
+      "--abbrev-commit",
+      "--",
+      "."
+    }
   })
 end
 
