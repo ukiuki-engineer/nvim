@@ -155,12 +155,8 @@ function M.git_status()
   local actions = require('telescope.actions')
   local action_state = require('telescope.actions.state')
 
-  -- commit情報を取得
+  -- git情報を更新
   vim.fn['utils#refresh_git_infomations']()
-
-
-  -- ginで何か関数はないかな？
-  local branch_name = string.gsub(vim.fn.system('git rev-parse --abbrev-ref HEAD'), "\n", "")
 
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)
@@ -186,7 +182,7 @@ function M.git_status()
       )
       return true
     end,
-    prompt_prefix = branch_name .. " " .. git_commit_status_text() .. " > "
+    prompt_prefix = vim.g["my#git_infomations"]['branch_name'] .. " " .. git_commit_status_text() .. " > "
   })
 end
 

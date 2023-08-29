@@ -94,6 +94,13 @@ function M.is_git_project()
 end
 
 --
+-- branch名を取得
+--
+function M.get_branch_name()
+  return string.gsub(vim.fn.system('git rev-parse --abbrev-ref HEAD'), "\n", "")
+end
+
+--
 -- 未pull、未pushなcommit数と、リモートブランチ情報を取得する
 -- TODO: scripts/commit_status.shの処理内容をここに実装する
 --

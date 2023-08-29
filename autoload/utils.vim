@@ -15,6 +15,7 @@ endfunction
 " git情報を更新する(以下の構造を持つグローバル変数)
 "
 " g:my#git_infomations  : v:t_dict
+"   branch_name         : v:t_string
 "   exists_remote_branch: v:t_bool
 "   commit              : v:t_dict
 "     remote            : v:t_string
@@ -33,6 +34,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
   endif
 
   let g:my#git_infomations = {
+        \ 'branch_name'         : '',
         \ 'exists_remote_branch': v:false,
         \ 'commit'              : {},
         \ 'has_changed'         : {},
@@ -52,9 +54,9 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
 
   " ブランチ、commit情報 {{{
   try
-    " 情報取得
+    let g:my#git_infomations['branch_name'] = v:lua.require('utils').get_branch_name()
+
     let git_info = v:lua.require('utils').get_git_infomations()
-    " ここから加工
     if git_info != 'NO_REMOTE_BRANCH'
       let g:my#git_infomations['exists_remote_branch'] = v:true
       let parts = split(git_info, ', ')

@@ -106,9 +106,9 @@ function M.lua_add_lualine()
         skkeleton_mode
       },
       lualine_b = {
-        -- 'branch', -- NOTE: ←だと、diffviewのパネルの時表示表示されないのでfugitiveの関数を使う
+        -- 'branch', -- NOTE: ←だと、diffviewとかhelpとかで表示されない
         {
-          'FugitiveHead', -- TODO: gin.vimで同じような関数はないだろうか？
+          'g:my#git_infomations.branch_name', -- TODO: gin.vimでFugitiveHeadのような関数はないだろうか？
           icon = { '', color = { fg = '#FFA500' } },
           separator = '',
           on_click = function()
