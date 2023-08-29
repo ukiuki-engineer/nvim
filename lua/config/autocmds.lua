@@ -20,5 +20,6 @@ au("BufWrite", {
     end
 
     vim.cmd(mksession)
+    vim.fn["utils#refresh_git_infomations"]()
   end
 })
