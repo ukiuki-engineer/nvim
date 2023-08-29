@@ -51,3 +51,4 @@ Total Min:     19.410000 msec
 - [ ] diffview の時だけ coc-tsserver をオフにできないか？(よくバグるから)
 - [ ] diffview から gin の API を呼んで色々カスタマイズできないだろうか？
       →stash とか(visual mode による複数選択にも対応)
+- [ ] `:mksession`で diffview のタブを保存しないように
