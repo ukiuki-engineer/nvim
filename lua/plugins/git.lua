@@ -11,6 +11,9 @@ local M = {}
 -- gin.vim
 --
 function M.lua_add_gin()
+  -- 画面分割して開く
+  g.gin_proxy_editor_opener = 'split'
+
   local plugins_git = require("plugins.git")
 
   vim.cmd([[
