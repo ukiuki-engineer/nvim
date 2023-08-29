@@ -48,9 +48,10 @@ function M.lua_add_coc()
     'coc-yaml',
     'coc-yank',
   }
+  command('Changes', ':CocCommand fzf-preview.Changes', {})
+  command('GitLogs', ':CocCommand fzf-preview.GitLogs', {}) -- TODO: 一旦
   command('PreviewCocOutline', ':CocCommand fzf-preview.CocOutlie', {})
   command('ProjectFiles', ':CocCommand fzf-preview.ProjectFiles', {})
-  command('Changes', ':CocCommand fzf-preview.Changes', {})
 end
 
 -- NOTE: これはvimscriptで書いた方が可読性高い気がするのでlua化はしない
