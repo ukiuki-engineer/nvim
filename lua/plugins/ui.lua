@@ -34,27 +34,30 @@ function M.lua_add_lualine()
     end
   end
 
-  -- git情報を表示するか
-  local function show_git_info()
-    return vim.g['my#git_infomations'] and vim.g['my#git_infomations'] ~= {}
-  end
-
   local function pull()
-    if not show_git_info then
+    if next(vim.g['my#git_infomations']) == nil then
       return ""
     end
     return "↓" .. vim.g['my#git_infomations']['commit_count']['remote']
   end
 
   local function push()
-    if not show_git_info then
+    if next(vim.g['my#git_infomations']) == nil then
       return ""
     end
     return "↑" .. vim.g['my#git_infomations']['commit_count']['local']
   end
 
+  local function remote_branch_info_text()
+    if next(vim.g['my#git_infomations']) == nil then
+      return ""
+    end
+
+    return require('utils').remote_branch_info_text() -- リモートブランチがあるかの情報
+  end
+
   local function has_changed()
-    if not show_git_info then
+    if next(vim.g['my#git_infomations']) == nil then
       return ""
     end
 
@@ -67,7 +70,7 @@ function M.lua_add_lualine()
 
   -- user.nameとuser.emailのtextを返す
   local function user_info()
-    if not show_git_info then
+    if next(vim.g['my#git_infomations']) == nil then
       return ""
     end
     local config = vim.g['my#git_infomations']['config']
@@ -127,7 +130,7 @@ function M.lua_add_lualine()
           separator = ''
         },
         {
-          require('utils').remote_branch_info_text, -- リモートブランチがあるかの情報
+          remote_branch_info_text,
           color = { fg = '#00ffff' },
         },
         {
