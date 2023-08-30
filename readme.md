@@ -11,9 +11,9 @@ vim-startuptime -vimpath nvim
 Extra options: []
 Measured: 10 times
 
-Total Average: 20.444600 msec
-Total Max:     21.535000 msec
-Total Min:     19.410000 msec
+Total Average: 19.229900 msec
+Total Max:     19.818000 msec
+Total Min:     18.839000 msec
 ```
 
 - ハードウェアスペック
@@ -41,6 +41,8 @@ Total Min:     19.410000 msec
 
 ## TODO
 
+- [ ] diffview から gin の API を呼んで色々カスタマイズできないだろうか？
+      →stash とか(visual mode による複数選択にも対応)
 - [ ] telescope: normal モード時、n で次にジャンプできるように
 - [ ] coc-outline: markdown で効かない...
 - gitsigns.nvim
@@ -49,6 +51,4 @@ Total Min:     19.410000 msec
 - [ ] 外部ツールインストールが必要な場合のインストール処理を書く
       → 今のところ結構放置してるところも多いはず...
 - [ ] diffview の時だけ coc-tsserver をオフにできないか？(よくバグるから)
-- [ ] diffview から gin の API を呼んで色々カスタマイズできないだろうか？
-      →stash とか(visual mode による複数選択にも対応)
 - [ ] `:mksession`で diffview のタブを保存しないように
