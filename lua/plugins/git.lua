@@ -1,11 +1,11 @@
 -- ================================================================================
 -- Git
 -- ================================================================================
-local g = vim.g
-local fn = vim.fn
+local g       = vim.g
+local fn      = vim.fn
 local command = vim.api.nvim_create_user_command
 
-local M = {}
+local M       = {}
 
 --
 -- gin.vim
@@ -60,16 +60,6 @@ function M.lua_source_diffview()
 end
 
 --
--- blamer.nvim
---
-function M.lua_add_blamer()
-  -- 日時のフォーマット
-  g.blamer_date_format = '%Y/%m/%d %H:%M'
-  -- ビジュアルモード時はオフ
-  g.blamer_show_in_visual_modes = 0
-end
-
---
 -- gitsigns.nvim
 -- FIXME: cocのdiagnosticsが被ってgitsignsが見えなくなるのをどうにかできないか？
 -- TODO: stageした行もそれが分るように表示できないか？
@@ -95,14 +85,14 @@ function M.lua_source_gitsigns()
       follow_files = true
     },
     attach_to_untracked          = true,
-    current_line_blame           = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+    current_line_blame           = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
     current_line_blame_opts      = {
       virt_text         = true,
       virt_text_pos     = 'eol', -- 'eol' | 'overlay' | 'right_align'
       delay             = 1000,
       ignore_whitespace = false,
     },
-    current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+    current_line_blame_formatter = '<author>, <author_time:%Y/%m/%d> - <summary>',
     sign_priority                = 6,
     update_debounce              = 100,
     status_formatter             = nil,   -- Use default

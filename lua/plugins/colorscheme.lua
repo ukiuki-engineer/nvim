@@ -77,6 +77,10 @@ local function custom_color(bg_color, colorscheme)
         link = "IncSearch"
       })
     end
+    -- gitsigns.vim
+    hi(0, 'Search', {
+      link = "comment"
+    })
   end
 
   augroup("custom_highlight", {})

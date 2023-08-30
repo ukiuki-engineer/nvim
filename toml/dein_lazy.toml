@@ -146,48 +146,6 @@ on_event = ['FileType']
 ################################################################################
 # Git
 ################################################################################
-[[plugins]] # vimでgitを実行するやつ
-# NOTE: :Git xxでgitコマンドを実行できる
-repo = 'tpope/vim-fugitive'
-on_cmd = [
-  'G',
-  'GBrowse',
-  'GDelete',
-  'GMove',
-  'GRemove',
-  'GRename',
-  'GUnlink',
-  'Gcd',
-  'Gcommit'
-  'Gdiffsplit!',
-  'Gdiffsplit',
-  'Gdrop',
-  'Gedit',
-  'Ghdiffsplit',
-  'Git!',
-  'Git',
-  'Glcd',
-  'Gllog',
-  'Gpedit',
-  'Gread',
-  'Gsplit',
-  'Gtabedit',
-  'Gvdiffsplit',
-  'Gvsplit',
-  'Gwq!',
-  'Gwq',
-  'Gwrite',
-]
-
-[[plugins]] # VSCodeのGitLens的なやつ
-# TODO: gitsigns.nvimに同じ機能があるので後でそっちに移行する
-repo = 'APZelos/blamer.nvim'
-depends = ['vim-fugitive']
-on_cmd = ['BlamerHide', 'BlamerShow', 'BlamerToggle']
-lua_add = '''
-require("plugins.git").lua_add_blamer()
-'''
-
 [[plugins]] # 行番号の左に、gitの状態を表示するやつ
 repo = 'lewis6991/gitsigns.nvim'
 on_event = ['BufRead']
@@ -214,13 +172,13 @@ require("plugins.git").lua_add_diffview()
 lua_source = '''
 require("plugins.git").lua_source_diffview()
 '''
-
-[[plugins]]
-repo = 'nvim-lua/plenary.nvim'
-on_source = ['diffview', 'telescope.nvim']
 ################################################################################
 # Others
 ################################################################################
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+on_source = ['diffview', 'telescope.nvim']
+
 [[plugins]] # デフォルトより見やすいsyntax highlight
 repo = 'nvim-treesitter/nvim-treesitter'
 depends = ['nvim-ts-context-commentstring']
