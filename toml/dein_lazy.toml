@@ -306,6 +306,7 @@ on_cmd = [
   'GitStatus',
   'HelpTags',
   'LiveGrep',
+  'Marks',
   'OldFiles',
   'Telescope',
 ]

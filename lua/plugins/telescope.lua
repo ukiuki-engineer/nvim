@@ -43,6 +43,7 @@ function M.lua_source_telescope()
   command('GitStash', "lua require('telescope.builtin').git_stash()", {})
   command('GitStatus', "lua require('plugins.telescope').git_status()", {})
   command('HelpTags', "lua require('telescope.builtin').help_tags()", {})
+  command('Marks', "lua require('telescope.builtin').marks()", {})
   command('OldFiles', "lua require('telescope.builtin').oldfiles()", {})
 
   vim.cmd([[command! -nargs=* LiveGrep :lua require("plugins.telescope").live_grep("<args>")]])
