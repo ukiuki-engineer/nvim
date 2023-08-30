@@ -295,6 +295,7 @@ depends = ['plenary', 'telescope-fzf-native.nvim']
 on_cmd = [
   'BufferLines',
   'Buffers',
+  'ColorSchemes',
   'CommandHistories',
   'Commands',
   'Commits',

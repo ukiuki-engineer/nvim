@@ -34,6 +34,7 @@ function M.lua_source_telescope()
   local command = vim.api.nvim_create_user_command
   command('BufferLines', "lua require('telescope.builtin').current_buffer_fuzzy_find()", {})
   command('Buffers', "lua require('plugins.telescope').buffers()", {})
+  command('ColorSchemes', "lua require('telescope.builtin').colorscheme()", {})
   command('CommandHistories', "lua require('telescope.builtin').command_history()", {})
   command('Commands', "lua require('telescope.builtin').commands()", {})
   command('Commits', "lua require('plugins.telescope').git_commits()", {})
