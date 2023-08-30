@@ -11,7 +11,7 @@ augroup("MyAutocmds", {})
 -- 保存時にSession.vimを書き込む
 local pwd_in_startup = fn.expand('$PWD')
 local mksession = 'mksession! ' .. pwd_in_startup .. '/Session.vim'
-au("BufWrite", {
+au({ "BufWrite", "WinEnter" }, {
   group = "MyAutocmds",
   callback = function()
     -- commit編集時はスキップ
@@ -20,6 +20,13 @@ au("BufWrite", {
     end
 
     vim.cmd(mksession)
+  end
+})
+
+-- git情報を更新
+au("BufWrite", {
+  group = "MyAutocmds",
+  callback = function()
     vim.fn["utils#refresh_git_infomations"]()
   end
 })
