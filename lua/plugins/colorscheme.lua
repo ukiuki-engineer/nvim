@@ -37,6 +37,7 @@ local function custom_color(bg_color, colorscheme)
         bg = utils.transparent_color(bg_color, "#FD7E00", 0.60)
       })
     end
+
     -- coc.nvim
     hi(0, 'CocFadeOut', {
       bg = utils.transparent_color(bg_color, '#ADABAC', 0.50),
@@ -55,6 +56,7 @@ local function custom_color(bg_color, colorscheme)
         bg = utils.transparent_color(bg_color, "Magenta", 0.65),
       })
     end
+
     -- vim-matchup
     hi(0, 'MatchParen', {
       bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
@@ -63,6 +65,7 @@ local function custom_color(bg_color, colorscheme)
     })
     hi(0, 'MatchWord', { link = "MatchParen" })
     hi(0, 'MatchWordCur', { link = "MatchParen" })
+
     -- search
     if colorscheme == 'gruvbox' then
       hi(0, 'CurSearch', {
@@ -77,6 +80,7 @@ local function custom_color(bg_color, colorscheme)
         link = "IncSearch"
       })
     end
+
     -- gitsigns.vim
     hi(0, 'GitSignsCurrentLineBlame', {
       link = "comment"
