@@ -78,7 +78,7 @@ local function custom_color(bg_color, colorscheme)
       })
     end
     -- gitsigns.vim
-    hi(0, 'Search', {
+    hi(0, 'GitSignsCurrentLineBlame', {
       link = "comment"
     })
   end
