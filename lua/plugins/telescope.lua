@@ -132,7 +132,6 @@ function M.git_commits()
       "git",
       "log",
       "--pretty=%C(auto)%h %C(blue)%ad [%C(green)%an%C(reset)] %s",
-      "--date=short",
       "--abbrev-commit",
       "--",
       "."
