@@ -30,12 +30,3 @@ au("BufWrite", {
     vim.fn["utils#refresh_git_infomations"]()
   end
 })
-
--- カラースキームを変更するごとに良い感じに配色をセットし直す
-au("ColorScheme", {
-  callback = function()
-    -- ハイライト設定を適用
-    require("plugins.colorscheme").set_customcolor()
-  end,
-  group = "MyAutocmds",
-})
