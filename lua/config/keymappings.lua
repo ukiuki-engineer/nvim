@@ -7,12 +7,17 @@ vim.g['vimrc#loaded_keymappings'] = true
 -- <leaer>: 何かしらのactionを起こす系？
 -- <space>: 何かを表示する系？
 --       g: どうしよう...
-vim.g.mapleader = "m" -- NOTE: markは使ってないのでleaderにする
 
+--
 local keyset = vim.keymap.set
 local opts = { noremap = true, silent = true }
 local augroup = vim.api.nvim_create_augroup
 local au = vim.api.nvim_create_autocmd
+--
+
+vim.g.mapleader = "m" -- NOTE: markは使ってないのでleaderにする
+
+--
 
 -- 全角文字に行内ジャンプ
 local function jump_to_zenkaku(hankaku_zenkaku_pairs)
@@ -33,7 +38,8 @@ keyset("n", "gb", ":bn<CR>", opts)
 keyset("n", "gB", ":bN<CR>", opts)
 keyset({ "n", "x" }, "<C-j>", "7j", opts)
 keyset({ "n", "x" }, "<C-k>", "7k", opts)
-keyset("n", "<TAB>", -- 次のタブに移動(タブが一個ならtabnewする)
+-- 次のタブに移動(タブが一個ならtabnewする)
+keyset("n", "<TAB>",
   function()
     local tab_count = #vim.fn.gettabinfo()
     if tonumber(tab_count) > 1 then
@@ -44,7 +50,10 @@ keyset("n", "<TAB>", -- 次のタブに移動(タブが一個ならtabnewする)
   end,
   opts
 )
-keyset("n", "<S-TAB>", -- 前のタブに移動(タブが一個ならtabnewする)
+-- NOTE: 上記で、<C-i>も同じmappingが適用されてしまうので元の動きに戻す
+keyset({ "n" }, "<C-i>", "<TAB>", opts)
+-- 前のタブに移動(タブが一個ならtabnewする)
+keyset("n", "<S-TAB>",
   function()
     local tab_count = #vim.fn.gettabinfo()
     if tonumber(tab_count) > 1 then
@@ -55,6 +64,7 @@ keyset("n", "<S-TAB>", -- 前のタブに移動(タブが一個ならtabnewす�
   end,
   opts
 )
+-- タブを閉じる
 keyset("n", "<leader>tc", ":tabclose<CR>", opts)
 -- cmdlineモードをemacsキーバインドでカーソル移動 {{{
 -- keyset("c", "<C-b>", "<Left>", opts)
