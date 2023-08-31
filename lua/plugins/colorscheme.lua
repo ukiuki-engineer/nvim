@@ -33,6 +33,24 @@ end
 --
 function M.lua_add_catppuccin()
   vim.cmd([[colorscheme catppuccin]])
+  -- vim.cmd([[colorscheme catppuccin-latte]])
+end
+
+--
+-- sonokai
+--
+function M.lua_add_sonokai()
+  vim.cmd([[
+    set termguicolors
+    colorscheme sonokai
+  ]])
+end
+
+--
+-- moonlight.nvim
+--
+function M.lua_add_moonlight()
+  require('moonlight').set()
 end
 
 --
@@ -41,8 +59,16 @@ end
 -- @param string bg_color `:hi normalの値を入れる`
 -- @param string colorscheme
 --
-function M.set_customcolor(bg_color, colorscheme)
+function M.set_customcolor()
   -- TODO: (TODO, FIXME, NOTE)について、どのファイルでもハイライトされるようにする
+
+  -- "normal" ハイライトグループの情報を取得
+  local highlight_info = vim.fn.execute('hi normal')
+  -- guibg の値を取得
+  local bg_color       = string.match(highlight_info, "guibg=(#%x+)")
+
+  -- 背景色(:hi normalの値)
+  local colorscheme    = vim.g.colors_name
 
   -- diffview
   if colorscheme ~= 'nightfox' then

@@ -69,28 +69,45 @@ require("plugins.ui").timer_start_satellite(require("const").plugins("TIMER_STAR
 [[plugins]]
 repo = 'ellisonleao/gruvbox.nvim'
 depends = ['impatient.nvim']
-lua_add = '''
--- require("plugins.colorscheme").lua_add_gruvbox()
-'''
+# lua_add = '''
+# require("plugins.colorscheme").lua_add_gruvbox()
+# '''
 
 [[plugins]]
 repo = 'bluz71/vim-nightfly-colors'
 depends = ['impatient.nvim']
-lua_add = '''
--- require("plugins.colorscheme").lua_add_nightfly_colors()
-'''
+# lua_add = '''
+# require("plugins.colorscheme").lua_add_nightfly_colors()
+# '''
 
 [[plugins]]
 repo = 'EdenEast/nightfox.nvim'
 depends = ['impatient.nvim']
-lua_add = '''
-require("plugins.colorscheme").lua_add_nightfox()
-'''
+# lua_add = '''
+# require("plugins.colorscheme").lua_add_nightfox()
+# '''
 
 [[plugins]]
 repo = 'catppuccin/nvim'
 depends = ['impatient.nvim']
+# lua_add = '''
+# require("plugins.colorscheme").lua_add_catppuccin()
+# '''
+
+[[plugins]]
+repo = 'sainnhe/sonokai'
+depends = ['impatient.nvim']
 lua_add = '''
--- require("plugins.colorscheme").lua_add_catppuccin()
+require("plugins.colorscheme").lua_add_sonokai()
 '''
 
+[[plugins]]
+repo = 'shaunsingh/moonlight.nvim'
+depends = ['impatient.nvim']
+# lua_add = '''
+# require("plugins.colorscheme").lua_add_moonlight()
+# '''
+
+[[plugins]]
+repo = 'RRethy/nvim-base16'
+depends = ['impatient.nvim']

@@ -34,13 +34,8 @@ au("BufWrite", {
 -- カラースキームを変更するごとに良い感じに配色をセットし直す
 au("ColorScheme", {
   callback = function()
-    -- "normal" ハイライトグループの情報を取得
-    local highlight_info = vim.fn.execute('hi normal')
-    -- guibg の値を取得
-    local guibg          = string.match(highlight_info, "guibg=(#%x+)")
-
     -- ハイライト設定を適用
-    require("plugins.colorscheme").set_customcolor(guibg, vim.g.colors_name)
+    require("plugins.colorscheme").set_customcolor()
   end,
   group = "MyAutocmds",
 })
