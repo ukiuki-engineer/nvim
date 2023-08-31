@@ -1,45 +1,39 @@
 -- ================================================================================
 -- colorscheme
 -- ================================================================================
-local augroup = vim.api.nvim_create_augroup
-local au      = vim.api.nvim_create_autocmd
-local hi      = vim.api.nvim_set_hl
-local utils   = require("utils")
+local hi    = vim.api.nvim_set_hl
+local utils = require("utils")
 
+local M     = {}
 
-augroup("custom_highlight", {})
+--
+-- gruvbox.nvim
+--
+function M.lua_add_gruvbox()
+  vim.o.background = "dark"
+  vim.cmd([[colorscheme gruvbox]])
+end
 
-au("ColorScheme", {
-  pattern = { "gruvbox" },
-  callback = function()
-    vim.o.background = "dark"
-    require("plugins.colorscheme").set_customcolor("#282828", "gruvbox")
-  end,
-  group = "custom_highlight",
-})
-au("ColorScheme", {
-  pattern = { "nightfly" },
-  callback = function()
-    require("plugins.colorscheme").set_customcolor("#011627", "nightfly")
-  end,
-  group = "custom_highlight",
-})
-au("ColorScheme", {
-  pattern = { "nightfox" },
-  callback = function()
-    require("plugins.colorscheme").set_customcolor("#192330", "nightfox")
-  end,
-  group = "custom_highlight",
-})
-au("ColorScheme", {
-  pattern = { "catppuccin" },
-  callback = function()
-    require("plugins.colorscheme").set_customcolor("#1e1e23", "catppuccin")
-  end,
-  group = "custom_highlight",
-})
+--
+-- vim-nightfly-colors
+--
+function M.lua_add_nightfly_colors()
+  vim.cmd([[colorscheme nightfly]])
+end
 
-local M = {}
+--
+-- nightfox.nvim
+--
+function M.lua_add_nightfox()
+  vim.cmd([[colorscheme nightfox]])
+end
+
+--
+-- catppuccin.nvim
+--
+function M.lua_add_catppuccin()
+  vim.cmd([[colorscheme catppuccin]])
+end
 
 --
 -- ハイライト色をカスタムする
@@ -123,35 +117,6 @@ function M.set_customcolor(bg_color, colorscheme)
   hi(0, 'GitSignsCurrentLineBlame', {
     link = "comment"
   })
-end
-
---
--- gruvbox.nvim
---
-function M.lua_add_gruvbox()
-  vim.o.background = "dark"
-  vim.cmd([[colorscheme gruvbox]])
-end
-
---
--- vim-nightfly-colors
---
-function M.lua_add_nightfly_colors()
-  vim.cmd([[colorscheme nightfly]])
-end
-
---
--- nightfox.nvim
---
-function M.lua_add_nightfox()
-  vim.cmd([[colorscheme nightfox]])
-end
-
---
--- catppuccin.nvim
---
-function M.lua_add_catppuccin()
-  vim.cmd([[colorscheme catppuccin]])
 end
 
 return M
