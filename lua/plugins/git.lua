@@ -39,7 +39,6 @@ function M.lua_add_diffview()
 end
 
 function M.lua_source_diffview()
-  -- NOTE: マウスでスクロールする時は、差分の右側をスクロールしないとスクロールが同期されない
   require('diffview').setup({
     enhanced_diff_hl = true,
     file_panel = {
@@ -53,7 +52,20 @@ function M.lua_source_diffview()
     keymaps = {
       file_panel = {
         { "n", "<Down>", "<Cmd>Gin commit<CR>" },
-        { "n", "<Up>",   "<Cmd>GinPush<CR>" },
+        { "n", "<Up>",   require("plugins.git").git_push_confirm },
+        { "n", "X", -- confirmして変更を削除する
+          function()
+            local message = "Delete this changes?"
+            if vim.fn["utils#confirm"](message) ~= 1 then
+              return
+            end
+            -- restore
+            require("diffview.config").actions.restore_entry()
+            -- git情報を更新
+            vim.fn["utils#refresh_git_infomations"]()
+          end
+        },
+        -- TODO: stage, unstage等も全部ラップし、refreshを噛ませる
       }
     }
   })
