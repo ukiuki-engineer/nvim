@@ -54,6 +54,11 @@
     "typeParameter": "T:\uf278",
     "default"      : "\uf4c3"
   },
+  "signature.floatConfig": {
+    "border": true,
+    "rounded": true,
+    "shadow": true,
+  },
   "suggest.floatConfig": {
     "border": true,
     "rounded": true,
