@@ -79,6 +79,16 @@ vim.fn.timer_start(
 
     -- gitの情報を更新
     vim.fn['utils#refresh_git_infomations']()
+
+    -- ~/.config/nvim/workingがあり、~/.config/nvim/で起動した場合、強制終了する(仕事に集中したい時用)
+    -- TODO: 何か良いプラグインもあるっぽいので後で調べる。一旦これで
+    vim.cmd([[
+    if filereadable(expand('~/.config/nvim/working')) && expand('%:p:h') == expand('~/.config/nvim')
+      if filereadable(expand('~/.config/nvim/working')) && expand('%:p:h') == expand('~/.config/nvim')
+        q!
+      endif
+    endif
+    ]])
   end
 )
 -- ------------------------------------------------------------------------------
