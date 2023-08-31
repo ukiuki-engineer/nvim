@@ -11,7 +11,7 @@ augroup("MyAutocmds", {})
 -- Session.vimを保存
 local pwd_in_startup = fn.expand('$PWD')
 local mksession = 'mksession! ' .. pwd_in_startup .. '/Session.vim'
-au({ "BufWrite", "WinLeave", "WinClosed" }, {
+au({ "BufWrite", "BufRead", "WinLeave", "WinClosed" }, {
   group = "MyAutocmds",
   callback = function()
     -- commit編集時はスキップ
