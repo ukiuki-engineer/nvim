@@ -200,7 +200,7 @@ function M.git_status()
       )
       return true
     end,
-    prompt_prefix = vim.g["my#git_infomations"]['branch_name'] .. " " .. git_commit_status_text() .. " > "
+    prompt_prefix = " " .. vim.g["my#git_infomations"]['branch_name'] .. " " .. git_commit_status_text() .. " > "
   })
 end
 
