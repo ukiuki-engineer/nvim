@@ -174,14 +174,14 @@ function M.git_push_confirm()
       and "push " .. commit_count .. " commit?"
       or "push " .. commit_count .. "commits?"
 
-  if fn.confirm(message, "&Yes\n&No") == 1 then
+  if vim.fn["utils#confirm"](message) == 1 then
     vim.cmd([[Gin push]])
   end
 end
 
 -- confirmしてgit resetする
 function M.delete_latest_commit(soft_or_hard)
-  if fn.confirm("Delete latest commit?", "&Yes\n&No") ~= 1 then
+  if vim.fn["utils#confirm"]("Delete latest commit?") ~= 1 then
     return
   end
   vim.cmd("Gin reset --" .. soft_or_hard .. " HEAD^")

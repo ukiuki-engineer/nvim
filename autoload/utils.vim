@@ -12,6 +12,21 @@ function! utils#delete_line_breaks(str) abort
 endfunction
 
 "
+" 共通で使うconfirm
+"
+function! utils#confirm(message) abort
+  " Choice number for 'No' selection
+  let no_choice_number = 2
+
+  try
+    return confirm(a:message, "&Yes\n&No", no_choice_number)
+  catch
+    " 例外が発生したら2(no)を返す(<C-c>で中断した場合とか)
+    return no_choice_number
+  endtry
+endfunction
+
+"
 " git情報を更新する(以下の構造を持つグローバル変数)
 "
 " g:my#git_infomations  : v:t_dict
