@@ -27,7 +27,7 @@ function! utils#confirm(message) abort
 endfunction
 
 "
-" git情報を更新する(以下の構造を持つグローバル変数)
+" git情報(以下の構造を持つグローバル変数)を更新する
 "
 " g:my#git_infomations  : v:t_dict
 "   branch_name         : v:t_string
