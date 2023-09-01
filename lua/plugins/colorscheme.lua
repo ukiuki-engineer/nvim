@@ -15,13 +15,18 @@ local M     = {}
 function M.set_customcolor()
   -- TODO: (TODO, FIXME, NOTE)について、どのファイルでもハイライトされるようにする
 
+  -- カラースキーム
+  local colorscheme = vim.g.colors_name
+
+  -- gruvboxなら背景は基本的にdark
+  if colorscheme == 'gruvbox' then
+    vim.o.background = "dark"
+  end
+
   -- "normal" ハイライトグループの情報を取得
   local highlight_info = vim.fn.execute('hi normal')
   -- guibg の値を取得
   local bg_color       = string.match(highlight_info, "guibg=(#%x+)")
-
-  -- 背景色(:hi normalの値)
-  local colorscheme    = vim.g.colors_name
 
   -- diffview
   if colorscheme ~= 'nightfox' then
