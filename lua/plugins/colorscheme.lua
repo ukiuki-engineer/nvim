@@ -19,9 +19,10 @@ function M.set_customcolor()
   local colorscheme = vim.g.colors_name
 
   -- gruvboxなら背景は基本的にdark
-  if colorscheme == 'gruvbox' then
-    vim.o.background = "dark"
-  end
+  -- if colorscheme == 'gruvbox' then
+  -- TODO: confirmで聞くようにする
+  --   vim.o.background = "dark"
+  -- end
 
   -- guibg の値を取得
   local bg_color = string.match(vim.fn.execute('hi normal'), "guibg=(#%x+)")
@@ -54,8 +55,8 @@ function M.set_customcolor()
 
   -- coc.nvim
   hi(0, 'CocFadeOut', {
-    bg = utils.transparent_color(bg_color, '#ADABAC', 0.50),
-    fg = "LightGrey"
+    bg = utils.transparent_color(bg_color, "#ADABAC", 0.60),
+    fg = "DarkGray"
   })
   hi(0, 'CocHintSign', { fg = "LightGrey" })
   hi(0, 'CocHighlightText', {

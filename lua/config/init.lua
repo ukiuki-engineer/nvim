@@ -25,8 +25,11 @@ au("ColorScheme", {
 
 -- vim.cmd([[colorscheme moonlight]])
 -- vim.cmd([[colorscheme nightfly]])
-vim.o.background = "dark"
+-- vim.o.background = "dark"
+vim.o.background = "light"
 vim.cmd([[colorscheme gruvbox]])
+-- vim.cmd([[colorscheme catppuccin-latte]])
+-- vim.cmd([[colorscheme dayfox]])
 -- ------------------------------------------------------------------------------
 -- 通常ロード
 -- ------------------------------------------------------------------------------
