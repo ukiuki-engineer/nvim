@@ -170,6 +170,15 @@ function M.git_branches()
 end
 
 function M.git_status()
+  if not require("utils").is_git_project() then
+    vim.cmd([[
+      echohl WarningMsg
+      echo "this directory is not a git project!"
+      echohl None
+    ]])
+    return
+  end
+
   local actions = require('telescope.actions')
   local action_state = require('telescope.actions.state')
 
