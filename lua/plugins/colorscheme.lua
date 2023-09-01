@@ -23,10 +23,8 @@ function M.set_customcolor()
     vim.o.background = "dark"
   end
 
-  -- "normal" ハイライトグループの情報を取得
-  local highlight_info = vim.fn.execute('hi normal')
   -- guibg の値を取得
-  local bg_color       = string.match(highlight_info, "guibg=(#%x+)")
+  local bg_color = string.match(vim.fn.execute('hi normal'), "guibg=(#%x+)")
 
   -- diffview
   if colorscheme ~= 'nightfox' then
