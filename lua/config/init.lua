@@ -87,6 +87,7 @@ vim.fn.timer_start(
 -- ------------------------------------------------------------------------------
 augroup("MyCustomColor", {})
 au("ColorSchemePre", {
+  pattern = { "tokyonight" },
   callback = function()
     require("plugins.colorscheme").tokyonight_transparent()
   end,
