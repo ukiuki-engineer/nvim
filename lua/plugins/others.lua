@@ -1,12 +1,14 @@
 -- ================================================================================
 -- Others
 -- ================================================================================
-local g      = vim.g
-local fn     = vim.fn
-local keyset = vim.keymap.set
-local opts   = { noremap = true, silent = true }
+local augroup = vim.api.nvim_create_augroup
+local au      = vim.api.nvim_create_autocmd
+local g       = vim.g
+local fn      = vim.fn
+local keyset  = vim.keymap.set
+local opts    = { noremap = true, silent = true }
 
-local M      = {}
+local M       = {}
 
 --
 -- nvim-treesitter
@@ -199,6 +201,35 @@ function M.lua_source_toggleterm()
   }
   -- カレントバッファのディレクトリでterminalを開く
   vim.cmd([[command! ToggleTermHere ToggleTerm dir=%:h]])
+end
+
+--
+-- nvim-colorizer.lua
+--
+function M.lua_source_colorizer()
+  augroup("my_colorizer", {})
+  au("FileType", {
+    group = "my_colorizer",
+    pattern = {
+      "blade",
+      "css",
+      "eruby",
+      "html",
+      "javascript",
+      "less",
+      "lua",
+      "markdown",
+      "sass",
+      "scss",
+      "stylus",
+      "toml",
+      "vim",
+      "vue",
+      "xml",
+    },
+    command = "ColorizerAttachToBuffer"
+  })
+  require("colorizer").setup()
 end
 
 return M

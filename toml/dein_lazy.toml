@@ -65,26 +65,6 @@ lua_source = '''
 require("plugins.coding").lua_source_autoclose()
 '''
 
-[[plugins]] # カラーコード可視化
-repo = 'norcalli/nvim-colorizer.lua'
-on_ft = [
-  'blade',
-  'css',
-  'eruby',
-  'html',
-  'less',
-  'lua',
-  'sass',
-  'scss',
-  'stylus',
-  'toml',
-  'vim',
-  'vue'
-]
-lua_source = '''
-require("plugins.coding").lua_source_colorizer()
-'''
-
 [[plugins]] # Markdownでtable作成
 repo = 'mattn/vim-maketable'
 on_cmd = ['MakeTable', 'UnmakeTable']
@@ -331,3 +311,23 @@ on_cmd = [
   'CccHighlighterDisable',
   'CccHighlighterToggle',
 ]
+
+[[plugins]] # カラーコード可視化
+repo = 'norcalli/nvim-colorizer.lua'
+on_ft = [
+  'blade',
+  'css',
+  'eruby',
+  'html',
+  'less',
+  'lua',
+  'sass',
+  'scss',
+  'stylus',
+  'toml',
+  'vim',
+  'vue'
+]
+lua_source = '''
+require("plugins.others").lua_source_colorizer()
+'''
