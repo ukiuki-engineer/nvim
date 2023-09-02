@@ -19,10 +19,9 @@ function M.set_customcolor()
   -- カラースキーム
   local colorscheme = vim.g.colors_name
 
-  if colorscheme == 'tokyonight' then
-    -- FIXME: 一旦
-    return
-  end
+  -- if colorscheme == 'tokyonight' then
+  --   return
+  -- end
 
   -- guibg の値を取得
   local bg_color = string.match(vim.fn.execute('hi normal'), "guibg=(#%x+)")

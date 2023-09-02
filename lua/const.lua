@@ -2,8 +2,11 @@
 -- 定数ファイル
 -- 一応定数ファイル作ったけどそこまでちゃんと管理できてない...
 -------------------------------------------------------------------------------
+local bg_colors = {
+  cobalt2 = "#002f4f",
+}
+
 vim.g["my#const"] = {
-  term_bgcolor                 = "#000000", -- FIXME: 一旦
   timer_start_lualine          = 100,
   timer_start_bufferline       = 100,
   timer_start_sattelite        = 100,
@@ -17,6 +20,9 @@ vim.g["my#const"] = {
     error_git_changes        = "An error occurred while checking for git changes.",
     error_git_user_info      = "An error occurred while getting user name and email.",
   },
+  -- FIXME: 本当は環境変数とかから取得できるようにした方が良いけど一旦↓で。
+  --        bg_colorsを定義しといて、環境に応じてここの定数の値を手で変える。
+  term_bgcolor                 = bg_colors.cobalt2,
 }
 
 -- 定数化
