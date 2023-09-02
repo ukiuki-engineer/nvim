@@ -1,47 +1,28 @@
 -- ==============================================================================
 -- configのメインファイル
 -- ==============================================================================
-local au = vim.api.nvim_create_autocmd
+local au      = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local g       = vim.g
 -- ------------------------------------------------------------------------------
 -- global variables
 -- ------------------------------------------------------------------------------
 -- 未定義なら初期化
 -- TODO: これ何だっけ...消すとエラーになるし...w
-if not vim.g.git_commit_status then
-  vim.g.git_commit_status = ""
+if not g.git_commit_status then
+  g.git_commit_status = ""
 end
--- ------------------------------------------------------------------------------
--- colorscheme
--- ------------------------------------------------------------------------------
--- カラースキームを変更するごとに良い感じに配色をセットし直す
-augroup("MyCustomColor", {})
-au("ColorScheme", {
-  callback = function()
-    -- ハイライト設定を適用
-    require("plugins.colorscheme").set_customcolor()
-  end,
-  group = "MyCustomColor",
-})
-
--- vim.cmd([[colorscheme moonlight]])
--- vim.cmd([[colorscheme nightfly]])
--- vim.o.background = "dark"
-vim.o.background = "light"
-vim.cmd([[colorscheme gruvbox]])
--- vim.cmd([[colorscheme catppuccin-latte]])
--- vim.cmd([[colorscheme dayfox]])
 -- ------------------------------------------------------------------------------
 -- 通常ロード
 -- ------------------------------------------------------------------------------
 -- NOTE: deinのinline_vimrcs側で読み込んでいるので不要
+-- require("const")
 -- require("config.options")
 -- require("config.autocmds")
 -- require("config.keymappings")
 -- ------------------------------------------------------------------------------
 -- 遅延ロード
 -- ------------------------------------------------------------------------------
-
 augroup("my_lazyload", {}) -- {{{
 -- comannds
 au("CmdlineEnter", {
@@ -91,7 +72,7 @@ au("CmdUndefined", {
 
 -- タイマー遅延
 vim.fn.timer_start(
-  vim.g["my#const"].timer_start_init,
+  g["my#const"].timer_start_init,
   function()
     if require('utils').is_git_project() then
       -- gitの情報を更新
@@ -110,9 +91,26 @@ vim.fn.timer_start(
   end
 )
 -- ------------------------------------------------------------------------------
+-- colorscheme
+-- ------------------------------------------------------------------------------
+augroup("MyCustomColor", {})
+au("ColorSchemePre", {
+  callback = function()
+    require("plugins.colorscheme").tokyonight_transparent()
+  end,
+  group = "MyCustomColor",
+})
+au("ColorScheme", {
+  callback = function()
+    -- ハイライト設定を適用
+    require("plugins.colorscheme").set_customcolor()
+  end,
+  group = "MyCustomColor",
+})
+vim.cmd([[colorscheme nightfly]])
+-- ------------------------------------------------------------------------------
 -- 標準プラグインの制御
 -- ------------------------------------------------------------------------------
-local g                     = vim.g
 g.did_indent_on             = 1
 g.did_install_default_menus = 1
 g.did_install_syntax_menu   = 1

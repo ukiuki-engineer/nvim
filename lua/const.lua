@@ -3,7 +3,7 @@
 -- 一応定数ファイル作ったけどそこまでちゃんと管理できてない...
 -------------------------------------------------------------------------------
 vim.g["my#const"] = {
-  bg_color                     = "#000000", -- FIXME: 一旦
+  term_bgcolor                 = "#000000", -- FIXME: 一旦
   timer_start_lualine          = 100,
   timer_start_bufferline       = 100,
   timer_start_sattelite        = 100,

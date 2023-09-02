@@ -19,17 +19,16 @@ function M.set_customcolor()
   -- カラースキーム
   local colorscheme = vim.g.colors_name
 
-  -- gruvboxなら背景は基本的にdark
-  -- if colorscheme == 'gruvbox' then
-  -- TODO: confirmで聞くようにする
-  --   vim.o.background = "dark"
-  -- end
+  if colorscheme == 'tokyonight' then
+    -- FIXME: 一旦
+    return
+  end
 
   -- guibg の値を取得
   local bg_color = string.match(vim.fn.execute('hi normal'), "guibg=(#%x+)")
   -- guibgが無しの場合は定数の値を使用
   if bg_color == "" or bg_color == nil then
-    bg_color = const.bg_color
+    bg_color = const.term_bgcolor
   end
 
   -- diffview
@@ -104,6 +103,16 @@ function M.set_customcolor()
   -- gitsigns.vim
   hi(0, 'GitSignsCurrentLineBlame', {
     link = "comment"
+  })
+end
+
+function M.tokyonight_transparent()
+  require("tokyonight").setup({
+    transparent = true,
+    styles = {
+      sidebars = "transparent",
+      floats = "transparent",
+    },
   })
 end
 
