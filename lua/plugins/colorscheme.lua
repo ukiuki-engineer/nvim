@@ -8,10 +8,7 @@ local const = vim.g["my#const"]
 local M     = {}
 
 --
--- ハイライト色をカスタムする
---
--- @param string bg_color `:hi normalの値を入れる`
--- @param string colorscheme
+-- ハイライト色のカスタムをその時の背景色に応じてセットする
 --
 function M.set_customcolor()
   -- TODO: (TODO, FIXME, NOTE)について、どのファイルでもハイライトされるようにする
@@ -28,7 +25,18 @@ function M.set_customcolor()
 
 
   -- diffview
-  if not utils.in_array(colorscheme, { "nightfox" }) then
+  local not_target_colorschemes = {
+    "nightfox",
+    "nordfox",
+    "carbonfox",
+    "dayfox",
+    "catppuccin",
+    "catppuccin-frappe",
+    "catppuccin-latte",
+    "catppuccin-macchiato",
+    "catppuccin-mocha",
+  }
+  if not utils.in_array(colorscheme, not_target_colorschemes) then
     hi(0, 'DiffviewDiffAddAsDelete', { -- NOTE: 不明
       bg = "#FF0000"
     })
