@@ -36,6 +36,7 @@ function M.lua_add_diffview()
   vim.keymap.set('n', '<leader>do', "<Cmd>DiffviewOpen<CR>", {})
   vim.keymap.set('n', '<Right>', "<Cmd>DiffviewOpen<CR>", {})
   vim.keymap.set('n', '<leader>df', "<Cmd>DiffviewFileHistory<CR>", {})
+  vim.keymap.set('n', '<Down>', "<Cmd>DiffviewFileHistory<CR>", {})
 end
 
 function M.lua_source_diffview()
@@ -51,8 +52,10 @@ function M.lua_source_diffview()
     },
     keymaps = {
       file_panel = {
+        -- FIXME: 定義されたりされなかったりする {{{
         { "n", "<Down>", "<Cmd>Gin commit<CR>" },
         { "n", "<Up>",   require("plugins.git").git_push_confirm },
+        -- }}}
         { "n", "X", -- confirmして変更を削除する
           function()
             local message = "Delete this changes?"
