@@ -3,6 +3,7 @@
 -- ================================================================================
 local hi    = vim.api.nvim_set_hl
 local utils = require("utils")
+local const = vim.g["my#const"]
 
 local M     = {}
 
@@ -26,6 +27,10 @@ function M.set_customcolor()
 
   -- guibg の値を取得
   local bg_color = string.match(vim.fn.execute('hi normal'), "guibg=(#%x+)")
+  -- guibgが無しの場合は定数の値を使用
+  if bg_color == "" or bg_color == nil then
+    bg_color = const.bg_color
+  end
 
   -- diffview
   if colorscheme ~= 'nightfox' then

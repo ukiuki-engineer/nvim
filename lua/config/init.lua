@@ -90,15 +90,12 @@ au("CmdUndefined", {
 
 -- タイマー遅延
 vim.fn.timer_start(
-  require("const").config("TIMER_START_INIT"),
+  vim.g["my#const"].timer_start_init,
   function()
-    -- git projectでないなら終了
-    if not require('utils').is_git_project() then
-      return
+    if require('utils').is_git_project() then
+      -- gitの情報を更新
+      vim.fn['utils#refresh_git_infomations']()
     end
-
-    -- gitの情報を更新
-    vim.fn['utils#refresh_git_infomations']()
 
     -- ~/.config/nvim/workingがあり、~/.config/nvim/で起動した場合、強制終了する(仕事に集中したい時用)
     -- TODO: 何か良いプラグインもあるっぽいので後で調べる。一旦これで

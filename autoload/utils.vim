@@ -62,7 +62,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
       call jobstart("git fetch >/dev/null 2>&1")
     catch
       echohl ErrorMsg
-      echomsg v:lua.require("const").error_messages("ERROR_EXTERNAL_COMMAND")
+      echomsg g:my#const["error_messages"]["error_external_command"]
       echohl None
     endtry
   endif
@@ -80,7 +80,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     endif
   catch
     echohl ErrorMsg
-    echomsg v:lua.require("const").error_messages("ERROR_BRANCH_COMMIT_INFO")
+    echomsg g:my#const["error_messages"]["error_branch_commit_info"]
     echohl None
   endtry
   " }}}
@@ -90,7 +90,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     let g:my#git_infomations['has_changed'] = v:lua.require('utils').has_git_changed()
   catch
     echohl ErrorMsg
-    echomsg v:lua.require("const").error_messages("ERROR_GIT_CHANGES")
+    echomsg g:my#const["error_messages"]["error_git_changes"]
     echohl None
   endtry
   " }}}
@@ -101,7 +101,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     let g:my#git_infomations['config']['user_email'] = utils#delete_line_breaks(system("git config user.email"))
   catch
     echohl ErrorMsg
-    echomsg v:lua.require("const").error_messages("ERROR_USER_INFO")
+    echomsg g:my#const["error_messages"]["error_git_user_info"]
     echohl None
   endtry
   " }}}
@@ -118,7 +118,7 @@ function! utils#lazy_load() abort
     execute 'au InsertLeave,FileType * ++once call s:packadd()'
   augroup END
   if expand('%') != ''
-    call timer_start(v:lua.require('const').config("TIMER_START_STANDARD_PLUGINS"), function("s:timer_load"))
+    call timer_start(g:my#const['timer_start_standard_plugins'], function("s:timer_load"))
   endif
 endfunction
 

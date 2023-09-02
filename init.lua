@@ -32,12 +32,14 @@ g["dein#lazy_rplugins"] = true
 -- 設定開始
 if fn["dein#load_state"](dein_dir) == 1 then
   -- vimrc {{{
+  local const             = g.init_dir .. '/lua/const.lua'
   local init              = g.init_dir .. '/lua/config/init.lua'
   local options           = g.init_dir .. '/lua/config/options.lua'
   local autocmds          = g.init_dir .. '/lua/config/autocmds.lua'
   local keymappings       = g.init_dir .. '/lua/config/keymappings.lua'
 
   g["dein#inline_vimrcs"] = {
+    const,
     init,
     options,
     autocmds,

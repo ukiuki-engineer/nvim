@@ -1,49 +1,23 @@
 -------------------------------------------------------------------------------
 -- 定数ファイル
 -- 一応定数ファイル作ったけどそこまでちゃんと管理できてない...
---
--- NOTE: luaで`const`が使えなさそうだったから現状のやり方にしてるけど、以下のやり方でも良さそう
--- ```lua
--- vim.g["my#const"] = {}
--- vim.g["my#const"]['hoge'] = "hoge"
--- -- 以下、必要な定数を追加していく
-
--- -- 最後にlock
--- vim.cmd([[lockv g:my#const]])
--- ```
 -------------------------------------------------------------------------------
-local plugins = {
-  TIMER_START_LUALINE    = 100,
-  TIMER_START_BUFFERLINE = 100,
-  TIMER_START_SATTELITE  = 100,
+vim.g["my#const"] = {
+  bg_color                     = "#000000", -- FIXME: 一旦
+  timer_start_lualine          = 100,
+  timer_start_bufferline       = 100,
+  timer_start_sattelite        = 100,
+  timer_start_init             = 90,
+  timer_start_ime              = 1000,
+  timer_start_clipboard        = 1000,
+  timer_start_standard_plugins = 500,
+  error_messages               = {
+    error_external_command   = "An error occurred while executing the external command.",
+    error_branch_commit_info = "An error occurred while getting branch and commit information.",
+    error_git_changes        = "An error occurred while checking for git changes.",
+    error_git_user_info      = "An error occurred while getting user name and email.",
+  },
 }
 
-local config = {
-  TIMER_START_INIT             = 90,
-  TIMER_START_IME              = 1000,
-  TIMER_START_CLIPBOARD        = 1000,
-  TIMER_START_STANDARD_PLUGINS = 500,
-}
-
-local error_messages = {
-  ERROR_EXTERNAL_COMMAND   = "An error occurred while executing the external command.",
-  ERROR_BRANCH_COMMIT_INFO = "An error occurred while getting branch and commit information.",
-  ERROR_GIT_CHANGES        = "An error occurred while checking for git changes.",
-  ERROR_USER_INFO          = "An error occurred while getting user name and email.",
-}
-
-local M = {}
-
-M.plugins = function(key)
-  return plugins[key]
-end
-
-M.config = function(key)
-  return config[key]
-end
-
-M.error_messages = function(key)
-  return error_messages[key]
-end
-
-return M
+-- 定数化
+vim.cmd([[lockv g:my#const]])
