@@ -4,6 +4,7 @@
 local au      = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local g       = vim.g
+local utils   = require("utils")
 -- ------------------------------------------------------------------------------
 -- 通常ロード
 -- ------------------------------------------------------------------------------
@@ -66,7 +67,7 @@ au("CmdUndefined", {
 vim.fn.timer_start(
   g["my#const"].timer_start_init,
   function()
-    if require('utils').is_git_project() then
+    if utils.is_git_project() then
       -- gitの情報を更新
       vim.fn['utils#refresh_git_infomations']()
     end
@@ -87,7 +88,7 @@ vim.fn.timer_start(
 -- ------------------------------------------------------------------------------
 augroup("MyCustomColor", {})
 au("ColorSchemePre", {
-  pattern = { "tokyonight" },
+  pattern = { "tokyonight*" },
   callback = function()
     require("plugins.colorscheme").tokyonight_transparent()
   end,
@@ -100,7 +101,12 @@ au("ColorScheme", {
   end,
   group = "MyCustomColor",
 })
-vim.cmd([[colorscheme nordfox]])
+
+if utils.is_wsl() then
+  vim.cmd([[colorscheme tokyonight-night]])
+else
+  vim.cmd([[colorscheme nordfox]])
+end
 -- ------------------------------------------------------------------------------
 -- 標準プラグインの制御
 -- ------------------------------------------------------------------------------
