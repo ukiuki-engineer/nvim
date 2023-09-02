@@ -26,15 +26,16 @@ function M.set_customcolor()
 
   -- diffview
   local not_target_colorschemes = {
-    "nightfox",
-    "nordfox",
     "carbonfox",
-    "dayfox",
     "catppuccin",
     "catppuccin-frappe",
     "catppuccin-latte",
     "catppuccin-macchiato",
     "catppuccin-mocha",
+    "dayfox",
+    "nightfox",
+    "nordfox",
+    "terafox",
   }
   if not utils.in_array(colorscheme, not_target_colorschemes) then
     hi(0, 'DiffviewDiffAddAsDelete', { -- NOTE: 不明
