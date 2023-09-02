@@ -19,10 +19,6 @@ function M.set_customcolor()
   -- カラースキーム
   local colorscheme = vim.g.colors_name
 
-  -- if colorscheme == 'tokyonight' then
-  --   return
-  -- end
-
   -- guibg の値を取得
   local bg_color = string.match(vim.fn.execute('hi normal'), "guibg=(#%x+)")
   -- guibgが無しの場合は定数の値を使用
@@ -30,8 +26,9 @@ function M.set_customcolor()
     bg_color = const.term_bgcolor
   end
 
+
   -- diffview
-  if colorscheme ~= 'nightfox' then
+  if not utils.in_array(colorscheme, { "nightfox" }) then
     hi(0, 'DiffviewDiffAddAsDelete', { -- NOTE: 不明
       bg = "#FF0000"
     })
