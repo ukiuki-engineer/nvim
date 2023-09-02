@@ -9,6 +9,7 @@ local M  = {}
 
 --
 -- テーブル内に値が存在するか
+-- →phpのin_array()的な使い方を想定
 --
 function M.in_array(value, array)
   for _, v in ipairs(array) do
