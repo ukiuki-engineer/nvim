@@ -7,6 +7,7 @@ local augroup = vim.api.nvim_create_augroup
 -- global variables
 -- ------------------------------------------------------------------------------
 -- 未定義なら初期化
+-- TODO: これ何だっけ...消すとエラーになるし...w
 if not vim.g.git_commit_status then
   vim.g.git_commit_status = ""
 end
