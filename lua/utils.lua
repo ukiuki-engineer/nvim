@@ -124,10 +124,6 @@ end
 -- リモートブランチ情報のテキストを返す
 --
 function M.remote_branch_info_text()
-  if g.git_commit_status == nil then
-    return
-  end
-
   if not g['my#git_infomations']['exists_remote_branch'] then
     return ""
   else
