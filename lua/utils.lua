@@ -8,7 +8,7 @@ local g  = vim.g
 local M  = {}
 
 --
--- テーブル内に値が存在するかどうかを返す
+-- テーブル内に値が存在するか
 --
 function M.in_array(value, array)
   for _, v in ipairs(array) do
@@ -17,6 +17,13 @@ function M.in_array(value, array)
     end
   end
   return false
+end
+
+--
+-- WSLか
+--
+function M.is_wsl()
+  return vim.fn.has("linux") and vim.fn.exists("$WSLENV")
 end
 
 ---

@@ -7,7 +7,6 @@ local augroup             = vim.api.nvim_create_augroup
 local au                  = vim.api.nvim_create_autocmd
 local has                 = vim.fn.has
 local exepath             = vim.fn.exepath
-local exists              = vim.fn.exists
 
 local events              = { "InsertLeave", "InsertEnter", "CmdlineLeave" }
 
@@ -24,7 +23,7 @@ if has("mac") and exepath("im-select") ~= "" then
 end
 
 -- WSL用
-if has("linux") and exists("$WSLENV") and exepath("zenhan.exe") ~= "" then
+if require("utils").is_wsl() and exepath("zenhan.exe") ~= "" then
   au(events, {
     group = "my_ime",
     callback = function()

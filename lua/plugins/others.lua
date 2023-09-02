@@ -181,7 +181,7 @@ function M.lua_source_previm()
   if fn.has('mac') then
     -- MacOS用
     g.previm_open_cmd = [[open -a safari]]
-  elseif fn.has('linux') and fn.exists('$WSLENV') then
+  elseif require("utils").is_wsl() then
     -- TODO: WSL用
   end
 end
