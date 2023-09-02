@@ -108,7 +108,7 @@ end
 -- TODO: scripts/commit_status.shの処理内容をここに実装する
 --
 function M.get_git_infomations()
-  -- TODO: 一旦
+  -- FIXME: 一旦
   return fn['utils#delete_line_breaks'](fn.system('~/.config/nvim/scripts/commit_status.sh'))
 end
 
