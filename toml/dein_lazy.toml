@@ -321,3 +321,13 @@ require("plugins.telescope").lua_source_telescope()
 repo = 'nvim-telescope/telescope-fzf-native.nvim'
 build = 'make'
 on_source = ['telescope.nvim']
+
+[[plugins]]
+repo = 'uga-rosa/ccc.nvim'
+on_cmd = [
+  'CccPick',
+  'CccConvert',
+  'CccHighlighterEnable',
+  'CccHighlighterDisable',
+  'CccHighlighterToggle',
+]
