@@ -7,6 +7,18 @@ local g  = vim.g
 
 local M  = {}
 
+--
+-- テーブル内に値が存在するかどうかを返す
+--
+function M.in_array(value, array)
+  for _, v in ipairs(array) do
+    if v == value then
+      return true
+    end
+  end
+  return false
+end
+
 ---
 -- 透過色を計算する関数
 -- @param string bg_color 背景色のカラーコード(16進数)。例: "#FFFFFF"
