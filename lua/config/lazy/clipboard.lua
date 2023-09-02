@@ -8,9 +8,9 @@ if require("utils").is_wsl() then
   vim.fn.timer_start(
     vim.g["my#const"].timer_start_clipboard,
     function()
-      vim.cmd([[execute("set clipboard+=unnamedplus")]])
+      vim.cmd([[set clipboard+=unnamedplus]])
     end
   )
 else
-  vim.o.clipboard:append("unnamed")
+  vim.cmd([[set clipboard+=unnamed]])
 end

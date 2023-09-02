@@ -23,7 +23,7 @@ end
 -- WSLか
 --
 function M.is_wsl()
-  return vim.fn.has("linux") and vim.fn.exists("$WSLENV")
+  return (vim.fn.has("linux") and vim.fn.exists("$WSLENV")) == 1
 end
 
 ---
