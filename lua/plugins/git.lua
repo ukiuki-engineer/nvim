@@ -17,7 +17,7 @@ function M.lua_add_gin()
   local plugins_git = require("plugins.git")
 
   vim.cmd([[
-    augroup MyGinActions
+    augroup MyGinAuCmds
       au!
       au User GinCommandPost call utils#refresh_git_infomations()
       au User GinComponentPost call utils#refresh_git_infomations()
