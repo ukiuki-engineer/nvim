@@ -11,11 +11,16 @@ augroup("MyAutocmds", {})
 -- Session.vimを保存
 local pwd_in_startup = fn.expand('$PWD')
 local mksession = 'mksession! ' .. pwd_in_startup .. '/Session.vim'
-au({ "BufWrite", "BufRead", "WinLeave", "WinClosed" }, {
+au({ "BufWrite", "BufRead", "WinLeave" }, {
   group = "MyAutocmds",
   callback = function()
-    -- commit編集時はスキップ
+    -- commit編集時は何もしない
     if fn.expand('%:t') == "COMMIT_EDITMSG" then
+      return
+    end
+
+    -- diffviewのパネルがあったら何もしない
+    if string.find(fn.join(fn.gettabinfo(), ', '), 'diffview_view') then -- FIXME: なんか上手くいなない
       return
     end
 
