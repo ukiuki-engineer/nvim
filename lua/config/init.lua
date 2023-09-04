@@ -96,6 +96,9 @@ au("ColorSchemePre", {
 })
 au("ColorScheme", {
   callback = function()
+    if vim.g.colors_name == "tokyonight" then
+      return
+    end
     -- ハイライト設定を適用
     require("plugins.colorscheme").set_customcolor()
   end,

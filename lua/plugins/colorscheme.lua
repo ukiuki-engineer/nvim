@@ -36,6 +36,7 @@ function M.set_customcolor()
     "nightfox",
     "nordfox",
     "terafox",
+    "tokyonight",
   }
   if not utils.in_array(colorscheme, not_target_colorschemes) then
     hi(0, 'DiffviewDiffAddAsDelete', { -- NOTE: 不明

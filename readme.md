@@ -57,3 +57,6 @@ Total Min:     18.839000 msec
 - [ ] colorscheme をランダムに切り替えるコマンド`:ChangeColorscheme`を作る(飽きるから)
 - [ ] 外部ツールインストールが必要な場合のインストール処理を書く
       → 今のところ結構放置してるところも多いはず...
+- [ ] tokyonight の色調整
+  - [ ] gitsigns
+  - [ ] bufferline のブッファ名、タブ番号
