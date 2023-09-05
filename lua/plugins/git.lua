@@ -71,13 +71,15 @@ function M.lua_source_diffview()
         { "n", "<Down>",
           function()
             vim.cmd([[Gin commit]])
-          end
+          end,
+          { desc = "execute :Gin commit" }
         },
         -- confirmしてpushする
         { "n", "<Up>",
           function()
             require("plugins.git").git_push_confirm()
-          end
+          end,
+          { desc = "confirm -> :Gin push" }
         },
         -- }}}
         -- confirmして変更を削除する
@@ -91,7 +93,8 @@ function M.lua_source_diffview()
             require("diffview.config").actions.restore_entry()
             -- git情報を更新
             vim.fn["utils#refresh_git_infomations"]()
-          end
+          end,
+          { desc = "confirm -> restore" }
         },
         -- TODO: stage, unstage等も全部ラップし、refreshを噛ませる
       }
