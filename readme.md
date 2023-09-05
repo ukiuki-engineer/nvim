@@ -43,17 +43,17 @@ Total Min:     18.839000 msec
 
 - [ ] diffview から gin の API を呼んで色々カスタマイズできないだろうか？
       →stash とか(visual mode による複数選択にも対応)
+- [ ] diffview の時だけ coc-tsserver をオフにできないか？(よくバグるから)
+- [ ] `:mksession`で diffview のタブを保存しないように
+- [ ] diffviewopen が実行されたら refresh(確かそういう autocmd-event が定義されてたはず)
+- [ ] diffview のパネルでカーソル位置のファイルの path を取得できないか
 - [ ] telescope: normal モード時、検索->n でジャンプできるように
+- [ ] telescope.git_branches をもっとカラフルにできないか？
 - [ ] coc-outline: markdown で効かない...
 - gitsigns.nvim
   - [ ] coc の diagnostics が被って gitsigns が見えなくなるのをどうにかできないか？
   - [ ] stage した行もそれが分るように表示できないか？
-- [ ] diffview の時だけ coc-tsserver をオフにできないか？(よくバグるから)
-- [ ] `:mksession`で diffview のタブを保存しないように
 - [ ] `utils#refresh_git_infomations()`を非同期化したい
-- [ ] diffviewopen が実行されたら refresh(確かそういう autocmd-event が定義されてたはず)
-- [ ] diffview のパネルでカーソル位置のファイルの path を取得できないか
-- [ ] telescope.git_branches をもっとカラフルにできないか？
 - [ ] colorscheme をランダムに切り替えるコマンド`:ChangeColorscheme`を作る(飽きるから)
 - [ ] 外部ツールインストールが必要な場合のインストール処理を書く
       → 今のところ結構放置してるところも多いはず...
