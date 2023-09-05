@@ -228,6 +228,8 @@ function M.delete_latest_commit(soft_or_hard)
     return
   end
   vim.cmd("Gin reset --" .. soft_or_hard .. " HEAD^")
+  -- diffviewをrefresh
+  vim.cmd([[DiffviewRefresh]])
 end
 
 return M
