@@ -11,9 +11,14 @@ vim.cmd([[
   command! -bang MksessionAndQuitAll :mksession! | :qa<bang>
   command! ShowVimrcInfo             :echo system(g:init_dir .. '/scripts/show-vimrc-info.sh')
   command! OpenVimrc                 :tabnew | :tcd ~/.config/nvim
-  " バッファのフルパスをヤンクする
-  command! YankBufPath               :let @0 = expand('%:p') | :let @+ = expand('%:p')
+  " バッファのフルパスをヤンクする(ホームディレクトリは"~"で表記)
+  command! YankBufFullPath           :let @0 = expand('%:~') | :let @+ = expand('%:~')
+  " バッファの(:pwdから見た)相対パスをヤンクする
+  command! YankBufRelativePath       :let @0 = expand('%') | :let @+ = expand('%')
+  " バッファのファイル名をヤンクする
+  command! YankBufFileName           :let @0 = expand('%:t') | :let @+ = expand('%:t')
+  " git情報を更新する
   command! RefreshGitInfomations     :call utils#refresh_git_infomations()
-  " format on saveを無視して保存
+  " 保存だけ行う(autocmdを発火させない。format on saveとかその他諸々。)
   command! W                         :noautocmd w
 ]])
