@@ -49,3 +49,14 @@ opt.softtabstop = 2
 opt.nrformats:append("unsigned")
 -- window分割しててもstatuslineを1つに
 opt.laststatus = 3
+-- タブとか改行の表示
+vim.opt.list = true
+vim.opt.listchars:append({
+  space    = "⋅",
+  tab      = "»-",
+  trail    = "-",
+  eol      = "↓",
+  extends  = "»",
+  precedes = "«",
+  nbsp     = "%"
+})
