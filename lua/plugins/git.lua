@@ -40,6 +40,20 @@ function M.lua_add_diffview()
 end
 
 function M.lua_source_diffview()
+  -- NOTE: luaで書くと上手くいかないのでvimscriptで
+  vim.cmd([[
+    " 表示スタイル(tree/list)をtoggle & git情報を更新
+    function! s:aucmds_on_diffviewopen() abort
+      lua require("diffview.config").actions.listing_style()
+      call utils#refresh_git_infomations()
+    endfunction
+
+    augroup MyDiffviewAuCmds
+      au!
+      au User DiffviewViewOpened call s:aucmds_on_diffviewopen()
+    augroup END
+  ]])
+
   require('diffview').setup({
     enhanced_diff_hl = true,
     file_panel = {
