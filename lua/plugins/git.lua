@@ -52,11 +52,24 @@ function M.lua_source_diffview()
     },
     keymaps = {
       file_panel = {
-        -- FIXME: 定義されたりされなかったりする {{{
-        { "n", "<Down>", "<Cmd>Gin commit<CR>" },
-        { "n", "<Up>",   require("plugins.git").git_push_confirm },
-        -- }}}
-        { "n", "X", -- confirmして変更を削除する
+        -- NOTE: 以下の書き方だと安定しなかった
+        -- { "n", "<Down>", "<Cmd>Gin commit<CR>" },
+        -- { "n", "<Up>",   require("plugins.git").git_push_confirm },
+
+        -- commit
+        { "n", "<Down>",
+          function()
+            vim.cmd([[Gin commit]])
+          end
+        },
+        -- confirmしてpushする
+        { "n", "<Up>",
+          function()
+            require("plugins.git").git_push_confirm()
+          end
+        },
+        -- confirmして変更を削除する
+        { "n", "X",
           function()
             local message = "Delete this changes?"
             if vim.fn["utils#confirm"](message) ~= 1 then
