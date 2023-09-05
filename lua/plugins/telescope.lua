@@ -131,6 +131,7 @@ function M.git_commits()
     git_command = {
       "git",
       "log",
+      "--date=short",
       "--pretty=%C(auto)%h %C(blue)%ad [%C(green)%an%C(reset)] %s",
       "--abbrev-commit",
       "--",
@@ -156,11 +157,13 @@ function M.git_branches()
   local actions = require('telescope.actions')
   require('telescope.builtin').git_branches({
     attach_mappings = function(prompt_bufnr, map)
+      -- checkoutしてgit情報を更新する
       map({ "i", "n" }, "<CR>",
         function()
           -- checkout
-          actions.git_checkout_current_buffer(prompt_bufnr)
+          actions.git_checkout_current_buffer(prompt_bufnr) -- ここまでがデフォルトの動き
           -- git情報を更新(lualine用)
+          -- NOTE: lualineのgit情報を更新するために必要
           vim.fn["utils#refresh_git_infomations"]()
         end
       )
