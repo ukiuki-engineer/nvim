@@ -33,6 +33,7 @@ function M.set_customcolor()
     "catppuccin-macchiato",
     "catppuccin-mocha",
     "dayfox",
+    "monokai",
     "nightfox",
     "nordfox",
     "terafox",
@@ -64,14 +65,19 @@ function M.set_customcolor()
   end
 
   -- coc.nvim
-  hi(0, 'CocFadeOut', {
-    bg = utils.transparent_color(bg_color, "#ADABAC", 0.60),
-    fg = "DarkGray"
-  })
-  hi(0, 'CocHintSign', { fg = "LightGrey" })
-  hi(0, 'CocHighlightText', {
-    bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
-  })
+  not_target_colorschemes = {
+    "monokai",
+  }
+  if not utils.in_array(colorscheme, not_target_colorschemes) then
+    hi(0, 'CocFadeOut', {
+      bg = utils.transparent_color(bg_color, "#ADABAC", 0.60),
+      fg = "DarkGray"
+    })
+    hi(0, 'CocHintSign', { fg = "LightGrey" })
+    hi(0, 'CocHighlightText', {
+      bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
+    })
+  end
   if colorscheme == 'gruvbox' then
     hi(0, 'HighlightedyankRegion', {
       bg = utils.transparent_color(bg_color, "#FD7E00", 0.65)

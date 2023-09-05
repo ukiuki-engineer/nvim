@@ -108,7 +108,7 @@ au("ColorScheme", {
 if utils.is_wsl() then
   vim.cmd([[colorscheme tokyonight-night]])
 else
-  vim.cmd([[colorscheme nordfox]])
+  vim.cmd([[colorscheme monokai]])
 end
 -- ------------------------------------------------------------------------------
 -- 標準プラグインの制御

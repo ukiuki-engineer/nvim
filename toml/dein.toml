@@ -98,6 +98,10 @@ depends = ['impatient.nvim']
 repo = 'shaunsingh/nord.nvim'
 depends = ['impatient.nvim']
 
+[[plugins]]
+repo = 'tanvirtin/monokai.nvim'
+depends = ['impatient.nvim']
+
 # [[plugins]]
 # repo = 'RRethy/nvim-base16'
 # depends = ['impatient.nvim']
