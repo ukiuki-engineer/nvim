@@ -66,10 +66,7 @@ function M.lua_source_diffview()
     },
     keymaps = {
       file_panel = {
-        -- NOTE: 以下の書き方だと安定しなかった
-        -- { "n", "<Down>", "<Cmd>Gin commit<CR>" },
-        -- { "n", "<Up>",   require("plugins.git").git_push_confirm },
-
+        -- 効いたり効かなかったりする {{{
         -- commit
         { "n", "<Down>",
           function()
@@ -82,6 +79,7 @@ function M.lua_source_diffview()
             require("plugins.git").git_push_confirm()
           end
         },
+        -- }}}
         -- confirmして変更を削除する
         { "n", "X",
           function()
