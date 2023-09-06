@@ -105,11 +105,8 @@ au("ColorScheme", {
   group = "MyCustomColor",
 })
 
-if utils.is_wsl() then
-  vim.cmd([[colorscheme tokyonight-night]])
-else
-  vim.cmd([[colorscheme monokai]])
-end
+vim.o.termguicolors = true
+vim.cmd([[colorscheme sonokai]])
 -- ------------------------------------------------------------------------------
 -- 標準プラグインの制御
 -- ------------------------------------------------------------------------------
