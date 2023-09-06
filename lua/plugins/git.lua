@@ -5,7 +5,38 @@ local g       = vim.g
 local fn      = vim.fn
 local command = vim.api.nvim_create_user_command
 
-local M       = {}
+-- confirmしてpushする
+local function git_push_confirm()
+  vim.fn['utils#refresh_git_infomations']()
+
+  local commit_count = g['my#git_infomations']['commit_count']['local']
+  commit_count = tonumber(commit_count)
+
+  if commit_count == "" or commit_count == 0 then
+    print("no commits")
+    return
+  end
+
+  local message = commit_count == 1
+      and "push " .. commit_count .. " commit?"
+      or "push " .. commit_count .. "commits?"
+
+  if vim.fn["utils#confirm"](message) == 1 then
+    vim.cmd([[Gin push]])
+  end
+end
+
+-- confirmしてgit resetする
+local function delete_latest_commit(soft_or_hard)
+  if vim.fn["utils#confirm"]("Delete latest commit?") ~= 1 then
+    return
+  end
+  vim.cmd("Gin reset --" .. soft_or_hard .. " HEAD^")
+  -- diffviewをrefresh
+  vim.cmd([[DiffviewRefresh]])
+end
+
+local M = {}
 
 --
 -- gin.vim
@@ -13,8 +44,6 @@ local M       = {}
 function M.lua_add_gin()
   -- 画面分割して開く
   g.gin_proxy_editor_opener = 'split'
-
-  local plugins_git = require("plugins.git")
 
   vim.cmd([[
     augroup MyGinAuCmds
@@ -25,8 +54,8 @@ function M.lua_add_gin()
   ]])
 
   -- commands
-  command('DeleteLatestCommit', function() plugins_git.delete_latest_commit('soft') end, {})
-  command('GinPush', plugins_git.git_push_confirm, {})
+  command('DeleteLatestCommit', function() M.pcall_delete_latest_commit('soft') end, {})
+  command('GinPush', M.pcall_git_push_confirm, {})
 end
 
 --
@@ -77,7 +106,7 @@ function M.lua_source_diffview()
         -- confirmしてpushする
         { "n", "<Up>",
           function()
-            require("plugins.git").git_push_confirm()
+            M.pcall_git_push_confirm()
           end,
           { desc = "confirm -> :Gin push" }
         },
@@ -201,35 +230,30 @@ end
 --------------------------------------------------------------------------------
 -- functions
 --------------------------------------------------------------------------------
--- confirmしてpushする
-function M.git_push_confirm()
-  vim.fn['utils#refresh_git_infomations']()
+-- TODO: pcall_execute()みたいに共通化した方が良いかも？
 
-  local commit_count = g['my#git_infomations']['commit_count']['local']
-  commit_count = tonumber(commit_count)
-
-  if commit_count == "" or commit_count == 0 then
-    print("no commits")
-    return
-  end
-
-  local message = commit_count == 1
-      and "push " .. commit_count .. " commit?"
-      or "push " .. commit_count .. "commits?"
-
-  if vim.fn["utils#confirm"](message) == 1 then
-    vim.cmd([[Gin push]])
+-- git_push_confirm()をpcallでラップして実行
+function M.pcall_git_push_confirm()
+  local success, error_message = pcall(git_push_confirm)
+  if not success then
+    vim.api.nvim_echo(
+      { { "An error occurred in plugins.git.git_push_confirm(): " .. error_message, "ErrorMsg" }, },
+      true,
+      {}
+    )
   end
 end
 
--- confirmしてgit resetする
-function M.delete_latest_commit(soft_or_hard)
-  if vim.fn["utils#confirm"]("Delete latest commit?") ~= 1 then
-    return
+-- delete_latest_commit()をpcallでラップして実行
+function M.pcall_delete_latest_commit(soft_or_hard)
+  local success, error_message = pcall(delete_latest_commit, soft_or_hard)
+  if not success then
+    vim.api.nvim_echo(
+      { { "An error occurred in plugins.git.delete_latest_commit(): " .. error_message, "ErrorMsg" }, },
+      true,
+      {}
+    )
   end
-  vim.cmd("Gin reset --" .. soft_or_hard .. " HEAD^")
-  -- diffviewをrefresh
-  vim.cmd([[DiffviewRefresh]])
 end
 
 return M
