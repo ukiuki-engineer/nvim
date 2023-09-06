@@ -19,6 +19,10 @@ local M       = {}
 -- php artisan ide-helper:generate                    # _ide_helper.phpを生成
 -- php artisan ide-helper:models --nowrite            # _ide_helper_models.phpを生成
 function M.lua_add_coc()
+  -- TODO: localrc.vimとかを入れて、localな設定ファイルに移動させる。一旦↓で。
+  if fn.has("mac") then
+    g.coc_node_path = "/opt/homebrew/opt/node@18/bin/node"
+  end
   -- coc-extensions
   g.coc_global_extensions = {
     '@yaegassy/coc-intelephense',
