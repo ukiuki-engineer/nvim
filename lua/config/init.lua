@@ -104,9 +104,19 @@ au("ColorScheme", {
   end,
   group = "MyCustomColor",
 })
-
-vim.o.termguicolors = true
-vim.cmd([[colorscheme sonokai]])
+-- ------------------------------------------------------------------------------
+-- localvimrc
+-- ------------------------------------------------------------------------------
+-- NOTE: ~/.config/nvim/local.vimがあればロード
+local localvimrc = g.init_dir .. "/local.vim"
+if vim.fn.filereadable(localvimrc) then
+  local cmd = [[execute "source " .. "]] .. localvimrc .. '\"'
+  vim.cmd(cmd)
+else
+  -- local.vimが無ければcolorschemeは↓
+  -- 気分、環境によってころころ変えたいけど、いちいちgitの差分出るのが嫌だからこういう運用
+  vim.cmd([[colorscheme gruvbox]])
+end
 -- ------------------------------------------------------------------------------
 -- 標準プラグインの制御
 -- ------------------------------------------------------------------------------
