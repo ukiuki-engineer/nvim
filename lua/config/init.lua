@@ -6,13 +6,48 @@ local augroup = vim.api.nvim_create_augroup
 local g       = vim.g
 local utils   = require("utils")
 -- ------------------------------------------------------------------------------
+-- colorscheme
+-- ------------------------------------------------------------------------------
+augroup("MyCustomColor", {})
+au("ColorSchemePre", {
+  pattern = { "tokyonight*" },
+  callback = function()
+    require("plugins.colorscheme").tokyonight_transparent()
+  end,
+  group = "MyCustomColor",
+})
+au("ColorScheme", {
+  callback = function()
+    if vim.g.colors_name == "tokyonight" then
+      return
+    end
+    -- ハイライト設定を適用
+    require("plugins.colorscheme").set_customcolor()
+  end,
+  group = "MyCustomColor",
+})
+-- ------------------------------------------------------------------------------
 -- 通常ロード
 -- ------------------------------------------------------------------------------
--- NOTE: deinのinline_vimrcs側で読み込んでいるので不要
+-- NOTE: deinのinline_vimrcs側で読み込んでいるので不要 {{{
 -- require("const")
 -- require("config.options")
 -- require("config.autocmds")
 -- require("config.keymappings")
+-- }}}
+
+-- localvimrc {{{
+local localvimrc = g.init_dir .. "/local.vim"
+if vim.fn.filereadable(localvimrc) == 1 then
+  -- ~/.config/nvim/local.vimがあればロード
+  local cmd = [[execute "source " .. "]] .. localvimrc .. '\"'
+  vim.cmd(cmd)
+else
+  -- local.vimが無ければcolorschemeは↓
+  -- NOTE: 気分、環境によってころころ変えたいけど、いちいちgitの差分出るのが嫌だからこういう運用
+  vim.cmd([[colorscheme gruvbox]])
+end
+-- }}}
 -- ------------------------------------------------------------------------------
 -- 遅延ロード
 -- ------------------------------------------------------------------------------
@@ -83,40 +118,6 @@ vim.fn.timer_start(
     ]])
   end
 )
--- ------------------------------------------------------------------------------
--- colorscheme
--- ------------------------------------------------------------------------------
-augroup("MyCustomColor", {})
-au("ColorSchemePre", {
-  pattern = { "tokyonight*" },
-  callback = function()
-    require("plugins.colorscheme").tokyonight_transparent()
-  end,
-  group = "MyCustomColor",
-})
-au("ColorScheme", {
-  callback = function()
-    if vim.g.colors_name == "tokyonight" then
-      return
-    end
-    -- ハイライト設定を適用
-    require("plugins.colorscheme").set_customcolor()
-  end,
-  group = "MyCustomColor",
-})
--- ------------------------------------------------------------------------------
--- localvimrc
--- ------------------------------------------------------------------------------
--- NOTE: ~/.config/nvim/local.vimがあればロード
-local localvimrc = g.init_dir .. "/local.vim"
-if vim.fn.filereadable(localvimrc) == 1 then
-  local cmd = [[execute "source " .. "]] .. localvimrc .. '\"'
-  vim.cmd(cmd)
-else
-  -- local.vimが無ければcolorschemeは↓
-  -- 気分、環境によってころころ変えたいけど、いちいちgitの差分出るのが嫌だからこういう運用
-  vim.cmd([[colorscheme gruvbox]])
-end
 -- ------------------------------------------------------------------------------
 -- 標準プラグインの制御
 -- ------------------------------------------------------------------------------
