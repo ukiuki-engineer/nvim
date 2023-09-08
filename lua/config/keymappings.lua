@@ -24,6 +24,8 @@ local function jump_to_zenkaku(hankaku_zenkaku_pairs)
   for hankaku, zenkaku in pairs(hankaku_zenkaku_pairs) do
     keyset({ 'n', 'x' }, '<leader>f' .. hankaku, 'f' .. zenkaku, opts)
     keyset({ 'n', 'x' }, '<leader>t' .. hankaku, 't' .. zenkaku, opts)
+    keyset({ 'n', 'x' }, '<leader>F' .. hankaku, 'F' .. zenkaku, opts)
+    keyset({ 'n', 'x' }, '<leader>T' .. hankaku, 'T' .. zenkaku, opts)
     keyset('n', '<leader>df' .. hankaku, 'df' .. zenkaku, opts)
     keyset('n', '<leader>dt' .. hankaku, 'dt' .. zenkaku, opts)
     keyset('n', '<leader>yf' .. hankaku, 'yf' .. zenkaku, opts)
@@ -100,6 +102,13 @@ au({ "BufRead", "InsertEnter" }, {
       [":"] = "：",
       [";"] = "；",
       ["?"] = "？",
+      ["/"] = "・",
+      ["!"] = "！",
+      ["%"] = "％",
+      ["&"] = "＆",
+      ["+"] = "＋",
+      ["-"] = "ー",
+      ["="] = "＝",
       ["a"] = "あ",
       ["i"] = "い",
       ["u"] = "う",
