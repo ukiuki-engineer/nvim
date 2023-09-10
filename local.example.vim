@@ -6,4 +6,10 @@
 " 気分、環境によってころころ変えたいけど、いちいちgitの差分出るのが嫌だから
 " ==============================================================================
 let g:coc_node_path = "/opt/homebrew/opt/node@18/bin/node"
+" colorscheme catppuccin
+" colorscheme catppuccin-frappe
+" colorscheme nightfly
+set termguicolors
+set background=light
+" colorscheme retrobox
 colorscheme gruvbox
