@@ -112,8 +112,6 @@ function! plugins#hook_source_autoclose() abort
   let g:autoclose#disable_nextpattern_autoclosing_quots = []
   " 改行の整形機能をオフ
   let g:autoclose#autoformat_newline_enable = 0
-  " 補完キャンセル機能をオン
-  let g:autoclose#cancel_completion_enable = 1
   let g:autoclose#enabled_autoclosing_tags_filetypes = [
         \ "html",
         \ "xml",
@@ -122,6 +120,8 @@ function! plugins#hook_source_autoclose() abort
         \ "eruby",
         \ "vue",
         \ ]
+  " 補完キャンセル機能をオン
+  let g:autoclose#cancel_completion_enable = 1
   " <C-c>で補完をキャンセル
   inoremap <silent><expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
   " カスタム補完定義
