@@ -19,7 +19,7 @@ endfunction
 "
 function! utils#confirm(message) abort
   try
-    if confirm(a:message, "&Yes\n&No", 2) == 1
+    if confirm(a:message, "&Yes\n&No", 1) == 1
       return v:true
     else
       return v:false
