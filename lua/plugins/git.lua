@@ -45,8 +45,13 @@ local function delete_latest_commit(soft_or_hard)
     return
   end
   vim.cmd("Gin reset --" .. soft_or_hard .. " HEAD^")
-  -- diffviewをrefresh
-  vim.cmd([[DiffviewRefresh]])
+  -- NOTE: 普通にcommand実行するだけだとなんか時々上手くいかないのでtimer遅延をかける
+  fn.timer_start(1000,
+    function()
+      -- diffviewをrefresh
+      vim.cmd([[DiffviewRefresh]])
+    end
+  )
 end
 
 local M = {}
