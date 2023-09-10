@@ -9,6 +9,19 @@ local command = vim.api.nvim_create_user_command
 local function git_push_confirm()
   vim.fn['utils#refresh_git_infomations']()
 
+  local message = ""
+
+  -- remote branchが無い場合の処理
+  if not g['my#git_infomations']['exists_remote_branch'] then
+    message = 'There is no remote branch for the \"' ..
+        g['my#git_infomations']['branch_name'] .. '\". Would you like to publish this branch?'
+
+    if vim.fn["utils#confirm"](message) == 1 then
+      vim.cmd("Gin push origin " .. g['my#git_infomations']['branch_name'])
+    end
+    return
+  end
+
   local commit_count = g['my#git_infomations']['commit_count']['local']
   commit_count = tonumber(commit_count)
 
@@ -17,7 +30,7 @@ local function git_push_confirm()
     return
   end
 
-  local message = commit_count == 1
+  message = commit_count == 1
       and "push " .. commit_count .. " commit?"
       or "push " .. commit_count .. "commits?"
 
