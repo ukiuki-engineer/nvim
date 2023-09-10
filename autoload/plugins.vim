@@ -139,6 +139,12 @@ function! plugins#hook_source_autoclose() abort
           \ 'output'    : '%%>',
           \ 'back_count': 2
           \ })
+    autocmd FileType eruby call autoclose#custom_completion({
+          \ 'prev_char' : '%',
+          \ 'input_char': '#',
+          \ 'output'    : '#  ',
+          \ 'back_count': 1
+          \ })
     autocmd FileType blade call autoclose#custom_completion({
           \ 'prev_char' : '{',
           \ 'input_char': '-',
