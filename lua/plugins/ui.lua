@@ -132,6 +132,7 @@ function M.lua_add_lualine()
         {
           remote_branch_info_text,
           color = { fg = '#00ffff' },
+          separator = ''
         },
         {
           has_changed,
