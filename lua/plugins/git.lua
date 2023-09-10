@@ -16,7 +16,7 @@ local function git_push_confirm()
     message = 'There is no remote branch for the \"' ..
         g['my#git_infomations']['branch_name'] .. '\". Would you like to publish this branch?'
 
-    if vim.fn["utils#confirm"](message) == 1 then
+    if vim.fn["utils#confirm"](message) then
       vim.cmd("Gin push origin " .. g['my#git_infomations']['branch_name'])
     end
     return
@@ -34,14 +34,14 @@ local function git_push_confirm()
       and "push " .. commit_count .. " commit?"
       or "push " .. commit_count .. "commits?"
 
-  if vim.fn["utils#confirm"](message) == 1 then
+  if vim.fn["utils#confirm"](message) then
     vim.cmd([[Gin push]])
   end
 end
 
 -- confirmしてgit resetする
 local function delete_latest_commit(soft_or_hard)
-  if vim.fn["utils#confirm"]("Delete latest commit?") ~= 1 then
+  if not vim.fn["utils#confirm"]("Delete latest commit?") then
     return
   end
   vim.cmd("Gin reset --" .. soft_or_hard .. " HEAD^")
@@ -128,7 +128,7 @@ function M.lua_source_diffview()
         { "n", "X",
           function()
             local message = "Delete this changes?"
-            if vim.fn["utils#confirm"](message) ~= 1 then
+            if not vim.fn["utils#confirm"](message) then
               return
             end
             -- restore

@@ -14,15 +14,19 @@ endfunction
 "
 " 共通で使うconfirm
 "
+" @param string message
+" @return bool
+"
 function! utils#confirm(message) abort
-  " Choice number for 'No' selection
-  let no_choice_number = 2
-
   try
-    return confirm(a:message, "&Yes\n&No", no_choice_number)
+    if confirm(a:message, "&Yes\n&No", 2) == 1
+      return v:true
+    else
+      return v:false
+    endif
   catch
     " 例外が発生したら2(no)を返す(<C-c>で中断した場合とか)
-    return no_choice_number
+    return v:false
   endtry
 endfunction
 

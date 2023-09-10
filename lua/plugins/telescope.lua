@@ -193,7 +193,7 @@ function M.git_status()
       -- 選択したファイルをgit restore or 削除する
       map({ "i", "n" }, "<C-r>",
         function()
-          if vim.fn["utils#confirm"]("delete this change?") ~= 1 then
+          if not vim.fn["utils#confirm"]("delete this change?") then
             return
           end
           local selection = action_state.get_selected_entry()
