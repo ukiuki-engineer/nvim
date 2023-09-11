@@ -9,6 +9,8 @@ local M     = {}
 
 --
 -- ハイライト色のカスタムをその時の背景色に応じてセットする
+-- 大体のcolorscheme用の設定はここにまとめる
+-- 分けた方が良いやつは別メソッドに切り出す
 --
 function M.set_customcolor()
   -- TODO: (TODO, FIXME, NOTE)について、どのファイルでもハイライトされるようにする
@@ -16,13 +18,8 @@ function M.set_customcolor()
   -- カラースキーム
   local colorscheme = vim.g.colors_name
 
-  -- guibg の値を取得
-  local bg_color = string.match(vim.fn.execute('hi normal'), "guibg=(#%x+)")
-  -- guibgが無しの場合は定数の値を使用
-  if bg_color == "" or bg_color == nil then
-    bg_color = const.term_bgcolor
-  end
-
+  -- background colorを取得
+  local bg_color = M.get_background()
 
   -- diffview
   local not_target_colorschemes = {
@@ -107,18 +104,15 @@ function M.set_customcolor()
     hi(0, 'IncSearch', {
       bg = utils.transparent_color(bg_color, "#FABD2F", 0.70),
     })
-    hi(0, 'Search', {
-      link = "IncSearch"
-    })
+    hi(0, 'Search', { link = "IncSearch" })
   end
 
-  -- gitsigns.vim
-  hi(0, 'GitSignsCurrentLineBlame', {
-    link = "comment"
-  })
+  -- gitsigns.nvim
+  hi(0, 'GitSignsCurrentLineBlame', { link = "comment" })
 end
 
-function M.tokyonight_transparent()
+-- tokyonight*が設定される前に行う処理
+function M.colorschemepre_tokyonight()
   require("tokyonight").setup({
     transparent = true,
     styles = {
@@ -126,6 +120,37 @@ function M.tokyonight_transparent()
       floats = "transparent",
     },
   })
+end
+
+-- tokyonight*が設定された後に行う処理
+function M.colorscheme_tokyonight()
+  -- background colorを取得
+  local bg_color = M.get_background()
+
+  -- hi(0, 'Comment', { fg = "#565f89" })
+  hi(0, 'Comment', { fg = "#8a92b6" })
+
+  -- coc.nvim
+  hi(0, 'HighlightedyankRegion', {
+    bg = utils.transparent_color(bg_color, "Magenta", 0.60),
+  })
+
+  -- gitsigns.nvim
+  hi(0, 'GitSignsCurrentLineBlame', { link = "comment" })
+  hi(0, 'GitSignsAdd', { fg = "LightGreen" })
+  hi(0, 'GitSignsChange', { fg = "Yellow" })
+  hi(0, 'GitSignsDelete', { fg = "Red" })
+end
+
+-- background colorを取得する
+function M.get_background()
+  -- guibg の値を取得
+  local bg_color = string.match(vim.fn.execute('hi normal'), "guibg=(#%x+)")
+  -- guibgが無しの場合は定数の値を使用
+  if bg_color == "" or bg_color == nil then
+    bg_color = const.term_bgcolor
+  end
+  return bg_color
 end
 
 return M

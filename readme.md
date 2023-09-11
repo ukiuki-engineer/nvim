@@ -53,8 +53,5 @@ Total Min:     18.839000 msec
 - [ ] `utils#refresh_git_infomations()`を非同期化したい
 - [ ] colorscheme をランダムに切り替えるコマンド`:ChangeColorscheme`を作る(飽きるから)
 - [ ] nordfox のコメントが若干見づらい
-- [ ] tokyonight の色調整
-  - [ ] gitsigns
-  - [ ] bufferline のブッファ名、タブ番号
 - [ ] 外部ツールインストールが必要な場合のインストール処理を書く
       → 今のところ結構放置してるところも多いはず...

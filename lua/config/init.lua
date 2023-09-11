@@ -12,13 +12,14 @@ augroup("MyCustomColor", {})
 au("ColorSchemePre", {
   pattern = { "tokyonight*" },
   callback = function()
-    require("plugins.colorscheme").tokyonight_transparent()
+    require("plugins.colorscheme").colorschemepre_tokyonight()
   end,
   group = "MyCustomColor",
 })
 au("ColorScheme", {
   callback = function()
     if vim.g.colors_name == "tokyonight" then
+      require("plugins.colorscheme").colorscheme_tokyonight()
       return
     end
     -- ハイライト設定を適用
