@@ -131,7 +131,7 @@ function M.git_commits()
     git_command = {
       "git",
       "log",
-      "--date=short",
+      "--date=format:%Y/%m/%d %H:%M:%S",
       "--pretty=%C(auto)%h %C(blue)%ad [%C(green)%an%C(reset)] %s",
       "--abbrev-commit",
       "--",
