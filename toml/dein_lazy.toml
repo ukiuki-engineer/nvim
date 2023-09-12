@@ -99,6 +99,54 @@ on_ft = ['bash', 'sh', 'zsh']
 lua_source = '''
 require("plugins.coding").lua_source_shfmt()
 '''
+
+[[plugins]] # デフォルトより見やすいsyntax highlight
+repo = 'nvim-treesitter/nvim-treesitter'
+depends = ['nvim-ts-context-commentstring']
+on_event = ['FileType']
+lua_source = '''
+require("plugins.coding").lua_source_treesitter()
+'''
+
+[[plugins]]
+repo = 'nvim-treesitter/playground'
+depends = ['nvim-treesitter']
+on_cmd = ['TSPlaygroundToggle']
+
+[[plugins]]
+repo = 'JoosepAlviste/nvim-ts-context-commentstring'
+on_event = ['FileType']
+
+[[plugins]] # インデント可視化
+repo = 'lukas-reineke/indent-blankline.nvim'
+on_event = ['CursorMoved']
+lua_source = '''
+require("plugins.coding").lua_source_indent_blankline()
+'''
+
+[[plugins]] # editorconfig
+repo = 'editorconfig/editorconfig-vim'
+on_event = ['BufRead']
+
+[[plugins]] # カラーコード可視化
+repo = 'norcalli/nvim-colorizer.lua'
+on_ft = [
+  'blade',
+  'css',
+  'eruby',
+  'html',
+  'less',
+  'lua',
+  'sass',
+  'scss',
+  'stylus',
+  'toml',
+  'vim',
+  'vue'
+]
+lua_source = '''
+require("plugins.coding").lua_source_colorizer()
+'''
 ################################################################################
 # LSP
 ################################################################################
@@ -155,33 +203,9 @@ require("plugins.git").lua_source_diffview()
 ################################################################################
 # Others
 ################################################################################
-[[plugins]]
+[[plugins]] # 多分nvim用のluaライブラリ的なやつ
 repo = 'nvim-lua/plenary.nvim'
 on_source = ['diffview', 'telescope.nvim']
-
-[[plugins]] # デフォルトより見やすいsyntax highlight
-repo = 'nvim-treesitter/nvim-treesitter'
-depends = ['nvim-ts-context-commentstring']
-on_event = ['FileType']
-lua_source = '''
-require("plugins.others").lua_source_treesitter()
-'''
-
-[[plugins]]
-repo = 'nvim-treesitter/playground'
-depends = ['nvim-treesitter']
-on_cmd = ['TSPlaygroundToggle']
-
-[[plugins]]
-repo = 'JoosepAlviste/nvim-ts-context-commentstring'
-on_event = ['FileType']
-
-[[plugins]] # インデント可視化
-repo = 'lukas-reineke/indent-blankline.nvim'
-on_event = ['CursorMoved']
-lua_source = '''
-require("plugins.others").lua_source_indent_blankline()
-'''
 
 [[plugins]] # vimから編集中のファイルを素早く実行するやつ
 repo = 'thinca/vim-quickrun'
@@ -189,11 +213,6 @@ on_cmd = ['QuickRun']
 lua_add = '''
 require("plugins.others").lua_add_quickrun()
 '''
-
-[[plugins]] # editorconfig
-repo = 'editorconfig/editorconfig-vim'
-on_event = ['BufRead']
-
 
 [[plugins]] # ウィンドウリサイズを楽にするやつ
 # NOTE: <C-e>でresizeモードに入る
@@ -264,6 +283,19 @@ on_ft = ['blade']
 repo = 'vim-scripts/applescript.vim'
 on_ft = ['applescript']
 
+
+[[plugins]]
+repo = 'uga-rosa/ccc.nvim'
+on_cmd = [
+  'CccPick',
+  'CccConvert',
+  'CccHighlighterEnable',
+  'CccHighlighterDisable',
+  'CccHighlighterToggle',
+]
+################################################################################
+# FZF
+################################################################################
 [[plugins]] # ファジーファインダー
 repo = 'junegunn/fzf'
 build = './install'
@@ -301,33 +333,3 @@ require("plugins.telescope").lua_source_telescope()
 repo = 'nvim-telescope/telescope-fzf-native.nvim'
 build = 'make'
 on_source = ['telescope.nvim']
-
-[[plugins]]
-repo = 'uga-rosa/ccc.nvim'
-on_cmd = [
-  'CccPick',
-  'CccConvert',
-  'CccHighlighterEnable',
-  'CccHighlighterDisable',
-  'CccHighlighterToggle',
-]
-
-[[plugins]] # カラーコード可視化
-repo = 'norcalli/nvim-colorizer.lua'
-on_ft = [
-  'blade',
-  'css',
-  'eruby',
-  'html',
-  'less',
-  'lua',
-  'sass',
-  'scss',
-  'stylus',
-  'toml',
-  'vim',
-  'vue'
-]
-lua_source = '''
-require("plugins.others").lua_source_colorizer()
-'''
