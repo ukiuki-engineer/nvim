@@ -197,29 +197,24 @@ end
 -- nvim-colorizer.lua
 --
 function M.lua_source_colorizer()
-  augroup("my_colorizer", {})
-  au("FileType", {
-    group = "my_colorizer",
-    pattern = {
-      "blade",
-      "css",
-      "eruby",
-      "html",
-      "javascript",
-      "less",
-      "lua",
-      "markdown",
-      "sass",
-      "scss",
-      "stylus",
-      "toml",
-      "vim",
-      "vue",
-      "xml",
-    },
-    command = "ColorizerAttachToBuffer"
+  require("colorizer").setup({
+    "blade",
+    "css",
+    "eruby",
+    "html",
+    "javascript",
+    "less",
+    "lua",
+    "markdown",
+    "sass",
+    "scss",
+    "stylus",
+    "toml",
+    "txt",
+    "vim",
+    "vue",
+    "xml",
   })
-  require("colorizer").setup()
 end
 
 return M
