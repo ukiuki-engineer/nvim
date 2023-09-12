@@ -28,6 +28,8 @@ local function jump_to_zenkaku(hankaku_zenkaku_pairs)
     keyset({ 'n', 'x' }, '<leader>T' .. hankaku, 'T' .. zenkaku, opts)
     keyset('n', '<leader>df' .. hankaku, 'df' .. zenkaku, opts)
     keyset('n', '<leader>dt' .. hankaku, 'dt' .. zenkaku, opts)
+    keyset('n', '<leader>cf' .. hankaku, 'cf' .. zenkaku, opts)
+    keyset('n', '<leader>ct' .. hankaku, 'ct' .. zenkaku, opts)
     keyset('n', '<leader>yf' .. hankaku, 'yf' .. zenkaku, opts)
     keyset('n', '<leader>yt' .. hankaku, 'yt' .. zenkaku, opts)
   end
