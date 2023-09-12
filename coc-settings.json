@@ -1,7 +1,7 @@
 {
   "coc.preferences.formatOnSaveFiletypes": [
     "lua",
-    "markdown"
+    // "markdown"
   ],
   // NOTE: :CocLocalConfigを実行すると、./.vim/coc-config.jsonが作成される
   //        このファイルより、ローカルコンフィグの方が優先される
@@ -106,6 +106,7 @@
     ".projections.json",
     ".env"
   ],
+  "snippets.ultisnips.pythonPrompt": false,
   // "workspace.bottomUpFiletypes": ["*"],
   // "workspace.workspaceFolderCheckCwd": false,
   // "workspace.workspaceFolderFallbackCwd": false,

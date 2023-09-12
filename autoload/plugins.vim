@@ -162,6 +162,7 @@ let s:skk_dir = ""
 function! plugins#hook_add_skkeleton() abort
   " 辞書ファイルダウンロード
   " TODO: 何かどっかで上手くいってないけど面倒だから必要な時に直す
+  "       この辺面倒だから全部シェルスクリプト化しといた方が良いかも...
   let s:skk_dir = expand('~/.skk')
   " call s:download_skk_jisyo()
 
