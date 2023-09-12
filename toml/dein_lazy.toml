@@ -41,7 +41,7 @@ require("plugins.ui").lua_source_dropbar()
 ################################################################################
 [[plugins]] # matchitをもっと強くしたようなやつ(ハイライトとかもされる)
 repo = 'andymass/vim-matchup'
-on_event = ['CursorMoved']
+on_event = ['BufRead']
 lua_source = '''
 require("plugins.coding").lua_source_matchup()
 '''
