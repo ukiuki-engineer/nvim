@@ -114,6 +114,7 @@ end
 -- tokyonight*が設定される前に行う処理
 function M.colorschemepre_tokyonight()
   require("tokyonight").setup({
+    -- 透け透けにする
     transparent = true,
     styles = {
       sidebars = "transparent",
@@ -123,17 +124,38 @@ function M.colorschemepre_tokyonight()
 end
 
 -- tokyonight*が設定された後に行う処理
+-- NOTE: 基本透け透けで使用する前提
 function M.colorscheme_tokyonight()
+  -- TODO: diffviewとgitsignsを綺麗に調整する
+  -- tokyonight系はかっこ良いけど色々見づらいなぁ...
+
   -- background colorを取得
   local bg_color = M.get_background()
 
   -- hi(0, 'Comment', { fg = "#565f89" })
   hi(0, 'Comment', { fg = "#8a92b6" })
+  -- hi(0, 'Visual', { bg = "#283457" })
+  hi(0, 'Visual', { bg = "#394b7d" })
+  hi(0, 'CursorLine', {
+    bg = utils.transparent_color(bg_color, "Magenta", 0.60),
+  })
+  hi(0, 'CursorColumn', { link = "CursorLine" })
 
   -- coc.nvim
   hi(0, 'HighlightedyankRegion', {
-    bg = utils.transparent_color(bg_color, "Magenta", 0.60),
+    bg = utils.transparent_color(bg_color, "Yellow", 0.60),
   })
+  hi(0, 'CocMenuSel', { link = "Visual" })
+
+  -- vim-matchup
+  hi(0, 'MatchParen', {
+    bg = utils.transparent_color(bg_color, "LightGrey", 0.60),
+    fg = "#ff9e64",
+    bold = true,
+    underline = false
+  })
+  hi(0, 'MatchWord', { link = "MatchParen" })
+  hi(0, 'MatchWordCur', { link = "MatchParen" })
 
   -- gitsigns.nvim
   hi(0, 'GitSignsCurrentLineBlame', { link = "comment" })
