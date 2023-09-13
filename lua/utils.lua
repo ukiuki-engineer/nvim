@@ -105,7 +105,25 @@ end
 -- NOTE: linkには対応していない...
 --
 function M.get_highlight_color(highlight_group, highlight_arg)
-  local color = string.match(vim.fn.execute('hi ' .. highlight_group), highlight_arg .. "=(#%x+)")
+  local cmd_output = vim.fn.execute('hi ' .. highlight_group)
+  local is_reverse = string.match(cmd_output, "reverse")
+  local color
+
+  if is_reverse and (highlight_arg == 'guifg' or highlight_arg == 'guibg') then
+    -- `reverse` が適用されている場合、前景色と背景色を入れ替えて取得
+    local fg_color = string.match(cmd_output, "guifg=(#%x+)")
+    local bg_color = string.match(cmd_output, "guibg=(#%x+)")
+
+    if highlight_arg == 'guifg' then
+      color = bg_color -- 背景色を返す
+    elseif highlight_arg == 'guibg' then
+      color = fg_color -- 前景色を返す
+    end
+  else
+    -- `reverse` が適用されていない場合、通常の方法で色を取得
+    color = string.match(cmd_output, highlight_arg .. "=(#%x+)")
+  end
+
   if color ~= "" then
     return color
   else

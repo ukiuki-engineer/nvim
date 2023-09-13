@@ -21,54 +21,34 @@ function M.set_customcolor()
   -- background colorを取得
   local bg_color = M.get_background()
 
-  -- diffview
-  local not_target_colorschemes = {
-    "carbonfox",
-    "catppuccin",
-    "catppuccin-frappe",
-    "catppuccin-latte",
-    "catppuccin-macchiato",
-    "catppuccin-mocha",
-    "dayfox",
-    "monokai",
-    "nightfox",
-    "nordfox",
-    "terafox",
-    "tokyonight",
+  -- 差分: 透過されてないやつは透過させる
+  local target_colorschemes = {
+    "gruvbox",
+    "moonlight",
+    "nord",
   }
-  if not utils.in_array(colorscheme, not_target_colorschemes) then
-    -- TODO: DiffAdd, DiffChange, DiffDelete, DiffTextは、元の色を透過させるように変更する
+  if utils.in_array(colorscheme, target_colorschemes) then
+    -- TODO: utils.get_highlight_color()の結果がnilの場合に対応させる
     -- 追加された行
     hi(0, 'DiffAdd', {
-      bg = utils.transparent_color(bg_color, "#00A100", 0.85)
+      bg = utils.transparent_color(bg_color, utils.get_highlight_color('DiffAdd', 'guibg'), 0.85)
     })
     -- 変更行
     hi(0, 'DiffChange', {
-      bg = utils.transparent_color(bg_color, "#B9C42F", 0.80)
+      bg = utils.transparent_color(bg_color, utils.get_highlight_color('DiffChange', 'guibg'), 0.85)
     })
     -- 削除された行
     hi(0, 'DiffDelete', {
-      bg = utils.transparent_color(bg_color, "#C70000", 0.90)
+      bg = utils.transparent_color(bg_color, utils.get_highlight_color('DiffDelete', 'guibg'), 0.90)
     })
     -- 変更行の変更箇所
     hi(0, 'DiffText', {
-      bg = utils.transparent_color(bg_color, "#FD7E00", 0.60)
-    })
-    -- NOTE: 不明
-    hi(0, 'DiffviewDiffAddAsDelete', {
-      bg = "#FF0000"
-    })
-    -- 行が追加された場合の左側
-    hi(0, 'DiffviewDiffDelete', {
-      bg = utils.transparent_color(bg_color, "#C70000", 0.90),
-      fg = colorscheme == 'gruvbox'
-          and require("gruvbox.palette").colors.dark2
-          or utils.transparent_color(bg_color, "#2F2F2F", 0.00)
+      bg = utils.transparent_color(bg_color, utils.get_highlight_color('DiffText', 'guibg'), 0.60)
     })
   end
 
   -- coc.nvim
-  not_target_colorschemes = {
+  local not_target_colorschemes = {
     "monokai",
   }
   if not utils.in_array(colorscheme, not_target_colorschemes) then
@@ -133,19 +113,38 @@ end
 -- NOTE: 基本透け透けで使用する前提
 function M.colorscheme_tokyonight()
   -- TODO: diffviewとgitsignsを綺麗に調整する
-  -- tokyonight系はかっこ良いけど色々見づらいなぁ...
+  -- tokyonight系はかっこ良いけど色々見づらいから結構調整要るなぁ...
 
   -- background colorを取得
   local bg_color = M.get_background()
 
   -- hi(0, 'Comment', { fg = "#565f89" })
   hi(0, 'Comment', { fg = "#8a92b6" })
+
   -- hi(0, 'Visual', { bg = "#283457" })
   hi(0, 'Visual', { bg = "#394b7d" })
   hi(0, 'CursorLine', {
     bg = utils.transparent_color(bg_color, "Magenta", 0.60),
   })
   hi(0, 'CursorColumn', { link = "CursorLine" })
+
+  -- 差分
+  -- 追加された行
+  hi(0, 'DiffAdd', {
+    bg = utils.transparent_color(bg_color, "DarkGreen", 0.80)
+  })
+  -- 変更行
+  hi(0, 'DiffChange', {
+    bg = utils.transparent_color(bg_color, "Yellow", 0.80)
+  })
+  -- 削除された行
+  hi(0, 'DiffDelete', {
+    bg = utils.transparent_color(bg_color, "Red", 0.80)
+  })
+  -- 変更行の変更箇所
+  hi(0, 'DiffText', {
+    bg = utils.transparent_color(bg_color, "#FD7E00", 0.60)
+  })
 
   -- coc.nvim
   hi(0, 'HighlightedyankRegion', {
