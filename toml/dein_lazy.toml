@@ -144,6 +144,11 @@ on_ft = [
   'vim',
   'vue'
 ]
+on_cmd = [
+  'ColorizerAttachToBuffer',
+  'ColorizerDetachFromBuffer',
+  'ColorizerReloadAllBuffers'
+]
 lua_source = '''
 require("plugins.coding").lua_source_colorizer()
 '''
