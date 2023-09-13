@@ -173,9 +173,9 @@ end
 -- background colorを取得する
 function M.get_background()
   -- guibg の値を取得
-  local bg_color = string.match(vim.fn.execute('hi normal'), "guibg=(#%x+)")
+  local bg_color = utils.get_highlight_color('Normal', 'guibg')
   -- guibgが無しの場合は定数の値を使用
-  if bg_color == "" or bg_color == nil then
+  if bg_color == nil then
     bg_color = const.term_bgcolor
   end
   return bg_color

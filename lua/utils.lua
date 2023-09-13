@@ -101,6 +101,19 @@ function M.get_colorcode_by_colorname(colorname)
 end
 
 --
+-- highlight colorを取得する
+-- NOTE: linkには対応していない...
+--
+function M.get_highlight_color(highlight_group, highlight_arg)
+  local color = string.match(vim.fn.execute('hi ' .. highlight_group), highlight_arg .. "=(#%x+)")
+  if color ~= "" then
+    return color
+  else
+    return nil
+  end
+end
+
+--
 -- インデントをセットする(バッファローカル)
 --
 function M.setlocal_indent(indent)
