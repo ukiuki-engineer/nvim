@@ -37,27 +37,33 @@ function M.set_customcolor()
     "tokyonight",
   }
   if not utils.in_array(colorscheme, not_target_colorschemes) then
-    hi(0, 'DiffviewDiffAddAsDelete', { -- NOTE: 不明
-      bg = "#FF0000"
+    -- TODO: DiffAdd, DiffChange, DiffDelete, DiffTextは、元の色を透過させるように変更する
+    -- 追加された行
+    hi(0, 'DiffAdd', {
+      bg = utils.transparent_color(bg_color, "#00A100", 0.85)
     })
-    hi(0, 'DiffDelete', { -- 削除された行
+    -- 変更行
+    hi(0, 'DiffChange', {
+      bg = utils.transparent_color(bg_color, "#B9C42F", 0.80)
+    })
+    -- 削除された行
+    hi(0, 'DiffDelete', {
       bg = utils.transparent_color(bg_color, "#C70000", 0.90)
     })
+    -- 変更行の変更箇所
+    hi(0, 'DiffText', {
+      bg = utils.transparent_color(bg_color, "#FD7E00", 0.60)
+    })
+    -- NOTE: 不明
+    hi(0, 'DiffviewDiffAddAsDelete', {
+      bg = "#FF0000"
+    })
+    -- 行が追加された場合の左側
     hi(0, 'DiffviewDiffDelete', {
-      -- 行が追加された場合の左側
       bg = utils.transparent_color(bg_color, "#C70000", 0.90),
       fg = colorscheme == 'gruvbox'
           and require("gruvbox.palette").colors.dark2
           or utils.transparent_color(bg_color, "#2F2F2F", 0.00)
-    })
-    hi(0, 'DiffAdd', { -- 追加された行
-      bg = utils.transparent_color(bg_color, "#00A100", 0.85)
-    })
-    hi(0, 'DiffChange', { -- 変更行
-      bg = utils.transparent_color(bg_color, "#B9C42F", 0.80)
-    })
-    hi(0, 'DiffText', { -- 変更行の変更箇所
-      bg = utils.transparent_color(bg_color, "#FD7E00", 0.60)
     })
   end
 
