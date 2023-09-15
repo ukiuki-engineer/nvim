@@ -206,6 +206,46 @@ lua_source = '''
 require("plugins.git").lua_source_diffview()
 '''
 ################################################################################
+# FZF
+################################################################################
+[[plugins]] # ファジーファインダー
+repo = 'junegunn/fzf'
+build = './install'
+on_source = ['coc.nvim']
+
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+depends = ['plenary', 'telescope-fzf-native.nvim']
+on_cmd = [
+  'BufferLines',
+  'Buffers',
+  'ColorSchemes',
+  'CommandHistories',
+  'Commands',
+  'Commits',
+  'FindAllFiles',
+  'FindFiles',
+  'GitBranches',
+  'GitStash',
+  'GitStatus',
+  'HelpTags',
+  'LiveGrep',
+  'Marks',
+  'OldFiles',
+  'Telescope',
+]
+lua_add = '''
+require("plugins.telescope").lua_add_telescope()
+'''
+lua_source = '''
+require("plugins.telescope").lua_source_telescope()
+'''
+
+[[plugins]]
+repo = 'nvim-telescope/telescope-fzf-native.nvim'
+build = 'make'
+on_source = ['telescope.nvim']
+################################################################################
 # Others
 ################################################################################
 [[plugins]] # 多分nvim用のluaライブラリ的なやつ
@@ -289,7 +329,7 @@ repo = 'vim-scripts/applescript.vim'
 on_ft = ['applescript']
 
 
-[[plugins]]
+[[plugins]] # カラーパレット
 repo = 'uga-rosa/ccc.nvim'
 on_cmd = [
   'CccPick',
@@ -302,43 +342,3 @@ on_cmd = [
 [[plugins]]
 repo = 'rktjmp/lush.nvim'
 on_source = ['pink-panic.nvim']
-################################################################################
-# FZF
-################################################################################
-[[plugins]] # ファジーファインダー
-repo = 'junegunn/fzf'
-build = './install'
-on_source = ['coc.nvim']
-
-[[plugins]]
-repo = 'nvim-telescope/telescope.nvim'
-depends = ['plenary', 'telescope-fzf-native.nvim']
-on_cmd = [
-  'BufferLines',
-  'Buffers',
-  'ColorSchemes',
-  'CommandHistories',
-  'Commands',
-  'Commits',
-  'FindAllFiles',
-  'FindFiles',
-  'GitBranches',
-  'GitStash',
-  'GitStatus',
-  'HelpTags',
-  'LiveGrep',
-  'Marks',
-  'OldFiles',
-  'Telescope',
-]
-lua_add = '''
-require("plugins.telescope").lua_add_telescope()
-'''
-lua_source = '''
-require("plugins.telescope").lua_source_telescope()
-'''
-
-[[plugins]]
-repo = 'nvim-telescope/telescope-fzf-native.nvim'
-build = 'make'
-on_source = ['telescope.nvim']
