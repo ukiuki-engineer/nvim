@@ -1,23 +1,25 @@
-if vim.g['vimrc#loaded_keymappings'] then
-  return
-end
-vim.g['vimrc#loaded_keymappings'] = true
-
+--=============================================================================
+-- keymappings
+--
 -- TODO: <leader>, <space>, gの使い分けの方針を決めておく
 -- <leaer>: 何かしらのactionを起こす系？
 -- <space>: 何かを表示する系？
 --       g: どうしよう...
-
---
+--=============================================================================
+-------------------------------------------------------------------------------
+-- 二重読み込み防止
+-------------------------------------------------------------------------------
+if vim.g['vimrc#loaded_keymappings'] then
+  return
+end
+vim.g['vimrc#loaded_keymappings'] = true
+-------------------------------------------------------------------------------
+-- localな変数、function
+-------------------------------------------------------------------------------
 local keyset = vim.keymap.set
 local opts = { noremap = true, silent = true }
 local augroup = vim.api.nvim_create_augroup
 local au = vim.api.nvim_create_autocmd
---
-
-vim.g.mapleader = "m" -- NOTE: markは使ってないのでleaderにする
-
---
 
 -- 全角文字に行内ジャンプ
 local function jump_to_zenkaku(hankaku_zenkaku_pairs)
@@ -34,8 +36,12 @@ local function jump_to_zenkaku(hankaku_zenkaku_pairs)
     keyset('n', '<leader>yt' .. hankaku, 'yt' .. zenkaku, opts)
   end
 end
-
+-------------------------------------------------------------------------------
+-- NOTE: markは使ってないのでleaderにする
+vim.g.mapleader = "m"
+-------------------------------------------------------------------------------
 -- 通常のmapping
+-------------------------------------------------------------------------------
 keyset("i", "jj", "<Esc>", opts)
 keyset("n", "<Esc><Esc>", ":nohlsearch<CR>", opts)
 keyset("n", "gb", ":bn<CR>", opts)
@@ -85,8 +91,9 @@ vim.cmd([[
   cnoremap <C-d> <Del>
 ]])
 -- }}}
-
--- 遅延で定義させるmapping
+-------------------------------------------------------------------------------
+-- 遅延で定義するmapping(vim起動時にあれこれ処理させたくない)
+-------------------------------------------------------------------------------
 augroup("map_zenkaku", {})
 au({ "BufRead", "InsertEnter" }, {
   group = "map_zenkaku",
