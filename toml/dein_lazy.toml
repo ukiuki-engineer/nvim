@@ -298,6 +298,10 @@ on_cmd = [
   'CccHighlighterDisable',
   'CccHighlighterToggle',
 ]
+
+[[plugins]]
+repo = 'rktjmp/lush.nvim'
+on_source = ['pink-panic.nvim']
 ################################################################################
 # FZF
 ################################################################################
