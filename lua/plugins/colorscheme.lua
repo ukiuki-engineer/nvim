@@ -5,7 +5,51 @@ local hi    = vim.api.nvim_set_hl
 local utils = require("utils")
 local const = vim.g["my#const"]
 
-local M     = {}
+local function diff_transparent_by_own_colors(bg_color)
+  -- TODO: utils.get_highlight_color()の結果がnilの場合に対応させる
+  -- 追加された行
+  hi(0, 'DiffAdd', {
+    bg = utils.transparent_color(bg_color, utils.get_highlight_color('DiffAdd', 'guibg'), 0.85)
+  })
+  -- 変更行
+  hi(0, 'DiffChange', {
+    bg = utils.transparent_color(bg_color, utils.get_highlight_color('DiffChange', 'guibg'), 0.85)
+  })
+  -- 削除された行
+  hi(0, 'DiffDelete', {
+    bg = utils.transparent_color(bg_color, utils.get_highlight_color('DiffDelete', 'guibg'), 0.85)
+  })
+  -- 変更行の変更箇所
+  hi(0, 'DiffText', {
+    bg = utils.transparent_color(bg_color, utils.get_highlight_color('DiffText', 'guibg'), 0.60)
+  })
+end
+
+local function diff_transparent(bg_color)
+  -- 追加された行
+  hi(0, 'DiffAdd', {
+    bg = utils.transparent_color(bg_color, "DarkGreen", 0.80)
+  })
+  -- 変更行
+  hi(0, 'DiffChange', {
+    bg = utils.transparent_color(bg_color, "Yellow", 0.80)
+  })
+  -- 削除された行
+  hi(0, 'DiffDelete', {
+    bg = utils.transparent_color(bg_color, "Red", 0.80)
+  })
+  -- 変更行の変更箇所
+  hi(0, 'DiffText', {
+    bg = utils.transparent_color(bg_color, "#FD7E00", 0.60)
+  })
+  -- gitsigns.nvim
+  hi(0, 'GitSignsCurrentLineBlame', { link = "comment" })
+  hi(0, 'GitSignsAdd', { fg = "LightGreen" })
+  hi(0, 'GitSignsChange', { fg = "Yellow" })
+  hi(0, 'GitSignsDelete', { fg = "Red" })
+end
+
+local M = {}
 
 --
 -- ハイライト色のカスタムをその時の背景色に応じてセットする
@@ -18,33 +62,23 @@ function M.set_customcolor()
   -- カラースキーム
   local colorscheme = vim.g.colors_name
 
+  if colorscheme == "pink-panic" then
+    return
+  end
+
   -- background colorを取得
   local bg_color = M.get_background()
 
-  -- 差分: 透過されてないやつは透過させる
-  local target_colorschemes = {
-    "gruvbox",
-    "moonlight",
-    "nord",
-  }
-  if utils.in_array(colorscheme, target_colorschemes) then
-    -- TODO: utils.get_highlight_color()の結果がnilの場合に対応させる
-    -- 追加された行
-    hi(0, 'DiffAdd', {
-      bg = utils.transparent_color(bg_color, utils.get_highlight_color('DiffAdd', 'guibg'), 0.85)
-    })
-    -- 変更行
-    hi(0, 'DiffChange', {
-      bg = utils.transparent_color(bg_color, utils.get_highlight_color('DiffChange', 'guibg'), 0.85)
-    })
-    -- 削除された行
-    hi(0, 'DiffDelete', {
-      bg = utils.transparent_color(bg_color, utils.get_highlight_color('DiffDelete', 'guibg'), 0.90)
-    })
-    -- 変更行の変更箇所
-    hi(0, 'DiffText', {
-      bg = utils.transparent_color(bg_color, utils.get_highlight_color('DiffText', 'guibg'), 0.60)
-    })
+  -- 差分
+  if utils.in_array(colorscheme, {
+        "gruvbox",
+        "moonlight",
+        "nightfly",
+        "nord",
+      }) then
+    diff_transparent_by_own_colors(bg_color)
+  elseif utils.in_array(colorscheme, { "sonokai" }) then
+    diff_transparent(bg_color)
   end
 
   -- coc.nvim
@@ -129,22 +163,7 @@ function M.colorscheme_tokyonight()
   hi(0, 'CursorColumn', { link = "CursorLine" })
 
   -- 差分
-  -- 追加された行
-  hi(0, 'DiffAdd', {
-    bg = utils.transparent_color(bg_color, "DarkGreen", 0.80)
-  })
-  -- 変更行
-  hi(0, 'DiffChange', {
-    bg = utils.transparent_color(bg_color, "Yellow", 0.80)
-  })
-  -- 削除された行
-  hi(0, 'DiffDelete', {
-    bg = utils.transparent_color(bg_color, "Red", 0.80)
-  })
-  -- 変更行の変更箇所
-  hi(0, 'DiffText', {
-    bg = utils.transparent_color(bg_color, "#FD7E00", 0.60)
-  })
+  diff_transparent(bg_color)
 
   -- coc.nvim
   hi(0, 'HighlightedyankRegion', {
@@ -161,12 +180,6 @@ function M.colorscheme_tokyonight()
   })
   hi(0, 'MatchWord', { link = "MatchParen" })
   hi(0, 'MatchWordCur', { link = "MatchParen" })
-
-  -- gitsigns.nvim
-  hi(0, 'GitSignsCurrentLineBlame', { link = "comment" })
-  hi(0, 'GitSignsAdd', { fg = "LightGreen" })
-  hi(0, 'GitSignsChange', { fg = "Yellow" })
-  hi(0, 'GitSignsDelete', { fg = "Red" })
 end
 
 -- background colorを取得する
