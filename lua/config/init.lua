@@ -39,7 +39,7 @@ au("ColorScheme", {
 
 -- localvimrc {{{
 local localvimrc = g.init_dir .. "/local.vim"
-if vim.fn.filereadable(localvimrc) == 1 then
+if utils.bool_fn.filereadable(localvimrc) then
   -- ~/.config/nvim/local.vimがあればロード
   local cmd = [[execute "source " .. "]] .. localvimrc .. '\"'
   vim.cmd(cmd)

@@ -2,10 +2,28 @@
 -- 共通処理
 -- luaで書いた共通処理はここに集める
 -------------------------------------------------------------------------------
-local fn = vim.fn
-local g  = vim.g
+local fn  = vim.fn
+local g   = vim.g
 
-local M  = {}
+local M   = {}
+
+--
+-- booleanな値を返すvim.fnのwrapper function
+-- 例）if require("utils").bool_fn.has('mac') then ... end
+--
+M.bool_fn = setmetatable({}, {
+  __index = function(_, key)
+    return function(...)
+      local v = vim.fn[key](...)
+      if not v or v == 0 or v == "" then
+        return false
+      elseif type(v) == "table" and next(v) == nil then
+        return false
+      end
+      return true
+    end
+  end,
+})
 
 --
 -- テーブル内に値が存在するか
@@ -24,7 +42,7 @@ end
 -- WSLか
 --
 function M.is_wsl()
-  return (vim.fn.has("linux") and vim.fn.exists("$WSLENV")) == 1
+  return M.bool_fn.has("linux") and M.bool_fn.exists("$WSLENV")
 end
 
 ---
