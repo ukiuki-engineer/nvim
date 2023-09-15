@@ -3,7 +3,8 @@
 -- 一応定数ファイル作ったけどそこまでちゃんと管理できてない...
 -------------------------------------------------------------------------------
 local bg_colors = {
-  cobalt2 = "#002f4f",
+  cobalt2         = "#002f4f",
+  synthwave_alpha = "#241B30",
 }
 
 vim.g["my#const"] = {
@@ -20,9 +21,10 @@ vim.g["my#const"] = {
     error_git_changes        = "An error occurred while checking for git changes.",
     error_git_user_info      = "An error occurred while getting user name and email.",
   },
+  bg_colors                    = bg_colors,
   -- FIXME: 本当は環境変数とかから取得できるようにした方が良いけど一旦↓で。
   --        bg_colorsを定義しといて、環境に応じて↓を手で変える
-  term_bgcolor                 = bg_colors.cobalt2,
+  term_bgcolor                 = bg_colors.synthwave_alpha,
 }
 
 -- 定数化

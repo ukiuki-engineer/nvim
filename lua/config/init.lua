@@ -21,6 +21,9 @@ au("ColorScheme", {
     if vim.g.colors_name == "tokyonight" then
       require("plugins.colorscheme").colorscheme_tokyonight()
       return
+    elseif vim.g.colors_name == "pink-panic" then
+      require("plugins.colorscheme").colorscheme_pink_panic()
+      return
     end
     -- ハイライト設定を適用
     require("plugins.colorscheme").set_customcolor()

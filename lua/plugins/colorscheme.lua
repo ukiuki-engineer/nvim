@@ -187,6 +187,40 @@ function M.colorscheme_tokyonight()
   hi(0, 'MatchWordCur', { link = "MatchParen" })
 end
 
+function M.colorscheme_pink_panic()
+  -- background colorを取得
+  local bg_color = const.term_bgcolor
+
+  hi(0, 'Normal', { bg = "none" })
+  hi(0, 'SignColumn', { bg = "none" })
+  hi(0, 'CursorLine', {
+    bg = utils.transparent_color(bg_color, "#fd7297", 0.60),
+  })
+  hi(0, 'CursorColumn', { link = "CursorLine" })
+  hi(0, 'Visual', {
+    bg = utils.transparent_color(bg_color, "Magenta", 0.60)
+  })
+
+  -- 差分
+  diff_transparent(bg_color)
+
+  -- coc.nvim
+  hi(0, 'HighlightedyankRegion', {
+    bg = utils.transparent_color(bg_color, "Yellow", 0.60),
+  })
+  -- hi(0, 'CocMenuSel', { link = "Visual" })
+
+  -- vim-matchup
+  hi(0, 'MatchParen', {
+    bg = utils.transparent_color(bg_color, "LightGrey", 0.60),
+    fg = "#ff9e64",
+    bold = true,
+    underline = false
+  })
+  hi(0, 'MatchWord', { link = "MatchParen" })
+  hi(0, 'MatchWordCur', { link = "MatchParen" })
+end
+
 -- background colorを取得する
 function M.get_background()
   -- guibg の値を取得
