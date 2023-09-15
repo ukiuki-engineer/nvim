@@ -112,9 +112,7 @@ vim.fn.timer_start(
     -- TODO: 何か良いプラグインもあるっぽいので後で調べる。一旦これで
     vim.cmd([[
     if filereadable(expand('~/.config/nvim/working')) && expand('%:p:h') == expand('~/.config/nvim')
-      if filereadable(expand('~/.config/nvim/working')) && expand('%:p:h') == expand('~/.config/nvim')
-        q!
-      endif
+      q!
     endif
     ]])
   end
