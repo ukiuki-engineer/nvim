@@ -162,6 +162,11 @@ function M.colorscheme_tokyonight()
   })
   hi(0, 'CursorColumn', { link = "CursorLine" })
 
+  -- 行番号
+  hi(0, 'LineNr', { fg = "#515a84" })
+  -- 行番号(カーソル行)
+  hi(0, 'CursorLineNr', { fg = "#959ab8" })
+
   -- 差分
   diff_transparent(bg_color)
 
