@@ -4,9 +4,7 @@ local command = vim.api.nvim_create_user_command
 
 local M       = {}
 
--- FIXME: bladeでも、phpの関数のhoverが読みたい
 -- NOTE: coc-bladeは、"b:xxx"と打つと補完候補が出る
--- NOTE: :CocCommand xx.xxで各拡張機能のコマンドを色々呼び出せる
 -- NOTE: スペルチェッカーの辞書登録
 -- .config/nvim/coc-settings.jsonの"cSpell.userWords"に追加
 --   :CocCommand cSpell.addWordToUserDictionary
@@ -51,7 +49,7 @@ function M.lua_add_coc()
   command('CocOutlines', 'CocCommand fzf-preview.CocOutline', {})
 end
 
--- NOTE: これはvimscriptで書いた方が可読性高い気がするのでlua化はしない
+-- TODO: lua化
 function M.lua_source_coc()
   fn["plugins#hook_source_coc"]()
 end

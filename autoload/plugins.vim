@@ -8,7 +8,7 @@
 " -----------------------------------------------------------------------------
 " coc.nvim
 " -----------------------------------------------------------------------------
-" NOTE: これはvimscriptで書いた方が可読性高い気がするのでlua化はしない
+" TODO: lua化
 function! plugins#hook_source_coc() abort
   " 補完候補の決定
   inoremap <silent><expr> <CR> coc#pum#visible()
@@ -103,7 +103,6 @@ endfunction
 "
 " vim-autoclose(自作)
 "
-" NOTE: これはvimscriptで書いた方が可読性高い気がするのでlua化はしない
 function! plugins#hook_source_autoclose() abort
   " let g:autoclose#autoclosing_brackets_enable = 0
   " let g:autoclose#autoclosing_quots_enable = 0
