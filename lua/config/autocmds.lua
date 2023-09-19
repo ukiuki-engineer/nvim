@@ -19,6 +19,11 @@ au({ "BufWrite", "BufRead" }, {
       return
     end
 
+    -- quickfix windowの時は何もしない
+    if vim.o.filetype == "qf" then
+      return
+    end
+
     -- diffviewのパネルがあったら何もしない
     if string.find(fn.join(fn.gettabinfo(), ', '), 'diffview_view') then -- FIXME: なんか上手くいなない
       return
