@@ -14,6 +14,11 @@ local mksession = 'mksession! ' .. pwd_in_startup .. '/Session.vim'
 au({ "BufWrite", "BufRead" }, {
   group = "MyAutocmds",
   callback = function()
+    -- readonlyなら何もしない
+    if vim.o.readonly then
+      return
+    end
+
     -- commit編集時は何もしない
     if fn.expand('%:t') == "COMMIT_EDITMSG" then
       return
