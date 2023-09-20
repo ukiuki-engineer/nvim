@@ -45,3 +45,10 @@ au("BufWrite", {
     vim.fn["utils#refresh_git_infomations"]()
   end
 })
+
+-- env系はshとして開く
+au("BufRead", {
+  group = "MyAutocmds",
+  pattern = { ".env", ".env.*" },
+  command = "set ft=sh",
+})
