@@ -129,6 +129,9 @@ function M.set_customcolor()
 
   -- gitsigns.nvim
   hi(0, 'GitSignsCurrentLineBlame', { link = "comment" })
+
+  -- telescope.nvim
+  hi(0, 'TelescopePromptCounter', { link = "Comment" })
 end
 
 -- tokyonight*が設定される前に行う処理
@@ -185,6 +188,9 @@ function M.colorscheme_tokyonight()
   })
   hi(0, 'MatchWord', { link = "MatchParen" })
   hi(0, 'MatchWordCur', { link = "MatchParen" })
+
+  -- telescope.nvim
+  hi(0, 'TelescopePromptCounter', { link = "Comment" })
 end
 
 function M.colorscheme_pink_panic()
@@ -219,6 +225,9 @@ function M.colorscheme_pink_panic()
   })
   hi(0, 'MatchWord', { link = "MatchParen" })
   hi(0, 'MatchWordCur', { link = "MatchParen" })
+
+  -- telescope.nvim
+  hi(0, 'TelescopePromptCounter', { link = "Comment" })
 end
 
 -- background colorを取得する
