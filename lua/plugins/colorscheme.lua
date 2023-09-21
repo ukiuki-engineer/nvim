@@ -203,6 +203,17 @@ function M.colorscheme_pink_panic()
     bg = utils.transparent_color(bg_color, "Magenta", 0.60)
   })
 
+  -- 検索
+  hi(0, 'CurSearch', { bg = "#dea3f5", fg = "#55066f" })
+  hi(0, 'IncSearch', {
+    bg = utils.transparent_color(bg_color, "#dea3f5", 0.60),
+  })
+  hi(0, 'Search', { link = "IncSearch" })
+
+  -- Comment
+  -- hi(0, 'Comment', { fg = "#80a0ff" })
+  hi(0, 'Comment', { fg = "#5b6c9e" })
+
   -- 差分
   diff_transparent(bg_color)
 
