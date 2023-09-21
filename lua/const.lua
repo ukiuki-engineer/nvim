@@ -22,9 +22,7 @@ vim.g["my#const"] = {
     error_git_user_info      = "An error occurred while getting user name and email.",
   },
   bg_colors                    = bg_colors,
-  -- FIXME: 本当は環境変数とかから取得できるようにした方が良いけど一旦↓で。
-  --        bg_colorsを定義しといて、環境に応じて↓を手で変える
-  term_bgcolor                 = bg_colors.synthwave_alpha,
+  term_bgcolor                 = bg_colors.cobalt2,
 }
 
 -- 定数化
