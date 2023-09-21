@@ -62,10 +62,6 @@ function M.set_customcolor()
   -- カラースキーム
   local colorscheme = vim.g.colors_name
 
-  if colorscheme == "pink-panic" then
-    return
-  end
-
   -- background colorを取得
   local bg_color = M.get_background()
 
