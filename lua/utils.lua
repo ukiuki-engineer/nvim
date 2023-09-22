@@ -149,6 +149,30 @@ function M.get_highlight_color(highlight_group, highlight_arg)
   end
 end
 
+-- カラースキームをランダムに変更する
+function M.change_colorscheme()
+  -- 対象のカラースキーム
+  local target_colorschemes = {}
+  if vim.g.colors_name == nil or vim.g.colors_name == "" then
+    -- カラースキームが設定されて無ければ定数の中身をそのまま使う
+    target_colorschemes = vim.g["my#const"]["favorite_colorschemes"]
+  else
+    -- 現在のカラースキームを除いたリストを作成
+    for _, scheme in ipairs(vim.g["my#const"]["favorite_colorschemes"]) do
+      if scheme ~= vim.g.colors_name then
+        table.insert(target_colorschemes, scheme)
+      end
+    end
+  end
+
+  -- 乱数
+  math.randomseed(os.time())
+  local random_num = math.random(1, #target_colorschemes)
+
+  -- カラースキームを変更
+  vim.cmd("colorscheme " .. target_colorschemes[random_num])
+end
+
 --
 -- インデントをセットする(バッファローカル)
 --

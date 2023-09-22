@@ -23,6 +23,12 @@ vim.g["my#const"] = {
   },
   bg_colors                    = bg_colors,
   term_bgcolor                 = bg_colors.cobalt2,
+  favorite_colorschemes        = {
+    "catppuccin",
+    "nightfly",
+    "tokyonight-night",
+    "gruvbox",
+  },
 }
 
 -- 定数化

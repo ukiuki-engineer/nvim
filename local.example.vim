@@ -6,18 +6,9 @@
 " 気分、環境によってころころ変えたいけど、いちいちgitの差分出るのが嫌だから
 " ==============================================================================
 let g:coc_node_path = "/opt/homebrew/opt/node@18/bin/node"
-" colorscheme catppuccin
-" colorscheme catppuccin-frappe
-" colorscheme nightfly
-" colorscheme tokyonight-night
-
-" set termguicolors
-" set background=dark
-" colorscheme retrobox
-colorscheme gruvbox
-
+" NOTE: 定数の中身を変更したい場合は以下のような感じで
 " unlo g:my#const
 " let g:my#const['term_bgcolor'] = g:my#const['bg_colors']['synthwave_alpha']
 " lockv g:my#const
-" set termguicolors
-" colorscheme pink-panic
+
+lua require("utils").change_colorscheme()

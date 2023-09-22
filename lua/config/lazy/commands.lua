@@ -22,3 +22,6 @@ vim.cmd([[
   " 保存だけ行う(autocmdを発火させない。format on saveとかその他諸々。)
   command! W                         :noautocmd w
 ]])
+
+-- カラースキームをランダムに変更するコマンド
+vim.api.nvim_create_user_command('ChangeColorscheme', require("utils").change_colorscheme, {})
