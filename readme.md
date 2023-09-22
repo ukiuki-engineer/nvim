@@ -41,17 +41,15 @@ Total Min:     18.839000 msec
 
 ## TODO
 
+- [ ] nordfox のコメントが若干見づらい
 - [ ] 色々例外処理を入れておきたい(特に git 操作周り)
-- [ ] diffview の時だけ coc-tsserver をオフにできないか？(よくバグるから)
-- [ ] `:mksession`で diffview のタブを保存しないように
-- [ ] telescope: normal モード時、検索->n でジャンプできるようにできないか？
-- [ ] telescope.git_branches をもっとカラフルにできないか？
+- telescope
+  - [ ] normal モード時、検索->n でジャンプできるようにできないか？
+  - [ ] git_branches をもっとカラフルにできないか？
 - [ ] coc-outline: markdown で効かない...
 - gitsigns.nvim
   - [ ] coc の diagnostics が被って gitsigns が見えなくなるのをどうにかできないか？
   - [ ] stage した行もそれが分るように表示できないか？
 - [ ] `utils#refresh_git_infomations()`を非同期化したい
-- [ ] colorscheme をランダムに切り替えるコマンド`:ChangeColorscheme`を作る(飽きるから)
-- [ ] nordfox のコメントが若干見づらい
 - [ ] 外部ツールインストールが必要な場合のインストール処理を書く
       → 今のところ結構放置してるところも多いはず...
