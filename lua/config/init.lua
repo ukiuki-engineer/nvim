@@ -9,13 +9,18 @@ local utils   = require("utils")
 -- colorscheme
 -- ------------------------------------------------------------------------------
 augroup("MyCustomColor", {})
-au("ColorSchemePre", {
-  pattern = { "tokyonight*" },
-  callback = function()
-    require("plugins.colorscheme").colorschemepre_tokyonight()
-  end,
-  group = "MyCustomColor",
-})
+
+if not utils.bool_fn.has("mac") then
+  -- NOTE: MacはiTerm2側でスケスケにする
+  au("ColorSchemePre", {
+    pattern = { "tokyonight*" },
+    callback = function()
+      require("plugins.colorscheme").colorschemepre_tokyonight()
+    end,
+    group = "MyCustomColor",
+  })
+end
+
 au("ColorScheme", {
   callback = function()
     if vim.g.colors_name == "tokyonight" then
