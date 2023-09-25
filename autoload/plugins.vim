@@ -194,6 +194,16 @@ function! plugins#skkeleton_init() abort
         \ "\'"          : ['’', ''],
         \ "\""          : ['”', ''],
         \ "z\<Space>"   : ["\u3000", ''],
+        \ "z0"           : ['０', ''],
+        \ "z1"           : ['１', ''],
+        \ "z2"           : ['２', ''],
+        \ "z3"           : ['３', ''],
+        \ "z4"           : ['４', ''],
+        \ "z5"           : ['５', ''],
+        \ "z6"           : ['６', ''],
+        \ "z7"           : ['７', ''],
+        \ "z8"           : ['８', ''],
+        \ "z9"           : ['９', ''],
         \ })
   call skkeleton#register_keymap('henkan', '<S-Space>', 'henkanBackward')
 endfunction
