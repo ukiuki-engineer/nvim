@@ -28,19 +28,19 @@ end
 local function diff_transparent(bg_color)
   -- 追加された行
   hi(0, 'DiffAdd', {
-    bg = utils.transparent_color(bg_color, "DarkGreen", 0.80)
+    bg = utils.transparent_color(bg_color, "DarkGreen", 0.55)
   })
   -- 変更行
   hi(0, 'DiffChange', {
-    bg = utils.transparent_color(bg_color, "Yellow", 0.80)
+    bg = utils.transparent_color(bg_color, "Yellow", 0.75)
   })
   -- 削除された行
   hi(0, 'DiffDelete', {
-    bg = utils.transparent_color(bg_color, "Red", 0.80)
+    bg = utils.transparent_color(bg_color, "Red", 0.75)
   })
   -- 変更行の変更箇所
   hi(0, 'DiffText', {
-    bg = utils.transparent_color(bg_color, "#FD7E00", 0.60)
+    bg = utils.transparent_color(bg_color, "#FD7E00", 0.55)
   })
   -- gitsigns.nvim
   hi(0, 'GitSignsCurrentLineBlame', { link = "comment" })
@@ -69,11 +69,14 @@ function M.set_customcolor()
   if utils.in_array(colorscheme, {
         "gruvbox",
         "moonlight",
-        "nightfly",
         "nord",
       }) then
     diff_transparent_by_own_colors(bg_color)
-  elseif utils.in_array(colorscheme, { "sonokai" }) then
+  elseif utils.in_array(colorscheme, {
+        "catppuccin-mocha",
+        "nightfly",
+        "sonokai",
+      }) then
     diff_transparent(bg_color)
   end
 
@@ -118,7 +121,7 @@ function M.set_customcolor()
       bg = "#282828",
     })
     hi(0, 'IncSearch', {
-      bg = utils.transparent_color(bg_color, "#FABD2F", 0.70),
+      bg = utils.transparent_color(bg_color, "#FABD2F", 0.60),
     })
     hi(0, 'Search', { link = "IncSearch" })
   end
