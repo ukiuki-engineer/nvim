@@ -117,6 +117,9 @@ function! plugins#hook_source_autoclose() abort
         \ ]
   " 補完キャンセル機能をオン
   let g:autoclose#cancel_completion_enable = 1
+  " 補完を無効化するfiletype
+  let g:autoclose#disabled_filetypes = ["TelescopePrompt"]
+
   " <C-c>で補完をキャンセル
   inoremap <silent><expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
   augroup my#autoclose
@@ -146,28 +149,8 @@ function! plugins#hook_source_autoclose() abort
           \ 'output'    : '--  --',
           \ 'back_count': 3
           \ })
-
-    " 補完無効化
-    autocmd FileType TelescopePrompt call plugins#disable_autoclose()
   augroup END
 endfunction
-
-" 補完無効化
-function! plugins#disable_autoclose() abort
-  inoremap <buffer> ( (
-  inoremap <buffer> ) )
-  inoremap <buffer> [ [
-  inoremap <buffer> ] ]
-  inoremap <buffer> { {
-  inoremap <buffer> } }
-  inoremap <buffer> " "
-  inoremap <buffer> ' '
-  inoremap <buffer> ` `
-endfunction
-
-" TODO: 補完無効化は、後でプラグイン側に設定として組み込みたい
-" ↓のような感じで設定できるように
-" let g:autoclose#disable_file_types = {"TelescopePrompt"}
 
 "
 " skkeleton
