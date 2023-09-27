@@ -103,7 +103,6 @@ endfunction
 function! plugins#hook_source_autoclose() abort
   " let g:autoclose#autoclosing_brackets_enable = 0
   " let g:autoclose#autoclosing_quots_enable = 0
-  " let g:autoclose#autoclosing_eruby_tags = 0
   let g:autoclose#disable_nextpattern_autoclosing_brackets = []
   let g:autoclose#disable_nextpattern_autoclosing_quots = []
   " 改行の整形機能をオフ
@@ -120,9 +119,9 @@ function! plugins#hook_source_autoclose() abort
   let g:autoclose#cancel_completion_enable = 1
   " <C-c>で補完をキャンセル
   inoremap <silent><expr> <C-c> autoclose#is_completion() ? autoclose#cancel_completion() : "\<Esc>"
-  " カスタム補完定義
-  augroup autoclose#custom_completion
+  augroup my#autoclose
     autocmd!
+    " カスタム補完定義
     autocmd FileType html,vue,markdown call autoclose#custom_completion({
           \ 'prev_char' : '<',
           \ 'input_char': '!',
@@ -147,8 +146,28 @@ function! plugins#hook_source_autoclose() abort
           \ 'output'    : '--  --',
           \ 'back_count': 3
           \ })
+
+    " 補完無効化
+    autocmd FileType TelescopePrompt call plugins#disable_autoclose()
   augroup END
 endfunction
+
+" 補完無効化
+function! plugins#disable_autoclose() abort
+  inoremap <buffer> ( (
+  inoremap <buffer> ) )
+  inoremap <buffer> [ [
+  inoremap <buffer> ] ]
+  inoremap <buffer> { {
+  inoremap <buffer> } }
+  inoremap <buffer> " "
+  inoremap <buffer> ' '
+  inoremap <buffer> ` `
+endfunction
+
+" TODO: 補完無効化は、後でプラグイン側に設定として組み込みたい
+" ↓のような感じで設定できるように
+" let g:autoclose#disable_file_types = {"TelescopePrompt"}
 
 "
 " skkeleton
