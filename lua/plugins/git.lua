@@ -80,9 +80,7 @@ end
 -- diffview.nvim
 --
 function M.lua_add_diffview()
-  vim.keymap.set('n', '<leader>do', "<Cmd>DiffviewOpen<CR>", {})
   vim.keymap.set('n', '<Right>', "<Cmd>DiffviewOpen<CR>", {})
-  vim.keymap.set('n', '<leader>df', "<Cmd>DiffviewFileHistory<CR>", {})
   vim.keymap.set('n', '<Down>', "<Cmd>DiffviewFileHistory<CR>", {})
 end
 
