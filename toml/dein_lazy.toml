@@ -186,8 +186,9 @@ require("plugins.git").lua_source_gitsigns()
 '''
 
 [[plugins]] # gitの差分をvimdiffで表示したりstageしたりするやつ
-# NOTE: stageまではできるので、後は`:Git`でcommit & pushすれば良い
-# NOTE: `:DiffviewOpen master..HEAD`で、masterとHEADの差分を確認できる(要は、現在のブランチ -> masterへプルリクを出す時の確認に使える)
+# NOTE: master <- 現在のブランチでプルリクを出す時
+#   :DiffviewOpen master..HEAD   # masterと、現ブランチの最新のcommitの差分(cocのdiagnosticsが表示されない)
+#   :DiffviewOpen master         # masterと、working treeの差分(cocのdiagnosticsが表示されるからこっちの方が良いかも)
 repo = 'sindrets/diffview.nvim'
 depends = ['plenary.nvim', 'nvim-web-devicons']
 on_cmd = [
