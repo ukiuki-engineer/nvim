@@ -17,10 +17,30 @@ vim.g['vimrc#loaded_keymappings'] = true
 -------------------------------------------------------------------------------
 -- localな変数、function
 -------------------------------------------------------------------------------
-local keyset = vim.keymap.set
-local opts = { noremap = true, silent = true }
-local augroup = vim.api.nvim_create_augroup
-local au = vim.api.nvim_create_autocmd
+local keyset                      = vim.keymap.set
+local opts                        = { noremap = true, silent = true }
+local augroup                     = vim.api.nvim_create_augroup
+local au                          = vim.api.nvim_create_autocmd
+
+-- 次のタブに移動(タブが一個ならtabnewする)
+local function tabnext()
+  local tab_count = #vim.fn.gettabinfo()
+  if tonumber(tab_count) > 1 then
+    vim.cmd([[tabnext]])
+  else
+    vim.cmd([[tabnew]])
+  end
+end
+
+-- 前のタブに移動(タブが一個ならtabnewする)
+local function tabp()
+  local tab_count = #vim.fn.gettabinfo()
+  if tonumber(tab_count) > 1 then
+    vim.cmd([[tabp]])
+  else
+    vim.cmd([[tabnew | -tabmove]])
+  end
+end
 
 -- 全角文字に行内ジャンプ
 local function jump_to_zenkaku(hankaku_zenkaku_pairs)
@@ -49,35 +69,20 @@ keyset("n", "gb", ":bn<CR>", opts)
 keyset("n", "gB", ":bN<CR>", opts)
 keyset({ "n", "x" }, "<C-j>", "7j", opts)
 keyset({ "n", "x" }, "<C-k>", "7k", opts)
--- 次のタブに移動(タブが一個ならtabnewする)
-keyset("n", "<TAB>",
-  function()
-    local tab_count = #vim.fn.gettabinfo()
-    if tonumber(tab_count) > 1 then
-      vim.cmd([[tabnext]])
-    else
-      vim.cmd([[tabnew]])
-    end
-  end,
-  opts
-)
--- NOTE: 上記で、<C-i>も同じmappingが適用されてしまうので元の動きに戻す
+
+-- タブ移動
+keyset("n", "<TAB>", tabnext, opts)
+keyset("n", "gt", tabnext, opts)
+keyset("n", "<S-TAB>", tabp, opts)
+keyset("n", "gT", tabp, opts)
+
+-- NOTE: <TAB>のmappingが<C-i>にも適用されてしまうので元の動きに戻す
 keyset({ "n" }, "<C-i>", "<TAB>", opts)
--- 前のタブに移動(タブが一個ならtabnewする)
-keyset("n", "<S-TAB>",
-  function()
-    local tab_count = #vim.fn.gettabinfo()
-    if tonumber(tab_count) > 1 then
-      vim.cmd([[tabp]])
-    else
-      vim.cmd([[tabnew | -tabmove]])
-    end
-  end,
-  opts
-)
+
 -- タブを閉じる
 keyset("n", "<leader>tc", ":tabclose<CR>", opts)
--- cmdlineモードをemacsキーバインドでカーソル移動 {{{
+
+-- cmdlineモードをemacsキーバインドでカーソル移動
 -- keyset("c", "<C-b>", "<Left>", opts)
 -- keyset("c", "<C-f>", "<Right>", opts)
 -- keyset("c", "<C-a>", "<Home>", opts)
@@ -91,7 +96,6 @@ vim.cmd([[
   cnoremap <C-e> <End>
   cnoremap <C-d> <Del>
 ]])
--- }}}
 -------------------------------------------------------------------------------
 -- 遅延で定義するmapping(vim起動時にあれこれ処理させたくない)
 -------------------------------------------------------------------------------
