@@ -84,7 +84,7 @@ function M.lua_add_diffview()
   vim.keymap.set('n', '<Down>', "<Cmd>DiffviewFileHistory<CR>", {})
 
   -- NOTE: keymappingが効かない時用。設定し直して開き直す。
-  command('ResetDiffviewSettings', function()
+  command('ResettingDiffview', function()
     vim.cmd([[DiffviewClose]])
     M.lua_source_diffview()
     vim.cmd([[DiffviewOpen]])
