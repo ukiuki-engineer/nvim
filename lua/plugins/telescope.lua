@@ -50,6 +50,7 @@ function M.lua_source_telescope()
   -- NOTE: ↑の使用例:
   -- :LiveGrep *.toml
 
+  local actions = require('telescope.actions')
   require('telescope').setup({
     defaults = {
       layout_strategy = 'horizontal',
@@ -67,6 +68,10 @@ function M.lua_source_telescope()
           end,
           -- NOTE: <C-/>でkeymapのhelpを表示
           -- ["<C-/>"] = "which_key",
+        },
+        n = {
+          ["<C-b>"] = actions.results_scrolling_up,
+          ["<C-f>"] = actions.results_scrolling_down,
         },
       },
 
