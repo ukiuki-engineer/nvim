@@ -74,7 +74,7 @@ function M.lua_source_telescope()
           ["<C-f>"] = actions.results_scrolling_down,
         },
       },
-
+      initial_mode = "normal",
     },
     pickers = {
       live_grep = {
