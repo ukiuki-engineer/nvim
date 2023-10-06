@@ -47,7 +47,7 @@ function M.lua_add_coc()
     'coc-yank',
   }
   command('CocOutlines', 'CocCommand fzf-preview.CocOutline', {})
-  command('GitBranches', 'CocCommand fzf-preview.GitBranches', {})
+  -- command('GitBranches', 'CocCommand fzf-preview.GitBranches', {})
 end
 
 -- TODO: lua化
