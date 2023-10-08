@@ -206,6 +206,20 @@ require("plugins.git").lua_add_diffview()
 lua_source = '''
 require("plugins.git").lua_source_diffview()
 '''
+
+[[plugins]] # git操作で便利らしい
+# TODO: 便利らしいから一旦入れてみる。あまり使わなそうなら後で消す。
+repo = 'kdheepak/lazygit.nvim'
+on_cmd = [
+  'LazyGit',
+  'LazyGitConfig',
+  'LazyGitCurrentFile',
+  'LazyGitFilter',
+  'LazyGitFilterCurrentFile',
+]
+lua_add = '''
+require("plugins.git").lua_add_lazygit()
+'''
 ################################################################################
 # FZF
 ################################################################################
