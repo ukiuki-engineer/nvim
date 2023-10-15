@@ -48,11 +48,8 @@ function M.lua_source_previm()
   -- fn["plugins#hook_source_previm"]()
   g.previm_show_header = 1
   g.previm_enable_realtime = 1
-  if utils.bool_fn.has('mac') then
-    -- MacOS用
-    g.previm_open_cmd = [[open -a safari]]
-  elseif require("utils").is_wsl() then
-    -- TODO: WSL用
+  if os.getenv('PREVIM_OPEN_CMD') then
+    g.previm_open_cmd = os.getenv('PREVIM_OPEN_CMD')
   end
 end
 
