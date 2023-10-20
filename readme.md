@@ -41,6 +41,8 @@ Total Min:     18.839000 msec
 
 ## TODO
 
+- [ ] `utils#refresh_git_infomations()`中で発生しているバグを修正  
+→FIXMEコメントを参照
 - [ ] nordfox のコメントが若干見づらい
 - [ ] 色々例外処理を入れておきたい(特に git 操作周り)
 - telescope

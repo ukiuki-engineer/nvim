@@ -73,6 +73,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
 
   " ブランチ、commit情報 {{{
   try
+    " FIXME: 新規ブランチ作成→commitせずにpushした後、ここの処理でバグが発生している
     let g:my#git_infomations['branch_name'] = v:lua.require('utils').get_branch_name()
 
     let git_info = v:lua.require('utils').get_git_infomations()
