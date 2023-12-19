@@ -213,6 +213,10 @@ function M.lua_source_treesitter()
       "vue",
     },
   }
+  -- nvim-ts-context-commentstring
+  require('ts_context_commentstring').setup {
+    enable_autocmd = false,
+  }
   -- FIXME: 全部書かずに、追加分だけ書く事はできないのか？
   require("vim.treesitter.query").set(
     "markdown",
