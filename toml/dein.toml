@@ -58,10 +58,10 @@ lua_add = '''
 require("plugins.ui").timer_start_bufferline(vim.g["my#const"].timer_start_bufferline)
 '''
 
-[[plugins]]
-repo= 'lewis6991/satellite.nvim'
+[[plugins]] # スクロールバー
+repo= 'petertriho/nvim-scrollbar'
 lua_add = '''
-require("plugins.ui").timer_start_satellite(vim.g["my#const"].timer_start_satellite)
+require("plugins.ui").timer_start_scrollbar(vim.g["my#const"].timer_start_scrollbar)
 '''
 ################################################################################
 # ColorScheme

@@ -336,48 +336,20 @@ function M.lua_source_dropbar()
 end
 
 --
--- satellite.nvim
+-- nvim-scrollbar
 --
-function M.timer_start_satellite(time)
+function M.timer_start_scrollbar(time)
   vim.fn.timer_start(
     time,
     function()
-      require('plugins.ui').lua_add_satellite()
+      require('plugins.ui').lua_add_scrollbar()
     end
   )
 end
 
-function M.lua_add_satellite()
-  require('satellite').setup({
-    current_only = false,
-    winblend = 50,
-    zindex = 40,
-    excluded_filetypes = {},
-    width = 2,
-    handlers = {
-      search = {
-        enable = true,
-      },
-      diagnostic = {
-        enable = true,
-        signs = { '-', '=', '≡' },
-        min_severity = vim.diagnostic.severity.HINT,
-      },
-      gitsigns = {
-        enable = true,
-        signs = {
-          -- can only be a single character (multibyte is okay)
-          add = "│",
-          change = "│",
-          delete = "-",
-        },
-      },
-      marks = {
-        enable = true,
-        show_builtins = true, -- shows the builtin marks like [ ] < >
-      },
-    },
-  })
+function M.lua_add_scrollbar()
+  -- TODO: 設定する
+  require('scrollbar').setup({})
 end
 
 return M
