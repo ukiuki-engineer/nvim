@@ -23,6 +23,13 @@ Total Min:     18.839000 msec
 | CPU    | AMD Ryzen 5 3500 6-Core Processor 3.59 GHz |
 | MEMORY | 16G                                        |
 
+## Required
+
+- [Deno](https://deno.com/)
+- Node
+- [fzf](https://github.com/junegunn/fzf)
+- SKK で使ってる辞書ファイル類(TODO: あとでちゃんとまとめる)
+
 ## NOTE
 
 自分用メモ
@@ -42,7 +49,7 @@ Total Min:     18.839000 msec
 ## TODO
 
 - [ ] `utils#refresh_git_infomations()`中で発生しているバグを修正  
-→FIXMEコメントを参照
+       →FIXME コメントを参照
 - [ ] nordfox のコメントが若干見づらい
 - [ ] 色々例外処理を入れておきたい(特に git 操作周り)
 - telescope
@@ -53,11 +60,3 @@ Total Min:     18.839000 msec
   - [ ] coc の diagnostics が被って gitsigns が見えなくなるのをどうにかできないか？
   - [ ] stage した行もそれが分るように表示できないか？
 - [ ] `utils#refresh_git_infomations()`を非同期化したい
-- [ ] 外部ツールインストールが必要な場合のインストール処理を書く
-      → 今のところ結構放置してるところも多いはず...
-- [ ] fzfでのブランチ操作
-→色々希望を叶えようと思ったらかなり大変なのが分かってきたので、
- 一旦vim上での操作は置いておく。
- 以下を参考に、一旦シェル上で理想の操作性を実現させておく。(半日もあればできるかな...)
- (仕様はfzf-previewを参考にする。)
- https://github.com/junegunn/fzf-git.sh
