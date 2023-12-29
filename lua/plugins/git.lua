@@ -17,7 +17,7 @@ local function git_push_confirm()
         g['my#git_infomations']['branch_name'] .. '\". Would you like to publish this branch?'
 
     if vim.fn["utils#confirm"](message) then
-      vim.cmd("Gin push origin " .. g['my#git_infomations']['branch_name'])
+      vim.cmd("Gin push --set-upstream origin HEAD")
     end
     return
   end
