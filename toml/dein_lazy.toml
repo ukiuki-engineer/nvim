@@ -242,7 +242,7 @@ on_cmd = [
   'FindAllFiles',
   'FindFiles',
   'GitBranches',
-  'GitStash',
+  'GitStashList',
   'GitStatus',
   'HelpTags',
   'LiveGrep',
