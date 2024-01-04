@@ -50,6 +50,7 @@ Total Min:     18.839000 msec
 
 - [ ] `utils#refresh_git_infomations()`中で発生しているバグを修正  
        →FIXME コメントを参照
+- [ ] gruvbox でdiffが見づらい
 - [ ] nordfox のコメントが若干見づらい
 - [ ] 色々例外処理を入れておきたい(特に git 操作周り)
 - telescope
