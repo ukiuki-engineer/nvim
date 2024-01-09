@@ -50,10 +50,9 @@ function! plugins#hook_source_coc() abort
   " coc-outlineの操作
   " coc-outlineを表示
   nnoremap <silent><nowait> <space>o :call plugins#toggle_outline()<CR>
-  " coc-outlineにジャンプ
-  " NOTE: ジャンプ前の箇所に戻るには、普通に<C-o>で
-  " NOTE: outline tree上で<space>tで、treeの開閉ができる
+  " coc-outlineにジャンプ。tree上で押すとtreeの開閉。
   nnoremap <silent><nowait> <space>t :call CocActionAsync('showOutline')<CR>
+  " NOTE: ジャンプ前の箇所に戻るには、普通に<C-o>で
 
   " ---------------------------------------------------------------------------
   " Symbol renaming
