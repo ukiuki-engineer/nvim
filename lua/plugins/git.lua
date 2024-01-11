@@ -74,6 +74,8 @@ function M.lua_add_gin()
   -- commands
   command('DeleteLatestCommit', function() M.pcall_delete_latest_commit('soft') end, {})
   command('GinPush', M.pcall_git_push_confirm, {})
+  -- TODO: 引数を渡せるようにする。↓みたいな感じでいけるらしい。
+  -- vim.cmd("command! -nargs=? GinPush call luaeval('M.pcall_git_push_confirm(_A)', <q-args>)")
 end
 
 --
