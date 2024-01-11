@@ -14,7 +14,7 @@ end
 -- deinが無ければインストール
 if not fn.matchstr(vim.o.runtimepath, '/dein.vim') or "" then
   if not fn.isdirectory(dein_repo_dir) then
-    -- TODO: 動作未確認
+    -- TODO: lua化後動作未確認
     fn.system({
       "git",
       "clone",
