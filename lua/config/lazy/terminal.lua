@@ -16,11 +16,11 @@ au("TermOpen", {
   command = "startinsert"
 })
 
--- keymappings {{{
 local opts = { noremap = true, silent = true }
 -- NOTE: vimと違って、Normalモード中にpでペーストできる
 vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>", opts)
--- }}}
+-- TODO: 開閉できるmappingを定義する
+-- 開くコマンドしか無いからこのままだと無理
 
 -- commands {{{
 -- NOTE: vim.api.nvim_create_user_command()を使うよりこっちの方がシンプル...
