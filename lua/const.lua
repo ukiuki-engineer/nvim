@@ -16,6 +16,8 @@ vim.g["my#const"] = {
   timer_start_clipboard        = 1000,
   timer_start_standard_plugins = 500,
   error_messages               = {
+    -- TODO: keyをエラーコードにする。エラー表示にもエラーコードを出す。
+    -- 要はエラー発生時にエラーコードでgrepできるようにする。
     error_external_command   = "An error occurred while executing the external command.",
     error_branch_commit_info = "An error occurred while getting branch and commit information.",
     error_git_changes        = "An error occurred while checking for git changes.",
