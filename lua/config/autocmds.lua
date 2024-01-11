@@ -2,9 +2,10 @@
 -- autocmds
 -- →大体、個々の設定のとこで定義する事が多いからここに書く事はあんまり無い
 -------------------------------------------------------------------------------
-local au = vim.api.nvim_create_autocmd
+local au      = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-local fn = vim.fn
+local fn      = vim.fn
+local utils   = require("utils")
 
 augroup("MyAutocmds", {})
 
@@ -57,4 +58,34 @@ au("BufRead", {
   group = "MyAutocmds",
   pattern = { ".env", ".env.*" },
   command = "set ft=sh",
+})
+-- ------------------------------------------------------------------------------
+-- colorscheme
+-- ------------------------------------------------------------------------------
+augroup("MyCustomColor", {})
+
+if not utils.bool_fn.has("mac") then
+  -- NOTE: MacはiTerm2側でスケスケにする
+  au("ColorSchemePre", {
+    pattern = { "tokyonight*" },
+    callback = function()
+      require("plugins.colorscheme").colorschemepre_tokyonight()
+    end,
+    group = "MyCustomColor",
+  })
+end
+
+au("ColorScheme", {
+  callback = function()
+    if vim.g.colors_name == "tokyonight" then
+      require("plugins.colorscheme").set_customcolor_tokyonight()
+      return
+    elseif vim.g.colors_name == "pink-panic" then
+      require("plugins.colorscheme").set_customcolor_pink_panic()
+      return
+    else
+      require("plugins.colorscheme").set_customcolor_common()
+    end
+  end,
+  group = "MyCustomColor",
 })

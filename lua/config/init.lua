@@ -1,40 +1,10 @@
 -- ==============================================================================
 -- configのメインファイル
 -- ==============================================================================
-local au      = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
-local g       = vim.g
-local utils   = require("utils")
--- ------------------------------------------------------------------------------
--- colorscheme
--- ------------------------------------------------------------------------------
-augroup("MyCustomColor", {})
-
-if not utils.bool_fn.has("mac") then
-  -- NOTE: MacはiTerm2側でスケスケにする
-  au("ColorSchemePre", {
-    pattern = { "tokyonight*" },
-    callback = function()
-      require("plugins.colorscheme").colorschemepre_tokyonight()
-    end,
-    group = "MyCustomColor",
-  })
-end
-
-au("ColorScheme", {
-  callback = function()
-    if vim.g.colors_name == "tokyonight" then
-      require("plugins.colorscheme").set_customcolor_tokyonight()
-      return
-    elseif vim.g.colors_name == "pink-panic" then
-      require("plugins.colorscheme").set_customcolor_pink_panic()
-      return
-    else
-      require("plugins.colorscheme").set_customcolor_common()
-    end
-  end,
-  group = "MyCustomColor",
-})
+local au         = vim.api.nvim_create_autocmd
+local augroup    = vim.api.nvim_create_augroup
+local g          = vim.g
+local utils      = require("utils")
 -- ------------------------------------------------------------------------------
 -- 通常ロード
 -- ------------------------------------------------------------------------------
