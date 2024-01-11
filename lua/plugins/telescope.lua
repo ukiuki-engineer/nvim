@@ -192,7 +192,7 @@ function M.git_status()
   local action_state = require('telescope.actions.state')
 
   -- git情報を更新
-  vim.fn['utils#refresh_git_infomations']()
+  vim.fn['utils#refresh_git_infomations'](true)
 
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)

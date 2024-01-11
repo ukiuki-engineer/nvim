@@ -82,7 +82,10 @@ end
 -- diffview.nvim
 --
 function M.lua_add_diffview()
-  vim.keymap.set('n', '<Right>', "<Cmd>DiffviewOpen<CR>", {})
+  vim.keymap.set('n', '<Right>', function()
+    vim.fn["utils#refresh_git_infomations"](true)
+    vim.cmd([[DiffviewOpen]])
+  end, {})
   vim.keymap.set('n', '<Down>', "<Cmd>DiffviewFileHistory<CR>", {})
 
   -- NOTE: keymappingが効かない時用。設定し直して開き直す。

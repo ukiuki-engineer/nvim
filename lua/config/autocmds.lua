@@ -38,11 +38,17 @@ au({ "BufWrite", "BufRead" }, {
   end
 })
 
--- git情報を更新
-au({ "BufWrite", "VimResume" }, {
+-- Git情報を更新
+au({ "BufWrite" }, {
   group = "MyAutocmds",
   callback = function()
     vim.fn["utils#refresh_git_infomations"]()
+  end
+})
+au({ "VimResume" }, {
+  group = "MyAutocmds",
+  callback = function()
+    vim.fn["utils#refresh_git_infomations"](true)
   end
 })
 
