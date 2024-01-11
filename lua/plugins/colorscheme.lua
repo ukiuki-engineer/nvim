@@ -67,7 +67,6 @@ function M.set_customcolor_common()
 
   -- 差分
   if utils.in_array(colorscheme, {
-        "gruvbox",
         "moonlight",
         "nord",
       }) then
