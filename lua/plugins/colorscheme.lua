@@ -56,7 +56,7 @@ local M = {}
 -- 大体のcolorscheme用の設定はここにまとめる
 -- 分けた方が良いやつは別メソッドに切り出す
 --
-function M.set_customcolor()
+function M.set_customcolor_common()
   -- TODO: (TODO, FIXME, NOTE)について、どのファイルでもハイライトされるようにする
 
   -- カラースキーム
@@ -147,7 +147,7 @@ end
 
 -- tokyonight*が設定された後に行う処理
 -- NOTE: 基本透け透けで使用する前提
-function M.colorscheme_tokyonight()
+function M.set_customcolor_tokyonight()
   -- TODO: diffviewとgitsignsを綺麗に調整する
   -- tokyonight系はかっこ良いけど色々見づらいから結構調整要るなぁ...
 
@@ -192,7 +192,7 @@ function M.colorscheme_tokyonight()
   hi(0, 'TelescopePromptCounter', { link = "Comment" })
 end
 
-function M.colorscheme_pink_panic()
+function M.set_customcolor_pink_panic()
   -- background colorを取得
   local bg_color = const.term_bgcolor
 
