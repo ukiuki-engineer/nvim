@@ -31,7 +31,12 @@ function! utils#confirm(message) abort
 endfunction
 
 "
-" git情報(以下の構造を持つグローバル変数)を更新する
+" Git情報(g:my#git_infomations)を更新する
+"
+" @param boolean fetch(trueなら`git fetch`する)
+" @return void
+"
+" NOTE: g:my#git_infomationsの構造は以下
 "
 " g:my#git_infomations  : v:t_dict
 "   branch_name         : v:t_string
@@ -71,7 +76,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     endtry
   endif
 
-  " ブランチ、commit情報 {{{
+  " ブランチ、commit情報
   try
     " FIXME: `git checkout [commit hash]`した状態だとエラーとなる
     let g:my#git_infomations['branch_name'] = v:lua.require('utils').get_branch_name()
@@ -88,9 +93,8 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     echomsg g:my#const["error_messages"]["error_branch_commit_info"]
     echohl None
   endtry
-  " }}}
 
-  " git上の変更があるか {{{
+  " 変更があるか
   try
     let g:my#git_infomations['has_changed'] = v:lua.require('utils').has_git_changed()
   catch
@@ -98,9 +102,8 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     echomsg g:my#const["error_messages"]["error_git_changes"]
     echohl None
   endtry
-  " }}}
 
-  " user.nameとuser.email {{{
+  " user.nameとuser.email
   try
     let g:my#git_infomations['config']['user_name'] = utils#delete_line_breaks(system("git config user.name"))
     let g:my#git_infomations['config']['user_email'] = utils#delete_line_breaks(system("git config user.email"))
@@ -109,7 +112,6 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     echomsg g:my#const["error_messages"]["error_git_user_info"]
     echohl None
   endtry
-  " }}}
 endfunction
 " --------------------------------------------------------------------------------
 " lua/config/init.lua

@@ -38,14 +38,13 @@ au("ColorScheme", {
 -- ------------------------------------------------------------------------------
 -- 通常ロード
 -- ------------------------------------------------------------------------------
--- NOTE: deinのinline_vimrcs側で読み込んでいるので不要 {{{
+-- NOTE: 以下は、deinのinline_vimrcs側で読み込んでいるので不要。
 -- require("const")
 -- require("config.options")
 -- require("config.autocmds")
 -- require("config.keymappings")
--- }}}
 
--- localvimrc {{{
+-- localvimrc
 local localvimrc = g.init_dir .. "/local.vim"
 if utils.bool_fn.filereadable(localvimrc) then
   -- ~/.config/nvim/local.vimがあればロード
@@ -56,7 +55,6 @@ else
   -- NOTE: 気分、環境によってころころ変えたいけど、いちいちgitの差分出るのが嫌だからこういう運用
   vim.cmd([[colorscheme gruvbox]])
 end
--- }}}
 -- ------------------------------------------------------------------------------
 -- 遅延ロード
 -- ------------------------------------------------------------------------------
@@ -112,7 +110,7 @@ vim.fn.timer_start(
   g["my#const"].timer_start_init,
   function()
     if utils.is_git_project() then
-      -- gitの情報を更新
+      -- Git情報を更新
       vim.fn['utils#refresh_git_infomations']()
     end
 
