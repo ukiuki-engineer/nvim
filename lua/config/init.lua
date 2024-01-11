@@ -111,7 +111,7 @@ vim.fn.timer_start(
   function()
     if utils.is_git_project() then
       -- Git情報を更新
-      vim.fn['utils#refresh_git_infomations']()
+      vim.fn['utils#refresh_git_infomations'](true)
     end
 
     -- ~/.config/nvim/workingがあり、~/.config/nvim/で起動した場合、強制終了する(仕事に集中したい時用)
