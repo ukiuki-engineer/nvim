@@ -284,26 +284,6 @@ hook_source = '''
 let g:winresizer_start_key = '<space>w'
 '''
 
-[[plugins]] # Terminalモードを使いやすくするやつ
-# あんま使ってないから消すかも...
-repo = 'akinsho/toggleterm.nvim'
-on_cmd = [
-  'ToggleTerm',
-  'ToggleTermSendCurrentLine',
-  'ToggleTermSendVisualLines',
-  'ToggleTermSendVisualSelection',
-  'ToggleTermSetName',
-  'ToggleTermToggleAll',
-  'TermExec',
-]
-on_event = ['TermOpen']
-lua_add = '''
-require("plugins.others").lua_add_toggleterm()
-'''
-lua_source = '''
-require("plugins.others").lua_source_toggleterm()
-'''
-
 [[plugins]] # ヘルプファイル自動生成
 repo = 'LeafCage/vimhelpgenerator'
 on_cmd = ['VimHelpGenerator', 'VimHelpGeneratorVirtual']

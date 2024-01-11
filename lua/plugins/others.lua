@@ -53,21 +53,4 @@ function M.lua_source_previm()
   end
 end
 
---
--- toggleterm.nvim
--- FIXME: <C-w>L<C-w>Jとするとサイズがバグる
---
-function M.lua_add_toggleterm()
-  keyset("t", "<C-`>", "<Cmd>ToggleTerm<CR>")
-  keyset("n", "<C-`>", ":ToggleTerm<CR>")
-end
-
-function M.lua_source_toggleterm()
-  require("toggleterm").setup {
-    persist_size = false
-  }
-  -- カレントバッファのディレクトリでterminalを開く
-  vim.cmd([[command! ToggleTermHere ToggleTerm dir=%:h]])
-end
-
 return M
