@@ -106,6 +106,6 @@ depends = ['impatient.nvim']
 repo = 'Scysta/pink-panic.nvim'
 depends = ['impatient.nvim', 'lush.nvim']
 
-# [[plugins]]
-# repo = 'RRethy/nvim-base16'
-# depends = ['impatient.nvim']
+[[plugins]]
+repo = 'RRethy/nvim-base16'
+depends = ['impatient.nvim']

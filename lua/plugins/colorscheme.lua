@@ -75,6 +75,7 @@ function M.set_customcolor_common()
         "catppuccin-mocha",
         "nightfly",
         "sonokai",
+        "base16-monokai",
       }) then
     diff_transparent(bg_color)
   elseif colorscheme == "gruvbox" then

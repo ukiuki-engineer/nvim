@@ -30,6 +30,7 @@ vim.g["my#const"] = {
     "nightfly",
     "tokyonight-night",
     "gruvbox",
+    "base16-monokai"
   },
 }
 
