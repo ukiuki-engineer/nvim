@@ -77,6 +77,10 @@ function M.set_customcolor_common()
         "sonokai",
       }) then
     diff_transparent(bg_color)
+  elseif colorscheme == "gruvbox" then
+    hi(0, 'DiffText', {
+      bg = utils.transparent_color(bg_color, "#FABD2F", 0.50)
+    })
   end
 
   -- coc.nvim
