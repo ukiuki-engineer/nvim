@@ -170,7 +170,7 @@ function M.lua_add_lualine()
         'diagnostics',
         atatata,
       },
-      lualine_x = { 'encoding', 'fileformat', 'filetype' },
+      lualine_x = { 'encoding', 'fileformat', 'filetype', 'g:colors_name' },
       lualine_y = { 'progress' },
       lualine_z = { 'location' }
     },
