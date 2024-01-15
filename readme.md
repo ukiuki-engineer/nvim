@@ -45,6 +45,9 @@ Total Min:     18.839000 msec
   - `:h map-table`
   - `:h autocmd-events`
   - `:h encoding-values`
+- 基本的に`neovim nightly`を使用する  
+→Macの場合以下を参照  
+https://github.com/austinliuigi/brew-neovim-nightly
 
 ## TODO
 - [ ] keyをエラーコードにする。エラー表示にもエラーコードを出す。
