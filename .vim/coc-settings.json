@@ -37,6 +37,14 @@
     "wslenv",
     "yaegassy",
     "zenhan"
-  ]
+  ],
+  "lua.runtime.version": "LuaJIT",
+  "lua.diagnostics.globals": ["vim", "require"],
+  "lua.workspace.library": {
+    "~/.config/nvim/lua": true,
+  },
+  "lua.workspace.checkThirdParty": false,
+  "lua.telemetry.enable": false
+
 }
 
