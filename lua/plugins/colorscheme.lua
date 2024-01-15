@@ -75,8 +75,7 @@ function M.set_customcolor_common()
         "catppuccin-mocha",
         "nightfly",
         "sonokai",
-        "base16-monokai",
-      }) then
+      }) or string.match(colorscheme, "base16%-.*") then
     diff_transparent(bg_color)
   elseif colorscheme == "gruvbox" then
     hi(0, 'DiffText', {
