@@ -59,7 +59,6 @@ https://github.com/austinliuigi/brew-neovim-nightly
 - telescope
   - [ ] normal モード時、検索->n でジャンプできるようにできないか？
   - [ ] git_branches をもっとカラフルにできないか？
-- [ ] coc-outline: markdown で効かない...
 - gitsigns.nvim
   - [ ] coc の diagnostics が被って gitsigns が見えなくなるのをどうにかできないか？
   - [ ] stage した行もそれが分るように表示できないか？

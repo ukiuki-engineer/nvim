@@ -20,6 +20,7 @@ function M.lua_add_coc()
   -- coc-extensions
   g.coc_global_extensions = {
     '@yaegassy/coc-intelephense',
+    '@yaegassy/coc-marksman',
     -- '@yaegassy/coc-laravel',
     'coc-blade',
     'coc-css',
