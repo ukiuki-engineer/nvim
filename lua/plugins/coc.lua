@@ -45,7 +45,6 @@ function M.lua_add_coc()
     'coc-word',
     'coc-xml',
     'coc-yaml',
-    'coc-yank',
   }
   command('CocOutlines', 'CocCommand fzf-preview.CocOutline', {})
   -- command('GitBranches', 'CocCommand fzf-preview.GitBranches', {})

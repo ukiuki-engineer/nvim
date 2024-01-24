@@ -97,6 +97,8 @@ function M.set_customcolor_common()
       bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
     })
   end
+
+  -- ヤンク範囲
   if colorscheme == 'gruvbox' then
     hi(0, 'HighlightedyankRegion', {
       bg = utils.transparent_color(bg_color, "#FD7E00", 0.65)
@@ -175,7 +177,7 @@ function M.set_customcolor_tokyonight()
   -- 差分
   diff_transparent(bg_color)
 
-  -- coc.nvim
+  -- ヤンク範囲
   hi(0, 'HighlightedyankRegion', {
     bg = utils.transparent_color(bg_color, "Yellow", 0.60),
   })
@@ -223,11 +225,10 @@ function M.set_customcolor_pink_panic()
   -- 差分
   diff_transparent(bg_color)
 
-  -- coc.nvim
+  -- ヤンク範囲
   hi(0, 'HighlightedyankRegion', {
     bg = utils.transparent_color(bg_color, "Yellow", 0.60),
   })
-  -- hi(0, 'CocMenuSel', { link = "Visual" })
 
   -- vim-matchup
   hi(0, 'MatchParen', {

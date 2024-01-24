@@ -311,4 +311,11 @@ function M.lua_source_colorizer()
   })
 end
 
+--
+-- vim-highlightedyank
+--
+function M.lua_source_highlightedyank()
+  g.highlightedyank_highlight_duration = 500
+end
+
 return M

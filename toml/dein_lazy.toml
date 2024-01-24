@@ -152,6 +152,13 @@ on_cmd = [
 lua_source = '''
 require("plugins.coding").lua_source_colorizer()
 '''
+
+[[plugins]] # ヤンク範囲をハイライトするやつ
+repo = 'machakann/vim-highlightedyank'
+on_event = ['BufRead']
+lua_source = '''
+require("plugins.coding").lua_source_highlightedyank()
+'''
 ################################################################################
 # LSP
 ################################################################################
