@@ -1,10 +1,12 @@
-local g             = vim.g
-local fn            = vim.fn
+local g                = vim.g
+local fn               = vim.fn
 
-g.init_dir          = fn.fnamemodify(fn.resolve(fn.expand("<sfile>")), ":h")
-local cache         = fn.expand("$HOME/.cache")
-local dein_dir      = fn.expand(cache .. "/dein")
-local dein_repo_dir = dein_dir .. "/repos/github.com/Shougo/dein.vim"
+g.init_dir             = fn.fnamemodify(fn.resolve(fn.expand("<sfile>")), ":h")
+g.lsp_plugin_selection = g["const#lsp_plugin_selection_coc"]
+-- g.lsp_plugin_selection = g["const#lsp_plugin_selection_mason_lspconfig"]
+local cache            = fn.expand("$HOME/.cache")
+local dein_dir         = fn.expand(cache .. "/dein")
+local dein_repo_dir    = dein_dir .. "/repos/github.com/Shougo/dein.vim"
 
 -- ~/.cacheが無ければ作成
 if not fn.isdirectory(cache) then
@@ -54,8 +56,17 @@ if fn["dein#load_state"](dein_dir) == 1 then
   -- toml {{{
   local toml      = g.init_dir .. "/toml/dein.toml"
   local lazy_toml = g.init_dir .. "/toml/dein_lazy.toml"
+  local lsp
+
+  if g.lsp_plugin_selection == g["const#lsp_plugin_selection_coc"] then
+    lsp = g.init_dir .. "/toml/coc.toml"
+  elseif g.lsp_plugin_selection == g["const#lsp_plugin_selection_mason_lspconfig"] then
+    lsp = g.init_dir .. "/toml/mason_lspconfig.toml"
+  end
+
   fn["dein#load_toml"](toml, { lazy = 0 })
   fn["dein#load_toml"](lazy_toml, { lazy = 1 })
+  fn["dein#load_toml"](lsp, { lazy = 1 })
   -- }}}
 
   fn["dein#end"]()

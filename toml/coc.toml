@@ -1,0 +1,26 @@
+[[plugins]] # coc.nvim
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+# rev = 'master'
+# build = 'yarn install --frozen-lockfile' # NOTE: masterの場合のみ
+depends = ['vim-snippets', 'fzf']
+on_event = ['CursorMoved', 'FileType']
+on_cmd = ['CocCommand']
+lua_add = '''
+require("plugins.coc").lua_add_coc()
+'''
+lua_source = '''
+require("plugins.coc").lua_source_coc()
+'''
+
+[[plugins]] # スニペットのソース類
+# NOTE: coc-snippetsで呼び出して使う
+# 個々のcocプラグイン側の補完候補とぶつかって面倒な場合はどちらかをオフにする
+repo = 'honza/vim-snippets'
+on_event = ['FileType']
+
+[[plugins]] # fzf
+repo = 'junegunn/fzf'
+build = './install'
+on_source = ['coc.nvim']
+
