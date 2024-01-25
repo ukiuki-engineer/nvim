@@ -3,11 +3,12 @@ require("const")
 
 local g                = vim.g
 local fn               = vim.fn
+local const            = g["my#const"]
 
 g.init_dir             = fn.fnamemodify(fn.resolve(fn.expand("<sfile>")), ":h")
 
-g.lsp_plugin_selection = g["my#const"].lsp_plugin_selection_coc
--- g.lsp_plugin_selection = g["my#const"].lsp_plugin_selection_mason_lspconfig
+g.lsp_plugin_selection = const.lsp_plugin_selection_coc
+-- g.lsp_plugin_selection = const.lsp_plugin_selection_mason_lspconfig
 
 local cache            = fn.expand("$HOME/.cache")
 local dein_dir         = fn.expand(cache .. "/dein")
@@ -63,9 +64,9 @@ if dein.load_state(dein_dir) == 1 then
   local lazy_toml = g.init_dir .. "/toml/dein_lazy.toml"
   local lsp
 
-  if g.lsp_plugin_selection == g["my#const"].lsp_plugin_selection_coc then
+  if g.lsp_plugin_selection == const.lsp_plugin_selection_coc then
     lsp = g.init_dir .. "/toml/coc.toml"
-  elseif g.lsp_plugin_selection == g["my#const"].lsp_plugin_selection_mason_lspconfig then
+  elseif g.lsp_plugin_selection == const.lsp_plugin_selection_mason_lspconfig then
     lsp = g.init_dir .. "/toml/mason_lspconfig.toml"
   end
 
