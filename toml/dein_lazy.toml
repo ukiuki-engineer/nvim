@@ -155,7 +155,7 @@ require("plugins.coding").lua_source_colorizer()
 
 [[plugins]] # ヤンク範囲をハイライトするやつ
 repo = 'machakann/vim-highlightedyank'
-on_event = ['BufRead']
+on_event = ['BufRead', 'CursorMoved', 'InsertEnter']
 lua_source = '''
 require("plugins.coding").lua_source_highlightedyank()
 '''
