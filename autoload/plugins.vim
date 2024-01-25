@@ -157,9 +157,6 @@ endfunction
 " NOTE: lua化保留
 let s:skk_dir = ""
 function! plugins#hook_add_skkeleton() abort
-  " 辞書ファイルダウンロード
-  " TODO: 何かどっかで上手くいってないけど面倒だから必要な時に直す
-  "       この辺面倒だから全部シェルスクリプト化しといた方が良いかも...
   let s:skk_dir = expand('~/.skk')
   " call s:download_skk_jisyo()
 
@@ -210,6 +207,8 @@ function! plugins#skkeleton_init() abort
 endfunction
 
 " 辞書ファイルダウンロード
+" TODO: 何かどっかで上手くいってないけど面倒だから必要な時に直す
+"       この辺面倒だから全部シェルスクリプト化しといた方が良いかも...
 function! s:download_skk_jisyo() abort
   let dictionaries = [
         \ {"name": "SKK-JISYO.L", "url": "https://skk-dev.github.io/dict/SKK-JISYO.L.gz"},
