@@ -1,9 +1,14 @@
+-- 定数ファイル読み込み
+require("const")
+
 local g                = vim.g
 local fn               = vim.fn
 
 g.init_dir             = fn.fnamemodify(fn.resolve(fn.expand("<sfile>")), ":h")
-g.lsp_plugin_selection = g["const#lsp_plugin_selection_coc"]
--- g.lsp_plugin_selection = g["const#lsp_plugin_selection_mason_lspconfig"]
+
+g.lsp_plugin_selection = g["my#const"].lsp_plugin_selection_coc
+-- g.lsp_plugin_selection = g["my#const"].lsp_plugin_selection_mason_lspconfig
+
 local cache            = fn.expand("$HOME/.cache")
 local dein_dir         = fn.expand(cache .. "/dein")
 local dein_repo_dir    = dein_dir .. "/repos/github.com/Shougo/dein.vim"
@@ -34,7 +39,6 @@ g["dein#lazy_rplugins"] = true
 -- 設定開始
 if fn["dein#load_state"](dein_dir) == 1 then
   -- vimrc {{{
-  local const             = g.init_dir .. '/lua/const.lua'
   local init              = g.init_dir .. '/lua/config/init.lua'
   local options           = g.init_dir .. '/lua/config/options.lua'
   local autocmds          = g.init_dir .. '/lua/config/autocmds.lua'
@@ -43,7 +47,6 @@ if fn["dein#load_state"](dein_dir) == 1 then
   g["dein#inline_vimrcs"] = {
     -- NOTE: 読込み順には要注意
     --       initが一番上にいないのは変な気もするけどとりあえずいいや...
-    const,
     autocmds,
     init,
     options,
@@ -58,9 +61,9 @@ if fn["dein#load_state"](dein_dir) == 1 then
   local lazy_toml = g.init_dir .. "/toml/dein_lazy.toml"
   local lsp
 
-  if g.lsp_plugin_selection == g["const#lsp_plugin_selection_coc"] then
+  if g.lsp_plugin_selection == g["my#const"].lsp_plugin_selection_coc then
     lsp = g.init_dir .. "/toml/coc.toml"
-  elseif g.lsp_plugin_selection == g["const#lsp_plugin_selection_mason_lspconfig"] then
+  elseif g.lsp_plugin_selection == g["my#const"].lsp_plugin_selection_mason_lspconfig then
     lsp = g.init_dir .. "/toml/mason_lspconfig.toml"
   end
 

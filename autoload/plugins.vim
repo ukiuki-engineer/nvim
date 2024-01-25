@@ -166,7 +166,7 @@ function! plugins#hook_add_skkeleton() abort
   augroup MySkkeleton
     autocmd!
     autocmd User skkeleton-initialize-pre call plugins#skkeleton_init()
-    if g:lsp_plugin_selection == g:const#lsp_plugin_selection_coc
+    if g:lsp_plugin_selection == g:my#const["lsp_plugin_selection_coc"]
       autocmd User skkeleton-enable-pre let b:coc_suggest_disable = v:true
       autocmd User skkeleton-disable-pre let b:coc_suggest_disable = v:false
     endif
