@@ -52,7 +52,7 @@ https://github.com/austinliuigi/brew-neovim-nightly
 ## TODO
 - [x] keyをエラーコードにする。エラー表示にもエラーコードを出す。
 →`const.lua`のTODOコメントを参照
-- [ ] `utils#refresh_git_infomations()`中で発生しているバグを修正  
+- [x] `utils#refresh_git_infomations()`中で発生しているバグを修正
 →FIXME コメントを参照
 - [ ] nordfox のコメントが若干見づらい
 - [ ] 色々例外処理を入れておきたい(特に git 操作周り)
@@ -60,6 +60,6 @@ https://github.com/austinliuigi/brew-neovim-nightly
   - [ ] normal モード時、検索->n でジャンプできるようにできないか？
   - [ ] git_branches をもっとカラフルにできないか？
 - gitsigns.nvim
-  - [ ] coc の diagnostics が被って gitsigns が見えなくなるのをどうにかできないか？
+  - [x] coc の diagnostics が被って gitsigns が見えなくなるのをどうにかできないか？
   - [ ] stage した行もそれが分るように表示できないか？
 - [ ] `utils#refresh_git_infomations()`を非同期化したい
