@@ -50,7 +50,7 @@ Total Min:     18.839000 msec
 https://github.com/austinliuigi/brew-neovim-nightly
 
 ## TODO
-- [ ] keyをエラーコードにする。エラー表示にもエラーコードを出す。
+- [x] keyをエラーコードにする。エラー表示にもエラーコードを出す。
 →`const.lua`のTODOコメントを参照
 - [ ] `utils#refresh_git_infomations()`中で発生しているバグを修正  
 →FIXME コメントを参照

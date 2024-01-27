@@ -7,6 +7,15 @@ if ! git branch -r | grep -q "origin/${branch_name}"; then
   exit
 fi
 
+branch_name=$(git rev-parse --abbrev-ref HEAD)
+
+# 特定のコミットにチェックアウトされている場合の処理
+if [ "$branch_name" = "HEAD" ]; then
+  echo "DETACHED_HEAD"
+  exit
+fi
+
+# 以降、既存の処理...
 git_status=$(git status)
 
 # pullもpushも無い場合

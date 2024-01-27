@@ -78,7 +78,6 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
 
   " ブランチ、commit情報
   try
-    " FIXME: `git checkout [commit hash]`した状態だとエラーとなる
     let g:my#git_infomations['branch_name'] = v:lua.require('utils').get_branch_name()
 
     let git_info = v:lua.require('utils').get_git_infomations()
