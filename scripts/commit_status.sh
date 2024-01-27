@@ -9,9 +9,9 @@ fi
 
 branch_name=$(git rev-parse --abbrev-ref HEAD)
 
-# 特定のコミットにチェックアウトされている場合の処理
 if [ "$branch_name" = "HEAD" ]; then
-  echo "DETACHED_HEAD"
+  commit_hash=$(git rev-parse HEAD)
+  echo "DETACHED_HEAD, $commit_hash"
   exit
 fi
 
