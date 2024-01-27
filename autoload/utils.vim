@@ -71,7 +71,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
       call jobstart("git fetch >/dev/null 2>&1")
     catch
       echohl ErrorMsg
-      echomsg g:my#const["error_messages"]["error_external_command"]
+      echomsg g:my#const["error_codes"]["E001"]
       echohl None
     endtry
   endif
@@ -90,7 +90,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     endif
   catch
     echohl ErrorMsg
-    echomsg g:my#const["error_messages"]["error_branch_commit_info"]
+    echomsg g:my#const["error_codes"]["E002"]
     echohl None
   endtry
 
@@ -99,7 +99,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     let g:my#git_infomations['has_changed'] = v:lua.require('utils').has_git_changed()
   catch
     echohl ErrorMsg
-    echomsg g:my#const["error_messages"]["error_git_changes"]
+    echomsg g:my#const["error_codes"]["E003"]
     echohl None
   endtry
 
@@ -109,7 +109,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     let g:my#git_infomations['config']['user_email'] = utils#delete_line_breaks(system("git config user.email"))
   catch
     echohl ErrorMsg
-    echomsg g:my#const["error_messages"]["error_git_user_info"]
+    echomsg g:my#const["error_codes"]["E004"]
     echohl None
   endtry
 endfunction
