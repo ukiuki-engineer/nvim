@@ -20,18 +20,16 @@ if not fn.isdirectory(cache) then
 end
 
 -- deinが無ければインストール
-if not fn.matchstr(vim.o.runtimepath, '/dein.vim') or "" then
-  if not fn.isdirectory(dein_repo_dir) then
+if fn.matchstr(vim.o.runtimepath, '/dein.vim') == "" then
+  if fn.isdirectory(dein_repo_dir) == 0 then
     -- TODO: lua化後動作未確認
-    fn.system({
-      "git",
-      "clone",
-      "https://github.com/Shougo/dein.vim",
-      dein_repo_dir
-    })
+    if vim.fn.isdirectory(dein_repo_dir) == 0 then
+      os.execute('git clone https://github.com/Shougo/dein.vim ' .. dein_repo_dir)
+    end
   end
   vim.cmd("let &runtimepath = '" .. dein_repo_dir .. "'.','. &runtimepath")
 end
+
 
 -- dein options
 g["dein#auto_recache"] = true

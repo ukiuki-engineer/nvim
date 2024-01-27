@@ -23,7 +23,10 @@ if utils.bool_fn.filereadable(localvimrc) then
 else
   -- local.vimが無ければcolorschemeは↓
   -- NOTE: 気分、環境によってころころ変えたいけど、いちいちgitの差分出るのが嫌だからこういう運用
-  vim.cmd([[colorscheme gruvbox]])
+  local success, _ = pcall(vim.cmd, 'colorscheme gruvbox')
+  if not success then
+    print("カラースキーマ 'gruvbox' が見つかりません。")
+  end
 end
 -- ------------------------------------------------------------------------------
 -- 遅延ロード
