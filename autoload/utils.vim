@@ -49,12 +49,27 @@ endfunction
 "     user_name         : v:t_string
 "     user_email        : v:t_string
 "
+function! s:GitFetchHandler(job_id, data, event)
+  if a:event == 'stdout'
+    " 標準出力の処理（必要に応じて）
+  elseif a:event == 'stderr'
+    " 標準エラーの処理
+    echohl ErrorMsg
+    echomsg g:my#const["error_codes"]["E001"]
+    echohl None
+  endif
+endfunction
+
 function! utils#refresh_git_infomations(fetch = v:false) abort
   let g:my#git_infomations = {}
 
   " git projectではないなら処理終了
   if !v:lua.require('utils').is_git_project()
     return
+  endif
+
+  if a:fetch
+    call jobstart('git fetch', {'out_cb': 's:GitFetchHandler', 'err_cb': 's:GitFetchHandler'})
   endif
 
   let g:my#git_infomations = {
