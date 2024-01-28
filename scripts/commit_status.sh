@@ -16,7 +16,7 @@ if [ "$branch_name" = "HEAD" ]; then
 fi
 
 # 以降、既存の処理...
-git_status=$(git status)
+LANG=en_US git_status=$(git status)
 
 # pullもpushも無い場合
 if echo $git_status | grep -q "Your branch is up to date"; then

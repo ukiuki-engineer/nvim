@@ -62,4 +62,4 @@ https://github.com/austinliuigi/brew-neovim-nightly
 - gitsigns.nvim
   - [x] coc の diagnostics が被って gitsigns が見えなくなるのをどうにかできないか？
   - [ ] stage した行もそれが分るように表示できないか？
-- [ ] `utils#refresh_git_infomations()`を非同期化したい
+- [x] `utils#refresh_git_infomations()`を非同期化したい

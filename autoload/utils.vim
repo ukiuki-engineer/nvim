@@ -30,6 +30,17 @@ function! utils#confirm(message) abort
   endtry
 endfunction
 
+function! s:GitFetchHandler(job_id, data, event)
+  if a:event == 'stdout'
+    " 標準出力の処理（必要に応じて）
+  elseif a:event == 'stderr'
+    " 標準エラーの処理
+    echohl ErrorMsg
+    echomsg g:my#const["error_codes"]["E001"]
+    echohl None
+  endif
+endfunction
+
 "
 " Git情報(g:my#git_infomations)を更新する
 "
@@ -74,6 +85,10 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
       echomsg g:my#const["error_codes"]["E001"]
       echohl None
     endtry
+  endif
+
+  if a:fetch
+    call jobstart('git fetch', {'out_cb': 's:GitFetchHandler', 'err_cb': 's:GitFetchHandler'})
   endif
 
   " ブランチ、commit情報
