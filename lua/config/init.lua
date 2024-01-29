@@ -27,7 +27,6 @@ else
   local success, _ = pcall(vim.cmd, 'colorscheme ' .. colorscheme)
   if not success then
     print("カラースキーム\'" .. colorscheme .. "\'が見つかりません。")
-    -- print("hoge")
   end
 end
 -- ------------------------------------------------------------------------------
