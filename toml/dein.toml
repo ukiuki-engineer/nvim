@@ -67,7 +67,7 @@ require("plugins.ui").timer_start_scrollbar(vim.g["my#const"].timer_start_scroll
 # ColorScheme
 ################################################################################
 [[plugins]]
-repo = 'ellisonleao/gruvbox.nvim'
+repo = 'morhetz/gruvbox'
 depends = ['impatient.nvim']
 
 [[plugins]]
@@ -109,7 +109,3 @@ depends = ['impatient.nvim', 'lush.nvim']
 [[plugins]]
 repo = 'RRethy/nvim-base16'
 depends = ['impatient.nvim']
-
-[[plugins]]
-repo = 'morhetz/gruvbox'
-
