@@ -193,7 +193,6 @@ end
 -- branch名を取得
 --
 function M.get_branch_name()
-  local output = vim.fn.system('git rev-parse --abbrev-ref HEAD')
   local branch_or_commit = vim.fn.system('git rev-parse --abbrev-ref HEAD'):gsub("\n", "")
   if branch_or_commit == 'HEAD' then
     -- Detached HEAD 状態（特定のコミットにチェックアウトされている）
