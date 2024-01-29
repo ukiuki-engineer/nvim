@@ -34,6 +34,7 @@ function M.lua_add_lualine()
     end
   end
 
+  -- 未pullのコミット数の状態をテキストで返す
   local function pull()
     if next(vim.g['my#git_infomations']) == nil then
       return ""
@@ -41,6 +42,7 @@ function M.lua_add_lualine()
     return "↓" .. vim.g['my#git_infomations']['commit_count']['remote']
   end
 
+  -- 未pushのコミット数の状態をテキストで返す
   local function push()
     if next(vim.g['my#git_infomations']) == nil then
       return ""
@@ -48,6 +50,7 @@ function M.lua_add_lualine()
     return "↑" .. vim.g['my#git_infomations']['commit_count']['local']
   end
 
+  -- リモートブランチがあるかの情報をテキストで返す
   local function remote_branch_info_text()
     if next(vim.g['my#git_infomations']) == nil then
       return ""
@@ -56,6 +59,7 @@ function M.lua_add_lualine()
     return require('utils').remote_branch_info_text() -- リモートブランチがあるかの情報
   end
 
+  -- 変更があるかをテキストで返す
   local function has_changed()
     if next(vim.g['my#git_infomations']) == nil then
       return ""
@@ -84,7 +88,10 @@ function M.lua_add_lualine()
     "(꜄꜆ ˙꒳˙)꜄꜆꜄ｱﾀﾀﾀﾀﾀﾀﾀ!!",
     "(꜄꜆꜄˙꒳˙)꜆꜄꜆ｱﾀﾀﾀﾀﾀﾀﾀ!!",
   }
+
   local frame_number = 1
+
+  -- ｱﾀﾀﾀﾀﾀﾀﾀ!!
   local function atatata()
     if frame_number > #frames then
       frame_number = 1
@@ -160,10 +167,10 @@ function M.lua_add_lualine()
           shorting_target = 40, -- Shortens path to leave 40 spaces in the window
           -- for other components. (terrible name, any suggestions?)
           symbols = {
-            modified = '[+]',      -- Text to show when the file is modified.
-            readonly = '',      -- Text to show when the file is non-modifiable or readonly.(\ue0a2)
+            modified = '[+]', -- Text to show when the file is modified.
+            readonly = '', -- Text to show when the file is non-modifiable or readonly.(\ue0a2)
             unnamed = '[No Name]', -- Text to show for unnamed buffers.
-            newfile = '[New]',     -- Text to show for newly created file before first write
+            newfile = '[New]', -- Text to show for newly created file before first write
           }
         },
         'diff',
