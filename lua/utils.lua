@@ -45,6 +45,13 @@ function M.is_wsl()
   return M.bool_fn.has("linux") and M.bool_fn.exists("$WSLENV")
 end
 
+--
+-- utils#echo_error_message()のラッパー
+--
+function M.echo_error_message(error_code)
+  fn["utils#echo_error_message"](error_code)
+end
+
 ---
 -- 透過色を計算する関数
 -- @param string bg_color 背景色のカラーコード(16進数)。例: "#FFFFFF"

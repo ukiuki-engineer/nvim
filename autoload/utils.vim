@@ -31,6 +31,18 @@ function! utils#confirm(message) abort
 endfunction
 
 "
+" エラーメッセージを出力する
+"
+" @param string error_code
+" @return void
+"
+function! utils#echo_error_message(error_code) abort
+  echohl ErrorMsg
+  echomsg "[" .. a:error_code .. "]" .. g:my#const["error_messages"][a:error_code]
+  echohl None
+endfunction
+
+"
 " Git情報(g:my#git_infomations)を更新する
 "
 " @param boolean fetch(trueなら`git fetch`する)
@@ -70,9 +82,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     try
       call jobstart("git fetch >/dev/null 2>&1")
     catch
-      echohl ErrorMsg
-      echomsg g:my#const["error_codes"]["E001"]
-      echohl None
+      call utils#echo_error_message("E001")
     endtry
   endif
 
@@ -88,18 +98,14 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
       let g:my#git_infomations['commit_count']['local'] = parts[1]
     endif
   catch
-    echohl ErrorMsg
-    echomsg g:my#const["error_codes"]["E002"]
-    echohl None
+    call utils#echo_error_message("E002")
   endtry
 
   " 変更があるか
   try
     let g:my#git_infomations['has_changed'] = v:lua.require('utils').has_git_changed()
   catch
-    echohl ErrorMsg
-    echomsg g:my#const["error_codes"]["E003"]
-    echohl None
+    call utils#echo_error_message("E003")
   endtry
 
   " user.nameとuser.email
@@ -107,9 +113,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     let g:my#git_infomations['config']['user_name'] = utils#delete_line_breaks(system("git config user.name"))
     let g:my#git_infomations['config']['user_email'] = utils#delete_line_breaks(system("git config user.email"))
   catch
-    echohl ErrorMsg
-    echomsg g:my#const["error_codes"]["E004"]
-    echohl None
+    call utils#echo_error_message("E004")
   endtry
 endfunction
 " --------------------------------------------------------------------------------
