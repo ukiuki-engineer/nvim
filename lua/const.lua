@@ -11,6 +11,9 @@ vim.g["my#const"] = {
   lsp_plugin_selection_coc             = 1,
   lsp_plugin_selection_mason_lspconfig = 2,
 
+  -- VimEnter直後の遅延ロード用の定数。
+  -- 最初からUI読まれてほしいけど素直に起動するとstartuptimeに影響するので、VimEnter直後の遅延起動用のmsを書いている。
+  -- 数字をずらしているのは依存関係のロード順序関係。eventだけではまかない切れなかったのでこのように定数を定義している。
   timer_start_lualine                  = 100,
   timer_start_bufferline               = 100,
   timer_start_scrollbar                = 100,
@@ -19,6 +22,7 @@ vim.g["my#const"] = {
   timer_start_clipboard                = 1000,
   timer_start_standard_plugins         = 500,
 
+  -- NOTE: エラーコードは、基本ユニークとする。つまり同じエラーコードを複数箇所で使わない。
   error_codes                          = {
     ["E001"] = "E001: An error occurred while executing the external command.",
     ["E002"] = "E002: An error occurred while getting branch and commit information.",
@@ -26,6 +30,7 @@ vim.g["my#const"] = {
     ["E004"] = "E004: An error occurred while getting user name and email.",
   },
 
+  -- 色周り
   bg_colors                            = bg_colors,
   term_bgcolor                         = bg_colors.cobalt2,
   favorite_colorschemes                = {
