@@ -50,7 +50,6 @@ Total Min:     18.839000 msec
 https://github.com/austinliuigi/brew-neovim-nightly
 
 ## TODO
-- [ ] nordfox のコメントが若干見づらい
 - [ ] 色々例外処理を入れておきたい(特に git 操作周り)
 - telescope
   - [ ] normal モード時、検索->n でジャンプできるようにできないか？

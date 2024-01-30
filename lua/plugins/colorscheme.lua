@@ -65,6 +65,23 @@ function M.set_customcolor_common()
   -- background colorを取得
   local bg_color = M.get_background()
 
+  -- comment
+  -- defaultだと暗くて見づらかったりするやつもあるのでその場合はここで個別に調整
+  if colorscheme == 'base16-tender' then
+    -- defaultは"#4c4c4c"
+    hi(0, 'Comment', { fg = "#787878" })
+    hi(0, 'TSComment', { link = "Comment" })
+  elseif colorscheme == 'base16-ayu-dark' then
+    -- defaultは"#8a92b6"
+    hi(0, 'Comment', { fg = "#9da3c2" })
+    hi(0, 'TSComment', { link = "Comment" })
+  elseif colorscheme == 'base16-onedark' then
+    -- defaultは"#545862"
+    hi(0, 'Comment', { fg = "#696e7b" })
+    hi(0, 'TSComment', { link = "Comment" })
+  end
+
+
   -- 差分
   if utils.in_array(colorscheme, {
         "moonlight",
@@ -84,10 +101,7 @@ function M.set_customcolor_common()
   end
 
   -- coc.nvim
-  local not_target_colorschemes = {
-    "monokai",
-  }
-  if not utils.in_array(colorscheme, not_target_colorschemes) then
+  if not utils.in_array(colorscheme, { "monokai" }) then
     -- 指定したカラースキーム以外は以下を適用
     hi(0, 'CocFadeOut', {
       bg = utils.transparent_color(bg_color, "#ADABAC", 0.60),
