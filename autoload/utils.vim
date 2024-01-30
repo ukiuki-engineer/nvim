@@ -34,11 +34,22 @@ endfunction
 " エラーメッセージを出力する
 "
 " @param string error_code
+" @param dict param
 " @return void
 "
-function! utils#echo_error_message(error_code) abort
+function! utils#echo_error_message(error_code, param = {}) abort
+  let l:message = "[" .. a:error_code .. "]" .. g:my#const["error_messages"][a:error_code]
+
+  " 定数中のパラメータを渡された文字列に置換
+  if a:param != {}
+    for l:key in keys(a:param)
+       let l:message = substitute(l:message, '\(:' .. l:key .. '\)', a:param[l:key], '')
+    endfor
+  endif
+
+  " エラーメッセージ出力
   echohl ErrorMsg
-  echomsg "[" .. a:error_code .. "]" .. g:my#const["error_messages"][a:error_code]
+  echomsg l:message
   echohl None
 endfunction
 

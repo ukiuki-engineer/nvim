@@ -48,8 +48,15 @@ end
 --
 -- utils#echo_error_message()のラッパー
 --
-function M.echo_error_message(error_code)
-  fn["utils#echo_error_message"](error_code)
+function M.echo_error_message(error_code, param)
+  -- NOTE: luaはデフォルト引数が使えない...
+  if param then
+    -- パラメータあり
+    fn["utils#echo_error_message"](error_code, param)
+  else
+    -- パラメータなし
+    fn["utils#echo_error_message"](error_code)
+  end
 end
 
 ---

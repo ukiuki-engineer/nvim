@@ -26,7 +26,7 @@ else
   local colorscheme = 'gruvbox'
   local success, _ = pcall(vim.cmd, 'colorscheme ' .. colorscheme)
   if not success then
-    print("カラースキーム\'" .. colorscheme .. "\'が見つかりません。")
+    utils.echo_error_message("E005", { name = colorscheme })
   end
 end
 -- ------------------------------------------------------------------------------
