@@ -224,6 +224,7 @@ on_cmd = [
   'GitStashList',
   'GitStatus',
   'HelpTags',
+  'Highlights',
   'LiveGrep',
   'Marks',
   'OldFiles',

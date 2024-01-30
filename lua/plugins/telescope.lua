@@ -44,6 +44,7 @@ function M.lua_source_telescope()
   command('GitStashList', "lua require('telescope.builtin').git_stash()", {})
   command('GitStatus', "lua require('plugins.telescope').git_status()", {})
   command('HelpTags', "lua require('telescope.builtin').help_tags()", {})
+  command('Highlights', "lua require('telescope.builtin').highlights()", {})
   command('Marks', "lua require('telescope.builtin').marks()", {})
   command('OldFiles', "lua require('telescope.builtin').oldfiles()", {})
 
