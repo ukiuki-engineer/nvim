@@ -4,6 +4,7 @@
 local g       = vim.g
 local fn      = vim.fn
 local command = vim.api.nvim_create_user_command
+local utils   = require("utils")
 
 -- confirmしてpushする
 local function git_push_confirm()
@@ -271,31 +272,21 @@ function M.lua_add_lazygit()
 end
 
 --------------------------------------------------------------------------------
--- functions
+-- プラグイン設定以外で外部に公開するfunctions
 --------------------------------------------------------------------------------
--- TODO: pcall_execute()みたいに共通化した方が良いかも？
-
 -- git_push_confirm()をpcallでラップして実行
 function M.pcall_git_push_confirm()
-  local success, error_message = pcall(git_push_confirm)
+  local success, exception = pcall(git_push_confirm)
   if not success then
-    vim.api.nvim_echo(
-      { { "An error occurred in plugins.git.git_push_confirm(): " .. error_message, "ErrorMsg" }, },
-      true,
-      {}
-    )
+    utils.echo_error_message(exception, "E006")
   end
 end
 
 -- delete_latest_commit()をpcallでラップして実行
 function M.pcall_delete_latest_commit(soft_or_hard)
-  local success, error_message = pcall(delete_latest_commit, soft_or_hard)
+  local success, exception = pcall(delete_latest_commit, soft_or_hard)
   if not success then
-    vim.api.nvim_echo(
-      { { "An error occurred in plugins.git.delete_latest_commit(): " .. error_message, "ErrorMsg" }, },
-      true,
-      {}
-    )
+    utils.echo_error_message(exception, "E007")
   end
 end
 
