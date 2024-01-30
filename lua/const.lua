@@ -23,12 +23,11 @@ vim.g["my#const"] = {
   timer_start_standard_plugins         = 500,
 
   -- NOTE: エラーコードは、基本ユニークとする。つまり同じエラーコードを複数箇所で使わない。
-  --       英語と日本語が混在してるけどまーいいや...
   error_messages                       = {
-    ["E001"] = "An error occurred while executing the external command.",
-    ["E002"] = "An error occurred while getting branch and commit information.",
-    ["E003"] = "An error occurred while checking for git changes.",
-    ["E004"] = "An error occurred while getting user name and email.",
+    ["E001"] = "エラーが発生しました。",
+    ["E002"] = "エラーが発生しました。",
+    ["E003"] = "エラーが発生しました。",
+    ["E004"] = "エラーが発生しました。",
     ["E005"] = "カラースキーム:nameがありません。",
   },
 

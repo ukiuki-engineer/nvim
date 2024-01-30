@@ -25,9 +25,9 @@ else
   -- NOTE: 気分、環境によってころころ変えたいけど、いちいちgitの差分出るのが嫌だからこういう運用
   local colorscheme = 'gruvbox'
   -- NOTE: このvim設定を初めて読んだときとかに、colorscheme入ってない状態でここ通ったりするからpcallしておく
-  local success, _ = pcall(vim.cmd, 'colorscheme ' .. colorscheme)
+  local success, exception = pcall(vim.cmd, 'colorscheme ' .. colorscheme)
   if not success then
-    utils.echo_error_message("E005", { name = colorscheme })
+    utils.echo_error_message(exception, "E005", { name = colorscheme })
   end
 end
 -- ------------------------------------------------------------------------------

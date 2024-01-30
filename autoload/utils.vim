@@ -33,23 +33,25 @@ endfunction
 "
 " エラーメッセージを出力する
 "
+" @param string exception
 " @param string error_code
 " @param dict param
 " @return void
 "
-function! utils#echo_error_message(error_code, param = {}) abort
-  let l:message = "[" .. a:error_code .. "]" .. g:my#const["error_messages"][a:error_code]
+function! utils#echo_error_message(exception, error_code, param = {}) abort
+  let l:my_message = "[" .. a:error_code .. "]" .. g:my#const["error_messages"][a:error_code]
 
   " 定数中のパラメータを渡された文字列に置換
   if a:param != {}
     for l:key in keys(a:param)
-       let l:message = substitute(l:message, '\(:' .. l:key .. '\)', a:param[l:key], '')
+       let l:my_message = substitute(l:my_message, '\(:' .. l:key .. '\)', a:param[l:key], '')
     endfor
   endif
 
   " エラーメッセージ出力
   echohl ErrorMsg
-  echomsg l:message
+  echomsg l:my_message
+  echomsg a:exception
   echohl None
 endfunction
 
@@ -93,7 +95,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     try
       call jobstart("git fetch >/dev/null 2>&1")
     catch
-      call utils#echo_error_message("E001")
+      call utils#echo_error_message(v:exception, "E001")
     endtry
   endif
 
@@ -109,14 +111,14 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
       let g:my#git_infomations['commit_count']['local'] = parts[1]
     endif
   catch
-    call utils#echo_error_message("E002")
+    call utils#echo_error_message(v:exception, "E002")
   endtry
 
   " 変更があるか
   try
     let g:my#git_infomations['has_changed'] = v:lua.require('utils').has_git_changed()
   catch
-    call utils#echo_error_message("E003")
+    call utils#echo_error_message(v:exception, "E003")
   endtry
 
   " user.nameとuser.email
@@ -124,7 +126,7 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
     let g:my#git_infomations['config']['user_name'] = utils#delete_line_breaks(system("git config user.name"))
     let g:my#git_infomations['config']['user_email'] = utils#delete_line_breaks(system("git config user.email"))
   catch
-    call utils#echo_error_message("E004")
+    call utils#echo_error_message(v:exception, "E004")
   endtry
 endfunction
 " --------------------------------------------------------------------------------
