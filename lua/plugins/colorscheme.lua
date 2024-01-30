@@ -88,6 +88,7 @@ function M.set_customcolor_common()
     "monokai",
   }
   if not utils.in_array(colorscheme, not_target_colorschemes) then
+    -- 指定したカラースキーム以外は以下を適用
     hi(0, 'CocFadeOut', {
       bg = utils.transparent_color(bg_color, "#ADABAC", 0.60),
       fg = "DarkGray"

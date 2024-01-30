@@ -60,7 +60,8 @@ au("BufRead", {
   command = "set ft=sh",
 })
 -- ------------------------------------------------------------------------------
--- colorscheme
+-- 色周りの設定を呼ぶ処理
+-- 色周りの設定はlua/plugins/colorscheme.lua
 -- ------------------------------------------------------------------------------
 augroup("MyCustomColor", {})
 
@@ -84,6 +85,7 @@ au("ColorScheme", {
       require("plugins.colorscheme").set_customcolor_pink_panic()
       return
     else
+      -- NOTE: 上記以外の任意のカラースキームが適用された場合以下が呼ばれるので注意(忘れそうだからメモ...)
       require("plugins.colorscheme").set_customcolor_common()
     end
   end,
