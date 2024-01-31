@@ -58,7 +58,8 @@ endfunction
 "
 " Git情報(g:my#git_infomations)を更新する
 "
-" @param boolean fetch(trueなら`git fetch`する)
+" @param boolean fetch trueなら`git fetch`する(default: false)
+" @param boolean async trueなら非同期で`git fetch`(default: true)
 " @return void
 "
 " NOTE: g:my#git_infomationsの構造は以下
@@ -74,7 +75,7 @@ endfunction
 "     user_name         : v:t_string
 "     user_email        : v:t_string
 "
-function! utils#refresh_git_infomations(fetch = v:false) abort
+function! utils#refresh_git_infomations(fetch = v:false, async = v:true) abort
   let g:my#git_infomations = {}
 
   " git projectではないなら処理終了
@@ -93,7 +94,11 @@ function! utils#refresh_git_infomations(fetch = v:false) abort
   " git fetch
   if a:fetch
     try
-      call jobstart("git fetch >/dev/null 2>&1")
+      if a:async
+        call jobstart("git fetch >/dev/null 2>&1")
+      else
+        call system("git fetch >/dev/null 2>&1")
+      endif
     catch
       call utils#echo_error_message(v:exception, "E001")
     endtry
