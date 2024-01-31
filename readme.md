@@ -1,6 +1,7 @@
 # My Neovim Settings
 
 基本的には Mac(iTerm2)で使用。たまに Windows の WSL(Windows Terminal)で使用。
+![image](https://github.com/ukiuki-engineer/nvim/assets/101523180/3aebf65a-4200-43fb-a921-b2eac3eb585c)
 
 ## 起動速度
 
