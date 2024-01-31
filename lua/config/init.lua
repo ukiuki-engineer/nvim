@@ -79,25 +79,31 @@ au("CmdUndefined", {
 })
 -- }}}
 
+-- タイマー遅延で起動する処理
+au("VimEnter", { -- VimEnter後にタイマースタートする
+  group = "my_lazyload",
+  callback = function()
+    vim.fn.timer_start(
+      g["my#const"].timer_start_init,
+      function()
+        -- Git情報を更新
+        if utils.is_git_project() then
+          vim.fn['utils#refresh_git_infomations'](true)
+        end
 
--- タイマー遅延
-vim.fn.timer_start(
-  g["my#const"].timer_start_init,
-  function()
-    if utils.is_git_project() then
-      -- Git情報を更新
-      vim.fn['utils#refresh_git_infomations'](true)
-    end
-
-    -- ~/.config/nvim/workingがあり、~/.config/nvim/で起動した場合、強制終了する(仕事に集中したい時用)
-    -- TODO: 何か良いプラグインもあるっぽいので後で調べる。一旦これで
-    vim.cmd([[
-    if filereadable(expand('~/.config/nvim/working')) && expand('%:p:h') == expand('~/.config/nvim')
-      q!
-    endif
-    ]])
-  end
-)
+        -- vim設定禁止処理w
+        -- ~/.config/nvim/workingがあり、~/.config/nvim/で起動した場合、強制終了する(仕事に集中したい時用)
+        -- 何か良いプラグインもあるっぽいけどとりあえずこれで十分かな
+        vim.cmd([[
+          if filereadable(expand('~/.config/nvim/working')) && expand('%:p:h') == expand('~/.config/nvim')
+            q!
+          endif
+        ]])
+      end
+    )
+  end,
+  once = true -- VimEnterだから不要と思うけど一応...
+})
 -- ------------------------------------------------------------------------------
 -- 標準プラグインの制御
 -- ------------------------------------------------------------------------------
