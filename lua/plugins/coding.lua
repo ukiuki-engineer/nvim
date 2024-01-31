@@ -3,6 +3,7 @@
 -- ================================================================================
 local fn      = vim.fn
 local g       = vim.g
+local const   = g["my#const"]
 local augroup = vim.api.nvim_create_augroup
 local au      = vim.api.nvim_create_autocmd
 
@@ -107,8 +108,25 @@ function M.lua_source_nvim_cmp()
   -- sourceを登録
   cmp.register_source('my_source', my_source)
 
+  -- 読み込むsourceを定義
+  local sources =
+  {
+    { name = 'skkeleton' },
+  }
+  -- lspconfigを使用するなら以下を追加
+  if g.lsp_plugin_selection == const.lsp_plugin_selection_mason_lspconfig then
+    table.insert(sources, { name = 'nvim_lsp' })
+    table.insert(sources, { name = 'vsnip' })
+  end
+
   cmp.setup({
-    -- skkeleton {{{
+    snippet = g.lsp_plugin_selection == const.lsp_plugin_selection_mason_lspconfig
+        and {
+          expand = function(args)
+            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+          end,
+        }
+        or {},
     mapping = cmp.mapping.preset.insert({
       ['<Tab>'] = cmp.mapping({
         i = function(fallback)
@@ -127,10 +145,7 @@ function M.lua_source_nvim_cmp()
         end,
       }),
     }),
-    sources = cmp.config.sources({
-      { name = 'skkeleton' },
-    }),
-    -- }}}
+    sources = cmp.config.sources(sources),
     window = {
       completion = cmp.config.window.bordered(),
       documentation = cmp.config.window.bordered(),
