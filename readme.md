@@ -48,12 +48,3 @@ Total Min:     18.839000 msec
 - 基本的に`neovim nightly`を使用する  
 →Macの場合以下を参照  
 https://github.com/austinliuigi/brew-neovim-nightly
-
-## TODO
-- [ ] 色々例外処理を入れておきたい(特に git 操作周り)
-- telescope
-  - [ ] normal モード時、検索->n でジャンプできるようにできないか？
-  - [ ] git_branches をもっとカラフルにできないか？
-- gitsigns.nvim
-  - [ ] coc の diagnostics が被って gitsigns が見えなくなるのをどうにかできないか？
-  - [ ] stage した行もそれが分るように表示できないか？

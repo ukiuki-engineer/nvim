@@ -1,6 +1,6 @@
 -------------------------------------------------------------------------------
 -- autocmds
--- →大体、個々の設定のとこで定義する事が多いからここに書く事はあんまり無い
+-- →大体、個々の設定のとこで定義する事が多いからここに書く事はあんまり無いかも
 -------------------------------------------------------------------------------
 local au      = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
@@ -31,7 +31,7 @@ au({ "BufWrite", "BufRead" }, {
     end
 
     -- diffviewのパネルがあったら何もしない
-    if string.find(fn.join(fn.gettabinfo(), ', '), 'diffview_view') then -- FIXME: なんか上手くいなない
+    if string.find(fn.join(fn.gettabinfo(), ', '), 'diffview_view') then
       return
     end
 

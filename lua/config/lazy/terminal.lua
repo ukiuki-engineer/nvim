@@ -19,11 +19,7 @@ au("TermOpen", {
 local opts = { noremap = true, silent = true }
 -- NOTE: vimと違って、Normalモード中にpでペーストできる
 vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>", opts)
--- TODO: 開閉できるmappingを定義する
--- 開くコマンドしか無いからこのままだと無理
 
--- commands {{{
--- NOTE: vim.api.nvim_create_user_command()を使うよりこっちの方がシンプル...
 vim.cmd([[
   " →ウィンドウを分割してターミナルを開く
   command! -nargs=* Terminal split | wincmd j | resize 20 | terminal <args>
@@ -33,4 +29,3 @@ vim.cmd([[
   command! TermHere :call utils#term_here("sp")
   command! TermHereV :call utils#term_here("vsp")
 ]])
--- }}}

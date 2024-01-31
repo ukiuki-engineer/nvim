@@ -125,7 +125,6 @@ function M.lua_add_lualine()
             vim.cmd([[GitBranches]])
           end
         },
-        -- TODO: pullとpushの間を詰めたい...
         {
           pull,
           color = { fg = '#ADFF2F' },
@@ -355,7 +354,7 @@ function M.timer_start_scrollbar(time)
 end
 
 function M.lua_add_scrollbar()
-  -- TODO: 設定する
+  -- TODO: 設定する。Macだとsattelite使ってるとvimが頻繁にクラッシュするから急いでこっちに乗り換えた。まだ全然設定してない。
   require('scrollbar').setup({})
 end
 

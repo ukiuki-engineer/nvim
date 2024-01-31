@@ -1,3 +1,7 @@
+--
+-- NOTE: Git操作もある程度はできるようにしてるけど、最近はあんまり使ってない。
+--
+
 local keyset                 = vim.keymap.set
 local fn                     = vim.fn
 local utils                  = require('utils')

@@ -154,7 +154,6 @@ function M.lua_source_diffview()
           end,
           { desc = "confirm -> restore" }
         },
-        -- TODO: stage, unstage等も全部ラップし、refreshを噛ませる
       }
     }
   })

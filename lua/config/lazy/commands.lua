@@ -3,7 +3,6 @@ if vim.g['vimrc#loaded_commands'] then
 end
 vim.g['vimrc#loaded_commands'] = true
 
--- NOTE: vim.api.nvim_create_user_command()を使うよりこっちの方がシンプル...
 vim.cmd([[
   command! SetCursorLineColumn       :set cursorline cursorcolumn
   command! SetNoCursorLineColumn     :set nocursorline nocursorcolumn

@@ -209,8 +209,8 @@ function! plugins#skkeleton_init() abort
 endfunction
 
 " 辞書ファイルダウンロード
-" TODO: 何かどっかで上手くいってないけど面倒だから必要な時に直す
-"       この辺面倒だから全部シェルスクリプト化しといた方が良いかも...
+" TODO: ここは確かできてない。
+"       この辺面倒だから手動orシェルスクリプトの方が良いかも...
 function! s:download_skk_jisyo() abort
   let dictionaries = [
         \ {"name": "SKK-JISYO.L", "url": "https://skk-dev.github.io/dict/SKK-JISYO.L.gz"},

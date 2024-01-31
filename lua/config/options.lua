@@ -1,6 +1,6 @@
 local opt = vim.opt
 
--- 文字コード{{{
+-- 文字コード
 -- NOTE: `:h encoding-values`
 -- Vim が内部処理に利用する文字コード。保存時に使用する文字コード
 opt.encoding = 'utf-8'
@@ -8,7 +8,7 @@ opt.encoding = 'utf-8'
 opt.fileencodings = 'utf-8,sjis,iso-2022-jp,euc-jp'
 --  新規ファイルを作成する際の文字コード
 opt.fileencoding = 'utf-8'
--- }}}
+
 -- スワップファイルを作らない
 opt.swapfile = false
 -- マウス有効化
@@ -31,20 +31,20 @@ opt.list = true
 opt.splitright = true
 -- 画面を水平分割する際に下に開く
 opt.splitbelow = true
--- 検索時の挙動 {{{
+-- 検索時の挙動
 opt.wrapscan = false
 opt.ignorecase = true
 opt.smartcase = true
--- }}}
+
 -- sessionに保存する内容を指定
 opt.sessionoptions = 'buffers,curdir,tabpages'
 -- Tab文字を半角スペースにする
 opt.expandtab = true
--- インデントは基本的に2 {{{
+-- インデントは基本的に2
 opt.shiftwidth = 2
 opt.tabstop = 2
 opt.softtabstop = 2
--- }}}
+
 -- 符号なし数字として扱う
 opt.nrformats:append("unsigned")
 -- window分割しててもstatuslineを1つに
