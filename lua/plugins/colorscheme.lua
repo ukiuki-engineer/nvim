@@ -83,16 +83,20 @@ function M.set_customcolor_common()
 
 
   -- 差分
+  -- 綺麗に透過させたような色合いにする
   if utils.in_array(colorscheme, {
         "moonlight",
         "nord",
       }) then
+    -- そのカラースキームで元々定義されている色を透過させる
     diff_transparent_by_own_colors(bg_color)
   elseif utils.in_array(colorscheme, {
         "catppuccin-mocha",
         "nightfly",
         "sonokai",
+        "kanagawa"
       }) or string.match(colorscheme, "base16%-.*") then
+    -- 独自定義
     diff_transparent(bg_color)
   elseif colorscheme == "gruvbox" then
     hi(0, 'DiffText', {
