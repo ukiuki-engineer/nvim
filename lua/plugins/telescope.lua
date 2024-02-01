@@ -138,6 +138,7 @@ function M.buffers()
 end
 
 function M.git_commits()
+  -- TODO: yでcommit hashをヤンクできるようにする
   require('telescope.builtin').git_commits({
     git_command = {
       "git",
