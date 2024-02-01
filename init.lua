@@ -84,7 +84,9 @@ if (dein.check_install()) then
   dein.install()
 end
 
--- ファイル形式別プラグインの有効化
-vim.cmd([[filetype plugin indent on]])
--- シンタックスハイライトの有効化
-vim.cmd([[syntax enable]])
+vim.cmd([[
+  " ファイル形式別プラグインの有効化
+  filetype plugin indent on
+  " シンタックスハイライトの有効化
+  syntax enable
+]])
