@@ -2,12 +2,12 @@
 -- NOTE: Git操作もある程度はできるようにしてるけど、最近はあんまり使ってない。
 --
 
-local keyset                 = vim.keymap.set
-local fn                     = vim.fn
-local utils                  = require('utils')
+local keyset                               = vim.keymap.set
+local fn                                   = vim.fn
+local utils                                = require('utils')
 
 -- commit数の状態を返す
-local git_commit_status_text = function()
+local git_commit_status_text               = function()
   local remote_branch_info_text = utils.remote_branch_info_text()
   local commit = vim.g['my#git_infomations']['commit_count']
 
@@ -20,9 +20,19 @@ local git_commit_status_text = function()
   end
 end
 
+-- checkoutしてgit情報を更新する
+local checkout_and_refresh_git_infomations = function(prompt_bufnr)
+  local actions = require('telescope.actions')
+  -- checkout
+  actions.git_checkout_current_buffer(prompt_bufnr)
+  -- git情報を更新(lualine用)
+  -- NOTE: lualineのgit情報を更新するために必要
+  vim.fn["utils#refresh_git_infomations"]()
+end
+
 --
 
-local M                      = {}
+local M                                    = {}
 
 function M.lua_add_telescope()
   -- NOTE: on_cmdで遅延ロードさせるためにこういう回りくどいやり方をしている…
@@ -138,8 +148,25 @@ function M.buffers()
 end
 
 function M.git_commits()
-  -- TODO: yでcommit hashをヤンクできるようにする
   require('telescope.builtin').git_commits({
+    attach_mappings = function(prompt_bufnr, map)
+      -- commit hashをヤンクする
+      map({ "n" }, "y",
+        function()
+          local selection = require('telescope.actions.state').get_selected_entry()
+          vim.fn.setreg('*', selection.value)
+          print("Commit hash copied to system clipboard: " .. selection.value)
+          require('telescope.actions').close(prompt_bufnr)
+        end
+      )
+      -- checkoutしてgit情報を更新する
+      map({ "i", "n" }, "<CR>",
+        function()
+          checkout_and_refresh_git_infomations(prompt_bufnr)
+        end
+      )
+      return true
+    end,
     git_command = {
       "git",
       "log",
@@ -166,17 +193,12 @@ function M.find_files()
 end
 
 function M.git_branches()
-  local actions = require('telescope.actions')
   require('telescope.builtin').git_branches({
     attach_mappings = function(prompt_bufnr, map)
       -- checkoutしてgit情報を更新する
       map({ "i", "n" }, "<CR>",
         function()
-          -- checkout
-          actions.git_checkout_current_buffer(prompt_bufnr) -- ここまでがデフォルトの動き
-          -- git情報を更新(lualine用)
-          -- NOTE: lualineのgit情報を更新するために必要
-          vim.fn["utils#refresh_git_infomations"]()
+          checkout_and_refresh_git_infomations(prompt_bufnr)
         end
       )
       return true
