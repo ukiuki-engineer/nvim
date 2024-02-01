@@ -36,10 +36,9 @@ end
 g["dein#auto_recache"] = true
 g["dein#lazy_rplugins"] = true
 
-local dein = require('dein')
 
 -- 設定開始
-if dein.load_state(dein_dir) == 1 then
+if fn["dein#load_state"](dein_dir) == 1 then
   -- vimrc {{{
   local init              = g.init_dir .. '/lua/config/init.lua'
   local options           = g.init_dir .. '/lua/config/options.lua'
@@ -56,7 +55,7 @@ if dein.load_state(dein_dir) == 1 then
   }
   -- }}}
 
-  dein.begin(dein_dir)
+  fn["dein#begin"](dein_dir)
 
   -- toml {{{
   local toml      = g.init_dir .. "/toml/dein.toml"
@@ -70,18 +69,18 @@ if dein.load_state(dein_dir) == 1 then
     lsp = g.init_dir .. "/toml/mason_lspconfig.toml"
   end
 
-  dein.load_toml(toml, { lazy = 0 })
-  dein.load_toml(lazy_toml, { lazy = 1 })
-  dein.load_toml(lsp, { lazy = 1 })
+  fn["dein#load_toml"](toml, { lazy = 0 })
+  fn["dein#load_toml"](lazy_toml, { lazy = 1 })
+  fn["dein#load_toml"](lsp, { lazy = 1 })
   -- }}}
 
-  dein.end_()
-  dein.save_state()
+  fn["dein#end"]()
+  fn["dein#save_state"]()
 end
 
 -- 未インストールがあればインストール
-if (dein.check_install()) then
-  dein.install()
+if (fn['dein#check_install']() ~= 0) then
+  fn['dein#install']()
 end
 
 vim.cmd([[
