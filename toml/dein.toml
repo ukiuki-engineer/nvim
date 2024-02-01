@@ -9,16 +9,9 @@ hook_add = '''
 set helplang=ja
 '''
 
-[[plugins]] # luaモジュールの読み込みを速くするやつ
-repo = 'lewis6991/impatient.nvim'
-hook_add = '''
-lua require('impatient')
-'''
-
 # FIXME: シェルスクリプトのときバグるので一旦オフに
 # [[plugins]] # 標準機能より高速にファイル形式を判別できる。
 # repo = 'nathom/filetype.nvim'
-# depends = ['impatient.nvim']
 # hook_add = '''
 # " 標準機能をオフに
 # let g:did_load_filetypes = 1
@@ -47,7 +40,7 @@ require("plugins.git").lua_add_gin()
 ################################################################################
 [[plugins]] # airlineをこれに変えたら起動速度が倍速になった
 repo = 'nvim-lualine/lualine.nvim'
-depends = ['nvim-web-devicons', 'impatient.nvim']
+depends = ['nvim-web-devicons']
 lua_add = '''
 require("plugins.ui").timer_start_lualine(vim.g["my#const"].timer_start_lualine)
 '''
@@ -68,48 +61,36 @@ require("plugins.ui").timer_start_scrollbar(vim.g["my#const"].timer_start_scroll
 ################################################################################
 [[plugins]]
 repo = 'ellisonleao/gruvbox.nvim'
-depends = ['impatient.nvim']
 
 [[plugins]]
 repo = 'bluz71/vim-nightfly-colors'
-depends = ['impatient.nvim']
 
 [[plugins]]
 repo = 'EdenEast/nightfox.nvim'
-depends = ['impatient.nvim']
 
 [[plugins]]
 repo = 'catppuccin/nvim'
-depends = ['impatient.nvim']
 
 [[plugins]]
 repo = 'sainnhe/sonokai'
-depends = ['impatient.nvim']
 
 [[plugins]]
 repo = 'shaunsingh/moonlight.nvim'
-depends = ['impatient.nvim']
 
 [[plugins]]
 repo = 'folke/tokyonight.nvim'
-depends = ['impatient.nvim']
 
 [[plugins]]
 repo = 'shaunsingh/nord.nvim'
-depends = ['impatient.nvim']
 
 [[plugins]]
 repo = 'tanvirtin/monokai.nvim'
-depends = ['impatient.nvim']
 
 [[plugins]]
 repo = 'Scysta/pink-panic.nvim'
-depends = ['impatient.nvim', 'lush.nvim']
 
 [[plugins]]
 repo = 'RRethy/nvim-base16'
-depends = ['impatient.nvim']
 
 [[plugins]]
 repo = 'rebelot/kanagawa.nvim'
-depends = ['impatient.nvim']
