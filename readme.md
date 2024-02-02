@@ -17,6 +17,8 @@ Total Max:     16.777000 msec
 Total Min:     15.630000 msec
 ```
 
+→Macだと大体これの倍くらいかな...
+
 - ハードウェアスペック
 
 |        |                                            |
@@ -39,13 +41,17 @@ Total Min:     15.630000 msec
   [Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)とか HackGen を使用。  
   icon を設定するときなどは[ここ](https://www.nerdfonts.com/cheat-sheet)見たりとか。
 - coc.nvim の拡張機能を探す場所
-  - [github の wiki](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
-  - [npm module を検索するサイト](https://www.npmjs.com/search?q=keywords%3Acoc.nvim)
+    - [github の wiki](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
+    - [npm module を検索するサイト](https://www.npmjs.com/search?q=keywords%3Acoc.nvim)
 - 時々見たいけど忘れがちなヘルプタグ
-  - `:h key-notation`
-  - `:h map-table`
-  - `:h autocmd-events`
-  - `:h encoding-values`
+    - `:h key-notation`
+    - `:h map-table`
+    - `:h autocmd-events`
+    - `:h encoding-values`
 - 基本的に`neovim nightly`を使用する  
 →Macの場合以下を参照  
 https://github.com/austinliuigi/brew-neovim-nightly
+- 色周り
+    - 個人的に、以下は`sonokai`が凄く見やすい。
+        - markdown
+        - vue
