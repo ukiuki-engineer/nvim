@@ -23,7 +23,7 @@ if utils.bool_fn.filereadable(localvimrc) then
 else
   -- local.vimが無ければcolorschemeは↓
   -- NOTE: 気分、環境によってころころ変えたいけど、いちいちgitの差分出るのが嫌だからこういう運用
-  local colorscheme = 'gruvbox'
+  local colorscheme = 'kanagawa'
   -- NOTE: このvim設定を初めて読んだときとかに、colorscheme入ってない状態でここ通ったりするからpcallしておく
   local success, exception = pcall(vim.cmd, 'colorscheme ' .. colorscheme)
   if not success then
