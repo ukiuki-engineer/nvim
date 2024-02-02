@@ -23,7 +23,6 @@ end
 -- deinが無ければインストール
 if fn.matchstr(vim.o.runtimepath, '/dein.vim') == "" then
   if fn.isdirectory(dein_repo_dir) == 0 then
-    -- TODO: lua化後動作未確認
     if vim.fn.isdirectory(dein_repo_dir) == 0 then
       os.execute('git clone https://github.com/Shougo/dein.vim ' .. dein_repo_dir)
     end
