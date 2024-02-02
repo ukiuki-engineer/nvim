@@ -68,7 +68,7 @@ function! plugins#hook_source_coc() abort
   inoremap <nowait><expr> <C-f>  coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<CR>" : "\<Right>"
   inoremap <nowait><expr> <C-k>  coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<CR>" : "\<Left>"
   inoremap <nowait><expr> <C-b>  coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
-  nnoremap <silent><expr> <C-w>j coc#float#has_float()  ? "\<Plug>(coc-float-jump)" : "\<C-w>j"
+  nnoremap <silent><expr> <space>j coc#float#has_float()  ? "\<Plug>(coc-float-jump)" : "\<space>j"
 
   " ---------------------------------------------------------------------------
   " フォーマッターを呼び出す
