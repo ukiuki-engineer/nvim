@@ -238,7 +238,7 @@ on_source = ['diffview', 'telescope.nvim']
 repo = 'thinca/vim-quickrun'
 on_cmd = ['QuickRun']
 lua_add = '''
-require("plugins.others").lua_add_quickrun()
+require("plugins.others.quickrun").lua_add()
 '''
 
 [[plugins]] # ウィンドウリサイズを楽にするやつ
@@ -254,7 +254,7 @@ let g:winresizer_start_key = '<space>w'
 repo = 'LeafCage/vimhelpgenerator'
 on_cmd = ['VimHelpGenerator', 'VimHelpGeneratorVirtual']
 lua_source = '''
-require("plugins.others").lua_source_vimhelpgenerator()
+require("plugins.others.vimhelpgenerator").lua_source()
 '''
 
 [[plugins]] # vimの起動速度を測定
@@ -272,7 +272,7 @@ on_cmd = ['PreviewMarkdown']
 repo = 'previm/previm'
 on_cmd = ['PrevimOpen']
 lua_source = '''
-require("plugins.others").lua_source_previm()
+require("plugins.others.previm").lua_source()
 '''
 
 [[plugins]] # コマンドの実行結果をバッファに読み込んでくれるやつ
