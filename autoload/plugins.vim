@@ -177,8 +177,10 @@ function! plugins#skkeleton_init() abort
     \ 'eggLikeNewline'    : v:true,
     \ 'globalDictionaries': [
       \ [s:skk_dir .. "/SKK-JISYO.L", "euc-jp"],
-      \ s:skk_dir .. "/SKK-JISYO.emoji.utf8",
-      \ [s:skk_dir .. "/SKK-JISYO.jinmei", "euc-jp"]
+      \ s:skk_dir .. "/SKK-JISYO.emoji",
+      \ [s:skk_dir .. "/SKK-JISYO.jinmei", "euc-jp"],
+      \ [s:skk_dir .. "/SKK-JISYO.hukugougo", "euc-jp"],
+      \ [s:skk_dir .. "/SKK-JISYO.station", "euc-jp"],
     \ ],
     \ 'usePopup'          : v:true
   \ })
