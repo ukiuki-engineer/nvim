@@ -154,11 +154,8 @@ endfunction
 "
 " skkeleton
 "
-" NOTE: lua化保留
-let s:skk_dir = ""
+let s:skk_dir = g:init_dir .. '/.skk'
 function! plugins#hook_add_skkeleton() abort
-  let s:skk_dir = expand('~/.skk')
-  " call s:download_skk_jisyo()
 
   inoremap <C-j> <Plug>(skkeleton-toggle)
   cnoremap <C-j> <Plug>(skkeleton-toggle)
