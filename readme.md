@@ -17,7 +17,7 @@ Total Max:     15.265000 msec
 Total Min:     14.627000 msec
 ```
 
-→[log]()
+→[log](https://github.com/ukiuki-engineer/nvim/blob/master/vim-startuptime.log)
 
 →Macだと大体これの倍くらいかな...
 
@@ -30,9 +30,10 @@ Total Min:     14.627000 msec
 
 ## Required
 
+事前に下記をインストールしておく。
+
 - [Deno](https://deno.com/)
 - Node
-- [fzf](https://github.com/junegunn/fzf)
 
 ## NOTE
 
