@@ -42,19 +42,19 @@ require("plugins.git.gin").lua_add()
 repo = 'nvim-lualine/lualine.nvim'
 depends = ['nvim-web-devicons']
 lua_add = '''
-require("plugins.ui").timer_start_lualine(vim.g["my#const"].timer_start_lualine)
+require("plugins.ui.lualine").timer_start(vim.g["my#const"].timer_start_lualine)
 '''
 
 [[plugins]] # 上のbar
 repo = 'akinsho/bufferline.nvim'
 lua_add = '''
-require("plugins.ui").timer_start_bufferline(vim.g["my#const"].timer_start_bufferline)
+require("plugins.ui.bufferline").timer_start(vim.g["my#const"].timer_start_bufferline)
 '''
 
 [[plugins]] # スクロールバー
 repo= 'petertriho/nvim-scrollbar'
 lua_add = '''
-require("plugins.ui").timer_start_scrollbar(vim.g["my#const"].timer_start_scrollbar)
+require("plugins.ui.scrollbar").timer_start(vim.g["my#const"].timer_start_scrollbar)
 '''
 ################################################################################
 # ColorScheme
