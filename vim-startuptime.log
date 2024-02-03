@@ -1,0 +1,106 @@
+Extra options: []
+Measured: 10 times
+
+Total Average: 14.867200 msec
+Total Max:     15.265000 msec
+Total Min:     14.627000 msec
+
+ AVERAGE      MAX      MIN
+---------------------------
+8.740500 9.011000 8.484000: /home/yuki/.config/nvim/init.lua
+7.404200 7.675000 7.162000: /home/yuki/.cache/dein/state_nvim.vim
+3.474300 3.627000 3.356000: /home/yuki/.config/nvim/local.vim
+2.541900 2.683000 2.491000: reading ShaDa
+2.061900 2.138000 1.970000: /home/yuki/.cache/dein/.cache/init.lua/.dein/colors/tokyonight-night.lua
+0.932700 0.995000 0.901000: require('tokyonight')
+0.893600 0.960000 0.858000: require('vim.diagnostic')
+0.876900 0.935000 0.824000: loading rtp plugins
+0.650600 0.687000 0.631000: require('tokyonight.theme')
+0.350300 0.392000 0.335000: require('utils')
+0.292300 0.329000 0.277000: sourcing vimrc file(s)
+0.278300 0.282000 0.274000: init lua interpreter
+0.272000 0.359000 0.257000: /home/yuki/.cache/dein/repos/github.com/Shougo/dein.vim/autoload/dein/util.vim
+0.220000 0.244000 0.212000: init highlight
+0.188200 0.234000 0.174000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/denops.vim
+0.182000 0.211000 0.173000: inits 1
+0.169300 0.192000 0.164000: require('vim._defaults')
+0.160200 0.166000 0.155000: require('plugins.colorscheme')
+0.148500 0.153000 0.145000: /usr/share/nvim/runtime/syntax/syntax.vim
+0.145600 0.170000 0.138000: require('tokyonight.util')
+0.143100 0.168000 0.137000: /usr/share/nvim/runtime/filetype.lua
+0.142600 0.163000 0.137000: require('vim._init_packages')
+0.140000 0.143000 0.137000: /home/yuki/.cache/dein/repos/github.com/Shougo/dein.vim/autoload/dein/autoload.vim
+0.134300 0.156000 0.124000: event init
+0.126600 0.135000 0.122000: require('plugins.telescope')
+0.113200 0.160000 0.106000: locale set
+0.102200 0.105000 0.100000: /home/yuki/.cache/dein/repos/github.com/Shougo/dein.vim/autoload/dein.vim
+0.094400 0.113000 0.090000: loading packages
+0.093500 0.109000 0.089000: require('plugins.ui.lualine')
+0.089200 0.132000 0.083000: /home/yuki/.cache/dein/.cache/init.lua/.dein/autoload/denops.vim
+0.087300 0.095000 0.083000: require('tokyonight.colors')
+0.085900 0.113000 0.074000: opening buffers
+0.083100 0.102000 0.078000: require('vim._editor')
+0.078100 0.086000 0.075000: require('tokyonight.config')
+0.071000 0.132000 0.058000: /home/yuki/.config/nvim/autoload/plugins.vim
+0.067000 0.068000 0.065000: /usr/share/nvim/runtime/plugin/tohtml.vim
+0.058700 0.061000 0.055000: early init
+0.057400 0.102000 0.051000: require('plugins.git.gin')
+0.054300 0.055000 0.053000: /usr/share/nvim/runtime/syntax/synload.vim
+0.052500 0.059000 0.051000: require('const')
+0.045800 0.067000 0.041000: require('plugins.git.diffview')
+0.040100 0.041000 0.039000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/skkeleton.vim
+0.038800 0.040000 0.038000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin.vim
+0.035000 0.041000 0.033000: require('plugins.ui.bufferline')
+0.033400 0.037000 0.031000: /usr/share/nvim/runtime/plugin/nvim.lua
+0.033000 0.039000 0.031000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/denops/debug.vim
+0.033000 0.037000 0.031000: require('plugins.ui.nvim_tree')
+0.032600 0.033000 0.032000: /home/yuki/.cache/dein/repos/github.com/Shougo/dein.vim/autoload/dein/min.vim
+0.031100 0.034000 0.028000: init first window
+0.030900 0.052000 0.027000: /usr/share/nvim/runtime/plugin/man.lua
+0.029800 0.036000 0.027000: /usr/share/nvim/runtime/plugin/editorconfig.lua
+0.029000 0.035000 0.027000: require('plugins.lsp.coc')
+0.027300 0.029000 0.026000: /usr/share/nvim/runtime/plugin/osc52.lua
+0.026800 0.035000 0.025000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-branch.vim
+0.026100 0.039000 0.024000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-log.vim
+0.026000 0.027000 0.025000: require('vim.inspect')
+0.023900 0.039000 0.022000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-edit.vim
+0.023700 0.025000 0.023000: require('vim.shared')
+0.023300 0.025000 0.023000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-diff.vim
+0.023250 0.042000 0.007000: /usr/share/nvim/runtime/ftplugin.vim
+0.023000 0.024000 0.022000: require('plugins.ui.scrollbar')
+0.022800 0.027000 0.022000: require('vim._options')
+0.021100 0.042000 0.018000: require('plugins.others.quickrun')
+0.020500 0.042000 0.018000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-browse.vim
+0.020000 0.020000 0.020000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-status.vim
+0.019600 0.023000 0.019000: /home/yuki/.cache/dein/repos/github.com/nvim-tree/nvim-web-devicons/plugin/nvim-web-devicons.vim
+0.018500 0.025000 0.017000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-cd.vim
+0.016700 0.018000 0.016000: expanding arguments
+0.016400 0.018000 0.015000: require('plugins.coding.skkeleton')
+0.013100 0.014000 0.013000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-chaperon.vim
+0.013100 0.014000 0.013000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-patch.vim
+0.012600 0.021000 0.005000: /usr/share/nvim/runtime/indent.vim
+0.012600 0.013000 0.012000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/nightfox.vim
+0.011800 0.015000 0.011000: /home/yuki/.cache/dein/repos/github.com/Shougo/dein.vim/ftdetect/dein.vim
+0.011200 0.012000 0.011000: loading after plugins
+0.010500 0.012000 0.009000: clear screen
+0.010400 0.014000 0.010000: /usr/share/nvim/runtime/plugin/gzip.vim
+0.009900 0.011000 0.009000: inits 2
+0.008900 0.009000 0.008000: /usr/share/nvim/runtime/plugin/netrwPlugin.vim
+0.008000 0.008000 0.008000: /usr/share/nvim/runtime/plugin/zipPlugin.vim
+0.007100 0.008000 0.007000: /usr/share/nvim/runtime/plugin/matchit.vim
+0.007000 0.007000 0.007000: /usr/share/nvim/runtime/plugin/tarPlugin.vim
+0.006700 0.007000 0.006000: /usr/share/nvim/runtime/plugin/matchparen.vim
+0.006200 0.007000 0.006000: window checked
+0.005600 0.011000 0.005000: /home/yuki/.cache/dein/.cache/init.lua/.dein/autoload/denops/_internal/conf.vim
+0.005500 0.007000 0.005000: require('vim.F')
+0.005500 0.006000 0.005000: inits 3
+0.005300 0.006000 0.005000: /usr/share/nvim/runtime/plugin/spellfile.vim
+0.005000 0.005000 0.005000: /usr/share/nvim/runtime/plugin/tutor.vim
+0.004800 0.007000 0.004000: --- NVIM STARTING ---
+0.004100 0.005000 0.004000: /usr/share/nvim/runtime/plugin/shada.vim
+0.004100 0.005000 0.004000: /usr/share/nvim/runtime/plugin/rplugin.vim
+0.003300 0.004000 0.003000: init default mappings & autocommands
+0.003300 0.004000 0.003000: parsing arguments
+0.003100 0.004000 0.003000: require('vim.keymap')
+0.002100 0.003000 0.002000: editing files in windows
+0.001900 0.002000 0.001000: BufEnter autocommands

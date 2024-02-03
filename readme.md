@@ -12,10 +12,12 @@ vim-startuptime -vimpath nvim
 Extra options: []
 Measured: 10 times
 
-Total Average: 16.022200 msec
-Total Max:     16.777000 msec
-Total Min:     15.630000 msec
+Total Average: 14.867200 msec
+Total Max:     15.265000 msec
+Total Min:     14.627000 msec
 ```
+
+→[log]()
 
 →Macだと大体これの倍くらいかな...
 
@@ -31,7 +33,6 @@ Total Min:     15.630000 msec
 - [Deno](https://deno.com/)
 - Node
 - [fzf](https://github.com/junegunn/fzf)
-- SKK で使ってる辞書ファイル類(TODO: あとでちゃんとまとめる)
 
 ## NOTE
 
