@@ -7,10 +7,10 @@ depends = ['vim-snippets', 'fzf']
 on_event = ['CursorMoved', 'FileType']
 on_cmd = ['CocCommand']
 lua_add = '''
-require("plugins.coc").lua_add_coc()
+require("plugins.lsp.coc").lua_add()
 '''
 lua_source = '''
-require("plugins.coc").lua_source_coc()
+require("plugins.lsp.coc").lua_source()
 '''
 
 [[plugins]] # スニペットのソース類

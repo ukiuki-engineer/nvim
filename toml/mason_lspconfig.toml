@@ -5,34 +5,34 @@
 repo = "williamboman/mason-lspconfig.nvim"
 on_event = ['CursorMoved', 'FileType']
 lua_source = '''
-require("plugins.mason_lspconfig").lua_source_mason_lspconfig()
+require("plugins.lsp.mason_lspconfig").lua_source_mason_lspconfig()
 '''
 
 # [[plugins]]
 # repo = "jay-babu/mason-null-ls.nvim"
 # on_source = ['mason-lspconfig.nvim', 'null-ls.nvim']
 # lua_source = '''
-# require("plugins.mason_lspconfig").lua_source_mason_null_ls()
+# require("plugins.lsp.mason_lspconfig").lua_source_mason_null_ls()
 # '''
 
 [[plugins]]
 repo = "williamboman/mason.nvim"
 on_source = 'mason-lspconfig.nvim'
 lua_source = '''
-require("plugins.mason_lspconfig").lua_source_mason()
+require("plugins.lsp.mason_lspconfig").lua_source_mason()
 '''
 [[plugins]]
 repo = "neovim/nvim-lspconfig"
 on_source = 'mason-lspconfig.nvim'
 lua_source = '''
-require("plugins.mason_lspconfig").lua_source_lspconfig()
+require("plugins.lsp.mason_lspconfig").lua_source_lspconfig()
 '''
 
 [[plugins]]
 repo = "neovim/null-ls.nvim"
 on_source = ['mason-lspconfig.nvim']
 lua_source = '''
-require("plugins.mason_lspconfig").lua_source_null_ls()
+require("plugins.lsp.mason_lspconfig").lua_source_null_ls()
 '''
 
 [[plugins]]

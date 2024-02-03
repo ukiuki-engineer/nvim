@@ -16,7 +16,7 @@ local M       = {}
 -- composer require barryvdh/laravel-ide-helper:*     # ↑で上手くいかなかった場合
 -- php artisan ide-helper:generate                    # _ide_helper.phpを生成
 -- php artisan ide-helper:models --nowrite            # _ide_helper_models.phpを生成
-function M.lua_add_coc()
+function M.lua_add()
   -- coc-extensions
   g.coc_global_extensions = {
     '@yaegassy/coc-intelephense',
@@ -51,7 +51,7 @@ function M.lua_add_coc()
 end
 
 -- TODO: lua化
-function M.lua_source_coc()
+function M.lua_source()
   fn["plugins#hook_source_coc"]()
 end
 
