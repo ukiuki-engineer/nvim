@@ -48,6 +48,7 @@ Total Min:     15.630000 msec
     - `:h map-table`
     - `:h autocmd-events`
     - `:h encoding-values`
+- luaでテーブルの中身を見たいときは`vim.print()`
 - 基本的に`neovim nightly`を使用する  
 →Macの場合以下を参照  
 https://github.com/austinliuigi/brew-neovim-nightly

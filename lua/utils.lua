@@ -60,7 +60,7 @@ function M.echo_error_message(exception, error_code, param)
 end
 
 ---
--- 透過色を計算する関数
+-- 透過色を16進数で返す
 -- @param string bg_color 背景色のカラーコード(16進数)。例: "#FFFFFF"
 -- @param string target_color 対象色のカラーコード(16進数)。例: "#000000"
 -- @param number alpha 透過率。0から1の値で指定する。0に近いほど背景色が優先され、1に近いほど対象色が優先される。
@@ -163,7 +163,9 @@ function M.get_highlight_color(highlight_group, highlight_arg)
   end
 end
 
+--
 -- カラースキームをランダムに変更する
+--
 function M.change_colorscheme()
   -- 対象のカラースキーム
   local target_colorschemes = {}
