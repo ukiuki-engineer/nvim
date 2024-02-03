@@ -173,67 +173,37 @@ endfunction
 
 " NOTE: lua化保留
 function! plugins#skkeleton_init() abort
-  " NOTE: 多分、絵文字に関しては、Macならctrl+cmd+spaceを押した方が早い
   call skkeleton#config({
-        \ 'eggLikeNewline'    : v:true,
-        \ 'globalDictionaries': [[s:skk_dir .. "/SKK-JISYO.L", "euc-jp"], s:skk_dir .. "/SKK-JISYO.emoji.utf8", [s:skk_dir .. "/SKK-JISYO.jinmei", "euc-jp"]],
-        \ 'usePopup'          : v:true
-        \ })
+    \ 'eggLikeNewline'    : v:true,
+    \ 'globalDictionaries': [
+      \ [s:skk_dir .. "/SKK-JISYO.L", "euc-jp"],
+      \ s:skk_dir .. "/SKK-JISYO.emoji.utf8",
+      \ [s:skk_dir .. "/SKK-JISYO.jinmei", "euc-jp"]
+    \ ],
+    \ 'usePopup'          : v:true
+  \ })
   call skkeleton#register_kanatable('rom', {
-        \ "xn"          : ['ん', ''],
-        \ "&"           : ['＆', ''],
-        \ "("           : ['（', ''],
-        \ ")"           : ['）', ''],
-        \ "_"           : ['＿', ''],
-        \ "+"           : ['＋', ''],
-        \ "="           : ['＝', ''],
-        \ "~"           : ['〜', ''],
-        \ "\'"          : ['’', ''],
-        \ "\""          : ['”', ''],
-        \ "z\<Space>"   : ["\u3000", ''],
-        \ "z0"           : ['０', ''],
-        \ "z1"           : ['１', ''],
-        \ "z2"           : ['２', ''],
-        \ "z3"           : ['３', ''],
-        \ "z4"           : ['４', ''],
-        \ "z5"           : ['５', ''],
-        \ "z6"           : ['６', ''],
-        \ "z7"           : ['７', ''],
-        \ "z8"           : ['８', ''],
-        \ "z9"           : ['９', ''],
-        \ })
+    \ "xn"       : ['ん', ''],
+    \ "&"        : ['＆', ''],
+    \ "("        : ['（', ''],
+    \ ")"        : ['）', ''],
+    \ "_"        : ['＿', ''],
+    \ "+"        : ['＋', ''],
+    \ "="        : ['＝', ''],
+    \ "~"        : ['〜', ''],
+    \ "\'"       : ['’', ''],
+    \ "\""       : ['”', ''],
+    \ "z\<Space>": ["\u3000", ''],
+    \ "z0"       : ['０', ''],
+    \ "z1"       : ['１', ''],
+    \ "z2"       : ['２', ''],
+    \ "z3"       : ['３', ''],
+    \ "z4"       : ['４', ''],
+    \ "z5"       : ['５', ''],
+    \ "z6"       : ['６', ''],
+    \ "z7"       : ['７', ''],
+    \ "z8"       : ['８', ''],
+    \ "z9"       : ['９', ''],
+  \ })
   call skkeleton#register_keymap('henkan', '<S-Space>', 'henkanBackward')
-endfunction
-
-" 辞書ファイルダウンロード
-" TODO: ここは確かできてない。
-"       この辺面倒だから手動orシェルスクリプトの方が良いかも...
-function! s:download_skk_jisyo() abort
-  let dictionaries = [
-        \ {"name": "SKK-JISYO.L", "url": "https://skk-dev.github.io/dict/SKK-JISYO.L.gz"},
-        \ {"name" : "SKK-JISYO.emoji.utf8", "url": "https://raw.githubusercontent.com/uasi/skk-emoji-jisyo/master/SKK-JISYO.emoji.utf8"},
-        \ {"name" : "SKK-JISYO.jinmei", "url": "https://github.com/skk-dev/dict/blob/master/SKK-JISYO.jinmei"}
-        \ ]
-
-  " ~/.skkが無ければ作成
-  if isdirectory(s:skk_dir)
-    call mkdir(s:skk_dir, 'p')
-  endif
-
-  for dictionary in dictionaries
-    if filereadable(s:skk_dir .. dictionary['name'])
-      continue
-    endif
-
-    if dictionary['name'] == 'SKK-JISYO.L'
-      let output = system('cd ' .. s:skk_dir .. ' && wget ' .. dictionary['url'] .. ' && gzip -d ' .. dictionary['name'])
-    else
-      let output = system('cd ' .. s:skk_dir .. ' && curl -O ' .. dictionary['url'])
-    endif
-
-    if v:shell_error
-      echo dictionary['name'] .. "のダウンロードが正常に行われませんでした"
-      echo output
-    endif
-  endfor
 endfunction
