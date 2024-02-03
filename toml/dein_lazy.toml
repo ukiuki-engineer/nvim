@@ -166,7 +166,7 @@ require("plugins.coding").lua_source_highlightedyank()
 repo = 'lewis6991/gitsigns.nvim'
 on_event = ['BufRead']
 lua_source = '''
-require("plugins.git").lua_source_gitsigns()
+require("plugins.git.gitsigns").lua_source()
 '''
 
 [[plugins]] # gitの差分をvimdiffで表示したりstageしたりするやつ
@@ -185,24 +185,10 @@ on_cmd = [
   'DiffviewToggleFiles'
 ]
 lua_add = '''
-require("plugins.git").lua_add_diffview()
+require("plugins.git.diffview").lua_add()
 '''
 lua_source = '''
-require("plugins.git").lua_source_diffview()
-'''
-
-[[plugins]] # git操作で便利らしい
-# TODO: 便利らしいから一旦入れてみる。あまり使わなそうなら後で消す。
-repo = 'kdheepak/lazygit.nvim'
-on_cmd = [
-  'LazyGit',
-  'LazyGitConfig',
-  'LazyGitCurrentFile',
-  'LazyGitFilter',
-  'LazyGitFilterCurrentFile',
-]
-lua_add = '''
-require("plugins.git").lua_add_lazygit()
+require("plugins.git.diffview").lua_source()
 '''
 ################################################################################
 # FZF

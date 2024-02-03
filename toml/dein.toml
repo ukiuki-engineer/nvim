@@ -33,7 +33,7 @@ require("plugins.coding").lua_add_skkeleton()
 [[plugins]]
 repo = 'lambdalisue/gin.vim'
 lua_add = '''
-require("plugins.git").lua_add_gin()
+require("plugins.git.gin").lua_add()
 '''
 ################################################################################
 # UI
