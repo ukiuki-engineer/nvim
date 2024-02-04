@@ -128,29 +128,29 @@ function M.lua_source()
     coc#float#has_scroll() ? coc#float#scroll(0, 1) : '7k'
   ]], opts)
   keyset('n', '<C-f>', [[
-    coc#float#has_scroll() ? coc#float#scroll(1) : '\\<C-f>'
+    coc#float#has_scroll() ? coc#float#scroll(1) : '<C-f>'
   ]], opts)
   keyset('n', '<C-b>', [[
-    coc#float#has_scroll() ? coc#float#scroll(0) : '\\<C-b>'
+    coc#float#has_scroll() ? coc#float#scroll(0) : '<C-b>'
   ]], opts)
 
   -- Insert mode
   keyset('i', '<C-i>', [[
-    coc#float#has_scroll() ? '\\<C-R>=coc#float#scroll(1, 1)\\<CR>' : '\\<Right>'
+    coc#float#has_scroll() ? '<C-R>=coc#float#scroll(1, 1)<CR>' : '<Right>'
   ]], opts)
   keyset('i', '<C-f>', [[
-    coc#float#has_scroll() ? '\\<C-R>=coc#float#scroll(1)\\<CR>' : '\\<Right>'
+    coc#float#has_scroll() ? '<C-R>=coc#float#scroll(1)<CR>' : '<Right>'
   ]], opts)
   keyset('i', '<C-k>', [[
-    coc#float#has_scroll() ? '\\<C-R>=coc#float#scroll(0, 1)\\<CR>' : '\\<Left>'
+    coc#float#has_scroll() ? '<C-R>=coc#float#scroll(0, 1)<CR>' : '<Left>'
   ]], opts)
   keyset('i', '<C-b>', [[
-    coc#float#has_scroll() ? '\\<C-R>=coc#float#scroll(0)\\<CR>' : '\\<Left>'
+    coc#float#has_scroll() ? '<C-R>=coc#float#scroll(0)<CR>' : '<Left>'
   ]], opts)
 
   -- Special handling for space + j in Normal mode
   keyset('n', '<space>j', [[
-    coc#float#has_float() ? '\\<Plug>(coc-float-jump)' : '\\<space>j'
+    coc#float#has_float() ? '<Plug>(coc-float-jump)' : '<space>j'
   ]], opts)
 
   -- フォーマッターを呼び出す
