@@ -54,7 +54,3 @@ Total Min:     14.627000 msec
 - 基本的に`neovim nightly`を使用する  
 →Macの場合以下を参照  
 https://github.com/austinliuigi/brew-neovim-nightly
-- 色周り
-    - 個人的に、以下は`sonokai`が凄く見やすい。
-        - markdown
-        - vue

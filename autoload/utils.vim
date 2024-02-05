@@ -139,24 +139,25 @@ endfunction
 " --------------------------------------------------------------------------------
 "
 " 標準プラグインの遅延読み込み
+" NOTE: 今は使ってない
 "
-function! utils#lazy_load() abort
+function! utils#lazy_load_standard_plugins() abort
   augroup MyTimerLoad
     autocmd!
-    execute 'au InsertLeave,FileType * ++once call s:packadd()'
+    execute 'au InsertLeave,FileType * ++once call s:packadd_standard_plugins()'
   augroup END
   if expand('%') != ''
-    call timer_start(g:my#const['timer_start_standard_plugins'], function("s:timer_load"))
+    call timer_start(g:my#const['timer_start_standard_plugins'], function("s:timer_load_standard_plugins"))
   endif
 endfunction
 
-function! s:packadd() abort
+function! s:packadd_standard_plugins() abort
   unlet g:loaded_matchit
   packadd matchit
 endfunction
 
-function! s:timer_load(timer) abort
-  call s:packadd()
+function! s:timer_load_standard_plugins(timer) abort
+  call s:packadd_standard_plugins()
 endfunction
 " --------------------------------------------------------------------------------
 " lua/config/lazy/terminal.lua
