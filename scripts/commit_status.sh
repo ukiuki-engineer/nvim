@@ -15,7 +15,6 @@ if [ "$branch_name" = "HEAD" ]; then
   exit
 fi
 
-# 以降、既存の処理...
 LANG=en_US git_status=$(git status)
 
 # pullもpushも無い場合

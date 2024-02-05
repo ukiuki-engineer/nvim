@@ -1,6 +1,6 @@
 # memo
 
-## 画像貼り付けの仕様 memo
+## 画像貼り付けの仕様(paste_image.lua)
 
 - markdown の時のみ有効
 - 引数なし

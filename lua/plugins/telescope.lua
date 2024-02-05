@@ -1,5 +1,6 @@
 --
--- NOTE: Git操作もある程度はできるようにしてるけど、最近はあんまり使ってない。
+-- NOTE: Git操作もある程度はできるようにしてるけど、
+--       最近はdiffviewとかシェルでの操作が多いかも。
 --
 
 local keyset                               = vim.keymap.set
@@ -30,11 +31,10 @@ local checkout_and_refresh_git_infomations = function(prompt_bufnr)
   vim.fn["utils#refresh_git_infomations"]()
 end
 
---
-
+--------------------------------------------------------------------------------
 local M                                    = {}
 
-function M.lua_add_telescope()
+function M.lua_add()
   -- NOTE: on_cmdで遅延ロードさせるためにこういう回りくどいやり方をしている…
   keyset('n', '<space>b', "<Cmd>Buffers<CR>", {})
   keyset('n', '<space>c', "<Cmd>Commits<CR>", {})
@@ -44,7 +44,7 @@ function M.lua_add_telescope()
   keyset('n', '<Left>', "<Cmd>GitStatus<CR>", {})
 end
 
-function M.lua_source_telescope()
+function M.lua_source()
   local command = vim.api.nvim_create_user_command
   command('BufferLines', "lua require('telescope.builtin').current_buffer_fuzzy_find()", {})
   command('Buffers', "lua require('plugins.telescope').buffers()", {})
@@ -111,8 +111,6 @@ function M.lua_source_telescope()
   require('telescope').load_extension('fzf')
 end
 
---------------------------------------------------------------------------------
--- functions
 --------------------------------------------------------------------------------
 function M.buffers()
   local actions = require('telescope.actions')
