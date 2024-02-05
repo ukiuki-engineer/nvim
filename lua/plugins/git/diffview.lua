@@ -15,7 +15,7 @@ function M.lua_add()
   --       (何故かMacだけkeymappingが効かない時がある)
   command('ResettingDiffview', function()
     vim.cmd([[DiffviewClose]])
-    M.lua_source_diffview()
+    M.lua_source()
     vim.cmd([[DiffviewOpen]])
   end, {})
 end
