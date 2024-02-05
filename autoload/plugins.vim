@@ -63,7 +63,7 @@ let s:skk_dir = g:init_dir .. '/skk-dict'
 function! plugins#hook_add_skkeleton() abort
   " 辞書が無ければダウンロード
   if !isdirectory(s:skk_dir)
-    call system("git clone https://github.com/skk-dev/dict " .. s:skk_dir)
+    execute '!git clone https://github.com/skk-dev/dict ' s:skk_dir
   endif
 
   inoremap <C-j> <Plug>(skkeleton-toggle)
