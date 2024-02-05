@@ -4,8 +4,8 @@
 
 script_dir=$(dirname $(readlink -f $0))
 vimrc_dir=${script_dir/\/scripts/}
-target='vim$|lua$|toml$|json$'           # 行数カウント対象
-not_target='colors|not_use|Session\.vim' # 行数カウント対象外
+target='vim$|lua$|toml$|json$'                    # 行数カウント対象
+not_target='colors|not_use|Session\.vim|skk-dict' # 行数カウント対象外
 
 # vim設定行数
 printf "%20s%s%5s\n" "vim設定行数" " =" $(
