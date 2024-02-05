@@ -5,7 +5,7 @@
 repo = "williamboman/mason-lspconfig.nvim"
 on_event = ['CursorMoved', 'FileType']
 lua_source = '''
-require("plugins.lsp.mason_lspconfig").lua_source_mason_lspconfig()
+require("plugins.lsp.mason_lspconfig").lua_source()
 '''
 
 # [[plugins]]
@@ -19,20 +19,21 @@ require("plugins.lsp.mason_lspconfig").lua_source_mason_lspconfig()
 repo = "williamboman/mason.nvim"
 on_source = 'mason-lspconfig.nvim'
 lua_source = '''
-require("plugins.lsp.mason_lspconfig").lua_source_mason()
+require("plugins.lsp.mason").lua_source()
 '''
+
 [[plugins]]
 repo = "neovim/nvim-lspconfig"
 on_source = 'mason-lspconfig.nvim'
 lua_source = '''
-require("plugins.lsp.mason_lspconfig").lua_source_lspconfig()
+require("plugins.lsp.nvim_lspconfig").lua_source()
 '''
 
 [[plugins]]
 repo = "neovim/null-ls.nvim"
 on_source = ['mason-lspconfig.nvim']
 lua_source = '''
-require("plugins.lsp.mason_lspconfig").lua_source_null_ls()
+require("plugins.lsp.null_ls").lua_source()
 '''
 
 [[plugins]]
@@ -42,6 +43,7 @@ on_source = 'nvim-cmp'
 [[plugins]]
 repo = 'hrsh7th/cmp-vsnip'
 on_source = 'nvim-cmp'
+
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'
 on_source = 'nvim-cmp'
