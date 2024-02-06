@@ -74,6 +74,7 @@ function M.lua_source()
           fallback()
         end,
       }),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
     }),
     sources = cmp.config.sources(sources),
     window = {
