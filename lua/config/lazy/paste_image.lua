@@ -12,7 +12,7 @@ end
 vim.g['vimrc#loaded_paste_image'] = true
 
 -- nvim-cmpの設定をリロード
-require("plugins.coding.nvim_cmp").lua_source()
+require("plugins.coding.nvim-cmp").lua_source()
 
 -- コマンド定義
 vim.cmd([[command! -nargs=* PasteImage :call utils#paste_image("<args>")]])

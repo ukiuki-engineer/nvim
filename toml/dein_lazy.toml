@@ -19,10 +19,10 @@ on_cmd = [
   'NvimTreeGenerateOnAttach'
 ]
 lua_add = '''
-require("plugins.ui.nvim_tree").lua_add()
+require("plugins.ui.nvim-tree").lua_add()
 '''
 lua_source = '''
-require("plugins.ui.nvim_tree").lua_source()
+require("plugins.ui.nvim-tree").lua_source()
 '''
 
 [[plugins]] # nvim-treeのアイコン
@@ -74,7 +74,7 @@ repo = 'hrsh7th/nvim-cmp'
 depends = ['cmp-cmdline', 'cmp-buffer', 'cmp-path', 'cmp-skkeleton']
 on_event = ['CmdlineEnter', 'InsertEnter']
 lua_source = '''
-require("plugins.coding.nvim_cmp").lua_source()
+require("plugins.coding.nvim-cmp").lua_source()
 '''
 
 [[plugins]] # コマンドライン補完用nvim-cmpのソース
