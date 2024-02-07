@@ -1,10 +1,9 @@
 -- ==============================================================================
 -- configのメインファイル
 -- ==============================================================================
-local au         = vim.api.nvim_create_autocmd
-local augroup    = vim.api.nvim_create_augroup
-local g          = vim.g
-local utils      = require("utils")
+local au      = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+local g       = vim.g
 -- ------------------------------------------------------------------------------
 -- 通常ロード
 -- ------------------------------------------------------------------------------
@@ -13,27 +12,35 @@ local utils      = require("utils")
 -- require("config.options")
 -- require("config.autocmds")
 -- require("config.keymappings")
-
--- localvimrc
-local localvimrc = g.init_dir .. "/local.vim"
-if utils.bool_fn.filereadable(localvimrc) then
-  -- ~/.config/nvim/local.vimがあればロード
-  local cmd = [[execute "source " .. "]] .. localvimrc .. '\"'
-  vim.cmd(cmd)
-else
-  -- local.vimが無ければcolorschemeは↓
-  -- NOTE: 気分、環境によってころころ変えたいけど、いちいちgitの差分出るのが嫌だからこういう運用
-  local colorscheme = 'kanagawa'
-  -- NOTE: このvim設定を初めて読んだときとかに、colorscheme入ってない状態でここ通ったりするからpcallしておく
-  local success, exception = pcall(vim.cmd, 'colorscheme ' .. colorscheme)
-  if not success then
-    utils.echo_error_message(exception, "E005", { name = colorscheme })
-  end
-end
 -- ------------------------------------------------------------------------------
 -- 遅延ロード
 -- ------------------------------------------------------------------------------
 augroup("my_lazyload", {}) -- {{{
+
+-- プラグインを前提とした処理はVimEnterに
+au("VimEnter", {
+  group = "my_lazyload",
+  callback = function()
+    -- NOTE: MacはiTerm2側でスケスケにする
+    if not require('utils').bool_fn.has("mac") then
+      require("plugins.colorscheme").colorschemepre_tokyonight()
+    end
+
+    -- -- localvimrc
+    local localvimrc = g.init_dir .. "/local.vim"
+    if require('utils').bool_fn.filereadable(localvimrc) then
+      -- ~/.config/nvim/local.vimがあればロード
+      local cmd = [[execute "source " .. "]] .. localvimrc .. '\"'
+      vim.cmd(cmd)
+    else
+      -- local.vimが無ければcolorschemeは↓
+      -- NOTE: 気分、環境によってころころ変えたいけど、いちいちgitの差分出るのが嫌だからこういう運用
+      vim.cmd([[colorscheme kanagawa]])
+    end
+  end,
+  once = true -- VimEnterだから不要と思うけど一応...
+})
+
 -- comannds
 au("CmdlineEnter", {
   group = "my_lazyload",
@@ -42,6 +49,7 @@ au("CmdlineEnter", {
   end,
   once = true
 })
+
 -- Terminalモードの設定
 au({ "TermOpen", "CmdUndefined" }, {
   group = "my_lazyload",
@@ -51,6 +59,7 @@ au({ "TermOpen", "CmdUndefined" }, {
   pattern = { "Term", "TermHere", "TermHereV", "TermV", "Terminal" },
   once = true
 })
+
 -- IME切り替え設定(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
 au({ "InsertEnter", "CmdlineEnter" }, {
   group = "my_lazyload",
@@ -59,6 +68,7 @@ au({ "InsertEnter", "CmdlineEnter" }, {
   end,
   once = true
 })
+
 -- クリップボード設定(WSLの場合Windows領域へのI/Oが遅く、それが起動時間に影響するため遅延ロードする)
 au({ "InsertEnter", "CursorMoved" }, {
   group = "my_lazyload",
@@ -67,6 +77,7 @@ au({ "InsertEnter", "CursorMoved" }, {
   end,
   once = true
 })
+
 -- markdownで画像をクリップボードから貼り付け
 -- TODO: lua移行後動作未確認
 au("CmdUndefined", {
@@ -87,7 +98,7 @@ au("VimEnter", { -- VimEnter後にタイマースタートする
       g["my#const"].timer_start_init,
       function()
         -- Git情報を更新
-        if utils.is_git_project() then
+        if require('utils').is_git_project() then
           vim.fn['utils#refresh_git_infomations'](true)
         end
 
