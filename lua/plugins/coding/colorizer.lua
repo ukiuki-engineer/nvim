@@ -1,6 +1,7 @@
 local M = {}
 
 function M.lua_source()
+  vim.o.termguicolors = true
   require("colorizer").setup({
     "blade",
     "css",
