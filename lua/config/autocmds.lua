@@ -88,6 +88,13 @@ au("ColorScheme", {
       -- NOTE: 上記以外の任意のカラースキームが適用された場合以下が呼ばれるので注意(忘れそうだからメモ...)
       require("plugins.colorscheme").set_customcolor_common()
     end
+    if vim.o.filetype ~= "TelescopePrompt" then
+      pcall( -- 一応pcallしとく
+        function()
+          require('notify')("ColorScheme: " .. vim.g.colors_name)
+        end
+      )
+    end
   end,
   group = "MyCustomColor",
 })
