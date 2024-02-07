@@ -21,22 +21,19 @@ augroup("my_lazyload", {}) -- {{{
 au("VimEnter", {
   group = "my_lazyload",
   callback = function()
-    -- NOTE: MacはiTerm2側でスケスケにする
-    if not require('utils').bool_fn.has("mac") then
-      require("plugins.colorscheme").colorschemepre_tokyonight()
-    end
-
-    -- -- localvimrc
-    local localvimrc = g.init_dir .. "/local.vim"
-    if require('utils').bool_fn.filereadable(localvimrc) then
-      -- ~/.config/nvim/local.vimがあればロード
-      local cmd = [[execute "source " .. "]] .. localvimrc .. '\"'
-      vim.cmd(cmd)
-    else
-      -- local.vimが無ければcolorschemeは↓
-      -- NOTE: 気分、環境によってころころ変えたいけど、いちいちgitの差分出るのが嫌だからこういう運用
-      vim.cmd([[colorscheme kanagawa]])
-    end
+    vim.schedule(function()
+      -- -- localvimrc
+      local localvimrc = g.init_dir .. "/local.vim"
+      if require('utils').bool_fn.filereadable(localvimrc) then
+        -- ~/.config/nvim/local.vimがあればロード
+        local cmd = [[execute "source " .. "]] .. localvimrc .. '\"'
+        vim.cmd(cmd)
+      else
+        -- local.vimが無ければcolorschemeは↓
+        -- NOTE: 気分、環境によってころころ変えたいけど、いちいちgitの差分出るのが嫌だからこういう運用
+        vim.cmd([[colorscheme kanagawa]])
+      end
+    end)
   end,
   once = true -- VimEnterだから不要と思うけど一応...
 })
