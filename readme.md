@@ -12,9 +12,9 @@ vim-startuptime -vimpath nvim
 Extra options: []
 Measured: 10 times
 
-Total Average: 14.867200 msec
-Total Max:     15.265000 msec
-Total Min:     14.627000 msec
+Total Average: 11.868900 msec
+Total Max:     12.151000 msec
+Total Min:     11.633000 msec
 ```
 
 →[log](https://github.com/ukiuki-engineer/nvim/blob/master/vim-startuptime.log)
