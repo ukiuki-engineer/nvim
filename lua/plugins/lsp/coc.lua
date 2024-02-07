@@ -64,6 +64,11 @@ function M.lua_source()
     coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
   ]], opts)
 
+  -- diagnosticへのジャンプ
+  -- ---------------------------------------------------------------------------
+  keyset("n", "[g", "<Plug>(coc-diagnostic-prev)", { silent = true })
+  keyset("n", "]g", "<Plug>(coc-diagnostic-next)", { silent = true })
+
   -- ---------------------------------------------------------------------------
   -- 定義ジャンプ系
   keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
