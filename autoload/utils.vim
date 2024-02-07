@@ -48,11 +48,18 @@ function! utils#echo_error_message(exception, error_code, param = {}) abort
     endfor
   endif
 
-  " エラーメッセージ出力
-  echohl ErrorMsg
-  echomsg l:my_message
-  echomsg a:exception
-  echohl None
+  try
+    " エラーメッセージ出力
+    call luaeval('require("notify")(_A[1], _A[2])', [l:my_message, "error"])
+    if a:exception != "" && a:exception != v:null
+      call luaeval('require("notify")(_A[1], _A[2])', [a:exception, "error"])
+    endif
+  catch
+    " notifyが入ってない場合
+      echohl ErrorMsg
+      echo "Error: notify module not found."
+      echohl None
+  endtry
 endfunction
 
 "

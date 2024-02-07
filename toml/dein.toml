@@ -56,6 +56,9 @@ repo= 'petertriho/nvim-scrollbar'
 lua_add = '''
 require("plugins.ui.scrollbar").timer_start(vim.g["my#const"].timer_start_scrollbar)
 '''
+
+[[plugins]] # notification manager
+repo = 'rcarriga/nvim-notify'
 ################################################################################
 # ColorScheme
 ################################################################################
