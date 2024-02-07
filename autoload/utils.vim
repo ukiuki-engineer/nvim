@@ -57,7 +57,7 @@ function! utils#echo_error_message(error_code, exception, param = {}) abort
   catch
     " notifyが入ってない場合
       echohl ErrorMsg
-      echo "Error: notify module not found."
+      echo "[E000]notify module not found."
       echohl None
   endtry
 endfunction
