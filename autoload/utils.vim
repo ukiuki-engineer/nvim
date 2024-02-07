@@ -38,7 +38,7 @@ endfunction
 " @param dict param
 " @return void
 "
-function! utils#echo_error_message(exception, error_code, param = {}) abort
+function! utils#echo_error_message(error_code, exception, param = {}) abort
   let l:my_message = "[" .. a:error_code .. "]" .. g:my#const["error_messages"][a:error_code]
 
   " 定数中のパラメータを渡された文字列に置換
@@ -107,7 +107,7 @@ function! utils#refresh_git_infomations(fetch = v:false, async = v:true) abort
         call system("git fetch >/dev/null 2>&1")
       endif
     catch
-      call utils#echo_error_message(v:exception, "E001")
+      call utils#echo_error_message("E001", v:exception)
     endtry
   endif
 
@@ -123,14 +123,14 @@ function! utils#refresh_git_infomations(fetch = v:false, async = v:true) abort
       let g:my#git_infomations['commit_count']['local'] = parts[1]
     endif
   catch
-    call utils#echo_error_message(v:exception, "E002")
+    call utils#echo_error_message("E002", v:exception)
   endtry
 
   " 変更があるか
   try
     let g:my#git_infomations['has_changed'] = v:lua.require('utils').has_git_changed()
   catch
-    call utils#echo_error_message(v:exception, "E003")
+    call utils#echo_error_message("E003", v:exception)
   endtry
 
   " user.nameとuser.email
@@ -138,7 +138,7 @@ function! utils#refresh_git_infomations(fetch = v:false, async = v:true) abort
     let g:my#git_infomations['config']['user_name'] = utils#delete_line_breaks(system("git config user.name"))
     let g:my#git_infomations['config']['user_email'] = utils#delete_line_breaks(system("git config user.email"))
   catch
-    call utils#echo_error_message(v:exception, "E004")
+    call utils#echo_error_message("E004", v:exception)
   endtry
 endfunction
 " --------------------------------------------------------------------------------

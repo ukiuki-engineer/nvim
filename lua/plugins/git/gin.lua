@@ -85,7 +85,7 @@ end
 function M.pcall_git_push_confirm()
   local success, exception = pcall(git_push_confirm)
   if not success then
-    utils.echo_error_message(exception, "E006")
+    utils.echo_error_message("E006", exception)
   end
 end
 
@@ -93,7 +93,7 @@ end
 function M.pcall_delete_latest_commit(soft_or_hard)
   local success, exception = pcall(delete_latest_commit, soft_or_hard)
   if not success then
-    utils.echo_error_message(exception, "E007")
+    utils.echo_error_message("E007", exception)
   end
 end
 
