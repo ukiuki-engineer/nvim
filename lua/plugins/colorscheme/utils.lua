@@ -55,34 +55,7 @@ function M.hi_diff_by_own_colors(bg_color)
   })
 end
 
--- coc.nvimで使用するやつ
-function M.hi_coc_colors(bg_color)
-  hi(0, 'CocFadeOut', {
-    bg = utils.transparent_color(bg_color, "#ADABAC", 0.60),
-    fg = "DarkGray"
-  })
-  hi(0, 'CocHintSign', { fg = "LightGrey" })
-  hi(0, 'CocHighlightText', {
-    bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
-  })
-end
-
-function M.hi_yank_region(bg_color)
-  hi(0, 'HighlightedyankRegion', {
-    bg = utils.transparent_color(bg_color, "Magenta", 0.65),
-  })
-end
-
-function M.hi_matchup(bg_color)
-  hi(0, 'MatchParen', {
-    bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
-    bold = true,
-    underline = false
-  })
-  hi(0, 'MatchWord', { link = "MatchParen" })
-  hi(0, 'MatchWordCur', { link = "MatchParen" })
-end
-
+-- 検索系
 function M.hi_search(bg_color)
   hi(0, 'CurSearch', {
     reverse = true,
@@ -95,6 +68,37 @@ function M.hi_search(bg_color)
   hi(0, 'Search', { link = "IncSearch" })
 end
 
+-- coc.nvimで使用するやつ
+function M.hi_coc_colors(bg_color)
+  hi(0, 'CocFadeOut', {
+    bg = utils.transparent_color(bg_color, "#ADABAC", 0.60),
+    fg = "DarkGray"
+  })
+  hi(0, 'CocHintSign', { fg = "LightGrey" })
+  hi(0, 'CocHighlightText', {
+    bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
+  })
+end
+
+-- ヤンク範囲
+function M.hi_yank_region(bg_color)
+  hi(0, 'HighlightedyankRegion', {
+    bg = utils.transparent_color(bg_color, "Magenta", 0.65),
+  })
+end
+
+-- vim-matchup
+function M.hi_matchup(bg_color)
+  hi(0, 'MatchParen', {
+    bg = utils.transparent_color(bg_color, "LightGrey", 0.75),
+    bold = true,
+    underline = false
+  })
+  hi(0, 'MatchWord', { link = "MatchParen" })
+  hi(0, 'MatchWordCur', { link = "MatchParen" })
+end
+
+-- gitsigns
 function M.hi_gitsigns()
   -- gitsigns.nvim
   hi(0, 'GitSignsCurrentLineBlame', { link = "comment" })
@@ -103,6 +107,7 @@ function M.hi_gitsigns()
   hi(0, 'GitSignsDelete', { fg = "Red" })
 end
 
+-- telescope
 function M.hi_telescope()
   hi(0, 'TelescopePromptCounter', { link = "Comment" })
 end
