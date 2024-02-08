@@ -35,6 +35,11 @@ Total Min:     11.633000 msec
 - [Deno](https://deno.com/)
 - Node
 
+## 仕事集中モード
+
+仕事に集中したいときは、この`nvim/`直下に`working`というファイルを配置する。  
+→Neovim設定を開いても強制的に閉じるようになっている。
+
 ## NOTE
 
 自分用メモ
