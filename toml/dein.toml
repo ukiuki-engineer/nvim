@@ -90,9 +90,6 @@ repo = 'shaunsingh/nord.nvim'
 repo = 'tanvirtin/monokai.nvim'
 
 [[plugins]]
-repo = 'Scysta/pink-panic.nvim'
-
-[[plugins]]
 repo = 'RRethy/nvim-base16'
 
 [[plugins]]
