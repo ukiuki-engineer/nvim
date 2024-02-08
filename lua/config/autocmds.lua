@@ -70,7 +70,7 @@ if not utils.bool_fn.has("mac") then
   au("ColorSchemePre", {
     pattern = { "tokyonight*" },
     callback = function()
-      require("plugins.colorscheme").colorschemepre_tokyonight()
+      require("plugins.colorscheme.tokyonight").colorschemepre()
     end,
     group = "MyCustomColor",
   })
@@ -79,14 +79,17 @@ end
 au("ColorScheme", {
   callback = function()
     if vim.g.colors_name == "tokyonight" then
-      require("plugins.colorscheme").set_customcolor_tokyonight()
-      return
-    elseif vim.g.colors_name == "pink-panic" then
-      require("plugins.colorscheme").set_customcolor_pink_panic()
-      return
+      require("plugins.colorscheme.tokyonight").set_customcolor()
+    elseif vim.g.colors_name == "moonlight" then
+      require("plugins.colorscheme.moonlight").set_customcolor()
+    elseif vim.g.colors_name == "kanagawa" then
+      require("plugins.colorscheme.kanagawa").set_customcolor()
+    elseif vim.g.colors_name == "gruvbox" then
+      require("plugins.colorscheme.gruvbox").set_customcolor()
+    elseif vim.g.colors_name == "nightfly" then
+      require("plugins.colorscheme.nightfly").set_customcolor()
     else
-      -- NOTE: 上記以外の任意のカラースキームが適用された場合以下が呼ばれるので注意(忘れそうだからメモ...)
-      require("plugins.colorscheme").set_customcolor_common()
+      require("plugins.colorscheme.utils").set_customcolor_common()
     end
   end,
   group = "MyCustomColor",

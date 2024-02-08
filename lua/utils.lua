@@ -63,7 +63,7 @@ end
 -- 透過色を16進数で返す
 -- @param string bg_color 背景色のカラーコード(16進数)。例: "#FFFFFF"
 -- @param string target_color 対象色のカラーコード(16進数)。例: "#000000"
--- @param number alpha 透過率。0から1の値で指定する。0に近いほど背景色が優先され、1に近いほど対象色が優先される。
+-- @param number alpha 透過率。0から1。0に近いほど濃い。1に近いほど薄い。
 -- @return string 透過させた色のカラーコード(16進数)。例: "#808080"
 function M.transparent_color(bg_color, target_color, alpha)
   -- target_colorにcolornameが指定されている場合、colorcodeに変換
