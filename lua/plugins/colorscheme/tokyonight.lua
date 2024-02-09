@@ -13,7 +13,6 @@ end
 
 function M.set_customcolor()
   local hi                = vim.api.nvim_set_hl
-  local utils             = require("utils")
   local colorscheme_utils = require("plugins.colorscheme.utils")
 
   -- NOTE: 基本透け透けで使用する前提
@@ -28,7 +27,7 @@ function M.set_customcolor()
   -- hi(0, 'Visual', { bg = "#283457" })
   hi(0, 'Visual', { bg = "#394b7d" })
   hi(0, 'CursorLine', {
-    bg = utils.transparent_color(bg_color, "Magenta", 0.60),
+    bg = colorscheme_utils.transparent_color(bg_color, "Magenta", 0.60),
   })
   hi(0, 'CursorColumn', { link = "CursorLine" })
 
@@ -41,13 +40,13 @@ function M.set_customcolor()
 
   -- ヤンク範囲
   hi(0, 'HighlightedyankRegion', {
-    bg = utils.transparent_color(bg_color, "Yellow", 0.60),
+    bg = colorscheme_utils.transparent_color(bg_color, "Yellow", 0.60),
   })
   hi(0, 'CocMenuSel', { link = "Visual" })
 
   -- vim-matchup
   hi(0, 'MatchParen', {
-    bg = utils.transparent_color(bg_color, "LightGrey", 0.60),
+    bg = colorscheme_utils.transparent_color(bg_color, "LightGrey", 0.60),
     fg = "#ff9e64",
     bold = true,
     underline = false

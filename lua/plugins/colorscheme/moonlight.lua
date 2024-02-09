@@ -13,7 +13,6 @@ end
 
 function M.set_customcolor()
   local hi                = vim.api.nvim_set_hl
-  local utils             = require("utils")
   local colorscheme_utils = require("plugins.colorscheme.utils")
 
   local bg_color          = colorscheme_utils.get_background()
@@ -24,7 +23,7 @@ function M.set_customcolor()
 
   -- vim-matchup
   hi(0, 'MatchParen', {
-    bg = utils.transparent_color(bg_color, "LightGrey", 0.60),
+    bg = colorscheme_utils.transparent_color(bg_color, "LightGrey", 0.60),
     fg = "#ff9e64",
     bold = true,
     underline = false
