@@ -5,20 +5,9 @@ local M  = {}
 -------------------------------------------------------------------------------
 -- utils
 -------------------------------------------------------------------------------
--- background colorを取得する
-function M.get_background()
-  local utils = require("utils")
-  -- guibg の値を取得
-  local bg_color = utils.get_highlight_color('Normal', 'guibg')
-  -- guibgが無しの場合は定数の値を使用
-  if bg_color == nil then
-    bg_color = vim.g["my#const"].term_bgcolor
-  end
-  return bg_color
-end
-
 ---
 -- 透過色を16進数で返す
+--
 -- @param string bg_color 背景色のカラーコード(16進数)。例: "#FFFFFF"
 -- @param string target_color 対象色のカラーコード(16進数)。例: "#000000"
 -- @param number alpha 透過率。0から1。0に近いほど濃い。1に近いほど薄い。
@@ -53,9 +42,10 @@ end
 
 ---
 -- 色名をカラーコードに変換
+-- NOTE: builtinにあるような気もするけど見つけられなかったので一旦これを使う
+--
 -- @param string colorname
 -- @return string colorcode
--- NOTE: builtinにあるような気もするけど見つけられなかったので一旦これを使う
 function M.get_colorcode_by_colorname(colorname)
   local colornames = {
     ["Black"]        = "#000000",
@@ -90,6 +80,48 @@ function M.get_colorcode_by_colorname(colorname)
   return colornames[colorname]
 end
 
+-- background colorを取得する
+function M.get_background()
+  -- guibg の値を取得
+  local bg_color = M.get_highlight_color('Normal', 'guibg')
+  -- guibgが無しの場合は定数の値を使用
+  if bg_color == nil then
+    bg_color = vim.g["my#const"].term_bgcolor
+  end
+  return bg_color
+end
+
+--
+-- highlight colorを取得する
+-- NOTE: linkには対応していない...
+--
+function M.get_highlight_color(highlight_group, highlight_arg)
+  local cmd_output = vim.fn.execute('hi ' .. highlight_group)
+  local is_reverse = string.match(cmd_output, "reverse")
+  local color
+
+  if is_reverse and (highlight_arg == 'guifg' or highlight_arg == 'guibg') then
+    -- `reverse` が適用されている場合、前景色と背景色を入れ替えて取得
+    local fg_color = string.match(cmd_output, "guifg=(#%x+)")
+    local bg_color = string.match(cmd_output, "guibg=(#%x+)")
+
+    if highlight_arg == 'guifg' then
+      color = bg_color -- 背景色を返す
+    elseif highlight_arg == 'guibg' then
+      color = fg_color -- 前景色を返す
+    end
+  else
+    -- `reverse` が適用されていない場合、通常の方法で色を取得
+    color = string.match(cmd_output, highlight_arg .. "=(#%x+)")
+  end
+
+  if color ~= "" then
+    return color
+  else
+    return nil
+  end
+end
+
 -------------------------------------------------------------------------------
 -- setting highlight
 -------------------------------------------------------------------------------
@@ -115,23 +147,21 @@ end
 
 -- 差分系(そのカラースキームで元々定義されている色を使用して再定義)
 function M.hi_diff_by_own_colors(bg_color)
-  -- TODO: utils.get_highlight_color()の結果がnilの場合に対応させる
-  local utils = require("utils")
   -- 追加された行
   hi(0, 'DiffAdd', {
-    bg = M.transparent_color(bg_color, utils.get_highlight_color('DiffAdd', 'guibg'), 0.85)
+    bg = M.transparent_color(bg_color, M.get_highlight_color('DiffAdd', 'guibg'), 0.85)
   })
   -- 変更行
   hi(0, 'DiffChange', {
-    bg = M.transparent_color(bg_color, utils.get_highlight_color('DiffChange', 'guibg'), 0.85)
+    bg = M.transparent_color(bg_color, M.get_highlight_color('DiffChange', 'guibg'), 0.85)
   })
   -- 削除された行
   hi(0, 'DiffDelete', {
-    bg = M.transparent_color(bg_color, utils.get_highlight_color('DiffDelete', 'guibg'), 0.85)
+    bg = M.transparent_color(bg_color, M.get_highlight_color('DiffDelete', 'guibg'), 0.85)
   })
   -- 変更行の変更箇所
   hi(0, 'DiffText', {
-    bg = M.transparent_color(bg_color, utils.get_highlight_color('DiffText', 'guibg'), 0.60)
+    bg = M.transparent_color(bg_color, M.get_highlight_color('DiffText', 'guibg'), 0.60)
   })
 end
 
