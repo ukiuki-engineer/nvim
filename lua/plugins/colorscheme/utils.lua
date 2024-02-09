@@ -2,6 +2,9 @@ local hi = vim.api.nvim_set_hl
 
 local M  = {}
 
+-------------------------------------------------------------------------------
+-- utils
+-------------------------------------------------------------------------------
 -- background colorを取得する
 function M.get_background()
   local utils = require("utils")
@@ -87,6 +90,9 @@ function M.get_colorcode_by_colorname(colorname)
   return colornames[colorname]
 end
 
+-------------------------------------------------------------------------------
+-- setting highlight
+-------------------------------------------------------------------------------
 -- 差分系
 function M.hi_diff(bg_color)
   -- 追加された行
@@ -187,18 +193,26 @@ function M.hi_telescope()
 end
 
 -- とりあえずこれつけとけばOK的なやつ
+-- 特別何か固有の設定をしたい場合以外大体これ呼んどけばOK
 function M.set_customcolor_common(bg_color)
   if not bg_color then
     bg_color = M.get_background()
   end
 
+  -- 差分系
   M.hi_diff(bg_color)
-  M.hi_coc_colors(bg_color)
-  M.hi_yank_region(bg_color)
-  M.hi_matchup(bg_color)
-  M.hi_gitsigns()
-  M.hi_telescope()
+  -- 検索系
   M.hi_search(bg_color)
+  -- ヤンク範囲
+  M.hi_yank_region(bg_color)
+  -- coc.nvim用
+  M.hi_coc_colors(bg_color)
+  -- vim-matchup用
+  M.hi_matchup(bg_color)
+  -- gitsigns用
+  M.hi_gitsigns()
+  -- telescope用
+  M.hi_telescope()
 end
 
 return M
