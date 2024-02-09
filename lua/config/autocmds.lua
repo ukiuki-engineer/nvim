@@ -65,16 +65,18 @@ au("BufRead", {
 -- ------------------------------------------------------------------------------
 augroup("MyCustomColor", {})
 
-if not utils.bool_fn.has("mac") then
-  -- NOTE: MacはiTerm2側でスケスケにする
-  au("ColorSchemePre", {
-    pattern = { "tokyonight*" },
-    callback = function()
-      require("plugins.colorscheme.tokyonight").colorschemepre()
-    end,
-    group = "MyCustomColor",
-  })
-end
+au("ColorSchemePre", {
+  callback = function()
+    if vim.g.colors_name == "tokyonight" then
+      if not utils.bool_fn.has("mac") then
+        require("plugins.colorscheme.tokyonight").colorscheme_pre()
+      end
+      -- elseif vim.g.colors_name == "moonlight" then
+      --   require("plugins.colorscheme.moonlight").colorscheme_pre()
+    end
+  end,
+  group = "MyCustomColor",
+})
 
 au("ColorScheme", {
   callback = function()

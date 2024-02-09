@@ -1,10 +1,6 @@
-local hi                = vim.api.nvim_set_hl
-local utils             = require("utils")
-local colorscheme_utils = require("plugins.colorscheme.utils")
+local M = {}
 
-local M                 = {}
-
-function M.colorschemepre()
+function M.colorscheme_pre()
   require("tokyonight").setup({
     -- 透け透けにする
     transparent = true,
@@ -16,11 +12,15 @@ function M.colorschemepre()
 end
 
 function M.set_customcolor()
+  local hi                = vim.api.nvim_set_hl
+  local utils             = require("utils")
+  local colorscheme_utils = require("plugins.colorscheme.utils")
+
   -- NOTE: 基本透け透けで使用する前提
   -- TODO: diffviewとgitsignsを綺麗に調整する
 
   -- background colorを取得
-  local bg_color = colorscheme_utils.get_background()
+  local bg_color          = colorscheme_utils.get_background()
 
   -- hi(0, 'Comment', { fg = "#565f89" })
   hi(0, 'Comment', { fg = "#8a92b6" })
