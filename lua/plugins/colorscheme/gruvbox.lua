@@ -7,6 +7,10 @@ function M.set_customcolor()
   -- background colorを取得
   local bg_color          = colorscheme_utils.get_background()
 
+  colorscheme_utils.hi_coc_colors(bg_color)
+  colorscheme_utils.hi_gitsigns()
+  colorscheme_utils.hi_telescope()
+
   hi(0, 'DiffText', {
     bg = colorscheme_utils.transparent_color(bg_color, "#FABD2F", 0.50)
   })
@@ -25,10 +29,15 @@ function M.set_customcolor()
   })
   hi(0, 'Search', { link = "IncSearch" })
 
-  colorscheme_utils.hi_coc_colors(bg_color)
-  colorscheme_utils.hi_matchup(bg_color)
-  colorscheme_utils.hi_gitsigns()
-  colorscheme_utils.hi_telescope()
+  -- vim-matchup用
+  vim.api.nvim_set_hl(0, 'MatchParen', {
+    bg = colorscheme_utils.transparent_color(bg_color, "LightGrey", 0.60),
+    fg = "Magenta",
+    bold = true,
+    underline = false
+  })
+  vim.api.nvim_set_hl(0, 'MatchWord', { link = "MatchParen" })
+  vim.api.nvim_set_hl(0, 'MatchWordCur', { link = "MatchParen" })
 end
 
 return M
