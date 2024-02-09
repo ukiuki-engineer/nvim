@@ -17,9 +17,19 @@ function M.set_customcolor()
 
   local bg_color          = colorscheme_utils.get_background()
 
+  -- 差分系
   colorscheme_utils.hi_diff_by_own_colors(bg_color)
+  -- 検索系
   colorscheme_utils.hi_search(bg_color)
+  -- ヤンク範囲
   colorscheme_utils.hi_yank_region(bg_color)
+
+  -- Comment
+  hi(0, 'Comment', { fg = "#8a92b6" })
+  hi(0, 'TSComment', { link = "Comment" })
+
+  -- CursorLine
+  hi(0, 'CursorLine', { link = "CursorColumn" })
 
   -- vim-matchup
   hi(0, 'MatchParen', {
