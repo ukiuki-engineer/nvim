@@ -15,4 +15,4 @@ vim.g['vimrc#loaded_paste_image'] = true
 require("plugins.coding.nvim-cmp").lua_source()
 
 -- コマンド定義
-vim.cmd([[command! -nargs=* PasteImage :call utils#paste_image("<args>")]])
+vim.cmd([[command! -nargs=* PasteImage :call paste_image#paste_image("<args>")]])
