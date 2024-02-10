@@ -2,7 +2,7 @@
 " vimscriptで書いたプラグイン設定
 " ================================================================================
 "
-" vim-autoclose(自作)
+" vim-autoclose
 "
 function! plugins#hook_source_autoclose() abort
   " let g:autoclose#autoclosing_brackets_enable = 0

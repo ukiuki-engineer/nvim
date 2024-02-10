@@ -1,3 +1,7 @@
+-- ================================================================================
+-- Terminal Modeの設定
+-- 基本的にvimの使用感に寄せてる
+-- ================================================================================
 if vim.g['vimrc#loaded_terminal'] then
   return
 end
@@ -26,6 +30,6 @@ vim.cmd([[
   command! -nargs=* Term Terminal <args>
   command! -nargs=* TermV vsplit | wincmd l | terminal <args>
   " →カレントバッファのディレクトリ&ウィンドウを分割してターミナルを開く
-  command! TermHere :call utils#term_here("sp")
-  command! TermHereV :call utils#term_here("vsp")
+  command! TermHere :call terminal#term_here("sp")
+  command! TermHereV :call terminal#term_here("vsp")
 ]])

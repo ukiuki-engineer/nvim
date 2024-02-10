@@ -4,16 +4,15 @@ require("const")
 local g                = vim.g
 local fn               = vim.fn
 local const            = g["my#const"]
+local cache            = fn.expand("$HOME/.cache")
+local dein_dir         = fn.expand(cache .. "/dein")
+local dein_repo_dir    = dein_dir .. "/repos/github.com/Shougo/dein.vim"
 
 g.init_dir             = fn.fnamemodify(fn.resolve(fn.expand("<sfile>")), ":h")
 
 -- lspどっちにするか
 g.lsp_plugin_selection = const.lsp_plugin_selection_coc
 -- g.lsp_plugin_selection = const.lsp_plugin_selection_mason_lspconfig
-
-local cache            = fn.expand("$HOME/.cache")
-local dein_dir         = fn.expand(cache .. "/dein")
-local dein_repo_dir    = dein_dir .. "/repos/github.com/Shougo/dein.vim"
 
 -- ~/.cacheが無ければ作成
 if not fn.isdirectory(cache) then
@@ -30,11 +29,9 @@ if fn.matchstr(vim.o.runtimepath, '/dein.vim') == "" then
   vim.cmd("let &runtimepath = '" .. dein_repo_dir .. "'.','. &runtimepath")
 end
 
-
 -- dein options
-g["dein#auto_recache"] = true
+g["dein#auto_recache"]  = true
 g["dein#lazy_rplugins"] = true
-
 
 -- 設定開始
 if fn["dein#load_state"](dein_dir) == 1 then

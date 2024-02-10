@@ -1,5 +1,5 @@
 " ================================================================================
-" vimscriptで書いた処理はここに集める
+" vimscriptで書いた共通処理とか
 " ================================================================================
 " --------------------------------------------------------------------------------
 " utils
@@ -165,35 +165,6 @@ endfunction
 
 function! s:timer_load_standard_plugins(timer) abort
   call s:packadd_standard_plugins()
-endfunction
-" --------------------------------------------------------------------------------
-" lua/config/lazy/terminal.lua
-" --------------------------------------------------------------------------------
-"
-" ターミナルをカレントバッファのディレクトリで開く
-"
-function! utils#term_here(spOrVsp) abort
-  if a:spOrVsp == "sp"
-  " 水平分割
-    split | wincmd j | resize 20
-  elseif a:spOrVsp == "vsp"
-    " 垂直分割
-    vsplit | wincmd l
-  endif
-  " ターミナルを開く
-  call utils#execute_here("terminal")
-endfunction
-
-"
-" カレントバッファのディレクトリに移動してコマンドを実行
-"
-function! utils#execute_here(command) abort
-  " 無名バッファでなければ移動
-  if expand('%') != ''
-    lcd %:h
-  endif
-  " コマンド実行
-  execute a:command
 endfunction
 " --------------------------------------------------------------------------------
 " lua/config/lazy/commands.lua

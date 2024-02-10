@@ -9,6 +9,7 @@ local M   = {}
 
 --
 -- booleanな値を返すvim.fnのwrapper function
+-- (なんかで紹介されてたやつをそのまま使ってる)
 -- 例）if require("utils").bool_fn.has('mac') then ... end
 --
 M.bool_fn = setmetatable({}, {
@@ -60,7 +61,8 @@ function M.echo_error_message(error_code, exception, param)
 end
 
 --
--- カラースキームをランダムに変更する
+-- カラースキームを(g:my#const["favarite_colorschemes"]の中から)ランダムに変更する
+-- (これを起動時とかに呼ぶと起動するたびにカラースキーム変わって楽しい)
 --
 function M.change_colorscheme()
   -- 対象のカラースキーム
