@@ -1,7 +1,7 @@
 "
 " 画像の貼り付け
 "
-function! utils#paste_image(args = '') abort
+function! paste_image#paste_image(args = '') abort
   " TODO: 画像が保存されなかった場合、textが挿入されないようにする
   " Mac以外ならエラー
   if !has('mac')
@@ -26,7 +26,7 @@ function! utils#paste_image(args = '') abort
 
   " 引数なしの場合
   if a:args == ''
-    let l:image_filename = utils#seq_filename(getcwd())
+    let l:image_filename = paste_image#seq_filename(getcwd())
     let l:image_fullpath = getcwd() .. '/' .. l:image_filename
     let l:insert_text = '![Alt text](./' .. l:image_filename .. ')'
 
@@ -44,7 +44,7 @@ function! utils#paste_image(args = '') abort
     if !isdirectory(l:image_dir)
       call mkdir(l:image_dir, 'p')
     endif
-    let l:image_filename = utils#seq_filename(l:image_dir)
+    let l:image_filename = paste_image#seq_filename(l:image_dir)
     let l:image_fullpath = l:image_dir .. '/' .. l:image_filename
 
   elseif a:args != '' && a:args[len(a:args) - 1] != '/'
@@ -72,7 +72,7 @@ endfunction
 "
 " 連番ファイル名を取得
 "
-function! utils#seq_filename(target_dir) abort
+function! paste_image#seq_filename(target_dir) abort
   let l:files = glob(a:target_dir .. '/image-*.png')
   let l:command = "\\ls " .. a:target_dir .. " | \\grep -E 'image-.*[0-1]*\\.png' | \\sed -e 's/image-//' -e 's/\\.png//' | \\sort -n | \\tail -n1 | tr -d '\n'"
   let l:num = system(l:command)
