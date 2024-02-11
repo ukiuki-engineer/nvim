@@ -47,7 +47,7 @@ function M.lua_source()
     },
     keymaps = {
       file_panel = {
-        -- 効いたり効かなかったりする {{{
+        -- TODO: 何故かMacだと効いたり効かなかったりする {{{
         -- commit
         { "n", "<Down>",
           function()

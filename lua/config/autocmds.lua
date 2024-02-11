@@ -5,7 +5,6 @@
 local au      = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local fn      = vim.fn
-local utils   = require("utils")
 
 augroup("MyAutocmds", {})
 
@@ -68,7 +67,7 @@ augroup("MyCustomColor", {})
 au("ColorSchemePre", {
   callback = function()
     if vim.g.colors_name == "tokyonight" then
-      if not utils.bool_fn.has("mac") then
+      if not require("utils").bool_fn.has("mac") then
         require("plugins.colorscheme.tokyonight").colorscheme_pre()
       end
       -- elseif vim.g.colors_name == "moonlight" then

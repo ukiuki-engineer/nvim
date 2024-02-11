@@ -23,7 +23,7 @@ if utils.bool_fn.has("mac") and exepath("im-select") ~= "" then
 end
 
 -- WSL用
-if require("utils").is_wsl() and exepath("zenhan.exe") ~= "" then
+if utils.is_wsl() and exepath("zenhan.exe") ~= "" then
   au(events, {
     group = "my_ime",
     callback = function()

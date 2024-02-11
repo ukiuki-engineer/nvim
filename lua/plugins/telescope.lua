@@ -5,21 +5,6 @@
 
 local keyset                               = vim.keymap.set
 local fn                                   = vim.fn
-local utils                                = require('utils')
-
--- commit数の状態を返す
-local git_commit_status_text               = function()
-  local remote_branch_info_text = utils.remote_branch_info_text()
-  local commit = vim.g['my#git_infomations']['commit_count']
-
-  if remote_branch_info_text ~= "" then
-    return remote_branch_info_text
-  elseif commit['remote'] == "" and commit['local'] == "" then
-    return ""
-  else
-    return "↓" .. commit['remote'] .. " ↑" .. commit['local']
-  end
-end
 
 -- checkoutしてgit情報を更新する
 local checkout_and_refresh_git_infomations = function(prompt_bufnr)
@@ -205,6 +190,22 @@ function M.git_branches()
 end
 
 function M.git_status()
+  local actions = require('telescope.actions')
+  local action_state = require('telescope.actions.state')
+
+  -- commit数の状態を返す
+  local git_commit_status_text = function()
+    local remote_branch_info_text = require("utils").remote_branch_info_text()
+    local commit = vim.g['my#git_infomations']['commit_count']
+
+    if remote_branch_info_text ~= "" then
+      return remote_branch_info_text
+    elseif commit['remote'] == "" and commit['local'] == "" then
+      return ""
+    else
+      return "↓" .. commit['remote'] .. " ↑" .. commit['local']
+    end
+  end
   if not require("utils").is_git_project() then
     vim.cmd([[
       echohl WarningMsg
@@ -213,9 +214,6 @@ function M.git_status()
     ]])
     return
   end
-
-  local actions = require('telescope.actions')
-  local action_state = require('telescope.actions.state')
 
   -- git情報を更新
   vim.fn['utils#refresh_git_infomations'](true)

@@ -1,7 +1,6 @@
 local M = {}
 
 function M.lua_source()
-  -- NOTE: 逆にデフォルトの方が見やすい場合はtreesitterを適宜オフに設定する
   require('nvim-treesitter.configs').setup {
     highlight = {
       enable = true, -- syntax highlightを有効にする

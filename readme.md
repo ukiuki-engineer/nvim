@@ -19,8 +19,6 @@ Total Min:     11.633000 msec
 
 →[log](https://github.com/ukiuki-engineer/nvim/blob/master/vim-startuptime.log)
 
-→Macだと大体これの倍くらいかな...
-
 - ハードウェアスペック
 
 |        |                                            |
