@@ -7,18 +7,17 @@ function M.set_customcolor()
   -- background colorを取得
   local bg_color          = colorscheme_utils.get_background()
 
-  colorscheme_utils.hi_coc_colors(bg_color)
-  colorscheme_utils.hi_gitsigns()
-  colorscheme_utils.hi_telescope()
-
+  -- 変更行の変更箇所
   hi(0, 'DiffText', {
     bg = colorscheme_utils.transparent_color(bg_color, "#FABD2F", 0.50)
   })
 
+  -- ヤンク範囲
   hi(0, 'HighlightedyankRegion', {
     bg = colorscheme_utils.transparent_color(bg_color, "#FD7E00", 0.65)
   })
 
+  -- 検索系
   hi(0, 'CurSearch', {
     reverse = true,
     fg = "#FABD2F",
@@ -38,6 +37,13 @@ function M.set_customcolor()
   })
   vim.api.nvim_set_hl(0, 'MatchWord', { link = "MatchParen" })
   vim.api.nvim_set_hl(0, 'MatchWordCur', { link = "MatchParen" })
+
+  -- coc.nvim用
+  colorscheme_utils.hi_coc_colors(bg_color)
+  -- gitsigns用
+  colorscheme_utils.hi_gitsigns()
+  -- telescope用
+  colorscheme_utils.hi_telescope()
 end
 
 return M

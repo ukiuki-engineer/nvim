@@ -8,10 +8,10 @@ local M  = {}
 ---
 -- 透過色を16進数で返す
 --
--- @param string bg_color 背景色のカラーコード(16進数)。例: "#FFFFFF"
--- @param string target_color 対象色のカラーコード(16進数)。例: "#000000"
--- @param number alpha 透過率。0から1。0に近いほど濃い。1に近いほど薄い。
--- @return string 透過させた色のカラーコード(16進数)。例: "#808080"
+-- @param string bg_color 背景色のカラーコード(16進数)
+-- @param string target_color 対象色のカラーコード(16進数)
+-- @param number alpha 透過率(0.0-1.0)。0に近いほど濃い。1に近いほど薄い。
+-- @return string 透過させた色のカラーコード(16進数)
 function M.transparent_color(bg_color, target_color, alpha)
   -- target_colorにcolornameが指定されている場合、colorcodeに変換
   if string.sub(target_color, 1, 1) ~= "#" then
@@ -80,7 +80,9 @@ function M.get_colorcode_by_colorname(colorname)
   return colornames[colorname]
 end
 
+--
 -- background colorを取得する
+--
 function M.get_background()
   -- guibg の値を取得
   local bg_color = M.get_highlight_color('Normal', 'guibg')
@@ -125,7 +127,9 @@ end
 -------------------------------------------------------------------------------
 -- setting highlight
 -------------------------------------------------------------------------------
+--
 -- 差分系
+--
 function M.hi_diff(bg_color)
   -- 追加された行
   hi(0, 'DiffAdd', {
@@ -145,7 +149,9 @@ function M.hi_diff(bg_color)
   })
 end
 
+--
 -- 差分系(そのカラースキームで元々定義されている色を使用して再定義)
+--
 function M.hi_diff_by_own_colors(bg_color)
   -- 追加された行
   hi(0, 'DiffAdd', {
@@ -165,7 +171,9 @@ function M.hi_diff_by_own_colors(bg_color)
   })
 end
 
+--
 -- 検索系
+--
 function M.hi_search(bg_color)
   hi(0, 'CurSearch', {
     reverse = true,
@@ -178,7 +186,9 @@ function M.hi_search(bg_color)
   hi(0, 'Search', { link = "IncSearch" })
 end
 
+--
 -- coc.nvimで使用するやつ
+--
 function M.hi_coc_colors(bg_color)
   hi(0, 'CocFadeOut', {
     bg = M.transparent_color(bg_color, "#ADABAC", 0.60),
@@ -190,14 +200,18 @@ function M.hi_coc_colors(bg_color)
   })
 end
 
+--
 -- ヤンク範囲
+--
 function M.hi_yank_region(bg_color)
   hi(0, 'HighlightedyankRegion', {
     bg = M.transparent_color(bg_color, "Magenta", 0.65),
   })
 end
 
+--
 -- vim-matchup
+--
 function M.hi_matchup(bg_color)
   hi(0, 'MatchParen', {
     bg = M.transparent_color(bg_color, "LightGrey", 0.75),
@@ -208,7 +222,9 @@ function M.hi_matchup(bg_color)
   hi(0, 'MatchWordCur', { link = "MatchParen" })
 end
 
+--
 -- gitsigns
+--
 function M.hi_gitsigns()
   -- gitsigns.nvim
   hi(0, 'GitSignsCurrentLineBlame', { link = "comment" })
@@ -217,14 +233,19 @@ function M.hi_gitsigns()
   hi(0, 'GitSignsDelete', { fg = "Red" })
 end
 
+--
 -- telescope
+--
 function M.hi_telescope()
   hi(0, 'TelescopePromptCounter', { link = "Comment" })
 end
 
+--
 -- とりあえずこれつけとけばOK的なやつ
 -- 特別何か固有の設定をしたい場合以外大体これ呼んどけばOK
+--
 function M.set_customcolor_common(bg_color)
+  -- bg_colorが渡されなかったら取得する
   if not bg_color then
     bg_color = M.get_background()
   end

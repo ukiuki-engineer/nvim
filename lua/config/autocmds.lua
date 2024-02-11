@@ -18,22 +18,19 @@ au({ "BufWrite", "BufRead" }, {
     if vim.o.readonly then
       return
     end
-
     -- commit編集時は何もしない
     if fn.expand('%:t') == "COMMIT_EDITMSG" then
       return
     end
-
     -- quickfix windowの時は何もしない
     if vim.o.filetype == "qf" then
       return
     end
-
     -- diffviewのパネルがあったら何もしない
     if string.find(fn.join(fn.gettabinfo(), ', '), 'diffview_view') then
       return
     end
-
+    -- session保存
     vim.cmd(mksession)
   end
 })

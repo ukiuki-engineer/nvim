@@ -100,7 +100,7 @@ au("VimEnter", { -- VimEnter後にタイマースタートする
           vim.fn['utils#refresh_git_infomations'](true)
         end
 
-        -- vim設定禁止処理w
+        -- vim設定禁止処理
         -- ~/.config/nvim/workingがあり、~/.config/nvim/で起動した場合、強制終了する(仕事に集中したい時用)
         -- 何か良いプラグインもあるっぽいけどとりあえずこれで十分かな
         vim.cmd([[
