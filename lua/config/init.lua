@@ -1,9 +1,9 @@
 -- ==============================================================================
 -- configのメインファイル
 -- ==============================================================================
-local au               = vim.api.nvim_create_autocmd
-local augroup          = vim.api.nvim_create_augroup
-local g                = vim.g
+local au      = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+local g       = vim.g
 -- ------------------------------------------------------------------------------
 -- 通常ロード
 -- ------------------------------------------------------------------------------
@@ -12,15 +12,6 @@ local g                = vim.g
 -- require("config.autocmds")
 -- require("config.keymappings")
 
--- localvimrc
--- NOTE: プラグインを前提とした処理をlocal.vimに書くと、プラグインが入ってない場合にエラーになるので注意
-local localvimrc       = g.init_dir .. "/local.vim"
-local existsLocalvimrc = require('utils').bool_fn.filereadable(localvimrc)
-if existsLocalvimrc then
-  -- ~/.config/nvim/local.vimがあればロード
-  local cmd = [[execute "source " .. "]] .. localvimrc .. '\"'
-  vim.cmd(cmd)
-end
 -- ------------------------------------------------------------------------------
 -- 遅延ロード
 -- ------------------------------------------------------------------------------
@@ -31,7 +22,14 @@ au("VimEnter", {
   group = "my_lazyload",
   callback = function()
     vim.schedule(function()
-      if not existsLocalvimrc then
+      -- 環境ごとの設定
+      local localvimrc       = g.init_dir .. "/local.vim"
+      local existsLocalvimrc = require('utils').bool_fn.filereadable(localvimrc)
+      if existsLocalvimrc then
+        -- ~/.config/nvim/local.vimがあればロード
+        local cmd = [[execute "source " .. "]] .. localvimrc .. '\"'
+        vim.cmd(cmd)
+      else
         -- local.vimが無ければcolorschemeは↓
         -- NOTE: 気分、環境によってころころ変えたいけど、いちいちgitの差分出るのが嫌だからこういう運用
         vim.cmd([[colorscheme kanagawa]])
