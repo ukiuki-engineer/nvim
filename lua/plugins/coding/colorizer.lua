@@ -4,7 +4,7 @@ function M.lua_source()
   vim.o.termguicolors = true
   require("colorizer").setup({
     "blade",
-    "css",
+    css = { css = true, rgb_fn = true },
     "eruby",
     "html",
     "javascript",
@@ -12,7 +12,7 @@ function M.lua_source()
     "lua",
     "markdown",
     "sass",
-    "scss",
+    scss = { css = true, rgb_fn = true },
     "stylus",
     "text",
     "toml",
