@@ -6,7 +6,7 @@ local M = {}
 
 function M.lua_add()
   vim.keymap.set('n', '<Right>', function()
-    vim.fn["utils#refresh_git_infomations"](true)
+    vim.fn['utils#async_fetch_and_refresh_git_info']()
     vim.cmd([[DiffviewOpen]])
   end, {})
   vim.keymap.set('n', '<Down>', "<Cmd>DiffviewFileHistory<CR>", {})

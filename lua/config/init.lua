@@ -100,7 +100,8 @@ au("VimEnter", { -- VimEnter後にタイマースタートする
       function()
         -- Git情報を更新
         if require('utils').is_git_project() then
-          vim.fn['utils#refresh_git_infomations'](true)
+          vim.fn['utils#refresh_git_infomations']()
+          vim.fn['utils#async_fetch_and_refresh_git_info']()
         end
 
         -- vim設定禁止処理

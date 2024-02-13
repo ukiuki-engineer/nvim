@@ -65,8 +65,6 @@ endfunction
 "
 " Git情報(g:my#git_infomations)を更新する
 "
-" @param boolean fetch trueなら`git fetch`する(default: false)
-" @param boolean async trueなら非同期で`git fetch`(default: true)
 " @return void
 "
 " NOTE: g:my#git_infomationsの構造は以下
@@ -82,34 +80,14 @@ endfunction
 "     user_name         : v:t_string
 "     user_email        : v:t_string
 "
-function! utils#refresh_git_infomations(fetch = v:false, async = v:true) abort
-  let g:my#git_infomations = {}
-
-  " git projectではないなら処理終了
-  if !v:lua.require('utils').is_git_project()
-    return
-  endif
-
+function! utils#refresh_git_infomations(job_id = v:null, exit_status = v:null, event_type = v:null) abort
   let g:my#git_infomations = {
-        \ 'branch_name'         : '',
-        \ 'exists_remote_branch': v:false,
-        \ 'commit_count'        : {},
-        \ 'has_changed'         : {},
-        \ 'config'              : {}
-        \ }
-
-  " git fetch
-  if a:fetch
-    try
-      if a:async
-        call jobstart("git fetch >/dev/null 2>&1")
-      else
-        call system("git fetch >/dev/null 2>&1")
-      endif
-    catch
-      call utils#echo_error_message("E001", v:exception)
-    endtry
-  endif
+    \ 'branch_name'         : '',
+    \ 'exists_remote_branch': v:false,
+    \ 'commit_count'        : {},
+    \ 'has_changed'         : {},
+    \ 'config'              : {}
+  \ }
 
   " ブランチ、commit情報
   try
@@ -140,6 +118,20 @@ function! utils#refresh_git_infomations(fetch = v:false, async = v:true) abort
   catch
     call utils#echo_error_message("E004", v:exception)
   endtry
+endfunction
+
+"
+" git fetchを非同期に実行し、git情報を更新する
+"
+" @param boolean fetch trueなら`git fetch`する(default: false)
+" @return void
+"
+function! utils#async_fetch_and_refresh_git_info() abort
+  " git projectではないなら処理終了
+  if !v:lua.require('utils').is_git_project()
+    return
+  endif
+  call jobstart('git fetch', {'on_exit': function('utils#refresh_git_infomations')})
 endfunction
 " --------------------------------------------------------------------------------
 " lua/config/init.lua

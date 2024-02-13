@@ -45,7 +45,7 @@ au({ "BufWrite" }, {
 au({ "VimResume" }, {
   group = "MyAutocmds",
   callback = function()
-    vim.fn["utils#refresh_git_infomations"](true)
+    vim.fn['utils#async_fetch_and_refresh_git_info']()
   end
 })
 

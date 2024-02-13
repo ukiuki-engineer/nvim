@@ -216,7 +216,7 @@ function M.git_status()
   end
 
   -- git情報を更新
-  vim.fn['utils#refresh_git_infomations'](true)
+  vim.fn['utils#async_fetch_and_refresh_git_info']()
 
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)
