@@ -14,5 +14,10 @@
 " let g:my#const['term_bgcolor'] = g:my#const['bg_colors']['synthwave_alpha']
 " lockv g:my#const
 
+" nightflyを使用
+" lua << END
+"   require("plugins.colorscheme.nightfly").set()
+" END
+
 " カラースキームをランダムに設定
 lua require("utils").change_colorscheme()

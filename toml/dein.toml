@@ -67,6 +67,9 @@ repo = 'ellisonleao/gruvbox.nvim'
 
 [[plugins]]
 repo = 'bluz71/vim-nightfly-colors'
+lua_add = '''
+require("plugins.colorscheme.nightfly").settings()
+'''
 
 [[plugins]]
 repo = 'EdenEast/nightfox.nvim'
