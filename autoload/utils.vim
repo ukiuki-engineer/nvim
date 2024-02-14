@@ -81,6 +81,11 @@ endfunction
 "     user_email        : v:t_string
 "
 function! utils#refresh_git_infomations(job_id = v:null, exit_status = v:null, event_type = v:null) abort
+  " git projectではないなら処理終了
+  if !v:lua.require('utils').is_git_project()
+    return
+  endif
+
   let g:my#git_infomations = {
     \ 'branch_name'         : '',
     \ 'exists_remote_branch': v:false,
