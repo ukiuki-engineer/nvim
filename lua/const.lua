@@ -4,6 +4,7 @@
 -------------------------------------------------------------------------------
 local bg_colors = {
   cobalt2         = "#002f4f",
+  nightfly        = "#011627",
   synthwave_alpha = "#241B30",
 }
 
@@ -36,7 +37,7 @@ vim.g["my#const"] = {
 
   -- 色周り
   bg_colors                            = bg_colors,
-  term_bgcolor                         = bg_colors.cobalt2,
+  term_bgcolor                         = bg_colors.nightfly,
   favorite_colorschemes                = {
     "base16-ayu-dark",
     "base16-monokai",
