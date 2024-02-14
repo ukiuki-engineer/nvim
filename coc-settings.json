@@ -3,6 +3,8 @@
     "lua",
     "html",
     "php",
+    "css",
+    "scss",
     // "markdown"
   ],
   // NOTE: :CocLocalConfigを実行すると、./.vim/coc-config.jsonが作成される
