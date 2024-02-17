@@ -133,7 +133,7 @@ end
 function M.hi_diff(bg_color)
   -- 追加された行
   hi(0, 'DiffAdd', {
-    bg = M.transparent_color(bg_color, "DarkGreen", 0.80)
+    bg = M.transparent_color(bg_color, "Green", 0.80)
   })
   -- 変更行
   hi(0, 'DiffChange', {
