@@ -32,7 +32,7 @@ endfunction
 " sassコマンドが無い場合の警告を表示する
 function! s:echo_warning() abort
   echohl WarningMsg
-  echo "Warning: 'sass' command is not available."
+  echomsg "Warning: 'sass' command is not available."
   echohl None
 endfunction
 

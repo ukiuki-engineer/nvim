@@ -74,7 +74,7 @@ vim.cmd("let &runtimepath = '" .. dein_repo_dir .. "'.','. &runtimepath")
 if not fn.isdirectory(cache) then
 ```
 
-- [ ] `scss.vim`  
+- [x] `scss.vim`  
 
 ```vim
 echo "Warning: 'sass' command is not available."
