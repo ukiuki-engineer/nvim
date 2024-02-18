@@ -15,18 +15,18 @@ g.lsp_plugin_selection = const.lsp_plugin_selection_coc
 -- g.lsp_plugin_selection = const.lsp_plugin_selection_mason_lspconfig
 
 -- ~/.cacheが無ければ作成
-if not fn.isdirectory(cache) then
+if not fn.isdirectory(cache) == 0 then
   fn.mkdir(cache, "p")
 end
 
 -- deinが無ければインストール
 if fn.matchstr(vim.o.runtimepath, '/dein.vim') == "" then
   if fn.isdirectory(dein_repo_dir) == 0 then
-    if vim.fn.isdirectory(dein_repo_dir) == 0 then
+    if fn.isdirectory(dein_repo_dir) == 0 then
       os.execute('git clone https://github.com/Shougo/dein.vim ' .. dein_repo_dir)
     end
   end
-  vim.cmd("let &runtimepath = '" .. dein_repo_dir .. "'.','. &runtimepath")
+  vim.o.runtimepath = dein_repo_dir .. "," .. vim.o.runtimepath
 end
 
 -- dein options

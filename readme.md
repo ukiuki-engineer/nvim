@@ -60,14 +60,14 @@ https://github.com/austinliuigi/brew-neovim-nightly
 
 ## vimrc読書会
 
-- [ ] `init.lua`  
+- [x] `init.lua`  
 Vim scriptとのキメラになってる
 
 ```lua
 vim.cmd("let &runtimepath = '" .. dein_repo_dir .. "'.','. &runtimepath")
 ```
 
-- [ ] `init.lua`  
+- [x] `init.lua`  
 多分`== 0`としないと機能しない
 
 ```lua
@@ -80,7 +80,7 @@ if not fn.isdirectory(cache) then
 echo "Warning: 'sass' command is not available."
 ```
 
-- [ ] `init.lua`  
+- [x] `init.lua`  
 表記揺れ
 
 ```lua
