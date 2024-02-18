@@ -60,51 +60,11 @@ https://github.com/austinliuigi/brew-neovim-nightly
 
 ## vimrc読書会
 
-- [x] `init.lua`  
-Vim scriptとのキメラになってる
-
-```lua
-vim.cmd("let &runtimepath = '" .. dein_repo_dir .. "'.','. &runtimepath")
-```
-
-- [x] `init.lua`  
-多分`== 0`としないと機能しない
-
-```lua
-if not fn.isdirectory(cache) then
-```
-
-- [x] `scss.vim`  
-
-```vim
-echo "Warning: 'sass' command is not available."
-```
-
-- [x] `init.lua`  
-表記揺れ
-
-```lua
-if fn.isdirectory(dein_repo_dir) == 0 then
-  if vim.fn.isdirectory(dein_repo_dir) == 0 then
-```
-
 - [ ] `autocmds.lua`  
 BufNewFileも付けておくと便利できそう
 
 ```lua
 -- env系はshとして開く
-```
-
-- [ ] vimscriptの二重読み込み防止処理をそのままluaに移行したやつ、全部消す
-→requireだとやってくれてるらしい
-
-- [ ] insert modeのmappingはInsertEnterにする
-
-- [ ] `keymappings.lua`  
-silentのせい
-
-```lua
--- FIXME: 上の書き方だと何故か効かないので一旦vimscriptの書き方で
 ```
 
 - [ ] `options.lua`  
