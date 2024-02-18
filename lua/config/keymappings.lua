@@ -83,19 +83,11 @@ keyset({ "n" }, "<C-i>", "<TAB>", opts)
 keyset("n", "<leader>tc", ":tabclose<CR>", opts)
 
 -- cmdlineモードをemacsキーバインドでカーソル移動
--- keyset("c", "<C-b>", "<Left>", opts)
--- keyset("c", "<C-f>", "<Right>", opts)
--- keyset("c", "<C-a>", "<Home>", opts)
--- keyset("c", "<C-e>", "<End>", opts)
--- keyset("c", "<C-d>", "<Del>", opts)
--- FIXME: 上の書き方だと何故か効かないので一旦vimscriptの書き方で
-vim.cmd([[
-  cnoremap <C-b> <Left>
-  cnoremap <C-f> <Right>
-  cnoremap <C-a> <Home>
-  cnoremap <C-e> <End>
-  cnoremap <C-d> <Del>
-]])
+keyset("c", "<C-b>", "<Left>", { noremap = true })
+keyset("c", "<C-f>", "<Right>", { noremap = true })
+keyset("c", "<C-a>", "<Home>", { noremap = true })
+keyset("c", "<C-e>", "<End>", { noremap = true })
+keyset("c", "<C-d>", "<Del>", { noremap = true })
 -------------------------------------------------------------------------------
 -- 遅延で定義するmapping(vim起動時にあれこれ処理させたくない)
 -------------------------------------------------------------------------------
