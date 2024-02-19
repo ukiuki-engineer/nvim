@@ -159,6 +159,13 @@ on_event = ['BufRead', 'CursorMoved', 'InsertEnter']
 lua_source = '''
 require("plugins.coding.highlightedyank").lua_source()
 '''
+
+[[plugins]] # AIがコード補完してくれるやつ
+repo = 'Exafunction/codeium.vim'
+on_event = ['FileType']
+lua_add = '''
+require("plugins.coding.codeium").lua_add()
+'''
 ################################################################################
 # Git
 ################################################################################
