@@ -12,6 +12,13 @@ function! utils#delete_line_breaks(str) abort
 endfunction
 
 "
+" wslか
+"
+function! utils#is_wsl() abort
+  return has('linux') && exists("$WSLENV")
+endfunction
+
+"
 " 共通で使うconfirm
 "
 " @param string message
@@ -60,6 +67,46 @@ function! utils#echo_error_message(error_code, exception, param = {}) abort
       echo "[E000]notify module not found."
       echohl None
   endtry
+endfunction
+
+"
+" ファイラーを取得
+"
+function! utils#get_filer() abort
+  if utils#is_wsl()
+    return "explorer.exe"
+  elseif has('mac')
+    return "open"
+  else
+    " ファイラーが見つからない警告を出して終了
+    echohl WarningMsg
+    echomsg 'File explorer not found.'
+    echohl None
+    return
+  endif
+endfunction
+
+"
+" システムのファイラーを開く(カレントディレクトリ)
+"
+function! utils#open_filer() abort
+  let l:filer = utils#get_filer()
+  call system(l:filer .. " .")
+endfunction
+
+"
+" システムのファイラーを開く(カレントバッファのディレクトリ)
+"
+function! utils#open_filer_here() abort
+  " wslは非対応
+  if utils#is_wsl()
+    echohl WarningMsg
+    echomsg 'TODO: WSL用は未実装'
+    echohl None
+    return
+  endif
+  let l:filer = utils#get_filer()
+  call system(filer .. " " .. expand("%:p:h"))
 endfunction
 
 "

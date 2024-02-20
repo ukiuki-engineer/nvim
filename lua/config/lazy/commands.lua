@@ -20,6 +20,10 @@ vim.cmd([[
   command! RefreshGitInfomations     :call utils#async_fetch_and_refresh_git_info()
   " 保存だけ行う(autocmdを発火させない。format on saveとかその他諸々。)
   command! W                         :noautocmd w
+  " システム側のファイラーを開く(カレントディレクトリ)
+  command! OpenFiler                 :call utils#open_filer()
+  " システム側のファイラーを開く(カレントバッファのディレクトリ)
+  command! OpenFilerHere             :call utils#open_filer_here()
 ]])
 
 -- カラースキームをランダムに変更するコマンド
