@@ -92,7 +92,7 @@ keyset("c", "<C-d>", "<Del>", { noremap = true })
 -- 遅延で定義するmapping(vim起動時にあれこれ処理させたくない)
 -------------------------------------------------------------------------------
 augroup("map_zenkaku", {})
-au({ "BufRead", "InsertEnter" }, {
+au({ "BufRead", "CursorMoved" }, {
   group = "map_zenkaku",
   callback = function()
     -- 全角文字と半角文字の対応を定義
