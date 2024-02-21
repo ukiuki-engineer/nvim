@@ -121,7 +121,7 @@ on_event = ['FileType']
 repo = 'lukas-reineke/indent-blankline.nvim'
 on_event = ['CursorMoved']
 lua_source = '''
-require("plugins.coding.indent_blankline").lua_source()
+require("plugins.coding.indent-blankline").lua_source()
 '''
 
 [[plugins]] # editorconfig
