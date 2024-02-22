@@ -1,7 +1,17 @@
+global !p
+def checkbox(snip):
+  snip.rv = '- [ ] '
+endglobal
+
 snippet checkbox "check box" b
-- [ ] ${0}
+`!p checkbox(snip)`${0}
 endsnippet
 
+snippet cb "check box" b
+`!p checkbox(snip)`${0}
+endsnippet
+
+# NOTE: "cbl"で既存スニペットがあることに後で気づいた。が、忘れそうなのでこれはこれで残しておく。
 snippet codeblock "code block" b
 \`\`\`${0}
 \`\`\`
