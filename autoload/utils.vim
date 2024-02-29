@@ -110,13 +110,13 @@ function! utils#open_filer_here() abort
 endfunction
 
 "
-" Git情報(g:my#git_infomations)を更新する
+" Git情報(g:my#git_info)を更新する
 "
 " @return void
 "
-" NOTE: g:my#git_infomationsの構造は以下
+" NOTE: g:my#git_infoの構造は以下
 "
-" g:my#git_infomations  : v:t_dict
+" g:my#git_info  : v:t_dict
 "   branch_name         : v:t_string
 "   exists_remote_branch: v:t_bool
 "   commit_count        : v:t_dict
@@ -133,7 +133,7 @@ function! utils#refresh_git_infomations(job_id = v:null, exit_status = v:null, e
     return
   endif
 
-  let g:my#git_infomations = {
+  let g:my#git_info = {
     \ 'branch_name'         : '',
     \ 'exists_remote_branch': v:false,
     \ 'commit_count'        : {},
@@ -143,14 +143,14 @@ function! utils#refresh_git_infomations(job_id = v:null, exit_status = v:null, e
 
   " ブランチ、commit情報
   try
-    let g:my#git_infomations['branch_name'] = v:lua.require('utils').get_branch_name()
+    let g:my#git_info['branch_name'] = v:lua.require('utils').get_branch_name()
 
     let git_info = v:lua.require('utils').get_git_infomations()
     if git_info != 'NO_REMOTE_BRANCH'
-      let g:my#git_infomations['exists_remote_branch'] = v:true
+      let g:my#git_info['exists_remote_branch'] = v:true
       let parts = split(git_info, ', ')
-      let g:my#git_infomations['commit_count']['remote'] = parts[0]
-      let g:my#git_infomations['commit_count']['local'] = parts[1]
+      let g:my#git_info['commit_count']['remote'] = parts[0]
+      let g:my#git_info['commit_count']['local'] = parts[1]
     endif
   catch
     call utils#echo_error_message("E002", v:exception)
@@ -158,15 +158,15 @@ function! utils#refresh_git_infomations(job_id = v:null, exit_status = v:null, e
 
   " 変更があるか
   try
-    let g:my#git_infomations['has_changed'] = v:lua.require('utils').has_git_changed()
+    let g:my#git_info['has_changed'] = v:lua.require('utils').has_git_changed()
   catch
     call utils#echo_error_message("E003", v:exception)
   endtry
 
   " user.nameとuser.email
   try
-    let g:my#git_infomations['config']['user_name'] = utils#delete_line_breaks(system("git config user.name"))
-    let g:my#git_infomations['config']['user_email'] = utils#delete_line_breaks(system("git config user.email"))
+    let g:my#git_info['config']['user_name'] = utils#delete_line_breaks(system("git config user.name"))
+    let g:my#git_info['config']['user_email'] = utils#delete_line_breaks(system("git config user.email"))
   catch
     call utils#echo_error_message("E004", v:exception)
   endtry

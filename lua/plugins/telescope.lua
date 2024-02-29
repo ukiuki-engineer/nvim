@@ -196,7 +196,7 @@ function M.git_status()
   -- commit数の状態を返す
   local git_commit_status_text = function()
     local remote_branch_info_text = require("utils").remote_branch_info_text()
-    local commit = vim.g['my#git_infomations']['commit_count']
+    local commit = vim.g['my#git_info']['commit_count']
 
     if remote_branch_info_text ~= "" then
       return remote_branch_info_text
@@ -242,7 +242,7 @@ function M.git_status()
       )
       return true
     end,
-    prompt_prefix = " " .. vim.g["my#git_infomations"]['branch_name'] .. " " .. git_commit_status_text() .. " > "
+    prompt_prefix = " " .. vim.g["my#git_info"]['branch_name'] .. " " .. git_commit_status_text() .. " > "
   })
 end
 

@@ -12,9 +12,9 @@ local function git_push_confirm()
   local message = ""
 
   -- remote branchが無い場合の処理
-  if not g['my#git_infomations']['exists_remote_branch'] then
+  if not g['my#git_info']['exists_remote_branch'] then
     message = 'There is no remote branch for the \"' ..
-        g['my#git_infomations']['branch_name'] .. '\". Would you like to publish this branch?'
+        g['my#git_info']['branch_name'] .. '\". Would you like to publish this branch?'
 
     if vim.fn["utils#confirm"](message) then
       vim.cmd("Gin push --set-upstream origin HEAD")
@@ -22,7 +22,7 @@ local function git_push_confirm()
     return
   end
 
-  local commit_count = g['my#git_infomations']['commit_count']['local']
+  local commit_count = g['my#git_info']['commit_count']['local']
   commit_count = tonumber(commit_count)
 
   if commit_count == "" or commit_count == 0 then

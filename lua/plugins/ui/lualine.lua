@@ -28,23 +28,23 @@ function M.lua_add()
 
   -- 未pullのコミット数の状態をテキストで返す
   local function pull()
-    if next(vim.g['my#git_infomations']) == nil then
+    if next(vim.g['my#git_info']) == nil then
       return ""
     end
-    return "↓" .. vim.g['my#git_infomations']['commit_count']['remote']
+    return "↓" .. vim.g['my#git_info']['commit_count']['remote']
   end
 
   -- 未pushのコミット数の状態をテキストで返す
   local function push()
-    if next(vim.g['my#git_infomations']) == nil then
+    if next(vim.g['my#git_info']) == nil then
       return ""
     end
-    return "↑" .. vim.g['my#git_infomations']['commit_count']['local']
+    return "↑" .. vim.g['my#git_info']['commit_count']['local']
   end
 
   -- リモートブランチがあるかの情報をテキストで返す
   local function remote_branch_info_text()
-    if next(vim.g['my#git_infomations']) == nil then
+    if next(vim.g['my#git_info']) == nil then
       return ""
     end
 
@@ -53,11 +53,11 @@ function M.lua_add()
 
   -- 変更があるかをテキストで返す
   local function has_changed()
-    if next(vim.g['my#git_infomations']) == nil then
+    if next(vim.g['my#git_info']) == nil then
       return ""
     end
 
-    if vim.g['my#git_infomations']['has_changed'] then
+    if vim.g['my#git_info']['has_changed'] then
       return "󰦒"
     else
       return ""
@@ -66,10 +66,10 @@ function M.lua_add()
 
   -- user.nameとuser.emailのtextを返す
   local function user_info()
-    if next(vim.g['my#git_infomations']) == nil then
+    if next(vim.g['my#git_info']) == nil then
       return ""
     end
-    local config = vim.g['my#git_infomations']['config']
+    local config = vim.g['my#git_info']['config']
     -- return '  ' .. config['user_name'] .. '   hogehoge@gmail.com' -- キャプチャ用
     return '  ' .. config['user_name'] .. '   ' .. config['user_email']
   end
@@ -110,7 +110,7 @@ function M.lua_add()
       lualine_b = {
         -- 'branch', -- NOTE: ←だと、diffviewとかhelpとかで表示されない
         {
-          'g:my#git_infomations.branch_name', -- TODO: gin.vimでFugitiveHeadのような関数はないだろうか？
+          'g:my#git_info.branch_name', -- TODO: gin.vimでFugitiveHeadのような関数はないだろうか？
           icon = { '', color = { fg = '#FFA500' } },
           separator = '',
           on_click = function()
