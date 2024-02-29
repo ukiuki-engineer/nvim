@@ -44,7 +44,8 @@
     "~/.config/nvim/lua": true,
   },
   "lua.workspace.checkThirdParty": false,
-  "lua.telemetry.enable": false
-
+  "lua.telemetry.enable": false,
+  "deno.enable": true,
+  "tsserver.enable": false
 }
 

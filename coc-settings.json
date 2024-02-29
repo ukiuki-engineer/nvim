@@ -80,6 +80,7 @@
     "eruby",
     "fuga",
     "hoge",
+    "denops",
   ],
   // NOTE: coc-eslintを使用する場合は、ローカルのsettings.jsonで設定を上書きしてeslintを有効にする
   // NOTE: coc-eslintの設定例

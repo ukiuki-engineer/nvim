@@ -20,11 +20,12 @@ function M.lua_add()
   -- coc-extensions
   vim.g.coc_global_extensions = {
     '@yaegassy/coc-intelephense',
+    '@yaegassy/coc-laravel',
     '@yaegassy/coc-marksman',
-    -- '@yaegassy/coc-laravel',
     'coc-blade',
     'coc-css',
     'coc-cssmodules',
+    'coc-deno',
     'coc-docker',
     'coc-eslint',
     'coc-fzf-preview',
