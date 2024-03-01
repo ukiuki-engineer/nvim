@@ -20,7 +20,7 @@ async function getGitInformation(): Promise<any> {
 
 async function setGitInformation(denops: Denops): Promise<void> {
   const gitInfo = await getGitInformation();
-  await denopsStd.g.set(denops, "my#git_info_", gitInfo) // TODO: 完成したらmy#git_infoに変更する
+  await denopsStd.g.set(denops, "git_info#git_info", gitInfo)
 }
 
 export async function main(denops: Denops): Promise<void> {
