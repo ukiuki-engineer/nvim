@@ -1,6 +1,33 @@
 import { Denops } from "https://deno.land/x/denops_std@v1.0.0/mod.ts";
 import * as denopsStd from "https://deno.land/x/denops_std@v4.1.0/variable/mod.ts";
 
+async function isGitProject(): Promise<boolean> {
+  try {
+    const command = new Deno.Command("git", {
+      args: ["rev-parse", "--is-inside-work-tree"],
+      stdout: "piped",
+      stderr: "piped",
+    });
+
+    const process = await command.spawn();
+    const { code, stdout, stderr } = await process.output();
+
+    if (code === 0) {
+      const output = new TextDecoder().decode(stdout).trim();
+      return output === "true";
+    } else {
+      // Gitコマンドが失敗した場合は、現在のディレクトリがGitリポジトリではないか、
+      // またはGitがインストールされていないことを意味する。
+      const error = new TextDecoder().decode(stderr).trim();
+      console.error("Error checking Git project status:", error);
+      return false;
+    }
+  } catch (error) {
+    console.error("Failed to execute Git command:", error);
+    return false;
+  }
+}
+
 async function getGitInformation(): Promise<any> {
   const decoder = new TextDecoder();
   const command = new Deno.Command("git", {
@@ -32,6 +59,9 @@ async function setGitInformation(denops: Denops): Promise<void> {
 }
 
 export async function main(denops: Denops): Promise<void> {
-  // TODO: gitプロジェクトかどうかを判定する
+  if (!(await isGitProject())) {
+    console.log("TODO: gitプロジェクトではない場合の処理");
+    return;
+  }
   await setGitInformation(denops);
 }
