@@ -4,6 +4,7 @@ import * as denopsStd from "https://deno.land/x/denops_std@v4.1.0/variable/mod.t
 // TODO: git情報を更新するautocmdを追加する
 // TODO: git情報を更新するcommandを追加する
 
+// gitプロジェクトか
 async function isGitProject(): Promise<boolean> {
   try {
     const command = new Deno.Command("git", {
@@ -31,7 +32,8 @@ async function isGitProject(): Promise<boolean> {
   }
 }
 
-async function getGitInformation(): Promise<any> {
+// ブランチ名を返す
+async function getGitBranchName(): Promise<any> {
   const decoder = new TextDecoder();
   const command = new Deno.Command("git", {
     args: ["branch", "--show-current"],
@@ -49,17 +51,23 @@ async function getGitInformation(): Promise<any> {
     return null;
   }
 
-  const branchName = decoder.decode(stdout).trim();
+  return decoder.decode(stdout).trim();
+}
 
-  // TODO: 未pull、未pushのcommit数
-  // TODO: 変更があるか
-  // TODO: user.nameとuser.email
+// TODO: 未pull、未pushのcommit数
+// TODO: 変更があるか
+// TODO: user.nameとuser.email
+
+// git情報を返す
+async function getGitInformation(): Promise<any> {
+  const branchName = await getGitBranchName();
 
   return {
     branchName: branchName,
   };
 }
 
+// git情報をvim側のグローバル変数にセット
 async function setGitInformation(denops: Denops): Promise<void> {
   const gitInfo = await getGitInformation();
   await denopsStd.g.set(denops, "git_info#git_info", gitInfo);
