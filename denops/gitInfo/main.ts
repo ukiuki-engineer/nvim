@@ -1,6 +1,9 @@
 import { Denops } from "https://deno.land/x/denops_std@v1.0.0/mod.ts";
 import * as denopsStd from "https://deno.land/x/denops_std@v4.1.0/variable/mod.ts";
 
+// TODO: git情報を更新するautocmdを追加する
+// TODO: git情報を更新するcommandを追加する
+
 async function isGitProject(): Promise<boolean> {
   try {
     const command = new Deno.Command("git", {
@@ -47,6 +50,10 @@ async function getGitInformation(): Promise<any> {
   }
 
   const branchName = decoder.decode(stdout).trim();
+
+  // TODO: 未pull、未pushのcommit数
+  // TODO: 変更があるか
+  // TODO: user.nameとuser.email
 
   return {
     branchName: branchName,
