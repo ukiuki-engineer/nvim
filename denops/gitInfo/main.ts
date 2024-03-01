@@ -2,19 +2,32 @@ import { Denops } from "https://deno.land/x/denops_std@v1.0.0/mod.ts";
 import * as denopsStd from "https://deno.land/x/denops_std@v4.1.0/variable/mod.ts";
 
 async function getGitInformation(): Promise<any> {
-  const gitBranch = Deno.run({
-    cmd: ["git", "branch", "--show-current"],
-    stdout: "piped",
-    stderr: "piped",
-  });
-  const branchName = new TextDecoder().decode(await gitBranch.output()).trim();
-  gitBranch.close();
+  const decoder = new TextDecoder();
+  const command = new Deno.Command(
+    "git", {
+      args: [
+        "branch",
+        "--show-current",
+      ],
+      stdin: "piped",
+      stdout: "piped",
+      stderr: "piped",
+    }
+  );
 
-  // TODO: 他のGit情報も取得
+  const process = await command.spawn();
+  const {code, stdout, stderr} = await process.output();
+
+  if (code !== 0) {
+    const error = decoder.decode(stderr).trim();
+    console.error("Git command failed:", error);
+    return null;
+  }
+
+  const branchName = decoder.decode(stdout).trim();
 
   return {
-    branch_name: branchName,
-    // TODO: 他の情報もここに含める
+    branchName: branchName,
   };
 }
 
