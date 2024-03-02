@@ -4,6 +4,24 @@ import * as denopsStd from "https://deno.land/x/denops_std@v4.1.0/variable/mod.t
 // TODO: git情報を更新するautocmdを追加する
 // TODO: git情報を更新するcommandを追加する
 
+interface GitCommitCount {
+  remote: number;
+  local: number;
+}
+
+interface GitConfig {
+  user_name: string;
+  user_email: string;
+}
+
+interface GitInformation {
+  branch_name: string;
+  exists_remote_branch: boolean;
+  commit_count: GitCommitCount;
+  has_changed: boolean;
+  config: GitConfig;
+}
+
 // gitプロジェクトか
 async function isGitProject(): Promise<boolean> {
   try {
@@ -33,7 +51,7 @@ async function isGitProject(): Promise<boolean> {
 }
 
 // ブランチ名を返す
-async function getGitBranchName(): Promise<any> {
+async function getGitBranchName(): Promise<string> {
   const decoder = new TextDecoder();
   const command = new Deno.Command("git", {
     args: ["branch", "--show-current"],
@@ -48,22 +66,61 @@ async function getGitBranchName(): Promise<any> {
   if (code !== 0) {
     const error = decoder.decode(stderr).trim();
     console.error("Git command failed:", error);
-    return null;
+    return "";
   }
 
   return decoder.decode(stdout).trim();
 }
 
-// TODO: 未pull、未pushのcommit数
-// TODO: 変更があるか
-// TODO: user.nameとuser.email
+// リモートブランチがあるか
+async function existsGitRemoteBranch(): Promise<boolean> {
+  // TODO: まだモック
+  return true;
+}
+
+// 未pull、未pushのcommit数
+async function getGitCommitCount(): Promise<GitCommitCount> {
+  // TODO: まだモック
+  return {
+    remote: 0,
+    local: 0,
+  };
+}
+// 変更があるか
+async function hasGitChanges(): Promise<boolean> {
+  // TODO: まだモック
+  return true;
+}
+
+// user.nameとuser.email
+async function getGitConfig(): Promise<GitConfig> {
+  // TODO: まだモック
+  return {
+    user_name: "ukiuki-engineer",
+    user_email: "mock@mock.com",
+  };
+}
 
 // git情報を返す
-async function getGitInformation(): Promise<any> {
+async function getGitInformation(): Promise<GitInformation> {
   const branchName = await getGitBranchName();
+  const existsRemoteBranch = await existsGitRemoteBranch();
+  const commitCount = await getGitCommitCount();
+  const hasChanged = await hasGitChanges();
+  const config = await getGitConfig();
 
   return {
-    branchName: branchName,
+    branch_name: branchName,
+    exists_remote_branch: existsRemoteBranch,
+    commit_count: {
+      remote: commitCount.remote,
+      local: commitCount.local,
+    },
+    has_changed: hasChanged,
+    config: {
+      user_name: config.user_name,
+      user_email: config.user_email,
+    },
   };
 }
 
