@@ -106,38 +106,159 @@ async function _getGitBranchName(): Promise<string> {
 }
 
 // リモートブランチがあるか
-async function _existsGitRemoteBranch(): Promise<boolean> {
-  // TODO: まだモック
-  return true;
+async function _existsGitRemoteBranch(currentBranch: string): Promise<boolean> {
+  if (!currentBranch) {
+    return false;
+  }
+
+  try {
+    const command = new Deno.Command("git", {
+      args: ["ls-remote", "--heads", "origin", currentBranch],
+      stdout: "piped",
+      stderr: "piped",
+    });
+
+    const process = command.spawn();
+    const { code, stdout } = await process.output();
+
+    if (code === 0) {
+      const output = new TextDecoder().decode(stdout).trim();
+      // リモートにブランチが存在する場合、ls-remoteの出力は空ではない
+      return output !== "";
+    } else {
+      // Gitコマンドが失敗した場合、リモートブランチは存在しないと見なす
+      return false;
+    }
+  } catch (error) {
+    console.error("Failed to execute Git command:", error);
+    return false;
+  }
 }
 
 // 未pull、未pushのcommit数
 async function _getGitCommitCount(): Promise<GitCommitCount> {
-  // TODO: まだモック
-  return {
-    remote: 0,
-    local: 0,
-  };
+  try {
+    // 現在のブランチ名を取得
+    const currentBranch = await _getGitBranchName();
+    if (!currentBranch) {
+      return { remote: 0, local: 0 };
+    }
+
+    // 未プッシュのコミット数を計算
+    const localCommand = new Deno.Command("git", {
+      args: ["rev-list", "--count", "origin/" + currentBranch + "..HEAD"],
+      stdout: "piped",
+      stderr: "piped",
+    });
+    const localProcess = localCommand.spawn();
+    const { code: localCode, stdout: localStdout } =
+      await localProcess.output();
+    const localCount =
+      localCode === 0
+        ? parseInt(new TextDecoder().decode(localStdout).trim(), 10)
+        : 0;
+
+    // 未プルのコミット数を計算
+    const remoteCommand = new Deno.Command("git", {
+      args: ["rev-list", "--count", "HEAD..origin/" + currentBranch],
+      stdout: "piped",
+      stderr: "piped",
+    });
+    const remoteProcess = remoteCommand.spawn();
+    const { code: remoteCode, stdout: remoteStdout } =
+      await remoteProcess.output();
+    const remoteCount =
+      remoteCode === 0
+        ? parseInt(new TextDecoder().decode(remoteStdout).trim(), 10)
+        : 0;
+
+    return {
+      local: localCount,
+      remote: remoteCount,
+    };
+  } catch (error) {
+    console.error("Failed to execute Git command:", error);
+    return {
+      remote: 0,
+      local: 0,
+    };
+  }
 }
+
 // 変更があるか
 async function _hasGitChanges(): Promise<boolean> {
-  // TODO: まだモック
-  return true;
+  try {
+    const command = new Deno.Command("git", {
+      args: ["status", "--porcelain"],
+      stdout: "piped",
+      stderr: "piped",
+    });
+
+    const process = command.spawn();
+    const { code, stdout } = await process.output();
+
+    if (code === 0) {
+      const output = new TextDecoder().decode(stdout).trim();
+      // 変更がある場合、git status --porcelain の出力は空ではない
+      return output !== "";
+    } else {
+      // Gitコマンドが失敗した場合、変更がないと見なす
+      return false;
+    }
+  } catch (error) {
+    console.error("Failed to execute Git command:", error);
+    return false;
+  }
 }
 
 // user.nameとuser.email
 async function _getGitConfig(): Promise<GitConfig> {
-  // TODO: まだモック
-  return {
-    user_name: "ukiuki-engineer",
-    user_email: "mock@mock.com",
-  };
+  try {
+    // user.name を取得
+    const userNameCommand = new Deno.Command("git", {
+      args: ["config", "user.name"],
+      stdout: "piped",
+      stderr: "piped",
+    });
+    const userNameProcess = userNameCommand.spawn();
+    const { code: userNameCode, stdout: userNameStdout } =
+      await userNameProcess.output();
+    const userName =
+      userNameCode === 0
+        ? new TextDecoder().decode(userNameStdout).trim()
+        : "unknown";
+
+    // user.email を取得
+    const userEmailCommand = new Deno.Command("git", {
+      args: ["config", "user.email"],
+      stdout: "piped",
+      stderr: "piped",
+    });
+    const userEmailProcess = userEmailCommand.spawn();
+    const { code: userEmailCode, stdout: userEmailStdout } =
+      await userEmailProcess.output();
+    const userEmail =
+      userEmailCode === 0
+        ? new TextDecoder().decode(userEmailStdout).trim()
+        : "unknown@example.com";
+
+    return {
+      user_name: userName,
+      user_email: userEmail,
+    };
+  } catch (error) {
+    console.error("Failed to execute Git command:", error);
+    return {
+      user_name: "unknown",
+      user_email: "unknown@example.com",
+    };
+  }
 }
 
 // git情報を返す
 async function _getGitInformation(): Promise<GitInformation> {
   const branchName = await _getGitBranchName();
-  const existsRemoteBranch = await _existsGitRemoteBranch();
+  const existsRemoteBranch = await _existsGitRemoteBranch(branchName);
   const commitCount = await _getGitCommitCount();
   const hasChanged = await _hasGitChanges();
   const config = await _getGitConfig();
