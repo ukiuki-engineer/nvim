@@ -50,6 +50,32 @@ async function isGitProject(): Promise<boolean> {
   }
 }
 
+// git fetch
+async function gitFetch(): Promise<boolean> {
+  try {
+    const process = Deno.run({
+      cmd: ["git", "fetch"],
+      stdout: "null",
+      stderr: "piped",
+    });
+
+    const { code } = await process.status();
+    const stderr = new TextDecoder().decode(await process.stderrOutput());
+
+    process.close();
+
+    if (code === 0) {
+      return true;
+    } else {
+      console.error("Error git fetching:", stderr);
+      return false;
+    }
+  } catch (error) {
+    console.error("Failed to execute Git command:", error);
+    return false;
+  }
+}
+
 // ブランチ名を返す
 async function getGitBranchName(): Promise<string> {
   const decoder = new TextDecoder();
@@ -144,4 +170,6 @@ export async function main(denops: Denops): Promise<void> {
   };
 
   await setGitInformation(denops);
+  await gitFetch();
+  setGitInformation(denops);
 }
