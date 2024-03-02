@@ -31,7 +31,7 @@ export async function isGitProject(): Promise<boolean> {
       stderr: "piped",
     });
 
-    const process = await command.spawn();
+    const process = command.spawn();
     const { code, stdout, stderr } = await process.output();
 
     if (code === 0) {
@@ -93,7 +93,7 @@ async function _getGitBranchName(): Promise<string> {
     stderr: "piped",
   });
 
-  const process = await command.spawn();
+  const process = command.spawn();
   const { code, stdout, stderr } = await process.output();
 
   if (code !== 0) {
