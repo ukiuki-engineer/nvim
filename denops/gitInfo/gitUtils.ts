@@ -19,6 +19,9 @@ interface GitInformation {
   config: GitConfig;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// export
+////////////////////////////////////////////////////////////////////////////////
 // gitプロジェクトか
 export async function isGitProject(): Promise<boolean> {
   try {
@@ -73,8 +76,17 @@ export async function gitFetch(): Promise<boolean> {
   }
 }
 
+// git情報をvim側のグローバル変数にセット
+export async function setGitInformation(denops: Denops): Promise<void> {
+  const gitInfo = await _getGitInformation();
+  await denopsStd.g.set(denops, "git_info#git_info", gitInfo);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// private
+////////////////////////////////////////////////////////////////////////////////
 // ブランチ名を返す
-async function getGitBranchName(): Promise<string> {
+async function _getGitBranchName(): Promise<string> {
   const decoder = new TextDecoder();
   const command = new Deno.Command("git", {
     args: ["branch", "--show-current"],
@@ -96,13 +108,13 @@ async function getGitBranchName(): Promise<string> {
 }
 
 // リモートブランチがあるか
-async function existsGitRemoteBranch(): Promise<boolean> {
+async function _existsGitRemoteBranch(): Promise<boolean> {
   // TODO: まだモック
   return true;
 }
 
 // 未pull、未pushのcommit数
-async function getGitCommitCount(): Promise<GitCommitCount> {
+async function _getGitCommitCount(): Promise<GitCommitCount> {
   // TODO: まだモック
   return {
     remote: 0,
@@ -110,13 +122,13 @@ async function getGitCommitCount(): Promise<GitCommitCount> {
   };
 }
 // 変更があるか
-async function hasGitChanges(): Promise<boolean> {
+async function _hasGitChanges(): Promise<boolean> {
   // TODO: まだモック
   return true;
 }
 
 // user.nameとuser.email
-async function getGitConfig(): Promise<GitConfig> {
+async function _getGitConfig(): Promise<GitConfig> {
   // TODO: まだモック
   return {
     user_name: "ukiuki-engineer",
@@ -125,12 +137,12 @@ async function getGitConfig(): Promise<GitConfig> {
 }
 
 // git情報を返す
-async function getGitInformation(): Promise<GitInformation> {
-  const branchName = await getGitBranchName();
-  const existsRemoteBranch = await existsGitRemoteBranch();
-  const commitCount = await getGitCommitCount();
-  const hasChanged = await hasGitChanges();
-  const config = await getGitConfig();
+async function _getGitInformation(): Promise<GitInformation> {
+  const branchName = await _getGitBranchName();
+  const existsRemoteBranch = await _existsGitRemoteBranch();
+  const commitCount = await _getGitCommitCount();
+  const hasChanged = await _hasGitChanges();
+  const config = await _getGitConfig();
 
   return {
     branch_name: branchName,
@@ -145,10 +157,4 @@ async function getGitInformation(): Promise<GitInformation> {
       user_email: config.user_email,
     },
   };
-}
-
-// git情報をvim側のグローバル変数にセット
-export async function setGitInformation(denops: Denops): Promise<void> {
-  const gitInfo = await getGitInformation();
-  await denopsStd.g.set(denops, "git_info#git_info", gitInfo);
 }
