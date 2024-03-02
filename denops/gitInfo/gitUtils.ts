@@ -53,16 +53,14 @@ export async function isGitProject(): Promise<boolean> {
 // git fetch
 export async function gitFetch(): Promise<boolean> {
   try {
-    const process = Deno.run({
-      cmd: ["git", "fetch"],
+    const command = new Deno.Command("git", {
+      args: ["fetch"],
       stdout: "null",
       stderr: "piped",
     });
 
-    const { code } = await process.status();
-    const stderr = new TextDecoder().decode(await process.stderrOutput());
-
-    process.close();
+    const process = command.spawn();
+    const { code, stderr } = await process.output();
 
     if (code === 0) {
       return true;
