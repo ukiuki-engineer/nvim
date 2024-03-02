@@ -2,7 +2,7 @@ import { Denops } from "https://deno.land/x/denops_std@v1.0.0/mod.ts";
 import * as denopsStd from "https://deno.land/x/denops_std@v4.1.0/variable/mod.ts";
 
 // TODO: git情報を更新するautocmdを追加する
-// TODO: git情報を更新するcommandを追加する
+// ->vimscript or lua側で
 
 interface GitCommitCount {
   remote: number;
@@ -135,5 +135,13 @@ export async function main(denops: Denops): Promise<void> {
     console.log("TODO: gitプロジェクトではない場合の処理");
     return;
   }
+
+  // vim側に関数を公開
+  denops.dispatcher = {
+    async refreshGitInfo(): Promise<void> {
+      setGitInformation(denops);
+    },
+  };
+
   await setGitInformation(denops);
 }
