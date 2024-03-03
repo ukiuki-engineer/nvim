@@ -14,6 +14,9 @@
 " let g:my#const['term_bgcolor'] = g:my#const['bg_colors']['synthwave_alpha']
 " lockv g:my#const
 
+" denopsのデバッグをオンにする
+" let g:denops#debug = 1
+
 " nightflyを使用
 " lua << END
 "   require("plugins.colorscheme.nightfly").set()
