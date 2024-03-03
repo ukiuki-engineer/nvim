@@ -136,10 +136,10 @@ async function _existsGitRemoteBranch(currentBranch: string): Promise<boolean> {
 }
 
 // 未pull、未pushのcommit数
-async function _getGitCommitCount(): Promise<GitCommitCount> {
+async function _getGitCommitCount(
+  currentBranch: string
+): Promise<GitCommitCount> {
   try {
-    // 現在のブランチ名を取得
-    const currentBranch = await _getGitBranchName();
     if (!currentBranch) {
       return { remote: 0, local: 0 };
     }
@@ -259,7 +259,7 @@ async function _getGitConfig(): Promise<GitConfig> {
 async function _getGitInformation(): Promise<GitInformation> {
   const branchName = await _getGitBranchName();
   const existsRemoteBranch = await _existsGitRemoteBranch(branchName);
-  const commitCount = await _getGitCommitCount();
+  const commitCount = await _getGitCommitCount(branchName);
   const hasChanged = await _hasGitChanges();
   const config = await _getGitConfig();
 
