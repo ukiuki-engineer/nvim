@@ -6,7 +6,7 @@ local M = {}
 
 function M.lua_add()
   vim.keymap.set('n', '<Right>', function()
-    vim.fn['utils#async_fetch_and_refresh_git_info']()
+    vim.fn['git_info#refresh_git_infomation'](true)
     vim.cmd([[DiffviewOpen]])
   end, {})
   vim.keymap.set('n', '<Down>', "<Cmd>DiffviewFileHistory<CR>", {})
@@ -26,7 +26,7 @@ function M.lua_source()
     " 表示スタイル(tree/list)をtoggle & git情報を更新
     function! s:aucmds_on_diffviewopen() abort
       lua require("diffview.config").actions.listing_style()
-      call utils#refresh_git_infomations()
+      call git_info#refresh_git_infomation()
     endfunction
 
     augroup MyDiffviewAuCmds
@@ -73,7 +73,7 @@ function M.lua_source()
             -- restore
             require("diffview.config").actions.restore_entry()
             -- git情報を更新
-            vim.fn["utils#refresh_git_infomations"]()
+            vim.fn["git_info#refresh_git_infomation"]()
           end,
           { desc = "confirm -> restore" }
         },

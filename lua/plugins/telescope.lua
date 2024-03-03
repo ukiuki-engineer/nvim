@@ -13,7 +13,7 @@ local checkout_and_refresh_git_infomations = function(prompt_bufnr)
   actions.git_checkout_current_buffer(prompt_bufnr)
   -- git情報を更新(lualine用)
   -- NOTE: lualineのgit情報を更新するために必要
-  vim.fn["utils#refresh_git_infomations"]()
+  vim.fn["git_info#refresh_git_infomation"]()
 end
 
 --------------------------------------------------------------------------------
@@ -196,7 +196,7 @@ function M.git_status()
   -- commit数の状態を返す
   local git_commit_status_text = function()
     local remote_branch_info_text = require("utils").remote_branch_info_text()
-    local commit = vim.g['my#git_info']['commit_count']
+    local commit = vim.g['git_info#git_info']['commit_count']
 
     if remote_branch_info_text ~= "" then
       return remote_branch_info_text
@@ -216,7 +216,7 @@ function M.git_status()
   end
 
   -- git情報を更新
-  vim.fn['utils#async_fetch_and_refresh_git_info']()
+  vim.fn['git_info#refresh_git_infomation'](true)
 
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)
@@ -235,14 +235,14 @@ function M.git_status()
             fn.system("git restore " .. selection.value)
           end
           -- git情報を更新(lualine用)
-          vim.fn["utils#refresh_git_infomations"]()
+          vim.fn["git_info#refresh_git_infomation"]()
           actions.close(prompt_bufnr) -- TODO: 閉じずにlistを更新することはできないか？
           require('plugins.telescope').git_status()
         end
       )
       return true
     end,
-    prompt_prefix = " " .. vim.g["my#git_info"]['branch_name'] .. " " .. git_commit_status_text() .. " > "
+    prompt_prefix = " " .. vim.g["git_info#git_info"]['branch_name'] .. " " .. git_commit_status_text() .. " > "
   })
 end
 

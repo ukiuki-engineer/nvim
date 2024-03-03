@@ -7,14 +7,14 @@ local command = vim.api.nvim_create_user_command
 
 -- confirmしてpushする
 local function git_push_confirm()
-  vim.fn['utils#refresh_git_infomations']()
+  vim.fn['git_info#refresh_git_infomation']()
 
   local message = ""
 
   -- remote branchが無い場合の処理
-  if not g['my#git_info']['exists_remote_branch'] then
+  if not g['git_info#git_info']['exists_remote_branch'] then
     message = 'There is no remote branch for the \"' ..
-        g['my#git_info']['branch_name'] .. '\". Would you like to publish this branch?'
+        g['git_info#git_info']['branch_name'] .. '\". Would you like to publish this branch?'
 
     if vim.fn["utils#confirm"](message) then
       vim.cmd("Gin push --set-upstream origin HEAD")
@@ -22,7 +22,7 @@ local function git_push_confirm()
     return
   end
 
-  local commit_count = g['my#git_info']['commit_count']['local']
+  local commit_count = g['git_info#git_info']['commit_count']['local']
   commit_count = tonumber(commit_count)
 
   if commit_count == "" or commit_count == 0 then
@@ -65,8 +65,8 @@ function M.lua_add()
   vim.cmd([[
     augroup MyGinAuCmds
       au!
-      au User GinCommandPost call utils#refresh_git_infomations()
-      au User GinComponentPost call utils#refresh_git_infomations()
+      au User GinCommandPost call git_info#refresh_git_infomation()
+      au User GinComponentPost call git_info#refresh_git_infomation()
     augroup END
   ]])
 
