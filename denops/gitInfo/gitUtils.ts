@@ -41,7 +41,7 @@ export async function isGitProject(): Promise<boolean> {
       // Gitコマンドが失敗した場合は、現在のディレクトリがGitリポジトリではないか、
       // またはGitがインストールされていないことを意味する。
       const error = new TextDecoder().decode(stderr).trim();
-      console.error("Error checking Git project status:", error);
+      // console.warn("Warning checking Git project status:", error);
       return false;
     }
   } catch (error) {

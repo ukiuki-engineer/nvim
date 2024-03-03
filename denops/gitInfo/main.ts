@@ -6,13 +6,12 @@ import { isGitProject, gitFetch, setGitInformation } from "./gitUtils.ts";
 
 export async function main(denops: Denops): Promise<void> {
   if (!(await isGitProject())) {
-    console.log("TODO: gitプロジェクトではない場合の処理");
     return;
   }
 
   // vim側に関数を公開
   denops.dispatcher = {
-    async refreshGitInfo(fetch: boolean): Promise<void> {
+    refreshGitInfo(fetch: boolean): void {
       setGitInformation(denops, fetch);
     },
   };
