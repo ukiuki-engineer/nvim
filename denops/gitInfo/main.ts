@@ -1,9 +1,6 @@
 import { Denops } from "https://deno.land/x/denops_std@v1.0.0/mod.ts";
 import { isGitProject, gitFetch, setGitInformation } from "./gitUtils.ts";
 
-// TODO: git情報を更新するautocmdを追加する
-// ->vimscript or lua側で
-
 export async function main(denops: Denops): Promise<void> {
   if (!(await isGitProject())) {
     return;
