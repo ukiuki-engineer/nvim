@@ -12,8 +12,8 @@ export async function main(denops: Denops): Promise<void> {
 
   // vim側に関数を公開
   denops.dispatcher = {
-    async refreshGitInfo(): Promise<void> {
-      setGitInformation(denops);
+    async refreshGitInfo(fetch: boolean): Promise<void> {
+      setGitInformation(denops, fetch);
     },
   };
 

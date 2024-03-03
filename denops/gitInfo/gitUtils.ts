@@ -75,7 +75,13 @@ export async function gitFetch(): Promise<boolean> {
 }
 
 // git情報をvim側のグローバル変数にセット
-export async function setGitInformation(denops: Denops): Promise<void> {
+export async function setGitInformation(
+  denops: Denops,
+  fetch: boolean = false
+): Promise<void> {
+  if (fetch) {
+    await gitFetch();
+  }
   const gitInfo = await _getGitInformation();
   await denopsStd.g.set(denops, "git_info#git_info", gitInfo);
 }
