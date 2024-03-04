@@ -128,10 +128,10 @@ function M.lua_source()
   -- float windowの操作
   -- Normal mode
   keyset('n', '<C-j>', [[
-    coc#float#has_scroll() ? coc#float#scroll(1, 1) : '7j'
+    coc#float#has_scroll() ? coc#float#scroll(1, 1) : <Plug>(edgemotion-j)
   ]], opts)
   keyset('n', '<C-k>', [[
-    coc#float#has_scroll() ? coc#float#scroll(0, 1) : '7k'
+    coc#float#has_scroll() ? coc#float#scroll(0, 1) : <Plug>(edgemotion-k)
   ]], opts)
   keyset('n', '<C-f>', [[
     coc#float#has_scroll() ? coc#float#scroll(1) : '<C-f>'

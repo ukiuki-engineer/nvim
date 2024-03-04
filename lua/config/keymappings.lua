@@ -67,8 +67,6 @@ keyset("i", "jj", "<Esc>", opts)
 keyset("n", "<Esc><Esc>", ":nohlsearch<CR>", opts)
 keyset("n", "gb", ":bn<CR>", opts)
 keyset("n", "gB", ":bN<CR>", opts)
-keyset({ "n", "x" }, "<C-j>", "7j", opts)
-keyset({ "n", "x" }, "<C-k>", "7k", opts)
 
 -- タブ移動
 keyset("n", "<TAB>", tabnext, opts)

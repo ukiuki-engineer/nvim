@@ -169,6 +169,13 @@ require("plugins.coding.codeium").lua_add()
 [[plugins]] # 記号で囲むやつ
 repo = 'tpope/vim-surround'
 on_event = ['InsertEnter']
+
+[[plugins]]
+repo = 'haya14busa/vim-edgemotion'
+on_event = ['CursorMoved']
+lua_source = '''
+require("plugins.coding.edgemotion").lua_source()
+'''
 ################################################################################
 # Git
 ################################################################################
