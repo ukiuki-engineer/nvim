@@ -28,7 +28,7 @@ function M.lua_add()
 
   -- 未pullのコミット数の状態をテキストで返す
   local function pull()
-    if next(vim.g['git_info#git_info']) == nil then
+    if not vim.g['git_info#git_info'] then
       return ""
     end
     return "↓" .. vim.g['git_info#git_info']['commit_count']['remote']
@@ -36,7 +36,7 @@ function M.lua_add()
 
   -- 未pushのコミット数の状態をテキストで返す
   local function push()
-    if next(vim.g['git_info#git_info']) == nil then
+    if not vim.g['git_info#git_info'] then
       return ""
     end
     return "↑" .. vim.g['git_info#git_info']['commit_count']['local']
@@ -44,7 +44,7 @@ function M.lua_add()
 
   -- リモートブランチがあるかの情報をテキストで返す
   local function remote_branch_info_text()
-    if next(vim.g['git_info#git_info']) == nil then
+    if not vim.g['git_info#git_info'] then
       return ""
     end
 
@@ -53,7 +53,7 @@ function M.lua_add()
 
   -- 変更があるかをテキストで返す
   local function has_changed()
-    if next(vim.g['git_info#git_info']) == nil then
+    if not vim.g['git_info#git_info'] then
       return ""
     end
 
@@ -66,7 +66,7 @@ function M.lua_add()
 
   -- user.nameとuser.emailのtextを返す
   local function user_info()
-    if next(vim.g['git_info#git_info']) == nil then
+    if not vim.g['git_info#git_info'] then
       return ""
     end
     local config = vim.g['git_info#git_info']['config']

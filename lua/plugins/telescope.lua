@@ -215,6 +215,13 @@ function M.git_status()
     return
   end
 
+  local prompt_prefix = function()
+    if not vim.g['git_info#git_info'] then
+      return " > "
+    end
+    return " " .. vim.g["git_info#git_info"]['branch_name'] .. " " .. git_commit_status_text() .. " > "
+  end
+
   -- git情報を更新
   vim.fn['git_info#refresh_git_infomation'](true)
 
@@ -242,7 +249,7 @@ function M.git_status()
       )
       return true
     end,
-    prompt_prefix = " " .. vim.g["git_info#git_info"]['branch_name'] .. " " .. git_commit_status_text() .. " > "
+    prompt_prefix = prompt_prefix(),
   })
 end
 

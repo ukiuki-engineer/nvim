@@ -1,4 +1,10 @@
 function! git_info#refresh_git_infomation(fetch = v:false) abort
-  call denops#request('gitInfo', 'refreshGitInfo', [a:fetch])
+  try
+    call denops#request('gitInfo', 'refreshGitInfo', [a:fetch])
+  catch
+    echohl WarningMsg
+    echomsg "Warning: refreshGitInfo is not available yet."
+    echohl None
+  endtry
 endfunction
 
