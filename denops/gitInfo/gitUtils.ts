@@ -264,10 +264,14 @@ async function _getGitConfig(): Promise<GitConfig> {
 // git情報を返す
 async function _getGitInformation(): Promise<GitInformation> {
   const branchName = await _getGitBranchName();
-  const existsRemoteBranch = await _existsGitRemoteBranch(branchName);
-  const commitCount = await _getGitCommitCount(branchName);
-  const hasChanged = await _hasGitChanges();
-  const config = await _getGitConfig();
+  // 非同期処理を一括で実行
+  const [existsRemoteBranch, commitCount, hasChanged, config] =
+    await Promise.all([
+      _existsGitRemoteBranch(branchName),
+      _getGitCommitCount(branchName),
+      _hasGitChanges(),
+      _getGitConfig(),
+    ]);
 
   return {
     branch_name: branchName,

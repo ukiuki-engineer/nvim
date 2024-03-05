@@ -14,6 +14,5 @@ export async function main(denops: Denops): Promise<void> {
   };
 
   await setGitInformation(denops);
-  await gitFetch();
-  setGitInformation(denops);
+  setGitInformation(denops, true);
 }
