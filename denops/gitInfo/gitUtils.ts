@@ -32,7 +32,7 @@ export async function isGitProject(): Promise<boolean> {
     });
 
     const process = command.spawn();
-    const { code, stdout, stderr } = await process.output();
+    const { code, stdout } = await process.output();
 
     if (code === 0) {
       const output = new TextDecoder().decode(stdout).trim();
@@ -40,32 +40,6 @@ export async function isGitProject(): Promise<boolean> {
     } else {
       // Gitコマンドが失敗した場合は、現在のディレクトリがGitリポジトリではないか、
       // またはGitがインストールされていないことを意味する。
-      const error = new TextDecoder().decode(stderr).trim();
-      // console.warn("Warning checking Git project status:", error);
-      return false;
-    }
-  } catch (error) {
-    console.error("Failed to execute Git command:", error);
-    return false;
-  }
-}
-
-// git fetch
-export async function gitFetch(): Promise<boolean> {
-  try {
-    const command = new Deno.Command("git", {
-      args: ["fetch"],
-      stdout: "null",
-      stderr: "piped",
-    });
-
-    const process = command.spawn();
-    const { code, stderr } = await process.output();
-
-    if (code === 0) {
-      return true;
-    } else {
-      console.error("Error git fetching:", stderr);
       return false;
     }
   } catch (error) {
@@ -109,6 +83,30 @@ async function _getGitBranchName(): Promise<string> {
   }
 
   return decoder.decode(stdout).trim();
+}
+
+// git fetch
+async function gitFetch(): Promise<boolean> {
+  try {
+    const command = new Deno.Command("git", {
+      args: ["fetch"],
+      stdout: "null",
+      stderr: "piped",
+    });
+
+    const process = command.spawn();
+    const { code, stderr } = await process.output();
+
+    if (code === 0) {
+      return true;
+    } else {
+      console.error("Error git fetching:", stderr);
+      return false;
+    }
+  } catch (error) {
+    console.error("Failed to execute Git command:", error);
+    return false;
+  }
 }
 
 // リモートブランチがあるか

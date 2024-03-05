@@ -1,5 +1,5 @@
 import { Denops } from "https://deno.land/x/denops_std@v1.0.0/mod.ts";
-import { isGitProject, gitFetch, setGitInformation } from "./gitUtils.ts";
+import { isGitProject, setGitInformation } from "./gitUtils.ts";
 
 export async function main(denops: Denops): Promise<void> {
   if (!(await isGitProject())) {
