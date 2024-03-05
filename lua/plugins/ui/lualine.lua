@@ -101,6 +101,11 @@ function M.lua_add()
       section_separators = { left = '', right = '' },
       -- section_separators = { left = '', right = '' },
       -- component_separators = { left = '', right = '' }
+      refresh = {
+        statusline = 500,
+        tabline = 1000,
+        winbar = 1000,
+      }
     },
     sections = {
       lualine_a = {
