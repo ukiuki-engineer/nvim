@@ -212,7 +212,7 @@ require("plugins.git.diffview").lua_source()
 ################################################################################
 [[plugins]]
 repo = 'nvim-telescope/telescope.nvim'
-depends = ['plenary', 'telescope-fzf-native.nvim']
+depends = ['plenary.nvim', 'telescope-fzf-native.nvim']
 on_cmd = [
   'BufferLines',
   'Buffers',
