@@ -1,9 +1,9 @@
 import { Denops } from "https://deno.land/x/denops_std@v1.0.0/mod.ts";
 import * as denopsStd from "https://deno.land/x/denops_std@v4.1.0/variable/mod.ts";
 
-interface GitCommitCount {
-  remote: number;
-  local: number;
+interface GitCommitCounts {
+  un_pulled: number;
+  un_pushed: number;
 }
 
 interface GitConfig {
@@ -14,7 +14,7 @@ interface GitConfig {
 interface GitInformation {
   branch_name: string;
   exists_remote_branch: boolean;
-  commit_count: GitCommitCount;
+  commit_counts: GitCommitCounts;
   has_changed: boolean;
   config: GitConfig;
 }
@@ -140,27 +140,13 @@ async function _existsGitRemoteBranch(currentBranch: string): Promise<boolean> {
 }
 
 // 未pull、未pushのcommit数
-async function _getGitCommitCount(
+async function _getGitCommitCounts(
   currentBranch: string
-): Promise<GitCommitCount> {
+): Promise<GitCommitCounts> {
   try {
     if (!currentBranch) {
-      return { remote: 0, local: 0 };
+      return { un_pulled: 0, un_pushed: 0 };
     }
-
-    // 未プッシュのコミット数を計算
-    const localCommand = new Deno.Command("git", {
-      args: ["rev-list", "--count", "origin/" + currentBranch + "..HEAD"],
-      stdout: "piped",
-      stderr: "piped",
-    });
-    const localProcess = localCommand.spawn();
-    const { code: localCode, stdout: localStdout } =
-      await localProcess.output();
-    const localCount =
-      localCode === 0
-        ? parseInt(new TextDecoder().decode(localStdout).trim(), 10)
-        : 0;
 
     // 未プルのコミット数を計算
     const remoteCommand = new Deno.Command("git", {
@@ -171,20 +157,34 @@ async function _getGitCommitCount(
     const remoteProcess = remoteCommand.spawn();
     const { code: remoteCode, stdout: remoteStdout } =
       await remoteProcess.output();
-    const remoteCount =
+    const unPulled =
       remoteCode === 0
         ? parseInt(new TextDecoder().decode(remoteStdout).trim(), 10)
         : 0;
 
+    // 未プッシュのコミット数を計算
+    const localCommand = new Deno.Command("git", {
+      args: ["rev-list", "--count", "origin/" + currentBranch + "..HEAD"],
+      stdout: "piped",
+      stderr: "piped",
+    });
+    const localProcess = localCommand.spawn();
+    const { code: localCode, stdout: localStdout } =
+      await localProcess.output();
+    const unPushed =
+      localCode === 0
+        ? parseInt(new TextDecoder().decode(localStdout).trim(), 10)
+        : 0;
+
     return {
-      local: localCount,
-      remote: remoteCount,
+      un_pulled: unPulled,
+      un_pushed: unPushed,
     };
   } catch (error) {
     console.error("Failed to execute Git command:", error);
     return {
-      remote: 0,
-      local: 0,
+      un_pulled: 0,
+      un_pushed: 0,
     };
   }
 }
@@ -263,10 +263,10 @@ async function _getGitConfig(): Promise<GitConfig> {
 async function _getGitInformation(): Promise<GitInformation> {
   const branchName = await _getGitBranchName();
   // 非同期処理を一括で実行
-  const [existsRemoteBranch, commitCount, hasChanged, config] =
+  const [existsRemoteBranch, commitCounts, hasChanged, config] =
     await Promise.all([
       _existsGitRemoteBranch(branchName),
-      _getGitCommitCount(branchName),
+      _getGitCommitCounts(branchName),
       _hasGitChanges(),
       _getGitConfig(),
     ]);
@@ -274,9 +274,9 @@ async function _getGitInformation(): Promise<GitInformation> {
   return {
     branch_name: branchName,
     exists_remote_branch: existsRemoteBranch,
-    commit_count: {
-      remote: commitCount.remote,
-      local: commitCount.local,
+    commit_counts: {
+      un_pulled: commitCounts.un_pulled,
+      un_pushed: commitCounts.un_pushed,
     },
     has_changed: hasChanged,
     config: {

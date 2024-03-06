@@ -196,14 +196,14 @@ function M.git_status()
   -- commit数の状態を返す
   local git_commit_status_text = function()
     local remote_branch_info_text = require("utils").remote_branch_info_text()
-    local commit = vim.g['git_info#git_info']['commit_count']
+    local commit_counts = vim.g['git_info#git_info']['commit_counts']
 
     if remote_branch_info_text ~= "" then
       return remote_branch_info_text
-    elseif commit['remote'] == "" and commit['local'] == "" then
+    elseif commit_counts['un_pulled'] == "" and commit_counts['un_pushed'] == "" then
       return ""
     else
-      return "↓" .. commit['remote'] .. " ↑" .. commit['local']
+      return "↓" .. commit_counts['un_pulled'] .. " ↑" .. commit_counts['un_pushed']
     end
   end
   if not require("utils").is_git_project() then

@@ -22,17 +22,17 @@ local function git_push_confirm()
     return
   end
 
-  local commit_count = g['git_info#git_info']['commit_count']['local']
-  commit_count = tonumber(commit_count)
+  local commit_counts = g['git_info#git_info']['commit_counts']['un_pushed']
+  commit_counts = tonumber(commit_counts)
 
-  if commit_count == "" or commit_count == 0 then
+  if commit_counts == "" or commit_counts == 0 then
     print("no commits")
     return
   end
 
-  message = commit_count == 1
-      and "push " .. commit_count .. " commit?"
-      or "push " .. commit_count .. "commits?"
+  message = commit_counts == 1
+      and "push " .. commit_counts .. " commit?"
+      or "push " .. commit_counts .. "commits?"
 
   if vim.fn["utils#confirm"](message) then
     vim.cmd([[Gin push]])

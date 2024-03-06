@@ -27,19 +27,19 @@ function M.lua_add()
   end
 
   -- 未pullのコミット数の状態をテキストで返す
-  local function pull()
+  local function un_pulled()
     if not vim.g['git_info#git_info'] then
       return ""
     end
-    return "↓" .. vim.g['git_info#git_info']['commit_count']['remote']
+    return "↓" .. vim.g['git_info#git_info']['commit_counts']['un_pulled']
   end
 
   -- 未pushのコミット数の状態をテキストで返す
-  local function push()
+  local function un_pushed()
     if not vim.g['git_info#git_info'] then
       return ""
     end
-    return "↑" .. vim.g['git_info#git_info']['commit_count']['local']
+    return "↑" .. vim.g['git_info#git_info']['commit_counts']['un_pushed']
   end
 
   -- リモートブランチがあるかの情報をテキストで返す
@@ -123,12 +123,12 @@ function M.lua_add()
           end
         },
         {
-          pull,
+          un_pulled,
           color = { fg = '#ADFF2F' },
           separator = ''
         },
         {
-          push,
+          un_pushed,
           color = { fg = '#00ffff' },
           separator = ''
         },
