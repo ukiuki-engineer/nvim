@@ -54,7 +54,7 @@ export async function setGitInformation(
   fetch: boolean = false
 ): Promise<void> {
   if (fetch) {
-    await gitFetch();
+    await _gitFetch();
   }
   const gitInfo = await _getGitInformation();
   await denopsStd.g.set(denops, "git_info#git_info", gitInfo);
@@ -86,7 +86,7 @@ async function _getGitBranchName(): Promise<string> {
 }
 
 // git fetch
-async function gitFetch(): Promise<boolean> {
+async function _gitFetch(): Promise<boolean> {
   try {
     const command = new Deno.Command("git", {
       args: ["fetch"],
