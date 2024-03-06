@@ -4,13 +4,12 @@
 
 script_dir=$(dirname $(readlink -f $0))
 vimrc_dir=${script_dir/\/scripts/}
-target='vim$|lua$|toml$|json$'                    # 行数カウント対象
-not_target='colors|not_use|Session\.vim|skk-dict' # 行数カウント対象外
+# 行数カウント対象外
+not_target='colors|not_use|Session\.vim|skk-dict|.DS_Store|\.md$|\.log$|\.git|pack'
 
 # vim設定行数
 printf "%20s%s%5s\n" "vim設定行数" " =" $(
   find $vimrc_dir -type f \
-    | grep -E $target \
     | grep -vE $not_target \
     | xargs -I{} cat {} \
     | wc -l
@@ -18,7 +17,7 @@ printf "%20s%s%5s\n" "vim設定行数" " =" $(
 
 # 使用プラグイン数
 printf "%20s%s%5s" "使用プラグイン数" " =" $(
-  cat $vimrc_dir/toml/dein.toml $vimrc_dir/toml/dein_lazy.toml \
+  cat $vimrc_dir/toml/*.toml \
     | grep 'repo = ' \
     | grep -vE '^#' \
     | wc -l
