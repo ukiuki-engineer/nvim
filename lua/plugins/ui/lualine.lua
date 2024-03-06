@@ -100,7 +100,7 @@ function M.lua_add()
       component_separators = { left = '', right = '' },
       section_separators = { left = '', right = '' },
       -- section_separators = { left = '', right = '' },
-      -- component_separators = { left = '', right = '' }
+      -- component_separators = { left = '', right = '' },
       refresh = {
         statusline = 500,
         tabline = 1000,
@@ -113,7 +113,8 @@ function M.lua_add()
         skkeleton_mode
       },
       lualine_b = {
-        -- 'branch', -- NOTE: ←だと、diffviewとかhelpとかで表示されない
+        -- branch name
+        -- NOTE: デフォルトの'branch'だと、diffviewとかhelpとかで表示されない
         {
           'g:git_info#git_info.branch_name', -- TODO: gin.vimでFugitiveHeadのような関数はないだろうか？
           icon = { '', color = { fg = '#FFA500' } },

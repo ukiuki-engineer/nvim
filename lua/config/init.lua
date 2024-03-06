@@ -3,7 +3,6 @@
 -- ==============================================================================
 local au               = vim.api.nvim_create_autocmd
 local augroup          = vim.api.nvim_create_augroup
-local g                = vim.g
 -- ------------------------------------------------------------------------------
 -- 通常ロード
 -- ------------------------------------------------------------------------------
@@ -15,7 +14,7 @@ local g                = vim.g
 -- localvimrc
 -- NOTE: プラグインを前提とした処理をlocal.vimに書くと、プラグインが入ってない場合にエラーになるので注意
 --       VimEnter後にこの処理を持っていけば上記エラーを回避できるが、それだとグローバル変数の定義が間に合わない。
-local localvimrc       = g.init_dir .. "/local.vim"
+local localvimrc       = vim.g.init_dir .. "/local.vim"
 local existsLocalvimrc = require('utils').bool_fn.filereadable(localvimrc)
 if existsLocalvimrc then
   -- ~/.config/nvim/local.vimがあればロード
@@ -96,7 +95,7 @@ au("VimEnter", { -- VimEnter後にタイマースタートする
   group = "my_lazyload",
   callback = function()
     vim.fn.timer_start(
-      g["my#const"].timer_start_init,
+      vim.g["my#const"].timer_start_init,
       function()
         -- vim設定禁止処理
         -- ~/.config/nvim/workingがあり、~/.config/nvim/で起動した場合、強制終了する(仕事に集中したい時用)
@@ -123,23 +122,23 @@ au("VimEnter", { -- VimEnter後にタイマースタートする
 -- ------------------------------------------------------------------------------
 -- 標準プラグインの制御
 -- ------------------------------------------------------------------------------
-g.did_indent_on             = 1
-g.did_install_default_menus = 1
-g.did_install_syntax_menu   = 1
-g.did_load_ftplugin         = 1
-g.loaded_gzip               = 1
-g.loaded_man                = 1
-g.loaded_matchit            = 1
-g.loaded_matchparen         = 1
-g.loaded_netrw              = 1
-g.loaded_netrwPlugin        = 1
-g.loaded_remote_plugins     = 1
-g.loaded_shada_plugin       = 1
-g.loaded_spellfile_plugin   = 1
-g.loaded_tarPlugin          = 1
-g.loaded_tarPlugin          = 1
-g.loaded_tutor_mode_plugin  = 1
-g.loaded_zipPlugin          = 1
-g.skip_loading_mswin        = 1
+vim.g.did_indent_on             = 1
+vim.g.did_install_default_menus = 1
+vim.g.did_install_syntax_menu   = 1
+vim.g.did_load_ftplugin         = 1
+vim.g.loaded_gzip               = 1
+vim.g.loaded_man                = 1
+vim.g.loaded_matchit            = 1
+vim.g.loaded_matchparen         = 1
+vim.g.loaded_netrw              = 1
+vim.g.loaded_netrwPlugin        = 1
+vim.g.loaded_remote_plugins     = 1
+vim.g.loaded_shada_plugin       = 1
+vim.g.loaded_spellfile_plugin   = 1
+vim.g.loaded_tarPlugin          = 1
+vim.g.loaded_tarPlugin          = 1
+vim.g.loaded_tutor_mode_plugin  = 1
+vim.g.loaded_zipPlugin          = 1
+vim.g.skip_loading_mswin        = 1
 -- 標準プラグインの遅延読み込み
 -- vim.fn["utils#lazy_load_standard_plugins"]()

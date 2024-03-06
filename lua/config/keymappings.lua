@@ -17,10 +17,7 @@ vim.g['vimrc#loaded_keymappings'] = true
 -------------------------------------------------------------------------------
 -- localな変数、function
 -------------------------------------------------------------------------------
-local keyset                      = vim.keymap.set
 local opts                        = { noremap = true, silent = true }
-local augroup                     = vim.api.nvim_create_augroup
-local au                          = vim.api.nvim_create_autocmd
 
 -- 次のタブに移動(タブが一個ならtabnewする)
 local function tabnext()
@@ -45,16 +42,16 @@ end
 -- 全角文字に行内ジャンプ
 local function jump_to_zenkaku(hankaku_zenkaku_pairs)
   for hankaku, zenkaku in pairs(hankaku_zenkaku_pairs) do
-    keyset({ 'n', 'x' }, '<leader>f' .. hankaku, 'f' .. zenkaku, opts)
-    keyset({ 'n', 'x' }, '<leader>t' .. hankaku, 't' .. zenkaku, opts)
-    keyset({ 'n', 'x' }, '<leader>F' .. hankaku, 'F' .. zenkaku, opts)
-    keyset({ 'n', 'x' }, '<leader>T' .. hankaku, 'T' .. zenkaku, opts)
-    keyset('n', '<leader>df' .. hankaku, 'df' .. zenkaku, opts)
-    keyset('n', '<leader>dt' .. hankaku, 'dt' .. zenkaku, opts)
-    keyset('n', '<leader>cf' .. hankaku, 'cf' .. zenkaku, opts)
-    keyset('n', '<leader>ct' .. hankaku, 'ct' .. zenkaku, opts)
-    keyset('n', '<leader>yf' .. hankaku, 'yf' .. zenkaku, opts)
-    keyset('n', '<leader>yt' .. hankaku, 'yt' .. zenkaku, opts)
+    vim.keymap.set({ 'n', 'x' }, '<leader>f' .. hankaku, 'f' .. zenkaku, opts)
+    vim.keymap.set({ 'n', 'x' }, '<leader>t' .. hankaku, 't' .. zenkaku, opts)
+    vim.keymap.set({ 'n', 'x' }, '<leader>F' .. hankaku, 'F' .. zenkaku, opts)
+    vim.keymap.set({ 'n', 'x' }, '<leader>T' .. hankaku, 'T' .. zenkaku, opts)
+    vim.keymap.set('n', '<leader>df' .. hankaku, 'df' .. zenkaku, opts)
+    vim.keymap.set('n', '<leader>dt' .. hankaku, 'dt' .. zenkaku, opts)
+    vim.keymap.set('n', '<leader>cf' .. hankaku, 'cf' .. zenkaku, opts)
+    vim.keymap.set('n', '<leader>ct' .. hankaku, 'ct' .. zenkaku, opts)
+    vim.keymap.set('n', '<leader>yf' .. hankaku, 'yf' .. zenkaku, opts)
+    vim.keymap.set('n', '<leader>yt' .. hankaku, 'yt' .. zenkaku, opts)
   end
 end
 -------------------------------------------------------------------------------
@@ -63,34 +60,34 @@ vim.g.mapleader = "m"
 -------------------------------------------------------------------------------
 -- 通常のmapping
 -------------------------------------------------------------------------------
-keyset("i", "jj", "<Esc>", opts)
-keyset("n", "<Esc><Esc>", ":nohlsearch<CR>", opts)
-keyset("n", "gb", ":bn<CR>", opts)
-keyset("n", "gB", ":bN<CR>", opts)
+vim.keymap.set("i", "jj", "<Esc>", opts)
+vim.keymap.set("n", "<Esc><Esc>", ":nohlsearch<CR>", opts)
+vim.keymap.set("n", "gb", ":bn<CR>", opts)
+vim.keymap.set("n", "gB", ":bN<CR>", opts)
 
 -- タブ移動
-keyset("n", "<TAB>", tabnext, opts)
-keyset("n", "gt", tabnext, opts)
-keyset("n", "<S-TAB>", tabp, opts)
-keyset("n", "gT", tabp, opts)
+vim.keymap.set("n", "<TAB>", tabnext, opts)
+vim.keymap.set("n", "gt", tabnext, opts)
+vim.keymap.set("n", "<S-TAB>", tabp, opts)
+vim.keymap.set("n", "gT", tabp, opts)
 
 -- NOTE: <TAB>のmappingが<C-i>にも適用されてしまうので元の動きに戻す
-keyset({ "n" }, "<C-i>", "<TAB>", opts)
+vim.keymap.set({ "n" }, "<C-i>", "<TAB>", opts)
 
 -- タブを閉じる
-keyset("n", "<leader>tc", ":tabclose<CR>", opts)
+vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", opts)
 
 -- cmdlineモードをemacsキーバインドでカーソル移動
-keyset("c", "<C-b>", "<Left>", { noremap = true })
-keyset("c", "<C-f>", "<Right>", { noremap = true })
-keyset("c", "<C-a>", "<Home>", { noremap = true })
-keyset("c", "<C-e>", "<End>", { noremap = true })
-keyset("c", "<C-d>", "<Del>", { noremap = true })
+vim.keymap.set("c", "<C-b>", "<Left>", { noremap = true })
+vim.keymap.set("c", "<C-f>", "<Right>", { noremap = true })
+vim.keymap.set("c", "<C-a>", "<Home>", { noremap = true })
+vim.keymap.set("c", "<C-e>", "<End>", { noremap = true })
+vim.keymap.set("c", "<C-d>", "<Del>", { noremap = true })
 -------------------------------------------------------------------------------
 -- 遅延で定義するmapping(vim起動時にあれこれ処理させたくない)
 -------------------------------------------------------------------------------
-augroup("map_zenkaku", {})
-au({ "BufRead", "CursorMoved" }, {
+vim.api.nvim_create_augroup("map_zenkaku", {})
+vim.api.nvim_create_autocmd({ "BufRead", "CursorMoved" }, {
   group = "map_zenkaku",
   callback = function()
     -- 全角文字と半角文字の対応を定義

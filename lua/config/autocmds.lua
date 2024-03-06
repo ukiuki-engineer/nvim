@@ -4,12 +4,11 @@
 -------------------------------------------------------------------------------
 local au      = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-local fn      = vim.fn
 
 augroup("MyAutocmds", {})
 
 -- Session.vimを保存
-local pwd_in_startup = fn.expand('$PWD')
+local pwd_in_startup = vim.fn.expand('$PWD')
 local mksession = 'mksession! ' .. pwd_in_startup .. '/Session.vim'
 au({ "BufWrite", "BufRead" }, {
   group = "MyAutocmds",
@@ -19,7 +18,7 @@ au({ "BufWrite", "BufRead" }, {
       return
     end
     -- commit編集時は何もしない
-    if fn.expand('%:t') == "COMMIT_EDITMSG" then
+    if vim.fn.expand('%:t') == "COMMIT_EDITMSG" then
       return
     end
     -- quickfix windowの時は何もしない
@@ -27,7 +26,7 @@ au({ "BufWrite", "BufRead" }, {
       return
     end
     -- diffviewのパネルがあったら何もしない
-    if string.find(fn.join(fn.gettabinfo(), ', '), 'diffview_view') then
+    if string.find(vim.fn.join(vim.fn.gettabinfo(), ', '), 'diffview_view') then
       return
     end
     -- session保存

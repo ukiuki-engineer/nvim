@@ -2,9 +2,6 @@
 -- 共通処理
 -- luaで書いた共通処理はここに集める
 -------------------------------------------------------------------------------
-local fn  = vim.fn
-local g   = vim.g
-
 local M   = {}
 
 --
@@ -53,10 +50,10 @@ function M.echo_error_message(error_code, exception, param)
   -- NOTE: luaはデフォルト引数が使えない...
   if param then
     -- パラメータあり
-    fn["utils#echo_error_message"](error_code, exception, param)
+    vim.fn["utils#echo_error_message"](error_code, exception, param)
   else
     -- パラメータなし
-    fn["utils#echo_error_message"](error_code, exception)
+    vim.fn["utils#echo_error_message"](error_code, exception)
   end
 end
 
@@ -121,14 +118,14 @@ end
 --
 function M.get_git_infomations()
   -- FIXME: 一旦
-  return fn['utils#delete_line_breaks'](fn.system('~/.config/nvim/scripts/commit_status.sh'))
+  return vim.fn['utils#delete_line_breaks'](vim.fn.system('~/.config/nvim/scripts/commit_status.sh'))
 end
 
 --
 -- git上の変更があるか
 --
 function M.has_git_changed()
-  fn.system("git status | grep 'nothing to commit, working tree clean'")
+  vim.fn.system("git status | grep 'nothing to commit, working tree clean'")
   return vim.v.shell_error ~= 0
 end
 
@@ -136,7 +133,7 @@ end
 -- リモートブランチ情報のテキストを返す
 --
 function M.remote_branch_info_text()
-  if not g['git_info#git_info']['exists_remote_branch'] then
+  if not vim.g['git_info#git_info']['exists_remote_branch'] then
     return ""
   else
     -- リモートブランチがあれば空文字を返す

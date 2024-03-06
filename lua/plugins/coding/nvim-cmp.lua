@@ -1,8 +1,7 @@
 local M = {}
 
 function M.lua_source()
-  local g               = vim.g
-  local const           = g["my#const"]
+  local const           = vim.g["my#const"]
   local cmp             = require('cmp')
 
   -- cmdlineのマッピング(検索/コマンド共通)
@@ -44,13 +43,13 @@ function M.lua_source()
     { name = 'skkeleton' },
   }
   -- lspconfigを使用するなら以下を追加
-  if g.lsp_plugin_selection == const.lsp_plugin_selection_mason_lspconfig then
+  if vim.g.lsp_plugin_selection == const.lsp_plugin_selection_mason_lspconfig then
     table.insert(sources, { name = 'nvim_lsp' })
     table.insert(sources, { name = 'vsnip' })
   end
 
   cmp.setup({
-    snippet = g.lsp_plugin_selection == const.lsp_plugin_selection_mason_lspconfig
+    snippet = vim.g.lsp_plugin_selection == const.lsp_plugin_selection_mason_lspconfig
         and {
           expand = function(args)
             vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.

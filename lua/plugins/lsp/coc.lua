@@ -51,35 +51,34 @@ function M.lua_add()
 end
 
 function M.lua_source()
-  local keyset = vim.keymap.set
-  local opts   = { silent = true, noremap = true, expr = true, replace_keycodes = false }
+  local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
 
   -- ---------------------------------------------------------------------------
   -- 補完周り
-  keyset("i", "<TAB>", [[
+  vim.keymap.set("i", "<TAB>", [[
     coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()
   ]], opts)
-  keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
+  vim.keymap.set("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
   -- 補完候補の決定
-  keyset("i", "<cr>", [[
+  vim.keymap.set("i", "<cr>", [[
     coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
   ]], opts)
 
   -- diagnosticへのジャンプ
   -- ---------------------------------------------------------------------------
-  keyset("n", "[g", "<Plug>(coc-diagnostic-prev)", { silent = true })
-  keyset("n", "]g", "<Plug>(coc-diagnostic-next)", { silent = true })
+  vim.keymap.set("n", "[g", "<Plug>(coc-diagnostic-prev)", { silent = true })
+  vim.keymap.set("n", "]g", "<Plug>(coc-diagnostic-next)", { silent = true })
 
   -- ---------------------------------------------------------------------------
   -- 定義ジャンプ系
-  keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
-  keyset("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
-  keyset("n", "gi", "<Plug>(coc-implementation)", { silent = true })
-  keyset("n", "gr", "<Plug>(coc-references)", { silent = true })
+  vim.keymap.set("n", "gd", "<Plug>(coc-definition)", { silent = true })
+  vim.keymap.set("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
+  vim.keymap.set("n", "gi", "<Plug>(coc-implementation)", { silent = true })
+  vim.keymap.set("n", "gr", "<Plug>(coc-references)", { silent = true })
 
   -- ---------------------------------------------------------------------------
   -- hover表示
-  keyset("n", "K", function()
+  vim.keymap.set("n", "K", function()
     local cw = vim.fn.expand('<cword>')
     if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
       vim.api.nvim_command('h ' .. cw)
@@ -92,18 +91,18 @@ function M.lua_source()
 
   -- ---------------------------------------------------------------------------
   -- カーソル位置のsymbolをハイライト(*でカーソル位置を検索するノリ。shiftがspaceに変わっただけ。)
-  keyset("n", "<space>8", function()
+  vim.keymap.set("n", "<space>8", function()
     vim.fn["CocActionAsync"]('highlight')
   end, { silent = true })
   -- 上記をダブルクリックでもできるように
-  keyset('n', '<2-LeftMouse>', function()
+  vim.keymap.set('n', '<2-LeftMouse>', function()
     vim.fn.CocActionAsync('highlight')
   end, { silent = true })
 
   -- ---------------------------------------------------------------------------
   -- coc-outlineの操作
   -- coc-outlineを表示
-  keyset('n', '<space>o', function()
+  vim.keymap.set('n', '<space>o', function()
     -- coc#window#find 関数を呼び出し、'cocViewId', 'OUTLINE' に基づいてウィンドウIDを取得
     local winid = vim.fn['coc#window#find']('cocViewId', 'OUTLINE')
     if winid == -1 then
@@ -122,40 +121,40 @@ function M.lua_source()
 
   -- ---------------------------------------------------------------------------
   -- Symbol renaming
-  keyset("n", "<leader>rn", "<Plug>(coc-rename)", { silent = true })
+  vim.keymap.set("n", "<leader>rn", "<Plug>(coc-rename)", { silent = true })
 
   -- ---------------------------------------------------------------------------
   -- float windowの操作
   -- Normal mode
-  keyset('n', '<C-j>', [[
+  vim.keymap.set('n', '<C-j>', [[
     coc#float#has_scroll() ? coc#float#scroll(1, 1) : <Plug>(edgemotion-j)
   ]], opts)
-  keyset('n', '<C-k>', [[
+  vim.keymap.set('n', '<C-k>', [[
     coc#float#has_scroll() ? coc#float#scroll(0, 1) : <Plug>(edgemotion-k)
   ]], opts)
-  keyset('n', '<C-f>', [[
+  vim.keymap.set('n', '<C-f>', [[
     coc#float#has_scroll() ? coc#float#scroll(1) : '<C-f>'
   ]], opts)
-  keyset('n', '<C-b>', [[
+  vim.keymap.set('n', '<C-b>', [[
     coc#float#has_scroll() ? coc#float#scroll(0) : '<C-b>'
   ]], opts)
 
   -- Insert mode
-  keyset('i', '<C-i>', [[
+  vim.keymap.set('i', '<C-i>', [[
     coc#float#has_scroll() ? '<C-R>=coc#float#scroll(1, 1)<CR>' : '<Right>'
   ]], opts)
-  keyset('i', '<C-f>', [[
+  vim.keymap.set('i', '<C-f>', [[
     coc#float#has_scroll() ? '<C-R>=coc#float#scroll(1)<CR>' : '<Right>'
   ]], opts)
-  keyset('i', '<C-k>', [[
+  vim.keymap.set('i', '<C-k>', [[
     coc#float#has_scroll() ? '<C-R>=coc#float#scroll(0, 1)<CR>' : '<Left>'
   ]], opts)
-  keyset('i', '<C-b>', [[
+  vim.keymap.set('i', '<C-b>', [[
     coc#float#has_scroll() ? '<C-R>=coc#float#scroll(0)<CR>' : '<Left>'
   ]], opts)
 
   -- Special handling for space + j in Normal mode
-  keyset('n', '<space>j', [[
+  vim.keymap.set('n', '<space>j', [[
     coc#float#has_float() ? '<Plug>(coc-float-jump)' : '<space>j'
   ]], opts)
 

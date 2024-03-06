@@ -3,9 +3,6 @@
 --       最近はdiffviewとかシェルでの操作が多いかも。
 --
 
-local keyset                               = vim.keymap.set
-local fn                                   = vim.fn
-
 -- checkoutしてgit情報を更新する
 local checkout_and_refresh_git_infomations = function(prompt_bufnr)
   local actions = require('telescope.actions')
@@ -21,12 +18,12 @@ local M                                    = {}
 
 function M.lua_add()
   -- NOTE: on_cmdで遅延ロードさせるためにこういう回りくどいやり方をしている…
-  keyset('n', '<space>b', "<Cmd>Buffers<CR>", {})
-  keyset('n', '<space>c', "<Cmd>Commits<CR>", {})
-  keyset('n', '<space>f', "<Cmd>FindFiles<CR>", {})
-  keyset('n', '<space>g', "<Cmd>LiveGrep<CR>", {})
-  keyset('n', '<space>s', "<Cmd>GitStatus<CR>", {})
-  keyset('n', '<Left>', "<Cmd>GitStatus<CR>", {})
+  vim.keymap.set('n', '<space>b', "<Cmd>Buffers<CR>", {})
+  vim.keymap.set('n', '<space>c', "<Cmd>Commits<CR>", {})
+  vim.keymap.set('n', '<space>f', "<Cmd>FindFiles<CR>", {})
+  vim.keymap.set('n', '<space>g', "<Cmd>LiveGrep<CR>", {})
+  vim.keymap.set('n', '<space>s', "<Cmd>GitStatus<CR>", {})
+  vim.keymap.set('n', '<Left>', "<Cmd>GitStatus<CR>", {})
 end
 
 function M.lua_source()
@@ -65,7 +62,7 @@ function M.lua_source()
       mappings = {
         i = {
           ["<C-j>"] = function()
-            fn['skkeleton#handle']('toggle', {})
+            vim.fn['skkeleton#handle']('toggle', {})
           end,
           -- NOTE: <C-/>でkeymapのhelpを表示
           -- ["<C-/>"] = "which_key",
@@ -234,12 +231,12 @@ function M.git_status()
             return
           end
           local selection = action_state.get_selected_entry()
-          if fn.system("git status " .. selection.value .. " --porcelain | grep '??'") ~= "" then
+          if vim.fn.system("git status " .. selection.value .. " --porcelain | grep '??'") ~= "" then
             -- untrackedな場合、ファイルを削除する
-            fn.delete(selection.value)
+            vim.fn.delete(selection.value)
           else
             -- untrackedではない場合、restoreする
-            fn.system("git restore " .. selection.value)
+            vim.fn.system("git restore " .. selection.value)
           end
           -- git情報を更新(lualine用)
           vim.fn["git_info#refresh_git_infomation"]()

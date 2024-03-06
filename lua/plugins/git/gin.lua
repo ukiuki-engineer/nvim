@@ -1,10 +1,6 @@
---
+-------------------------------------------------------------------------------
 -- gin.vim
---
-local g       = vim.g
-local fn      = vim.fn
-local command = vim.api.nvim_create_user_command
-
+-------------------------------------------------------------------------------
 -- confirmしてpushする
 local function git_push_confirm()
   vim.fn['git_info#refresh_git_infomation']()
@@ -12,9 +8,9 @@ local function git_push_confirm()
   local message = ""
 
   -- remote branchが無い場合の処理
-  if not g['git_info#git_info']['exists_remote_branch'] then
+  if not vim.g['git_info#git_info']['exists_remote_branch'] then
     message = 'There is no remote branch for the \"' ..
-        g['git_info#git_info']['branch_name'] .. '\". Would you like to publish this branch?'
+        vim.g['git_info#git_info']['branch_name'] .. '\". Would you like to publish this branch?'
 
     if vim.fn["utils#confirm"](message) then
       vim.cmd("Gin push --set-upstream origin HEAD")
@@ -22,7 +18,7 @@ local function git_push_confirm()
     return
   end
 
-  local commit_counts = g['git_info#git_info']['commit_counts']['un_pushed']
+  local commit_counts = vim.g['git_info#git_info']['commit_counts']['un_pushed']
   commit_counts = tonumber(commit_counts)
 
   if commit_counts == "" or commit_counts == 0 then
@@ -46,7 +42,7 @@ local function delete_latest_commit(soft_or_hard)
   end
   vim.cmd("Gin reset --" .. soft_or_hard .. " HEAD^")
   -- NOTE: 普通にcommand実行するだけだとなんか時々上手くいかないのでtimer遅延をかける
-  fn.timer_start(1000,
+  vim.fn.timer_start(1000,
     function()
       -- diffviewをrefresh
       vim.cmd([[DiffviewRefresh]])
@@ -60,7 +56,7 @@ local M = {}
 
 function M.lua_add()
   -- 画面分割して開く
-  g.gin_proxy_editor_opener = 'split'
+  vim.g.gin_proxy_editor_opener = 'split'
 
   vim.cmd([[
     augroup MyGinAuCmds
@@ -71,8 +67,8 @@ function M.lua_add()
   ]])
 
   -- commands
-  command('DeleteLatestCommit', function() M.pcall_delete_latest_commit('soft') end, {})
-  command('GinPush', M.pcall_git_push_confirm, {})
+  vim.api.nvim_create_user_command('DeleteLatestCommit', function() M.pcall_delete_latest_commit('soft') end, {})
+  vim.api.nvim_create_user_command('GinPush', M.pcall_git_push_confirm, {})
   -- TODO: 引数を渡せるようにする。↓みたいな感じでいけるらしい。
   -- vim.cmd("command! -nargs=? GinPush call luaeval('M.pcall_git_push_confirm(_A)', <q-args>)")
 end
