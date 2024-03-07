@@ -108,6 +108,32 @@ function! utils#open_filer_here() abort
   let l:filer = utils#get_filer()
   call system(filer .. " " .. expand("%:p:h"))
 endfunction
+
+"
+" $がついてるとき用のtagジャンプ
+"
+function! utils#tag_jump_with_dollar()
+  " 現在の単語を取得
+  let l:current_word = expand('<cword>')
+
+  " タグジャンプのコマンドを構築
+  let l:tag_jump_cmd = 'tag ' . l:current_word
+
+  " タグジャンプを試みる
+  try
+    execute l:tag_jump_cmd
+  catch /E426: Tag not found/
+    " タグが見つからない場合は、$ を前置して再試行
+    let l:tag_with_dollar = '$' . l:current_word
+    let l:tag_jump_cmd_with_dollar = 'tag ' . l:tag_with_dollar
+    try
+      execute l:tag_jump_cmd_with_dollar
+    catch /E426: Tag not found/
+      " $ を前置しても見つからない場合は、エラーメッセージを表示
+      echo "Tag not found: " . l:current_word . " and " . l:tag_with_dollar
+    endtry
+  endtry
+endfunction
 " --------------------------------------------------------------------------------
 " lua/config/init.lua
 " --------------------------------------------------------------------------------
