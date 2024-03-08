@@ -43,6 +43,7 @@ function M.lua_source()
   command('Highlights', "lua require('telescope.builtin').highlights()", {})
   command('Marks', "lua require('telescope.builtin').marks()", {})
   command('OldFiles', "lua require('telescope.builtin').oldfiles()", {})
+  command('Tags', "lua require('telescope.builtin').tags()", {})
 
   vim.cmd([[command! -nargs=* LiveGrep :lua require("plugins.telescope").live_grep("<args>")]])
   -- NOTE: ↑の使用例:
