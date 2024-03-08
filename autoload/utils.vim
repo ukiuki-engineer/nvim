@@ -71,6 +71,7 @@ endfunction
 
 "
 " $がついてるとき用のtagジャンプ
+" TODO: 本当はctagsの設定で解決すべきだがとりあえずこれでいいや
 "
 function! utils#tag_jump_with_dollar()
   " 現在の単語を取得
