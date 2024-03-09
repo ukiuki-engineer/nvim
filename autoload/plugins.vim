@@ -11,14 +11,15 @@ function! plugins#hook_source_autoclose() abort
   let g:autoclose#disable_nextpattern_autoclosing_quots = []
   " 改行の整形機能をオフ
   let g:autoclose#autoformat_newline_enable = 0
-  let g:autoclose#enabled_autoclosing_tags_filetypes = [
-        \ "html",
-        \ "xml",
-        \ "javascript",
-        \ "blade",
-        \ "eruby",
-        \ "vue",
-        \ ]
+  let g:autoclose#autoclosing_tags_enable = 0
+  " let g:autoclose#enabled_autoclosing_tags_filetypes = [
+  "       \ "html",
+  "       \ "xml",
+  "       \ "javascript",
+  "       \ "blade",
+  "       \ "eruby",
+  "       \ "vue",
+  "       \ ]
   " 補完キャンセル機能をオン
   let g:autoclose#cancel_completion_enable = 1
   " 補完を無効化するfiletype

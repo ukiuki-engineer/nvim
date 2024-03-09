@@ -6,6 +6,7 @@
     "php",
     "css",
     "scss",
+    "javascript",
     // "markdown"
   ],
   // NOTE: :CocLocalConfigを実行すると、./.vim/coc-config.jsonが作成される
@@ -88,7 +89,22 @@
   // "eslint.autoFixOnSave": true,
   // "eslint.filetypes": ["javascript", "vue"],
   "eslint.enable": false,
-  "html.autoClosingTags": false,
+  "html.format.enable": false,
+  "html.filetypes": [
+    "blade",
+    "handlebars",
+    "html",
+    "htmldjango",
+    "javascript",
+    "vue",
+  ],
+  "html.autoClosingTags": true,
+  "snippets.extends": {
+    "javascript": [
+      "html",
+      "javascript",
+    ]
+  },
   // NOTE: intelephense1.9.0 以降だと_ide_helper.phpや_ide_helper_models.phpが上手く効かない
   // 下記コマンドで古いバージョンの言語サーバーをインストールして、
   // npm i -g intelephense@1.8.2
