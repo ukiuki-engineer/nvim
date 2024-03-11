@@ -101,35 +101,6 @@ function M.is_git_project()
 end
 
 --
--- branch名を取得
---
-function M.get_branch_name()
-  local branch_or_commit = vim.fn.system('git rev-parse --abbrev-ref HEAD'):gsub("\n", "")
-  if branch_or_commit == 'HEAD' then
-    -- Detached HEAD 状態（特定のコミットにチェックアウトされている）
-    branch_or_commit = vim.fn.system('git rev-parse HEAD'):gsub("\n", "")
-  end
-  return branch_or_commit
-end
-
---
--- 未pull、未pushなcommit数と、リモートブランチ情報を取得する
--- TODO: scripts/commit_status.shの処理内容をここに実装する
---
-function M.get_git_infomations()
-  -- FIXME: 一旦
-  return vim.fn['utils#delete_line_breaks'](vim.fn.system('~/.config/nvim/scripts/commit_status.sh'))
-end
-
---
--- git上の変更があるか
---
-function M.has_git_changed()
-  vim.fn.system("git status | grep 'nothing to commit, working tree clean'")
-  return vim.v.shell_error ~= 0
-end
-
---
 -- リモートブランチ情報のテキストを返す
 --
 function M.remote_branch_info_text()
