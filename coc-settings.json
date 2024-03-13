@@ -7,6 +7,7 @@
     "css",
     "scss",
     "javascript",
+    "sql",
     // "markdown"
   ],
   // NOTE: :CocLocalConfigを実行すると、./.vim/coc-config.jsonが作成される
