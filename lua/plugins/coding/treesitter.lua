@@ -54,7 +54,7 @@ function M.lua_source()
       "xml",
     },
     pairs = {
-      enable = true,
+      enable = false,
       disable = {},
       highlight_pair_events = { "cursorMoved" },
       highlight_self = true,
