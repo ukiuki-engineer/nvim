@@ -225,7 +225,7 @@ function M.git_status()
 
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)
-      -- 選択したファイルをgit restore or 削除する
+      -- 選択したファイルをgit restore or 削除する(つまり変更を破棄する)
       map({ "i", "n" }, "<C-r>",
         function()
           if not vim.fn["utils#confirm"]("delete this change?") then
@@ -243,7 +243,8 @@ function M.git_status()
           vim.fn["git_info#refresh_git_infomation"]()
           actions.close(prompt_bufnr) -- TODO: 閉じずにlistを更新することはできないか？
           require('plugins.telescope').git_status()
-        end
+        end,
+        { desc = "discard this change" }
       )
       return true
     end,
