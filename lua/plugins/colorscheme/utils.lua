@@ -145,7 +145,7 @@ function M.hi_diff(bg_color)
   })
   -- 変更行の変更箇所
   hi(0, 'DiffText', {
-    bg = M.transparent_color(bg_color, "#FD7E00", 0.55)
+    bg = M.transparent_color(bg_color, "#FD7E00", 0.40)
   })
 end
 
