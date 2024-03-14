@@ -122,12 +122,13 @@ au("VimEnter", { -- VimEnter後にタイマースタートする
 -- ------------------------------------------------------------------------------
 -- 標準プラグインの制御
 -- ------------------------------------------------------------------------------
+-- NOTE: 要らないやつは1にしておくとロードがスキップされる
 vim.g.did_indent_on             = 1
 vim.g.did_install_default_menus = 1
 vim.g.did_install_syntax_menu   = 1
 vim.g.did_load_ftplugin         = 1
 vim.g.loaded_gzip               = 1
-vim.g.loaded_man                = 1
+-- vim.g.loaded_man                = 1 -- NOTE: nvimでmanpageを読むために必要なのでこれはスキップしない
 vim.g.loaded_matchit            = 1
 vim.g.loaded_matchparen         = 1
 vim.g.loaded_netrw              = 1
