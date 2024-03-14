@@ -86,19 +86,13 @@ vim.keymap.set({ "n" }, "<C-i>", "<TAB>", opts)
 
 -- タブを閉じる
 vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", opts)
-
--- cmdlineモードをemacsキーバインドでカーソル移動
-vim.keymap.set("c", "<C-b>", "<Left>", { noremap = true })
-vim.keymap.set("c", "<C-f>", "<Right>", { noremap = true })
-vim.keymap.set("c", "<C-a>", "<Home>", { noremap = true })
-vim.keymap.set("c", "<C-e>", "<End>", { noremap = true })
-vim.keymap.set("c", "<C-d>", "<Del>", { noremap = true })
 -------------------------------------------------------------------------------
 -- 遅延で定義するmapping(vim起動時にあれこれ処理させたくない)
 -------------------------------------------------------------------------------
-vim.api.nvim_create_augroup("map_zenkaku", {})
+vim.api.nvim_create_augroup("lazy_keymapping", {})
+-- 全角文字に行内ジャンプ
 vim.api.nvim_create_autocmd({ "BufRead", "CursorMoved" }, {
-  group = "map_zenkaku",
+  group = "lazy_keymapping",
   callback = function()
     -- 全角文字と半角文字の対応を定義
     jump_to_zenkaku({
@@ -140,6 +134,20 @@ vim.api.nvim_create_autocmd({ "BufRead", "CursorMoved" }, {
       ["|"] = "｜",
       ["}"] = "』",
     })
+  end,
+  once = true,
+})
+
+-- cmdlineモードのkeymapping
+vim.api.nvim_create_autocmd({ "CmdLineEnter" }, {
+  group = "lazy_keymapping",
+  callback = function()
+    -- cmdlineモードをemacsキーバインドでカーソル移動
+    vim.keymap.set("c", "<C-b>", "<Left>", { noremap = true })
+    vim.keymap.set("c", "<C-f>", "<Right>", { noremap = true })
+    vim.keymap.set("c", "<C-a>", "<Home>", { noremap = true })
+    vim.keymap.set("c", "<C-e>", "<End>", { noremap = true })
+    vim.keymap.set("c", "<C-d>", "<Del>", { noremap = true })
   end,
   once = true,
 })
