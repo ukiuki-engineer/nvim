@@ -14,7 +14,7 @@ function M.lua_source()
   })
   au("FileType", {
     group = "my_commentstring",
-    pattern = { "php", "json" },
+    pattern = { "php", "jsonc" },
     callback = function()
       vim.bo.commentstring = "// %s"
     end

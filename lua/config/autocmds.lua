@@ -54,6 +54,13 @@ au({ "BufRead", "BufNewFile" }, {
   pattern = { ".env", ".env.*" },
   command = "set ft=sh",
 })
+
+-- coc-settings.jsonはjsoncとして開く
+au({ "BufRead", "BufNewFile" }, {
+  group = "MyAutocmds",
+  pattern = { "coc-settings.json" },
+  command = "set ft=jsonc",
+})
 -- ------------------------------------------------------------------------------
 -- 色周りの設定を呼ぶ処理
 -- 色周りの設定はlua/plugins/colorscheme.lua
