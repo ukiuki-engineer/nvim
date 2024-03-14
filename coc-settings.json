@@ -1,35 +1,46 @@
+/*
+ * NOTE: :CocLocalConfigを実行すると、./.vim/coc-config.jsonが作成される
+ *       このファイルより、ローカルコンフィグの方が優先される
+ */
 {
+  //////////////////////////////////////////////////////////////////////////////
+  // coc.nvim本体の設定
+  //////////////////////////////////////////////////////////////////////////////
+  "workspace.rootPatterns": [".git", ".hg", ".projections.json", ".env"],
   "semanticTokens.enable": true,
   "coc.preferences.formatOnSaveFiletypes": [
-    "lua",
-    "html",
-    "php",
     "css",
-    "scss",
+    "html",
     "javascript",
-    "sql",
-    // "markdown"
+    "json",
+    "jsonc",
+    "json5",
+    "lua",
+    "php",
+    "scss",
+    "sql"
   ],
-  // NOTE: :CocLocalConfigを実行すると、./.vim/coc-config.jsonが作成される
-  //        このファイルより、ローカルコンフィグの方が優先される
   "codeLens.enable": true,
   "diagnostic.virtualText": true,
+  // prettier-ignore
   "diagnostic.floatConfig": {
-    "border": true,
+    "border" : true,
     "rounded": true,
-    "shadow": true,
+    "shadow" : true
   },
+  // prettier-ignore
   "hover.floatConfig": {
-    "border": true,
-    "close": true,
+    "border" : true,
+    "close"  : true,
     "rounded": true,
-    "shadow": true,
+    "shadow" : true
   },
   "list.floatPreview": true,
   "outline.autoPreview": true,
   "outline.previewBorderRounded": true,
   "outline.sortBy": "position",
   "outline.togglePreviewKey": "p",
+  // prettier-ignore
   "suggest.completionItemKindLabels": {
     // NOTE: :h coc-config-suggest-completionItemKindLabels
     //       に定義されているパラメータを、以下を参考に決めた
@@ -64,32 +75,43 @@
   "signature.floatConfig": {
     "border": true,
     "rounded": true,
-    "shadow": true,
+    "shadow": true
   },
   "suggest.floatConfig": {
     "border": true,
     "rounded": true,
-    "shadow": true,
+    "shadow": true
   },
   "suggest.virtualText": true,
-  //
+  //////////////////////////////////////////////////////////////////////////////
   // coc-extensionsの設定
-  //
-  "Lua.diagnostics.globals": [
-    "vim"
-  ],
-  "cSpell.userWords": [
-    "eruby",
-    "fuga",
-    "hoge",
-    "denops",
-  ],
-  // NOTE: coc-eslintを使用する場合は、ローカルのsettings.jsonで設定を上書きしてeslintを有効にする
-  // NOTE: coc-eslintの設定例
-  // "eslint.enable": true,
-  // "eslint.autoFixOnSave": true,
-  // "eslint.filetypes": ["javascript", "vue"],
-  "eslint.enable": false,
+  //////////////////////////////////////////////////////////////////////////////
+  /*
+   * coc-prettier
+   */
+  "prettier.enable": true,
+  /*
+   * coc-snippets
+   */
+  "snippets.extends": {
+    "javascript": ["html", "javascript"]
+  },
+  "snippets.ultisnips.pythonPrompt": false,
+  /*
+   * coc-json
+   */
+  "json.format.enable": false,
+  /*
+   * coc-lua
+   */
+  "Lua.diagnostics.globals": ["vim"],
+  /*
+   * coc-spell-checker
+   */
+  "cSpell.userWords": ["denops", "eruby", "fuga", "hoge", "htmldjango"],
+  /*
+   * coc-html
+   */
   "html.format.enable": false,
   "html.filetypes": [
     "blade",
@@ -97,40 +119,23 @@
     "html",
     "htmldjango",
     "javascript",
-    "vue",
+    "vue"
   ],
   "html.autoClosingTags": true,
-  "snippets.extends": {
-    "javascript": [
-      "html",
-      "javascript",
-    ]
-  },
-  // NOTE: intelephense1.9.0 以降だと_ide_helper.phpや_ide_helper_models.phpが上手く効かない
-  // 下記コマンドで古いバージョンの言語サーバーをインストールして、
-  // npm i -g intelephense@1.8.2
-  // 下記のように直接パスを指定する。パスは環境に依存するため、それぞれの環境下で行う。
-  // "intelephense.path": "/opt/homebrew/bin/intelephense",
-  "intelephense.files.associations": [
-    "*.php",
-    "*.blade.php"
-  ],
-  // NOTE: coc-php-cs-fixerの設定例
-  // "coc.preferences.formatOnSaveFiletypes": [
-    // "php"
-  // ],
-  // "php-cs-fixer.enable": true,
-  // "php-cs-fixer.rules": "",
+  /*
+   * coc-intelephense
+   */
+  "intelephense.files.associations": ["*.php", "*.blade.php"],
+  /*
+   * coc-php-cs-fixer
+   */
   "php-cs-fixer.enable": false,
+  /*
+   * coc-solargraph
+   */
   "solargraph.diagnostics": true,
-  "workspace.rootPatterns": [
-    ".git",
-    ".hg",
-    ".projections.json",
-    ".env"
-  ],
-  "snippets.ultisnips.pythonPrompt": false,
-  // "workspace.bottomUpFiletypes": ["*"],
-  // "workspace.workspaceFolderCheckCwd": false,
-  // "workspace.workspaceFolderFallbackCwd": false,
+  /*
+   * coc-eslint
+   */
+  "eslint.enable": false
 }

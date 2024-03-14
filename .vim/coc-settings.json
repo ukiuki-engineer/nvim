@@ -1,8 +1,4 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": [
-    "lua",
-    "typescript"
-  ],
   "cSpell.ignoreWords": [
     "autoclose",
     "autoclosing",
@@ -45,11 +41,10 @@
   "lua.runtime.version": "LuaJIT",
   "lua.diagnostics.globals": ["vim", "require"],
   "lua.workspace.library": {
-    "~/.config/nvim/lua": true,
+    "~/.config/nvim/lua": true
   },
   "lua.workspace.checkThirdParty": false,
   "lua.telemetry.enable": false,
   "deno.enable": true,
   "tsserver.enable": false
 }
-
