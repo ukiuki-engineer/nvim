@@ -79,6 +79,8 @@ au("ColorScheme", {
       require("plugins.colorscheme.gruvbox").set_customcolor()
     elseif vim.g.colors_name == "nightfly" then
       require("plugins.colorscheme.nightfly").set_customcolor()
+    elseif vim.g.colors_name == "nightfox" then
+      require("plugins.colorscheme.nightfox").set_customcolor()
     else
       -- 上記以外は以下が設定される
       require("plugins.colorscheme.utils").set_customcolor_common()

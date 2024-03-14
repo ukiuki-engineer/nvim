@@ -1,6 +1,6 @@
 local M = {}
 
-function M.settings()
+function M.lua_add()
   vim.g.nightflyNormalFloat         = true
   vim.g.nightflyWinSeparator        = 2
   vim.g.nightflyTransparent         = true
@@ -8,7 +8,7 @@ function M.settings()
 end
 
 function M.set()
-  M.settings()
+  M.lua_add()
   vim.cmd([[colorscheme nightfly]])
 end
 
