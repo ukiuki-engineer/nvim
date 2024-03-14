@@ -60,19 +60,6 @@ au({ "BufRead", "BufNewFile" }, {
 -- ------------------------------------------------------------------------------
 augroup("MyCustomColor", {})
 
-au("ColorSchemePre", {
-  callback = function()
-    if vim.g.colors_name == "tokyonight" then
-      if not require("utils").bool_fn.has("mac") then
-        require("plugins.colorscheme.tokyonight").colorscheme_pre()
-      end
-      -- elseif vim.g.colors_name == "moonlight" then
-      --   require("plugins.colorscheme.moonlight").colorscheme_pre()
-    end
-  end,
-  group = "MyCustomColor",
-})
-
 au("ColorScheme", {
   callback = function()
     if vim.g.colors_name == "tokyonight" then

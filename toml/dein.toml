@@ -85,6 +85,9 @@ repo = 'shaunsingh/moonlight.nvim'
 
 [[plugins]]
 repo = 'folke/tokyonight.nvim'
+lua_add = '''
+require("plugins.colorscheme.tokyonight").settings()
+'''
 
 [[plugins]]
 repo = 'shaunsingh/nord.nvim'

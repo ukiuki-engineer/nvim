@@ -1,6 +1,6 @@
 local M = {}
 
-function M.colorscheme_pre()
+function M.settings()
   require("tokyonight").setup({
     -- 透け透けにする
     transparent = true,
