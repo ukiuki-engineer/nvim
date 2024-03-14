@@ -160,6 +160,8 @@ function M.lua_source()
 
   -- フォーマッターを呼び出す
   vim.api.nvim_create_user_command('Format', [[call CocAction('format')]], {})
+  -- workspace用の辞書登録
+  vim.api.nvim_create_user_command('CocAddIgnore', 'CocCommand cSpell.addIgnoreWordToWorkspace', {})
 end
 
 return M
