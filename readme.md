@@ -60,13 +60,6 @@ https://github.com/austinliuigi/brew-neovim-nightly
 
 ## vimrc読書会
 
-- [ ] `autocmds.lua`  
-BufNewFileも付けておくと便利できそう
-
-```lua
--- env系はshとして開く
-```
-
 - [ ] `options.lua`  
 
 ```lua

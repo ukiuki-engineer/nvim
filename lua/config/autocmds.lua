@@ -49,7 +49,7 @@ au({ "VimResume" }, {
 })
 
 -- env系はshとして開く
-au("BufRead", {
+au({ "BufRead", "BufNewFile" }, {
   group = "MyAutocmds",
   pattern = { ".env", ".env.*" },
   command = "set ft=sh",
