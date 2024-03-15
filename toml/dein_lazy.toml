@@ -177,6 +177,10 @@ require("plugins.coding.codeium").lua_add()
 repo = 'tpope/vim-surround'
 on_event = ['InsertEnter']
 
+[[plugins]] # surroundとかをドットリピートできるようにするやつ
+repo = 'tpope/vim-repeat'
+on_source = ['vim-surround']
+
 [[plugins]]
 repo = 'haya14busa/vim-edgemotion'
 on_event = ['CursorMoved']
@@ -252,6 +256,10 @@ require("plugins.telescope").lua_source()
 [[plugins]]
 repo = 'nvim-telescope/telescope-fzf-native.nvim'
 build = 'make'
+on_source = ['telescope.nvim']
+
+[[plugins]]
+repo = 'nvim-telescope/telescope-media-files.nvim'
 on_source = ['telescope.nvim']
 ################################################################################
 # Others
@@ -330,3 +338,10 @@ on_cmd = [
 [[plugins]]
 repo = 'rktjmp/lush.nvim'
 on_source = ['pink-panic.nvim']
+
+[[plugins]]
+repo = 'folke/which-key.nvim'
+on_cmd = ['WhichKey']
+lua_source = '''
+require("plugins.others.which-key").lua_source()
+'''
