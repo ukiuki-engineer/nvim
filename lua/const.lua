@@ -39,14 +39,15 @@ vim.g["my#const"] = {
   bg_colors                            = bg_colors,
   term_bgcolor                         = bg_colors.nightfly,
   favorite_colorschemes                = {
-    "base16-ayu-dark",
     "base16-monokai",
     "base16-onedark",
-    "base16-tender",
     "gruvbox",
     "kanagawa",
     "moonlight",
     "nightfly",
+    "nightfox",
+    "nord",
+    "nordfox",
     "tokyonight-night",
   },
 }
