@@ -1,5 +1,3 @@
-" コードブロックを挿入
-inoremap <buffer> <C-_> ```<CR>```<UP>
 " checkboxにcheckを入れる
 nnoremap <buffer> <leader>x :s/- \[ \]/- [x]/ \| nohlsearch<CR>
 xnoremap <buffer> <leader>x :s/- \[ \]/- [x]/ \| nohlsearch<CR>

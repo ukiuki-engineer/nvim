@@ -1,3 +1,7 @@
-nnoremap <buffer> <silent> <C-]> :call utils#tag_jump_with_dollar()<CR>
+" phpのインデントは4
+lua << EOF
+  require("utils").setlocal_indent(4)
+EOF
 " 行末にセミコロンを挿入
 nnoremap <silent> <buffer> <leader>; :call utils#append_semicolon()<CR>
+
