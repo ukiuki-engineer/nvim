@@ -95,6 +95,17 @@ function! utils#tag_jump_with_dollar()
     endtry
   endtry
 endfunction
+
+" 行末がセミコロンでなければ挿入
+function! utils#append_semicolon()
+  " 現在の行の末尾の文字を取得
+  let l:line = getline('.')
+
+  " 末尾がセミコロンでなければ挿入
+  if l:line !~ ';$'
+    execute "normal! m`A;\<Esc>\`\`"
+  endif
+endfunction
 " --------------------------------------------------------------------------------
 " lua/config/init.lua
 " --------------------------------------------------------------------------------
