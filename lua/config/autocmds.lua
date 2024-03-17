@@ -61,6 +61,26 @@ au({ "BufRead", "BufNewFile" }, {
   pattern = { "coc-settings.json" },
   command = "set ft=jsonc",
 })
+
+-- アノテーションコメントのハイライト
+au({ "WinEnter", "BufRead", "BufNewFile", "Syntax" }, {
+  group = "MyAutocmds",
+  pattern = "*",
+  callback = function()
+    vim.fn.matchadd('Note', 'NOTE', -1)
+    vim.fn.matchadd('Todo', 'TODO', -1)
+    vim.fn.matchadd('Fixme', 'FIXME', -1)
+  end,
+})
+au({ "WinEnter", "BufRead", "BufNewFile", "Syntax" }, {
+  group = "MyAutocmds",
+  pattern = "*",
+  callback = function()
+    vim.cmd('highlight Note guifg=White')
+    vim.cmd('highlight Todo guifg=Yellow')
+    vim.cmd('highlight Fixme guifg=Red')
+  end,
+})
 -- ------------------------------------------------------------------------------
 -- 色周りの設定を呼ぶ処理
 -- 色周りの設定はlua/plugins/colorscheme.lua
