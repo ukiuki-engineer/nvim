@@ -76,9 +76,9 @@ au({ "WinEnter", "BufRead", "BufNewFile", "Syntax" }, {
   group = "MyAutocmds",
   pattern = "*",
   callback = function()
-    vim.cmd('highlight Note guifg=White')
-    vim.cmd('highlight Todo guifg=Yellow')
-    vim.cmd('highlight Fixme guifg=Red')
+    vim.api.nvim_set_hl(0, 'Note', { fg = "White", bold = true })
+    vim.api.nvim_set_hl(0, 'Todo', { fg = "Yellow", bold = true })
+    vim.api.nvim_set_hl(0, 'Fixme', { fg = "Red", bold = true })
   end,
 })
 -- ------------------------------------------------------------------------------
