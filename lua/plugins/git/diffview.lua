@@ -37,6 +37,11 @@ function M.lua_source()
 
   require('diffview').setup({
     enhanced_diff_hl = true,
+    view = {
+      merge_tool = {
+        layout = "diff3_mixed"
+      }
+    },
     file_panel = {
       win_config = {
         -- diffviewのwindowの設定
