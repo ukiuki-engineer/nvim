@@ -339,9 +339,3 @@ on_cmd = [
 repo = 'rktjmp/lush.nvim'
 on_source = ['pink-panic.nvim']
 
-[[plugins]]
-repo = 'folke/which-key.nvim'
-on_cmd = ['WhichKey']
-lua_source = '''
-require("plugins.others.which-key").lua_source()
-'''
