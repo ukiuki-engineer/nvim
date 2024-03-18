@@ -18,9 +18,11 @@ local function git_push_confirm()
     return
   end
 
+  -- commit数を取得
   local commit_counts = vim.g['git_info#git_info']['commit_counts']['un_pushed']
   commit_counts = tonumber(commit_counts)
 
+  -- commitなしならメッセージを表示して終了
   if commit_counts == "" or commit_counts == 0 then
     print("no commits")
     return
@@ -55,8 +57,7 @@ function M.lua_add()
   vim.cmd([[
     augroup MyGinAuCmds
       au!
-      au User GinCommandPost call git_info#refresh_git_infomation()
-      au User GinComponentPost call git_info#refresh_git_infomation()
+      au User GinCommandPost,GinComponentPost call git_info#refresh_git_infomation()
     augroup END
   ]])
 

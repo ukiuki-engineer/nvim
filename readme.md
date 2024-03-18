@@ -58,17 +58,3 @@ Total Min:     11.633000 msec
 →Macの場合以下を参照  
 https://github.com/austinliuigi/brew-neovim-nightly
 
-## vimrc読書会
-
-- [ ] `options.lua`  
-
-```lua
-opt.encoding = 'utf-8'
-```
-
-- [ ] `gin.lua`
-gin.vimにwait機能あるからそれで行けないかしら
-
-```lua
--- NOTE: 普通にcommand実行するだけだとなんか時々上手くいかないのでtimer遅延を
-```

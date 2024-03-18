@@ -25,11 +25,11 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>", opts)
 
 vim.cmd([[
-  " →ウィンドウを分割してターミナルを開く
+  " ウィンドウを分割してターミナルを開く
   command! -nargs=* Terminal split | wincmd j | resize 20 | terminal <args>
   command! -nargs=* Term Terminal <args>
   command! -nargs=* TermV vsplit | wincmd l | terminal <args>
-  " →カレントバッファのディレクトリ&ウィンドウを分割してターミナルを開く
+  " カレントバッファのディレクトリ&ウィンドウを分割してターミナルを開く
   command! TermHere :call terminal#term_here("sp")
   command! TermHereV :call terminal#term_here("vsp")
 ]])

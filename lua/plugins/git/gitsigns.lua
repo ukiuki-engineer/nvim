@@ -1,7 +1,6 @@
 --
 -- gitsigns.nvim
--- FIXME: cocのdiagnosticsが被ってgitsignsが見えなくなるのをどうにかできないか？
--- TODO: stageした行もそれが分るように表示できないか？
+-- TODO: cocのdiagnosticsが被ってgitsignsが見えなくなるのをどうにかできないか？
 --
 local M = {}
 
