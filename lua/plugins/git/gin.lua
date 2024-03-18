@@ -40,14 +40,8 @@ local function delete_latest_commit(soft_or_hard)
   if not vim.fn["utils#confirm"]("Delete latest commit?") then
     return
   end
-  vim.cmd("Gin reset --" .. soft_or_hard .. " HEAD^")
-  -- NOTE: 普通にcommand実行するだけだとなんか時々上手くいかないのでtimer遅延をかける
-  vim.fn.timer_start(1000,
-    function()
-      -- diffviewをrefresh
-      vim.cmd([[DiffviewRefresh]])
-    end
-  )
+  vim.cmd("Gin ++wait reset --" .. soft_or_hard .. " HEAD^")
+  vim.cmd([[DiffviewRefresh]])
 end
 
 --
