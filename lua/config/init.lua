@@ -105,15 +105,6 @@ au("VimEnter", { -- VimEnter後にタイマースタートする
             q!
           endif
         ]])
-
-        -- カラースキーム名をnotifyする
-        au("ColorScheme", {
-          callback = function()
-            if vim.o.filetype ~= "TelescopePrompt" then
-              require('notify')("ColorScheme: " .. vim.g.colors_name)
-            end
-          end,
-        })
       end
     )
   end,

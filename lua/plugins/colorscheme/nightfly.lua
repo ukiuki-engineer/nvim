@@ -13,11 +13,6 @@ function M.set()
 end
 
 function M.set_customcolor()
-  -- g:nightflyTransparentをtrueにするなら以下が必要
-  require("notify").setup({
-    background_colour = "#000000",
-  })
-
   local colorscheme_utils = require('plugins.colorscheme.utils')
   -- 背景色を取得
   local bg_color = colorscheme_utils.get_background()
