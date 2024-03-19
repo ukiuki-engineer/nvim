@@ -63,8 +63,8 @@ require("plugins.coding.commentary").lua_source()
 repo = 'ukiuki-engineer/vim-autoclose'
 rev = 'develop'
 on_event = ['InsertEnter']
-lua_source = '''
-require("plugins.coding.autoclose").lua_source()
+hook_source = '''
+call plugins#autoclose#hook_source()
 '''
 
 [[plugins]] # Markdownでtable作成

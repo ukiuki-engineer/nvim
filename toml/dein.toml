@@ -26,8 +26,8 @@ repo = 'vim-denops/denops.vim'
 [[plugins]]
 repo = 'vim-skk/skkeleton'
 depends = ['denops']
-lua_add = '''
-require("plugins.coding.skkeleton").lua_add()
+hook_add = '''
+call plugins#skkeleton#hook_add()
 '''
 
 [[plugins]]
