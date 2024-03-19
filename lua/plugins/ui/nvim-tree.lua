@@ -8,10 +8,8 @@ end
 function M.lua_source()
   require("nvim-tree").setup {
     git = {
-      ignore = false, -- .gitignoreされたファイルもtreeに表示する
+      ignore = false,          -- .gitignoreされたファイルもtreeに表示する
     },
-    -- 以下、treeのrootに関する設定
-    -- prefer_startup_root = true,
     sync_root_with_cwd = true, -- `:cd`, `:tcd`と同期
     update_focused_file = {
       enable = false,          -- カレントバッファに合わせて常に更新

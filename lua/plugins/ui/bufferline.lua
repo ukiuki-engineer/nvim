@@ -13,7 +13,6 @@ function M.lua_add()
   local bufferline = require('bufferline')
   bufferline.setup({
     options = {
-      -- mode = 'tabs',
       show_tab_indicators = true,
       buffer_close_icon = '×',
       style_preset = bufferline.style_preset.no_italic,
