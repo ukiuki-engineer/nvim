@@ -12,12 +12,9 @@ function M.lua_add()
 end
 
 function M.set_customcolor()
+  -- NOTE: 基本透け透けで使用する前提
   local hi                = vim.api.nvim_set_hl
   local colorscheme_utils = require("plugins.colorscheme.utils")
-
-  -- NOTE: 基本透け透けで使用する前提
-  -- TODO: diffviewとgitsignsを綺麗に調整する
-
   -- background colorを取得
   local bg_color          = colorscheme_utils.get_background()
 

@@ -116,7 +116,7 @@ function M.lua_add()
         -- branch name
         -- NOTE: デフォルトの'branch'だと、diffviewとかhelpとかで表示されない
         {
-          'g:git_info#git_info.branch_name', -- TODO: gin.vimでFugitiveHeadのような関数はないだろうか？
+          'g:git_info#git_info.branch_name', -- NOTE: gin.vimでFugitiveHeadのような関数があればそれに変えても良いかも
           icon = { '', color = { fg = '#FFA500' } },
           separator = '',
           on_click = function()
