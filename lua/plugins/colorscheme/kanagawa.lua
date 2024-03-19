@@ -1,5 +1,11 @@
 local M = {}
 
+function M.colorscheme_pre()
+  require('kanagawa').setup({
+    transparent = true,
+  })
+end
+
 function M.set_customcolor()
   local colorscheme_utils = require('plugins.colorscheme.utils')
   -- 背景色を取得

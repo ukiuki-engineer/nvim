@@ -91,7 +91,7 @@ au("ColorSchemePre", {
   group = "MyCustomColor",
   pattern = "tokyonight*",
   callback = function()
-    require("plugins.colorscheme.tokyonight").setup()
+    require("plugins.colorscheme.tokyonight").colorscheme_pre()
   end,
 })
 
@@ -99,7 +99,23 @@ au("ColorSchemePre", {
   group = "MyCustomColor",
   pattern = "nightfly",
   callback = function()
-    require("plugins.colorscheme.nightfly").setup()
+    require("plugins.colorscheme.nightfly").colorscheme_pre()
+  end,
+})
+
+au("ColorSchemePre", {
+  group = "MyCustomColor",
+  pattern = "kanagawa",
+  callback = function()
+    require("plugins.colorscheme.kanagawa").colorscheme_pre()
+  end,
+})
+
+au("ColorSchemePre", {
+  group = "MyCustomColor",
+  pattern = "moonlight",
+  callback = function()
+    require("plugins.colorscheme.moonlight").colorscheme_pre()
   end,
 })
 

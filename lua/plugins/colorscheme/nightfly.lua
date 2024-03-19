@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.colorscheme_pre()
   vim.g.nightflyNormalFloat         = true
   vim.g.nightflyWinSeparator        = 2
   vim.g.nightflyTransparent         = true

@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.colorscheme_pre()
   require("tokyonight").setup({
     -- 透け透けにする
     transparent = true,
@@ -50,6 +50,9 @@ function M.set_customcolor()
   })
   hi(0, 'MatchWord', { link = "MatchParen" })
   hi(0, 'MatchWordCur', { link = "MatchParen" })
+
+  -- gitsigns
+  colorscheme_utils.hi_gitsigns()
 
   -- telescope.nvim
   colorscheme_utils.hi_telescope()
