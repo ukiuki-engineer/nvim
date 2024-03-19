@@ -64,9 +64,6 @@ repo = 'ellisonleao/gruvbox.nvim'
 
 [[plugins]]
 repo = 'bluz71/vim-nightfly-colors'
-lua_add = '''
-require("plugins.colorscheme.nightfly").lua_add()
-'''
 
 [[plugins]]
 repo = 'EdenEast/nightfox.nvim'
@@ -82,9 +79,6 @@ repo = 'shaunsingh/moonlight.nvim'
 
 [[plugins]]
 repo = 'folke/tokyonight.nvim'
-lua_add = '''
-require("plugins.colorscheme.tokyonight").lua_add()
-'''
 
 [[plugins]]
 repo = 'shaunsingh/nord.nvim'

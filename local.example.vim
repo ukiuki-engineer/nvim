@@ -17,10 +17,5 @@
 " denopsのデバッグをオンにする
 " let g:denops#debug = 1
 
-" nightflyを使用
-" lua << END
-"   require("plugins.colorscheme.nightfly").set()
-" END
-
 " カラースキームをランダムに設定
 lua require("utils").change_colorscheme()

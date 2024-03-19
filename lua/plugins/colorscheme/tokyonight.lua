@@ -1,6 +1,6 @@
 local M = {}
 
-function M.lua_add()
+function M.setup()
   require("tokyonight").setup({
     -- 透け透けにする
     transparent = true,

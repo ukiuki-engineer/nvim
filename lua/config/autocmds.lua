@@ -87,7 +87,25 @@ au({ "WinEnter", "BufRead", "BufNewFile", "Syntax" }, {
 -- ------------------------------------------------------------------------------
 augroup("MyCustomColor", {})
 
+au("ColorSchemePre", {
+  group = "MyCustomColor",
+  pattern = "tokyonight*",
+  callback = function()
+    require("plugins.colorscheme.tokyonight").setup()
+  end,
+})
+
+au("ColorSchemePre", {
+  group = "MyCustomColor",
+  pattern = "nightfly",
+  callback = function()
+    require("plugins.colorscheme.nightfly").setup()
+  end,
+})
+
 au("ColorScheme", {
+  group = "MyCustomColor",
+  pattern = "*",
   callback = function()
     if vim.g.colors_name == "tokyonight" then
       require("plugins.colorscheme.tokyonight").set_customcolor()
@@ -106,5 +124,4 @@ au("ColorScheme", {
       require("plugins.colorscheme.utils").set_customcolor_common()
     end
   end,
-  group = "MyCustomColor",
 })
