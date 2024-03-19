@@ -18,12 +18,13 @@ local M                                    = {}
 
 function M.lua_add()
   -- NOTE: on_cmdで遅延ロードさせるためにこういう回りくどいやり方をしている…
+  vim.keymap.set('n', '<Left>', "<Cmd>GitStatus<CR>", {})
   vim.keymap.set('n', '<space>b', "<Cmd>Buffers<CR>", {})
   vim.keymap.set('n', '<space>c', "<Cmd>Commits<CR>", {})
   vim.keymap.set('n', '<space>f', "<Cmd>FindFiles<CR>", {})
   vim.keymap.set('n', '<space>g', "<Cmd>LiveGrep<CR>", {})
+  vim.keymap.set('n', '<space>p', "<Cmd>FindFilesAll<CR>", {})
   vim.keymap.set('n', '<space>s', "<Cmd>GitStatus<CR>", {})
-  vim.keymap.set('n', '<Left>', "<Cmd>GitStatus<CR>", {})
 end
 
 function M.lua_source()
@@ -36,6 +37,7 @@ function M.lua_source()
   command('Commits', "lua require('plugins.telescope').git_commits()", {})
   command('Filetypes', "lua require('telescope.builtin').filetypes()", {})
   command('FindFiles', "lua require('plugins.telescope').find_files()", {})
+  command('FindFilesAll', "lua require('plugins.telescope').find_files_all()", {})
   command('GitBranches', "lua require('plugins.telescope').git_branches()", {})
   command('GitStashList', "lua require('telescope.builtin').git_stash()", {})
   command('GitStatus', "lua require('plugins.telescope').git_status()", {})
@@ -175,6 +177,20 @@ function M.find_files()
       "--glob",
       "!**/.git/*"
     }
+  })
+end
+
+function M.find_files_all()
+  require('telescope.builtin').find_files({
+    find_command = {
+      "rg",
+      "--files",
+      "--hidden",
+      "--follow",
+      "--glob",
+      "!**/.git/*"
+    },
+    no_ignore = true
   })
 end
 

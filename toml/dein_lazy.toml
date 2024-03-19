@@ -234,6 +234,7 @@ on_cmd = [
   'Filetypes',
   'FindAllFiles',
   'FindFiles',
+  'FindFilesAll',
   'GitBranches',
   'GitStashList',
   'GitStatus',

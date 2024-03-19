@@ -83,7 +83,7 @@ function M.lua_source()
       },
     },
   })
-  vim.keymap.set('n', '<space>p', require('dropbar.api').pick)
+  vim.keymap.set('n', '<leader>p', require('dropbar.api').pick)
 end
 
 return M
