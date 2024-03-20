@@ -24,13 +24,13 @@ local function git_push_confirm()
 
   -- commitなしならメッセージを表示して終了
   if commit_counts == "" or commit_counts == 0 then
-    print("no commits")
+    print("No commits to push.")
     return
   end
 
   message = commit_counts == 1
       and "push " .. commit_counts .. " commit?"
-      or "push " .. commit_counts .. "commits?"
+      or "push " .. commit_counts .. " commits?"
 
   if vim.fn["utils#confirm"](message) then
     vim.cmd([[Gin push]])
