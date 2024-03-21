@@ -30,7 +30,7 @@ require("plugins.lsp.nvim-lspconfig").lua_source()
 '''
 
 [[plugins]]
-repo = "neovim/null-ls.nvim"
+repo = "jose-elias-alvarez/null-ls.nvim"
 on_source = ['mason-lspconfig.nvim']
 lua_source = '''
 require("plugins.lsp.null-ls").lua_source()
