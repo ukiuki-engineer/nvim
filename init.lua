@@ -1,12 +1,12 @@
 -- 定数ファイル読み込み
 require("const")
 
-local const                = vim.g["my#const"]
-local cache                = vim.fn.expand("$HOME/.cache")
-local dein_dir             = vim.fn.expand(cache .. "/dein")
-local dein_repo_dir        = dein_dir .. "/repos/github.com/Shougo/dein.vim"
+local const         = vim.g["my#const"]
+local cache         = vim.fn.expand("$HOME/.cache")
+local dein_dir      = vim.fn.expand(cache .. "/dein")
+local dein_repo_dir = dein_dir .. "/repos/github.com/Shougo/dein.vim"
 
-vim.g.init_dir             = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.expand("<sfile>")), ":h")
+vim.g.init_dir      = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.expand("<sfile>")), ":h")
 
 -- lspどっちにするか
 if os.getenv("LSP_PLUGIN_SELECTION") then
