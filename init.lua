@@ -9,8 +9,12 @@ local dein_repo_dir        = dein_dir .. "/repos/github.com/Shougo/dein.vim"
 vim.g.init_dir             = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.expand("<sfile>")), ":h")
 
 -- lspどっちにするか
-vim.g.lsp_plugin_selection = const.lsp_plugin_selection_coc
--- g.lsp_plugin_selection = const.lsp_plugin_selection_mason_lspconfig
+if os.getenv("LSP_PLUGIN_SELECTION") then
+  vim.g.lsp_plugin_selection = tonumber(os.getenv("LSP_PLUGIN_SELECTION"))
+else
+  -- defaulst: coc.nvim
+  vim.g.lsp_plugin_selection = const.lsp_plugin_selection_coc
+end
 
 -- ~/.cacheが無ければ作成
 if not vim.fn.isdirectory(cache) == 0 then
