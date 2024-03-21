@@ -1,7 +1,24 @@
 local M = {}
 
 function M.lua_source()
-  require("lspconfig").lua_ls.setup({})
+  require("lspconfig").lua_ls.setup({
+    settings = {
+      Lua = {
+        runtime = {
+          version = 'LuaJIT',
+        },
+        diagnostics = {
+          globals = { 'vim', 'require' },
+        },
+        workspace = {
+          checkThirdParty = true,
+        },
+        telemetry = {
+          enable = false,
+        },
+      }
+    }
+  })
 
   -- Global mappings.
   -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -25,7 +42,7 @@ function M.lua_source()
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
       vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-      vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+      vim.keymap.set('n', '<space>k', vim.lsp.buf.signature_help, opts)
       vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
       vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
       vim.keymap.set('n', '<space>wl', function()
