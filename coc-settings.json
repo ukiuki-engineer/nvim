@@ -97,6 +97,7 @@
     "javascript": ["html", "javascript"]
   },
   "snippets.ultisnips.pythonPrompt": false,
+  "snippets.userSnippetsDirectory": "~/.config/nvim/ultisnips",
   /*
    * coc-json
    */

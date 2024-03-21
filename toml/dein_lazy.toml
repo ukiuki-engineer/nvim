@@ -187,6 +187,12 @@ on_event = ['CursorMoved']
 lua_source = '''
 require("plugins.coding.edgemotion").lua_source()
 '''
+
+[[plugins]] # スニペットのソース類
+# NOTE: coc-snippetsで呼び出して使う
+# 個々のcocプラグイン側の補完候補とぶつかって面倒な場合はどちらかをオフにする
+repo = 'honza/vim-snippets'
+on_event = ['FileType']
 ################################################################################
 # Git
 ################################################################################

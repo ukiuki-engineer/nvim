@@ -45,14 +45,14 @@ function M.lua_source()
   -- lspconfigを使用するなら以下を追加
   if vim.g.lsp_plugin_selection == const.lsp_plugin_selection_mason_lspconfig then
     table.insert(sources, { name = 'nvim_lsp' })
-    table.insert(sources, { name = 'vsnip' })
+    table.insert(sources, { name = 'luasnip' })
   end
 
   cmp.setup({
     snippet = vim.g.lsp_plugin_selection == const.lsp_plugin_selection_mason_lspconfig
         and {
           expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+            require('luasnip').lsp_expand(args.body)
           end,
         }
         or {},

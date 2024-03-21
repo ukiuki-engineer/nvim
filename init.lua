@@ -9,6 +9,7 @@ local dein_repo_dir = dein_dir .. "/repos/github.com/Shougo/dein.vim"
 vim.g.init_dir      = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.expand("<sfile>")), ":h")
 
 -- lspどっちにするか
+-- NOTE: 環境変数を使って判定するので、切り替えるときは`call dein#recache_runtimepath()`を実行する
 if os.getenv("LSP_PLUGIN_SELECTION") then
   vim.g.lsp_plugin_selection = tonumber(os.getenv("LSP_PLUGIN_SELECTION"))
 else
