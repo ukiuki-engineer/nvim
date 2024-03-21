@@ -281,8 +281,7 @@ require("plugins.others.quickrun").lua_add()
 repo = 'simeji/winresizer'
 on_event = ['WinEnter']
 hook_source = '''
-" ctrl系は小指にダメージがいくので...
-let g:winresizer_start_key = '<space>w'
+call plugins#winresizer#hook_source()
 '''
 
 [[plugins]] # ヘルプファイル自動生成
@@ -325,7 +324,6 @@ on_ft = ['blade']
 repo = 'vim-scripts/applescript.vim'
 on_ft = ['applescript']
 
-
 [[plugins]] # カラーパレット
 repo = 'uga-rosa/ccc.nvim'
 on_cmd = [
@@ -335,8 +333,4 @@ on_cmd = [
   'CccHighlighterDisable',
   'CccHighlighterToggle',
 ]
-
-[[plugins]]
-repo = 'rktjmp/lush.nvim'
-on_source = ['pink-panic.nvim']
 
