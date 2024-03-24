@@ -48,7 +48,9 @@ function M.lua_source()
   command('OldFiles', require('telescope.builtin').oldfiles, {})
   command('Tags', require('telescope.builtin').tags, {})
 
-  vim.cmd([[command! -nargs=* LiveGrep :lua require("plugins.telescope").live_grep("<args>")]])
+  vim.cmd([[
+    command! -nargs=* LiveGrep :lua require("plugins.telescope").live_grep("<args>")
+  ]])
   -- NOTE: ↑の使用例:
   -- :LiveGrep *.toml
 

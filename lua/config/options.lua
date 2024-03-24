@@ -52,6 +52,7 @@ opt.softtabstop = 2
 
 -- 符号なし数字として扱う
 opt.nrformats:append("unsigned")
+
 -- window分割しててもstatuslineを1つに
 opt.laststatus = 3
 
