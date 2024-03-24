@@ -47,7 +47,6 @@ function M.lua_add()
     'coc-xml',
     'coc-yaml',
   }
-  vim.api.nvim_create_user_command('CocOutlines', 'CocCommand fzf-preview.CocOutline', {})
 end
 
 function M.lua_source()
@@ -158,10 +157,16 @@ function M.lua_source()
     coc#float#has_float() ? '<Plug>(coc-float-jump)' : '<space>j'
   ]], opts)
 
+  -- outlineを表示
+  vim.api.nvim_create_user_command('CocOutlines', 'CocCommand fzf-preview.CocOutline', {})
   -- フォーマッターを呼び出す
   vim.api.nvim_create_user_command('Format', [[call CocAction('format')]], {})
-  -- workspace用の辞書登録
-  vim.api.nvim_create_user_command('CocAddIgnore', 'CocCommand cSpell.addIgnoreWordToWorkspace', {})
+  -- 辞書登録(workspace/.vim/coc-settings.jsonに追加)
+  -- NOTE: 主に業務のプロジェクト用
+  vim.api.nvim_create_user_command('CocAddIgnoreWordToWorkspace', 'CocCommand cSpell.addIgnoreWordToWorkspace', {})
+  -- 辞書登録(~/.config/nvim/coc-settings.jsonに追加)
+  -- NOTE: 業務のプロジェクト固有ワード以外は全部これで良いかも
+  vim.api.nvim_create_user_command('CocAddWordToUserDictionary', 'CocCommand cSpell.addWordToUserDictionary', {})
 end
 
 return M
