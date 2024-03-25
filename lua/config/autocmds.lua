@@ -41,7 +41,7 @@ au({ "BufWrite" }, {
     vim.fn["git_info#refresh_git_infomation"]()
   end
 })
-au({ "VimResume" }, {
+au({ "VimResume", "FileChangedShellPost", "DirChanged" }, {
   group = "MyAutocmds",
   callback = function()
     vim.fn['git_info#refresh_git_infomation'](true)
