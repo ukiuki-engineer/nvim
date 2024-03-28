@@ -73,9 +73,6 @@ vim.keymap.set("n", "<TAB>", tabnextOrNew, opts)
 vim.keymap.set("n", "gt", tabnextOrNew, opts)
 vim.keymap.set("n", "<S-TAB>", tabpOrNew, opts)
 vim.keymap.set("n", "gT", tabpOrNew, opts)
--- TODO: 以下を1~9までmapする
---       autocmdで適当に遅延かける
--- vim.keymap.set("n", "<space>1", ":1tabnext<CR>", opts)
 
 -- NOTE: <TAB>のmappingが<C-i>にも適用されてしまうので元の動きに戻す
 vim.keymap.set({ "n" }, "<C-i>", "<TAB>", opts)
@@ -86,6 +83,17 @@ vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", opts)
 -- 遅延で定義するmapping(vim起動時にあれこれ処理させたくない)
 -------------------------------------------------------------------------------
 vim.api.nvim_create_augroup("lazy_keymapping", {})
+-- <space>1 ~ 9でタブ1 ~ 9に移動
+vim.api.nvim_create_autocmd({ "TabNew" }, {
+  group = "lazy_keymapping",
+  callback = function()
+    for i = 1, 9 do
+      vim.keymap.set("n", "<space>" .. i, ":" .. i .. "tabnext<CR>", opts)
+    end
+  end,
+  once = true,
+})
+
 -- 全角文字に行内ジャンプ
 vim.api.nvim_create_autocmd({ "BufRead", "CursorMoved" }, {
   group = "lazy_keymapping",
