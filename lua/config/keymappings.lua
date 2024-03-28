@@ -73,6 +73,9 @@ vim.keymap.set("n", "<TAB>", tabnextOrNew, opts)
 vim.keymap.set("n", "gt", tabnextOrNew, opts)
 vim.keymap.set("n", "<S-TAB>", tabpOrNew, opts)
 vim.keymap.set("n", "gT", tabpOrNew, opts)
+-- TODO: 以下を1~9までmapする
+--       autocmdで適当に遅延かける
+-- vim.keymap.set("n", "<space>1", ":1tabnext<CR>", opts)
 
 -- NOTE: <TAB>のmappingが<C-i>にも適用されてしまうので元の動きに戻す
 vim.keymap.set({ "n" }, "<C-i>", "<TAB>", opts)
