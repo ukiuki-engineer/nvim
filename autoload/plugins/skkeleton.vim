@@ -30,6 +30,7 @@ function! plugins#skkeleton#init() abort
       \ [s:skk_dir .. "/SKK-JISYO.jinmei", "euc-jp"],
       \ [s:skk_dir .. "/SKK-JISYO.hukugougo", "euc-jp"],
       \ [s:skk_dir .. "/SKK-JISYO.station", "euc-jp"],
+      \ [s:skk_dir .. "/SKK-JISYO.L.unannotated", "euc-jp"],
     \ ],
     \ 'usePopup'          : v:true
   \ })
