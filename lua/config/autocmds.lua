@@ -8,7 +8,7 @@ local augroup = vim.api.nvim_create_augroup
 augroup("MyAutocmds", {})
 
 -- Session.vimを保存
-au({ "BufWrite", "BufRead" },
+au({ "BufWrite", "BufRead", "TabNew", "TabClosed", "WinNew", "WinClosed" },
   {
     group = "MyAutocmds",
     callback = function()
