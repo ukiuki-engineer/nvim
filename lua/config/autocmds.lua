@@ -15,7 +15,7 @@ au({ "BufWrite", "BufRead" },
       -- vim起動時のカレントディレクトリ
       local pwd_in_startup = vim.fn.expand('$PWD')
       -- セッション保存コマンド
-      local mksessionCommand = 'mksession! ' .. pwd_in_startup .. '/Session.vim'
+      local mksession_command = 'mksession! ' .. pwd_in_startup .. '/Session.vim'
 
       -- readonlyなら何もしない
       if vim.o.readonly then
@@ -38,7 +38,7 @@ au({ "BufWrite", "BufRead" },
       end
 
       -- session保存
-      vim.cmd(mksessionCommand)
+      vim.cmd(mksession_command)
     end
   }
 )
