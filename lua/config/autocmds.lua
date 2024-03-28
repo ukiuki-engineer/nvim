@@ -1,6 +1,6 @@
 -------------------------------------------------------------------------------
 -- autocmds
--- →大体、個々の設定のとこで定義する事が多いからここに書く事はあんまり無いかも
+-- →個々の設定のとこでも色々定義してるけど、全体的な設定はここに配置する。
 -------------------------------------------------------------------------------
 local au      = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
@@ -8,31 +8,40 @@ local augroup = vim.api.nvim_create_augroup
 augroup("MyAutocmds", {})
 
 -- Session.vimを保存
-local pwd_in_startup = vim.fn.expand('$PWD')
-local mksession = 'mksession! ' .. pwd_in_startup .. '/Session.vim'
-au({ "BufWrite", "BufRead" }, {
-  group = "MyAutocmds",
-  callback = function()
-    -- readonlyなら何もしない
-    if vim.o.readonly then
-      return
+au({ "BufWrite", "BufRead" },
+  {
+    group = "MyAutocmds",
+    callback = function()
+      -- vim起動時のカレントディレクトリ
+      local pwd_in_startup = vim.fn.expand('$PWD')
+      -- セッション保存コマンド
+      local mksessionCommand = 'mksession! ' .. pwd_in_startup .. '/Session.vim'
+
+      -- readonlyなら何もしない
+      if vim.o.readonly then
+        return
+      end
+
+      -- commit編集時は何もしない
+      if vim.fn.expand('%:t') == "COMMIT_EDITMSG" then
+        return
+      end
+
+      -- quickfix windowの時は何もしない
+      if vim.o.filetype == "qf" then
+        return
+      end
+
+      -- diffviewのパネルがあったら何もしない
+      if string.find(vim.fn.join(vim.fn.gettabinfo(), ', '), 'diffview_view') then
+        return
+      end
+
+      -- session保存
+      vim.cmd(mksessionCommand)
     end
-    -- commit編集時は何もしない
-    if vim.fn.expand('%:t') == "COMMIT_EDITMSG" then
-      return
-    end
-    -- quickfix windowの時は何もしない
-    if vim.o.filetype == "qf" then
-      return
-    end
-    -- diffviewのパネルがあったら何もしない
-    if string.find(vim.fn.join(vim.fn.gettabinfo(), ', '), 'diffview_view') then
-      return
-    end
-    -- session保存
-    vim.cmd(mksession)
-  end
-})
+  }
+)
 
 -- Git情報を更新
 au({ "BufWrite" }, {
@@ -82,7 +91,7 @@ au({ "WinEnter", "BufRead", "BufNewFile", "Syntax" }, {
   end,
 })
 -- ------------------------------------------------------------------------------
--- 色周りの設定を呼ぶ処理
+-- colorschemeごとの設定
 -- ------------------------------------------------------------------------------
 augroup("MyCustomColor", {})
 
