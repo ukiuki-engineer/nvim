@@ -170,7 +170,7 @@ require("plugins.coding.codeium").lua_add()
 '''
 [[plugins]] # 記号で囲むやつ
 repo = 'tpope/vim-surround'
-on_event = ['InsertEnter']
+on_event = ['CursorMoved']
 
 [[plugins]] # surroundとかをドットリピートできるようにするやつ
 repo = 'tpope/vim-repeat'
