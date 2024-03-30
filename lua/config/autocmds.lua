@@ -113,7 +113,7 @@ au("ColorSchemePre", {
 
 au("ColorSchemePre", {
   group = "MyCustomColor",
-  pattern = "kanagawa",
+  pattern = "kanagawa*",
   callback = function()
     require("plugins.colorscheme.kanagawa").colorscheme_pre()
   end,

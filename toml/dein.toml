@@ -87,7 +87,10 @@ repo = 'shaunsingh/nord.nvim'
 repo = 'tanvirtin/monokai.nvim'
 
 [[plugins]]
-repo = 'RRethy/nvim-base16'
+repo = 'rebelot/kanagawa.nvim'
 
 [[plugins]]
-repo = 'rebelot/kanagawa.nvim'
+repo = 'Mofiqul/dracula.nvim'
+
+[[plugins]]
+repo = 'tiagovla/tokyodark.nvim'

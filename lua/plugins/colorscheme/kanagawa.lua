@@ -2,7 +2,7 @@ local M = {}
 
 function M.colorscheme_pre()
   require('kanagawa').setup({
-    transparent = true,
+    transparent = false,
   })
 end
 
