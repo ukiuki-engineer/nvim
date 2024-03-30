@@ -104,7 +104,7 @@ require("plugins.coding.shfmt").lua_source()
 
 [[plugins]] # デフォルトより見やすいsyntax highlight
 repo = 'nvim-treesitter/nvim-treesitter'
-depends = ['nvim-ts-context-commentstring', 'nvim-treesitter-pairs']
+depends = ['nvim-ts-context-commentstring']
 on_event = ['FileType']
 lua_source = '''
 require("plugins.coding.treesitter").lua_source()
@@ -117,11 +117,6 @@ on_cmd = ['TSPlaygroundToggle']
 
 [[plugins]]
 repo = 'JoosepAlviste/nvim-ts-context-commentstring'
-on_event = ['FileType']
-
-[[plugins]]
-# NOTE: matchupの代わりに一旦これ使ってみる
-repo = 'theHamsta/nvim-treesitter-pairs'
 on_event = ['FileType']
 
 [[plugins]] # インデント可視化
