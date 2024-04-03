@@ -41,8 +41,6 @@ require("plugins.ui.dropbar").lua_source()
 ################################################################################
 [[plugins]] # matchitをもっと強くしたようなやつ(ハイライトとかもされる)
 repo = 'andymass/vim-matchup'
-# NOTE: htmlのスニペット展開後のカーソル位置がおかしくなるから一旦オフに
-on_if = 'v:true'
 on_event = ['BufRead']
 lua_source = '''
 require("plugins.coding.matchup").lua_source()
