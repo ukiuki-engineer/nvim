@@ -1,7 +1,3 @@
-local command = vim.api.nvim_create_user_command
-
---
-
 local M = {}
 
 function M.lua_add()
@@ -10,14 +6,6 @@ function M.lua_add()
     vim.cmd([[DiffviewOpen]])
   end, {})
   vim.keymap.set('n', '<Down>', "<Cmd>DiffviewFileHistory<CR>", {})
-
-  -- NOTE: keymappingが効かない時用。設定し直して開き直す。
-  --       (何故かMacだけkeymappingが効かない時がある)
-  command('ResettingDiffview', function()
-    vim.cmd([[DiffviewClose]])
-    M.lua_source()
-    vim.cmd([[DiffviewOpen]])
-  end, {})
 end
 
 function M.lua_source()
@@ -25,16 +13,33 @@ function M.lua_source()
   vim.cmd([[
     " 表示スタイル(tree/list)をtoggle & git情報を更新
     function! s:aucmds_on_diffviewopen() abort
+      " treeからlistに切り替え
       lua require("diffview.config").actions.listing_style()
+      " git情報を更新
       call git_info#refresh_git_infomation()
     endfunction
 
     augroup MyDiffviewAuCmds
       au!
+      " diffviewのopen時に実行
       au User DiffviewViewOpened call s:aucmds_on_diffviewopen()
     augroup END
   ]])
 
+  -- diffview.nvimを再設定するコマンド
+  -- NOTE: keymappingが効かない時用。設定し直して開き直す。(何故かMacだけkeymappingが効かない時がある)
+  vim.api.nvim_create_user_command('ResettingDiffview', function()
+    vim.cmd([[DiffviewClose]])
+    M.diffview_setup()
+    vim.cmd([[DiffviewOpen]])
+  end, {})
+
+  -- diffview.nvimの設定を実行
+  M.diffview_setup()
+end
+
+-- diffview.nvimの設定
+function M.diffview_setup()
   require('diffview').setup({
     enhanced_diff_hl = true,
     view = {
