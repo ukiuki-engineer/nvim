@@ -2,7 +2,6 @@ local M = {}
 
 function M.lua_source()
   require("nvim-autopairs").setup({
-    -- NOTE: 一旦デフォルト値をそのまま入れる
     disable_filetype = { "TelescopePrompt", "spectre_panel" },
     disable_in_macro = true,
     disable_in_visualblock = false,
@@ -15,7 +14,7 @@ function M.lua_source()
     enable_abbr = false,
     break_undo = true,
     check_ts = false,
-    map_cr = true,
+    map_cr = false,
     map_bs = true,
     map_c_h = false,
     map_c_w = false,
