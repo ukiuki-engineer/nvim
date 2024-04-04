@@ -1,16 +1,19 @@
-[[plugins]] # dein.vim
+# dein.vim
+[[plugins]]
 # NOTE: ここに入れておかないとヘルプタグが追加されない
 repo = 'Shougo/dein.vim'
 
-[[plugins]] # 日本語ドキュメント
+# 日本語ドキュメント
+[[plugins]]
 repo = 'vim-jp/vimdoc-ja'
 hook_add = '''
 " ヘルプを日本語化
 set helplang=ja
 '''
 
-# FIXME: シェルスクリプトのときバグるので一旦オフに
-# [[plugins]] # 標準機能より高速にファイル形式を判別できる。
+# TODO: シェルスクリプトのときバグるので一旦オフに
+# 標準機能より高速にファイル形式を判別できる。
+# [[plugins]]
 # repo = 'nathom/filetype.nvim'
 # hook_add = '''
 # " 標準機能をオフに
@@ -38,20 +41,23 @@ require("plugins.git.gin").lua_add()
 ################################################################################
 # UI
 ################################################################################
-[[plugins]] # airlineをこれに変えたら起動速度が倍速になった
+# airlineをこれに変えたら起動速度が倍速になった
+[[plugins]]
 repo = 'nvim-lualine/lualine.nvim'
 depends = ['nvim-web-devicons']
 lua_add = '''
 require("plugins.ui.lualine").timer_start(vim.g["my#const"].timer_start_lualine)
 '''
 
-[[plugins]] # 上のbar
+# 上のbar
+[[plugins]]
 repo = 'akinsho/bufferline.nvim'
 lua_add = '''
 require("plugins.ui.bufferline").timer_start(vim.g["my#const"].timer_start_bufferline)
 '''
 
-[[plugins]] # スクロールバー
+# スクロールバー
+[[plugins]]
 repo= 'petertriho/nvim-scrollbar'
 lua_add = '''
 require("plugins.ui.scrollbar").timer_start(vim.g["my#const"].timer_start_scrollbar)

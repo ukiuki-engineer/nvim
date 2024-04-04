@@ -1,6 +1,7 @@
 ################################################################################
 # UI
 ################################################################################
+# ファイルツリー
 [[plugins]]
 repo = 'nvim-tree/nvim-tree.lua'
 depends = ['nvim-web-devicons']
@@ -25,11 +26,13 @@ lua_source = '''
 require("plugins.ui.nvim-tree").lua_source()
 '''
 
-[[plugins]] # nvim-treeのアイコン
+# nvim-treeのアイコン
+[[plugins]]
 repo = 'nvim-tree/nvim-web-devicons'
 on_source = ['diffview', 'nvim-tree.lua']
 
-[[plugins]] # カーソル位置の階層を表示するやつ
+# カーソル位置の階層を表示するやつ
+[[plugins]]
 # NOTE: Neovim Nightly (>= 0.10.0-dev)
 repo = 'Bekaboo/dropbar.nvim'
 on_event = ['FileType', 'BufRead']
@@ -39,25 +42,29 @@ require("plugins.ui.dropbar").lua_source()
 ################################################################################
 # coding
 ################################################################################
-[[plugins]] # matchitをもっと強くしたようなやつ(ハイライトとかもされる)
+# matchitをもっと強くしたようなやつ(ハイライトとかもされる)
+[[plugins]]
 repo = 'andymass/vim-matchup'
 on_event = ['BufRead']
 lua_source = '''
 require("plugins.coding.matchup").lua_source()
 '''
 
-[[plugins]] # 行内ジャンプ用にハイライトしてくれるやつ
+# 行内ジャンプ用にハイライトしてくれるやつ
+[[plugins]]
 repo = 'unblevable/quick-scope'
 on_event = ['CursorMoved']
 
-[[plugins]] # コメントアウト
+# コメントアウト
+[[plugins]]
 repo = 'tpope/vim-commentary'
 on_event = ['CursorMoved']
 lua_source = '''
 require("plugins.coding.commentary").lua_source()
 '''
 
-[[plugins]] # 括弧、クォーテーション、タグを自動で閉じてくれるプラグイン
+# 括弧、クォーテーション、htmlタグの自動close
+[[plugins]]
 repo = 'ukiuki-engineer/vim-autoclose'
 rev = 'develop'
 on_if='v:false'
@@ -74,11 +81,13 @@ lua_source = '''
 require("plugins.coding.nvim-autopairs").lua_source()
 '''
 
-[[plugins]] # Markdownでtable作成
+# Markdownでtable作成
+[[plugins]]
 repo = 'mattn/vim-maketable'
 on_cmd = ['MakeTable', 'UnmakeTable']
 
-[[plugins]] # 補完エンジン
+# 補完エンジン
+[[plugins]]
 repo = 'hrsh7th/nvim-cmp'
 depends = ['cmp-cmdline', 'cmp-buffer', 'cmp-path', 'cmp-skkeleton']
 on_event = ['CmdlineEnter', 'InsertEnter']
@@ -86,7 +95,8 @@ lua_source = '''
 require("plugins.coding.nvim-cmp").lua_source()
 '''
 
-[[plugins]] # コマンドライン補完用nvim-cmpのソース
+# コマンドライン補完用nvim-cmpのソース
+[[plugins]]
 repo = 'hrsh7th/cmp-cmdline'
 on_source = 'nvim-cmp'
 
@@ -102,14 +112,16 @@ on_source = 'nvim-cmp'
 repo = 'rinx/cmp-skkeleton'
 on_source = 'nvim-cmp'
 
-[[plugins]] # shfmtをvimから実行するやつ
+# shfmtをvimから実行するやつ
+[[plugins]]
 repo = 'z0mbix/vim-shfmt'
 on_ft = ['bash', 'sh', 'zsh']
 lua_source = '''
 require("plugins.coding.shfmt").lua_source()
 '''
 
-[[plugins]] # デフォルトより見やすいsyntax highlight
+# デフォルトより見やすいsyntax highlight
+[[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 depends = ['nvim-ts-context-commentstring']
 on_event = ['FileType']
@@ -126,18 +138,21 @@ on_cmd = ['TSPlaygroundToggle']
 repo = 'JoosepAlviste/nvim-ts-context-commentstring'
 on_event = ['FileType']
 
-[[plugins]] # インデント可視化
+# インデント可視化
+[[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
 on_event = ['CursorMoved']
 lua_source = '''
 require("plugins.coding.indent-blankline").lua_source()
 '''
 
-[[plugins]] # editorconfig
+# editorconfig
+[[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 on_event = ['BufRead']
 
-[[plugins]] # カラーコード可視化
+# カラーコード可視化
+[[plugins]]
 repo = 'norcalli/nvim-colorizer.lua'
 on_ft = [
   'blade',
@@ -162,24 +177,34 @@ lua_source = '''
 require("plugins.coding.colorizer").lua_source()
 '''
 
-[[plugins]] # ヤンク範囲をハイライトするやつ
+# ヤンク範囲をハイライトするやつ
+[[plugins]]
 repo = 'machakann/vim-highlightedyank'
 on_event = ['BufRead', 'CursorMoved', 'InsertEnter']
 lua_source = '''
 require("plugins.coding.highlightedyank").lua_source()
 '''
 
-[[plugins]] # AIがコード補完してくれるやつ
+# AIがコード補完してくれるやつ
+[[plugins]]
 repo = 'Exafunction/codeium.vim'
 on_event = ['FileType']
 lua_add = '''
 require("plugins.coding.codeium").lua_add()
 '''
-[[plugins]] # 記号で囲むやつ
+
+# 記号で囲むやつ
+[[plugins]]
+# NOTE: 括弧系は、左右で挙動が違う
+# - `ysw(`
+# -> ( hoge )
+# - `ysw)`
+# -> (hoge)
 repo = 'tpope/vim-surround'
 on_event = ['CursorMoved']
 
-[[plugins]] # surroundとかをドットリピートできるようにするやつ
+# surroundとかをドットリピートできるようにするやつ
+[[plugins]]
 repo = 'tpope/vim-repeat'
 on_source = ['vim-surround']
 
@@ -190,7 +215,8 @@ lua_source = '''
 require("plugins.coding.edgemotion").lua_source()
 '''
 
-[[plugins]] # スニペットのソース類
+# スニペットのソース類
+[[plugins]]
 # NOTE: coc-snippetsで呼び出して使う
 # 個々のcocプラグイン側の補完候補とぶつかって面倒な場合はどちらかをオフにする
 repo = 'honza/vim-snippets'
@@ -198,14 +224,16 @@ on_event = ['FileType']
 ################################################################################
 # Git
 ################################################################################
-[[plugins]] # 行番号の左に、gitの状態を表示するやつ
+# 行番号の左に、gitの状態を表示するやつ
+[[plugins]]
 repo = 'lewis6991/gitsigns.nvim'
 on_event = ['BufRead']
 lua_source = '''
 require("plugins.git.gitsigns").lua_source()
 '''
 
-[[plugins]] # gitの差分をvimdiffで表示したりstageしたりするやつ
+# gitの差分をvimdiffで表示したりstageしたりするやつ
+[[plugins]]
 # NOTE: master <- 現在のブランチでプルリクを出す時
 #   :DiffviewOpen master..HEAD   # masterと、現ブランチの最新のcommitの差分(cocのdiagnosticsが表示されない)
 #   :DiffviewOpen master         # masterと、working treeの差分(cocのdiagnosticsが表示されるからこっちの方が良いかも)
@@ -273,18 +301,21 @@ on_source = ['telescope.nvim']
 ################################################################################
 # Others
 ################################################################################
-[[plugins]] # 多分nvim用のluaライブラリ的なやつ
+# 多分nvim用のluaライブラリ的なやつ
+[[plugins]]
 repo = 'nvim-lua/plenary.nvim'
 on_source = ['diffview', 'telescope.nvim']
 
-[[plugins]] # vimから編集中のファイルを素早く実行するやつ
+# vimから編集中のファイルを素早く実行するやつ
+[[plugins]]
 repo = 'thinca/vim-quickrun'
 on_cmd = ['QuickRun']
 lua_add = '''
 require("plugins.others.quickrun").lua_add()
 '''
 
-[[plugins]] # ウィンドウリサイズを楽にするやつ
+# ウィンドウリサイズを楽にするやつ
+[[plugins]]
 # NOTE: <C-e>でresizeモードに入る
 repo = 'simeji/winresizer'
 on_event = ['WinEnter']
@@ -292,23 +323,27 @@ hook_source = '''
 call plugins#winresizer#hook_source()
 '''
 
-[[plugins]] # ヘルプファイル自動生成
+# ヘルプファイル自動生成
+[[plugins]]
 repo = 'LeafCage/vimhelpgenerator'
 on_cmd = ['VimHelpGenerator', 'VimHelpGeneratorVirtual']
 lua_source = '''
 require("plugins.others.vimhelpgenerator").lua_source()
 '''
 
-[[plugins]] # vimの起動速度を測定
+# vimの起動速度を測定
+[[plugins]]
 repo = 'dstein64/vim-startuptime'
 on_cmd = ['StartupTime']
 
-[[plugins]] # vim内でMarkdownをプレビューするやつ
+# vim内でMarkdownをプレビューするやつ
+[[plugins]]
 # NOTE: [mdrコマンド](https://github.com/MichaelMure/mdr)をインストールする必要あり
 repo = 'skanehira/preview-markdown.vim'
 on_cmd = ['PreviewMarkdown']
 
-[[plugins]] # ブラウザ上でmarkdownをリアルタイムにプレビューするやつ
+# ブラウザ上でmarkdownをリアルタイムにプレビューするやつ
+[[plugins]]
 # NOTE: pip install docutils
 #       rst2html.py --version
 repo = 'previm/previm'
@@ -317,22 +352,26 @@ lua_source = '''
 require("plugins.others.previm").lua_source()
 '''
 
-[[plugins]] # コマンドの実行結果をバッファに読み込んでくれるやつ
+# コマンドの実行結果をバッファに読み込んでくれるやつ
+[[plugins]]
 # NOTE: 以下の方法で代用も出来る
 # インサートモードに入る → <C-r>=execute("コマンド")<CR>
 repo = 'numEricL/vim-redirect'
 on_cmd = ['Redirect']
 
-[[plugins]] # blade
+# blade
+[[plugins]]
 repo = 'jwalton512/vim-blade'
 on_if = 'expand("%") =~ "blade\.php"'
 on_ft = ['blade']
 
-[[plugins]] # applescriptのsyntax highlight
+# applescriptのsyntax highlight
+[[plugins]]
 repo = 'vim-scripts/applescript.vim'
 on_ft = ['applescript']
 
-[[plugins]] # カラーパレット
+# カラーパレット
+[[plugins]]
 repo = 'uga-rosa/ccc.nvim'
 on_cmd = [
   'CccPick',

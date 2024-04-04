@@ -83,6 +83,7 @@ vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", opts)
 -- 遅延で定義するmapping(vim起動時にあれこれ処理させたくない)
 -------------------------------------------------------------------------------
 vim.api.nvim_create_augroup("lazy_keymapping", {})
+
 -- <space>1 ~ 9でタブ1 ~ 9に移動
 vim.api.nvim_create_autocmd({ "TabNew" }, {
   group = "lazy_keymapping",
