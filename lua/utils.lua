@@ -112,4 +112,23 @@ function M.remote_branch_info_text()
   end
 end
 
+--
+-- 全角文字への行内ジャンプのkeymappingを定義する
+--
+function M.jump_to_zenkaku(hankaku_zenkaku_pairs)
+  local opts = { noremap = true, silent = true }
+  for hankaku, zenkaku in pairs(hankaku_zenkaku_pairs) do
+    vim.keymap.set({ 'n', 'x' }, '<leader>f' .. hankaku, 'f' .. zenkaku, opts)
+    vim.keymap.set({ 'n', 'x' }, '<leader>t' .. hankaku, 't' .. zenkaku, opts)
+    vim.keymap.set({ 'n', 'x' }, '<leader>F' .. hankaku, 'F' .. zenkaku, opts)
+    vim.keymap.set({ 'n', 'x' }, '<leader>T' .. hankaku, 'T' .. zenkaku, opts)
+    vim.keymap.set('n', '<leader>df' .. hankaku, 'df' .. zenkaku, opts)
+    vim.keymap.set('n', '<leader>dt' .. hankaku, 'dt' .. zenkaku, opts)
+    vim.keymap.set('n', '<leader>cf' .. hankaku, 'cf' .. zenkaku, opts)
+    vim.keymap.set('n', '<leader>ct' .. hankaku, 'ct' .. zenkaku, opts)
+    vim.keymap.set('n', '<leader>yf' .. hankaku, 'yf' .. zenkaku, opts)
+    vim.keymap.set('n', '<leader>yt' .. hankaku, 'yt' .. zenkaku, opts)
+  end
+end
+
 return M
