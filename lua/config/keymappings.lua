@@ -38,8 +38,8 @@ vim.g.mapleader = "m"
 -------------------------------------------------------------------------------
 -- 通常のmapping
 -------------------------------------------------------------------------------
--- jjでEsc
-vim.keymap.set("i", "jj", "<Esc>", opts)
+-- <C-d>でdelete
+vim.keymap.set("i", "<C-d>", "<Del>", opts)
 
 -- esc2回で検索結果ハイライトをオフに
 vim.keymap.set("n", "<Esc><Esc>", ":nohlsearch<CR>", opts)
