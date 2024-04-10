@@ -67,7 +67,7 @@ require("plugins.coding.commentary").lua_source()
 [[plugins]]
 repo = 'ukiuki-engineer/vim-autoclose'
 rev = 'develop'
-on_if='v:false'
+on_if='v:true'
 on_event = ['InsertEnter']
 hook_source = '''
 call plugins#autoclose#hook_source()
@@ -75,7 +75,7 @@ call plugins#autoclose#hook_source()
 
 [[plugins]]
 repo = 'windwp/nvim-autopairs'
-on_if='v:true'
+on_if='v:false'
 on_event = ['InsertEnter']
 lua_source = '''
 require("plugins.coding.nvim-autopairs").lua_source()
