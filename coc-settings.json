@@ -206,5 +206,40 @@
   /*
    * coc-eslint
    */
-  "eslint.enable": false
+  "eslint.enable": false,
+  /*
+   * coc-sql
+   */
+  "sql.formatOptions": {
+    "keywordCase": "upper"
+  }
+  // TODO: できればsqlsの設定をしたい設定例は以下
+  // "languageserver": {
+  //   "sqls": {
+  //     "command": "sqls",
+  //     "args": ["-config", "${workspaceFolder}/.sqls/config.yml"],
+  //     "filetypes": ["sql"],
+  //     "initializationOptions": {
+  //       "lowerCaseKeywords": false,
+  //       "completion": {
+  //         "useKeywordSnippets": false,
+  //         "useIntelligentCase": true
+  //       }
+  //     },
+  //     "settings": {
+  //       "sqls": {
+  //         "connections": [
+  //           {
+  //             "driver": "mysql",
+  //             "dataSourceName": "user:password@tcp(127.0.0.1:3306)/dbname"
+  //           },
+  //           {
+  //             "driver": "postgresql",
+  //             "dataSourceName": "host=127.0.0.1 port=5432 user=username dbname=dbname password=password sslmode=disable"
+  //           }
+  //         ]
+  //       }
+  //     }
+  //   }
+  // }
 }
