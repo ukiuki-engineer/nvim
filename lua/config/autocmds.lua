@@ -37,6 +37,19 @@ au({ "BufWrite", "BufRead", "TabNew", "TabClosed", "WinNew", "WinClosed" },
         return
       end
 
+      -- 無名バッファのみの場合は何もしない
+      -- NOTE: 時々Sessionファイルが空になることがあるからこの処理を入れておく
+      local has_named_buffer = false
+      for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.fn.bufname(buf) ~= "" then
+          has_named_buffer = true
+          break
+        end
+      end
+      if not has_named_buffer then
+        return
+      end
+
       -- session保存
       vim.cmd(mksession_command)
     end
