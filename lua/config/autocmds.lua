@@ -90,6 +90,33 @@ au({ "WinEnter", "BufRead", "BufNewFile", "Syntax" }, {
     vim.api.nvim_set_hl(0, 'Fixme', { fg = "Red", bold = true })
   end,
 })
+
+-- viewの保存
+au({ "BufWritePost" }, {
+  group = "MyAutocmds",
+  pattern = "*",
+  callback = function()
+    if vim.fn.expand('%') ~= '' and not string.match(vim.bo.buftype, 'nofile') then
+      vim.cmd([[mkview]])
+    end
+  end,
+})
+
+-- viewの読み込み
+au({ "BufRead" }, {
+  group = "MyAutocmds",
+  pattern = "*",
+  callback = function()
+    if vim.fn.expand('%') ~= '' and not string.match(vim.bo.buftype, 'nofile') then
+      vim.cmd([[
+        try
+          silent loadview
+        catch
+        endtry
+      ]])
+    end
+  end,
+})
 -- ------------------------------------------------------------------------------
 -- colorschemeごとの設定
 -- ------------------------------------------------------------------------------
