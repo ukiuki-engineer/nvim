@@ -381,3 +381,10 @@ on_cmd = [
   'CccHighlighterToggle',
 ]
 
+# 普通のバッファ編集間隔でファイル操作できるやつ
+[[plugins]]
+repo = 'stevearc/oil.nvim'
+on_cmd = ['Oil']
+lua_source = '''
+  require("plugins.others.oil").lua_source()
+'''
