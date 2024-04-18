@@ -30,17 +30,17 @@ end
 function M.lua_source()
   local command = vim.api.nvim_create_user_command
   command('BufferLines', require('telescope.builtin').current_buffer_fuzzy_find, {})
-  command('Buffers', require('plugins.telescope').buffers, {})
+  command('Buffers', require("plugins.others.telescope").buffers, {})
   command('ColorSchemes', function() require('telescope.builtin').colorscheme({ enable_preview = true }) end, {})
   command('CommandHistories', require('telescope.builtin').command_history, {})
   command('Commands', require('telescope.builtin').commands, {})
-  command('Commits', require('plugins.telescope').git_commits, {})
+  command('Commits', require("plugins.others.telescope").git_commits, {})
   command('Filetypes', require('telescope.builtin').filetypes, {})
-  command('FindFiles', require('plugins.telescope').find_files, {})
-  command('FindFilesAll', require('plugins.telescope').find_files_all, {})
-  command('GitBranches', require('plugins.telescope').git_branches, {})
+  command('FindFiles', require("plugins.others.telescope").find_files, {})
+  command('FindFilesAll', require("plugins.others.telescope").find_files_all, {})
+  command('GitBranches', require("plugins.others.telescope").git_branches, {})
   command('GitStashList', require('telescope.builtin').git_stash, {})
-  command('GitStatus', require('plugins.telescope').git_status, {})
+  command('GitStatus', require("plugins.others.telescope").git_status, {})
   command('HelpTags', require('telescope.builtin').help_tags, {})
   command('Highlights', require('telescope.builtin').highlights, {})
   command('ManPages', require('telescope.builtin').man_pages, {})
@@ -49,7 +49,7 @@ function M.lua_source()
   command('Tags', require('telescope.builtin').tags, {})
 
   vim.cmd([[
-    command! -nargs=* LiveGrep :lua require("plugins.telescope").live_grep("<args>")
+    command! -nargs=* LiveGrep :lua require("plugins.others.telescope").live_grep("<args>")
   ]])
   -- NOTE: ↑の使用例:
   -- :LiveGrep *.toml
@@ -120,7 +120,7 @@ function M.buffers()
       for _, selection in ipairs(multi_selections) do
         vim.api.nvim_buf_delete(selection.bufnr, { force = true })
       end
-      require('plugins.telescope').buffers()
+      require("plugins.others.telescope").buffers()
     end
   end
 
@@ -265,7 +265,7 @@ function M.git_status()
           -- git情報を更新(lualine用)
           vim.fn["git_info#refresh_git_infomation"]()
           actions.close(prompt_bufnr) -- TODO: 閉じずにlistを更新することはできないか？
-          require('plugins.telescope').git_status()
+          require("plugins.others.telescope").git_status()
         end,
         { desc = "discard this change" }
       )

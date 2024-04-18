@@ -284,10 +284,10 @@ on_cmd = [
   'Telescope',
 ]
 lua_add = '''
-require("plugins.telescope").lua_add()
+require("plugins.others.telescope").lua_add()
 '''
 lua_source = '''
-require("plugins.telescope").lua_source()
+require("plugins.others.telescope").lua_source()
 '''
 
 [[plugins]]
