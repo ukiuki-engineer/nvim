@@ -1,10 +1,5 @@
 local M = {}
 
-function M.lua_add()
-  vim.keymap.set('n', '<C-n>', "<Cmd>NvimTreeToggle<CR>", {})
-  vim.keymap.set('n', '<C-w>t', "<Cmd>NvimTreeFindFile<CR>", {})
-end
-
 function M.lua_source()
   require("nvim-tree").setup {
     git = {

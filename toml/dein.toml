@@ -36,7 +36,7 @@ call plugins#skkeleton#hook_add()
 [[plugins]]
 repo = 'lambdalisue/gin.vim'
 lua_add = '''
-require("plugins.git.gin").lua_add()
+require("plugins.lua_add").gin()
 '''
 ################################################################################
 # UI
@@ -46,21 +46,21 @@ require("plugins.git.gin").lua_add()
 repo = 'nvim-lualine/lualine.nvim'
 depends = ['nvim-web-devicons']
 lua_add = '''
-require("plugins.ui.lualine").timer_start(vim.g["my#const"].timer_start_lualine)
+require("plugins.lua_add").timer_start_lualine(vim.g["my#const"].timer_start_lualine)
 '''
 
 # 上のbar
 [[plugins]]
 repo = 'akinsho/bufferline.nvim'
 lua_add = '''
-require("plugins.ui.bufferline").timer_start(vim.g["my#const"].timer_start_bufferline)
+require("plugins.lua_add").timer_start_bufferline(vim.g["my#const"].timer_start_bufferline)
 '''
 
 # スクロールバー
 [[plugins]]
 repo= 'petertriho/nvim-scrollbar'
 lua_add = '''
-require("plugins.ui.scrollbar").timer_start(vim.g["my#const"].timer_start_scrollbar)
+require("plugins.lua_add").timer_start_scrollbar(vim.g["my#const"].timer_start_scrollbar)
 '''
 ################################################################################
 # ColorScheme

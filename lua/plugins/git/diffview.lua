@@ -1,13 +1,5 @@
 local M = {}
 
-function M.lua_add()
-  vim.keymap.set('n', '<Right>', function()
-    vim.fn['git_info#refresh_git_infomation'](true)
-    vim.cmd([[DiffviewOpen]])
-  end, {})
-  vim.keymap.set('n', '<Down>', "<Cmd>DiffviewFileHistory<CR>", {})
-end
-
 function M.lua_source()
   -- NOTE: luaで書くと上手くいかないのでvimscriptで
   vim.cmd([[

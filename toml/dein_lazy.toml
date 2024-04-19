@@ -20,7 +20,7 @@ on_cmd = [
   'NvimTreeGenerateOnAttach'
 ]
 lua_add = '''
-require("plugins.ui.nvim-tree").lua_add()
+require("plugins.lua_add").nvim_tree()
 '''
 lua_source = '''
 require("plugins.ui.nvim-tree").lua_source()
@@ -190,7 +190,7 @@ require("plugins.coding.highlightedyank").lua_source()
 repo = 'Exafunction/codeium.vim'
 on_event = ['FileType']
 lua_add = '''
-require("plugins.coding.codeium").lua_add()
+require("plugins.lua_add").codeium()
 '''
 
 # 記号で囲むやつ
@@ -249,7 +249,7 @@ on_cmd = [
   'DiffviewToggleFiles'
 ]
 lua_add = '''
-require("plugins.git.diffview").lua_add()
+require("plugins.lua_add").diffview()
 '''
 lua_source = '''
 require("plugins.git.diffview").lua_source()
@@ -284,7 +284,7 @@ on_cmd = [
   'Telescope',
 ]
 lua_add = '''
-require("plugins.others.telescope").lua_add()
+require("plugins.lua_add").telescope()
 '''
 lua_source = '''
 require("plugins.others.telescope").lua_source()
@@ -311,7 +311,7 @@ on_source = ['diffview', 'telescope.nvim']
 repo = 'thinca/vim-quickrun'
 on_cmd = ['QuickRun']
 lua_add = '''
-require("plugins.others.quickrun").lua_add()
+require("plugins.lua_add").quickrun()
 '''
 
 # ウィンドウリサイズを楽にするやつ
@@ -386,7 +386,7 @@ on_cmd = [
 repo = 'stevearc/oil.nvim'
 on_cmd = ['Oil']
 lua_add = '''
-require("plugins.others.oil").lua_add()
+require("plugins.lua_add").oil()
 '''
 lua_source = '''
 require("plugins.others.oil").lua_source()

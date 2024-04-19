@@ -16,38 +16,6 @@
 
 local M = {}
 
-function M.lua_add()
-  -- coc-extensions
-  vim.g.coc_global_extensions = {
-    '@yaegassy/coc-intelephense',
-    '@yaegassy/coc-laravel',
-    '@yaegassy/coc-marksman',
-    'coc-blade',
-    'coc-css',
-    'coc-cssmodules',
-    'coc-deno',
-    'coc-docker',
-    'coc-eslint',
-    'coc-fzf-preview',
-    'coc-html',
-    'coc-jedi',
-    'coc-json',
-    'coc-lua',
-    'coc-php-cs-fixer',
-    'coc-prettier',
-    'coc-sh',
-    'coc-snippets',
-    'coc-solargraph',
-    'coc-spell-checker',
-    'coc-sql',
-    'coc-tsserver',
-    'coc-vetur',
-    'coc-vimlsp',
-    'coc-word',
-    'coc-xml',
-    'coc-yaml',
-  }
-end
 
 function M.lua_source()
   local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }

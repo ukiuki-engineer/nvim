@@ -50,24 +50,6 @@ end
 
 local M = {}
 
-function M.lua_add()
-  -- 画面分割して開く
-  vim.g.gin_proxy_editor_opener = 'split'
-
-  vim.cmd([[
-    augroup MyGinAuCmds
-      au!
-      au User GinCommandPost,GinComponentPost call git_info#refresh_git_infomation()
-    augroup END
-  ]])
-
-  -- commands
-  vim.api.nvim_create_user_command('DeleteLatestCommit', function() M.pcall_delete_latest_commit('soft') end, {})
-  vim.api.nvim_create_user_command('GinPush', M.pcall_git_push_confirm, {})
-  -- TODO: 引数を渡せるようにする。↓みたいな感じでいけるらしい。
-  -- vim.cmd("command! -nargs=? GinPush call luaeval('M.pcall_git_push_confirm(_A)', <q-args>)")
-end
-
 --------------------------------------------------------------------------------
 -- プラグイン設定以外で外部に公開するfunctions
 --------------------------------------------------------------------------------

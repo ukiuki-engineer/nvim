@@ -1,15 +1,6 @@
 local M = {}
 
-function M.timer_start(time)
-  vim.fn.timer_start(
-    time,
-    function()
-      M.lua_add()
-    end
-  )
-end
-
-function M.lua_add()
+function M.setup()
   require('scrollbar').setup({})
 end
 
