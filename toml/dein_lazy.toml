@@ -385,6 +385,9 @@ on_cmd = [
 [[plugins]]
 repo = 'stevearc/oil.nvim'
 on_cmd = ['Oil']
+lua_add = '''
+require("plugins.others.oil").lua_add()
+'''
 lua_source = '''
 require("plugins.others.oil").lua_source()
 '''
