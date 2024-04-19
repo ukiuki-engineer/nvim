@@ -64,6 +64,3 @@ bob use nightly
 # NOTE: この後、~/.local/share/bob/nvim-binにPATHを通す
 ```
 
-# TODO
-
-- [ ] [oil.nvim](https://github.com/stevearc/oil.nvim)を触ってみる
