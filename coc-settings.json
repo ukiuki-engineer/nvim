@@ -13,9 +13,10 @@
     "html",
     "javascript",
     "json",
-    "jsonc",
     "json5",
+    "jsonc",
     "lua",
+    "markdown",
     "php",
     "scss",
     "sql"
