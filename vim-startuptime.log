@@ -1,96 +1,87 @@
 Extra options: []
 Measured: 10 times
 
-Total Average: 11.868900 msec
-Total Max:     12.151000 msec
-Total Min:     11.633000 msec
+Total Average: 11.435600 msec
+Total Max:     11.843000 msec
+Total Min:     11.237000 msec
 
  AVERAGE      MAX      MIN
 ---------------------------
-5.470200 5.638000 5.335000: /home/yuki/.config/nvim/init.lua
-4.075900 4.245000 3.973000: /home/yuki/.cache/dein/state_nvim.vim
-2.660100 2.848000 2.595000: reading ShaDa
-0.876500 0.997000 0.840000: loading rtp plugins
-0.367600 0.400000 0.352000: require('utils')
-0.305600 0.326000 0.298000: sourcing vimrc file(s)
-0.293900 0.324000 0.284000: init lua interpreter
-0.269900 0.288000 0.264000: /home/yuki/.cache/dein/repos/github.com/Shougo/dein.vim/autoload/dein/util.vim
-0.233000 0.292000 0.215000: init highlight
-0.189700 0.199000 0.183000: inits 1
-0.185900 0.223000 0.179000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/denops.vim
-0.173600 0.183000 0.168000: require('vim._defaults')
-0.152000 0.178000 0.146000: /usr/share/nvim/runtime/syntax/syntax.vim
-0.150700 0.157000 0.146000: require('plugins.telescope')
-0.149800 0.177000 0.132000: event init
-0.148200 0.177000 0.141000: /home/yuki/.cache/dein/repos/github.com/Shougo/dein.vim/autoload/dein/autoload.vim
-0.145900 0.187000 0.138000: /usr/share/nvim/runtime/filetype.lua
-0.145700 0.153000 0.140000: require('vim._init_packages')
-0.113200 0.135000 0.107000: locale set
-0.107800 0.123000 0.102000: /home/yuki/.cache/dein/repos/github.com/Shougo/dein.vim/autoload/dein.vim
-0.103800 0.119000 0.097000: loading packages
-0.090600 0.124000 0.085000: require('plugins.ui.lualine')
-0.087300 0.109000 0.079000: opening buffers
-0.086500 0.100000 0.084000: /home/yuki/.cache/dein/.cache/init.lua/.dein/autoload/denops.vim
-0.084600 0.088000 0.079000: require('vim._editor')
-0.084400 0.199000 0.067000: /usr/share/nvim/runtime/plugin/tohtml.vim
-0.076400 0.109000 0.070000: require('plugins.lsp.coc')
-0.064700 0.072000 0.060000: early init
-0.056700 0.079000 0.053000: /usr/share/nvim/runtime/syntax/synload.vim
-0.055500 0.060000 0.053000: require('const')
-0.053800 0.089000 0.048000: require('plugins.git.gin')
-0.048900 0.092000 0.043000: require('plugins.git.diffview')
-0.042100 0.079000 0.031000: /usr/share/nvim/runtime/plugin/editorconfig.lua
-0.041600 0.046000 0.040000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/skkeleton.vim
-0.040800 0.061000 0.038000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin.vim
-0.036100 0.038000 0.035000: /home/yuki/.config/nvim/autoload/plugins.vim
-0.035600 0.046000 0.032000: /usr/share/nvim/runtime/plugin/nvim.lua
-0.034400 0.036000 0.033000: require('plugins.ui.bufferline')
-0.034100 0.040000 0.029000: init first window
-0.034000 0.064000 0.027000: /usr/share/nvim/runtime/plugin/man.lua
-0.033900 0.035000 0.032000: require('plugins.ui.nvim-tree')
-0.033400 0.034000 0.033000: /home/yuki/.cache/dein/repos/github.com/Shougo/dein.vim/autoload/dein/min.vim
-0.032700 0.033000 0.032000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/denops/debug.vim
-0.029700 0.080000 0.024000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-log.vim
-0.028000 0.033000 0.026000: /usr/share/nvim/runtime/plugin/osc52.lua
-0.027000 0.029000 0.026000: require('vim.inspect')
-0.025200 0.026000 0.025000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-branch.vim
-0.024800 0.026000 0.023000: require('vim.shared')
-0.024700 0.076000 0.017000: require('plugins.coding.skkeleton')
-0.024650 0.043000 0.007000: /usr/share/nvim/runtime/ftplugin.vim
-0.023900 0.035000 0.020000: require('plugins.ui.scrollbar')
-0.023600 0.024000 0.023000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-diff.vim
-0.022800 0.024000 0.021000: require('vim._options')
-0.021900 0.022000 0.021000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-edit.vim
-0.021600 0.027000 0.020000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-status.vim
-0.021300 0.042000 0.017000: expanding arguments
-0.021000 0.025000 0.020000: /home/yuki/.cache/dein/repos/github.com/nvim-tree/nvim-web-devicons/plugin/nvim-web-devicons.vim
-0.019200 0.020000 0.018000: require('plugins.others.quickrun')
-0.018800 0.019000 0.018000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-browse.vim
-0.017800 0.018000 0.017000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-cd.vim
-0.014800 0.055000 0.009000: /usr/share/nvim/runtime/plugin/gzip.vim
-0.013600 0.017000 0.013000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/nightfox.vim
-0.013600 0.019000 0.013000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-patch.vim
-0.013200 0.027000 0.005000: /usr/share/nvim/runtime/indent.vim
-0.013000 0.013000 0.013000: /home/yuki/.cache/dein/.cache/init.lua/.dein/plugin/gin-chaperon.vim
-0.012500 0.014000 0.012000: /home/yuki/.cache/dein/repos/github.com/Shougo/dein.vim/ftdetect/dein.vim
-0.012100 0.014000 0.011000: loading after plugins
-0.011300 0.013000 0.010000: clear screen
-0.010200 0.013000 0.009000: inits 2
-0.009800 0.035000 0.007000: /usr/share/nvim/runtime/plugin/matchit.vim
-0.009400 0.013000 0.009000: /usr/share/nvim/runtime/plugin/netrwPlugin.vim
-0.008700 0.011000 0.008000: /usr/share/nvim/runtime/plugin/zipPlugin.vim
-0.007400 0.011000 0.007000: /usr/share/nvim/runtime/plugin/matchparen.vim
-0.007300 0.010000 0.007000: /usr/share/nvim/runtime/plugin/tarPlugin.vim
-0.006500 0.007000 0.006000: window checked
-0.006200 0.016000 0.005000: /usr/share/nvim/runtime/plugin/spellfile.vim
-0.006000 0.008000 0.005000: inits 3
-0.005800 0.011000 0.005000: /usr/share/nvim/runtime/plugin/tutor.vim
-0.005100 0.006000 0.005000: /home/yuki/.cache/dein/.cache/init.lua/.dein/autoload/denops/_internal/conf.vim
-0.005000 0.007000 0.004000: --- NVIM STARTING ---
-0.004200 0.006000 0.004000: /usr/share/nvim/runtime/plugin/rplugin.vim
+4.975500 5.164000 4.820000: /home/yuki/.config/nvim/init.lua
+3.077200 3.228000 2.934000: /home/yuki/.cache/dein/state_nvim.vim
+2.691200 2.788000 2.614000: reading ShaDa
+0.816000 0.857000 0.800000: loading rtp plugins
+0.490000 0.518000 0.470000: require('vim._defaults')
+0.332800 0.360000 0.322000: require('utils')
+0.292700 0.307000 0.286000: sourcing vimrc file(s)
+0.292200 0.310000 0.284000: init lua interpreter
+0.271500 0.284000 0.266000: /home/yuki/.cache/dein/repos/github.com/Shougo/dein.vim/autoload/dein/util.vim
+0.223100 0.232000 0.219000: init highlight
+0.198600 0.208000 0.192000: inits 1
+0.176700 0.200000 0.165000: /usr/share/nvim/runtime/syntax/syntax.vim
+0.176200 0.209000 0.170000: /home/yuki/.cache/dein/.cache/nvim/.dein/plugin/denops.vim
+0.149700 0.201000 0.140000: require('vim._init_packages')
+0.148800 0.169000 0.138000: event init
+0.148100 0.186000 0.139000: /usr/share/nvim/runtime/filetype.lua
+0.139700 0.143000 0.138000: /home/yuki/.cache/dein/repos/github.com/Shougo/dein.vim/autoload/dein/autoload.vim
+0.132200 0.142000 0.128000: require('plugins.lua_add')
+0.108500 0.145000 0.102000: /home/yuki/.cache/dein/repos/github.com/Shougo/dein.vim/autoload/dein.vim
+0.093900 0.159000 0.078000: opening buffers
+0.092200 0.142000 0.082000: require('vim._editor')
+0.091600 0.095000 0.089000: loading packages
+0.084000 0.086000 0.082000: /home/yuki/.cache/dein/.cache/nvim/.dein/autoload/denops.vim
+0.071700 0.131000 0.060000: early init
+0.060200 0.083000 0.053000: /usr/share/nvim/runtime/syntax/synload.vim
+0.054500 0.059000 0.052000: require('const')
+0.045900 0.098000 0.039000: /home/yuki/.cache/dein/.cache/nvim/.dein/plugin/skkeleton.vim
+0.042200 0.047000 0.039000: locale set
+0.038300 0.039000 0.037000: /home/yuki/.cache/dein/.cache/nvim/.dein/plugin/gin.vim
+0.038300 0.043000 0.036000: /usr/share/nvim/runtime/plugin/man.lua
+0.037900 0.080000 0.032000: /home/yuki/.cache/dein/repos/github.com/Shougo/dein.vim/autoload/dein/min.vim
+0.034500 0.041000 0.031000: /usr/share/nvim/runtime/plugin/editorconfig.lua
+0.032900 0.035000 0.031000: /home/yuki/.cache/dein/.cache/nvim/.dein/plugin/denops/debug.vim
+0.027900 0.030000 0.027000: /usr/share/nvim/runtime/plugin/osc52.lua
+0.027200 0.029000 0.025000: init first window
+0.027200 0.066000 0.022000: /home/yuki/.cache/dein/.cache/nvim/.dein/plugin/gin-log.vim
+0.026900 0.029000 0.026000: require('vim.inspect')
+0.026500 0.053000 0.023000: /home/yuki/.config/nvim/autoload/plugins/skkeleton.vim
+0.025300 0.030000 0.022000: require('vim._options')
+0.023600 0.024000 0.023000: /home/yuki/.cache/dein/.cache/nvim/.dein/plugin/gin-diff.vim
+0.023500 0.025000 0.023000: /home/yuki/.cache/dein/.cache/nvim/.dein/plugin/gin-branch.vim
+0.023300 0.024000 0.022000: require('vim.shared')
+0.022900 0.024000 0.022000: /home/yuki/.cache/dein/.cache/nvim/.dein/plugin/gin-edit.vim
+0.022900 0.041000 0.008000: /usr/share/nvim/runtime/ftplugin.vim
+0.020000 0.020000 0.020000: /home/yuki/.cache/dein/repos/github.com/nvim-tree/nvim-web-devicons/plugin/nvim-web-devicons.vim
+0.019800 0.020000 0.019000: /home/yuki/.cache/dein/.cache/nvim/.dein/plugin/gin-status.vim
+0.018900 0.019000 0.018000: /home/yuki/.cache/dein/.cache/nvim/.dein/plugin/gin-browse.vim
+0.018400 0.020000 0.017000: /usr/share/nvim/runtime/plugin/tohtml.lua
+0.018100 0.022000 0.017000: expanding arguments
+0.017100 0.018000 0.017000: /home/yuki/.cache/dein/.cache/nvim/.dein/plugin/gin-cd.vim
+0.013300 0.016000 0.013000: /home/yuki/.cache/dein/.cache/nvim/.dein/plugin/gin-patch.vim
+0.013150 0.022000 0.005000: /usr/share/nvim/runtime/indent.vim
+0.013000 0.013000 0.013000: /home/yuki/.cache/dein/.cache/nvim/.dein/plugin/gin-chaperon.vim
+0.013000 0.013000 0.013000: /home/yuki/.cache/dein/.cache/nvim/.dein/plugin/nightfox.vim
+0.012000 0.014000 0.011000: /home/yuki/.cache/dein/repos/github.com/Shougo/dein.vim/ftdetect/dein.vim
+0.011700 0.014000 0.011000: inits 2
+0.011600 0.012000 0.011000: loading after plugins
+0.010000 0.010000 0.010000: /usr/share/nvim/runtime/plugin/gzip.vim
+0.009600 0.011000 0.009000: clear screen
+0.009000 0.009000 0.009000: /usr/share/nvim/runtime/plugin/netrwPlugin.vim
+0.008000 0.008000 0.008000: /usr/share/nvim/runtime/plugin/zipPlugin.vim
+0.007100 0.008000 0.007000: /usr/share/nvim/runtime/plugin/tarPlugin.vim
+0.007000 0.007000 0.007000: /usr/share/nvim/runtime/plugin/matchit.vim
+0.006200 0.007000 0.006000: /usr/share/nvim/runtime/plugin/matchparen.vim
+0.006200 0.011000 0.005000: --- NVIM STARTED ---
+0.006100 0.007000 0.005000: inits 3
+0.005900 0.007000 0.005000: window checked
+0.005200 0.006000 0.005000: /usr/share/nvim/runtime/plugin/spellfile.vim
+0.005100 0.006000 0.005000: /home/yuki/.cache/dein/.cache/nvim/.dein/autoload/denops/_internal/conf.vim
+0.004700 0.011000 0.004000: /usr/share/nvim/runtime/plugin/rplugin.vim
+0.004400 0.005000 0.004000: /usr/share/nvim/runtime/plugin/tutor.vim
 0.004100 0.005000 0.004000: /usr/share/nvim/runtime/plugin/shada.vim
-0.003300 0.004000 0.003000: parsing arguments
-0.003300 0.004000 0.003000: require('vim.keymap')
-0.003300 0.004000 0.003000: init default mappings & autocommands
-0.002100 0.003000 0.002000: editing files in windows
-0.002100 0.003000 0.002000: BufEnter autocommands
+0.004000 0.004000 0.004000: init default mappings & autocommands
+0.003100 0.004000 0.003000: require('vim.keymap')
+0.002300 0.003000 0.002000: editing files in windows
+0.002200 0.004000 0.002000: BufEnter autocommands
+0.002000 0.002000 0.002000: parsing arguments
+0.001300 0.002000 0.001000: --- NVIM STARTING ---
