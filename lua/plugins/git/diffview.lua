@@ -60,7 +60,7 @@ function M.diffview_setup()
         -- confirmしてpushする
         { "n", "<Up>",
           function()
-            require("plugins.git.gin").pcall_git_push_confirm()
+            require("plugins.lua_add").pcall_git_push_confirm()
           end,
           { desc = "confirm -> :Gin push" }
         },
