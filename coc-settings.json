@@ -16,7 +16,7 @@
     "json5",
     "jsonc",
     "lua",
-    "markdown",
+    // "markdown",
     "php",
     "scss",
     "sql"
