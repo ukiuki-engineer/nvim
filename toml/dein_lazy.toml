@@ -254,6 +254,18 @@ require("plugins.lua_add").diffview()
 lua_source = '''
 require("plugins.git.diffview").lua_source()
 '''
+
+# neogit
+# 全く使ってない。参考までに一応入れておく。
+[[plugins]]
+repo = 'NeogitOrg/neogit'
+depends = ['plenary.nvim']
+on_cmd = [
+  'Neogit'
+]
+lua_source = '''
+require('neogit').setup({})
+'''
 ################################################################################
 # FZF
 ################################################################################
