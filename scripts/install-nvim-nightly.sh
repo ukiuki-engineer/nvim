@@ -1,6 +1,6 @@
 #!/bin/bash
 # インストールディレクトリ
-installDir="$HOME/opt/neovim-nightly"
+installDir="$HOME/opt/neovim/nightly"
 # neovim nightlyのURL
 # TODO: Mac用の分岐も用意する
 nvimNightlyUrl=https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
