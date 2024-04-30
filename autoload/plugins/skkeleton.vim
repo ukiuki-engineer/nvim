@@ -1,9 +1,9 @@
-let s:skk_dir = g:init_dir .. '/skk-dict'
+let s:skk_dir = $HOME .. '/skk-dict'
 
 function! plugins#skkeleton#hook_add() abort
   " 辞書が無ければダウンロード
   if !isdirectory(s:skk_dir)
-    execute '!git clone https://github.com/skk-dev/dict ' s:skk_dir
+    execute '!echo "結構時間かかるよ" && git clone https://github.com/skk-dev/dict ' s:skk_dir
   endif
 
   inoremap <C-j> <Plug>(skkeleton-toggle)
