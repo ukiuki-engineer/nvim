@@ -100,3 +100,6 @@ repo = 'Mofiqul/dracula.nvim'
 
 [[plugins]]
 repo = 'tiagovla/tokyodark.nvim'
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
