@@ -1,11 +1,24 @@
 #!/bin/bash
 # インストールディレクトリ
 installDir="$HOME/opt/neovim/nightly"
-# neovim nightlyのURL
-# TODO: Mac用の分岐も用意する
-nvimNightlyUrl=https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
 # アーカイブ名
 nvimNightlyArchive=nvim.tar.gz
+
+# neovim nightlyのURL
+nvimNightlyUrl=""
+if [[ $OSTYPE == "darwin"* ]]; then
+  # MacOs
+  if [[ $(uname -m) == "arm64" ]]; then
+    # Apple Silicon
+    nvimNightlyUrl=https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-arm64.tar.gz
+  elif [[ $(uname -m) == "x86_64" ]]; then
+    # Intel
+    nvimNightlyUrl=https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-x86_64.tar.gz
+  fi
+elif [[ $OSTYPE == "linux-gnu"* ]] || [[ $OSTYPE == "freebsd"* ]]; then
+  # Linux
+  nvimNightlyUrl=https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+fi
 
 # 既存のインストールディレクトリを削除
 rm -rf $installDir
