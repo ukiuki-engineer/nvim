@@ -54,13 +54,5 @@ Total Min:     11.237000 msec
     - `:h autocmd-events`
     - `:h encoding-values`
 - luaでテーブルの中身を見たいときは`vim.print()`
-- 基本的に`neovim nightly`を使用する  
-→Macの場合以下の手順
-
-```bash
-brew install bob
-bob install nightly
-bob use nightly
-# NOTE: この後、~/.local/share/bob/nvim-binにPATHを通す
-```
-
+- 基本的に`Neovim nightly`を使用する  
+→nightlyのインストールスクリプト: `scripts/install-nvim-nightly.sh`
