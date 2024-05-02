@@ -130,6 +130,30 @@ au({ "BufRead" }, {
     end
   end,
 })
+
+-- commentstring
+-- NOTE: ftpluginに入れても良いけど、一箇所に集めた方が分かりやすいからここで設定する
+au("FileType", {
+  group = "MyAutocmds",
+  pattern = { "applescript", "toml" },
+  callback = function()
+    vim.bo.commentstring = "# %s"
+  end
+})
+au("FileType", {
+  group = "MyAutocmds",
+  pattern = { "php", "jsonc" },
+  callback = function()
+    vim.bo.commentstring = "// %s"
+  end
+})
+au("FileType", {
+  group = "MyAutocmds",
+  pattern = { "vue" },
+  callback = function()
+    vim.bo.commentstring = "<!-- %s -->"
+  end
+})
 -- ------------------------------------------------------------------------------
 -- colorschemeごとの設定
 -- ------------------------------------------------------------------------------
