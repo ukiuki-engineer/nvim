@@ -5,8 +5,6 @@ function M.lua_source()
   vim.cmd([[
     " 表示スタイル(tree/list)をtoggle & git情報を更新
     function! s:aucmds_on_diffviewopen() abort
-      " treeからlistに切り替え
-      lua require("diffview.config").actions.listing_style()
       " git情報を更新
       call git_info#refresh_git_infomation()
     endfunction
@@ -40,6 +38,7 @@ function M.diffview_setup()
       }
     },
     file_panel = {
+      listing_style = "list",
       win_config = {
         -- diffviewのwindowの設定
         type = "split",
@@ -49,7 +48,7 @@ function M.diffview_setup()
     },
     keymaps = {
       file_panel = {
-        -- TODO: 何故かMacだと効いたり効かなかったりする {{{
+        -- TODO: 何故か効いたり効かなかったりする {{{
         -- commit
         { "n", "<Down>",
           function()
