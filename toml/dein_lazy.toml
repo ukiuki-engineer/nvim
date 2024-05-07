@@ -402,3 +402,11 @@ require("plugins.lua_add").oil()
 lua_source = '''
 require("plugins.others.oil").lua_source()
 '''
+
+[[plugins]]
+repo = 'refractalize/oil-git-status.nvim'
+depends = ['oil.nvim']
+on_source = ['oil.nvim']
+lua_source = '''
+require('oil-git-status').setup()
+'''
