@@ -18,6 +18,7 @@ function M.lua_source()
     ensure_installed = {
       "awk",
       "bash",
+      "c",
       "css",
       "csv",
       "diff",
@@ -32,7 +33,10 @@ function M.lua_source()
       "java",
       "javascript",
       "jq",
+      "jsdoc",
       "json",
+      "json5",
+      "jsonc",
       "lua",
       "make",
       "markdown",
@@ -52,6 +56,7 @@ function M.lua_source()
       "vimdoc",
       "vue",
       "xml",
+      "yaml",
     },
   }
   -- nvim-ts-context-commentstring
