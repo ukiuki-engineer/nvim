@@ -42,10 +42,10 @@ vim.g["my#const"] = {
     "catppuccin",
     "gruvbox",
     "kanagawa",
-    "moonlight",
     "nightfly",
     "nightfox",
     "nordfox",
+    "terafox",
     "tokyonight-night",
   },
 }
