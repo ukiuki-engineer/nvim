@@ -192,3 +192,35 @@ function! utils#open_filer_here() abort
   call system(filer .. " " .. expand("%:p:h"))
 endfunction
 
+"
+" カレント行のgitコミットのハッシュ値をヤンクする
+"
+function! utils#yank_commit_hash()
+  " git projectではないなら処理終了
+  if !utils#is_git_project()
+    echohl WarningMsg
+    echomsg 'Not a git project.'
+    echohl None
+    return
+  endif
+
+  try
+    " 現在のファイルパスを取得
+    let l:file_path = expand('%:p')
+    " 現在の行番号を取得
+    let l:line_number = line('.')
+    " 実行コマンド
+    let l:command = 'git blame -L ' .. l:line_number .. ',' .. l:line_number .. ' ' .. l:file_path .. " | awk '{print $1}'"
+
+    " ハッシュ値を取得
+    let l:commit_hash = system(l:command)
+    " 不要な改行を削除
+    let l:commit_hash = substitute(l:commit_hash, '\n', '', 'g')
+
+    " コミットハッシュをヤンク
+    let @+ = l:commit_hash
+    echo "Commit hash yanked: " .. l:commit_hash
+  catch
+    call utils#echo_error_message('E005', v:exception)
+  endtry
+endfunction

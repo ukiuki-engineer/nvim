@@ -24,6 +24,8 @@ vim.cmd([[
   command! OpenFiler                 :call utils#open_filer()
   " システム側のファイラーを開く(カレントバッファのディレクトリ)
   command! OpenFilerHere             :call utils#open_filer_here()
+  " カレント行のgitコミットのハッシュ値をヤンクする
+  command! YankCommitHash            :call utils#yank_commit_hash()
 ]])
 
 -- カラースキームをランダムに変更するコマンド
