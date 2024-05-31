@@ -27,10 +27,13 @@ opt.number = true
 opt.list = true
 -- タブや改行の表示記号を定義
 -- opt.listchars=tab:»-,trail:-,eol:↓,extends:»,precedes:«,nbsp:%
+
 -- 画面を垂直分割する際に右に開く
 opt.splitright = true
 -- 画面を水平分割する際に下に開く
 opt.splitbelow = true
+-- 差分表示は縦分割
+opt.diffopt:append("vertical")
 
 -- 検索時の挙動
 opt.wrapscan = false
