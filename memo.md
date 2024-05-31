@@ -1,3 +1,37 @@
+# NOTE
+
+- Fonts  
+  - HackGenNerdとか
+  - icon を設定するときなどは[ここ](https://www.nerdfonts.com/cheat-sheet)見たりとか
+- 時々見たいけど忘れがちなヘルプタグ
+    - `:h key-notation`
+    - `:h map-table`
+    - `:h autocmd-events`
+    - `:h encoding-values`
+- luaでテーブルの中身を見たいときは`vim.print()`
+- 基本的に`Neovim nightly`を使用する  
+    →nightlyのインストールスクリプト: `scripts/install-nvim-nightly.sh`
+- diff
+    - 今(分割して)表示してる2ファイルのdiffを取る手順
+
+    ```vim
+    :windo diffthis
+    :set foldlevel=1
+    ```
+
+    - 同じディレクトリにある2ファイルなら、そのディレクトリに移動してから`diffsp`した方が早い
+
+    ```vim
+    " 1ファイルを開いた状態で
+    :tcd %:h
+    :diffsp <比較対象のファイル名>
+    :set foldlevel=1
+    ```
+
+- g_で改行の手前まで移動  
+  $と似てるが、visual mode時の挙動が違う。
+  visual modeで$を押すと、改行位置まで移動してしまう。
+
 # indent-rainbow
 
 できそうならvim設定に追加したい。  

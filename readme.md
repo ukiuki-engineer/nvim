@@ -38,21 +38,3 @@ Total Min:     11.237000 msec
 仕事に集中したいときは、この`nvim/`直下に`working`というファイルを配置する。  
 →Neovim設定を開いても強制的に閉じるようになっている。
 
-# NOTE
-
-自分用メモ
-
-- Fonts  
-  [Cica](https://github.com/miiton/Cica/releases/download/v5.0.3/Cica_v5.0.3.zip)とか HackGen を使用。  
-  icon を設定するときなどは[ここ](https://www.nerdfonts.com/cheat-sheet)見たりとか。
-- coc.nvim の拡張機能を探す場所
-    - [github の wiki](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions)
-    - [npm module を検索するサイト](https://www.npmjs.com/search?q=keywords%3Acoc.nvim)
-- 時々見たいけど忘れがちなヘルプタグ
-    - `:h key-notation`
-    - `:h map-table`
-    - `:h autocmd-events`
-    - `:h encoding-values`
-- luaでテーブルの中身を見たいときは`vim.print()`
-- 基本的に`Neovim nightly`を使用する  
-→nightlyのインストールスクリプト: `scripts/install-nvim-nightly.sh`
