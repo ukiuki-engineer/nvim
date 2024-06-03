@@ -85,19 +85,13 @@ au({ "BufRead", "BufNewFile" }, {
 })
 
 -- アノテーションコメントのハイライト
-au({ "WinEnter", "BufRead", "BufNewFile", "Syntax" }, {
+au({ "WinEnter", "BufRead", "BufNewFile", "Syntax", "Colorscheme" }, {
   group = "MyAutocmds",
   pattern = "*",
   callback = function()
     vim.fn.matchadd('Note', 'NOTE', -1)
     vim.fn.matchadd('Todo', 'TODO', -1)
     vim.fn.matchadd('Fixme', 'FIXME', -1)
-  end,
-})
-au({ "WinEnter", "BufRead", "BufNewFile", "Syntax" }, {
-  group = "MyAutocmds",
-  pattern = "*",
-  callback = function()
     vim.api.nvim_set_hl(0, 'Note', { fg = "White", bold = true })
     vim.api.nvim_set_hl(0, 'Todo', { fg = "Yellow", bold = true })
     vim.api.nvim_set_hl(0, 'Fixme', { fg = "Red", bold = true })
