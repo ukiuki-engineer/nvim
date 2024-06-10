@@ -18,6 +18,6 @@ require("plugins.lsp.coc").lua_source()
 # NOTE: こいつはcocのfzf-previewでしか使ってないからここに置いてる
 [[plugins]]
 repo = 'junegunn/fzf'
-build = './install'
+# build = './install'
 on_source = ['coc.nvim']
 
