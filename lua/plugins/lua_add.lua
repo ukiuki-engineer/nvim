@@ -139,10 +139,16 @@ end
 
 function M.diffview()
   vim.keymap.set('n', '<Right>', function()
-    vim.fn['git_info#refresh_git_infomation'](true)
-    vim.cmd([[DiffviewOpen]])
+    if require("utils").is_git_project() then
+      vim.fn['git_info#refresh_git_infomation'](true)
+      vim.cmd([[DiffviewOpen]])
+    end
   end, {})
-  vim.keymap.set('n', '<Down>', "<Cmd>DiffviewFileHistory<CR>", {})
+  vim.keymap.set('n', '<Down>', function()
+    if require("utils").is_git_project() then
+      vim.cmd([[DiffviewFileHistory]])
+    end
+  end, {})
 end
 
 --------------------------------------------------------------------------------
