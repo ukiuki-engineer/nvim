@@ -97,7 +97,15 @@ end
 -- git projectかどうか
 --
 function M.is_git_project()
-  return tonumber(vim.fn.system('git status > /dev/null 2>&1; echo $?')) == 0
+  local result = tonumber(vim.fn.system('git status > /dev/null 2>&1; echo $?')) == 0
+  if not result then
+    vim.cmd([[
+      echohl WarningMsg
+      echomsg 'Not a git project.'
+      echohl None
+    ]])
+  end
+  return result
 end
 
 --

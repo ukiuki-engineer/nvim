@@ -200,6 +200,11 @@ function M.git_branches()
 end
 
 function M.git_status()
+  -- git projectでない場合は終了
+  if not require("utils").is_git_project() then
+    return
+  end
+
   local actions = require('telescope.actions')
   local action_state = require('telescope.actions.state')
 
@@ -215,14 +220,6 @@ function M.git_status()
     else
       return "↓" .. commit_counts['un_pulled'] .. " ↑" .. commit_counts['un_pushed']
     end
-  end
-  if not require("utils").is_git_project() then
-    vim.cmd([[
-      echohl WarningMsg
-      echo "this directory is not a git project!"
-      echohl None
-    ]])
-    return
   end
 
   local prompt_prefix = function()
