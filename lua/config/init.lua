@@ -1,15 +1,14 @@
 -- ==============================================================================
 -- configのメインファイル
 -- ==============================================================================
-local au               = vim.api.nvim_create_autocmd
-local augroup          = vim.api.nvim_create_augroup
+local au      = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
 -- ------------------------------------------------------------------------------
 -- 通常ロード
 -- ------------------------------------------------------------------------------
--- NOTE: 以下は、deinのinline_vimrcs側で読み込んでいるので不要。
--- require("config.options")
--- require("config.autocmds")
--- require("config.keymappings")
+require("config.options")
+require("config.autocmds")
+require("config.keymappings")
 
 -- localvimrc
 -- NOTE: プラグインを前提とした処理をlocal.vimに書くと、プラグインが入ってない場合にエラーになるので注意
