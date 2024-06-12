@@ -1,7 +1,5 @@
-- [ ] `autoload/`, `lua/`のディレクトリ構成を変更  
-→`core/`と`plugins/`に分ける
+# todo
 
-```
-├── core/
-└── plugins/
-```
+- [x] init.luaのbackupファイルを作る
+- [ ] とりあえずlazyを動かしてみる **←作業中**
+- [ ] ディレクトリ構造の設計
