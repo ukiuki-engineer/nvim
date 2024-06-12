@@ -1,4 +1,5 @@
-/pack/plugins/start/
+pack
 Session.vim
 working
 local.vim
+.DS_Store
