@@ -77,6 +77,13 @@ au({ "BufRead", "BufNewFile" }, {
   command = "set ft=sh",
 })
 
+-- messages
+au({ "BufRead", "BufNewFile" }, {
+  group = "MyAutocmds",
+  pattern = { "syslog*" },
+  command = "set ft=messages",
+})
+
 -- coc-settings.jsonはjsoncとして開く
 au({ "BufRead", "BufNewFile" }, {
   group = "MyAutocmds",
