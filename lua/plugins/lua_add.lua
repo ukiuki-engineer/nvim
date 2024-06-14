@@ -7,14 +7,14 @@
 --------------------------------------------------------------------------------
 -- confirmしてpushする
 local function _git_push_confirm()
-  vim.fn['git_info#refresh_git_infomation']()
+  vim.fn['utils#git_info#refresh_git_infomation']()
 
   local message = ""
 
   -- remote branchが無い場合の処理
-  if not vim.g['git_info#git_info']['exists_remote_branch'] then
+  if not vim.g['utils#git_info#git_info']['exists_remote_branch'] then
     message = 'There is no remote branch for the \"' ..
-        vim.g['git_info#git_info']['branch_name'] .. '\". Would you like to publish this branch?'
+        vim.g['utils#git_info#git_info']['branch_name'] .. '\". Would you like to publish this branch?'
 
     if vim.fn["utils#utils#confirm"](message) then
       vim.cmd("Gin push --set-upstream origin HEAD")
@@ -23,7 +23,7 @@ local function _git_push_confirm()
   end
 
   -- commit数を取得
-  local commit_counts = vim.g['git_info#git_info']['commit_counts']['un_pushed']
+  local commit_counts = vim.g['utils#git_info#git_info']['commit_counts']['un_pushed']
   commit_counts = tonumber(commit_counts)
 
   -- commitなしならメッセージを表示して終了
@@ -125,7 +125,7 @@ function M.gin()
   vim.cmd([[
     augroup MyGinAuCmds
       au!
-      au User GinCommandPost,GinComponentPost call git_info#refresh_git_infomation()
+      au User GinCommandPost,GinComponentPost call utils#git_info#refresh_git_infomation()
     augroup END
   ]])
 
@@ -140,7 +140,7 @@ end
 function M.diffview()
   vim.keymap.set('n', '<Right>', function()
     if require("utils").is_git_project() then
-      vim.fn['git_info#refresh_git_infomation'](true)
+      vim.fn['utils#git_info#refresh_git_infomation'](true)
       vim.cmd([[DiffviewOpen]])
     end
   end, {})

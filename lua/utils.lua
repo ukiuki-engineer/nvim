@@ -112,7 +112,7 @@ end
 -- リモートブランチ情報のテキストを返す
 --
 function M.remote_branch_info_text()
-  if not vim.g['git_info#git_info']['exists_remote_branch'] then
+  if not vim.g['utils#git_info#git_info']['exists_remote_branch'] then
     return ""
   else
     -- リモートブランチがあれば空文字を返す

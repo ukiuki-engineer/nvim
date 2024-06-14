@@ -17,7 +17,7 @@ vim.cmd([[
   " バッファのファイル名をヤンクする
   command! YankBufFileName           :let @0 = expand('%:t') | :let @+ = expand('%:t')
   " git情報を更新する
-  command! RefreshGitInfomation      :call git_info#refresh_git_infomation(v:true)
+  command! RefreshGitInfomation      :call utils#git_info#refresh_git_infomation(v:true)
   " 保存だけ行う(autocmdを発火させない。format on saveとかその他諸々。)
   command! W                         :noautocmd w
   " システム側のファイラーを開く(カレントディレクトリ)
