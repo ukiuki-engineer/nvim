@@ -16,7 +16,7 @@ local function _git_push_confirm()
     message = 'There is no remote branch for the \"' ..
         vim.g['git_info#git_info']['branch_name'] .. '\". Would you like to publish this branch?'
 
-    if vim.fn["utils#confirm"](message) then
+    if vim.fn["utils#utils#confirm"](message) then
       vim.cmd("Gin push --set-upstream origin HEAD")
     end
     return
@@ -36,14 +36,14 @@ local function _git_push_confirm()
       and "push " .. commit_counts .. " commit?"
       or "push " .. commit_counts .. " commits?"
 
-  if vim.fn["utils#confirm"](message) then
+  if vim.fn["utils#utils#confirm"](message) then
     vim.cmd([[Gin push]])
   end
 end
 
 -- confirmしてgit resetする
 local function _delete_latest_commit(soft_or_hard)
-  if not vim.fn["utils#confirm"]("Delete latest commit?") then
+  if not vim.fn["utils#utils#confirm"]("Delete latest commit?") then
     return
   end
   vim.cmd("Gin ++wait reset --" .. soft_or_hard .. " HEAD^")

@@ -133,4 +133,4 @@ vim.g.loaded_tutor_mode_plugin  = 1
 vim.g.loaded_zipPlugin          = 1
 vim.g.skip_loading_mswin        = 1
 -- 標準プラグインの遅延読み込み
--- vim.fn["utils#lazy_load_standard_plugins"]()
+-- vim.fn["utils#utils#lazy_load_standard_plugins"]()

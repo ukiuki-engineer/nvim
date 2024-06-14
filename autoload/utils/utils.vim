@@ -7,7 +7,7 @@
 "
 " git projectかどうかを返す
 "
-function! utils#is_git_project() abort
+function! utils#utils#is_git_project() abort
   let result = str2nr(system('git status > /dev/null 2>&1; echo -n $?'))
   " NOTE: return result == 0だと上手くいかなかった...
   if result == 0
@@ -19,14 +19,14 @@ endfunction
 "
 " 改行を削除する
 "
-function! utils#delete_line_breaks(str) abort
+function! utils#utils#delete_line_breaks(str) abort
   return substitute(a:str, '\n', '', 'g')
 endfunction
 
 "
 " wslか
 "
-function! utils#is_wsl() abort
+function! utils#utils#is_wsl() abort
   return has('linux') && exists("$WSLENV")
 endfunction
 
@@ -36,7 +36,7 @@ endfunction
 " @param string message
 " @return bool
 "
-function! utils#confirm(message) abort
+function! utils#utils#confirm(message) abort
   try
     if confirm(a:message, "&Yes\n&No", 1) == 1
       return v:true
@@ -57,7 +57,7 @@ endfunction
 " @param dict param
 " @return void
 "
-function! utils#echo_error_message(error_code, exception, param = {}) abort
+function! utils#utils#echo_error_message(error_code, exception, param = {}) abort
   let l:my_message = "[" .. a:error_code .. "]" .. g:my#const["error_messages"][a:error_code]
 
   " 定数中のパラメータを渡された文字列に置換
@@ -78,7 +78,7 @@ endfunction
 " $がついてるとき用のtagジャンプ
 " TODO: 本当はctagsの設定で解決すべきだがとりあえずこれでいいや
 "
-function! utils#tag_jump_with_dollar()
+function! utils#utils#tag_jump_with_dollar()
   " 現在の単語を取得
   let l:current_word = expand('<cword>')
 
@@ -102,7 +102,7 @@ function! utils#tag_jump_with_dollar()
 endfunction
 
 " 行末がセミコロンでなければ挿入
-function! utils#append_semicolon()
+function! utils#utils#append_semicolon()
   " 現在の行の末尾の文字を取得
   let l:line = getline('.')
 
@@ -118,7 +118,7 @@ endfunction
 " 標準プラグインの遅延読み込み
 " NOTE: 今は使ってない
 "
-function! utils#lazy_load_standard_plugins() abort
+function! utils#utils#lazy_load_standard_plugins() abort
   augroup MyTimerLoad
     autocmd!
     execute 'au InsertLeave,FileType * ++once call s:packadd_standard_plugins()'
@@ -142,7 +142,7 @@ endfunction
 "
 " カーソル行/列の表示と非表示
 "
-function! utils#set_cursor_line_column() abort
+function! utils#utils#set_cursor_line_column() abort
   " カーソル行/列を表示
   setlocal cursorline cursorcolumn
   augroup MyCursorLineColumn
@@ -155,8 +155,8 @@ endfunction
 "
 " ファイラーを取得
 "
-function! utils#get_filer() abort
-  if utils#is_wsl()
+function! utils#utils#get_filer() abort
+  if utils#utils#is_wsl()
     return "explorer.exe"
   elseif has('mac')
     return "open"
@@ -172,32 +172,32 @@ endfunction
 "
 " システムのファイラーを開く(カレントディレクトリ)
 "
-function! utils#open_filer() abort
-  let l:filer = utils#get_filer()
+function! utils#utils#open_filer() abort
+  let l:filer = utils#utils#get_filer()
   call system(l:filer .. " .")
 endfunction
 
 "
 " システムのファイラーを開く(カレントバッファのディレクトリ)
 "
-function! utils#open_filer_here() abort
+function! utils#utils#open_filer_here() abort
   " wslは非対応
-  if utils#is_wsl()
+  if utils#utils#is_wsl()
     echohl WarningMsg
     echomsg 'TODO: WSL用は未実装'
     echohl None
     return
   endif
-  let l:filer = utils#get_filer()
+  let l:filer = utils#utils#get_filer()
   call system(filer .. " " .. expand("%:p:h"))
 endfunction
 
 "
 " カレント行のgitコミットのハッシュ値をヤンクする
 "
-function! utils#yank_commit_hash()
+function! utils#utils#yank_commit_hash()
   " git projectではないなら処理終了
-  if !utils#is_git_project()
+  if !utils#utils#is_git_project()
     echohl WarningMsg
     echomsg 'Not a git project.'
     echohl None
@@ -221,6 +221,6 @@ function! utils#yank_commit_hash()
     let @+ = l:commit_hash
     echo "Commit hash yanked: " .. l:commit_hash
   catch
-    call utils#echo_error_message('E005', v:exception)
+    call utils#utils#echo_error_message('E005', v:exception)
   endtry
 endfunction

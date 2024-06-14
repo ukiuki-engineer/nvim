@@ -68,7 +68,7 @@ function M.diffview_setup()
         { "n", "X",
           function()
             local message = "Delete this changes?"
-            if not vim.fn["utils#confirm"](message) then
+            if not vim.fn["utils#utils#confirm"](message) then
               return
             end
             -- restore

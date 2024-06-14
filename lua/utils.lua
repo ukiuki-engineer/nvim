@@ -44,16 +44,16 @@ function M.is_wsl()
 end
 
 --
--- utils#echo_error_message()のラッパー
+-- utils#utils#echo_error_message()のラッパー
 --
 function M.echo_error_message(error_code, exception, param)
   -- NOTE: luaはデフォルト引数が使えない...
   if param then
     -- パラメータあり
-    vim.fn["utils#echo_error_message"](error_code, exception, param)
+    vim.fn["utils#utils#echo_error_message"](error_code, exception, param)
   else
     -- パラメータなし
-    vim.fn["utils#echo_error_message"](error_code, exception)
+    vim.fn["utils#utils#echo_error_message"](error_code, exception)
   end
 end
 
