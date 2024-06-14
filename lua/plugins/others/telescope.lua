@@ -201,7 +201,7 @@ end
 
 function M.git_status()
   -- git projectでない場合は終了
-  if not require("utils").is_git_project() then
+  if not require("utils.utils").is_git_project() then
     return
   end
 
@@ -210,7 +210,7 @@ function M.git_status()
 
   -- commit数の状態を返す
   local git_commit_status_text = function()
-    local remote_branch_info_text = require("utils").remote_branch_info_text()
+    local remote_branch_info_text = require("utils.utils").remote_branch_info_text()
     local commit_counts = vim.g['utils#git_info#git_info']['commit_counts']
 
     if remote_branch_info_text ~= "" then

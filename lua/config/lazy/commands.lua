@@ -29,4 +29,4 @@ vim.cmd([[
 ]])
 
 -- カラースキームをランダムに変更するコマンド
-vim.api.nvim_create_user_command('ChangeColorscheme', require("utils").change_colorscheme, {})
+vim.api.nvim_create_user_command('ChangeColorscheme', require("utils.utils").change_colorscheme, {})

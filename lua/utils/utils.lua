@@ -7,7 +7,7 @@ local M   = {}
 --
 -- booleanな値を返すvim.fnのwrapper function
 -- (なんかで紹介されてたやつをそのまま使ってる)
--- 例）if require("utils").bool_fn.has('mac') then ... end
+-- 例）if require("utils.utils").bool_fn.has('mac') then ... end
 --
 M.bool_fn = setmetatable({}, {
   __index = function(_, key)

@@ -139,13 +139,13 @@ end
 
 function M.diffview()
   vim.keymap.set('n', '<Right>', function()
-    if require("utils").is_git_project() then
+    if require("utils.utils").is_git_project() then
       vim.fn['utils#git_info#refresh_git_infomation'](true)
       vim.cmd([[DiffviewOpen]])
     end
   end, {})
   vim.keymap.set('n', '<Down>', function()
-    if require("utils").is_git_project() then
+    if require("utils.utils").is_git_project() then
       vim.cmd([[DiffviewFileHistory]])
     end
   end, {})
@@ -220,7 +220,7 @@ end
 function M.pcall_git_push_confirm()
   local success, exception = pcall(_git_push_confirm)
   if not success then
-    require("utils").echo_error_message("E006", exception)
+    require("utils.utils").echo_error_message("E006", exception)
   end
 end
 
@@ -228,7 +228,7 @@ end
 function M.pcall_delete_latest_commit(soft_or_hard)
   local success, exception = pcall(_delete_latest_commit, soft_or_hard)
   if not success then
-    require("utils").echo_error_message("E007", exception)
+    require("utils.utils").echo_error_message("E007", exception)
   end
 end
 

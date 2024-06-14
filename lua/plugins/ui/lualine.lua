@@ -40,7 +40,7 @@ function M.setup()
       return ""
     end
 
-    return require('utils').remote_branch_info_text() -- リモートブランチがあるかの情報
+    return require("utils.utils").remote_branch_info_text() -- リモートブランチがあるかの情報
   end
 
   -- 変更があるかをテキストで返す

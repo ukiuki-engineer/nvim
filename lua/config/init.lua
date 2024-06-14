@@ -15,7 +15,7 @@ local augroup          = vim.api.nvim_create_augroup
 -- NOTE: プラグインを前提とした処理をlocal.vimに書くと、プラグインが入ってない場合にエラーになるので注意
 --       VimEnter後にこの処理を持っていけば上記エラーを回避できるが、それだとグローバル変数の定義が間に合わない。
 local localvimrc       = vim.g.init_dir .. "/local.vim"
-local existsLocalvimrc = require('utils').bool_fn.filereadable(localvimrc)
+local existsLocalvimrc = require("utils.utils").bool_fn.filereadable(localvimrc)
 if existsLocalvimrc then
   -- ~/.config/nvim/local.vimがあればロード
   local cmd = [[execute "source " .. "]] .. localvimrc .. '\"'
