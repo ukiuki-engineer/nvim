@@ -1,7 +1,7 @@
 "
 " ターミナルをカレントバッファのディレクトリで開く
 "
-function! terminal#term_here(spOrVsp) abort
+function! utils#terminal#term_here(spOrVsp) abort
   if a:spOrVsp == "sp"
   " 水平分割
     split | wincmd j | resize 20
@@ -10,13 +10,13 @@ function! terminal#term_here(spOrVsp) abort
     vsplit | wincmd l
   endif
   " ターミナルを開く
-  call terminal#execute_here("terminal")
+  call utils#terminal#execute_here("terminal")
 endfunction
 
 "
 " カレントバッファのディレクトリに移動してコマンドを実行
 "
-function! terminal#execute_here(command) abort
+function! utils#terminal#execute_here(command) abort
   " 無名バッファでなければ移動
   if expand('%') != ''
     lcd %:h

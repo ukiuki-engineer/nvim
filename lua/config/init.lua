@@ -14,7 +14,7 @@ require("config.keymappings")
 -- NOTE: プラグインを前提とした処理をlocal.vimに書くと、プラグインが入ってない場合にエラーになるので注意
 --       VimEnter後にこの処理を持っていけば上記エラーを回避できるが、それだとグローバル変数の定義が間に合わない。
 local localvimrc       = vim.g.init_dir .. "/local.vim"
-local existsLocalvimrc = require('utils').bool_fn.filereadable(localvimrc)
+local existsLocalvimrc = require("utils.utils").bool_fn.filereadable(localvimrc)
 if existsLocalvimrc then
   -- ~/.config/nvim/local.vimがあればロード
   local cmd = [[execute "source " .. "]] .. localvimrc .. '\"'
@@ -132,4 +132,4 @@ vim.g.loaded_tutor_mode_plugin  = 1
 vim.g.loaded_zipPlugin          = 1
 vim.g.skip_loading_mswin        = 1
 -- 標準プラグインの遅延読み込み
--- vim.fn["utils#lazy_load_standard_plugins"]()
+-- vim.fn["utils#utils#lazy_load_standard_plugins"]()

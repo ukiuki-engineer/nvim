@@ -1,4 +1,4 @@
-function! git_info#refresh_git_infomation(fetch = v:false) abort
+function! utils#git_info#refresh_git_infomation(fetch = v:false) abort
   try
     call denops#request('gitInfo', 'refreshGitInfo', [a:fetch])
   catch

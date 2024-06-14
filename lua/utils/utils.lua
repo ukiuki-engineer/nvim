@@ -7,7 +7,7 @@ local M   = {}
 --
 -- booleanな値を返すvim.fnのwrapper function
 -- (なんかで紹介されてたやつをそのまま使ってる)
--- 例）if require("utils").bool_fn.has('mac') then ... end
+-- 例）if require("utils.utils").bool_fn.has('mac') then ... end
 --
 M.bool_fn = setmetatable({}, {
   __index = function(_, key)
@@ -44,16 +44,16 @@ function M.is_wsl()
 end
 
 --
--- utils#echo_error_message()のラッパー
+-- utils#utils#echo_error_message()のラッパー
 --
 function M.echo_error_message(error_code, exception, param)
   -- NOTE: luaはデフォルト引数が使えない...
   if param then
     -- パラメータあり
-    vim.fn["utils#echo_error_message"](error_code, exception, param)
+    vim.fn["utils#utils#echo_error_message"](error_code, exception, param)
   else
     -- パラメータなし
-    vim.fn["utils#echo_error_message"](error_code, exception)
+    vim.fn["utils#utils#echo_error_message"](error_code, exception)
   end
 end
 
@@ -112,7 +112,7 @@ end
 -- リモートブランチ情報のテキストを返す
 --
 function M.remote_branch_info_text()
-  if not vim.g['git_info#git_info']['exists_remote_branch'] then
+  if not vim.g['utils#git_info#git_info']['exists_remote_branch'] then
     return ""
   else
     -- リモートブランチがあれば空文字を返す

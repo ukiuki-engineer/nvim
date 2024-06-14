@@ -7,23 +7,23 @@
 --------------------------------------------------------------------------------
 -- confirmしてpushする
 local function _git_push_confirm()
-  vim.fn['git_info#refresh_git_infomation']()
+  vim.fn['utils#git_info#refresh_git_infomation']()
 
   local message = ""
 
   -- remote branchが無い場合の処理
-  if not vim.g['git_info#git_info']['exists_remote_branch'] then
+  if not vim.g['utils#git_info#git_info']['exists_remote_branch'] then
     message = 'There is no remote branch for the \"' ..
-        vim.g['git_info#git_info']['branch_name'] .. '\". Would you like to publish this branch?'
+        vim.g['utils#git_info#git_info']['branch_name'] .. '\". Would you like to publish this branch?'
 
-    if vim.fn["utils#confirm"](message) then
+    if vim.fn["utils#utils#confirm"](message) then
       vim.cmd("Gin push --set-upstream origin HEAD")
     end
     return
   end
 
   -- commit数を取得
-  local commit_counts = vim.g['git_info#git_info']['commit_counts']['un_pushed']
+  local commit_counts = vim.g['utils#git_info#git_info']['commit_counts']['un_pushed']
   commit_counts = tonumber(commit_counts)
 
   -- commitなしならメッセージを表示して終了
@@ -36,14 +36,14 @@ local function _git_push_confirm()
       and "push " .. commit_counts .. " commit?"
       or "push " .. commit_counts .. " commits?"
 
-  if vim.fn["utils#confirm"](message) then
+  if vim.fn["utils#utils#confirm"](message) then
     vim.cmd([[Gin push]])
   end
 end
 
 -- confirmしてgit resetする
 local function _delete_latest_commit(soft_or_hard)
-  if not vim.fn["utils#confirm"]("Delete latest commit?") then
+  if not vim.fn["utils#utils#confirm"]("Delete latest commit?") then
     return
   end
   vim.cmd("Gin ++wait reset --" .. soft_or_hard .. " HEAD^")
@@ -125,7 +125,7 @@ function M.gin()
   vim.cmd([[
     augroup MyGinAuCmds
       au!
-      au User GinCommandPost,GinComponentPost call git_info#refresh_git_infomation()
+      au User GinCommandPost,GinComponentPost call utils#git_info#refresh_git_infomation()
     augroup END
   ]])
 
@@ -139,13 +139,13 @@ end
 
 function M.diffview()
   vim.keymap.set('n', '<Right>', function()
-    if require("utils").is_git_project() then
-      vim.fn['git_info#refresh_git_infomation'](true)
+    if require("utils.utils").is_git_project() then
+      vim.fn['utils#git_info#refresh_git_infomation'](true)
       vim.cmd([[DiffviewOpen]])
     end
   end, {})
   vim.keymap.set('n', '<Down>', function()
-    if require("utils").is_git_project() then
+    if require("utils.utils").is_git_project() then
       vim.cmd([[DiffviewFileHistory]])
     end
   end, {})
@@ -220,7 +220,7 @@ end
 function M.pcall_git_push_confirm()
   local success, exception = pcall(_git_push_confirm)
   if not success then
-    require("utils").echo_error_message("E006", exception)
+    require("utils.utils").echo_error_message("E006", exception)
   end
 end
 
@@ -228,7 +228,7 @@ end
 function M.pcall_delete_latest_commit(soft_or_hard)
   local success, exception = pcall(_delete_latest_commit, soft_or_hard)
   if not success then
-    require("utils").echo_error_message("E007", exception)
+    require("utils.utils").echo_error_message("E007", exception)
   end
 end
 

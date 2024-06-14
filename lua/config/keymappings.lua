@@ -84,7 +84,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "CursorMoved" }, {
   group = "lazy_keymapping",
   callback = function()
     -- 全角文字と半角文字の対応を定義
-    require("utils").jump_to_zenkaku({
+    require("utils.utils").jump_to_zenkaku({
       [" "] = "　",
       ["!"] = "！",
       ["%"] = "％",
