@@ -18,4 +18,4 @@
 " let g:denops#debug = 1
 
 " カラースキームをランダムに設定
-lua require("utils").change_colorscheme()
+lua require("utils.utils").change_colorscheme()

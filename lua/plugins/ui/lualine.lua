@@ -20,36 +20,36 @@ function M.setup()
 
   -- 未pullのコミット数の状態をテキストで返す
   local function un_pulled()
-    if not vim.g['git_info#git_info'] then
+    if not vim.g['utils#git_info#git_info'] then
       return ""
     end
-    return "↓" .. vim.g['git_info#git_info']['commit_counts']['un_pulled']
+    return "↓" .. vim.g['utils#git_info#git_info']['commit_counts']['un_pulled']
   end
 
   -- 未pushのコミット数の状態をテキストで返す
   local function un_pushed()
-    if not vim.g['git_info#git_info'] then
+    if not vim.g['utils#git_info#git_info'] then
       return ""
     end
-    return "↑" .. vim.g['git_info#git_info']['commit_counts']['un_pushed']
+    return "↑" .. vim.g['utils#git_info#git_info']['commit_counts']['un_pushed']
   end
 
   -- リモートブランチがあるかの情報をテキストで返す
   local function remote_branch_info_text()
-    if not vim.g['git_info#git_info'] then
+    if not vim.g['utils#git_info#git_info'] then
       return ""
     end
 
-    return require('utils').remote_branch_info_text() -- リモートブランチがあるかの情報
+    return require("utils.utils").remote_branch_info_text() -- リモートブランチがあるかの情報
   end
 
   -- 変更があるかをテキストで返す
   local function has_changed()
-    if not vim.g['git_info#git_info'] then
+    if not vim.g['utils#git_info#git_info'] then
       return ""
     end
 
-    if vim.g['git_info#git_info']['has_changed'] then
+    if vim.g['utils#git_info#git_info']['has_changed'] then
       return "󰦒"
     else
       return ""
@@ -58,10 +58,10 @@ function M.setup()
 
   -- user.nameとuser.emailのtextを返す
   local function user_info()
-    if not vim.g['git_info#git_info'] then
+    if not vim.g['utils#git_info#git_info'] then
       return ""
     end
-    local config = vim.g['git_info#git_info']['config']
+    local config = vim.g['utils#git_info#git_info']['config']
     -- return '  ' .. config['user_name'] .. '   hogehoge@gmail.com' -- キャプチャ用
     return '  ' .. config['user_name'] .. '   ' .. config['user_email']
   end
@@ -108,7 +108,7 @@ function M.setup()
         -- branch name
         -- NOTE: デフォルトの'branch'だと、diffviewとかhelpとかで表示されない
         {
-          'g:git_info#git_info.branch_name', -- NOTE: gin.vimでFugitiveHeadのような関数があればそれに変えても良いかも
+          'g:utils#git_info#git_info.branch_name', -- NOTE: gin.vimでFugitiveHeadのような関数があればそれに変えても良いかも
           icon = { '', color = { fg = '#FFA500' } },
           separator = '',
           on_click = function()

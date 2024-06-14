@@ -6,7 +6,7 @@ function M.lua_source()
     " 表示スタイル(tree/list)をtoggle & git情報を更新
     function! s:aucmds_on_diffviewopen() abort
       " git情報を更新
-      call git_info#refresh_git_infomation()
+      call utils#git_info#refresh_git_infomation()
     endfunction
 
     augroup MyDiffviewAuCmds
@@ -68,13 +68,13 @@ function M.diffview_setup()
         { "n", "X",
           function()
             local message = "Delete this changes?"
-            if not vim.fn["utils#confirm"](message) then
+            if not vim.fn["utils#utils#confirm"](message) then
               return
             end
             -- restore
             require("diffview.config").actions.restore_entry()
             -- git情報を更新
-            vim.fn["git_info#refresh_git_infomation"]()
+            vim.fn["utils#git_info#refresh_git_infomation"]()
           end,
           { desc = "confirm -> restore" }
         },

@@ -57,7 +57,7 @@ export async function setGitInformation(
     await _gitFetch();
   }
   const gitInfo = await _getGitInformation();
-  await denopsStd.g.set(denops, "git_info#git_info", gitInfo);
+  await denopsStd.g.set(denops, "utils#git_info#git_info", gitInfo);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

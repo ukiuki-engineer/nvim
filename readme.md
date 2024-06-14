@@ -33,6 +33,31 @@ Total Min:     11.237000 msec
 - [Deno](https://deno.com/)
 - Node
 
+# ディレクトリ構造
+
+```
+nvim/
+├── init.lua          // メインファイル
+├── toml/             // プラグインの定義
+├── autoload/         // vimscript
+│   ├── utils/          // あちこちから何度も呼ばれる処理
+│   └── plugins/        // プラグイン設定
+├── lua/              // lua
+│   ├── const.lua       // 定数ファイル
+│   ├── config/         // 全体的な設定
+│   ├── plugins/        // プラグイン設定
+│   └── utils/          // あちこちから何度も呼ばれる処理
+├── after/
+│   └── ftplugin/       // ファイルタイプ別の設定
+├── denops/           // denopsを使用した処理
+│   └── gitInfo/
+├── scripts/          // スクリプト類
+├── ultisnips/        // 個人定義のスニペット
+├── coc-settings.json // coc.nvimの設定
+└── local.vim         // 環境ごとの設定(git管理外)
+```
+
+
 # 仕事集中モード
 
 仕事に集中したいときは、この`nvim/`直下に`working`というファイルを配置する。  

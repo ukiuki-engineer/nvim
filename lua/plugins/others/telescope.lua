@@ -10,7 +10,7 @@ local checkout_and_refresh_git_infomations = function(prompt_bufnr)
   actions.git_checkout_current_buffer(prompt_bufnr)
   -- git情報を更新(lualine用)
   -- NOTE: lualineのgit情報を更新するために必要
-  vim.fn["git_info#refresh_git_infomation"]()
+  vim.fn["utils#git_info#refresh_git_infomation"]()
 end
 
 --------------------------------------------------------------------------------
@@ -201,7 +201,7 @@ end
 
 function M.git_status()
   -- git projectでない場合は終了
-  if not require("utils").is_git_project() then
+  if not require("utils.utils").is_git_project() then
     return
   end
 
@@ -210,8 +210,8 @@ function M.git_status()
 
   -- commit数の状態を返す
   local git_commit_status_text = function()
-    local remote_branch_info_text = require("utils").remote_branch_info_text()
-    local commit_counts = vim.g['git_info#git_info']['commit_counts']
+    local remote_branch_info_text = require("utils.utils").remote_branch_info_text()
+    local commit_counts = vim.g['utils#git_info#git_info']['commit_counts']
 
     if remote_branch_info_text ~= "" then
       return remote_branch_info_text
@@ -223,21 +223,21 @@ function M.git_status()
   end
 
   local prompt_prefix = function()
-    if not vim.g['git_info#git_info'] then
+    if not vim.g['utils#git_info#git_info'] then
       return " > "
     end
-    return " " .. vim.g["git_info#git_info"]['branch_name'] .. " " .. git_commit_status_text() .. " > "
+    return " " .. vim.g["utils#git_info#git_info"]['branch_name'] .. " " .. git_commit_status_text() .. " > "
   end
 
   -- git情報を更新
-  vim.fn['git_info#refresh_git_infomation'](true)
+  vim.fn['utils#git_info#refresh_git_infomation'](true)
 
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)
       -- 選択したファイルをgit restore or 削除する(つまり変更を破棄する)
       map({ "i", "n" }, "<C-r>",
         function()
-          if not vim.fn["utils#confirm"]("delete this change?") then
+          if not vim.fn["utils#utils#confirm"]("delete this change?") then
             return
           end
           local selection = action_state.get_selected_entry()
@@ -249,7 +249,7 @@ function M.git_status()
             vim.fn.system("git restore " .. selection.value)
           end
           -- git情報を更新(lualine用)
-          vim.fn["git_info#refresh_git_infomation"]()
+          vim.fn["utils#git_info#refresh_git_infomation"]()
           actions.close(prompt_bufnr) -- TODO: 閉じずにlistを更新することはできないか？
           require("plugins.others.telescope").git_status()
         end,

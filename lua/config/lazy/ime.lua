@@ -6,7 +6,7 @@ vim.g["vimrc#loaded_ime"] = true
 local augroup             = vim.api.nvim_create_augroup
 local au                  = vim.api.nvim_create_autocmd
 local exepath             = vim.fn.exepath
-local utils               = require("utils")
+local utils               = require("utils.utils")
 
 local events              = { "InsertLeave", "InsertEnter", "CmdlineLeave" }
 
