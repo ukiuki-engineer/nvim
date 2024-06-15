@@ -33,7 +33,8 @@ au("VimEnter", {
       if not existsLocalvimrc then
         -- local.vimが無ければcolorschemeは↓
         -- NOTE: 気分、環境によってころころ変えたいけど、いちいちgitの差分出るのが嫌だからこういう運用
-        vim.cmd([[colorscheme tokyonight-night]])
+        -- TODO: lazyでどうするか...
+        -- vim.cmd([[colorscheme tokyonight-night]])
       end
     end)
   end,
