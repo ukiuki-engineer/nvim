@@ -1,3 +1,4 @@
+-- NOTE: 何か処理がある場合はreturnより前に書いてconfig内で呼ぶと良さそう
 return {
   'nvim-tree/nvim-tree.lua',
   dependencies = {
