@@ -20,6 +20,7 @@ vim.g.init_dir = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.expand("<sfile>")), ":
 require("const")
 -- TODO: プラグイン読み込み
 require("lazy").setup({
+  -- NOTE: 移行が完了したら最後にplugins_new/をplugins/にrenameする
   { import = "plugins_new.ui" },
   { import = "plugins_new.git" },
   { import = "plugins_new.others" },
