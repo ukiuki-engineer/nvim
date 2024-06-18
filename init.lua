@@ -20,9 +20,9 @@ vim.g.init_dir = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.expand("<sfile>")), ":
 require("const")
 -- TODO: プラグイン読み込み
 require("lazy").setup({
-  { import = "plugins.ui" },
-  { import = "plugins.git" },
-  { import = "plugins.others" },
+  { import = "plugins_new.ui" },
+  { import = "plugins_new.git" },
+  { import = "plugins_new.others" },
 })
 -- 設定ファイル読み込み
 require("config.init")
