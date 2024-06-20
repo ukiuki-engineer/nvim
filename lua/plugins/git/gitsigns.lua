@@ -93,6 +93,17 @@ function M.lua_source()
     end
 
   })
+
+  -- カラースキームによっては見にくい事が多いから、commentと同じ色にしておく
+  vim.api.nvim_set_hl(0, 'GitSignsCurrentLineBlame', { link = "comment" })
+  vim.api.nvim_create_augroup("MyGitSigns", {})
+  vim.api.nvim_create_autocmd("ColorScheme", {
+    group = "MyGitSigns",
+    pattern = "*",
+    callback = function()
+      vim.api.nvim_set_hl(0, 'GitSignsCurrentLineBlame', { link = "comment" })
+    end,
+  })
 end
 
 return M
