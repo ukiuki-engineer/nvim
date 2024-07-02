@@ -45,9 +45,6 @@ function M.lua_source()
       row      = 0,
       col      = 1
     },
-    yadm                         = {
-      enable = false
-    },
 
     -- keymaps
     on_attach                    = function(bufnr)
