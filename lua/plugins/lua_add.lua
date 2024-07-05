@@ -158,7 +158,7 @@ function M.telescope()
   -- NOTE: on_cmdで遅延ロードさせるためにこういう回りくどいやり方をしている…
   vim.keymap.set('n', '<Left>', "<Cmd>GitStatus<CR>", {})
   vim.keymap.set('n', '<space>b', "<Cmd>Buffers<CR>", {})
-  vim.keymap.set('n', '<space>c', "<Cmd>Commits<CR>", {})
+  vim.keymap.set('n', '<space>c', "<Cmd>GitCommits<CR>", {})
   vim.keymap.set('n', '<space>f', "<Cmd>FindFiles<CR>", {})
   vim.keymap.set('n', '<space>g', "<Cmd>LiveGrep<CR>", {})
   vim.keymap.set('n', '<space>p', "<Cmd>FindFilesAll<CR>", {})
