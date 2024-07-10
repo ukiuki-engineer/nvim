@@ -206,8 +206,7 @@ end
 --------------------------------------------------------------------------------
 function M.quickrun()
   local opts = { noremap = true, silent = true }
-  vim.keymap.set({ "n", "x" }, "<F5>", ":QuickRun<CR>", opts)
-  vim.keymap.set({ "n", "x" }, "<space>5", ":QuickRun<CR>", opts)
+  vim.keymap.set({ "n", "x" }, "<leader>q", ":QuickRun<CR>", opts)
 end
 
 function M.oil()
