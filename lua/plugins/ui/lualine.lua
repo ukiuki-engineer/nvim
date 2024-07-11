@@ -166,7 +166,17 @@ function M.setup()
         'diagnostics',
         atatata,
       },
-      lualine_x = { 'encoding', 'fileformat', 'filetype', 'g:colors_name' },
+      lualine_x = {
+        'encoding',
+        'fileformat',
+        'filetype',
+        {
+          'g:colors_name',
+          on_click = function()
+            vim.cmd([[ColorSchemes]])
+          end
+        }
+      },
       lualine_y = { 'progress' },
       lualine_z = { 'location' }
     },
