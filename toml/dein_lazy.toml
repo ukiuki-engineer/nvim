@@ -55,13 +55,6 @@ require("plugins.coding.matchup").lua_source()
 repo = 'unblevable/quick-scope'
 on_event = ['CursorMoved']
 
-# コメントアウト
-# NOTE: 本当はもうbuiltinのcommentingで良いけど、commentstringを再定義しないと
-#       スペース空かないのが不満なのでこのまましばらくcommentaryを使う。
-[[plugins]]
-repo = 'tpope/vim-commentary'
-on_event = ['CursorMoved']
-
 # 括弧、クォーテーション、htmlタグの自動close
 [[plugins]]
 repo = 'ukiuki-engineer/vim-autoclose'

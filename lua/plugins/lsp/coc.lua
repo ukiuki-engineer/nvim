@@ -68,6 +68,7 @@ function M.lua_source()
 
   -- ---------------------------------------------------------------------------
   -- coc-outlineの操作
+
   -- coc-outlineを表示
   vim.keymap.set('n', '<space>o', function()
     -- coc#window#find 関数を呼び出し、'cocViewId', 'OUTLINE' に基づいてウィンドウIDを取得
@@ -80,12 +81,14 @@ function M.lua_source()
       vim.fn['coc#window#close'](winid)
     end
   end, { silent = true, nowait = true })
+
   -- coc-outlineにジャンプ
-  -- NOTE: ジャンプ前の箇所に戻るには、普通に<C-o>で
+  -- NOTE:
+  --   - ジャンプ前の箇所に戻るには、普通に<C-o>で
+  --   - outline tree上で<space>tで、treeの開閉ができる
   vim.keymap.set('n', '<space>t', function()
     vim.fn.CocActionAsync('showOutline')
   end, { silent = true, nowait = true })
-
   -- ---------------------------------------------------------------------------
   -- Symbol renaming
   vim.keymap.set("n", "<leader>rn", "<Plug>(coc-rename)", { silent = true })
