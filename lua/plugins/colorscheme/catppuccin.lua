@@ -11,7 +11,7 @@ function M.set_customcolor()
   -- 差分系
   -- 変更行の変更箇所のみ見づらかったので変更。他の差分系の色はそのままで。
   vim.api.nvim_set_hl(0, 'DiffText', {
-    bg = colorscheme_utils.transparent_color(bg_color, "#FD7E00", 0.7)
+    bg = colorscheme_utils.transparent_color(bg_color, "#FD7E00", 0.4)
   })
 end
 

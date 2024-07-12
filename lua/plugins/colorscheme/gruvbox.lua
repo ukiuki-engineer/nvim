@@ -9,7 +9,7 @@ function M.set_customcolor()
 
   -- 変更行の変更箇所
   hi(0, 'DiffText', {
-    bg = colorscheme_utils.transparent_color(bg_color, "#FABD2F", 0.50)
+    bg = colorscheme_utils.transparent_color(bg_color, "#FD7E00", 0.40)
   })
 
   -- ヤンク範囲
