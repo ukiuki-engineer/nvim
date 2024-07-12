@@ -110,9 +110,10 @@ au({ "BufWritePost" }, {
   group = "MyAutocmds",
   pattern = "*",
   callback = function()
-    if vim.fn.expand('%') ~= '' and not string.match(vim.bo.buftype, 'nofile') then
-      vim.cmd([[mkview]])
+    if vim.fn.expand('%') == '' or string.match(vim.bo.buftype, 'nofile') then
+      return
     end
+    vim.cmd([[mkview]])
   end,
 })
 
@@ -121,14 +122,15 @@ au({ "BufRead" }, {
   group = "MyAutocmds",
   pattern = "*",
   callback = function()
-    if vim.fn.expand('%') ~= '' and not string.match(vim.bo.buftype, 'nofile') then
-      vim.cmd([[
-        try
-          silent loadview
-        catch
-        endtry
-      ]])
+    if vim.fn.expand('%') == '' or string.match(vim.bo.buftype, 'nofile') then
+      return
     end
+    vim.cmd([[
+      try
+        silent loadview
+      catch
+      endtry
+    ]])
   end,
 })
 
