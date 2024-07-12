@@ -48,8 +48,9 @@ opt.sessionoptions = 'buffers,curdir,tabpages'
 -- Tab文字を半角スペースにする
 opt.expandtab = true
 
--- viewにoptionsを保存しない
+-- viewにoptions, curdirを保存しない
 vim.opt.viewoptions:remove("options")
+vim.opt.viewoptions:remove("curdir")
 
 -- インデントは基本的に2
 opt.shiftwidth = 2
