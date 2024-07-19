@@ -198,7 +198,7 @@ au("ColorScheme", {
   group = "MyCustomColor",
   pattern = "*",
   callback = function()
-    if vim.g.colors_name == "tokyonight" then
+    if string.match(vim.g.colors_name, "^tokyonight-.*") then
       require("plugins.colorscheme.tokyonight").set_customcolor()
     elseif vim.g.colors_name == "moonlight" then
       require("plugins.colorscheme.moonlight").set_customcolor()
