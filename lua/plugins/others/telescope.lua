@@ -37,11 +37,11 @@ function M.lua_source()
   command('OldFiles', require('telescope.builtin').oldfiles, {})
   command('Tags', require('telescope.builtin').tags, {})
 
+  -- NOTE: ↓の使用例:
+  -- :LiveGrep *.lua,*.vim
   vim.cmd([[
     command! -nargs=* LiveGrep :lua require("plugins.others.telescope").live_grep("<args>")
   ]])
-  -- NOTE: ↑の使用例:
-  -- :LiveGrep *.toml
 
   local actions = require('telescope.actions')
   require('telescope').setup({
@@ -268,9 +268,13 @@ function M.git_status()
   })
 end
 
-function M.live_grep(args)
-  -- TODO: 拡張子を複数指定できるようにする
-  local glob_pattern = args
+function M.live_grep(arg)
+  -- 引数を","で分割して配列に格納する
+  local glob_pattern = {}
+  for match in (arg .. ","):gmatch("(.-)" .. ",") do
+    table.insert(glob_pattern, match)
+  end
+
   if glob_pattern then
     -- 拡張子が指定されていればそれを使用してlive_grepを呼び出す
     require('telescope.builtin').live_grep({ glob_pattern = glob_pattern })
