@@ -10,15 +10,6 @@ hook_add = '''
 " ヘルプを日本語化
 set helplang=ja
 '''
-
-# TODO: シェルスクリプトのときバグるので一旦オフに
-# 標準機能より高速にファイル形式を判別できる。
-# [[plugins]]
-# repo = 'nathom/filetype.nvim'
-# hook_add = '''
-# " 標準機能をオフに
-# let g:did_load_filetypes = 1
-# '''
 ################################################################################
 # denops
 # NOTE: denops製は遅延いらんらしい

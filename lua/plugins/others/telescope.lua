@@ -20,7 +20,7 @@ function M.lua_source()
   local command = vim.api.nvim_create_user_command
   command('BufferLines', require('telescope.builtin').current_buffer_fuzzy_find, {})
   command('Buffers', require("plugins.others.telescope").buffers, {})
-  command('ColorSchemes', function() require('telescope.builtin').colorscheme({ enable_preview = true }) end, {})
+  command('ColorSchemes', require("plugins.others.telescope").colorscheme, {})
   command('CommandHistories', require('telescope.builtin').command_history, {})
   command('Commands', require('telescope.builtin').commands, {})
   command('Filetypes', require('telescope.builtin').filetypes, {})
@@ -123,6 +123,13 @@ function M.buffers()
       )
       return true
     end,
+  })
+end
+
+function M.colorscheme()
+  require('telescope.builtin').colorscheme({
+    enable_preview = true,
+    ignore_builtins = true
   })
 end
 
