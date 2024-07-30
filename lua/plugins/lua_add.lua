@@ -92,9 +92,7 @@ end
 --------------------------------------------------------------------------------
 function M.codeium()
   vim.g.codeium_filetypes = {
-    markdown = false,
-    text     = false,
-    csv      = false,
+    TelescopePrompt = false
   }
   vim.g.codeium_no_map_tab = true
 
