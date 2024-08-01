@@ -173,6 +173,7 @@ function M.coc()
     '@yaegassy/coc-laravel',
     '@yaegassy/coc-marksman',
     'coc-blade',
+    'coc-clangd',
     'coc-css',
     'coc-cssmodules',
     'coc-deno',
