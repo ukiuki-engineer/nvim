@@ -99,8 +99,8 @@ au({ "WinEnter", "BufRead", "BufNewFile", "Syntax", "Colorscheme" }, {
     vim.fn.matchadd('Note', 'NOTE', -1)
     vim.fn.matchadd('Todo', 'TODO', -1)
     vim.fn.matchadd('Fixme', 'FIXME', -1)
-    vim.api.nvim_set_hl(0, 'Note', { fg = "White", bold = true })
-    vim.api.nvim_set_hl(0, 'Todo', { fg = "Yellow", bold = true })
+    vim.api.nvim_set_hl(0, 'Note', { fg = "LightGray", bold = true })
+    vim.api.nvim_set_hl(0, 'Todo', { fg = "DarkYellow", bold = true })
     vim.api.nvim_set_hl(0, 'Fixme', { fg = "Red", bold = true })
   end,
 })
