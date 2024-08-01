@@ -157,6 +157,13 @@ au("FileType", {
     vim.bo.commentstring = "<!-- %s -->"
   end
 })
+au("FileType", {
+  group = "MyAutocmds",
+  pattern = { "vim" },
+  callback = function()
+    vim.bo.commentstring = "\" %s"
+  end
+})
 -- ------------------------------------------------------------------------------
 -- colorschemeごとの設定
 -- ------------------------------------------------------------------------------
