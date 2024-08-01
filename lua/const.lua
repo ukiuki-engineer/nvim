@@ -41,6 +41,7 @@ vim.g["my#const"] = {
   favorite_colorschemes                = {
     "catppuccin",
     "duskfox",
+    "everforest",
     "gruvbox",
     "kanagawa",
     "nightfly",
