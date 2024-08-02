@@ -101,14 +101,25 @@ function! utils#utils#tag_jump_with_dollar()
   endtry
 endfunction
 
-" 行末がセミコロンでなければ挿入
+"
+" 行末にセミコロンを挿入する
+"
 function! utils#utils#append_semicolon()
+  call utils#utils#append_symbol(';')
+endfunction
+
+"
+" 行末に指定されたシンボルを挿入する
+" TODO: ドットリピートできるようにしたい
+" TODO: Visual modeでもいけるっけ？
+"
+function! utils#utils#append_symbol(symbol)
   " 現在の行の末尾の文字を取得
   let l:line = getline('.')
 
-  " 末尾がセミコロンでなければ挿入
-  if l:line !~ ';$'
-    execute "normal! m`A;\<Esc>\`\`"
+  " 末尾が指定されたシンボルでなければ挿入
+  if l:line !~ a:symbol .. '$'
+    execute "normal! m`A" .. a:symbol .. "\<Esc>\`\`"
   endif
 endfunction
 " --------------------------------------------------------------------------------
