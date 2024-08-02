@@ -92,9 +92,7 @@ end
 --------------------------------------------------------------------------------
 function M.codeium()
   vim.g.codeium_filetypes = {
-    markdown = false,
-    text     = false,
-    csv      = false,
+    TelescopePrompt = false
   }
   vim.g.codeium_no_map_tab = true
 
@@ -175,6 +173,7 @@ function M.coc()
     '@yaegassy/coc-laravel',
     '@yaegassy/coc-marksman',
     'coc-blade',
+    'coc-clangd',
     'coc-css',
     'coc-cssmodules',
     'coc-deno',

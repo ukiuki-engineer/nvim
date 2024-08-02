@@ -94,3 +94,6 @@ repo = 'tiagovla/tokyodark.nvim'
 
 [[plugins]]
 repo = 'cocopon/iceberg.vim'
+
+[[plugins]]
+repo = 'sainnhe/everforest'

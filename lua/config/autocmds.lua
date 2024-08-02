@@ -99,8 +99,8 @@ au({ "WinEnter", "BufRead", "BufNewFile", "Syntax", "Colorscheme" }, {
     vim.fn.matchadd('Note', 'NOTE', -1)
     vim.fn.matchadd('Todo', 'TODO', -1)
     vim.fn.matchadd('Fixme', 'FIXME', -1)
-    vim.api.nvim_set_hl(0, 'Note', { fg = "White", bold = true })
-    vim.api.nvim_set_hl(0, 'Todo', { fg = "Yellow", bold = true })
+    vim.api.nvim_set_hl(0, 'Note', { fg = "LightGray", bold = true })
+    vim.api.nvim_set_hl(0, 'Todo', { fg = "DarkYellow", bold = true })
     vim.api.nvim_set_hl(0, 'Fixme', { fg = "Red", bold = true })
   end,
 })
@@ -155,6 +155,13 @@ au("FileType", {
   pattern = { "vue" },
   callback = function()
     vim.bo.commentstring = "<!-- %s -->"
+  end
+})
+au("FileType", {
+  group = "MyAutocmds",
+  pattern = { "vim" },
+  callback = function()
+    vim.bo.commentstring = "\" %s"
   end
 })
 -- ------------------------------------------------------------------------------
@@ -212,6 +219,8 @@ au("ColorScheme", {
       require("plugins.colorscheme.nightfox").set_customcolor()
     elseif string.match(vim.g.colors_name, "^catppuccin-.*") then
       require("plugins.colorscheme.catppuccin").set_customcolor()
+    elseif vim.g.colors_name == "everforest" then
+      require("plugins.colorscheme.everforest").set_customcolor()
     else
       -- 上記以外は以下が設定される
       require("plugins.colorscheme.utils").set_customcolor_common()
