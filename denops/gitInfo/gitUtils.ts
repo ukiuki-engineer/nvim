@@ -23,7 +23,7 @@ interface GitInformation {
 // export
 ////////////////////////////////////////////////////////////////////////////////
 // gitプロジェクトか
-export async function isGitProject(): Promise<boolean> {
+export async function isGitProject(denops: Denops): Promise<boolean> {
   try {
     const command = new Deno.Command("git", {
       args: ["rev-parse", "--is-inside-work-tree"],
@@ -36,10 +36,13 @@ export async function isGitProject(): Promise<boolean> {
 
     if (code === 0) {
       const output = new TextDecoder().decode(stdout).trim();
-      return output === "true";
+      const isGitProject = output === "true";
+      denopsStd.g.set(denops, "utils#git_info#is_git_project", isGitProject);
+      return isGitProject;
     } else {
       // Gitコマンドが失敗した場合は、現在のディレクトリがGitリポジトリではないか、
       // またはGitがインストールされていないことを意味する。
+      denopsStd.g.set(denops, "utils#git_info#is_git_project", false);
       return false;
     }
   } catch (error) {
@@ -100,7 +103,8 @@ async function _gitFetch(): Promise<boolean> {
     if (code === 0) {
       return true;
     } else {
-      console.error("Error git fetching:", stderr);
+      // NOTE: ネットに繋ってないときもいちいちエラー出てウザいからとりあえず何もしないようにしとく
+      // console.error("Error git fetching:", stderr);
       return false;
     }
   } catch (error) {
