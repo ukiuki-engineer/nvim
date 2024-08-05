@@ -8,6 +8,7 @@
 --   <leaer>: 何かしらのactionを起こす系
 --   <space>: 何かを表示する系
 --=============================================================================
+vim.api.nvim_create_augroup("keymappings", {})
 -------------------------------------------------------------------------------
 -- localな変数、function
 -------------------------------------------------------------------------------
@@ -64,13 +65,42 @@ vim.keymap.set({ "n" }, "<C-i>", "<TAB>", opts)
 -- タブを閉じる
 vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", opts)
 -------------------------------------------------------------------------------
+-- ファイルタイプ別keymappings
+-------------------------------------------------------------------------------
+-- 行末にセミコロンを挿入
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = "keymappings",
+  pattern = {
+    "css",
+    "javascript",
+    "php",
+    "scss",
+    "sql",
+    "typescript",
+    "vue",
+  },
+  callback = function()
+    vim.keymap.set("n", "<leader>;", vim.fn["utils#utils#append_semicolon"], opts)
+  end
+})
+-- タグジャンプ
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = "keymappings",
+  pattern = {
+    "javascript",
+    "vue",
+  },
+  callback = function()
+    vim.keymap.set("n", "<leader>;", vim.fn["utils#utils#tag_jump_with_dollar"], opts)
+  end
+})
+-------------------------------------------------------------------------------
 -- 遅延で定義するmapping(vim起動時にあれこれ処理させたくない)
 -------------------------------------------------------------------------------
-vim.api.nvim_create_augroup("lazy_keymapping", {})
 
 -- <space>1 ~ 9でタブ1 ~ 9に移動
 vim.api.nvim_create_autocmd({ "TabNew" }, {
-  group = "lazy_keymapping",
+  group = "keymappings",
   callback = function()
     for i = 1, 9 do
       vim.keymap.set("n", "<space>" .. i, ":" .. i .. "tabnext<CR>", opts)
@@ -81,7 +111,7 @@ vim.api.nvim_create_autocmd({ "TabNew" }, {
 
 -- 全角文字に行内ジャンプ
 vim.api.nvim_create_autocmd({ "BufRead", "CursorMoved" }, {
-  group = "lazy_keymapping",
+  group = "keymappings",
   callback = function()
     -- 全角文字と半角文字の対応を定義
     require("utils.utils").jump_to_zenkaku({
@@ -129,7 +159,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "CursorMoved" }, {
 
 -- cmdlineモードのkeymapping
 vim.api.nvim_create_autocmd({ "CmdLineEnter" }, {
-  group = "lazy_keymapping",
+  group = "keymappings",
   callback = function()
     -- cmdlineモードをemacsキーバインドでカーソル移動
     vim.keymap.set("c", "<C-b>", "<Left>", { noremap = true })
