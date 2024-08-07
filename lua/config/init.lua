@@ -51,12 +51,31 @@ au("CmdlineEnter", {
 })
 
 -- Terminalモードの設定
-au({ "TermOpen", "CmdUndefined" }, {
+au({ "TermOpen" }, {
   group = "my_lazyload",
   callback = function()
+    if vim.g['vimrc#loaded_terminal'] then
+      return
+    end
+    -- Terminalモード関係の設定をロード
     require("config.lazy.terminal")
+    -- nvim-cmpの設定をリロード
+    require("plugins.coding.nvim-cmp").lua_source()
   end,
+  once = true
+})
+au({ "CmdUndefined" }, {
+  group = "my_lazyload",
   pattern = { "Term", "TermHere", "TermHereV", "TermV", "Terminal" },
+  callback = function()
+    if vim.g['vimrc#loaded_terminal'] then
+      return
+    end
+    -- Terminalモード関係の設定をロード
+    require("config.lazy.terminal")
+    -- nvim-cmpの設定をリロード
+    require("plugins.coding.nvim-cmp").lua_source()
+  end,
   once = true
 })
 
