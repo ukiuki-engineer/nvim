@@ -111,7 +111,7 @@ endfunction
 "
 " 行末に指定されたシンボルを挿入する
 " TODO: ドットリピートできるようにしたい
-" TODO: Visual modeでもいけるっけ？
+" TODO: Visual modeにも対応させる
 "
 function! utils#utils#append_symbol(symbol)
   " 現在の行の末尾の文字を取得
@@ -119,7 +119,8 @@ function! utils#utils#append_symbol(symbol)
 
   " 末尾が指定されたシンボルでなければ挿入
   if l:line !~ a:symbol .. '$'
-    execute "normal! m`A" .. a:symbol .. "\<Esc>\`\`"
+    let l:command = "normal! A" .. a:symbol .. "\<Esc>\`\`"
+    execute l:command
   endif
 endfunction
 " --------------------------------------------------------------------------------
