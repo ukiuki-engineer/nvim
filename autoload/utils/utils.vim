@@ -119,7 +119,7 @@ function! utils#utils#append_symbol(symbol)
 
   " 末尾が指定されたシンボルでなければ挿入
   if l:line !~ a:symbol .. '$'
-    let l:command = "normal! A" .. a:symbol .. "\<Esc>\`\`"
+    let l:command = "normal! m`A" .. a:symbol .. "\<Esc>\`\`"
     execute l:command
   endif
 endfunction
