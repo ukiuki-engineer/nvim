@@ -139,6 +139,19 @@ function M.jump_to_zenkaku(hankaku_zenkaku_pairs)
   end
 end
 
+--
+-- 無名バッファのみか
+-- (無名バッファのみならtrue)
+--
+function M.is_only_no_name_buf()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.fn.bufname(buf) ~= "" then
+      return false
+    end
+  end
+  return true
+end
+
 -------------------------------------------------------------------------------
 -- 以下、特定のプラグインに依存する処理
 -- →そもそもここじゃなくてplugins/配下に置くべきかもしれないが...

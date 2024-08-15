@@ -21,14 +21,7 @@ au({ "BufWrite", "BufRead", "TabNew", "TabClosed", "WinNew", "WinClosed" },
           -- diffviewが開いていたら何もしない
           require("utils.utils").is_open_diffview() or
           -- 無名バッファのみの場合は何もしない(時々Sessionファイルが空になることがあるからその対策)
-          function()
-            for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-              if vim.fn.bufname(buf) ~= "" then
-                return true
-              end
-            end
-            return false
-          end
+          require("utils.utils").is_only_no_name_buf()
       then
         -- 何もせず終了
         return
