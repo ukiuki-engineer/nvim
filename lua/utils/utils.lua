@@ -139,4 +139,32 @@ function M.jump_to_zenkaku(hankaku_zenkaku_pairs)
   end
 end
 
+---
+--- 渡されたtabinfoの中にdiffviewタブがあるか
+---
+local function _has_diffview(tabinfo)
+  -- diffvjewが開いているかチェック
+  for _, tab in ipairs(tabinfo) do
+    if tab.variables and tab.variables.diffview_view_initialized then
+      return true
+    end
+  end
+
+  return false
+end
+
+--
+-- diffviewタブか
+--
+function M.is_diffview()
+  return _has_diffview(vim.fn.gettabinfo(vim.fn.tabpagenr()))
+end
+
+--
+-- diffviewが開いているか
+--
+function M.is_open_diffview()
+  return _has_diffview(vim.fn.gettabinfo())
+end
+
 return M
