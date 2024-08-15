@@ -91,7 +91,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "vue",
   },
   callback = function()
-    vim.keymap.set("n", "<leader>;", vim.fn["utils#utils#tag_jump_with_dollar"], opts)
+    vim.keymap.set("n", "<C-]>", vim.fn["utils#utils#tag_jump_with_dollar"], opts)
   end
 })
 -------------------------------------------------------------------------------
