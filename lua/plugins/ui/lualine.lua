@@ -58,7 +58,8 @@ function M.setup()
 
   -- user.nameとuser.emailのtextを返す
   local function user_info()
-    if not vim.g['utils#git_info#git_info'] then
+    if not vim.g['utils#git_info#git_info'] or not require("utils.utils").is_diffview() then
+      -- git情報が無いか、diffviewタブではない場合表示しない
       return ""
     end
     local config = vim.g['utils#git_info#git_info']['config']
