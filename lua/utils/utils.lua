@@ -161,7 +161,7 @@ end
 --- 渡されたtabinfoの中にdiffviewタブがあるか
 ---
 local function _has_diffview(tabinfo)
-  -- diffvjewが開いているかチェック
+  -- diffviewが開いているかチェック
   for _, tab in ipairs(tabinfo) do
     if tab.variables and tab.variables.diffview_view_initialized then
       return true
