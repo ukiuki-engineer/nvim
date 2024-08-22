@@ -145,7 +145,8 @@ end
 --
 function M.is_only_no_name_buf()
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.fn.bufname(buf) ~= "" then
+    local bufname = vim.fn.bufname(buf)
+    if bufname ~= "" and not string.match(bufname, "^NvimTree_.*") then
       return false
     end
   end

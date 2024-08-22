@@ -21,7 +21,10 @@ au({ "BufWrite", "BufRead", "TabNew", "TabClosed", "WinNew", "WinClosed" },
           -- diffviewが開いていたら何もしない
           require("utils.utils").is_open_diffview() or
           -- 無名バッファのみの場合は何もしない(時々Sessionファイルが空になることがあるからその対策)
-          require("utils.utils").is_only_no_name_buf()
+          require("utils.utils").is_only_no_name_buf() or
+          -- コマンドラインモードなら何もしない
+          -- (session読込コマンド実行時に空のsessionが作成されることがあるのでその対策)
+          vim.fn.mode() == "c"
       then
         -- 何もせず終了
         return
