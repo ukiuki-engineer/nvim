@@ -101,15 +101,26 @@ function! utils#utils#tag_jump_with_dollar()
   endtry
 endfunction
 
-" 行末がセミコロンでなければ挿入
+"
+" 行末にセミコロンを挿入する
+"
 function! utils#utils#append_semicolon()
-  " 現在の行の末尾の文字を取得
-  let l:line = getline('.')
+  call utils#utils#append_symbol(';')
+endfunction
 
-  " 末尾がセミコロンでなければ挿入
-  if l:line !~ ';$'
-    execute "normal! m`A;\<Esc>\`\`"
+"
+" 行末に指定されたシンボルを挿入する
+" TODO: Visual modeにも対応させる
+"
+function! utils#utils#append_symbol(symbol)
+  " 末尾が指定されたシンボルなら何もしない
+  if getline('.') =~ a:symbol .. '$'
+    return
   endif
+
+  " 末尾に指定されたシンボルを挿入
+  let l:command = "A" .. a:symbol .. "\<Esc>"
+  call feedkeys(l:command, 'n')
 endfunction
 " --------------------------------------------------------------------------------
 " lua/config/init.lua

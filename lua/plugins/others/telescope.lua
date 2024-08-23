@@ -32,7 +32,7 @@ function M.lua_source()
   command('GitStatus', require("plugins.others.telescope").git_status, {})
   command('HelpTags', require('telescope.builtin').help_tags, {})
   command('Highlights', require('telescope.builtin').highlights, {})
-  command('ManPages', require('telescope.builtin').man_pages, {})
+  command('ManPages', require('plugins.others.telescope').man_pages, {})
   command('Marks', require('telescope.builtin').marks, {})
   command('OldFiles', require('telescope.builtin').oldfiles, {})
   command('Tags', require('telescope.builtin').tags, {})
@@ -265,6 +265,12 @@ function M.git_status()
       return true
     end,
     prompt_prefix = prompt_prefix(),
+  })
+end
+
+function M.man_pages()
+  require('telescope.builtin').man_pages({
+    sections = { "ALL" }
   })
 end
 

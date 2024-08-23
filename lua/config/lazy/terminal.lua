@@ -7,12 +7,9 @@ if vim.g['vimrc#loaded_terminal'] then
 end
 vim.g['vimrc#loaded_terminal'] = true
 
--- nvim-cmpの設定をリロード
-require("plugins.coding.nvim-cmp").lua_source()
-
-local api     = vim.api
-local augroup = api.nvim_create_augroup
-local au      = api.nvim_create_autocmd
+local api                      = vim.api
+local augroup                  = api.nvim_create_augroup
+local au                       = api.nvim_create_autocmd
 
 augroup("my_terminal", {})
 au("TermOpen", {

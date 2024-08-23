@@ -139,4 +139,51 @@ function M.jump_to_zenkaku(hankaku_zenkaku_pairs)
   end
 end
 
+--
+-- 無名バッファのみか
+-- (無名バッファのみならtrue)
+--
+function M.is_only_no_name_buf()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    local bufname = vim.fn.bufname(buf)
+    if bufname ~= "" and not string.match(bufname, "^NvimTree_.*") then
+      return false
+    end
+  end
+  return true
+end
+
+-------------------------------------------------------------------------------
+-- 以下、特定のプラグインに依存する処理
+-- →そもそもここじゃなくてplugins/配下に置くべきかもしれないが...
+-------------------------------------------------------------------------------
+
+---
+--- 渡されたtabinfoの中にdiffviewタブがあるか
+---
+local function _has_diffview(tabinfo)
+  -- diffviewが開いているかチェック
+  for _, tab in ipairs(tabinfo) do
+    if tab.variables and tab.variables.diffview_view_initialized then
+      return true
+    end
+  end
+
+  return false
+end
+
+--
+-- diffviewタブか
+--
+function M.is_diffview()
+  return _has_diffview(vim.fn.gettabinfo(vim.fn.tabpagenr()))
+end
+
+--
+-- diffviewが開いているか
+--
+function M.is_open_diffview()
+  return _has_diffview(vim.fn.gettabinfo())
+end
+
 return M

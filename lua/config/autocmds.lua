@@ -12,44 +12,28 @@ au({ "BufWrite", "BufRead", "TabNew", "TabClosed", "WinNew", "WinClosed" },
   {
     group = "MyAutocmds",
     callback = function()
+      if -- readonlyなら何もしない
+          vim.o.readonly or
+          -- commit編集時は何もしない
+          vim.fn.expand('%:t') == "COMMIT_EDITMSG" or
+          -- quickfix windowの時は何もしない
+          vim.o.filetype == "qf" or
+          -- diffviewが開いていたら何もしない
+          require("utils.utils").is_open_diffview() or
+          -- 無名バッファのみの場合は何もしない(時々Sessionファイルが空になることがあるからその対策)
+          require("utils.utils").is_only_no_name_buf() or
+          -- コマンドラインモードなら何もしない
+          -- (session読込コマンド実行時に空のsessionが作成されることがあるのでその対策)
+          vim.fn.mode() == "c"
+      then
+        -- 何もせず終了
+        return
+      end
+
       -- vim起動時のカレントディレクトリ
       local pwd_in_startup = vim.fn.expand('$PWD')
       -- セッション保存コマンド
       local mksession_command = 'mksession! ' .. pwd_in_startup .. '/Session.vim'
-
-      -- readonlyなら何もしない
-      if vim.o.readonly then
-        return
-      end
-
-      -- commit編集時は何もしない
-      if vim.fn.expand('%:t') == "COMMIT_EDITMSG" then
-        return
-      end
-
-      -- quickfix windowの時は何もしない
-      if vim.o.filetype == "qf" then
-        return
-      end
-
-      -- diffviewのパネルがあったら何もしない
-      if string.find(vim.fn.join(vim.fn.gettabinfo(), ', '), 'diffview_view') then
-        return
-      end
-
-      -- 無名バッファのみの場合は何もしない
-      -- NOTE: 時々Sessionファイルが空になることがあるからこの処理を入れておく
-      local has_named_buffer = false
-      for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.fn.bufname(buf) ~= "" then
-          has_named_buffer = true
-          break
-        end
-      end
-      if not has_named_buffer then
-        return
-      end
-
       -- session保存
       vim.cmd(mksession_command)
     end

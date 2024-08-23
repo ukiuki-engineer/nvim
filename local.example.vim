@@ -17,5 +17,9 @@
 " denopsのデバッグをオンにする
 " let g:denops#debug = 1
 
-" カラースキームをランダムに設定
-lua require("utils.utils").change_colorscheme()
+try
+  " カラースキームをランダムに設定
+  lua require("utils.utils").change_colorscheme()
+catch
+endtry
+
