@@ -97,3 +97,6 @@ repo = 'cocopon/iceberg.vim'
 
 [[plugins]]
 repo = 'sainnhe/everforest'
+
+[[plugins]]
+repo = 'navarasu/onedark.nvim'
