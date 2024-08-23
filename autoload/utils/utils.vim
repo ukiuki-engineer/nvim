@@ -110,18 +110,17 @@ endfunction
 
 "
 " 行末に指定されたシンボルを挿入する
-" TODO: ドットリピートできるようにしたい
 " TODO: Visual modeにも対応させる
 "
 function! utils#utils#append_symbol(symbol)
-  " 現在の行の末尾の文字を取得
-  let l:line = getline('.')
-
-  " 末尾が指定されたシンボルでなければ挿入
-  if l:line !~ a:symbol .. '$'
-    let l:command = "normal! m`A" .. a:symbol .. "\<Esc>\`\`"
-    execute l:command
+  " 末尾が指定されたシンボルなら何もしない
+  if getline('.') =~ a:symbol .. '$'
+    return
   endif
+
+  " 末尾に指定されたシンボルを挿入
+  let l:command = "A" .. a:symbol .. "\<Esc>"
+  call feedkeys(l:command, 'n')
 endfunction
 " --------------------------------------------------------------------------------
 " lua/config/init.lua
