@@ -2,7 +2,7 @@ local opt = vim.opt
 
 -- 文字コード
 -- NOTE: `:h encoding-values`
--- Vim が内部処理に利用する文字コード。保存時に使用する文字コード
+-- Vim が内部処理に利用する文字コード。開いたファイルが文字化けしてたときにいじるのはこれ。
 opt.encoding = 'utf-8'
 -- Vim が 既存ファイルの 文字コード推定に使う文字コードのリスト。
 opt.fileencodings = 'utf-8,sjis,iso-2022-jp,euc-jp'
