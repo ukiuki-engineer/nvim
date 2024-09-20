@@ -26,6 +26,8 @@ vim.cmd([[
   command! OpenFilerHere             :call utils#utils#open_filer_here()
   " カレント行のgitコミットのハッシュ値をヤンクする
   command! YankCommitHash            :call utils#utils#yank_commit_hash()
+  " 日報のタイトルを今日の日付で更新
+  command! UpdateReportTitle         :call utils#utils#update_report_title()
 ]])
 
 -- カラースキームをランダムに変更するコマンド

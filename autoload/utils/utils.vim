@@ -235,3 +235,29 @@ function! utils#utils#yank_commit_hash()
     call utils#utils#echo_error_message('E005', v:exception)
   endtry
 endfunction
+
+"
+" 日報のタイトルを今日の日付で更新
+"
+function! utils#utils#update_report_title()
+  " 日付を取得
+  let date_command =  ['date', '+%Y/%m/%d(%u)']
+  let today = system(date_command)
+
+  " 改行を削除
+  let today = substitute(today, '\n', '', 'g')
+  " 曜日を日本語に
+  let today = substitute(today, '(1)', '(月)', '')
+  let today = substitute(today, '(2)', '(火)', '')
+  let today = substitute(today, '(3)', '(水)', '')
+  let today = substitute(today, '(4)', '(木)', '')
+  let today = substitute(today, '(5)', '(金)', '')
+  let today = substitute(today, '(6)', '(土)', '')
+  let today = substitute(today, '(7)', '(日)', '')
+
+  " タイトル
+  let title = '##### 日報 ' .. today
+
+  " タイトル更新
+  execute 'norm! S' .. title
+endfunction
