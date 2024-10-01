@@ -239,10 +239,30 @@ endfunction
 "
 " 日報のタイトルを今日の日付で更新
 "
-function! utils#utils#update_report_title()
+function! utils#utils#update_report_title(relative_days)
+  " dateコマンド
+  if exists('$MYVIMRC_REPORT_COMMAND')
+    let date_command = $MYVIMRC_REPORT_COMMAND
+  else
+    " デフォルト
+    let date_command = 'date'
+  endif
+  " 実行コマンド
+  let execute_command =  [date_command, '+%Y/%m/%d(%u)']
+
+  " 引数の処理
+  if a:relative_days != "" && (a:relative_days =~ '^+' || a:relative_days =~ '^[0-9]')
+    let relative_days = substitute(a:relative_days, '+', '', '') .. ' days'
+    call add(execute_command, '--date')
+    call add(execute_command, relative_days)
+  elseif a:relative_days != "" && a:relative_days =~ '^-'
+    let relative_days = substitute(a:relative_days, '-', '', '') .. ' days ago'
+    call add(execute_command, '--date')
+    call add(execute_command, relative_days)
+  endif
+
   " 日付を取得
-  let date_command =  ['date', '+%Y/%m/%d(%u)']
-  let today = system(date_command)
+  let today = system(execute_command)
 
   " 改行を削除
   let today = substitute(today, '\n', '', 'g')
