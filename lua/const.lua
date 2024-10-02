@@ -47,7 +47,7 @@ vim.g["my#const"] = {
     "everforest",
     "gruvbox",
     "kanagawa",
-    "kanagawa-lotus",
+    -- "kanagawa-lotus",
     "nightfly",
     "nightfox",
     "nordfox",
