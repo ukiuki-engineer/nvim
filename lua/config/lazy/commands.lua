@@ -21,13 +21,13 @@ vim.cmd([[
   " 保存だけ行う(autocmdを発火させない。format on saveとかその他諸々。)
   command! W                                  :noautocmd w
   " システム側のファイラーを開く(カレントディレクトリ)
-  command! OpenFiler                          :call utils#utils#open_filer()
+  command! OpenFiler                          :call utils#commands#open_filer()
   " システム側のファイラーを開く(カレントバッファのディレクトリ)
-  command! OpenFilerHere                      :call utils#utils#open_filer_here()
+  command! OpenFilerHere                      :call utils#commands#open_filer_here()
   " カレント行のgitコミットのハッシュ値をヤンクする
-  command! YankCommitHash                     :call utils#utils#yank_commit_hash()
+  command! YankCommitHash                     :call utils#commands#yank_commit_hash()
   " 日報のタイトルを今日の日付で更新
-  command! -nargs=* UpdateReportTitle         :call utils#utils#update_report_title("<args>")
+  command! -nargs=* UpdateReportTitle         :call utils#commands#update_report_title("<args>")
 ]])
 
 -- カラースキームをランダムに変更するコマンド
