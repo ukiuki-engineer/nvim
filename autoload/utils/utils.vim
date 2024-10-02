@@ -70,7 +70,9 @@ function! utils#utils#echo_error_message(error_code, exception, param = {}) abor
   " エラーメッセージ出力
   echohl ErrorMsg
   echomsg l:my_message
-  echomsg a:exception
+  if a:exception != ''
+    echomsg a:exception
+  endif
   echohl None
 endfunction
 
