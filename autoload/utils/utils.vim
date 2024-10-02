@@ -249,6 +249,13 @@ function! utils#utils#update_report_title(relative_days)
     " デフォルト
     let date_command = 'date'
   endif
+
+  if !executable(date_command)
+    " エラーメッセージ出力して終了
+    call utils#utils#echo_error_message('E009', '', {'command': date_command})
+    return
+  endif
+
   " 実行コマンド
   let execute_command =  [date_command, '+%Y/%m/%d(%u)']
 
@@ -265,6 +272,12 @@ function! utils#utils#update_report_title(relative_days)
 
   " 日付を取得
   let today = system(execute_command)
+
+  if v:shell_error != 0
+    " エラーメッセージ出力して終了
+    call utils#utils#echo_error_message('E010', v:exception)
+    return
+  endif
 
   " 改行を削除
   let today = substitute(today, '\n', '', 'g')
