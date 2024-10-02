@@ -7,6 +7,7 @@
 --------------------------------------------------------------------------------
 -- confirmしてpushする
 local function _git_push_confirm()
+  -- TODO: なぜか非同期処理になっている...
   vim.fn['utils#git_info#refresh_git_infomation']()
 
   local message = ""
