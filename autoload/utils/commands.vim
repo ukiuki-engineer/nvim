@@ -89,6 +89,8 @@ endfunction
 
 "
 " 日報のタイトルを今日の日付で更新
+" NOTE: GNU版のdateコマンド前提
+"       Macの場合、homebrewとかでgdateをインストールして、MYVIMRC_REPORT_COMMANDにフルパスを入れておく
 "
 function! utils#commands#update_report_title(relative_days)
   " dateコマンド
@@ -99,8 +101,8 @@ function! utils#commands#update_report_title(relative_days)
     let date_command = 'date'
   endif
 
+  " dateコマンドが実行可能でなければエラーメッセージ出力して終了
   if !executable(date_command)
-    " エラーメッセージ出力して終了
     call utils#utils#echo_error_message('E009', '', {'command': date_command})
     return
   endif
@@ -122,8 +124,8 @@ function! utils#commands#update_report_title(relative_days)
   " 日付を取得
   let today = system(execute_command)
 
+  " シェルで何らかのエラーが発生していればエラーメッセージ出力して終了
   if v:shell_error != 0
-    " エラーメッセージ出力して終了
     call utils#utils#echo_error_message('E010', v:exception)
     return
   endif
