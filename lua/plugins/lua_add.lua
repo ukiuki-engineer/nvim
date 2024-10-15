@@ -42,11 +42,11 @@ local function _git_push_confirm()
 end
 
 -- confirmしてgit resetする
-local function _delete_latest_commit(soft_or_hard)
+local function _delete_latest_commit(opts)
   if not vim.fn["utils#utils#confirm"]("Delete latest commit?") then
     return
   end
-  vim.cmd("Gin ++wait reset --" .. soft_or_hard .. " HEAD^")
+  vim.cmd("Gin ++wait reset --" .. opts.soft_or_hard .. " HEAD^")
   vim.cmd([[DiffviewRefresh]])
 end
 
@@ -129,7 +129,7 @@ function M.gin()
 
   -- commands
   vim.api.nvim_create_user_command('DeleteLatestCommit',
-    function() M.pcall_delete_latest_commit('soft') end, {})
+    function() M.pcall_delete_latest_commit({ soft_or_hard = "soft" }) end, {})
   vim.api.nvim_create_user_command('GinPush', M.pcall_git_push_confirm, {})
   vim.api.nvim_create_user_command('GinPushForce', function()
     if not vim.fn["utils#utils#confirm"]("Force push OK ?") then
@@ -228,8 +228,8 @@ function M.pcall_git_push_confirm()
 end
 
 -- _delete_latest_commit()をpcallでラップして実行
-function M.pcall_delete_latest_commit(soft_or_hard)
-  local success, exception = pcall(_delete_latest_commit, soft_or_hard)
+function M.pcall_delete_latest_commit(opts)
+  local success, exception = pcall(_delete_latest_commit, opts)
   if not success then
     require("utils.utils").echo_error_message("E007", exception)
   end
