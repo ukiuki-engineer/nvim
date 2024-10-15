@@ -10,7 +10,7 @@ local checkout_and_refresh_git_infomations = function(prompt_bufnr)
   actions.git_checkout_current_buffer(prompt_bufnr)
   -- git情報を更新(lualine用)
   -- NOTE: lualineのgit情報を更新するために必要
-  vim.fn["utils#git_info#refresh_git_infomation"]()
+  vim.fn["utils#git_info#async_refresh_git_infomation"]()
 end
 
 --------------------------------------------------------------------------------
@@ -237,7 +237,7 @@ function M.git_status()
   end
 
   -- git情報を更新
-  vim.fn['utils#git_info#refresh_git_infomation'](true)
+  vim.fn['utils#git_info#async_refresh_git_infomation'](true)
 
   require('telescope.builtin').git_status({
     attach_mappings = function(prompt_bufnr, map)
@@ -256,7 +256,7 @@ function M.git_status()
             vim.fn.system("git restore " .. selection.value)
           end
           -- git情報を更新(lualine用)
-          vim.fn["utils#git_info#refresh_git_infomation"]()
+          vim.fn["utils#git_info#async_refresh_git_infomation"]()
           actions.close(prompt_bufnr) -- TODO: 閉じずにlistを更新することはできないか？
           require("plugins.others.telescope").git_status()
         end,

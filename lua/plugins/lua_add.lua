@@ -7,7 +7,6 @@
 --------------------------------------------------------------------------------
 -- confirmしてpushする
 local function _git_push_confirm()
-  -- TODO: なぜか非同期処理になっている...
   vim.fn['utils#git_info#refresh_git_infomation']()
 
   local message = ""
@@ -124,7 +123,7 @@ function M.gin()
   vim.cmd([[
     augroup MyGinAuCmds
       au!
-      au User GinCommandPost,GinComponentPost call utils#git_info#refresh_git_infomation()
+      au User GinCommandPost,GinComponentPost call utils#git_info#async_refresh_git_infomation()
     augroup END
   ]])
 
@@ -143,7 +142,7 @@ end
 function M.diffview()
   vim.keymap.set('n', '<Right>', function()
     if require("utils.utils").is_git_project() then
-      vim.fn['utils#git_info#refresh_git_infomation'](true)
+      vim.fn['utils#git_info#async_refresh_git_infomation'](true)
       vim.cmd([[DiffviewOpen]])
     end
   end, {})

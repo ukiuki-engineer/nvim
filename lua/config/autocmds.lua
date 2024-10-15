@@ -44,13 +44,13 @@ au({ "BufWrite", "BufRead", "TabNew", "TabClosed", "WinNew", "WinClosed" },
 au({ "BufWrite" }, {
   group = "MyAutocmds",
   callback = function()
-    vim.fn["utils#git_info#refresh_git_infomation"]()
+    vim.fn["utils#git_info#async_refresh_git_infomation"]()
   end
 })
 au({ "VimResume", "FileChangedShellPost", "DirChanged" }, {
   group = "MyAutocmds",
   callback = function()
-    vim.fn['utils#git_info#refresh_git_infomation'](true)
+    vim.fn['utils#git_info#async_refresh_git_infomation'](true)
   end
 })
 
