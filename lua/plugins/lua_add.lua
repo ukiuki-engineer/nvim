@@ -132,8 +132,12 @@ function M.gin()
   vim.api.nvim_create_user_command('DeleteLatestCommit',
     function() M.pcall_delete_latest_commit('soft') end, {})
   vim.api.nvim_create_user_command('GinPush', M.pcall_git_push_confirm, {})
-  -- TODO: 引数を渡せるようにする。↓みたいな感じでいけるらしい。
-  -- vim.cmd("command! -nargs=? GinPush call luaeval('M.pcall_git_push_confirm(_A)', <q-args>)")
+  vim.api.nvim_create_user_command('GinPushForce', function()
+    if not vim.fn["utils#utils#confirm"]("Force push OK ?") then
+      return
+    end
+    vim.cmd([[Gin push --force]])
+  end, {})
 end
 
 function M.diffview()
