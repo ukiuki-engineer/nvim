@@ -20,7 +20,6 @@ function! plugins#skkeleton#hook_add() abort
 
 endfunction
 
-" NOTE: lua化保留
 function! plugins#skkeleton#init() abort
   call skkeleton#config({
     \ 'eggLikeNewline'    : v:true,
@@ -57,6 +56,7 @@ function! plugins#skkeleton#init() abort
     \ "z8"       : ['８', ''],
     \ "z9"       : ['９', ''],
   \ })
-  call skkeleton#register_keymap('henkan', '<S-Space>', 'henkanBackward')
+  call skkeleton#register_keymap('henkan', '<BS>', 'henkanBackward')
+  call skkeleton#register_keymap('henkan', 'x', '')
 endfunction
 
