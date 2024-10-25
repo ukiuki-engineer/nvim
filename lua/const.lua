@@ -55,6 +55,9 @@ vim.g["my#const"] = {
     "terafox",
     "tokyonight-night",
   },
+
+  -- skk辞書
+  skk_dir                              = os.getenv("HOME") .. "/.skk-dict"
 }
 
 -- 定数化

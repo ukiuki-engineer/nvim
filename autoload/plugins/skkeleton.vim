@@ -1,9 +1,14 @@
-let s:skk_dir = $HOME .. '/skk-dict'
+let s:skk_dir = g:my#const["skk_dir"]
 
 function! plugins#skkeleton#hook_add() abort
   " 辞書が無ければダウンロード
   if !isdirectory(s:skk_dir)
-    execute '!echo "結構時間かかるよ" && git clone https://github.com/skk-dev/dict ' s:skk_dir
+    execute '!mkdir ' . s:skk_dir
+    if !isdirectory(s:skk_dir .. "/dict")
+      execute '!echo "結構時間かかるよ" && cd ' . s:skk_dir . ' && git clone https://github.com/skk-dev/dict'
+    endif
+    " TODO: ついでにAquaSKKで使う以下もダウンロードする処理を書く
+    " https://github.com/ymrl/SKK-JISYO.emoji-ja
   endif
 
   inoremap <C-j> <Plug>(skkeleton-toggle)
@@ -24,12 +29,12 @@ function! plugins#skkeleton#init() abort
   call skkeleton#config({
     \ 'eggLikeNewline'    : v:true,
     \ 'globalDictionaries': [
-      \ [s:skk_dir .. "/SKK-JISYO.L", "euc-jp"],
-      \ s:skk_dir .. "/SKK-JISYO.emoji",
-      \ [s:skk_dir .. "/SKK-JISYO.jinmei", "euc-jp"],
-      \ [s:skk_dir .. "/SKK-JISYO.hukugougo", "euc-jp"],
-      \ [s:skk_dir .. "/SKK-JISYO.station", "euc-jp"],
-      \ [s:skk_dir .. "/SKK-JISYO.L.unannotated", "euc-jp"],
+      \ [s:skk_dir .. "/dict/SKK-JISYO.L", "euc-jp"],
+      \ s:skk_dir .. "/dict/SKK-JISYO.emoji",
+      \ [s:skk_dir .. "/dict/SKK-JISYO.jinmei", "euc-jp"],
+      \ [s:skk_dir .. "/dict/SKK-JISYO.hukugougo", "euc-jp"],
+      \ [s:skk_dir .. "/dict/SKK-JISYO.station", "euc-jp"],
+      \ [s:skk_dir .. "/dict/SKK-JISYO.L.unannotated", "euc-jp"],
     \ ],
     \ 'usePopup'          : v:true
   \ })
