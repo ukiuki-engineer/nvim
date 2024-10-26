@@ -16,12 +16,25 @@ function M.lua_source()
     augroup END
   ]])
 
-  -- diffview.nvimを再設定するコマンド
-  -- NOTE: keymappingが効かない時用。設定し直して開き直す。(何故かMacだけkeymappingが効かない時がある)
+  -- diffview.nvimを再設定するコマンド。keymappingが効かない時用。
+  -- keymapが効くまで再設定を繰り返す
+  -- TODO: 本当はあんま良くないけどとりあえずこの方法で...
   vim.api.nvim_create_user_command('ResettingDiffview', function()
-    vim.cmd([[DiffviewClose]])
-    M.diffview_setup()
-    vim.cmd([[DiffviewOpen]])
+    local i = 0
+    local max = 20
+    while i < max do
+      i = i + 1
+      if
+        string.match(vim.fn.maparg('<Up>', 'n'), "~/.config/nvim") and
+        string.match(vim.fn.maparg('<Down>', 'n'), "~/.config/nvim")
+      then
+        break
+      else
+        vim.cmd([[DiffviewClose]])
+        M.diffview_setup()
+        vim.cmd([[DiffviewOpen]])
+      end
+    end
   end, {})
 
   -- diffview.nvimの設定を実行
