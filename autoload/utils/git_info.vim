@@ -1,3 +1,6 @@
+"
+" git情報を更新
+"
 function! utils#git_info#refresh_git_infomation(fetch = v:false) abort
   try
     " グローバル変数がセットされていない or gitプロジェクトではない場合は何もしない
@@ -16,6 +19,9 @@ function! utils#git_info#refresh_git_infomation(fetch = v:false) abort
   endtry
 endfunction
 
+"
+" git情報を更新(非同期)
+"
 function! utils#git_info#async_refresh_git_infomation(fetch = v:false) abort
   try
     " グローバル変数がセットされていない or gitプロジェクトではない場合は何もしない
