@@ -28,6 +28,8 @@ vim.cmd([[
   command! YankCommitHash                     :call utils#commands#yank_commit_hash()
   " 日報のタイトルを今日の日付で更新
   command! -nargs=* UpdateReportTitle         :call utils#commands#update_report_title("<args>")
+  " カレントバッファのインデントを変更する
+  command! -nargs=1 SetlocalIndent            :lua require('utils.utils').setlocal_indent(<args>)
 ]])
 
 -- カラースキームをランダムに変更するコマンド
