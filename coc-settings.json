@@ -212,7 +212,8 @@
    * coc-sql
    */
   "sql.formatOptions": {
-    "keywordCase": "upper"
+    "keywordCase": "upper",
+    "tabWidth": 2
   }
   // TODO: できればsqlsの設定をしたい設定例は以下
   // "languageserver": {
