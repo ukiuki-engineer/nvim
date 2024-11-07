@@ -3,16 +3,14 @@ local M = {}
 function M.lua_source()
   -- NOTE: luaで書くと上手くいかないのでvimscriptで
   vim.cmd([[
-    " 表示スタイル(tree/list)をtoggle & git情報を更新
-    function! s:aucmds_on_diffviewopen() abort
+    function! s:aucmds_on_diffview_opened() abort
       " git情報を更新
       call utils#git_info#async_refresh_git_infomation()
     endfunction
 
     augroup MyDiffviewAuCmds
       au!
-      " diffviewのopen時に実行
-      au User DiffviewViewOpened call s:aucmds_on_diffviewopen()
+      au User DiffviewViewOpened call s:aucmds_on_diffview_opened()
     augroup END
   ]])
 
