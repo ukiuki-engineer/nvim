@@ -70,8 +70,11 @@ function M.lua_source()
       initial_mode = "normal",
     },
     pickers = {
+      -- grep系はResultを広く取りたいので水平分割
       live_grep = {
-        -- grepはResultを広く取りたいので水平分割
+        layout_strategy = 'vertical',
+      },
+      current_buffer_fuzzy_find = {
         layout_strategy = 'vertical',
       }
     },
