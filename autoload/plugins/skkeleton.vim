@@ -60,9 +60,7 @@ function! plugins#skkeleton#init() abort
     \ "z7"       : ['７', ''],
     \ "z8"       : ['８', ''],
     \ "z9"       : ['９', ''],
-    \ "who"       : ['うぉ', ''],
+    \ "who"      : ['うぉ', ''],
   \ })
-  call skkeleton#register_keymap('henkan', '<BS>', 'henkanBackward')
-  call skkeleton#register_keymap('henkan', 'x', '')
 endfunction
 
