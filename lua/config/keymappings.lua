@@ -54,6 +54,7 @@ vim.keymap.set("n", "gB", ":bN<CR>", opts)
 vim.keymap.set({ "n", "x" }, "g>", ":norm! I><space><CR>", opts)
 
 -- タブ移動
+-- TODO: {count}gtとかが効かなくなるのでどうにかする
 vim.keymap.set("n", "<TAB>", tabnextOrNew, opts)
 vim.keymap.set("n", "gt", tabnextOrNew, opts)
 vim.keymap.set("n", "<S-TAB>", tabpOrNew, opts)
