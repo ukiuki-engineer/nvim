@@ -16,8 +16,12 @@ local opts = { noremap = true, silent = true }
 
 -- 次のタブに移動(タブが一個ならtabnewする)
 local function tabnextOrNew()
+  local count = vim.v.count
   local tab_count = #vim.fn.gettabinfo()
-  if tonumber(tab_count) > 1 then
+
+  if count > 0 then
+    vim.cmd(count .. "tabnext")
+  elseif tonumber(tab_count) > 1 then
     vim.cmd([[tabnext]])
   else
     vim.cmd([[tabnew]])
@@ -25,10 +29,14 @@ local function tabnextOrNew()
 end
 
 -- 前のタブに移動(タブが一個ならtabnewする)
-local function tabpOrNew()
+local function tabpreviousOrNew()
+  local count = vim.v.count
   local tab_count = #vim.fn.gettabinfo()
-  if tonumber(tab_count) > 1 then
-    vim.cmd([[tabp]])
+
+  if count > 0 then
+    vim.cmd(count .. "tabnext")
+  elseif tonumber(tab_count) > 1 then
+    vim.cmd([[tabprevious]])
   else
     vim.cmd([[tabnew | -tabmove]])
   end
@@ -54,11 +62,10 @@ vim.keymap.set("n", "gB", ":bN<CR>", opts)
 vim.keymap.set({ "n", "x" }, "g>", ":norm! I><space><CR>", opts)
 
 -- タブ移動
--- TODO: {count}gtとかが効かなくなるのでどうにかする
 vim.keymap.set("n", "<TAB>", tabnextOrNew, opts)
 vim.keymap.set("n", "gt", tabnextOrNew, opts)
-vim.keymap.set("n", "<S-TAB>", tabpOrNew, opts)
-vim.keymap.set("n", "gT", tabpOrNew, opts)
+vim.keymap.set("n", "<S-TAB>", tabpreviousOrNew, opts)
+vim.keymap.set("n", "gT", tabpreviousOrNew, opts)
 
 -- NOTE: <TAB>のmappingが<C-i>にも適用されてしまうので元の動きに戻す
 vim.keymap.set({ "n" }, "<C-i>", "<TAB>", opts)
