@@ -35,8 +35,7 @@ function! plugins#skkeleton#init() abort
       \ [s:skk_dir .. "/dict/SKK-JISYO.hukugougo", "euc-jp"],
       \ [s:skk_dir .. "/dict/SKK-JISYO.station", "euc-jp"],
       \ [s:skk_dir .. "/dict/SKK-JISYO.L.unannotated", "euc-jp"],
-    \ ],
-    \ 'usePopup'          : v:true
+    \ ]
   \ })
   call skkeleton#register_kanatable('rom', {
     \ "xn"       : ['ん', ''],
