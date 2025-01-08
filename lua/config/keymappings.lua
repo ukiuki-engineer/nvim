@@ -14,31 +14,29 @@ vim.api.nvim_create_augroup("keymappings", {})
 -------------------------------------------------------------------------------
 local opts = { noremap = true, silent = true }
 
--- 次のタブに移動(タブが一個ならtabnewする)
-local function tabnextOrNew()
+-- 次のタブに移動
+local function tabnext()
   local count = vim.v.count
-  local tab_count = #vim.fn.gettabinfo()
 
   if count > 0 then
+    -- tab番号が指定されていればそのタブへ
     vim.cmd(count .. "tabnext")
-  elseif tonumber(tab_count) > 1 then
-    vim.cmd([[tabnext]])
   else
-    vim.cmd([[tabnew]])
+    -- tab番号指定なしなら次のタブへ
+    vim.cmd([[tabnext]])
   end
 end
 
--- 前のタブに移動(タブが一個ならtabnewする)
-local function tabpreviousOrNew()
+-- 前のタブに移動
+local function tabprevious()
   local count = vim.v.count
-  local tab_count = #vim.fn.gettabinfo()
 
   if count > 0 then
+    -- tab番号が指定されていればそのタブへ
     vim.cmd(count .. "tabnext")
-  elseif tonumber(tab_count) > 1 then
-    vim.cmd([[tabprevious]])
   else
-    vim.cmd([[tabnew | -tabmove]])
+    -- tab番号指定なしなら前のタブへ
+    vim.cmd([[tabprevious]])
   end
 end
 -------------------------------------------------------------------------------
@@ -61,17 +59,18 @@ vim.keymap.set("n", "gB", ":bN<CR>", opts)
 -- NOTE: 本当はmarkdownのftpluginに入れようとしたけど、グローバルな設定でも良さそうなのでここに入れとく
 vim.keymap.set({ "n", "x" }, "g>", ":norm! I><space><CR>", opts)
 
--- タブ移動
-vim.keymap.set("n", "<TAB>", tabnextOrNew, opts)
-vim.keymap.set("n", "gt", tabnextOrNew, opts)
-vim.keymap.set("n", "<S-TAB>", tabpreviousOrNew, opts)
-vim.keymap.set("n", "gT", tabpreviousOrNew, opts)
+-- タブ操作
+-- 次のタブへ移動
+vim.keymap.set("n", "<TAB>", tabnext, opts)
+-- 前のタブへ移動
+vim.keymap.set("n", "<S-TAB>", tabprevious, opts)
+-- 新規タブ作成
+vim.keymap.set("n", "<C-T>", ":tabnew<CR>", opts)
+-- タブを閉じる
+vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", opts)
 
 -- NOTE: <TAB>のmappingが<C-i>にも適用されてしまうので元の動きに戻す
 vim.keymap.set({ "n" }, "<C-i>", "<TAB>", opts)
-
--- タブを閉じる
-vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", opts)
 -------------------------------------------------------------------------------
 -- ファイルタイプ別keymappings
 -------------------------------------------------------------------------------
