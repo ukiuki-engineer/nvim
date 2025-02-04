@@ -32,8 +32,12 @@ opt.list = true
 opt.splitright = true
 -- 画面を水平分割する際に下に開く
 opt.splitbelow = true
--- 差分表示は縦分割
+
+-- 差分
+-- 縦分割
 opt.diffopt:append("vertical")
+-- 空白を無視
+-- opt.diffopt:append("iwhiteall")
 
 -- 検索時の挙動
 opt.wrapscan = false
