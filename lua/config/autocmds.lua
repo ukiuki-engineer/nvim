@@ -54,25 +54,34 @@ au({ "VimResume", "FileChangedShellPost", "DirChanged" }, {
   end
 })
 
--- env系はshとして開く
-au({ "BufRead", "BufNewFile" }, {
+-- 特殊ファイル名とファイルタイプの対応
+-- NOTE: 今はvim.filetype.add()からでも設定できるらしい↓
+-- https://neovim.io/doc/user/lua.html#vim.filetype.add()
+--
+local special_files_events = { "BufRead", "BufNewFile", "BufFilePost" }
+-- shとして開く
+au(special_files_events, {
   group = "MyAutocmds",
   pattern = { ".env", ".env.*" },
   command = "set ft=sh",
 })
-
--- messages
-au({ "BufRead", "BufNewFile" }, {
+-- messagesとして開く
+au(special_files_events, {
   group = "MyAutocmds",
   pattern = { "syslog*" },
   command = "set ft=messages",
 })
-
--- coc-settings.jsonはjsoncとして開く
-au({ "BufRead", "BufNewFile" }, {
+-- jsoncとして開く
+au(special_files_events, {
   group = "MyAutocmds",
   pattern = { "coc-settings.json" },
   command = "set ft=jsonc",
+})
+-- rubyとして開く
+au(special_files_events, {
+  group = "MyAutocmds",
+  pattern = { "Podfile" },
+  command = "set ft=ruby",
 })
 
 -- アノテーションコメントのハイライト
