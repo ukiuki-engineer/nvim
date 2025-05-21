@@ -19,7 +19,7 @@ function M.lua_source()
   -- TODO: 何故keymapが効かないのかを特定してそれを直すのが正当だけどとりあえずこの方法で...
   vim.api.nvim_create_user_command('ResettingDiffview', function()
     local i = 0
-    local max = 30
+    local max = 50
 
     -- 上手くいくまで指定回数分繰り返す
     while i < max do
