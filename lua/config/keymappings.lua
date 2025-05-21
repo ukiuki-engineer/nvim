@@ -87,7 +87,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "vue",
   },
   callback = function()
-    vim.keymap.set("n", "<leader>;", vim.fn["utils#utils#append_semicolon"], opts)
+    vim.keymap.set("n", "<leader>;", function() vim.fn["utils#utils#append_symbol"](";") end, opts)
   end
 })
 -- タグジャンプ

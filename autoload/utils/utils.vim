@@ -104,13 +104,6 @@ function! utils#utils#tag_jump_with_dollar()
 endfunction
 
 "
-" 行末にセミコロンを挿入する
-"
-function! utils#utils#append_semicolon()
-  call utils#utils#append_symbol(';')
-endfunction
-
-"
 " 行末に指定されたシンボルを挿入する
 " TODO: Visual modeにも対応させる
 "
