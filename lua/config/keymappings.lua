@@ -55,9 +55,10 @@ vim.keymap.set("n", "<Esc><Esc>", ":nohlsearch<CR>", opts)
 vim.keymap.set("n", "gb", ":bn<CR>", opts)
 vim.keymap.set("n", "gB", ":bN<CR>", opts)
 
--- 引用
--- NOTE: 本当はmarkdownのftpluginに入れようとしたけど、グローバルな設定でも良さそうなのでここに入れとく
+-- 引用(行頭に">"を挿入)
 vim.keymap.set({ "n", "x" }, "g>", ":norm! I><space><CR>", opts)
+-- 行末に","を挿入
+vim.keymap.set("n", "<leader>,", function() vim.fn["utils#utils#append_symbol"](",") end, opts)
 
 -- タブ操作
 -- 次のタブへ移動
