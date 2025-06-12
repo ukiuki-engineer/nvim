@@ -41,6 +41,19 @@ some_func(arg1, |child_func1(arg2), child_func2(arg3))
                 *---------------------------------->|   c]) はここまで削除する
 ```
 
+- diffviewのでブランチ間の差分を確認(プルリク時の確認など)  
+本質的にはgitコマンドの使い方
+
+```vim
+" master<-feature-branchにプルリク送る場合
+:DiffviewOpen master..feature-branch
+" master側に何らか変更あった場合(`...`にすると右側のコミットのみ表示する)
+:DiffviewOpen master...feature-branch
+" 編集可能にする
+:DiffviewOpen master...feature-branch --imply-local
+" これでも編集可能だが、master側に何らか変更あった場合は見にくい
+:DiffviewOpen master
+```
 
 # indent-rainbow
 
