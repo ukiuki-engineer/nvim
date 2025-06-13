@@ -128,6 +128,12 @@ function M.lua_source()
     coc#float#has_float() ? '<Plug>(coc-float-jump)' : '<space>j'
   ]], opts)
 
+  -- フォーマッターを呼び出す
+  -- 本当は<leader>fがしっくりくるけど、全角文字へのジャンプで使ってるから<space>=かなー
+  -- <leader>cfとか<space>cfでも良いかなと思ったけど、cfは押しにくい
+  vim.keymap.set({ "n" }, "<space>=", "<Plug>(coc-format)", { silent = true })
+  vim.keymap.set({ "x" }, "<space>=", "<Plug>(coc-format-selected)", { silent = true })
+
   -- outlineを表示
   vim.api.nvim_create_user_command('CocOutlines', 'CocCommand fzf-preview.CocOutline', {})
   -- フォーマッターを呼び出す
