@@ -18,8 +18,9 @@ vim.cmd([[
   command! YankBufFileName                    :let @0 = expand('%:t') | :let @+ = expand('%:t')
   " git情報を更新する
   command! RefreshGitInfomation               :call utils#git_info#async_refresh_git_infomation(v:true)
-  " 保存だけ行う(autocmdを発火させない。format on saveとかその他諸々。)
+  " autocmdを発火させずに保存
   command! W                                  :noautocmd w
+  command! Wq                                 :noautocmd wq
   " システム側のファイラーを開く(カレントディレクトリ)
   command! OpenFiler                          :call utils#commands#open_filer()
   " システム側のファイラーを開く(カレントバッファのディレクトリ)
