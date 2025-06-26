@@ -18,23 +18,14 @@ function M.set_customcolor()
   -- background colorを取得
   local bg_color          = colorscheme_utils.get_background()
 
-  -- コメント
-  hi(0, 'Comment', { fg = "#8a92b6" })
-
-  -- ビジュアル行
-  hi(0, 'Visual', { bg = "#394b7d" })
-
-  -- 行番号
-  hi(0, 'LineNr', { fg = "#515a84" })
-
+  -- tokyonight系共通
+  --
   -- 差分
   colorscheme_utils.hi_diff(bg_color)
-
   -- ヤンク範囲
   hi(0, 'HighlightedyankRegion', {
     bg = colorscheme_utils.transparent_color(bg_color, "#ff9e64", 0.60),
   })
-
   -- vim-matchup
   hi(0, 'MatchParen', {
     bg = colorscheme_utils.transparent_color(bg_color, "LightGrey", 0.60),
@@ -44,12 +35,20 @@ function M.set_customcolor()
   })
   hi(0, 'MatchWord', { link = "MatchParen" })
   hi(0, 'MatchWordCur', { link = "MatchParen" })
-
   -- gitsigns
   colorscheme_utils.hi_gitsigns()
-
   -- telescope.nvim
   colorscheme_utils.hi_telescope()
+
+  -- tokyonight-night
+  if vim.g.colors_name == "tokyonight-night" then
+    -- コメント
+    hi(0, 'Comment', { fg = "#8a92b6" })
+    -- ビジュアル行
+    hi(0, 'Visual', { bg = "#394b7d" })
+    -- 行番号
+    hi(0, 'LineNr', { fg = "#515a84" })
+  end
 end
 
 return M
