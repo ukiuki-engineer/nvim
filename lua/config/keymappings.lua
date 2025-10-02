@@ -80,6 +80,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "keymappings",
   pattern = {
     "css",
+    "java",
     "javascript",
     "php",
     "scss",

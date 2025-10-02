@@ -185,6 +185,7 @@ function M.coc()
     'coc-eslint',
     'coc-fzf-preview',
     'coc-html',
+    'coc-java',
     'coc-jedi',
     'coc-json',
     'coc-lua',

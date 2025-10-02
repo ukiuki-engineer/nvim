@@ -55,6 +55,13 @@ some_func(arg1, |child_func1(arg2), child_func2(arg3))
 :DiffviewOpen master
 ```
 
+- 文字コードを指定して開き直す
+
+```vim
+" 例
+:e ++enc=sjis
+```
+
 # indent-rainbow
 
 できそうならvim設定に追加したい。  

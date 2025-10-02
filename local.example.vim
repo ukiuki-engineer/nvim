@@ -17,9 +17,20 @@
 " denopsのデバッグをオンにする
 " let g:denops#debug = 1
 
-try
-  " カラースキームをランダムに設定
-  lua require("utils.utils").change_colorscheme()
-catch
-endtry
+lua << EOF
+  vim.api.nvim_create_augroup("MyLocalAutocmds", {})
+  -- indentを4にする
+  vim.api.nvim_create_autocmd("FileType", {
+    group = "MyLocalAutocmds",
+    pattern = { "php", "java" },
+    callback = function()
+      require("utils.utils").setlocal_indent(4)
+    end
+  })
+
+  require("utils.utils").change_colorscheme()
+EOF
+
+" カラースキームをランダムに設定
+lua require("utils.utils").change_colorscheme()
 
