@@ -49,15 +49,16 @@ function M.lua_source()
       layout_strategy = 'horizontal',
       layout_config = {
         height     = 0.90,
-        width      = 0.95,
+        width      = 0.99,
         horizontal = {
-          preview_width = 0.60
+          preview_width = 0.50
         },
       },
       mappings = {
         i = {
           ["<C-j>"] = function()
-            vim.fn['skkeleton#handle']('toggle', {})
+            local plug = vim.api.nvim_replace_termcodes("<Plug>(skkeleton-toggle)", true, false, true)
+            vim.api.nvim_feedkeys(plug, "im", true) -- insert で remap して送る
           end,
           -- NOTE: <C-/>でkeymapのhelpを表示
           -- ["<C-/>"] = "which_key",
