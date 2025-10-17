@@ -49,8 +49,8 @@ opt.inccommand = 'split'
 
 -- sessionに保存する内容を指定
 opt.sessionoptions = 'buffers,curdir,tabpages'
--- Tab文字を半角スペースにする
-opt.expandtab = true
+-- Tab文字を半角スペースにしない
+opt.expandtab = false
 
 -- viewにoptions, curdirを保存しない
 vim.opt.viewoptions:remove("options")
