@@ -24,7 +24,15 @@ vim.opt.number = true
 -- タブや改行を表示
 vim.opt.list = true
 -- タブや改行の表示記号を定義
--- vim.opt.listchars=tab:»-,trail:-,eol:↓,extends:»,precedes:«,nbsp:%
+vim.opt.listchars:append({
+  space    = "⋅",
+  tab      = "»-",
+  trail    = "-",
+  eol      = "↓", -- TODO: 改行コードを区別して表示できないかな？
+  extends  = "»",
+  precedes = "«",
+  nbsp     = "%"
+})
 
 -- 画面を垂直分割する際に右に開く
 vim.opt.splitright = true
@@ -67,15 +75,3 @@ vim.opt.nrformats:append("unsigned")
 
 -- window分割しててもstatuslineを1つに
 vim.opt.laststatus = 3
-
--- タブとか改行の表示
-vim.opt.list = true
-vim.opt.listchars:append({
-  space    = "⋅",
-  tab      = "»-",
-  trail    = "-",
-  eol      = "↓",
-  extends  = "»",
-  precedes = "«",
-  nbsp     = "%"
-})
