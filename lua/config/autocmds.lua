@@ -40,6 +40,25 @@ au({ "BufWrite", "BufRead", "TabNew", "TabClosed", "WinNew", "WinClosed" },
   }
 )
 
+-- editorconfigがない場合のみexpandtabを適用
+au({ "BufReadPost" }, {
+  group = "MyAutocmds",
+  callback = function()
+    local file = vim.api.nvim_buf_get_name(0)
+    if file == "" then
+      return
+    end
+
+    -- 現在のファイルのディレクトリから .editorconfig を探索
+    local dir = vim.fn.fnamemodify(file, ":h")
+    local found = vim.fn.findfile(".editorconfig", dir .. ";")
+
+    if found == "" then
+      vim.opt_local.expandtab = true
+    end
+  end,
+})
+
 -- Git情報を更新
 au({ "BufWrite" }, {
   group = "MyAutocmds",

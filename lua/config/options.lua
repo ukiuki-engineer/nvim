@@ -47,12 +47,15 @@ vim.opt.inccommand = 'split'
 
 -- sessionに保存する内容を指定
 vim.opt.sessionoptions = 'buffers,curdir,tabpages'
--- Tab文字を半角スペースにしない
-vim.opt.expandtab = false
 
 -- viewにoptions, curdirを保存しない
 vim.opt.viewoptions:remove("options")
 vim.opt.viewoptions:remove("curdir")
+
+-- Tab文字を半角スペースに
+-- NOTE: ここで設定すると、(true/falseに関わらず).editorconfigのインデントタイプが効かなくなる
+--       .editorconfigがない場合のみ設定するようにautocmdで定義する→autocmds.lua
+-- vim.opt.expandtab = true
 
 -- インデントは基本的に2
 vim.opt.shiftwidth = 2
