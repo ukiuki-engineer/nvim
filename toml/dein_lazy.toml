@@ -138,11 +138,6 @@ lua_source = '''
 require("plugins.coding.indent-blankline").lua_source()
 '''
 
-# editorconfig
-[[plugins]]
-repo = 'editorconfig/editorconfig-vim'
-on_event = ['BufRead']
-
 # カラーコード可視化
 [[plugins]]
 repo = 'norcalli/nvim-colorizer.lua'
