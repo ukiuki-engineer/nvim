@@ -1,44 +1,48 @@
 # NOTE
 
-- Fonts  
-  - HackGenNerdとか
-  - icon を設定するときなどは[ここ](https://www.nerdfonts.com/cheat-sheet)見たりとか
-- 時々見たいけど忘れがちなヘルプタグ
-    - `:h key-notation`
-    - `:h map-table`
-    - `:h autocmd-events`
-    - `:h encoding-values`
-- luaでテーブルの中身を見たいときは`vim.print()`
+## 動作環境
+
 - 基本的に`Neovim nightly`を使用する  
-    →nightlyのインストールスクリプト: `scripts/install-nvim-nightly.sh`
-- diff
-    - 今(分割して)表示してる2ファイルのdiffを取る手順
+→nightlyのインストールスクリプト: `scripts/install-nvim-nightly.sh`
 
-    ```vim
-    :windo diffthis
-    :set foldlevel=1
-    ```
+## Fonts  
 
-    - 同じディレクトリにある2ファイルなら、そのディレクトリに移動してから`diffsp`した方が早い
+- HackGenNerdとか
+- icon を設定するときなどは[ここ](https://www.nerdfonts.com/cheat-sheet)見たりとか
 
-    ```vim
-    " 1ファイルを開いた状態で
-    :tcd %:h
-    :diffsp <比較対象のファイル名>
-    :set foldlevel=1
-    ```
+## 時々見たいけど忘れがちなヘルプタグ
 
-- g_で改行の手前まで移動  
-  $と似てるが、visual mode時の挙動が違う。
-  visual modeで$を押すと、改行位置まで移動してしまう。
+- `:h key-notation`
+- `:h map-table`
+- `:h autocmd-events`
+- `:h encoding-values`
 
-- 空白を巻き込みたくないなら`2i"`
+## lua
 
-- `])`で末尾の`)`に移動
+- luaでテーブルの中身を見たいときは`vim.print()`
 
+## diff
+
+- 今(分割して)表示してる2ファイルのdiffを取る手順
+
+```vim
+:windo diffthis
+:set foldlevel=1
 ```
-some_func(arg1, |child_func1(arg2), child_func2(arg3))
-                *---------------------------------->|   c]) はここまで削除する
+
+- 同じディレクトリにある2ファイルなら、そのディレクトリに移動してから`diffsp`した方が早い
+
+```vim
+" 1ファイルを開いた状態で
+:tcd %:h
+:diffsp <比較対象のファイル名>
+:set foldlevel=1
+```
+- 改行コードを無視したい
+
+```vim
+" 行末の空白を無視
+set diffopt+=iwhiteeol
 ```
 
 - diffviewのでブランチ間の差分を確認(プルリク時の確認など)  
@@ -53,6 +57,22 @@ some_func(arg1, |child_func1(arg2), child_func2(arg3))
 :DiffviewOpen master...feature-branch --imply-local
 " これでも編集可能だが、master側に何らか変更あった場合は見にくい
 :DiffviewOpen master
+```
+
+
+## 操作
+
+- g_で改行の手前まで移動  
+$と似てるが、visual mode時の挙動が違う。
+visual modeで$を押すと、改行位置まで移動してしまう。
+
+- 空白を巻き込みたくないなら`2i"`
+
+- `])`で末尾の`)`に移動
+
+```
+some_func(arg1, |child_func1(arg2), child_func2(arg3))
+                *---------------------------------->|   c]) はここまで削除する
 ```
 
 - 文字コードを指定して開き直す
