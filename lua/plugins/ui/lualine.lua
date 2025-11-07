@@ -169,7 +169,14 @@ function M.setup()
       },
       lualine_x = {
         'encoding',
-        'fileformat',
+        {
+          'fileformat',
+          symbols = { -- デフォルトはアイコンだけの表示。わかりづらいからアイコン+文字にする
+            unix = ' LF',
+            dos = ' CRLF',
+            mac = ' CR'
+          }
+        },
         'filetype',
         {
           'g:colors_name',
