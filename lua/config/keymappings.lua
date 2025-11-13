@@ -59,6 +59,8 @@ vim.keymap.set("n", "gB", ":bN<CR>", opts)
 vim.keymap.set({ "n", "x" }, "g>", ":norm! I><space><CR>", opts)
 -- 行末に","を挿入
 vim.keymap.set("n", "<leader>,", function() vim.fn["utils#utils#append_symbol"](",") end, opts)
+-- 行末に";"を挿入
+vim.keymap.set("n", "<leader>;", function() vim.fn["utils#utils#append_symbol"](";") end, opts)
 
 -- タブ操作
 -- 次のタブへ移動
@@ -75,23 +77,6 @@ vim.keymap.set({ "n" }, "<C-i>", "<TAB>", opts)
 -------------------------------------------------------------------------------
 -- ファイルタイプ別keymappings
 -------------------------------------------------------------------------------
--- 行末にセミコロンを挿入
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = "keymappings",
-  pattern = {
-    "css",
-    "java",
-    "javascript",
-    "php",
-    "scss",
-    "sql",
-    "typescript",
-    "vue",
-  },
-  callback = function()
-    vim.keymap.set("n", "<leader>;", function() vim.fn["utils#utils#append_symbol"](";") end, opts)
-  end
-})
 -- タグジャンプ
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "keymappings",
@@ -100,7 +85,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "vue",
   },
   callback = function()
-    vim.keymap.set("n", "<C-]>", vim.fn["utils#utils#tag_jump_with_dollar"], opts)
+    vim.keymap.set("n", "<C-]>", vim.fn["utils#utils#tag_jump_with_dollar"],
+      { noremap = true, silent = true, buffer = true })
   end
 })
 -------------------------------------------------------------------------------
