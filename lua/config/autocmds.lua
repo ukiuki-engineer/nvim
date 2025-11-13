@@ -41,19 +41,26 @@ au({ "BufWrite", "BufRead", "TabNew", "TabClosed", "WinNew", "WinClosed" },
 )
 
 -- editorconfigがない場合のみexpandtabを適用
-au({ "BufReadPost" }, {
+au({ "BufWinEnter", "BufReadPost" }, {
   group = "MyAutocmds",
   callback = function()
     local file = vim.api.nvim_buf_get_name(0)
+    local dir
+
     if file == "" then
-      return
+      -- ファイルがない場合、カレントディレクトリを入れる
+      dir = "."
+    else
+      -- ファイルがある場合、そのディレクトリを入れる
+      dir = vim.fn.fnamemodify(file, ":h")
     end
 
-    -- 現在のファイルのディレクトリから .editorconfig を探索
-    local dir = vim.fn.fnamemodify(file, ":h")
+    -- 上方向に .editorconfig を探索
     local found = vim.fn.findfile(".editorconfig", dir .. ";")
 
     if found == "" then
+      -- .editorconfigがない場合はexpandtabを有効化(バッファローカル)
+      -- NOTE: グローバルにexpandtabを設定するとeditorconfigがバグるのが面倒なところ...
       vim.opt_local.expandtab = true
     end
   end,
