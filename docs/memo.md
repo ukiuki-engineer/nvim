@@ -1,4 +1,4 @@
-# NOTE
+# 環境周り
 
 ## 動作環境
 
@@ -10,6 +10,35 @@
 - HackGenNerdとか
 - icon を設定するときなどは[ここ](https://www.nerdfonts.com/cheat-sheet)見たりとか
 
+# vim一般
+
+## 操作
+
+- g_で改行の手前まで移動  
+$と似てるが、visual mode時の挙動が違う。
+visual modeで$を押すと、改行位置まで移動してしまう。
+
+- 空白を巻き込みたくないなら`2i"`
+
+```vim
+d2i"
+y2i"
+v2i"
+```
+
+- `])`で末尾の`)`に移動
+
+```
+some_func(arg1, |child_func1(arg2), child_func2(arg3))
+                *---------------------------------->|   c]) はここまで削除する
+```
+
+- 文字コードを指定して開き直す
+
+```vim
+" 例
+:e ++enc=sjis
+```
 ## 時々見たいけど忘れがちなヘルプタグ
 
 - `:h key-notation`
@@ -45,8 +74,9 @@
 set diffopt+=iwhiteeol
 ```
 
-- diffviewのでブランチ間の差分を確認(プルリク時の確認など)  
-本質的にはgitコマンドの使い方
+# diffviewのでブランチ間の差分を確認(プルリク時の確認など)  
+
+[基本概念はこれ](#git-diffで2点間の差分を取る)
 
 ```vim
 " master<-feature-branchにプルリク送る場合
@@ -59,86 +89,37 @@ set diffopt+=iwhiteeol
 :DiffviewOpen master
 ```
 
-
-## 操作
-
-- g_で改行の手前まで移動  
-$と似てるが、visual mode時の挙動が違う。
-visual modeで$を押すと、改行位置まで移動してしまう。
-
-- 空白を巻き込みたくないなら`2i"`
-
-- `])`で末尾の`)`に移動
+# git-diffで2点間の差分を取る
 
 ```
-some_func(arg1, |child_func1(arg2), child_func2(arg3))
-                *---------------------------------->|   c]) はここまで削除する
+git diff A<結合記号>B
 ```
 
-- 文字コードを指定して開き直す
+- AからBまでの差分  
+→A:古、B:新を指定すれば良い
+- A,Bはcommit
+→ブランチ名を書くと、そのブランチのHEADと解釈される
 
-```vim
-" 例
-:e ++enc=sjis
+# `git diff A..B`: 二点間の範囲  
+
+A から B に至るまでに B 側で追加された変更を全て比較。
+
+# `git diff A...B`: マージベース比較  
+
+A と B の共通祖先（merge-base）から見た、B側で追加された変更を比較。  
+例えば、masterからfeatureを切ったとして、
+
+```sh
+git diff master...feature
 ```
 
-# indent-rainbow
+とすると、
+masterで何か変更があっても無視される。
 
-できそうならvim設定に追加したい。  
-結構大変そうだからメモをここにまとめとく。
+# jdt.ls(このvimを使う上でのメモというより、一般知識としてのメモ)
 
-## 既存プラグイン
+- jdt.lsは、javaのlsp
+- eclipse内の支援ツール`eclipse jdt`を切り出してlsp化したもの
+- だから基本的にeclipse以外でも大体eclipseと同じようなことができる
+- coc-javaもjdt.lsを使用している
 
-- indent-blanklineの設定でそれっぽくできるし、それを使って作られたプラグインとかもある。
-ただindent-blanklineベースだと、visual選択したときにインデントハイライトが優先されて見た目が悪い。
-- 他にもあったような気はするけど微妙だったと思う。
-
-## 要件
-
-VSCodeのindent-rainbowと同じような挙動
-
-- インデントをレインボー色にhighlightする
-- インデントエラーを検知してその箇所を赤くする
-
-## 原理
-
-### インデントをレインボー色にhighlightする
-
-こんな感じでいけるはず
-
-```vim
-call clearmatches()
-    \ | call matchadd('Indent1', '^\zs\s\ze')
-    \ | call matchadd('Indent2', '^\s\zs\s\ze')
-    \ | call matchadd('Indent3', '^\s\s\zs\s\ze')
-    \ | call matchadd('Indent4', '^\s\s\s\zs\s\ze')
-    \ | call matchadd('Indent5', '^\s\s\s\s\zs\s\ze')
-    \ | call matchadd('Indent6', '^\s\s\s\s\s\zs\s\ze')
-autocmd BufEnter * :highlight! Indent1 guifg=#331f1f guibg=#221f1f
-    \ | highlight! Indent2 guifg=#1f331f guibg=#1f221f
-    \ | highlight! Indent3 guifg=#33331f guibg=#22221f
-    \ | highlight! Indent4 guifg=#331f1f guibg=#221f1f
-    \ | highlight! Indent5 guifg=#1f331f guibg=#1f221f
-    \ | highlight! Indent6 guifg=#33331f guibg=#22221f
-```
-
-### インデントエラーの判定
-
-これはどうしようかな。
-とりあえず案は以下。
-
-- (A)行頭の空白をインデントで割り切れるかどうか
-- (B)行頭の空白の中で、レインボー色のハイライトに当てはまらない空白があるかどうか
-
-## 必要な処理リスト
-
-- matchadd
-    - インデントを取得して動的に定義
-    - `autocmd FileType`
-- highlight
-    - 色は背景色から透過させる
-    - `autocmd ColorScheme`
-
-## 懸念点
-
-- パフォーマンス
