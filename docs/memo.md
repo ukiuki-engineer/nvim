@@ -74,9 +74,11 @@ some_func(arg1, |child_func1(arg2), child_func2(arg3))
 set diffopt+=iwhiteeol
 ```
 
-# diffviewのでブランチ間の差分を確認(プルリク時の確認など)  
+# diffview
 
-[基本概念はこれ](#git-diffで2点間の差分を取る)
+## diffviewのでブランチ間の差分を確認(プルリク時の確認など)  
+
+[基本概念はこれ](##git-diffで2点間の差分を取る)
 
 ```vim
 " master<-feature-branchにプルリク送る場合
@@ -89,7 +91,15 @@ set diffopt+=iwhiteeol
 :DiffviewOpen master
 ```
 
-# git-diffで2点間の差分を取る
+## 特定ファイルについてブランチ間の差分を取る
+
+```vim
+:DiffviewOpen branchA branchB -- path/to/file
+```
+
+# git
+
+## 2点間の差分を取る
 
 ```
 git diff A<結合記号>B
@@ -100,11 +110,11 @@ git diff A<結合記号>B
 - A,Bはcommit
 →ブランチ名を書くと、そのブランチのHEADと解釈される
 
-# `git diff A..B`: 二点間の範囲  
+### `git diff A..B`: 二点間の範囲  
 
 A から B に至るまでに B 側で追加された変更を全て比較。
 
-# `git diff A...B`: マージベース比較  
+### `git diff A...B`: マージベース比較  
 
 A と B の共通祖先（merge-base）から見た、B側で追加された変更を比較。  
 例えば、masterからfeatureを切ったとして、
@@ -115,6 +125,24 @@ git diff master...feature
 
 とすると、
 masterで何か変更があっても無視される。
+
+## 特定ファイルのブランチ間差分を取る
+
+```sh
+git diff branchA branchB -- path/to/file
+```
+
+## 現ファイルを特定ブランチのファイルに差し替える
+
+```sh
+git checkout branchName -- path/to/file
+```
+
+## コンフリクトが発生しているmergeをキャンセルする
+
+```sh
+git merge --abort
+```
 
 # jdt.ls(このvimを使う上でのメモというより、一般知識としてのメモ)
 
