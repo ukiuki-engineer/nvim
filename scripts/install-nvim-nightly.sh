@@ -28,7 +28,7 @@ function _set_nvim_url() {
     fi
   elif [[ $OSTYPE == "linux-gnu"* ]] || [[ $OSTYPE == "freebsd"* ]]; then
     # Linux
-    nvimNightlyUrl=https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+    nvimNightlyUrl=https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
   fi
 
   # URLが空の場合はエラーを出力して終了
@@ -40,8 +40,10 @@ function _set_nvim_url() {
 
 # Neovim Nightlyのバックアップとインストール
 function _install() {
+  if [ -d "/path/to/dir" ]; then
+    rm -rf $oldDir
+  fi
   # バックアップ
-  rm -rf $oldDir
   mv $installDir $oldDir
   # インストールディレクトリ作成
   mkdir -p $installDir
