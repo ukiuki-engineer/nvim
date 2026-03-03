@@ -115,6 +115,7 @@ require("plugins.coding.shfmt").lua_source()
 # デフォルトより見やすいsyntax highlight
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
+rev = 'master'
 depends = ['nvim-ts-context-commentstring']
 on_event = ['FileType']
 lua_source = '''

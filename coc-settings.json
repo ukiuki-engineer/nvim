@@ -19,7 +19,9 @@
     // "markdown",
     "php",
     "scss",
-    "sql"
+    "sql",
+    // TODO: texの保存時フォーマットが効かない
+    "tex"
   ],
   "codeLens.enable": true,
   "diagnostic.virtualText": true,
@@ -214,7 +216,7 @@
   "sql.formatOptions": {
     "keywordCase": "upper",
     "tabWidth": 2
-  }
+  },
   // TODO: できればsqlsの設定をしたい設定例は以下
   // "languageserver": {
   //   "sqls": {
@@ -244,4 +246,24 @@
   //     }
   //   }
   // }
+  /*
+   * coc-texlab
+   */
+  "texlab.chktex.onOpenAndSave": true,
+  "texlab.build.onSave": true,
+  "texlab.build.forwardSearchAfter": true,
+  "texlab.build.executable": "latexmk",
+  "texlab.build.args": [
+    // 以下は通常"-pdf"だが、日本語を使用する場合は"-lualatex"
+    "-lualatex",
+    // エラーが出ても対話モードに入らない
+    "-interaction=nonstopmode",
+    // PDFとソースの位置対応を生成
+    "-synctex=1",
+    "%f"
+  ],
+  "texlab.latexFormatter": "latexindent",
+  // NOTE: 環境に合わせてpdfを開くコマンドを変える
+  "texlab.forwardSearch.executable": "open",
+  "texlab.forwardSearch.args": ["-a", "Preview", "%p"]
 }

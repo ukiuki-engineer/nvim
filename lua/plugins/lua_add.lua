@@ -196,6 +196,7 @@ function M.coc()
     'coc-solargraph',
     'coc-spell-checker',
     'coc-sql',
+    'coc-texlab',
     'coc-tsserver',
     'coc-vetur',
     'coc-vimlsp',
