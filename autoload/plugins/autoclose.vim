@@ -48,6 +48,18 @@ function! plugins#autoclose#hook_source() abort
           \ 'output'    : '--  --',
           \ 'back_count': 3
           \ })
+    autocmd FileType tex call autoclose#custom_completion({
+          \ 'prev_char' : '',
+          \ 'input_char': '$',
+          \ 'output'    : '$$',
+          \ 'back_count': 1
+          \ })
+    autocmd FileType tex call autoclose#custom_completion({
+          \ 'prev_char' : '',
+          \ 'input_char': '|',
+          \ 'output'    : '||',
+          \ 'back_count': 1
+          \ })
   augroup END
 endfunction
 
