@@ -171,6 +171,9 @@ end
 -- LSP
 --------------------------------------------------------------------------------
 function M.coc()
+  vim.g.coc_snippet_next = "<c-f>"
+  vim.g.coc_snippet_prev = "<c-b>"
+
   -- coc-extensions
   vim.g.coc_global_extensions = {
     '@yaegassy/coc-intelephense',

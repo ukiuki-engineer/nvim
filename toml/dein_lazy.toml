@@ -207,6 +207,8 @@ require("plugins.coding.edgemotion").lua_source()
 [[plugins]]
 # NOTE: coc-snippetsで呼び出して使う
 # 個々のcocプラグイン側の補完候補とぶつかって面倒な場合はどちらかをオフにする
+# coc-snippetsが読み込んでるスニペットの定義ファイルの場所を確認するには↓
+# CocCommand snippets.openSnippetFiles
 repo = 'honza/vim-snippets'
 on_event = ['FileType']
 ################################################################################

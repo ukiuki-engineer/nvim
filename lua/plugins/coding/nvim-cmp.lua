@@ -3,6 +3,7 @@ local M = {}
 function M.lua_source()
   local const           = vim.g["my#const"]
   local cmp             = require('cmp')
+  local use_lspconfig   = vim.g.lsp_plugin_selection == const.lsp_plugin_selection_mason_lspconfig
 
   -- cmdlineのマッピング(検索/コマンド共通)
   local cmdline_mapping = cmp.mapping.preset.cmdline({
@@ -43,20 +44,14 @@ function M.lua_source()
     { name = 'skkeleton' },
   }
   -- lspconfigを使用するなら以下を追加
-  if vim.g.lsp_plugin_selection == const.lsp_plugin_selection_mason_lspconfig then
+  if use_lspconfig then
     table.insert(sources, { name = 'nvim_lsp' })
     table.insert(sources, { name = 'luasnip' })
   end
 
-  cmp.setup({
-    snippet = vim.g.lsp_plugin_selection == const.lsp_plugin_selection_mason_lspconfig
-        and {
-          expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-          end,
-        }
-        or {},
-    mapping = cmp.mapping.preset.insert({
+  local insert_mode_mapping
+  if use_lspconfig then
+    insert_mode_mapping = cmp.mapping.preset.insert({
       ['<Tab>'] = cmp.mapping({
         i = function(fallback)
           if cmp.visible() then
@@ -74,7 +69,26 @@ function M.lua_source()
         end,
       }),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    }),
+    })
+  else
+    -- coc運用時はTabをcoc側に任せつつ、cmp(skkeleton source)の操作キーは残す
+    insert_mode_mapping = cmp.mapping.preset.insert({
+      ['<C-n>'] = cmp.mapping.select_next_item(),
+      ['<C-p>'] = cmp.mapping.select_prev_item(),
+      ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+      ['<C-e>'] = cmp.mapping.abort(),
+    })
+  end
+
+  cmp.setup({
+    snippet = use_lspconfig
+        and {
+          expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+          end,
+        }
+        or {},
+    mapping = insert_mode_mapping,
     sources = cmp.config.sources(sources),
     window = {
       completion = cmp.config.window.bordered(),

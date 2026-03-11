@@ -16,6 +16,18 @@
 
 local M = {}
 
+-- cocの<Tab>補完mapping(v:lua.check_back_space)で参照される関数
+if _G.check_back_space == nil then
+  function _G.check_back_space()
+    local col = vim.fn.col(".") - 1
+    if col <= 0 then
+      return true
+    end
+
+    return vim.fn.getline("."):sub(col, col):match("%s") ~= nil
+  end
+end
+
 
 function M.lua_source()
   local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
