@@ -28,10 +28,12 @@ Total Min:     11.237000 msec
 
 # Required
 
-事前に下記をインストールしておく。
+事前に下記をインストールしておく。  
+(結構あるけど書ききれてない)
 
 - [Deno](https://deno.com/)
 - Node
+- ripgrep
 
 # ディレクトリ構造
 

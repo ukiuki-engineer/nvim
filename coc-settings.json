@@ -179,6 +179,7 @@
     "vimscript",
     "winresizer",
     "wslenv",
+    "wslview",
     "yaegassy",
     "zenhan"
   ],
@@ -265,6 +266,8 @@
   ],
   "texlab.latexFormatter": "latexindent",
   // NOTE: 環境に合わせてpdfを開くコマンドを変える
+  // "texlab.forwardSearch.executable": "wslview",
+  // "texlab.forwardSearch.args": ["%p"]
   "texlab.forwardSearch.executable": "open",
   "texlab.forwardSearch.args": ["-a", "Preview", "%p"]
 }
