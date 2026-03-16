@@ -1,3 +1,74 @@
+snippet ltjsarticle "日本語文書" b
+\\documentclass[11pt, a4paper]{ltjsarticle}
+
+% 体裁
+\\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry}
+% 数式
+\\usepackage{amsmath,amssymb,mathtools,bm}
+% 画像，図，グラフ
+\\usepackage{tcolorbox}
+\\usetikzlibrary{intersections, calc, patterns, math, arrows.meta}
+
+% 表紙の設定
+\\title{
+{\large ${1:subtitle}}\\
+${2:title}}
+\\author{${3:名前}}
+\\date{\\empty}
+
+% 文書
+\\begin{document}
+
+\\maketitle
+
+${0}
+
+\\end{document}
+endsnippet
+
+snippet ltxjp "LuaLaTeX 日本語＋数式テンプレ" b
+% !TEX program = lualatex
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{luatexja}
+\pagestyle{empty}
+
+\begin{document}
+
+$0
+
+\end{document}
+endsnippet
+
+snippet ltxeq "LuaLaTeX 数式専用" b
+% !TEX program = lualatex
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{luatexja}
+\pagestyle{empty}
+
+\begin{document}
+
+\[
+$0
+\]
+
+\end{document}
+endsnippet
+
+snippet ltximg "LuaLaTeX standalone 日本語" b
+% !TEX program = lualatex
+\documentclass[preview]{standalone}
+\usepackage{amsmath,amssymb}
+\usepackage{luatexja}
+
+\begin{document}
+
+$0
+
+\end{document}
+endsnippet
+
 snippet tilde "tilde accent" i
 \\tilde{$1}
 endsnippet
@@ -25,4 +96,230 @@ endsnippet
 
 snippet mathbf "mathbf" i
 \\mathbf{$1}
+endsnippet
+
+snippet mbf "mathbf" i
+\\mathbf{$1}
+endsnippet
+
+snippet dot "dot" i
+\\dot{$1}
+endsnippet
+
+snippet ddot "ddot" i
+\\ddot{$1}
+endsnippet
+
+snippet al "align" b
+\\begin{align}
+  $1
+\\end{align}
+endsnippet
+
+snippet al* "align*" b
+\\begin{align*}
+  $1
+\\end{align*}
+endsnippet
+
+# ギリシャ文字
+snippet alpha "α" i
+\\alpha
+endsnippet
+
+snippet beta "β" i
+\\beta
+endsnippet
+
+snippet gamma "γ" i
+\\gamma
+endsnippet
+
+snippet delta "δ" i
+\\delta
+endsnippet
+
+snippet epsilon "ε" i
+\\epsilon
+endsnippet
+
+snippet zeta "ζ" i
+\\zeta
+endsnippet
+
+snippet eta "η" i
+\\eta
+endsnippet
+
+snippet theta "θ" i
+\\theta
+endsnippet
+
+snippet iota "ι" i
+\\iota
+endsnippet
+
+snippet kappa "κ" i
+\\kappa
+endsnippet
+
+snippet lambda "λ" i
+\\lambda
+endsnippet
+
+snippet mu "μ" i
+\\mu
+endsnippet
+
+snippet nu "ν" i
+\\nu
+endsnippet
+
+snippet xi "ξ" i
+\\xi
+endsnippet
+
+snippet pi "π" i
+\\pi
+endsnippet
+
+snippet rho "ρ" i
+\\rho
+endsnippet
+
+snippet sigma "σ" i
+\\sigma
+endsnippet
+
+snippet tau "τ" i
+\\tau
+endsnippet
+
+snippet upsilon "υ" i
+\\upsilon
+endsnippet
+
+snippet phi "φ" i
+\\phi
+endsnippet
+
+snippet chi "χ" i
+\\chi
+endsnippet
+
+snippet psi "ψ" i
+\\psi
+endsnippet
+
+snippet omega "ω" i
+\\omega
+endsnippet
+
+snippet Gamma "Γ" i
+\\Gamma
+endsnippet
+
+snippet Delta "Δ" i
+\\Delta
+endsnippet
+
+snippet Theta "Θ" i
+\\Theta
+endsnippet
+
+snippet Lambda "Λ" i
+\\Lambda
+endsnippet
+
+snippet Xi "Ξ" i
+\\Xi
+endsnippet
+
+snippet Pi "Π" i
+\\Pi
+endsnippet
+
+snippet Sigma "Σ" i
+\\Sigma
+endsnippet
+
+snippet Upsilon "Υ" i
+\\Upsilon
+endsnippet
+
+snippet Phi "Φ" i
+\\Phi
+endsnippet
+
+snippet Psi "Ψ" i
+\\Psi
+endsnippet
+
+snippet Omega "Ω" i
+\\Omega
+endsnippet
+
+snippet varepsilon "ε (variant)" i
+\\varepsilon
+endsnippet
+
+snippet vartheta "θ (variant)" i
+\\vartheta
+endsnippet
+
+snippet varphi "φ (variant)" i
+\\varphi
+endsnippet
+
+snippet varrho "ρ (variant)" i
+\\varrho
+endsnippet
+
+snippet varsigma "σ (final)" i
+\\varsigma
+endsnippet
+
+# 括弧(自動サイズ)
+snippet lp "left(" i
+\\left( $1 \\right)$0
+endsnippet
+
+snippet lb "left[" i
+\\left[ $1 \\right]$0
+endsnippet
+
+snippet lc "left{" i
+\\left\\{ $1 \\right\\}$0
+endsnippet
+
+
+# ブラケット
+snippet br "bra" i
+\\langle $1 |
+endsnippet
+
+snippet ke "ket" i
+| $1 \\rangle
+endsnippet
+
+snippet bk "bra-ket" i
+\\langle $1 | $2 \\rangle$0
+endsnippet
+
+# 矢印
+snippet to "→" i
+\\to
+endsnippet
+
+snippet iff "⇔" i
+\\iff
+endsnippet
+
+snippet imp "⇒" i
+\\implies
+endsnippet
+
+# 空白
+snippet sp "space" i
+\\,
 endsnippet
