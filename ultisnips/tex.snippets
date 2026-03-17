@@ -4,14 +4,14 @@ snippet ltjsarticle "日本語文書" b
 % 体裁
 \\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry}
 % 数式
-\\usepackage{amsmath,amssymb,mathtools,bm}
+\\usepackage{amssymb,mathtools,bm}
 % 画像，図，グラフ
 \\usepackage{tcolorbox}
 \\usetikzlibrary{intersections, calc, patterns, math, arrows.meta}
 
 % 表紙の設定
 \\title{
-{\large ${1:subtitle}}\\
+{\\large ${1:subtitle}}\\
 ${2:title}}
 \\author{${3:名前}}
 \\date{\\empty}
@@ -28,45 +28,45 @@ endsnippet
 
 snippet ltxjp "LuaLaTeX 日本語＋数式テンプレ" b
 % !TEX program = lualatex
-\documentclass{article}
-\usepackage{amsmath,amssymb}
-\usepackage{luatexja}
-\pagestyle{empty}
+\\documentclass{article}
+\\usepackage{amssymb,mathtools,bm}
+\\usepackage{luatexja}
+\\pagestyle{empty}
 
-\begin{document}
+\\begin{document}
 
 $0
 
-\end{document}
+\\end{document}
 endsnippet
 
 snippet ltxeq "LuaLaTeX 数式専用" b
 % !TEX program = lualatex
-\documentclass{article}
-\usepackage{amsmath,amssymb}
-\usepackage{luatexja}
-\pagestyle{empty}
+\\documentclass{article}
+\\usepackage{mathtools,amssymb}
+\\usepackage{luatexja}
+\\pagestyle{empty}
 
-\begin{document}
+\\begin{document}
 
-\[
-$0
-\]
+\\[
+  $0
+\\]
 
-\end{document}
+\\end{document}
 endsnippet
 
 snippet ltximg "LuaLaTeX standalone 日本語" b
 % !TEX program = lualatex
-\documentclass[preview]{standalone}
-\usepackage{amsmath,amssymb}
-\usepackage{luatexja}
+\\documentclass[preview]{standalone}
+\\usepackage{mathtools,amssymb}
+\\usepackage{luatexja}
 
-\begin{document}
+\\begin{document}
 
 $0
 
-\end{document}
+\\end{document}
 endsnippet
 
 snippet tilde "tilde accent" i
@@ -120,6 +120,30 @@ snippet al* "align*" b
 \\begin{align*}
   $1
 \\end{align*}
+endsnippet
+
+snippet pmat "pmatrix 2x2" b
+\\begin{pmatrix}
+  ${1:a} & ${2:b} \\\\
+  ${3:c} & ${4:d}
+\\end{pmatrix}
+${0}
+endsnippet
+
+snippet vmat "vmatrix 2x2" b
+\\begin{vmatrix}
+  ${1:a} & ${2:b} \\\\
+  ${3:c} & ${4:d}
+\\end{vmatrix}
+${0}
+endsnippet
+
+snippet trans "transposed matrix" i
+{}^t\\! ${1:A}
+endsnippet
+
+snippet coloneqq "coloneqq" i
+\\coloneqq $0
 endsnippet
 
 # ギリシャ文字

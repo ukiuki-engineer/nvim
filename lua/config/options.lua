@@ -75,3 +75,6 @@ vim.opt.nrformats:append("unsigned")
 
 -- window分割しててもstatuslineを1つに
 vim.opt.laststatus = 3
+
+-- plaintexでも問答無用でlatexを使う
+vim.g.tex_flavor = "latex"
