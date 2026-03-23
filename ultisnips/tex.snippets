@@ -1,3 +1,6 @@
+###############################################################################
+# doc templates
+###############################################################################
 snippet ltjsarticle "日本語文書" b
 \\documentclass[11pt, a4paper]{ltjsarticle}
 
@@ -68,46 +71,25 @@ $0
 
 \\end{document}
 endsnippet
-
-snippet tilde "tilde accent" i
-\\tilde{$1}
-endsnippet
-
-snippet nonum "nonumber" i
-\\nonumber
-endsnippet
-
+###############################################################################
+# text layout
+###############################################################################
 snippet noindent "noindent" i
 \\noindent
 endsnippet
-
-snippet partial "partial" i
-\\partial{$1}
+###############################################################################
+# eq layout
+###############################################################################
+snippet nonum "nonumber" i
+\\nonumber
 endsnippet
 
 snippet overset "overset" i
 \\overset{$1}
 endsnippet
 
-
 snippet eqref "eqref" i
 \\eqref{$1}
-endsnippet
-
-snippet mathbf "mathbf" i
-\\mathbf{$1}
-endsnippet
-
-snippet mbf "mathbf" i
-\\mathbf{$1}
-endsnippet
-
-snippet dot "dot" i
-\\dot{$1}
-endsnippet
-
-snippet ddot "ddot" i
-\\ddot{$1}
 endsnippet
 
 snippet al "align" b
@@ -121,32 +103,9 @@ snippet al* "align*" b
   $1
 \\end{align*}
 endsnippet
-
-snippet pmat "pmatrix 2x2" b
-\\begin{pmatrix}
-  ${1:a} & ${2:b} \\\\
-  ${3:c} & ${4:d}
-\\end{pmatrix}
-${0}
-endsnippet
-
-snippet vmat "vmatrix 2x2" b
-\\begin{vmatrix}
-  ${1:a} & ${2:b} \\\\
-  ${3:c} & ${4:d}
-\\end{vmatrix}
-${0}
-endsnippet
-
-snippet trans "transposed matrix" i
-{}^t\\! ${1:A}
-endsnippet
-
-snippet coloneqq "coloneqq" i
-\\coloneqq $0
-endsnippet
-
-# ギリシャ文字
+###############################################################################
+# greeks
+###############################################################################
 snippet alpha "α" i
 \\alpha
 endsnippet
@@ -302,6 +261,15 @@ endsnippet
 snippet varsigma "σ (final)" i
 \\varsigma
 endsnippet
+###############################################################################
+# math symbols
+###############################################################################
+snippet partial "partial" i
+\\partial{$1}
+endsnippet
+snippet coloneqq "coloneqq" i
+\\coloneqq $0
+endsnippet
 
 # 括弧(自動サイズ)
 snippet lp "left(" i
@@ -314,20 +282,6 @@ endsnippet
 
 snippet lc "left{" i
 \\left\\{ $1 \\right\\}$0
-endsnippet
-
-
-# ブラケット
-snippet br "bra" i
-\\langle $1 |
-endsnippet
-
-snippet ke "ket" i
-| $1 \\rangle
-endsnippet
-
-snippet bk "bra-ket" i
-\\langle $1 | $2 \\rangle$0
 endsnippet
 
 # 矢印
@@ -346,4 +300,67 @@ endsnippet
 # 空白
 snippet sp "space" i
 \\,
+endsnippet
+###############################################################################
+# math structures
+###############################################################################
+snippet pmat "pmatrix 2x2" b
+\\begin{pmatrix}
+  ${1:a} & ${2:b} \\\\
+  ${3:c} & ${4:d}
+\\end{pmatrix}
+${0}
+endsnippet
+
+snippet vmat "vmatrix 2x2" b
+\\begin{vmatrix}
+  ${1:a} & ${2:b} \\\\
+  ${3:c} & ${4:d}
+\\end{vmatrix}
+${0}
+endsnippet
+
+snippet trans "transposed matrix" i
+{}^t\\! ${1:A}
+endsnippet
+
+snippet det "determinant" i
+\\det{$1}
+endsnippet
+###############################################################################
+# decoration
+###############################################################################
+snippet tilde "tilde accent" i
+\\tilde{$1}
+endsnippet
+
+snippet mathbf "mathbf" i
+\\mathbf{$1}
+endsnippet
+
+snippet mbf "mathbf" i
+\\mathbf{$1}
+endsnippet
+
+snippet dot "dot" i
+\\dot{$1}
+endsnippet
+
+snippet ddot "ddot" i
+\\ddot{$1}
+endsnippet
+###############################################################################
+# physics
+###############################################################################
+# ブラケット
+snippet br "bra" i
+\\langle $1 |
+endsnippet
+
+snippet ke "ket" i
+| $1 \\rangle
+endsnippet
+
+snippet bk "bra-ket" i
+\\langle $1 | $2 \\rangle$0
 endsnippet

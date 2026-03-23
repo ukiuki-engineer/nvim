@@ -157,7 +157,7 @@ au({ "BufRead" }, {
 -- NOTE: ftpluginに入れても良いけど、一箇所に集めた方が分かりやすいからここで設定する
 au("FileType", {
   group = "MyAutocmds",
-  pattern = { "applescript", "toml" },
+  pattern = { "applescript", "toml", "snippets" },
   callback = function()
     vim.bo.commentstring = "# %s"
   end
