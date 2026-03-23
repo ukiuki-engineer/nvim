@@ -71,8 +71,26 @@ function M.lua_source()
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
     })
   else
-    -- coc運用時はTabをcoc側に任せつつ、cmp(skkeleton source)の操作キーは残す
+    -- coc運用時:
+    --   - cmpメニュー表示中はTab/S-Tabで候補移動
+    --   - それ以外はfallbackでcoc側のTabマッピングへ委譲
     insert_mode_mapping = cmp.mapping.preset.insert({
+      ['<Tab>'] = cmp.mapping({
+        i = function(fallback)
+          if cmp.visible() then
+            return cmp.select_next_item()
+          end
+          fallback()
+        end,
+      }),
+      ['<S-Tab>'] = cmp.mapping({
+        i = function(fallback)
+          if cmp.visible() then
+            return cmp.select_prev_item()
+          end
+          fallback()
+        end,
+      }),
       ['<C-n>'] = cmp.mapping.select_next_item(),
       ['<C-p>'] = cmp.mapping.select_prev_item(),
       ['<C-y>'] = cmp.mapping.confirm({ select = true }),
