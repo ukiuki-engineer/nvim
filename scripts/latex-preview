@@ -1,0 +1,7 @@
+#!/bin/sh
+# NOTE: パスが通った場所にこのファイルのシンボリックリンクを置く
+if [ "$(uname)" = "Darwin" ]; then
+  /Applications/Skim.app/Contents/SharedSupport/displayline -g $*
+elif [ -n "$WSLENV" ]; then
+  "/mnt/c/Program Files/SumatraPDF/SumatraPDF.exe" -forward-search $*
+fi

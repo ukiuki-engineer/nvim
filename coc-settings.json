@@ -265,12 +265,7 @@
     "%f"
   ],
   "texlab.latexFormatter": "latexindent",
-  // NOTE: 環境に合わせてpdfを開くコマンドを変える
-  // TODO: WindowsだとSumatraPDFが良いらしい
-  // "texlab.forwardSearch.executable": "wslview",
-  // "texlab.forwardSearch.args": ["%p"]
-  // "texlab.forwardSearch.executable": "open",
-  // "texlab.forwardSearch.args": ["-a", "Preview", "%p"]
-  "texlab.forwardSearch.executable": "/Applications/Skim.app/Contents/SharedSupport/displayline",
-  "texlab.forwardSearch.args": ["-g", "%l", "%p", "%f"]
+  // NOTE: パスが通った場所にscripts/latex-previewのシンボリックリンクを置く
+  "texlab.forwardSearch.executable": "latex-preview",
+  "texlab.forwardSearch.args": ["%l", "%p", "%f"]
 }
