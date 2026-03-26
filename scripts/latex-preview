@@ -5,7 +5,7 @@ pdf="$2"
 tex="$3"
 
 if [ "$(uname)" = "Darwin" ]; then
-  /Applications/Skim.app/Contents/SharedSupport/displayline -g "$line" "$tex" "$pdf"
+  /Applications/Skim.app/Contents/SharedSupport/displayline -g "$line" "$pdf" "$tex"
 elif [ -n "$WSLENV" ]; then
   "/mnt/c/Program Files/SumatraPDF/SumatraPDF.exe" "$pdf" -forward-search "$tex" "$line"
 fi
