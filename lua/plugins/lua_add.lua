@@ -207,6 +207,12 @@ function M.coc()
     'coc-xml',
     'coc-yaml',
   }
+
+  -- スニペット定義ファイルの場所
+  vim.g.UltiSnipsSnippetDirectories = {
+    "ultisnips",       -- 既存
+    "ultisnips_local", -- ローカル専用
+  }
 end
 
 --------------------------------------------------------------------------------
