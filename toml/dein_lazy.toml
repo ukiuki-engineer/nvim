@@ -39,6 +39,11 @@ on_event = ['FileType', 'BufRead']
 lua_source = '''
 require("plugins.ui.dropbar").lua_source()
 '''
+# # 画像をneovim上で表示するやつ
+# TODO: 環境準備が大変そうなのでまだ出来てない
+# [[plugins]]
+# repo = '3rd/image.nvim'
+# on_ft = ['markdown']
 ################################################################################
 # coding
 ################################################################################
