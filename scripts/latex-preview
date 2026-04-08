@@ -3,9 +3,41 @@
 line="$1"
 pdf="$2"
 tex="$3"
+# NOTE: 環境変数を使ってPDFベューアを指定する(MacならSkim, WSLならSumatraPDF)
+viewer=$LATEX_PDF_VIEWER
+
+# 実行可能かを返す
+is_executable() {
+  [ -n "$1" ] || return 1
+  [ -x "$1" ] && return 0
+  command -v "$1" >/dev/null 2>&1
+}
 
 if [ "$(uname)" = "Darwin" ]; then
-  /Applications/Skim.app/Contents/SharedSupport/displayline -g "$line" "$pdf" "$tex"
+  # Mac
+  if [ "${viewer}" = "" ]; then
+    viewer="/Applications/Skim.app/Contents/SharedSupport/displayline"
+  fi
+  if is_executable "${viewer}"; then
+    # SkimがあればSkimを使う
+    ${viewer} -g "$line" "$pdf" "$tex"
+  else
+    # Skimがなければopenを使う
+    open "$pdf"
+  fi
 elif [ -n "$WSLENV" ]; then
-  "/mnt/c/Program Files/SumatraPDF/SumatraPDF.exe" "$pdf" -forward-search "$tex" "$line"
+  # WSL
+  if [ "${viewer}" = "" ]; then
+    viewer="/mnt/c/Program Files/SumatraPDF/SumatraPDF.exe"
+  fi
+  if is_executable "${viewer}"; then
+    ${viewer} "$pdf" -forward-search "$tex" "$line"
+  else
+    # SumatraPDFがなければstartを使う
+    cmd.exe /C start "" "$(wslpath -w "$pdf")" >/dev/null 2>&1
+  fi
+else
+  # TODO: Mac/WSL 以外の環境をサポートする
+  echo "latex-preview: TODO unsupported environment (only Darwin/WSL supported)." >&2
+  exit 1
 fi

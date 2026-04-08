@@ -1,7 +1,7 @@
 ###############################################################################
 # doc templates
 ###############################################################################
-snippet ltjsarticle "日本語文書" b
+snippet docjsarticle "日本語文書" b
 \\documentclass[11pt, a4paper]{ltjsarticle}
 
 % 体裁
@@ -29,7 +29,7 @@ ${0}
 \\end{document}
 endsnippet
 
-snippet ltxjp "LuaLaTeX 日本語＋数式テンプレ" b
+snippet docxjp "LuaLaTeX 日本語＋数式テンプレ" b
 % !TEX program = lualatex
 \\documentclass{article}
 \\usepackage{amssymb,mathtools,bm}
@@ -43,25 +43,9 @@ $0
 \\end{document}
 endsnippet
 
-snippet ltxeq "LuaLaTeX 数式専用" b
+snippet docximg "LuaLaTeX standalone 日本語" b
 % !TEX program = lualatex
-\\documentclass{article}
-\\usepackage{mathtools,amssymb}
-\\usepackage{luatexja}
-\\pagestyle{empty}
-
-\\begin{document}
-
-\\[
-  $0
-\\]
-
-\\end{document}
-endsnippet
-
-snippet ltximg "LuaLaTeX standalone 日本語" b
-% !TEX program = lualatex
-\\documentclass[preview]{standalone}
+\\documentclass[preview,border={10pt 10pt 10pt 10pt}]{standalone}
 \\usepackage{mathtools,amssymb}
 \\usepackage{luatexja}
 
