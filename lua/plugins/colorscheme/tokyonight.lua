@@ -39,6 +39,9 @@ function M.set_customcolor()
   colorscheme_utils.hi_gitsigns()
   -- telescope.nvim
   colorscheme_utils.hi_telescope()
+  -- markdown: 太字を目立つ赤にする（Tree-sitter / 従来構文の両対応）
+  hi(0, '@markup.strong', { fg = "#f7768e", bold = true })
+  hi(0, 'markdownBold', { fg = "#f7768e", bold = true })
 
   -- tokyonight-night
   if vim.g.colors_name == "tokyonight-night" then
