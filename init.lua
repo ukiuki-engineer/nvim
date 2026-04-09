@@ -1,3 +1,10 @@
+if vim.g.vscode then
+  local init_dir = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.expand("<sfile>")), ":h")
+  local vscode_init = init_dir .. "/vscode/init.vim"
+  vim.cmd("source " .. vim.fn.fnameescape(vscode_init))
+  return
+end
+
 -- 定数ファイル読み込み
 require("const")
 
