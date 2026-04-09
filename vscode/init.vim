@@ -1,11 +1,11 @@
 " ================================================================================
 " init.vim(VSCode NeoVim用)
+" あまり作り込むつもりはないので、基本は1ファイルで管理するつもり
+" TODO: lua化した方が良いか？
 " ================================================================================
 " ------------------------------------------------------------------------------
 " options
 " ------------------------------------------------------------------------------
-" runtimepathを追加(まだ使ってないけど...)
-set runtimepath+=~/dotfiles/vscode-neovim
 " オートインデント
 set autoindent
 " クリップボード連携
@@ -42,11 +42,6 @@ augroup END
 " markはあまり使わないので潰してleaderにする
 let g:mapleader = "m"
 
-nnoremap <C-j> 7j
-nnoremap <C-k> 7k
-vnoremap <C-j> 7j
-vnoremap <C-k> 7k
-
 " Escを2回押すと検索結果ハイライトを非表示にする
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
 
@@ -69,61 +64,13 @@ nnoremap gd :call VSCodeNotify('editor.action.revealDefinition')<CR>
 nnoremap K :call VSCodeNotify('editor.action.showHover')<CR>
 " }}}
 
-" 日本語へのジャンプ、加工がしやすくなるように {{{
+" 日本語へのジャンプ、加工がしやすくなるように
 lua << END
-  local function map_zenkaku(hankaku_zenkaku_pairs)
-    for hankaku, zenkaku in pairs(hankaku_zenkaku_pairs) do
-      vim.keymap.set({ 'n', 'x' }, '<leader>f' .. hankaku, 'f' .. zenkaku, {})
-      vim.keymap.set({ 'n', 'x' }, '<leader>t' .. hankaku, 't' .. zenkaku, {})
-      vim.keymap.set({ 'n', 'x' }, '<leader>F' .. hankaku, 'F' .. zenkaku, {})
-      vim.keymap.set({ 'n', 'x' }, '<leader>T' .. hankaku, 'T' .. zenkaku, {})
-      vim.keymap.set('n', '<leader>df' .. hankaku, 'df' .. zenkaku, {})
-      vim.keymap.set('n', '<leader>dt' .. hankaku, 'dt' .. zenkaku, {})
-      vim.keymap.set('n', '<leader>cf' .. hankaku, 'cf' .. zenkaku, {})
-      vim.keymap.set('n', '<leader>ct' .. hankaku, 'ct' .. zenkaku, {})
-      vim.keymap.set('n', '<leader>yf' .. hankaku, 'yf' .. zenkaku, {})
-      vim.keymap.set('n', '<leader>yt' .. hankaku, 'yt' .. zenkaku, {})
-    end
-  end
-  map_zenkaku({
-    [" "] = "　",
-    ["!"] = "！",
-    ["%"] = "％",
-    ["&"] = "＆",
-    ["("] = "（",
-    [")"] = "）",
-    ["+"] = "＋",
-    [","] = "、",
-    ["-"] = "ー",
-    ["."] = "。",
-    ["/"] = "・",
-    ["0"] = "０",
-    ["1"] = "１",
-    ["2"] = "２",
-    ["3"] = "３",
-    ["4"] = "４",
-    ["5"] = "５",
-    ["6"] = "６",
-    ["7"] = "７",
-    ["8"] = "８",
-    ["9"] = "９",
-    [":"] = "：",
-    [";"] = "；",
-    ["<"] = "＜",
-    ["="] = "＝",
-    [">"] = "＞",
-    ["?"] = "？",
-    ["["] = "「",
-    ["]"] = "」",
-    ["a"] = "あ",
-    ["e"] = "え",
-    ["i"] = "い",
-    ["o"] = "お",
-    ["u"] = "う",
-    ["{"] = "『",
-    ["|"] = "｜",
-    ["}"] = "』",
-  })
+  require("config.keymappings").set_jump_to_zenkaku()
 END
-" }}}
-
+" ------------------------------------------------------------------------------
+"
+" TODO: プラグインマネージャーを追加する
+" TODO: machakann/vim-highlightedyank
+" TODO: haya14busa/vim-edgemotion
+" TODO: matchupも要るかも？

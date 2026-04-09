@@ -201,6 +201,7 @@ on_event = ['CursorMoved']
 repo = 'tpope/vim-repeat'
 on_source = ['vim-surround']
 
+# <C-i>, <C-j>で段落間を移動するやつ
 [[plugins]]
 repo = 'haya14busa/vim-edgemotion'
 on_event = ['CursorMoved']
