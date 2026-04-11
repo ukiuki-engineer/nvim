@@ -1,7 +1,6 @@
 if vim.g.vscode then
   local init_dir = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.expand("<sfile>")), ":h")
-  local vscode_init = init_dir .. "/vscode/init.vim"
-  vim.cmd("source " .. vim.fn.fnameescape(vscode_init))
+  dofile(init_dir .. "/vscode/init.lua")
   return
 end
 
