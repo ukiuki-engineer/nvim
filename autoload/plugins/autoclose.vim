@@ -30,6 +30,13 @@ function! plugins#autoclose#hook_source() abort
           \ 'output'    : '!--  -->',
           \ 'back_count': 4
           \ })
+    " markdownでは箇条書きとかで*単体の使用シーンもあるが、自分は使わないので、*はカッコのようなペア補完にする
+    autocmd FileType markdown call autoclose#custom_completion({
+          \ 'prev_char' : '',
+          \ 'input_char': '*',
+          \ 'output'    : '**',
+          \ 'back_count': 1
+          \ })
     autocmd FileType eruby call autoclose#custom_completion({
           \ 'prev_char' : '<',
           \ 'input_char': '%',
