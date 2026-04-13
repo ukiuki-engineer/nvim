@@ -1,4 +1,6 @@
 if vim.g.vscode then
+  -- VSCode Neovim用
+  -- NOTE: after/配下も自動で読まれるので注意
   local init_dir = vim.fn.fnamemodify(vim.fn.resolve(vim.fn.expand("<sfile>")), ":h")
   dofile(init_dir .. "/vscode/init.lua")
   return

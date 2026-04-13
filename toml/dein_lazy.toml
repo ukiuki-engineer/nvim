@@ -26,7 +26,7 @@ lua_source = '''
 require("plugins.ui.nvim-tree").lua_source()
 '''
 
-# nvim-treeのアイコン
+# Neovimプラグイン用のNerd Fontアイコン
 [[plugins]]
 repo = 'nvim-tree/nvim-web-devicons'
 on_source = ['diffview', 'nvim-tree.lua']
