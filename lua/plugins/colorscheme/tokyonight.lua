@@ -22,6 +22,9 @@ function M.set_customcolor()
   --
   -- 差分
   colorscheme_utils.hi_diff(bg_color)
+  -- markdown: 太字を目立つ赤にする（Tree-sitter / 従来構文の両対応）
+  hi(0, '@markup.strong', { fg = "#f7768e", bold = true })
+  hi(0, 'markdownBold', { fg = "#f7768e", bold = true })
   -- ヤンク範囲
   hi(0, 'HighlightedyankRegion', {
     bg = colorscheme_utils.transparent_color(bg_color, "#ff9e64", 0.60),
@@ -39,11 +42,9 @@ function M.set_customcolor()
   colorscheme_utils.hi_gitsigns()
   -- telescope.nvim
   colorscheme_utils.hi_telescope()
-  -- markdown: 太字を目立つ赤にする（Tree-sitter / 従来構文の両対応）
-  hi(0, '@markup.strong', { fg = "#f7768e", bold = true })
-  hi(0, 'markdownBold', { fg = "#f7768e", bold = true })
 
   -- tokyonight-night
+  --
   if vim.g.colors_name == "tokyonight-night" then
     -- コメント
     hi(0, 'Comment', { fg = "#8a92b6" })

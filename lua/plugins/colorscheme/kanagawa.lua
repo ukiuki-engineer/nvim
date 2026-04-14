@@ -7,14 +7,18 @@ function M.colorscheme_pre()
 end
 
 function M.set_customcolor()
+  local hi                = vim.api.nvim_set_hl
   local colorscheme_utils = require('plugins.colorscheme.utils')
   -- 背景色を取得
-  local bg_color = colorscheme_utils.get_background()
+  local bg_color          = colorscheme_utils.get_background()
 
   -- 差分系
   colorscheme_utils.hi_diff(bg_color)
   -- 検索系
   colorscheme_utils.hi_search(bg_color)
+  -- markdown: 太字を目立つ赤にする（Tree-sitter / 従来構文の両対応）
+  hi(0, '@markup.strong', { fg = "#e82424", bold = true })
+  hi(0, 'markdownBold', { fg = "#e82424", bold = true })
   -- ヤンク範囲
   colorscheme_utils.hi_yank_region(bg_color)
   -- coc.nvim用

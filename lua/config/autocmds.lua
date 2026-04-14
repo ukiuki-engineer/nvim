@@ -188,6 +188,7 @@ au("FileType", {
 -- ------------------------------------------------------------------------------
 augroup("MyCustomColor", {})
 
+-- TODO: autocmdを一つにまとめた方が見やすいかも
 au("ColorSchemePre", {
   group = "MyCustomColor",
   pattern = "tokyonight*",
