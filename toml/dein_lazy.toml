@@ -217,6 +217,14 @@ require("plugins.coding.edgemotion").lua_source()
 # CocCommand snippets.openSnippetFiles
 repo = 'honza/vim-snippets'
 on_event = ['FileType']
+
+# markdownレンダリング
+[[plugins]]
+repo = 'MeanderingProgrammer/render-markdown.nvim'
+on_ft = ['markdown']
+lua_source = '''
+require("plugins.coding.render-markdown").lua_source()
+'''
 ################################################################################
 # Git
 ################################################################################
