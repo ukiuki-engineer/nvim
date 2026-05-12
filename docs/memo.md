@@ -144,6 +144,18 @@ git checkout branchName -- path/to/file
 git merge --abort
 ```
 
+## 特定のcommitまでハードリセットする
+
+```sh
+git reset --hard <commit-hash>
+```
+
+## 特定ファイルを特定commitの状態に差し替える
+
+```sh
+git restore --source=<commit-hash> -- <file-path>
+```
+
 # jdt.ls(このvimを使う上でのメモというより、一般知識としてのメモ)
 
 - jdt.lsは、javaのlsp
