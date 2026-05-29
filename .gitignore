@@ -4,3 +4,4 @@ working
 local.vim
 .DS_Store
 ultisnips_local/
+.claude/
