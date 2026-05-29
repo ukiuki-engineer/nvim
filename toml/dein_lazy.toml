@@ -158,8 +158,9 @@ on_ft = [
   'scss',
   'stylus',
   'toml',
+  'typescriptreact',
   'vim',
-  'vue'
+  'vue',
 ]
 on_cmd = [
   'ColorizerAttachToBuffer',

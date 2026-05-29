@@ -187,6 +187,7 @@ function M.coc()
     'coc-docker',
     'coc-eslint',
     'coc-fzf-preview',
+    'coc-go',
     'coc-html',
     'coc-java',
     'coc-jedi',

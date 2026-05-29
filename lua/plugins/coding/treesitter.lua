@@ -28,6 +28,7 @@ function M.lua_source()
       "gitattributes",
       "gitcommit",
       "gitignore",
+      "go",
       "html",
       "ini",
       "java",
