@@ -8,6 +8,7 @@ local au                  = vim.api.nvim_create_autocmd
 local exepath             = vim.fn.exepath
 local utils               = require("utils.utils")
 
+-- TODO: 改行したときも発火してしまうのを直したい
 local events              = { "InsertLeave", "InsertEnter", "CmdlineLeave" }
 
 augroup("my_ime", {})

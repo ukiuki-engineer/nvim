@@ -37,6 +37,7 @@ function! plugins#skkeleton#init() abort
       \ [s:skk_dir .. "/dict/SKK-JISYO.L.unannotated", "euc-jp"],
     \ ]
   \ })
+  call skkeleton#register_keymap('input', '<space>', 'henkanFirst')
   call skkeleton#register_kanatable('rom', {
     \ "xn"       : ['ん', ''],
     \ "&"        : ['＆', ''],
@@ -48,7 +49,7 @@ function! plugins#skkeleton#init() abort
     \ "~"        : ['〜', ''],
     \ "\'"       : ['’', ''],
     \ "\""       : ['”', ''],
-    \ "z\<Space>": ["\u3000", ''],
+    \ "\<Space>" : ["\u3000", ''],
     \ "z0"       : ['０', ''],
     \ "z1"       : ['１', ''],
     \ "z2"       : ['２', ''],
