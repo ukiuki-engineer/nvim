@@ -17,6 +17,8 @@ function M.lua_source()
       enabled = false,
     },
   })
+
+  vim.keymap.set('n', '<leader>rt', '<Cmd>RenderMarkdown toggle<CR>', { desc = 'RenderMarkdown toggle' })
 end
 
 return M
