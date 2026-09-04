@@ -120,17 +120,17 @@ require("plugins.coding.shfmt").lua_source()
 # デフォルトより見やすいsyntax highlight
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
-rev = 'master'
-depends = ['nvim-ts-context-commentstring']
+rev = 'main'
 on_event = ['FileType']
 lua_source = '''
 require("plugins.coding.treesitter").lua_source()
 '''
 
-[[plugins]]
-repo = 'nvim-treesitter/playground'
-depends = ['nvim-treesitter']
-on_cmd = ['TSPlaygroundToggle']
+# nvim-treesitter/playground は Neovim 0.10+ の :InspectTree で代替可
+# [[plugins]]
+# repo = 'nvim-treesitter/playground'
+# depends = ['nvim-treesitter']
+# on_cmd = ['TSPlaygroundToggle']
 
 [[plugins]]
 repo = 'JoosepAlviste/nvim-ts-context-commentstring'

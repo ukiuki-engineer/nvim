@@ -1,21 +1,32 @@
 local M = {}
 
 function M.lua_source()
-  require('nvim-treesitter.configs').setup {
-    highlight = {
-      enable = true, -- syntax highlightを有効にする
-      disable = {    -- デフォルトの方が見やすい場合は無効に
-      }
-    },
-    indent = {
-      enable = true
-    },
-    matchup = {
-      -- enable = true,              -- mandatory, false will disable the whole extension
-      -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
-    },
-    -- ensure_installed = 'all', -- :TSInstall allと同じ
-    ensure_installed = {
+  -- nvim-treesitter main ブランチ: configs.setup() は廃止
+  -- highlight/indent は Neovim 組み込み treesitter で管理する
+
+  -- FileType ごとに treesitter ハイライトとインデントを有効化
+  vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true }),
+    callback = function(ev)
+      local ok = pcall(vim.treesitter.start, ev.buf)
+      if ok then
+        vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end
+    end,
+  })
+
+  -- nvim-ts-context-commentstring
+  -- mainブランチでは nvim-treesitter.configs モジュールが存在しないためスキップ
+  vim.g.skip_ts_context_commentstring_module = true
+  require('ts_context_commentstring').setup {
+    enable_autocmd = false,
+  }
+
+  -- パーサーのインストール（未インストール分のみ）
+  -- (:TSInstall <lang> / :TSUpdate でも可)
+  local ok, install = pcall(require, 'nvim-treesitter.install')
+  if ok then
+    install.install({
       "awk",
       "bash",
       "c",
@@ -58,12 +69,9 @@ function M.lua_source()
       "vue",
       "xml",
       "yaml",
-    },
-  }
-  -- nvim-ts-context-commentstring
-  require('ts_context_commentstring').setup {
-    enable_autocmd = false,
-  }
+    })
+  end
+
   -- FIXME: 全部書かずに、追加分だけ書く事はできないのか？
   require("vim.treesitter.query").set(
     "markdown",
