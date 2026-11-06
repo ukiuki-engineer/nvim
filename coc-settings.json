@@ -97,8 +97,7 @@
    * coc-snippets
    */
   "snippets.extends": {
-    "javascript": ["html", "javascript"],
-    "markdown": ["tex"]
+    "javascript": ["html", "javascript"]
   },
   "snippets.ultisnips.pythonPrompt": false,
   "snippets.userSnippetsDirectory": "~/.config/nvim/ultisnips",
