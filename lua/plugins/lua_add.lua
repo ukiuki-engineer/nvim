@@ -90,6 +90,16 @@ end
 --------------------------------------------------------------------------------
 -- coding
 --------------------------------------------------------------------------------
+function M.md_render()
+  -- 横長のテーブルに合わせて、描画幅の上限を既定の80桁から広げる
+  vim.g.md_render_max_width = 200
+
+  vim.keymap.set('n', '<leader>mp', '<Cmd>MdRender float<CR>', { desc = 'Markdown preview (toggle)' })
+  vim.keymap.set('n', '<leader>mt', '<Cmd>MdRender tab<CR>', { desc = 'Markdown preview in tab (toggle)' })
+  vim.keymap.set('n', '<leader>md', '<Cmd>MdRender demo<CR>', { desc = 'Markdown render demo' })
+  vim.keymap.set('n', '<leader>rt', '<Cmd>MdRender toggle<CR>', { desc = 'Markdown render toggle' })
+end
+
 function M.codeium()
   vim.g.codeium_filetypes = {
     TelescopePrompt = false

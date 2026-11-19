@@ -219,13 +219,33 @@ require("plugins.coding.edgemotion").lua_source()
 repo = 'honza/vim-snippets'
 on_event = ['FileType']
 
-# markdownレンダリング
+# # markdownレンダリング
+# [[plugins]]
+# repo = 'MeanderingProgrammer/render-markdown.nvim'
+# on_ft = ['markdown']
+# lua_source = '''
+# require("plugins.coding.render-markdown").lua_source()
+# '''
+
+# Markdownプレビュー
+# NOTE: Neovim >= 0.12
 [[plugins]]
-repo = 'MeanderingProgrammer/render-markdown.nvim'
+repo = 'delphinus/md-render.nvim'
+depends = ['nvim-web-devicons', 'budoux.lua']
 on_ft = ['markdown']
-lua_source = '''
-require("plugins.coding.render-markdown").lua_source()
+on_cmd = ['MdRender']
+lua_add = '''
+require("plugins.lua_add").md_render()
 '''
+lua_source = '''
+require("plugins.coding.md-render").lua_source()
+'''
+
+# 日本語の文節を考慮した改行
+[[plugins]]
+repo = 'delphinus/budoux.lua'
+on_source = ['md-render.nvim']
+
 ################################################################################
 # Git
 ################################################################################
