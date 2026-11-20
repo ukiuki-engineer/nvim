@@ -1,12 +1,12 @@
 local M = {}
 
--- diffview.luaを複製し、従来の見た目・操作を維持する設定
+-- NOTE: diffview.luaを複製してから作成した
 function M.lua_source()
   -- NOTE: luaで書くと上手くいかないのでvimscriptで
   vim.cmd([[
     augroup MyDiffviewAuCmds
       au!
-      " git情報を更新（スクリプトローカル関数を介さず直接呼ぶ）
+      " git情報を更新
       au User DiffviewViewOpened call utils#git_info#async_refresh_git_infomation()
       au ColorScheme * highlight! link DiffviewCommitSelected DiffviewFilePanelSelected
     augroup END
@@ -14,15 +14,6 @@ function M.lua_source()
     " 履歴の選択中コミットも従来と同じ色にする
     highlight! link DiffviewCommitSelected DiffviewFilePanelSelected
   ]])
-
-  -- 手動で再設定する既存コマンドを維持する
-  -- TODO: diffviewではkeymapが反映されたりされなかったり不安定だったから
-  -- 苦肉の策としてこのコマンドを定義してたけど、ここでは不要かも
-  vim.api.nvim_create_user_command('ResettingDiffview', function()
-    vim.cmd([[DiffviewClose]])
-    M.diffview_setup()
-    vim.cmd([[DiffviewOpen]])
-  end, {})
 
   -- diffview-plus.nvimの設定を実行
   M.diffview_setup()
@@ -32,7 +23,7 @@ end
 function M.diffview_setup()
   require('diffview').setup({
     enhanced_diff_hl = true,
-    -- 従来どおり、Diffviewのタブをセッションから自動復元しない
+    -- Diffviewのタブをセッションから自動復元しない
     restore_session = false,
     view = {
       merge_tool = {
@@ -49,14 +40,13 @@ function M.diffview_setup()
       },
     },
     file_history_panel = {
-      -- 従来と同じ数値表示・色分けを維持する
       stat_style = "number",
       subject_highlight = "plain",
       date_format = "iso", -- 常に年月日・時刻・タイムゾーンを表示する
     },
     keymaps = {
       file_panel = {
-        -- デフォルトと同じ小文字表記にし、矢印キーの重複定義を防ぐ
+        -- NOTE: 矢印キーを先頭大文字表記にすると挙動が不安定になる？？
         -- commit
         { "n", "<down>",
           function()
