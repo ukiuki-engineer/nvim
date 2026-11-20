@@ -1,0 +1,18 @@
+{
+  "description": "Markdownの変更行を検査します。",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "^(apply_patch|Bash)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/tools/check_md_lines.py\"",
+            "timeout": 10,
+            "statusMessage": "Markdownの変更行を検査"
+          }
+        ]
+      }
+    ]
+  }
+}
