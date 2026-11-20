@@ -49,10 +49,10 @@ function M.diffview_setup()
       },
     },
     file_history_panel = {
-      -- 従来と同じ数値表示・色分け・日付の自動切替を維持する
+      -- 従来と同じ数値表示・色分けを維持する
       stat_style = "number",
       subject_highlight = "plain",
-      date_format = "auto", -- 常に絶対日付にする場合は "iso"
+      date_format = "iso", -- 常に年月日・時刻・タイムゾーンを表示する
     },
     keymaps = {
       file_panel = {
