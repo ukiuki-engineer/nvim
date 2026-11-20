@@ -29,7 +29,7 @@ require("plugins.ui.nvim-tree").lua_source()
 # Neovimプラグイン用のNerd Fontアイコン
 [[plugins]]
 repo = 'nvim-tree/nvim-web-devicons'
-on_source = ['diffview', 'nvim-tree.lua']
+on_source = ['diffview-plus.nvim', 'nvim-tree.lua']
 
 # カーソル位置の階層を表示するやつ
 [[plugins]]
@@ -257,12 +257,32 @@ lua_source = '''
 require("plugins.git.gitsigns").lua_source()
 '''
 
-# gitの差分をvimdiffで表示したりstageしたりするやつ
-[[plugins]]
+# 元のdiffview.nvim（diffview-plus.nvimへ移行したため無効化）
+# [[plugins]]
 # NOTE: master <- 現在のブランチでプルリクを出す時
 #   :DiffviewOpen master..HEAD   # masterと、現ブランチの最新のcommitの差分(cocのdiagnosticsが表示されない)
 #   :DiffviewOpen master         # masterと、working treeの差分(cocのdiagnosticsが表示されるからこっちの方が良いかも)
-repo = 'sindrets/diffview.nvim'
+# repo = 'sindrets/diffview.nvim'
+# depends = ['plenary.nvim', 'nvim-web-devicons']
+# on_cmd = [
+#   'DiffviewClose',
+#   'DiffviewFileHistory',
+#   'DiffviewFocusFiles',
+#   'DiffviewLog',
+#   'DiffviewOpen',
+#   'DiffviewRefresh',
+#   'DiffviewToggleFiles'
+# ]
+# lua_add = '''
+# require("plugins.lua_add").diffview()
+# '''
+# lua_source = '''
+# require("plugins.git.diffview").lua_source()
+# '''
+
+# gitの差分をvimdiffで表示したりstageしたりするやつ（diffview.nvimの継続開発fork）
+[[plugins]]
+repo = 'dlyongemallo/diffview-plus.nvim'
 depends = ['plenary.nvim', 'nvim-web-devicons']
 on_cmd = [
   'DiffviewClose',
@@ -277,7 +297,7 @@ lua_add = '''
 require("plugins.lua_add").diffview()
 '''
 lua_source = '''
-require("plugins.git.diffview").lua_source()
+require("plugins.git.diffview-plus").lua_source()
 '''
 
 # neogit
@@ -341,7 +361,7 @@ on_source = ['telescope.nvim']
 # 多分nvim用のluaライブラリ的なやつ
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
-on_source = ['diffview', 'telescope.nvim']
+on_source = ['diffview-plus.nvim', 'telescope.nvim']
 
 # vimから編集中のファイルを素早く実行するやつ
 [[plugins]]
